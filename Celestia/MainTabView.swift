@@ -1,6 +1,6 @@
 //
 //  MainTabView.swift
-//  Celestia
+//  TeamUp
 //
 //  ELITE TAB BAR - Smooth Navigation Experience
 //
@@ -26,7 +26,7 @@ struct MainTabView: View {
             return true
         }
         guard let email = authService.currentUser?.email else { return false }
-        let adminEmails = ["perezkevin640@gmail.com", "admin@celestia.app"]
+        let adminEmails = ["perezkevin640@gmail.com", "admin@teamup.gg"]
         return adminEmails.contains(email.lowercased())
     }
 
@@ -198,24 +198,24 @@ struct MainTabView: View {
                 .frame(height: 0.5)
 
             HStack(spacing: 0) {
-                // Discover
+                // Find Teammates
                 TabBarButton(
-                    icon: "flame.fill",
-                    title: "Discover",
+                    icon: "gamecontroller.fill",
+                    title: "Find",
                     isSelected: selectedTab == 0,
                     badgeCount: 0,
-                    color: .orange
+                    color: .green
                 ) {
                     selectedTab = 0
                 }
 
-                // Likes
+                // Squad Requests
                 TabBarButton(
-                    icon: "heart.fill",
-                    title: "Likes",
+                    icon: "person.2.fill",
+                    title: "Squad",
                     isSelected: selectedTab == 1,
                     badgeCount: newMatchesCount,
-                    color: .pink
+                    color: .cyan
                 ) {
                     selectedTab = 1
                 }
@@ -223,7 +223,7 @@ struct MainTabView: View {
                 // Messages
                 TabBarButton(
                     icon: "message.fill",
-                    title: "Messages",
+                    title: "Chat",
                     isSelected: selectedTab == 2,
                     badgeCount: unreadCount,
                     color: .blue
@@ -237,7 +237,7 @@ struct MainTabView: View {
                     title: "Saved",
                     isSelected: selectedTab == 3,
                     badgeCount: 0,
-                    color: .yellow
+                    color: .orange
                 ) {
                     selectedTab = 3
                 }
@@ -367,16 +367,16 @@ struct TabBarButton: View {
 
     private var accessibilityHint: String {
         switch title {
-        case "Discover":
-            return "Browse potential matches"
-        case "Matches":
-            return "View your matches"
-        case "Messages":
+        case "Find":
+            return "Browse potential teammates"
+        case "Squad":
+            return "View your squad matches"
+        case "Chat":
             return "Read and send messages"
         case "Saved":
             return "View saved profiles"
         case "Profile":
-            return "Edit your profile and settings"
+            return "Edit your gamer profile and settings"
         case "Admin":
             return "Admin moderation dashboard"
         default:

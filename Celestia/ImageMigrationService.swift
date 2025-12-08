@@ -1,6 +1,6 @@
 //
 //  ImageMigrationService.swift
-//  Celestia
+//  TeamUp
 //
 //  Service for migrating existing Firebase Storage images to Cloudinary CDN
 //

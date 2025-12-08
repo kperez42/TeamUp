@@ -1,6 +1,6 @@
 //
 //  FilterView.swift
-//  Celestia
+//  TeamUp
 //
 //  Created by Kevin Perez on 10/29/25.
 //

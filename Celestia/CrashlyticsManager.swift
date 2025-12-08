@@ -1,6 +1,6 @@
 //
 //  CrashlyticsManager.swift
-//  Celestia
+//  TeamUp
 //
 //  Manages Firebase Crashlytics and Performance Monitoring
 //  Provides crash reporting, custom logging, and performance tracking
@@ -108,7 +108,7 @@ class CrashlyticsManager {
     }
 
     /// Record Celestia-specific errors
-    func recordCelestiaError(_ error: CelestiaError, context: [String: Any] = [:]) {
+    func recordTeamUpError(_ error: TeamUpError, context: [String: Any] = [:]) {
         var userInfo = context
         userInfo["errorType"] = String(describing: error)
         userInfo["errorDescription"] = error.errorDescription ?? "Unknown"

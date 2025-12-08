@@ -1,6 +1,6 @@
 //
 //  WelcomeView.swift - IMPROVED VERSION
-//  Celestia
+//  TeamUp
 //
 //  ✨ Enhanced with:
 //  - Animated gradient background

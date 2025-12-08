@@ -1,6 +1,6 @@
 //
 //  ProfilePromptsEditorView.swift
-//  Celestia
+//  TeamUp
 //
 //  Editor for selecting and answering profile prompts
 //

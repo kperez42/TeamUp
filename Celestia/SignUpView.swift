@@ -1,6 +1,6 @@
 //
 //  SignUpView.swift
-//  Celestia
+//  TeamUp
 //
 //  Multi-step sign up flow
 //

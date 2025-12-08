@@ -1,6 +1,6 @@
 //
 //  MatchesView.swift
-//  Celestia
+//  TeamUp
 //
 //  ELITE MATCHES VIEW - Premium Dating Experience
 //  ACCESSIBILITY: Full VoiceOver support, Dynamic Type, Reduce Motion, and WCAG 2.1 AA compliant

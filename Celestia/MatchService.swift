@@ -1,6 +1,6 @@
 //
 //  MatchService.swift
-//  Celestia
+//  TeamUp
 //
 //  Service for match-related operations
 //

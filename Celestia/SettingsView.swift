@@ -1,6 +1,6 @@
 //
 //  SettingsView.swift
-//  Celestia
+//  TeamUp
 //
 //  Created by Kevin Perez on 10/29/25.
 //
@@ -399,7 +399,7 @@ struct SettingsView: View {
                         isDeleting = true
                         do {
                             try await authService.deleteAccount()
-                        } catch let error as CelestiaError {
+                        } catch let error as TeamUpError {
                             isDeleting = false
                             switch error {
                             case .requiresRecentLogin:

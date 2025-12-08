@@ -1,6 +1,6 @@
 //
 //  ImprovedComponents.swift
-//  Celestia
+//  TeamUp
 //
 //  Reusable improved UI components
 //

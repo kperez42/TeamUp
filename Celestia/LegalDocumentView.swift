@@ -1,6 +1,6 @@
 //
 //  LegalDocumentView.swift
-//  Celestia
+//  TeamUp
 //
 //  Legal documents display view with Privacy Policy, Terms of Service,
 //  Community Guidelines, Safety Tips, and Cookie Policy

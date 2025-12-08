@@ -1,6 +1,6 @@
 //
 //  DependencyContainer.swift
-//  Celestia
+//  TeamUp
 //
 //  Centralized Dependency Injection Container
 //  Provides a single source of truth for all service dependencies

@@ -1,6 +1,6 @@
 //
 //  ReferralDashboardView.swift
-//  Celestia
+//  TeamUp
 //
 //  Referral program dashboard with stats and sharing
 //

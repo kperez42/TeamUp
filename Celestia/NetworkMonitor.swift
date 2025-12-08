@@ -1,6 +1,6 @@
 //
 //  NetworkMonitor.swift
-//  Celestia
+//  TeamUp
 //
 //  Network reachability monitoring with NWPathMonitor
 //  Tracks internet connectivity and connection quality

@@ -1,6 +1,6 @@
 //
 //  AppShortcuts.swift
-//  Celestia
+//  TeamUp
 //
 //  App Shortcuts and Siri integration for quick actions
 //  Requires iOS 16+ for App Intents framework

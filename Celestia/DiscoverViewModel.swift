@@ -1,6 +1,6 @@
 //
 //  DiscoverViewModel.swift
-//  Celestia
+//  TeamUp
 //
 //  Handles user discovery and browsing
 //

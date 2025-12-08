@@ -1,6 +1,6 @@
 //
 //  ReferralSegmentation.swift
-//  Celestia
+//  TeamUp
 //
 //  User segmentation for targeted referral campaigns
 //  Features: Dynamic segments, personalized rewards, targeting rules

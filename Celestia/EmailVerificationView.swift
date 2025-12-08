@@ -1,6 +1,6 @@
 //
 //  EmailVerificationView.swift
-//  Celestia
+//  TeamUp
 //
 //  Email verification screen shown after signup
 //
@@ -240,7 +240,7 @@ struct EmailVerificationView: View {
             } catch {
                 await MainActor.run {
                     isSending = false
-                    if let celestiaError = error as? CelestiaError {
+                    if let celestiaError = error as? TeamUpError {
                         errorMessage = celestiaError.errorDescription
                     } else {
                         errorMessage = "Failed to send verification email. Please try again."

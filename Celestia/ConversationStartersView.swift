@@ -1,6 +1,6 @@
 //
 //  ConversationStartersView.swift
-//  Celestia
+//  TeamUp
 //
 //  Beautiful UI for conversation starter suggestions
 //

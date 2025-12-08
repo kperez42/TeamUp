@@ -1,6 +1,6 @@
 //
 //  CameraView.swift
-//  Celestia
+//  TeamUp
 //
 //  Camera view for selfie capture with verification
 //

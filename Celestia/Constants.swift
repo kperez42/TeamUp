@@ -1,8 +1,8 @@
 //
 //  Constants.swift
-//  GamerLink
+//  TeamUp
 //
-//  Centralized constants for the gaming friend finder app
+//  Centralized constants for the gaming teammate finder app
 //
 
 import Foundation
@@ -10,12 +10,12 @@ import SwiftUI
 
 enum AppConstants {
     // MARK: - App Identity
-    static let appName = "GamerLink"
-    static let appTagline = "Find Your Perfect Gaming Squad"
+    static let appName = "TeamUp"
+    static let appTagline = "Find Your Player 2"
 
     // MARK: - API Configuration
     enum API {
-        static let baseURL = "https://api.gamerlink.app"
+        static let baseURL = "https://api.teamup.gg"
         static let timeout: TimeInterval = 30
         static let retryAttempts = 3
     }
@@ -177,10 +177,10 @@ enum AppConstants {
 
     // MARK: - Notifications
     enum Notifications {
-        static let newConnectionTitle = "New Gaming Buddy!"
+        static let newConnectionTitle = "New Squad Member!"
         static let newMessageTitle = "New Message"
-        static let newRequestTitle = "Someone wants to play!"
-        static let teamInviteTitle = "Team Invite"
+        static let newRequestTitle = "Someone wants to team up!"
+        static let teamInviteTitle = "Squad Invite"
         static let gameSessionTitle = "Game Session Starting"
     }
 
@@ -219,15 +219,22 @@ enum AppConstants {
         static let invalidGamerTag = "Gamer tag must be 3-30 characters."
     }
 
+    // MARK: - App Store
+    enum AppStore {
+        static let category = "Social Networking"
+        static let subtitle = "Find Gaming Friends & Teammates"
+        static let keywords = "gaming, teammates, squad, lfg, multiplayer, co-op, friends, esports"
+    }
+
     // MARK: - URLs
     enum URLs {
-        static let privacyPolicy = "https://gamerlink.app/privacy"
-        static let termsOfService = "https://gamerlink.app/terms"
-        static let support = "mailto:support@gamerlink.app"
-        static let website = "https://gamerlink.app"
-        static let discordServer = "https://discord.gg/gamerlink"
-        static let twitterURL = "https://twitter.com/gamerlink"
-        static let twitchURL = "https://twitch.tv/gamerlink"
+        static let privacyPolicy = "https://teamup.gg/privacy"
+        static let termsOfService = "https://teamup.gg/terms"
+        static let support = "mailto:support@teamup.gg"
+        static let website = "https://teamup.gg"
+        static let discordServer = "https://discord.gg/teamup"
+        static let twitterURL = "https://twitter.com/teamupgg"
+        static let twitchURL = "https://twitch.tv/teamupgg"
     }
 
     // MARK: - Gaming Prompts (for profile questions)

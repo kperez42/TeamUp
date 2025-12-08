@@ -1,6 +1,6 @@
 //
 //  ProfileViewersView.swift
-//  Celestia
+//  TeamUp
 //
 //  Shows who viewed your profile (Premium feature)
 //

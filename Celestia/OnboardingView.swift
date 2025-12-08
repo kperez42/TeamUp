@@ -1,6 +1,6 @@
 //
 //  OnboardingView.swift
-//  Celestia
+//  TeamUp
 //
 //  ELITE ONBOARDING - First Impressions Matter
 //

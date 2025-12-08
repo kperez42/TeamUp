@@ -1,6 +1,6 @@
 //
 //  ChatDetailView.swift
-//  Celestia
+//  TeamUp
 //
 //  Chat conversation view
 //

@@ -1,6 +1,6 @@
 //
 //  SeeWhoLikesYouView.swift
-//  Celestia
+//  TeamUp
 //
 //  Premium feature: See who has liked you
 //

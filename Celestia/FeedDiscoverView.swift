@@ -1,6 +1,6 @@
 //
 //  FeedDiscoverView.swift
-//  Celestia
+//  TeamUp
 //
 //  Feed-style discovery view with vertical scrolling and pagination
 //

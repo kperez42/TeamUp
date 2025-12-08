@@ -1,6 +1,6 @@
 //
 //  ReportUserView.swift
-//  Celestia
+//  TeamUp
 //
 //  Created by Claude
 //  UI for reporting and blocking users

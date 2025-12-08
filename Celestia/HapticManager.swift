@@ -1,6 +1,6 @@
 //
 //  HapticManager.swift
-//  Celestia
+//  TeamUp
 //
 //  Created by Claude
 //  Centralized haptic feedback management

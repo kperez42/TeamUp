@@ -1,6 +1,6 @@
 //
 //  ButtonStyles.swift
-//  Celestia
+//  TeamUp
 //
 //  Unified button styles for consistent interactive feedback
 //

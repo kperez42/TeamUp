@@ -1,6 +1,6 @@
 //
 //  AdminUserInvestigationView.swift
-//  Celestia
+//  TeamUp
 //
 //  Admin tool for investigating user profiles
 //

@@ -1,6 +1,6 @@
 //
 //  AccessibilityHelpers.swift
-//  Celestia
+//  TeamUp
 //
 //  Comprehensive accessibility utilities and extensions for WCAG 2.1 Level AA compliance
 //

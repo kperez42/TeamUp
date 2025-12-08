@@ -1,6 +1,6 @@
 //
 //  TutorialView.swift
-//  Celestia
+//  TeamUp
 //
 //  Interactive tutorials for core features
 //  Guides new users through swiping, matching, and messaging

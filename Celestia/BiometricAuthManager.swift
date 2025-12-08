@@ -1,6 +1,6 @@
 //
 //  BiometricAuthManager.swift
-//  Celestia
+//  TeamUp
 //
 //  Manages Face ID and Touch ID authentication
 //  Provides secure biometric login and app locking

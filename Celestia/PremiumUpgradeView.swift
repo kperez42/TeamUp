@@ -1,6 +1,6 @@
 //
 //  PremiumUpgradeView.swift
-//  Celestia
+//  TeamUp
 //
 //  PREMIUM UPGRADE - Immersive Conversion Experience
 //

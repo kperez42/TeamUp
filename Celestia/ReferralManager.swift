@@ -1,6 +1,6 @@
 //
 //  ReferralManager.swift
-//  Celestia
+//  TeamUp
 //
 //  Manages referral system logic
 //  Optimized for 10k+ users with caching, rate limiting, and efficient queries

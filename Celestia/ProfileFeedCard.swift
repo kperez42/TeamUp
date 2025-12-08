@@ -1,6 +1,6 @@
 //
 //  ProfileFeedCard.swift
-//  Celestia
+//  TeamUp
 //
 //  Feed-style profile card for vertical scrolling discovery
 //

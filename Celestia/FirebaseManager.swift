@@ -1,6 +1,6 @@
 //
 //  FirebaseManager.swift
-//  Celestia
+//  TeamUp
 //
 //  Dating app for international connections
 //

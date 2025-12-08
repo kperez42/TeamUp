@@ -1,6 +1,6 @@
 //
 //  AdminModerationDashboard.swift
-//  Celestia
+//  TeamUp
 //
 //  Admin dashboard for viewing and moderating user reports
 //
