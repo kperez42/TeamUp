@@ -1,6 +1,6 @@
 //
 //  User.swift
-//  GamerLink
+//  TeamUp
 //
 //  Core user model for gaming friend finder
 //
@@ -49,6 +49,8 @@ enum GamingPlatform: String, Codable, CaseIterable, Identifiable {
     case xbox = "Xbox"
     case nintendoSwitch = "Nintendo Switch"
     case mobile = "Mobile"
+    case vr = "VR"
+    case tabletop = "Tabletop"
 
     var id: String { rawValue }
 
@@ -59,6 +61,8 @@ enum GamingPlatform: String, Codable, CaseIterable, Identifiable {
         case .xbox: return "gamecontroller.fill"
         case .nintendoSwitch: return "gamecontroller"
         case .mobile: return "iphone"
+        case .vr: return "visionpro"
+        case .tabletop: return "dice.fill"
         }
     }
 }
@@ -70,8 +74,23 @@ enum PlayStyle: String, Codable, CaseIterable, Identifiable {
     case social = "Social"
     case tryhard = "Tryhard"
     case chill = "Chill"
+    case roleplay = "Roleplay"
+    case speedrun = "Speedrun"
 
     var id: String { rawValue }
+
+    var icon: String {
+        switch self {
+        case .competitive: return "flame.fill"
+        case .casual: return "face.smiling"
+        case .ranked: return "trophy.fill"
+        case .social: return "bubble.left.and.bubble.right.fill"
+        case .tryhard: return "bolt.fill"
+        case .chill: return "leaf.fill"
+        case .roleplay: return "theatermasks.fill"
+        case .speedrun: return "hare.fill"
+        }
+    }
 }
 
 enum SkillLevel: String, Codable, CaseIterable, Identifiable {

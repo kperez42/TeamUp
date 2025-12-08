@@ -1,21 +1,21 @@
 //
 //  PersonalizedOnboardingManager.swift
-//  Celestia
+//  TeamUp
 //
-//  Manages personalized onboarding paths based on user goals and preferences
-//  Adapts the onboarding experience to match user intentions
+//  Manages personalized onboarding paths based on gamer goals and preferences
+//  Adapts the onboarding experience to match user gaming intentions
 //
 
 import Foundation
 import SwiftUI
 
-/// Manages personalized onboarding experiences based on user goals
+/// Manages personalized onboarding experiences based on gamer goals
 @MainActor
 class PersonalizedOnboardingManager: ObservableObject {
 
     static let shared = PersonalizedOnboardingManager()
 
-    @Published var selectedGoal: DatingGoal?
+    @Published var selectedGoal: GamerGoal?
     @Published var recommendedPath: OnboardingPath?
     @Published var customizations: [String: Any] = [:]
 
@@ -23,58 +23,79 @@ class PersonalizedOnboardingManager: ObservableObject {
 
     // MARK: - Models
 
-    enum DatingGoal: String, Codable, CaseIterable {
-        case seriousRelationship = "serious_relationship"
-        case casualDating = "casual_dating"
-        case newFriends = "new_friends"
-        case networking = "networking"
-        case figureItOut = "figure_it_out"
+    enum GamerGoal: String, Codable, CaseIterable {
+        case findRankedTeammates = "find_ranked_teammates"
+        case casualCoOp = "casual_coop"
+        case competitiveTeam = "competitive_team"
+        case boardGameGroup = "board_game_group"
+        case dndGroup = "dnd_group"
+        case streamingPartner = "streaming_partner"
+        case esportsTeam = "esports_team"
+        case gamingCommunity = "gaming_community"
 
         var displayName: String {
             switch self {
-            case .seriousRelationship: return "Long-term relationship"
-            case .casualDating: return "Casual dating"
-            case .newFriends: return "New friends"
-            case .networking: return "Professional networking"
-            case .figureItOut: return "Open to see what happens"
+            case .findRankedTeammates: return "Find Ranked Teammates"
+            case .casualCoOp: return "Casual Co-op Partners"
+            case .competitiveTeam: return "Join Competitive Team"
+            case .boardGameGroup: return "Board Game Group"
+            case .dndGroup: return "D&D / Tabletop Group"
+            case .streamingPartner: return "Streaming Partners"
+            case .esportsTeam: return "Esports Team"
+            case .gamingCommunity: return "Join Gaming Community"
             }
         }
 
         var icon: String {
             switch self {
-            case .seriousRelationship: return "heart.fill"
-            case .casualDating: return "sparkles"
-            case .newFriends: return "person.2.fill"
-            case .networking: return "briefcase.fill"
-            case .figureItOut: return "star.fill"
+            case .findRankedTeammates: return "trophy.fill"
+            case .casualCoOp: return "gamecontroller.fill"
+            case .competitiveTeam: return "person.3.fill"
+            case .boardGameGroup: return "dice.fill"
+            case .dndGroup: return "sparkles"
+            case .streamingPartner: return "video.fill"
+            case .esportsTeam: return "star.fill"
+            case .gamingCommunity: return "bubble.left.and.bubble.right.fill"
             }
         }
 
         var description: String {
             switch self {
-            case .seriousRelationship:
-                return "Looking for something meaningful and long-lasting"
-            case .casualDating:
-                return "Enjoying the journey, keeping it light"
-            case .newFriends:
-                return "Expanding your social circle"
-            case .networking:
-                return "Building professional connections"
-            case .figureItOut:
-                return "Exploring options and seeing where things go"
+            case .findRankedTeammates:
+                return "Climb the ranks with reliable teammates"
+            case .casualCoOp:
+                return "Chill gaming sessions, no pressure"
+            case .competitiveTeam:
+                return "Join or form a serious competitive squad"
+            case .boardGameGroup:
+                return "Find players for board games and card games"
+            case .dndGroup:
+                return "Find a party for tabletop RPG adventures"
+            case .streamingPartner:
+                return "Find collaborators for streaming content"
+            case .esportsTeam:
+                return "Join a professional esports organization"
+            case .gamingCommunity:
+                return "Connect with gamers who share your interests"
             }
         }
 
         var color: Color {
             switch self {
-            case .seriousRelationship: return .red
-            case .casualDating: return .orange
-            case .newFriends: return .blue
-            case .networking: return .purple
-            case .figureItOut: return .green
+            case .findRankedTeammates: return .orange
+            case .casualCoOp: return .green
+            case .competitiveTeam: return .red
+            case .boardGameGroup: return .purple
+            case .dndGroup: return .indigo
+            case .streamingPartner: return .pink
+            case .esportsTeam: return .yellow
+            case .gamingCommunity: return .cyan
             }
         }
     }
+
+    // Legacy type alias for compatibility
+    typealias DatingGoal = GamerGoal
 
     struct OnboardingPath {
         let goal: DatingGoal
@@ -115,7 +136,7 @@ class PersonalizedOnboardingManager: ObservableObject {
 
     // MARK: - Goal Selection
 
-    func selectGoal(_ goal: DatingGoal) {
+    func selectGoal(_ goal: GamerGoal) {
         selectedGoal = goal
         recommendedPath = generatePath(for: goal)
         saveGoal()
@@ -132,194 +153,299 @@ class PersonalizedOnboardingManager: ObservableObject {
 
     // MARK: - Path Generation
 
-    private func generatePath(for goal: DatingGoal) -> OnboardingPath {
+    private func generatePath(for goal: GamerGoal) -> OnboardingPath {
         switch goal {
-        case .seriousRelationship:
-            return createSeriousRelationshipPath()
-        case .casualDating:
-            return createCasualDatingPath()
-        case .newFriends:
-            return createNewFriendsPath()
-        case .networking:
-            return createNetworkingPath()
-        case .figureItOut:
-            return createOpenPath()
+        case .findRankedTeammates:
+            return createRankedTeammatesPath()
+        case .casualCoOp:
+            return createCasualCoOpPath()
+        case .competitiveTeam:
+            return createCompetitiveTeamPath()
+        case .boardGameGroup:
+            return createBoardGamePath()
+        case .dndGroup:
+            return createDnDPath()
+        case .streamingPartner:
+            return createStreamingPath()
+        case .esportsTeam:
+            return createEsportsPath()
+        case .gamingCommunity:
+            return createCommunityPath()
         }
     }
 
-    private func createSeriousRelationshipPath() -> OnboardingPath {
+    private func createRankedTeammatesPath() -> OnboardingPath {
         OnboardingPath(
-            goal: .seriousRelationship,
+            goal: .findRankedTeammates,
             steps: [
                 OnboardingPathStep(
-                    id: "detailed_profile",
-                    title: "Create a Detailed Profile",
-                    description: "Share your values, interests, and what you're looking for",
+                    id: "gaming_profile",
+                    title: "Set Up Your Gamer Profile",
+                    description: "Show your competitive side and skill level",
                     importance: .critical,
                     tips: [
-                        "Write a thoughtful bio about your personality and values",
-                        "Add 4-6 high-quality photos showing different aspects of your life",
-                        "Share your long-term goals and what matters to you"
+                        "Add your main games and current ranks",
+                        "Share your peak ranks and achievements",
+                        "Be honest about your skill level for better matches"
                     ]
                 ),
                 OnboardingPathStep(
-                    id: "verify_profile",
-                    title: "Verify Your Profile",
-                    description: "Build trust with verified photos",
+                    id: "schedule_setup",
+                    title: "Set Your Gaming Schedule",
+                    description: "Find teammates who play when you do",
                     importance: .critical,
                     tips: [
-                        "Verified profiles get 2x more meaningful matches",
-                        "Shows you're serious and authentic",
-                        "Takes less than 2 minutes"
+                        "Add your typical gaming hours",
+                        "Specify timezone for accurate matching",
+                        "Mark preferred days for ranked sessions"
                     ]
                 ),
                 OnboardingPathStep(
-                    id: "interests_values",
-                    title: "Share Your Interests & Values",
-                    description: "Help us find compatible matches",
+                    id: "comms_setup",
+                    title: "Communication Preferences",
+                    description: "Voice chat is key for ranked play",
                     importance: .recommended,
                     tips: [
-                        "Select interests that truly represent you",
-                        "Be specific about what you're looking for",
-                        "Authenticity attracts the right people"
+                        "Link your Discord for easy team comms",
+                        "Specify if you prefer callouts or quiet focus",
+                        "Add language preferences"
                     ]
                 )
             ],
-            focusAreas: [.profileDepth, .verificationTrust, .bioOptimization, .interestMatching],
-            recommendedFeatures: ["Video Prompts", "Voice Messages", "Verified Matches"],
-            tutorialPriority: ["profile_quality", "matching", "messaging", "safety", "scrolling"]
+            focusAreas: [.profileDepth, .interestMatching, .verificationTrust],
+            recommendedFeatures: ["Rank Verification", "LFG Posts", "Squad Finder"],
+            tutorialPriority: ["profile_quality", "matching", "squad_builder", "messaging"]
         )
     }
 
-    private func createCasualDatingPath() -> OnboardingPath {
+    private func createCasualCoOpPath() -> OnboardingPath {
         OnboardingPath(
-            goal: .casualDating,
+            goal: .casualCoOp,
             steps: [
                 OnboardingPathStep(
-                    id: "fun_profile",
-                    title: "Create a Fun Profile",
-                    description: "Show your personality and what makes you interesting",
+                    id: "casual_profile",
+                    title: "Create Your Gamer Profile",
+                    description: "Share what games you enjoy and your vibe",
                     importance: .critical,
                     tips: [
-                        "Add photos that show you having fun",
-                        "Keep your bio light and engaging",
-                        "Show different sides of your personality"
+                        "List your favorite games to play",
+                        "Add a profile pic or gaming avatar",
+                        "Write a chill bio about your gaming style"
                     ]
                 ),
                 OnboardingPathStep(
-                    id: "interests",
-                    title: "Share Your Interests",
-                    description: "Find people with shared hobbies",
+                    id: "games_setup",
+                    title: "Add Your Games",
+                    description: "Help us find players with shared games",
                     importance: .recommended,
                     tips: [
-                        "Select activities you enjoy",
-                        "Be open to new experiences",
-                        "Show what makes you unique"
-                    ]
-                )
-            ],
-            focusAreas: [.photoQuality, .interestMatching, .locationAccuracy],
-            recommendedFeatures: ["Quick Match", "Nearby Matches", "Icebreakers"],
-            tutorialPriority: ["scrolling", "matching", "messaging", "profile_quality"]
-        )
-    }
-
-    private func createNewFriendsPath() -> OnboardingPath {
-        OnboardingPath(
-            goal: .newFriends,
-            steps: [
-                OnboardingPathStep(
-                    id: "friendly_profile",
-                    title: "Create a Friendly Profile",
-                    description: "Show what kind of friend you'd be",
-                    importance: .critical,
-                    tips: [
-                        "Highlight your hobbies and interests",
-                        "Share what activities you enjoy",
-                        "Be genuine and approachable"
-                    ]
-                ),
-                OnboardingPathStep(
-                    id: "location_interests",
-                    title: "Share Location & Interests",
-                    description: "Find friends with shared activities nearby",
-                    importance: .critical,
-                    tips: [
-                        "Add your city for local connections",
-                        "Select group activities you enjoy",
-                        "Be specific about your interests"
+                        "Select games you're currently playing",
+                        "Include games you'd like to try with friends",
+                        "Mark co-op favorites"
                     ]
                 )
             ],
             focusAreas: [.interestMatching, .locationAccuracy, .bioOptimization],
-            recommendedFeatures: ["Group Activities", "Interest Groups", "Events"],
+            recommendedFeatures: ["Quick Match", "Game Sessions", "Party Finder"],
             tutorialPriority: ["scrolling", "matching", "messaging", "profile_quality"]
         )
     }
 
-    private func createNetworkingPath() -> OnboardingPath {
+    private func createCompetitiveTeamPath() -> OnboardingPath {
         OnboardingPath(
-            goal: .networking,
+            goal: .competitiveTeam,
             steps: [
                 OnboardingPathStep(
-                    id: "professional_profile",
-                    title: "Create a Professional Profile",
-                    description: "Highlight your professional interests and goals",
+                    id: "competitive_profile",
+                    title: "Build Your Competitive Profile",
+                    description: "Showcase your skills and experience",
                     importance: .critical,
                     tips: [
-                        "Share your professional background",
-                        "Mention industries or fields of interest",
-                        "Keep photos professional yet approachable"
+                        "Add detailed stats and achievements",
+                        "List tournament experience if any",
+                        "Highlight your best roles/positions"
                     ]
                 ),
                 OnboardingPathStep(
-                    id: "verify_credentials",
-                    title: "Verify Your Profile",
-                    description: "Build professional credibility",
-                    importance: .recommended,
+                    id: "availability",
+                    title: "Set Your Commitment Level",
+                    description: "Teams need to know your availability",
+                    importance: .critical,
                     tips: [
-                        "Verification builds trust in professional contexts",
-                        "Shows you're a serious networker",
-                        "Increases connection rate"
+                        "Specify practice schedule availability",
+                        "Be clear about tournament availability",
+                        "Mention if you're looking to go pro"
                     ]
                 )
             ],
-            focusAreas: [.profileDepth, .verificationTrust, .locationAccuracy],
-            recommendedFeatures: ["Professional Mode", "Industry Tags", "LinkedIn Integration"],
-            tutorialPriority: ["profile_quality", "matching", "messaging"]
+            focusAreas: [.profileDepth, .verificationTrust, .interestMatching],
+            recommendedFeatures: ["Team Finder", "Scrims", "Tournament LFT"],
+            tutorialPriority: ["profile_quality", "matching", "team_features", "messaging"]
         )
     }
 
-    private func createOpenPath() -> OnboardingPath {
+    private func createBoardGamePath() -> OnboardingPath {
         OnboardingPath(
-            goal: .figureItOut,
+            goal: .boardGameGroup,
             steps: [
                 OnboardingPathStep(
-                    id: "basic_profile",
-                    title: "Create Your Profile",
-                    description: "Start with the basics and explore from there",
+                    id: "board_game_profile",
+                    title: "Create Your Board Gamer Profile",
+                    description: "Share your tabletop preferences",
                     importance: .critical,
                     tips: [
-                        "Add a few good photos",
-                        "Write a brief bio about yourself",
-                        "Select some interests you enjoy"
+                        "List your favorite board games",
+                        "Mention game complexity preferences",
+                        "Add your BoardGameGeek profile if you have one"
                     ]
                 ),
                 OnboardingPathStep(
-                    id: "explore",
-                    title: "Start Exploring",
-                    description: "See who's out there and what feels right",
-                    importance: .recommended,
+                    id: "location_setup",
+                    title: "Set Your Location",
+                    description: "Find local gaming groups",
+                    importance: .critical,
                     tips: [
-                        "Try swiping to see different people",
-                        "You can always update your preferences",
-                        "Take your time finding what you're looking for"
+                        "Add your city for local matches",
+                        "Specify if you host game nights",
+                        "Mention preferred venues (home, FLGS, cafes)"
                     ]
                 )
             ],
-            focusAreas: [.photoQuality, .bioOptimization, .interestMatching],
-            recommendedFeatures: ["Discovery", "Filters", "Profile Insights"],
-            tutorialPriority: ["welcome", "scrolling", "matching", "messaging", "profile_quality"]
+            focusAreas: [.locationAccuracy, .interestMatching, .bioOptimization],
+            recommendedFeatures: ["Local Groups", "Game Night Events", "Board Game Library"],
+            tutorialPriority: ["scrolling", "matching", "events", "messaging"]
+        )
+    }
+
+    private func createDnDPath() -> OnboardingPath {
+        OnboardingPath(
+            goal: .dndGroup,
+            steps: [
+                OnboardingPathStep(
+                    id: "ttrpg_profile",
+                    title: "Create Your Adventurer Profile",
+                    description: "Share your tabletop RPG experience",
+                    importance: .critical,
+                    tips: [
+                        "List systems you play (D&D, Pathfinder, etc.)",
+                        "Mention if you DM/GM or play",
+                        "Share your favorite character types"
+                    ]
+                ),
+                OnboardingPathStep(
+                    id: "campaign_prefs",
+                    title: "Set Campaign Preferences",
+                    description: "Find the right party for you",
+                    importance: .recommended,
+                    tips: [
+                        "Specify online vs in-person preference",
+                        "Add schedule availability for sessions",
+                        "Mention roleplay vs combat preference"
+                    ]
+                )
+            ],
+            focusAreas: [.interestMatching, .bioOptimization, .locationAccuracy],
+            recommendedFeatures: ["Party Finder", "Campaign Listings", "Character Showcase"],
+            tutorialPriority: ["profile_quality", "matching", "messaging", "party_finder"]
+        )
+    }
+
+    private func createStreamingPath() -> OnboardingPath {
+        OnboardingPath(
+            goal: .streamingPartner,
+            steps: [
+                OnboardingPathStep(
+                    id: "content_profile",
+                    title: "Set Up Your Creator Profile",
+                    description: "Showcase your content and style",
+                    importance: .critical,
+                    tips: [
+                        "Link your Twitch/YouTube channels",
+                        "Describe your content style",
+                        "Share your streaming schedule"
+                    ]
+                ),
+                OnboardingPathStep(
+                    id: "collab_prefs",
+                    title: "Collaboration Preferences",
+                    description: "Find the right collab partners",
+                    importance: .recommended,
+                    tips: [
+                        "Specify types of collabs you're interested in",
+                        "Add your average viewer count",
+                        "Mention games you stream most"
+                    ]
+                )
+            ],
+            focusAreas: [.profileDepth, .verificationTrust, .interestMatching],
+            recommendedFeatures: ["Creator Verification", "Collab Finder", "Content Calendar"],
+            tutorialPriority: ["profile_quality", "matching", "creator_tools", "messaging"]
+        )
+    }
+
+    private func createEsportsPath() -> OnboardingPath {
+        OnboardingPath(
+            goal: .esportsTeam,
+            steps: [
+                OnboardingPathStep(
+                    id: "esports_profile",
+                    title: "Build Your Pro Profile",
+                    description: "Showcase your competitive achievements",
+                    importance: .critical,
+                    tips: [
+                        "Add verified ranks and stats",
+                        "List tournament placings and teams",
+                        "Include VODs or highlight clips"
+                    ]
+                ),
+                OnboardingPathStep(
+                    id: "tryout_availability",
+                    title: "Set Tryout Availability",
+                    description: "Let teams know when you can trial",
+                    importance: .critical,
+                    tips: [
+                        "Specify your region for ping considerations",
+                        "Add full-time availability",
+                        "Mention salary/contract preferences"
+                    ]
+                )
+            ],
+            focusAreas: [.profileDepth, .verificationTrust, .interestMatching],
+            recommendedFeatures: ["LFT Board", "Team Listings", "Stat Verification"],
+            tutorialPriority: ["profile_quality", "team_features", "matching", "messaging"]
+        )
+    }
+
+    private func createCommunityPath() -> OnboardingPath {
+        OnboardingPath(
+            goal: .gamingCommunity,
+            steps: [
+                OnboardingPathStep(
+                    id: "community_profile",
+                    title: "Create Your Gamer Profile",
+                    description: "Share your gaming interests and personality",
+                    importance: .critical,
+                    tips: [
+                        "Add your favorite games and genres",
+                        "Share your gaming story",
+                        "Upload a profile pic or avatar"
+                    ]
+                ),
+                OnboardingPathStep(
+                    id: "explore_communities",
+                    title: "Find Your Communities",
+                    description: "Connect with like-minded gamers",
+                    importance: .recommended,
+                    tips: [
+                        "Browse game-specific channels",
+                        "Join communities that match your interests",
+                        "Start conversations with fellow gamers"
+                    ]
+                )
+            ],
+            focusAreas: [.interestMatching, .bioOptimization, .locationAccuracy],
+            recommendedFeatures: ["Game Channels", "Community Events", "Group Chats"],
+            tutorialPriority: ["scrolling", "matching", "communities", "messaging"]
         )
     }
 
@@ -357,7 +483,7 @@ class PersonalizedOnboardingManager: ObservableObject {
 
     private func loadSavedGoal() {
         if let data = UserDefaults.standard.data(forKey: userDefaultsKey),
-           let goal = try? JSONDecoder().decode(DatingGoal.self, from: data) {
+           let goal = try? JSONDecoder().decode(GamerGoal.self, from: data) {
             selectedGoal = goal
             recommendedPath = generatePath(for: goal)
         }
@@ -370,17 +496,17 @@ struct OnboardingGoalSelectionView: View {
     @ObservedObject var manager = PersonalizedOnboardingManager.shared
     @Environment(\.dismiss) var dismiss
 
-    let onGoalSelected: (PersonalizedOnboardingManager.DatingGoal) -> Void
+    let onGoalSelected: (PersonalizedOnboardingManager.GamerGoal) -> Void
 
     var body: some View {
         VStack(spacing: 0) {
             // Header
             VStack(spacing: 12) {
-                Text("What brings you here?")
+                Text("What's your gaming goal?")
                     .font(.title)
                     .fontWeight(.bold)
 
-                Text("This helps us personalize your experience")
+                Text("This helps us find the perfect squad for you")
                     .font(.subheadline)
                     .foregroundColor(.secondary)
                     .multilineTextAlignment(.center)
@@ -391,7 +517,7 @@ struct OnboardingGoalSelectionView: View {
             // Goal Options
             ScrollView(showsIndicators: false) {
                 VStack(spacing: 16) {
-                    ForEach(PersonalizedOnboardingManager.DatingGoal.allCases, id: \.self) { goal in
+                    ForEach(PersonalizedOnboardingManager.GamerGoal.allCases, id: \.self) { goal in
                         GoalCard(goal: goal, isSelected: manager.selectedGoal == goal) {
                             withAnimation(.spring(response: 0.3)) {
                                 manager.selectGoal(goal)
@@ -412,23 +538,23 @@ struct OnboardingGoalSelectionView: View {
                     dismiss()
                 } label: {
                     HStack {
-                        Text("Continue")
+                        Text("Let's Go!")
                             .fontWeight(.semibold)
 
-                        Image(systemName: "arrow.right")
+                        Image(systemName: "gamecontroller.fill")
                     }
                     .foregroundColor(.white)
                     .frame(maxWidth: .infinity)
                     .padding(.vertical, 16)
                     .background(
                         LinearGradient(
-                            colors: [.purple, .pink],
+                            colors: [.green, .cyan],
                             startPoint: .leading,
                             endPoint: .trailing
                         )
                     )
                     .cornerRadius(16)
-                    .shadow(color: .purple.opacity(0.3), radius: 10, y: 5)
+                    .shadow(color: .green.opacity(0.3), radius: 10, y: 5)
                 }
                 .padding(.horizontal, 24)
                 .padding(.bottom, 32)
@@ -437,7 +563,7 @@ struct OnboardingGoalSelectionView: View {
         }
         .background(
             LinearGradient(
-                colors: [Color.purple.opacity(0.05), Color.pink.opacity(0.03)],
+                colors: [Color.green.opacity(0.05), Color.cyan.opacity(0.03)],
                 startPoint: .topLeading,
                 endPoint: .bottomTrailing
             )
@@ -447,7 +573,7 @@ struct OnboardingGoalSelectionView: View {
 }
 
 struct GoalCard: View {
-    let goal: PersonalizedOnboardingManager.DatingGoal
+    let goal: PersonalizedOnboardingManager.GamerGoal
     let isSelected: Bool
     let onTap: () -> Void
 
