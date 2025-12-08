@@ -78,7 +78,7 @@ struct OnboardingView: View {
     let totalSteps = 8
 
     // Step 6 options
-    let relationshipGoalOptions = ["Prefer not to say", "Casual Dating", "Long-term Relationship", "Marriage", "Friendship", "Not Sure Yet"]
+    let relationshipGoalOptions = ["Prefer not to say", "Casual Gaming", "Competitive Team", "Pro/Esports", "Gaming Friends", "Not Sure Yet"]
     let heightOptions: [Int] = Array(140...220) // cm range
 
     // Step 7 & 8 options (Lifestyle)
@@ -1124,7 +1124,7 @@ struct OnboardingView: View {
                         .fill(Color.green.opacity(0.15))
                         .frame(width: 100, height: 100)
                     
-                    Image(systemName: "heart.fill")
+                    Image(systemName: "gamecontroller.fill")
                         .font(.system(size: 50))
                         .foregroundStyle(
                             LinearGradient(
@@ -1134,19 +1134,19 @@ struct OnboardingView: View {
                             )
                         )
                 }
-                
+
                 VStack(spacing: 8) {
-                    Text("Dating Preferences")
+                    Text("Teammate Preferences")
                         .font(.title)
                         .fontWeight(.bold)
-                    
-                    Text("Who are you interested in?")
+
+                    Text("Who would you like to play with?")
                         .font(.subheadline)
                         .foregroundColor(.secondary)
                 }
                 
                 VStack(alignment: .leading, spacing: 12) {
-                    Text("Interested in")
+                    Text("Looking for teammates who are")
                         .font(.subheadline)
                         .fontWeight(.medium)
                         .foregroundColor(.secondary)

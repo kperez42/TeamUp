@@ -1220,7 +1220,7 @@ struct EditProfileView: View {
 
     private var preferencesSection: some View {
         VStack(spacing: 20) {
-            SectionHeader(icon: "heart.fill", title: "Dating Preferences", color: .pink)
+            SectionHeader(icon: "gamecontroller.fill", title: "Teammate Preferences", color: .green)
 
             VStack(alignment: .leading, spacing: 8) {
                 Text("Looking for")
@@ -1242,18 +1242,18 @@ struct EditProfileView: View {
                 HStack(spacing: 12) {
                     ZStack {
                         Circle()
-                            .fill(Color.pink.opacity(0.12))
+                            .fill(Color.green.opacity(0.12))
                             .frame(width: 40, height: 40)
-                        Image(systemName: "heart.circle.fill")
+                        Image(systemName: "person.2.circle.fill")
                             .font(.title3)
-                            .foregroundColor(.pink)
+                            .foregroundColor(.green)
                     }
 
                     VStack(alignment: .leading, spacing: 2) {
                         Text("Age Preference")
                             .font(.subheadline)
                             .fontWeight(.semibold)
-                        Text("Who would you like to meet?")
+                        Text("Who would you like to play with?")
                             .font(.caption)
                             .foregroundColor(.secondary)
                     }

@@ -26,7 +26,7 @@ struct TutorialView: View {
         ZStack {
             // Background gradient
             LinearGradient(
-                colors: [Color.purple.opacity(0.1), Color.pink.opacity(0.05)],
+                colors: [Color.green.opacity(0.1), Color.cyan.opacity(0.05)],
                 startPoint: .topLeading,
                 endPoint: .bottomTrailing
             )
@@ -43,7 +43,7 @@ struct TutorialView: View {
                         Text("Skip")
                             .font(.subheadline)
                             .fontWeight(.medium)
-                            .foregroundColor(.purple)
+                            .foregroundColor(.green)
                     }
                     .padding()
                 }
@@ -70,14 +70,14 @@ struct TutorialView: View {
                                 Text("Back")
                             }
                             .fontWeight(.semibold)
-                            .foregroundColor(.purple)
+                            .foregroundColor(.green)
                             .frame(maxWidth: .infinity)
                             .padding(.vertical, 16)
                             .background(Color.white)
                             .cornerRadius(16)
                             .overlay(
                                 RoundedRectangle(cornerRadius: 16)
-                                    .stroke(Color.purple, lineWidth: 2)
+                                    .stroke(Color.green, lineWidth: 2)
                             )
                         }
                     }
@@ -102,13 +102,13 @@ struct TutorialView: View {
                         .padding(.vertical, 16)
                         .background(
                             LinearGradient(
-                                colors: [.purple, .pink],
+                                colors: [.green, .cyan],
                                 startPoint: .leading,
                                 endPoint: .trailing
                             )
                         )
                         .cornerRadius(16)
-                        .shadow(color: .purple.opacity(0.3), radius: 10, y: 5)
+                        .shadow(color: .green.opacity(0.3), radius: 10, y: 5)
                     }
                 }
                 .padding(.horizontal, 24)

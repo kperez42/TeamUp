@@ -307,8 +307,8 @@ struct ProfileSubscriptionsView: View {
             // Plan details
             VStack(spacing: 12) {
                 planDetailRow(icon: "calendar", label: "Status", value: authService.currentUser?.isPremium == true ? "Active" : "Free Tier")
-                planDetailRow(icon: "heart.fill", label: "Daily Likes", value: authService.currentUser?.isPremium == true ? "Unlimited" : "Limited")
-                planDetailRow(icon: "eye.fill", label: "See Who Likes You", value: authService.currentUser?.isPremium == true ? "Yes" : "No")
+                planDetailRow(icon: "gamecontroller.fill", label: "Daily Requests", value: authService.currentUser?.isPremium == true ? "Unlimited" : "Limited")
+                planDetailRow(icon: "eye.fill", label: "See Squad Requests", value: authService.currentUser?.isPremium == true ? "Yes" : "No")
             }
         }
         .padding(20)
@@ -365,7 +365,7 @@ struct ProfileSubscriptionsView: View {
                         .font(.headline)
                         .foregroundColor(.primary)
 
-                    Text("Get unlimited likes & exclusive features")
+                    Text("Get unlimited squad requests & exclusive features")
                         .font(.caption)
                         .foregroundColor(.secondary)
                 }
@@ -376,7 +376,7 @@ struct ProfileSubscriptionsView: View {
                     .font(.title2)
                     .foregroundStyle(
                         LinearGradient(
-                            colors: [.purple, .pink],
+                            colors: [.green, .cyan],
                             startPoint: .topLeading,
                             endPoint: .bottomTrailing
                         )
