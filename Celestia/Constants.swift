@@ -1,6 +1,6 @@
 //
 //  Constants.swift
-//  GamerLink
+//  TeamUp
 //
 //  Centralized constants for the gaming friend finder app
 //
@@ -10,12 +10,13 @@ import SwiftUI
 
 enum AppConstants {
     // MARK: - App Identity
-    static let appName = "GamerLink"
-    static let appTagline = "Find Your Perfect Gaming Squad"
+    static let appName = "TeamUp"
+    static let appTagline = "Find Your Player 2"
+    static let appCategory = "Social Networking"
 
     // MARK: - API Configuration
     enum API {
-        static let baseURL = "https://api.gamerlink.app"
+        static let baseURL = "https://api.teamup.gg"
         static let timeout: TimeInterval = 30
         static let retryAttempts = 3
     }
@@ -177,11 +178,12 @@ enum AppConstants {
 
     // MARK: - Notifications
     enum Notifications {
-        static let newConnectionTitle = "New Gaming Buddy!"
+        static let newConnectionTitle = "New Squad Member!"
         static let newMessageTitle = "New Message"
-        static let newRequestTitle = "Someone wants to play!"
+        static let newRequestTitle = "Someone wants to squad up!"
         static let teamInviteTitle = "Team Invite"
         static let gameSessionTitle = "Game Session Starting"
+        static let lfgPostTitle = "New LFG Post"
     }
 
     // MARK: - Analytics Events
@@ -221,13 +223,13 @@ enum AppConstants {
 
     // MARK: - URLs
     enum URLs {
-        static let privacyPolicy = "https://gamerlink.app/privacy"
-        static let termsOfService = "https://gamerlink.app/terms"
-        static let support = "mailto:support@gamerlink.app"
-        static let website = "https://gamerlink.app"
-        static let discordServer = "https://discord.gg/gamerlink"
-        static let twitterURL = "https://twitter.com/gamerlink"
-        static let twitchURL = "https://twitch.tv/gamerlink"
+        static let privacyPolicy = "https://teamup.gg/privacy"
+        static let termsOfService = "https://teamup.gg/terms"
+        static let support = "mailto:support@teamup.gg"
+        static let website = "https://teamup.gg"
+        static let discordServer = "https://discord.gg/teamup"
+        static let twitterURL = "https://twitter.com/teamupgg"
+        static let twitchURL = "https://twitch.tv/teamupgg"
     }
 
     // MARK: - Gaming Prompts (for profile questions)
@@ -251,42 +253,107 @@ enum AppConstants {
         ]
     }
 
-    // MARK: - Popular Games (for suggestions)
-    enum PopularGames {
-        static let all: [String] = [
-            "Valorant",
-            "League of Legends",
-            "Fortnite",
-            "Call of Duty: Warzone",
-            "Apex Legends",
-            "Overwatch 2",
-            "Counter-Strike 2",
-            "Minecraft",
-            "Rocket League",
-            "FIFA 24",
-            "NBA 2K24",
-            "Destiny 2",
-            "World of Warcraft",
-            "Final Fantasy XIV",
-            "Genshin Impact",
-            "Elden Ring",
-            "The Legend of Zelda",
-            "Super Smash Bros. Ultimate",
-            "Mario Kart 8",
-            "Animal Crossing",
-            "Diablo IV",
-            "Path of Exile",
-            "Dota 2",
-            "Rainbow Six Siege",
-            "Halo Infinite",
-            "Sea of Thieves",
-            "Dead by Daylight",
-            "Among Us",
-            "Phasmophobia",
-            "Baldur's Gate 3",
-            "Helldivers 2",
-            "Palworld"
+    // MARK: - Game Database (categorized)
+    enum GameDatabase {
+        // FPS Games
+        static let fps: [String] = [
+            "Valorant", "Counter-Strike 2", "Overwatch 2",
+            "Call of Duty: Warzone", "Apex Legends", "Rainbow Six Siege",
+            "Halo Infinite", "Destiny 2", "Team Fortress 2", "Battlefield 2042"
         ]
+
+        // MOBA Games
+        static let moba: [String] = [
+            "League of Legends", "Dota 2", "Smite", "Heroes of the Storm",
+            "Mobile Legends", "Wild Rift", "Pokemon Unite"
+        ]
+
+        // Battle Royale Games
+        static let battleRoyale: [String] = [
+            "Fortnite", "PUBG", "Call of Duty: Warzone", "Apex Legends",
+            "Fall Guys", "Super People", "The Finals"
+        ]
+
+        // MMO Games
+        static let mmo: [String] = [
+            "World of Warcraft", "Final Fantasy XIV", "Elder Scrolls Online",
+            "Guild Wars 2", "Lost Ark", "New World", "Black Desert Online"
+        ]
+
+        // Sports Games
+        static let sports: [String] = [
+            "FIFA 24", "EA FC 24", "NBA 2K24", "Rocket League", "Madden 24",
+            "NHL 24", "MLB The Show 24", "F1 24", "Gran Turismo 7"
+        ]
+
+        // Survival/Sandbox Games
+        static let survival: [String] = [
+            "Minecraft", "Rust", "ARK: Survival Evolved", "Valheim",
+            "Terraria", "Palworld", "Sons of the Forest", "7 Days to Die"
+        ]
+
+        // Co-op/Horror Games
+        static let coopHorror: [String] = [
+            "Phasmophobia", "Dead by Daylight", "Lethal Company",
+            "Among Us", "Devour", "Forewarned", "The Forest"
+        ]
+
+        // Fighting Games
+        static let fighting: [String] = [
+            "Street Fighter 6", "Tekken 8", "Mortal Kombat 1",
+            "Super Smash Bros. Ultimate", "Guilty Gear Strive", "Dragon Ball FighterZ"
+        ]
+
+        // RPG Games
+        static let rpg: [String] = [
+            "Baldur's Gate 3", "Diablo IV", "Path of Exile", "Elden Ring",
+            "Genshin Impact", "Honkai: Star Rail", "Dragon Age: The Veilguard"
+        ]
+
+        // Board/Card Games
+        static let boardCard: [String] = [
+            "Chess.com", "Poker", "Tabletop Simulator", "Hearthstone",
+            "Magic: The Gathering Arena", "Legends of Runeterra", "Uno"
+        ]
+
+        // Tabletop RPGs
+        static let tabletop: [String] = [
+            "Dungeons & Dragons", "Pathfinder", "Call of Cthulhu",
+            "Warhammer 40K", "Starfinder", "Vampire: The Masquerade"
+        ]
+
+        // Party Games
+        static let party: [String] = [
+            "Mario Kart 8", "Mario Party Superstars", "Jackbox Party Packs",
+            "Gang Beasts", "Human Fall Flat", "Overcooked 2"
+        ]
+
+        // All games combined
+        static var all: [String] {
+            return fps + moba + battleRoyale + mmo + sports + survival +
+                   coopHorror + fighting + rpg + boardCard + tabletop + party
+        }
+
+        // Category names for UI
+        static let categories: [(name: String, games: [String])] = [
+            ("FPS", fps),
+            ("MOBA", moba),
+            ("Battle Royale", battleRoyale),
+            ("MMO", mmo),
+            ("Sports", sports),
+            ("Survival/Sandbox", survival),
+            ("Co-op/Horror", coopHorror),
+            ("Fighting", fighting),
+            ("RPG", rpg),
+            ("Board/Card", boardCard),
+            ("Tabletop RPG", tabletop),
+            ("Party", party)
+        ]
+    }
+
+    // Legacy support
+    enum PopularGames {
+        static var all: [String] { GameDatabase.all }
     }
 
     // MARK: - Debug

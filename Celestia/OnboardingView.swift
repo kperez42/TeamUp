@@ -1,6 +1,6 @@
 //
 //  OnboardingView.swift
-//  Celestia
+//  TeamUp
 //
 //  ELITE ONBOARDING - First Impressions Matter
 //
@@ -91,9 +91,10 @@ struct OnboardingView: View {
     let dietOptions = ["", "Omnivore", "Vegetarian", "Vegan", "Pescatarian", "Keto", "Halal", "Kosher", "Other"]
     
     let availableInterests = [
-        "Travel", "Music", "Movies", "Sports", "Food",
-        "Art", "Photography", "Reading", "Gaming", "Fitness",
-        "Cooking", "Dancing", "Nature", "Technology", "Fashion"
+        "FPS Games", "MOBAs", "Battle Royale", "MMOs", "RPGs",
+        "Sports Games", "Racing", "Fighting Games", "Survival",
+        "Co-op", "Competitive", "Casual", "Streaming", "Esports",
+        "Board Games", "D&D", "Card Games", "VR Gaming"
     ]
     
     let availableLanguages = [
@@ -322,10 +323,10 @@ struct OnboardingView: View {
         case 0: return "Basic Info"
         case 1: return "About You"
         case 2: return "Your Photos"
-        case 3: return "Preferences"
-        case 4: return "Interests"
-        case 5: return "Better Matches"
-        case 6: return "Your Lifestyle"
+        case 3: return "Teammate Preferences"
+        case 4: return "Your Games"
+        case 5: return "Better Squad Matches"
+        case 6: return "Gaming Schedule"
         case 7: return "Final Details"
         default: return ""
         }
@@ -334,13 +335,13 @@ struct OnboardingView: View {
     private var stepSubtitle: String {
         switch currentStep {
         case 0: return "Tell us who you are"
-        case 1: return "Share your story"
-        case 2: return "Show your best self"
-        case 3: return "What you're looking for"
-        case 4: return "What makes you unique"
+        case 1: return "Share your gaming story"
+        case 2: return "Show your gaming setup or avatar"
+        case 3: return "What kind of squad mates you want"
+        case 4: return "What games do you play?"
         case 5: return "Optional • Skip anytime"
-        case 6: return "Your habits & preferences"
-        case 7: return "Almost done!"
+        case 6: return "When do you play?"
+        case 7: return "Almost ready to find your squad!"
         default: return ""
         }
     }
@@ -687,11 +688,11 @@ struct OnboardingView: View {
                 }
 
                 VStack(spacing: 8) {
-                    Text("Show Your Best Self")
+                    Text("Show Your Gaming Self")
                         .font(.title)
                         .fontWeight(.bold)
 
-                    Text("Great photos get 10x more matches")
+                    Text("Gaming photos or avatars work great!")
                         .font(.subheadline)
                         .foregroundColor(.secondary)
                         .multilineTextAlignment(.center)
@@ -808,10 +809,10 @@ struct OnboardingView: View {
                     }
 
                     VStack(alignment: .leading, spacing: 10) {
-                        photoTipRow(icon: "face.smiling.fill", text: "Show your smile - it's your best feature!", color: .green)
-                        photoTipRow(icon: "sun.max.fill", text: "Good lighting makes you shine", color: .orange)
-                        photoTipRow(icon: "camera.fill", text: "Mix it up with different angles", color: .blue)
-                        photoTipRow(icon: "sparkles", text: "Be yourself - authenticity wins", color: .purple)
+                        photoTipRow(icon: "gamecontroller.fill", text: "Gaming setup photos work great!", color: .green)
+                        photoTipRow(icon: "person.crop.circle", text: "Show your face or use your favorite avatar", color: .orange)
+                        photoTipRow(icon: "desktopcomputer", text: "Battlestation pics are always appreciated", color: .blue)
+                        photoTipRow(icon: "sparkles", text: "Be yourself - authenticity builds trust", color: .purple)
                     }
                 }
                 .padding(16)
@@ -1053,11 +1054,11 @@ struct OnboardingView: View {
 
                 // Motivation card
                 HStack(spacing: 12) {
-                    Image(systemName: "heart.circle.fill")
+                    Image(systemName: "person.3.fill")
                         .font(.title2)
                         .foregroundStyle(
                             LinearGradient(
-                                colors: [.pink, .red],
+                                colors: [.green, .cyan],
                                 startPoint: .topLeading,
                                 endPoint: .bottomTrailing
                             )
@@ -1067,7 +1068,7 @@ struct OnboardingView: View {
                         Text("First impressions matter")
                             .font(.subheadline)
                             .fontWeight(.semibold)
-                        Text("Profiles with 3+ photos get 5x more likes")
+                        Text("Profiles with photos get more squad invites")
                             .font(.caption)
                             .foregroundColor(.secondary)
                     }
@@ -1077,10 +1078,10 @@ struct OnboardingView: View {
                 .padding(14)
                 .background(
                     RoundedRectangle(cornerRadius: 12)
-                        .fill(Color.pink.opacity(0.08))
+                        .fill(Color.green.opacity(0.08))
                         .overlay(
                             RoundedRectangle(cornerRadius: 12)
-                                .stroke(Color.pink.opacity(0.2), lineWidth: 1)
+                                .stroke(Color.green.opacity(0.2), lineWidth: 1)
                         )
                 )
             }
@@ -1113,34 +1114,34 @@ struct OnboardingView: View {
         .padding(.vertical, 4)
     }
     
-    // MARK: - Step 4: Preferences
-    
+    // MARK: - Step 4: Gaming Preferences
+
     private var step4View: some View {
         ScrollView(showsIndicators: false) {
             VStack(spacing: 30) {
                 // Icon
                 ZStack {
                     Circle()
-                        .fill(Color.purple.opacity(0.15))
+                        .fill(Color.green.opacity(0.15))
                         .frame(width: 100, height: 100)
-                    
-                    Image(systemName: "heart.fill")
+
+                    Image(systemName: "gamecontroller.fill")
                         .font(.system(size: 50))
                         .foregroundStyle(
                             LinearGradient(
-                                colors: [.purple, .pink],
+                                colors: [.green, .cyan],
                                 startPoint: .topLeading,
                                 endPoint: .bottomTrailing
                             )
                         )
                 }
-                
+
                 VStack(spacing: 8) {
-                    Text("Dating Preferences")
+                    Text("Gaming Preferences")
                         .font(.title)
                         .fontWeight(.bold)
-                    
-                    Text("Who are you interested in?")
+
+                    Text("What kind of teammates are you looking for?")
                         .font(.subheadline)
                         .foregroundColor(.secondary)
                 }
@@ -2379,14 +2380,14 @@ struct CompletionCelebrationView: View {
                 Button {
                     onDismiss()
                 } label: {
-                    Text("Start Exploring!")
+                    Text("Find Your Squad!")
                         .fontWeight(.semibold)
                         .foregroundColor(.white)
                         .frame(maxWidth: .infinity)
                         .padding()
                         .background(
                             LinearGradient(
-                                colors: [.purple, .pink],
+                                colors: [.green, .cyan],
                                 startPoint: .leading,
                                 endPoint: .trailing
                             )

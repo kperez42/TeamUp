@@ -1,6 +1,7 @@
 /*
- * Celestia Localization - English
+ * TeamUp Localization - English
  * Language: English (en)
+ * Find Your Player 2 - Gaming Friend Finder
  */
 
 // MARK: - Common
@@ -26,7 +27,7 @@
 "auth.sign_out" = "Sign Out";
 "auth.email" = "Email";
 "auth.password" = "Password";
-"auth.full_name" = "Full Name";
+"auth.full_name" = "Gamer Name";
 "auth.age" = "Age";
 "auth.forgot_password" = "Forgot Password?";
 "auth.reset_password" = "Reset Password";
@@ -39,39 +40,46 @@
 
 // MARK: - Profile
 
-"profile.profile" = "Profile";
+"profile.profile" = "Gamer Profile";
 "profile.edit_profile" = "Edit Profile";
-"profile.bio" = "Bio";
+"profile.bio" = "About Me";
 "profile.photos" = "Photos";
 "profile.add_photo" = "Add Photo";
 "profile.settings" = "Settings";
 "profile.age" = "Age";
-"profile.location" = "Location";
+"profile.location" = "Region";
 "profile.gender" = "Gender";
 "profile.looking_for" = "Looking For";
 "profile.male" = "Male";
 "profile.female" = "Female";
 "profile.non_binary" = "Non-Binary";
+"profile.gamer_tag" = "Gamer Tag";
+"profile.platforms" = "Platforms";
+"profile.games" = "Games";
+"profile.play_style" = "Play Style";
+"profile.skill_level" = "Skill Level";
+"profile.gaming_schedule" = "Gaming Schedule";
+"profile.voice_chat" = "Voice Chat";
 
-// MARK: - Swipe
+// MARK: - Discovery
 
-"swipe.discover" = "Discover";
-"swipe.like" = "Like";
+"swipe.discover" = "Find Teammates";
+"swipe.like" = "Add to Squad";
 "swipe.dislike" = "Pass";
-"swipe.super_like" = "Super Like";
-"swipe.its_a_match" = "It's a Match!";
-"swipe.send_message" = "Send Message";
-"swipe.keep_swiping" = "Keep Swiping";
-"swipe.no_more_profiles" = "No more profiles available";
+"swipe.super_like" = "Super Squad";
+"swipe.its_a_match" = "New Squad Member!";
+"swipe.send_message" = "Party Up";
+"swipe.keep_swiping" = "Keep Looking";
+"swipe.no_more_profiles" = "No more gamers in your area";
 
-// MARK: - Matches
+// MARK: - Squad Matches
 
-"matches.matches" = "Matches";
-"matches.new_match" = "New Match!";
-"matches.no_matches" = "No matches yet";
-"matches.unmatch" = "Unmatch";
-"matches.unmatch_confirm" = "Are you sure you want to unmatch?";
-"matches.matched_with" = "Matched with %@";
+"matches.matches" = "Squad";
+"matches.new_match" = "New Squad Member!";
+"matches.no_matches" = "No squad members yet";
+"matches.unmatch" = "Remove from Squad";
+"matches.unmatch_confirm" = "Are you sure you want to remove this player?";
+"matches.matched_with" = "Squadded up with %@";
 
 // MARK: - Messages
 
@@ -82,18 +90,20 @@
 "messages.delivered" = "Delivered";
 "messages.read" = "Read";
 "messages.typing" = "typing...";
+"messages.party_up" = "Party up?";
+"messages.gg" = "GG!";
 
 // MARK: - Premium
 
-"premium.premium" = "Premium";
-"premium.upgrade_to_premium" = "Upgrade to Premium";
+"premium.premium" = "Pro Gamer";
+"premium.upgrade_to_premium" = "Upgrade to Pro Gamer";
 "premium.monthly_plan" = "Monthly Plan";
 "premium.yearly_plan" = "Yearly Plan";
 "premium.subscribe" = "Subscribe";
 "premium.restore_purchases" = "Restore Purchases";
-"premium.features" = "Premium Features";
-"premium.unlimited_likes" = "Unlimited Likes";
-"premium.see_who_likes_you" = "See Who Likes You";
+"premium.features" = "Pro Gamer Features";
+"premium.unlimited_likes" = "Unlimited Squad Adds";
+"premium.see_who_likes_you" = "See Who Wants to Squad";
 "premium.rewind" = "Rewind Last Swipe";
 "premium.boost_profile" = "Boost Your Profile";
 
@@ -122,13 +132,36 @@
 
 // MARK: - Onboarding
 
-"onboarding.welcome" = "Welcome to Celestia";
-"onboarding.find_your_match" = "Find your perfect match";
+"onboarding.welcome" = "Welcome to TeamUp";
+"onboarding.find_your_match" = "Find Your Player 2";
 "onboarding.get_started" = "Get Started";
+"onboarding.what_games" = "What games do you play?";
+"onboarding.your_rank" = "What's your rank?";
+"onboarding.when_play" = "When do you play?";
 
 // MARK: - Referrals
 
-"referral.invite_friends" = "Invite Friends";
-"referral.share_code" = "Share your referral code";
+"referral.invite_friends" = "Invite Gaming Friends";
+"referral.share_code" = "Share your squad code";
 "referral.your_code" = "Your Code";
-"referral.enter_code" = "Enter Referral Code (Optional)";
+"referral.enter_code" = "Enter Squad Code (Optional)";
+
+// MARK: - LFG (Looking for Group)
+
+"lfg.title" = "LFG Posts";
+"lfg.create_post" = "Create LFG Post";
+"lfg.looking_for" = "Looking for";
+"lfg.game" = "Game";
+"lfg.rank_required" = "Rank Required";
+"lfg.mic_required" = "Mic Required";
+"lfg.join" = "Join";
+"lfg.no_posts" = "No LFG posts yet";
+
+// MARK: - Gaming
+
+"gaming.competitive" = "Competitive";
+"gaming.casual" = "Casual";
+"gaming.ranked" = "Ranked";
+"gaming.quick_play" = "Quick Play";
+"gaming.tournament" = "Tournament";
+"gaming.scrims" = "Scrims";
