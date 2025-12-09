@@ -64,9 +64,9 @@ struct NotificationSettingsView: View {
             // Core Notifications
             Section {
                 NotificationToggle(
-                    icon: "heart.circle.fill",
-                    title: "Matches & Likes",
-                    description: "When someone matches or likes you",
+                    icon: "person.2.fill",
+                    title: "Teammates & Requests",
+                    description: "When someone wants to team up with you",
                     isOn: $preferences.newMatchesEnabled
                 )
 
@@ -378,7 +378,7 @@ struct NotificationHistoryRow: View {
     private func iconForType(_ type: NotificationType) -> String {
         switch type {
         case .newMatch:
-            return "heart.circle.fill"
+            return "person.2.fill"
         case .newMessage:
             return "message.circle.fill"
         case .secretAdmirer:

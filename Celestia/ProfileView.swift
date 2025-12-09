@@ -833,7 +833,7 @@ struct ProfileView: View {
                         .font(.headline)
                         .foregroundColor(.primary)
 
-                    Text("Unlimited likes & see who likes you")
+                    Text("Unlimited requests & see who wants to team up")
                         .font(.caption)
                         .foregroundColor(.secondary)
                         .lineLimit(1)
@@ -851,7 +851,7 @@ struct ProfileView: View {
             .shadow(color: .black.opacity(0.06), radius: 12, y: 4)
         }
         .accessibilityLabel("Upgrade to Premium")
-        .accessibilityHint("Unlock unlimited likes, see who likes you, and access all premium features")
+        .accessibilityHint("Unlock unlimited requests, see who wants to team up, and access all premium features")
         .padding(.horizontal, 20)
     }
 
