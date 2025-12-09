@@ -214,8 +214,8 @@ class OnboardingViewModel: ObservableObject {
 
         switch incentive.type {
         case .superLikes:
-            user.superLikesRemaining += incentive.amount
-            Logger.shared.info("Granted \(incentive.amount) Super Likes for profile completion", category: .onboarding)
+            user.superRequestsRemaining += incentive.amount
+            Logger.shared.info("Granted \(incentive.amount) Super Requests for profile completion", category: .onboarding)
 
         case .boosts:
             user.boostsRemaining += incentive.amount

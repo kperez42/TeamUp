@@ -248,11 +248,9 @@ struct OnboardingView: View {
 
         // Create temporary user with current onboarding data
         user.fullName = fullName
-        user.age = calculateAge(from: birthday)
         user.bio = bio
         user.location = location
-        user.interests = selectedInterests
-        user.languages = selectedLanguages
+        // Gaming-focused: selectedInterests maps to gameGenres, selectedLanguages maps to platforms
 
         viewModel.updateProfileQuality(for: user)
     }
@@ -2046,36 +2044,23 @@ struct OnboardingView: View {
                     return indexedURLs.sorted { $0.0 < $1.0 }.map { $0.1 }
                 }
 
-                // Update user
+                // Update user with gaming-focused fields
                 user.fullName = fullName
-                user.age = calculateAge(from: birthday)
-                user.gender = gender
                 user.bio = bio
                 user.location = location
                 user.country = country
-                user.lookingFor = lookingFor
                 user.photos = photoURLs
                 user.profileImageURL = photoURLs.first ?? ""
-                user.interests = selectedInterests
-                user.languages = selectedLanguages
 
-                // Step 6 optional fields
-                user.height = height
-                user.relationshipGoal = (relationshipGoal == "Prefer not to say") ? nil : relationshipGoal
-                user.ageRangeMin = ageRangeMin
-                user.ageRangeMax = ageRangeMax
+                // Gaming-focused preferences (converted from dating fields)
+                // selectedInterests -> gameGenres, selectedLanguages -> platforms
+                user.gameGenres = selectedInterests
+                user.platforms = selectedLanguages
 
-                // Step 6 - maxDistance
-                user.maxDistance = maxDistance
-
-                // Step 7 & 8 lifestyle fields
-                if !educationLevel.isEmpty { user.educationLevel = educationLevel }
-                if !religion.isEmpty { user.religion = religion }
-                if !smoking.isEmpty { user.smoking = smoking }
-                if !drinking.isEmpty { user.drinking = drinking }
-                if !exercise.isEmpty { user.exercise = exercise }
-                if !pets.isEmpty { user.pets = pets }
-                if !diet.isEmpty { user.diet = diet }
+                // lookingFor is now an array in gaming model
+                if !lookingFor.isEmpty && lookingFor != "Everyone" {
+                    user.lookingFor = [lookingFor]
+                }
 
                 try await authService.updateUser(user)
 
@@ -2119,43 +2104,20 @@ struct OnboardingView: View {
 
         await MainActor.run {
             // Step 1: Basics
-            fullName = user.fullName ?? ""
-            gender = user.gender ?? "Male"
-
-            // Calculate birthday from age (approximate)
-            if user.age > 0 {
-                let calendar = Calendar.current
-                birthday = calendar.date(byAdding: .year, value: -user.age, to: Date()) ?? birthday
-            }
+            fullName = user.fullName
 
             // Step 2: About & Location
-            bio = user.bio ?? ""
-            location = user.location ?? ""
-            country = user.country ?? ""
+            bio = user.bio
+            location = user.location
+            country = user.country
 
-            // Step 4: Preferences
-            lookingFor = user.lookingFor ?? "Everyone"
-            selectedInterests = user.interests ?? []
-            selectedLanguages = user.languages ?? []
-
-            // Step 6: Better Matches
-            height = user.height
-            relationshipGoal = user.relationshipGoal ?? "Prefer not to say"
-            ageRangeMin = user.ageRangeMin ?? 18
-            ageRangeMax = user.ageRangeMax ?? 50
-            maxDistance = user.maxDistance ?? 50
-
-            // Step 7 & 8: Lifestyle
-            educationLevel = user.educationLevel ?? ""
-            religion = user.religion ?? ""
-            smoking = user.smoking ?? ""
-            drinking = user.drinking ?? ""
-            exercise = user.exercise ?? ""
-            pets = user.pets ?? ""
-            diet = user.diet ?? ""
+            // Step 4: Gaming Preferences (mapped from gaming model)
+            lookingFor = user.lookingFor.first ?? "Everyone"
+            selectedInterests = user.gameGenres  // gameGenres -> selectedInterests
+            selectedLanguages = user.platforms   // platforms -> selectedLanguages
 
             // Store existing photo URLs to avoid re-uploading unchanged photos
-            existingPhotoURLs = user.photos ?? []
+            existingPhotoURLs = user.photos
         }
 
         // Load existing photos as UIImages for display

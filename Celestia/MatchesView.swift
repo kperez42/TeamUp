@@ -455,7 +455,7 @@ struct MatchesView: View {
                             }
                         )
                         .accessibilityElement(
-                            label: "\(user.fullName), \(user.age) years old, from \(user.location)",
+                            label: "\(user.fullName), @\(user.gamerTag), from \(user.location)",
                             hint: "Tap to open chat and send a message",
                             traits: .isButton,
                             identifier: AccessibilityIdentifier.matchCard
@@ -798,9 +798,11 @@ struct MatchProfileCard: View {
                         .lineLimit(1)
                         .truncationMode(.tail)
 
-                    Text("\(user.age)")
-                        .font(.system(size: 17))
-                        .foregroundColor(.secondary)
+                    if !user.gamerTag.isEmpty {
+                        Text("@\(user.gamerTag)")
+                            .font(.system(size: 17))
+                            .foregroundColor(.secondary)
+                    }
 
                     Spacer()
 
