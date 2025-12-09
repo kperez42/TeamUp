@@ -229,7 +229,7 @@ struct AppInfo {
     }
 
     static var appName: String {
-        Bundle.main.infoDictionary?["CFBundleName"] as? String ?? "Celestia"
+        Bundle.main.infoDictionary?["CFBundleName"] as? String ?? "TeamUp"
     }
 }
 
@@ -281,7 +281,7 @@ extension User {
     static var preview: User {
         User(
             id: "preview",
-            email: "test@celestia.app",
+            email: "test@teamup.gg",
             fullName: "Alex Johnson",
             age: 28,
             gender: "Male",
