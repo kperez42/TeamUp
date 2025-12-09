@@ -29,27 +29,22 @@ class InterestService: ObservableObject, ListenerLifecycleAware {
 
     nonisolated var listenerId: String { "InterestService" }
 
-    nonisolated var areListenersActive: Bool {
-        // Return a safe default since we can't access the main actor property
-        true
+    var areListenersActive: Bool {
+        listener != nil
     }
 
-    nonisolated func reconnectListeners() {
-        Task { @MainActor in
-            guard let userId = self.currentUserId else {
-                Logger.shared.debug("InterestService: No userId for reconnection", category: .matching)
-                return
-            }
-            Logger.shared.info("InterestService: Reconnecting listeners for user: \(userId)", category: .matching)
-            self.listenToReceivedInterests(userId: userId)
+    func reconnectListeners() {
+        guard let userId = currentUserId else {
+            Logger.shared.debug("InterestService: No userId for reconnection", category: .matching)
+            return
         }
+        Logger.shared.info("InterestService: Reconnecting listeners for user: \(userId)", category: .matching)
+        listenToReceivedInterests(userId: userId)
     }
 
-    nonisolated func pauseListeners() {
-        Task { @MainActor in
-            Logger.shared.info("InterestService: Pausing listeners", category: .matching)
-            self.stopListening()
-        }
+    func pauseListeners() {
+        Logger.shared.info("InterestService: Pausing listeners", category: .matching)
+        stopListening()
     }
 
     private init() {

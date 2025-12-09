@@ -24,24 +24,18 @@ class BlockReportService: ObservableObject, ListenerLifecycleAware {
 
     nonisolated var listenerId: String { "BlockReportService" }
 
-    nonisolated var areListenersActive: Bool {
-        // Return a safe default since we can't access the main actor property
-        // The actual listener state is managed on the main actor
-        true
+    var areListenersActive: Bool {
+        blockedUsersListener != nil
     }
 
-    nonisolated func reconnectListeners() {
-        Task { @MainActor in
-            Logger.shared.info("BlockReportService: Reconnecting listeners", category: .general)
-            self.restartListening()
-        }
+    func reconnectListeners() {
+        Logger.shared.info("BlockReportService: Reconnecting listeners", category: .general)
+        restartListening()
     }
 
-    nonisolated func pauseListeners() {
-        Task { @MainActor in
-            Logger.shared.info("BlockReportService: Pausing listeners", category: .general)
-            self.stopListening()
-        }
+    func pauseListeners() {
+        Logger.shared.info("BlockReportService: Pausing listeners", category: .general)
+        stopListening()
     }
 
     private init() {
