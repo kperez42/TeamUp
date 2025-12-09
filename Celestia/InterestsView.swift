@@ -132,9 +132,9 @@ struct InterestsView: View {
     
     private var emptyStateView: some View {
         VStack(spacing: 20) {
-            Image(systemName: "heart.slash")
+            Image(systemName: "person.2.slash")
                 .font(.system(size: 60))
-                .foregroundColor(.purple.opacity(0.5))
+                .foregroundColor(.green.opacity(0.5))
             
             Text("No Interests Yet")
                 .font(.title3)
