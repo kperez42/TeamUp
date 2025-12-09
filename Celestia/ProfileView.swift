@@ -406,9 +406,9 @@ struct ProfileView: View {
                     // Share button - only show if user ID exists and URL is valid
                     if let userId = user.id,
                        !userId.isEmpty,
-                       let shareURL = URL(string: "https://celestia.app/profile/\(userId)"),
+                       let shareURL = URL(string: "https://teamup.gg/profile/\(userId)"),
                        shareURL.scheme == "https" {
-                        ShareLink(item: shareURL, subject: Text("Check out \(user.fullName)'s profile"), message: Text("See \(user.fullName) on Celestia!")) {
+                        ShareLink(item: shareURL, subject: Text("Check out \(user.fullName)'s gamer profile"), message: Text("See \(user.fullName) on TeamUp!")) {
                             Image(systemName: "square.and.arrow.up")
                                 .font(.title3)
                                 .foregroundColor(.white)
@@ -420,7 +420,7 @@ struct ProfileView: View {
                             HapticManager.shared.impact(.light)
                         })
                         .accessibilityLabel("Share profile")
-                        .accessibilityHint("Share your Celestia profile with others")
+                        .accessibilityHint("Share your TeamUp gamer profile with others")
                     }
 
                     Spacer()
@@ -1499,9 +1499,9 @@ struct ProfileView: View {
                 icon: "questionmark.circle.fill",
                 title: "Help & Support",
                 color: .blue,
-                accessibilityHint: "Contact Celestia support team for assistance"
+                accessibilityHint: "Contact TeamUp support team for assistance"
             ) {
-                guard let url = URL(string: "mailto:support@celestia.app"),
+                guard let url = URL(string: "mailto:support@teamup.gg"),
                       UIApplication.shared.canOpenURL(url) else {
                     Logger.shared.error("Cannot open mail client - email URL invalid or no mail app configured", category: .general)
                     return
@@ -1522,7 +1522,7 @@ struct ProfileView: View {
                 icon: "arrow.right.square.fill",
                 title: "Sign Out",
                 color: .red,
-                accessibilityHint: "Sign out of your Celestia account"
+                accessibilityHint: "Sign out of your TeamUp account"
             ) {
                 showingLogoutConfirmation = true
             }
