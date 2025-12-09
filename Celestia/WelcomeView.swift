@@ -175,12 +175,12 @@ struct WelcomeView: View {
             }
             
             VStack(spacing: 8) {
-                Text("Celestia")
+                Text("TeamUp")
                     .font(.system(size: 52, weight: .bold, design: .rounded))
                     .foregroundColor(.white)
                     .shadow(color: .black.opacity(0.2), radius: 5)
-                
-                Text("Find friends, dates, and meaningful connections")
+
+                Text("Find Your Player 2")
                     .font(.headline)
                     .foregroundColor(.white.opacity(0.95))
                     .multilineTextAlignment(.center)

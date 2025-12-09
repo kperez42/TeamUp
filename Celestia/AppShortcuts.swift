@@ -85,7 +85,7 @@ struct CelestiaAppShortcuts: AppShortcutsProvider {
             phrases: [
                 "Check in on \(.applicationName)",
                 "I'm safe on \(.applicationName)",
-                "Mark date as safe in \(.applicationName)"
+                "Mark meetup as safe in \(.applicationName)"
             ],
             shortTitle: "Safety Check-In",
             systemImageName: "checkmark.shield.fill"
@@ -98,7 +98,7 @@ struct CelestiaAppShortcuts: AppShortcutsProvider {
 @available(iOS 16.0, *)
 struct ViewMatchesIntent: AppIntent {
     static var title: LocalizedStringResource = "View Matches"
-    static var description = IntentDescription("View your current matches in Celestia")
+    static var description = IntentDescription("View your current teammates in TeamUp")
     static var openAppWhenRun: Bool = true
 
     @MainActor
@@ -119,7 +119,7 @@ struct ViewMatchesIntent: AppIntent {
 @available(iOS 16.0, *)
 struct StartSwipingIntent: AppIntent {
     static var title: LocalizedStringResource = "Start Swiping"
-    static var description = IntentDescription("Start discovering new people on Celestia")
+    static var description = IntentDescription("Start discovering new teammates on TeamUp")
     static var openAppWhenRun: Bool = true
 
     @MainActor
@@ -138,7 +138,7 @@ struct StartSwipingIntent: AppIntent {
 @available(iOS 16.0, *)
 struct CheckMessagesIntent: AppIntent {
     static var title: LocalizedStringResource = "Check Messages"
-    static var description = IntentDescription("Check your messages on Celestia")
+    static var description = IntentDescription("Check your messages on TeamUp")
     static var openAppWhenRun: Bool = true
 
     @MainActor
@@ -176,25 +176,25 @@ struct ViewPremiumIntent: AppIntent {
     }
 }
 
-// MARK: - Share Date Details Intent
+// MARK: - Share Meetup Details Intent
 
 @available(iOS 16.0, *)
 struct ShareDateDetailsIntent: AppIntent {
-    static var title: LocalizedStringResource = "Share Date Details"
-    static var description = IntentDescription("Share your date location and time with emergency contacts")
+    static var title: LocalizedStringResource = "Share Meetup Details"
+    static var description = IntentDescription("Share your gaming meetup location and time with emergency contacts")
     static var openAppWhenRun: Bool = true
 
-    @Parameter(title: "Match Name")
+    @Parameter(title: "Teammate Name")
     var matchName: String?
 
     @Parameter(title: "Location")
     var location: String?
 
-    @Parameter(title: "Date Time")
+    @Parameter(title: "Meetup Time")
     var dateTime: Date?
 
     static var parameterSummary: some ParameterSummary {
-        Summary("Share date with \(\.$matchName) at \(\.$location)")
+        Summary("Share meetup with \(\.$matchName) at \(\.$location)")
     }
 
     @MainActor
@@ -208,16 +208,16 @@ struct ShareDateDetailsIntent: AppIntent {
             throw AppShortcutError.notAuthenticated
         }
 
-        // If parameters provided, create share date automatically
+        // If parameters provided, create share meetup automatically
         if let matchName = matchName, let location = location, let dateTime = dateTime {
             // This would integrate with ShareDateView functionality
             return .result(
-                dialog: IntentDialog("Date details shared with your emergency contacts")
+                dialog: IntentDialog("Meetup details shared with your emergency contacts")
             )
         } else {
-            // Open app to share date screen
+            // Open app to share meetup screen
             return .result(
-                dialog: IntentDialog("Opening Celestia to share your date details")
+                dialog: IntentDialog("Opening TeamUp to share your meetup details")
             )
         }
     }
@@ -262,7 +262,7 @@ struct AddEmergencyContactIntent: AppIntent {
             )
         } else {
             return .result(
-                dialog: IntentDialog("Opening Celestia to add emergency contact")
+                dialog: IntentDialog("Opening TeamUp to add emergency contact")
             )
         }
     }

@@ -1056,10 +1056,10 @@ struct ProfileView: View {
                 detailRow(icon: "graduationcap.fill", label: "Education", value: education)
             }
 
-            // Relationship goal
+            // Gaming goal
             if let goal = user.relationshipGoal, goal != "Prefer not to say" {
                 Divider()
-                detailRow(icon: "heart.text.square", label: "Relationship goal", value: goal)
+                detailRow(icon: "gamecontroller", label: "Gaming style", value: goal)
             }
 
             // Religion

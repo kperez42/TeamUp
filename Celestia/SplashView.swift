@@ -63,7 +63,7 @@ struct SplashView: View {
                 .opacity(logoOpacity)
 
                 // App name
-                Text("Celestia")
+                Text("TeamUp")
                     .font(.system(size: 48, weight: .bold, design: .rounded))
                     .foregroundColor(.white)
                     .opacity(logoOpacity)
