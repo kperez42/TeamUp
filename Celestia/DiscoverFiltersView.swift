@@ -513,7 +513,7 @@ struct DiscoverFiltersView: View {
         }
     }
 
-    // MARK: - Relationship Goals Section
+    // MARK: - Gaming Goals Section
 
     private var relationshipGoalsSection: some View {
         VStack(alignment: .leading, spacing: 12) {

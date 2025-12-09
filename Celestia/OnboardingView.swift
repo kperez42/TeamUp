@@ -77,8 +77,8 @@ struct OnboardingView: View {
     let lookingForOptions = ["Men", "Women", "Everyone"]
     let totalSteps = 8
 
-    // Step 6 options
-    let relationshipGoalOptions = ["Prefer not to say", "Casual Dating", "Long-term Relationship", "Marriage", "Friendship", "Not Sure Yet"]
+    // Step 6 options - Gaming goals
+    let relationshipGoalOptions = ["Prefer not to say", "Casual Gaming", "Regular Squad", "Competitive Team", "Just Friends", "Not Sure Yet"]
     let heightOptions: [Int] = Array(140...220) // cm range
 
     // Step 7 & 8 options (Lifestyle)
@@ -1363,11 +1363,11 @@ struct OnboardingView: View {
                 }
 
                 VStack(spacing: 20) {
-                    // Relationship Goal
+                    // Gaming Goal
                     VStack(alignment: .leading, spacing: 12) {
                         HStack(spacing: 8) {
-                            Image(systemName: "heart.text.square.fill")
-                                .foregroundColor(.pink)
+                            Image(systemName: "gamecontroller.fill")
+                                .foregroundColor(.purple)
                             Text("What are you looking for?")
                                 .font(.headline)
                         }
@@ -2052,12 +2052,12 @@ struct OnboardingView: View {
                 user.photos = photoURLs
                 user.profileImageURL = photoURLs.first ?? ""
 
-                // Gaming-focused preferences (converted from dating fields)
+                // Gaming-focused preferences
                 // selectedInterests -> gameGenres, selectedLanguages -> platforms
                 user.gameGenres = selectedInterests
                 user.platforms = selectedLanguages
 
-                // showMeGender stores the dating preference ("Men", "Women", "Everyone")
+                // showMeGender stores the player preference ("Men", "Women", "Everyone")
                 user.showMeGender = lookingFor
 
                 try await authService.updateUser(user)

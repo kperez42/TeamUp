@@ -126,7 +126,7 @@ class DiscoveryFilters: ObservableObject {
             }
         }
 
-        // Relationship goals filter
+        // Gaming goals filter
         if !relationshipGoals.isEmpty {
             if let userGoal = user.relationshipGoal, !relationshipGoals.contains(userGoal) {
                 return false
