@@ -1,6 +1,6 @@
 //
 //  SkeletonViews.swift
-//  Celestia
+//  TeamUp
 //
 //  Created by Claude
 //  Reusable skeleton loading components for better UX

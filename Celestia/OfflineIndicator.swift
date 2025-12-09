@@ -1,6 +1,6 @@
 //
 //  OfflineIndicator.swift
-//  Celestia
+//  TeamUp
 //
 //  UI components for displaying offline status and pending operations
 //

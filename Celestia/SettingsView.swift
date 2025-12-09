@@ -1,6 +1,6 @@
 //
 //  SettingsView.swift
-//  Celestia
+//  TeamUp
 //
 //  Created by Kevin Perez on 10/29/25.
 //
@@ -21,7 +21,7 @@ struct SettingsView: View {
     @State private var isDeleting = false
 
     // CODE QUALITY FIX: Define URL constants to avoid force unwrapping
-    private static let supportEmailURL = URL(string: "mailto:support@celestia.app")!
+    private static let supportEmailURL = URL(string: "mailto:support@teamup.gg")!
 
     // Legal document states
     @State private var showPrivacyPolicy = false
@@ -120,7 +120,7 @@ struct SettingsView: View {
                     } label: {
                         HStack {
                             Image(systemName: "gift.fill")
-                                .foregroundColor(.purple)
+                                .foregroundColor(.green)
                             VStack(alignment: .leading, spacing: 2) {
                                 Text("Invite Friends")
                                     .foregroundColor(.primary)
@@ -136,7 +136,7 @@ struct SettingsView: View {
                                     .foregroundColor(.white)
                                     .padding(.horizontal, 8)
                                     .padding(.vertical, 4)
-                                    .background(Color.purple)
+                                    .background(Color.green)
                                     .cornerRadius(10)
                             }
                             Image(systemName: "chevron.right")
@@ -149,8 +149,8 @@ struct SettingsView: View {
                         showSeeWhoLikesYou = true
                     } label: {
                         HStack {
-                            Image(systemName: "heart.fill")
-                                .foregroundColor(.pink)
+                            Image(systemName: "person.2.fill")
+                                .foregroundColor(.cyan)
                             VStack(alignment: .leading, spacing: 2) {
                                 HStack(spacing: 6) {
                                     Text("See Who Likes You")
@@ -260,7 +260,7 @@ struct SettingsView: View {
                     } label: {
                         HStack {
                             Image(systemName: "doc.text")
-                                .foregroundColor(.purple)
+                                .foregroundColor(.green)
                             Text("Terms of Service")
                                 .foregroundColor(.primary)
                             Spacer()
@@ -291,7 +291,7 @@ struct SettingsView: View {
                         HStack {
                             Image(systemName: "shield.checkered")
                                 .foregroundColor(.orange)
-                            Text("Dating Safety Tips")
+                            Text("Gaming Safety Tips")
                                 .foregroundColor(.primary)
                             Spacer()
                             Image(systemName: "chevron.right")
@@ -399,7 +399,7 @@ struct SettingsView: View {
                         isDeleting = true
                         do {
                             try await authService.deleteAccount()
-                        } catch let error as CelestiaError {
+                        } catch let error as TeamUpError {
                             isDeleting = false
                             switch error {
                             case .requiresRecentLogin:
@@ -483,7 +483,7 @@ struct SettingsView: View {
         // Fallback to email whitelist for bootstrapping new admin accounts
         // Once isAdmin is set in Firestore, this is just a secondary check
         guard let email = authService.currentUser?.email else { return false }
-        let adminEmails = ["perezkevin640@gmail.com", "admin@celestia.app"]
+        let adminEmails = ["perezkevin640@gmail.com", "admin@teamup.gg"]
         return adminEmails.contains(email.lowercased())
     }
 

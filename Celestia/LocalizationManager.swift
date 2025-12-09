@@ -1,6 +1,6 @@
 //
 //  LocalizationManager.swift
-//  Celestia
+//  TeamUp
 //
 //  Centralized localization management
 //  Provides type-safe string access and language switching
@@ -114,7 +114,7 @@ class LocalizationManager: ObservableObject {
 // MARK: - Notification Extension
 
 extension Notification.Name {
-    static let languageChanged = Notification.Name("com.celestia.languageChanged")
+    static let languageChanged = Notification.Name("com.teamup.languageChanged")
 }
 
 // MARK: - Localized String Keys

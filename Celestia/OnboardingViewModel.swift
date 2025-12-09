@@ -1,6 +1,6 @@
 //
 //  OnboardingViewModel.swift
-//  Celestia
+//  TeamUp
 //
 //  Centralized onboarding state management with progressive disclosure
 //  Handles tutorial flow, profile quality, incentives, and A/B testing
@@ -354,7 +354,7 @@ struct MilestoneCelebrationView: View {
                         .padding()
                         .background(
                             LinearGradient(
-                                colors: [.purple, .pink],
+                                colors: [.green, .cyan],
                                 startPoint: .leading,
                                 endPoint: .trailing
                             )

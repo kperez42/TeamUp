@@ -1,8 +1,8 @@
 //
 //  LikesView.swift
-//  Celestia
+//  TeamUp
 //
-//  Likes view with three tabs: Liked Me, My Likes, Mutual Likes
+//  Squad requests view with three tabs: Want to Team Up, Sent Requests, Squad Matches
 //
 
 import SwiftUI
@@ -72,7 +72,7 @@ struct LikesView: View {
         case nameAZ = "Name A-Z"
     }
 
-    private let tabs = ["Liked Me", "My Likes", "Mutual Likes"]
+    private let tabs = ["Want to Team Up", "Sent Requests", "Squad Matches"]
 
     // Check if user has premium access
     private var isPremium: Bool {
@@ -245,7 +245,7 @@ struct LikesView: View {
                                 Spacer()
                                 if selectedAgeFilter == filter {
                                     Image(systemName: "checkmark")
-                                        .foregroundColor(.pink)
+                                        .foregroundColor(.green)
                                 }
                             }
                         }
@@ -264,7 +264,7 @@ struct LikesView: View {
                                 Spacer()
                                 if selectedSortOption == option {
                                     Image(systemName: "checkmark")
-                                        .foregroundColor(.pink)
+                                        .foregroundColor(.green)
                                 }
                             }
                         }
@@ -365,9 +365,9 @@ struct LikesView: View {
         ZStack {
             LinearGradient(
                 colors: [
-                    Color.pink.opacity(0.9),
-                    Color.pink.opacity(0.7),
-                    Color.purple.opacity(0.5)
+                    Color.green.opacity(0.9),
+                    Color.green.opacity(0.7),
+                    Color.cyan.opacity(0.5)
                 ],
                 startPoint: .topLeading,
                 endPoint: .bottomTrailing
@@ -376,14 +376,14 @@ struct LikesView: View {
             VStack(spacing: 12) {
                 HStack(alignment: .top) {
                     VStack(alignment: .leading, spacing: 4) {
-                        Text("Likes")
+                        Text("Squad Requests")
                             .font(.largeTitle.weight(.bold))
                             .foregroundColor(.white)
                             .dynamicTypeSize(min: .large, max: .accessibility2)
 
                         HStack(spacing: 8) {
                             HStack(spacing: 4) {
-                                Image(systemName: "heart.fill")
+                                Image(systemName: "person.badge.plus")
                                     .font(.caption)
                                 Text("\(viewModel.totalLikesReceived)")
                                     .fontWeight(.semibold)
@@ -394,7 +394,7 @@ struct LikesView: View {
                                 .frame(width: 4, height: 4)
 
                             HStack(spacing: 4) {
-                                Image(systemName: "heart")
+                                Image(systemName: "paperplane")
                                     .font(.caption)
                                 Text("\(viewModel.totalLikesSent) sent")
                                     .fontWeight(.semibold)
@@ -406,9 +406,9 @@ struct LikesView: View {
                                     .frame(width: 4, height: 4)
 
                                 HStack(spacing: 4) {
-                                    Image(systemName: "heart.circle.fill")
+                                    Image(systemName: "person.2.fill")
                                         .font(.caption)
-                                    Text("\(viewModel.mutualLikes.count) mutual")
+                                    Text("\(viewModel.mutualLikes.count) matched")
                                         .fontWeight(.semibold)
                                 }
                             }
@@ -506,15 +506,15 @@ struct LikesView: View {
                                     .padding(.vertical, 2)
                                     .background(
                                         selectedTab == index ?
-                                        Color.pink : Color.gray.opacity(0.5)
+                                        Color.green : Color.gray.opacity(0.5)
                                     )
                                     .clipShape(Capsule())
                             }
                         }
-                        .foregroundColor(selectedTab == index ? .pink : .gray)
+                        .foregroundColor(selectedTab == index ? .green : .gray)
 
                         Rectangle()
-                            .fill(selectedTab == index ? Color.pink : Color.clear)
+                            .fill(selectedTab == index ? Color.green : Color.clear)
                             .frame(height: 3)
                             .cornerRadius(1.5)
                     }
@@ -542,9 +542,9 @@ struct LikesView: View {
         Group {
             if viewModel.usersWhoLikedMe.isEmpty {
                 emptyStateView(
-                    icon: "heart.fill",
-                    title: "No Likes Yet",
-                    message: "When someone likes you, they'll appear here. Keep swiping!"
+                    icon: "person.badge.plus",
+                    title: "No Squad Requests Yet",
+                    message: "When someone wants to team up, they'll appear here. Keep finding teammates!"
                 )
             } else if isPremium {
                 // Premium users see full profiles with filters applied
@@ -639,12 +639,12 @@ struct LikesView: View {
                 }
             }
 
-            // "And X more..." indicator if there are more likes
+            // "And X more..." indicator if there are more requests
             if viewModel.usersWhoLikedMe.count > 4 {
                 HStack(spacing: 8) {
                     Image(systemName: "plus.circle.fill")
-                        .foregroundColor(.pink)
-                    Text("And \(viewModel.usersWhoLikedMe.count - 4) more people liked you!")
+                        .foregroundColor(.green)
+                    Text("And \(viewModel.usersWhoLikedMe.count - 4) more gamers want to team up!")
                         .font(.subheadline)
                         .fontWeight(.medium)
                         .foregroundColor(.secondary)
@@ -661,7 +661,7 @@ struct LikesView: View {
                 Circle()
                     .fill(
                         RadialGradient(
-                            colors: [Color.pink.opacity(0.3), Color.clear],
+                            colors: [Color.cyan.opacity(0.3), Color.clear],
                             center: .center,
                             startRadius: 0,
                             endRadius: 60
@@ -673,7 +673,7 @@ struct LikesView: View {
                     .font(.system(size: 44))
                     .foregroundStyle(
                         LinearGradient(
-                            colors: [.pink, .purple],
+                            colors: [.green, .cyan],
                             startPoint: .topLeading,
                             endPoint: .bottomTrailing
                         )
@@ -681,7 +681,7 @@ struct LikesView: View {
             }
 
             VStack(spacing: 8) {
-                Text("\(viewModel.usersWhoLikedMe.count) people liked you!")
+                Text("\(viewModel.usersWhoLikedMe.count) gamers want to team up!")
                     .font(.title2)
                     .fontWeight(.bold)
 
@@ -701,7 +701,7 @@ struct LikesView: View {
                     Image(systemName: "crown.fill")
                         .font(.body)
 
-                    Text("Unlock Who Likes You")
+                    Text("Unlock Squad Requests")
                         .fontWeight(.semibold)
                 }
                 .foregroundColor(.white)
@@ -709,13 +709,13 @@ struct LikesView: View {
                 .padding(.vertical, 16)
                 .background(
                     LinearGradient(
-                        colors: [.pink, .purple],
+                        colors: [.green, .cyan],
                         startPoint: .leading,
                         endPoint: .trailing
                     )
                 )
                 .cornerRadius(14)
-                .shadow(color: .pink.opacity(0.4), radius: 10, y: 5)
+                .shadow(color: .green.opacity(0.4), radius: 10, y: 5)
             }
         }
         .padding(24)
@@ -733,8 +733,8 @@ struct LikesView: View {
                 .foregroundColor(.primary)
 
             VStack(spacing: 12) {
-                premiumFeatureRow(icon: "eye.fill", title: "See Who Likes You", description: "Match instantly with people interested in you", color: .pink)
-                premiumFeatureRow(icon: "infinity", title: "Unlimited Likes", description: "No daily limits, like as many as you want", color: .purple)
+                premiumFeatureRow(icon: "eye.fill", title: "See Squad Requests", description: "Match instantly with gamers who want to team up", color: .green)
+                premiumFeatureRow(icon: "infinity", title: "Unlimited Requests", description: "No daily limits, send as many as you want", color: .cyan)
                 premiumFeatureRow(icon: "bolt.fill", title: "Profile Boost", description: "Get 10x more views with monthly boosts", color: .orange)
             }
         }
@@ -777,9 +777,9 @@ struct LikesView: View {
         Group {
             if viewModel.usersILiked.isEmpty {
                 emptyStateView(
-                    icon: "heart",
-                    title: "No Likes Sent",
-                    message: "Start swiping on the Discover page to like profiles!"
+                    icon: "paperplane",
+                    title: "No Requests Sent",
+                    message: "Start browsing the Find Teammates page to send squad requests!"
                 )
             } else {
                 likesGrid(users: filteredUsersILiked, showLikeBack: false)
@@ -793,9 +793,9 @@ struct LikesView: View {
         Group {
             if viewModel.mutualLikes.isEmpty {
                 emptyStateView(
-                    icon: "heart.circle.fill",
-                    title: "No Mutual Likes",
-                    message: "When you and someone else both like each other, you'll see them here!"
+                    icon: "person.2.fill",
+                    title: "No Squad Matches",
+                    message: "When you and someone else both want to team up, you'll see them here!"
                 )
             } else {
                 likesGrid(users: filteredMutualLikes, showMessage: true)
@@ -812,7 +812,7 @@ struct LikesView: View {
                 HStack(spacing: 8) {
                     Image(systemName: "line.3.horizontal.decrease.circle.fill")
                         .font(.caption)
-                        .foregroundColor(.purple)
+                        .foregroundColor(.green)
                     Text("Filtered: \(users.count) results")
                         .font(.caption)
                         .foregroundColor(.secondary)
@@ -823,7 +823,7 @@ struct LikesView: View {
                         HapticManager.shared.impact(.light)
                     }
                     .font(.caption)
-                    .foregroundColor(.pink)
+                    .foregroundColor(.green)
                 }
                 .padding(.horizontal, 16)
                 .padding(.top, 8)
@@ -885,7 +885,7 @@ struct LikesView: View {
                 Circle()
                     .fill(
                         LinearGradient(
-                            colors: [Color.pink.opacity(0.2), Color.purple.opacity(0.1)],
+                            colors: [Color.green.opacity(0.2), Color.cyan.opacity(0.1)],
                             startPoint: .topLeading,
                             endPoint: .bottomTrailing
                         )
@@ -896,7 +896,7 @@ struct LikesView: View {
                     .font(.system(size: 70))
                     .foregroundStyle(
                         LinearGradient(
-                            colors: [.pink, .purple],
+                            colors: [.green, .cyan],
                             startPoint: .topLeading,
                             endPoint: .bottomTrailing
                         )
@@ -971,7 +971,7 @@ struct LikeProfileCard: View {
                 HStack(spacing: 4) {
                     Image(systemName: "mappin.circle.fill")
                         .font(.system(size: 12))
-                        .foregroundColor(.purple)
+                        .foregroundColor(.green)
                     Text(user.location)
                         .font(.system(size: 13))
                         .foregroundColor(.secondary)
@@ -983,9 +983,9 @@ struct LikeProfileCard: View {
                     HStack(spacing: 8) {
                         if showLikeBack {
                             LikeActionButton(
-                                icon: "heart.fill",
-                                text: "Like",
-                                colors: [.pink, .red]
+                                icon: "person.badge.plus",
+                                text: "Team Up",
+                                colors: [.green, .cyan]
                             ) {
                                 onLikeBack?()
                             }
@@ -995,7 +995,7 @@ struct LikeProfileCard: View {
                             LikeActionButton(
                                 icon: "message.fill",
                                 text: "Message",
-                                colors: [.purple, .blue]
+                                colors: [.green, .cyan]
                             ) {
                                 onMessage?()
                             }
@@ -1034,7 +1034,7 @@ struct LikeProfileCard: View {
     private var placeholderImage: some View {
         ZStack {
             LinearGradient(
-                colors: [Color.purple.opacity(0.7), Color.pink.opacity(0.6)],
+                colors: [Color.green.opacity(0.7), Color.cyan.opacity(0.6)],
                 startPoint: .topLeading,
                 endPoint: .bottomTrailing
             )
@@ -1095,7 +1095,7 @@ struct BlurredLikeCard: View {
                         .frame(height: imageHeight)
                 } else {
                     LinearGradient(
-                        colors: [.purple.opacity(0.7), .pink.opacity(0.6)],
+                        colors: [.green.opacity(0.7), .cyan.opacity(0.6)],
                         startPoint: .topLeading,
                         endPoint: .bottomTrailing
                     )
@@ -1133,16 +1133,16 @@ struct BlurredLikeCard: View {
 
                     Spacer()
 
-                    // Heart indicator showing they liked you
-                    Image(systemName: "heart.fill")
-                        .foregroundColor(.pink)
+                    // Indicator showing they want to team up
+                    Image(systemName: "gamecontroller.fill")
+                        .foregroundColor(.green)
                         .font(.caption)
                 }
 
                 HStack(spacing: 4) {
                     Image(systemName: "mappin.circle.fill")
                         .font(.system(size: 12))
-                        .foregroundColor(.purple)
+                        .foregroundColor(.green)
                     Text(user.location)
                         .font(.system(size: 13))
                         .foregroundColor(.secondary)
@@ -1420,7 +1420,7 @@ class LikesViewModel: ObservableObject {
                 }
                 return .liked
             }
-        } catch let error as CelestiaError {
+        } catch let error as TeamUpError {
             Logger.shared.error("Error liking back user", category: .matching, error: error)
             HapticManager.shared.notification(.error)
             return .error(error.localizedDescription)
@@ -1456,10 +1456,10 @@ struct SwipeableLikeCard: View {
                 HStack {
                     Spacer()
                     VStack(spacing: 4) {
-                        Image(systemName: "heart.fill")
+                        Image(systemName: "person.badge.plus")
                             .font(.title)
                             .foregroundColor(.white)
-                        Text("Like")
+                        Text("Team Up")
                             .font(.caption)
                             .fontWeight(.semibold)
                             .foregroundColor(.white)
@@ -1470,7 +1470,7 @@ struct SwipeableLikeCard: View {
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .background(
                     LinearGradient(
-                        colors: [.pink, .red],
+                        colors: [.green, .cyan],
                         startPoint: .leading,
                         endPoint: .trailing
                     )
@@ -1521,13 +1521,13 @@ struct SwipeableLikeCard: View {
                 : nil
             )
 
-            // Like overlay on card
+            // Team up overlay on card
             if showLikeOverlay && showLikeBack {
                 VStack {
-                    Image(systemName: "heart.fill")
+                    Image(systemName: "person.badge.plus")
                         .font(.system(size: 50))
-                        .foregroundColor(.pink)
-                        .shadow(color: .pink.opacity(0.5), radius: 10)
+                        .foregroundColor(.green)
+                        .shadow(color: .green.opacity(0.5), radius: 10)
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .background(Color.black.opacity(0.3))
@@ -1538,7 +1538,7 @@ struct SwipeableLikeCard: View {
     }
 }
 
-// MARK: - Match Celebration Overlay
+// MARK: - Squad Match Celebration Overlay
 
 struct MatchCelebrationOverlay: View {
     let user: User
@@ -1546,7 +1546,7 @@ struct MatchCelebrationOverlay: View {
     let onMessage: () -> Void
 
     @State private var showConfetti = false
-    @State private var heartScale: CGFloat = 0.5
+    @State private var iconScale: CGFloat = 0.5
     @State private var textOpacity: Double = 0
 
     var body: some View {
@@ -1559,13 +1559,13 @@ struct MatchCelebrationOverlay: View {
                 }
 
             VStack(spacing: 24) {
-                // Animated hearts
+                // Animated gaming icons
                 ZStack {
                     // Outer glow
                     Circle()
                         .fill(
                             RadialGradient(
-                                colors: [Color.pink.opacity(0.4), Color.clear],
+                                colors: [Color.green.opacity(0.4), Color.clear],
                                 center: .center,
                                 startRadius: 40,
                                 endRadius: 120
@@ -1581,7 +1581,7 @@ struct MatchCelebrationOverlay: View {
                         Circle()
                             .fill(
                                 LinearGradient(
-                                    colors: [.purple, .pink],
+                                    colors: [.green, .cyan],
                                     startPoint: .topLeading,
                                     endPoint: .bottomTrailing
                                 )
@@ -1612,7 +1612,7 @@ struct MatchCelebrationOverlay: View {
                             Circle()
                                 .fill(
                                     LinearGradient(
-                                        colors: [.pink, .orange],
+                                        colors: [.cyan, .green],
                                         startPoint: .topLeading,
                                         endPoint: .bottomTrailing
                                     )
@@ -1627,22 +1627,22 @@ struct MatchCelebrationOverlay: View {
                         }
                     }
 
-                    // Heart in center
-                    Image(systemName: "heart.fill")
+                    // Gaming controller in center
+                    Image(systemName: "gamecontroller.fill")
                         .font(.system(size: 30))
-                        .foregroundColor(.pink)
+                        .foregroundColor(.green)
                         .offset(y: 40)
-                        .scaleEffect(heartScale)
+                        .scaleEffect(iconScale)
                 }
-                .scaleEffect(heartScale)
+                .scaleEffect(iconScale)
 
                 // Text
                 VStack(spacing: 12) {
-                    Text("It's a Match!")
+                    Text("Squad Up!")
                         .font(.system(size: 36, weight: .bold))
                         .foregroundColor(.white)
 
-                    Text("You and \(user.fullName) liked each other")
+                    Text("You and \(user.fullName) want to team up!")
                         .font(.subheadline)
                         .foregroundColor(.white.opacity(0.8))
                 }
@@ -1655,7 +1655,7 @@ struct MatchCelebrationOverlay: View {
                     } label: {
                         HStack(spacing: 8) {
                             Image(systemName: "message.fill")
-                            Text("Send a Message")
+                            Text("Start Chatting")
                                 .fontWeight(.semibold)
                         }
                         .foregroundColor(.white)
@@ -1663,7 +1663,7 @@ struct MatchCelebrationOverlay: View {
                         .padding(.vertical, 16)
                         .background(
                             LinearGradient(
-                                colors: [.pink, .purple],
+                                colors: [.green, .cyan],
                                 startPoint: .leading,
                                 endPoint: .trailing
                             )
@@ -1674,7 +1674,7 @@ struct MatchCelebrationOverlay: View {
                     Button {
                         onDismiss()
                     } label: {
-                        Text("Keep Browsing")
+                        Text("Keep Finding Teammates")
                             .font(.subheadline)
                             .fontWeight(.medium)
                             .foregroundColor(.white.opacity(0.8))
@@ -1688,7 +1688,7 @@ struct MatchCelebrationOverlay: View {
         .onAppear {
             // Animate in
             withAnimation(.spring(response: 0.5, dampingFraction: 0.6)) {
-                heartScale = 1.0
+                iconScale = 1.0
             }
             withAnimation(.easeOut(duration: 0.5).delay(0.2)) {
                 textOpacity = 1.0

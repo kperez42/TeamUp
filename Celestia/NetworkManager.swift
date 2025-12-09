@@ -1,6 +1,6 @@
 //
 //  NetworkManager.swift
-//  Celestia
+//  TeamUp
 //
 //  Centralized networking layer with retry logic, interceptors, and monitoring
 //  Provides robust network communication with automatic error handling
@@ -100,7 +100,7 @@ class NetworkManager: NSObject {
 
     private var session: URLSession!
     private let monitor: NWPathMonitor
-    private let monitorQueue = DispatchQueue(label: "com.celestia.network.monitor")
+    private let monitorQueue = DispatchQueue(label: "com.teamup.network.monitor")
 
     @Published private(set) var isNetworkAvailable = true
     @Published private(set) var connectionType: NWInterface.InterfaceType?
@@ -374,7 +374,7 @@ class NetworkManager: NSObject {
 
         // Record error
         CrashlyticsManager.shared.recordError(
-            domain: "com.celestia.network",
+            domain: "com.teamup.network",
             code: 1000,
             message: "Network request failed",
             userInfo: [

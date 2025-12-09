@@ -1,6 +1,6 @@
 //
 //  TypingIndicator.swift
-//  Celestia
+//  TeamUp
 //
 //  Typing indicator animation for chat
 //
@@ -18,7 +18,7 @@ struct TypingIndicator: View {
             Circle()
                 .fill(
                     LinearGradient(
-                        colors: [Color.purple.opacity(0.7), Color.pink.opacity(0.6)],
+                        colors: [Color.green.opacity(0.7), Color.cyan.opacity(0.6)],
                         startPoint: .topLeading,
                         endPoint: .bottomTrailing
                     )

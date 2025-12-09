@@ -1,28 +1,29 @@
 //
-//  DateCheckInManager.swift
-//  Celestia
+//  SessionCheckInManager.swift
+//  TeamUp
 //
-//  Manages date check-in and safety features for in-person meetups
+//  Manages gaming session check-ins and safety features for in-person meetups
+//  Useful for LAN parties, gaming cafes, and local gaming events
 //
 
 import Foundation
 import Combine
 import CoreLocation
 
-// MARK: - Date Check-In Manager
+// MARK: - Session Check-In Manager
 
 @MainActor
-class DateCheckInManager: ObservableObject {
+class SessionCheckInManager: ObservableObject {
 
     // MARK: - Singleton
 
-    static let shared = DateCheckInManager()
+    static let shared = SessionCheckInManager()
 
     // MARK: - Published Properties
 
-    @Published var activeCheckIns: [DateCheckIn] = []
-    @Published var scheduledCheckIns: [DateCheckIn] = []
-    @Published var pastCheckIns: [DateCheckIn] = []
+    @Published var activeCheckIns: [SessionCheckIn] = []
+    @Published var scheduledCheckIns: [SessionCheckIn] = []
+    @Published var pastCheckIns: [SessionCheckIn] = []
     @Published var hasActiveCheckIn: Bool = false
 
     // MARK: - Properties
@@ -34,37 +35,37 @@ class DateCheckInManager: ObservableObject {
 
     private init() {
         loadCheckIns()
-        Logger.shared.info("DateCheckInManager initialized", category: .general)
+        Logger.shared.info("SessionCheckInManager initialized", category: .general)
     }
 
     // MARK: - Check-In Management
 
-    /// Schedule a date check-in
+    /// Schedule a gaming session check-in
     func scheduleCheckIn(
-        matchId: String,
-        matchName: String,
+        squadMemberId: String,
+        squadMemberName: String,
         location: String,
         scheduledTime: Date,
         checkInTime: Date,
         emergencyContacts: [EmergencyContact]
-    ) async throws -> DateCheckIn {
+    ) async throws -> SessionCheckIn {
 
-        Logger.shared.info("Scheduling check-in for match: \(matchName)", category: .general)
+        Logger.shared.info("Scheduling check-in for session with: \(squadMemberName)", category: .general)
 
         // Validate times
         guard scheduledTime > Date() else {
-            throw CelestiaError.invalidData
+            throw TeamUpError.invalidData
         }
 
         guard checkInTime > scheduledTime else {
-            throw CelestiaError.invalidData
+            throw TeamUpError.invalidData
         }
 
         // Create check-in
-        let checkIn = DateCheckIn(
+        let checkIn = SessionCheckIn(
             id: UUID().uuidString,
-            matchId: matchId,
-            matchName: matchName,
+            squadMemberId: squadMemberId,
+            squadMemberName: squadMemberName,
             location: location,
             scheduledTime: scheduledTime,
             checkInTime: checkInTime,
@@ -80,8 +81,8 @@ class DateCheckInManager: ObservableObject {
         try await scheduleCheckInNotifications(for: checkIn)
 
         // Track analytics
-        AnalyticsManager.shared.logEvent(.dateCheckInScheduled, parameters: [
-            "match_id": matchId,
+        AnalyticsManager.shared.logEvent(.sessionCheckInScheduled, parameters: [
+            "squad_member_id": squadMemberId,
             "scheduled_time": scheduledTime.timeIntervalSince1970
         ])
 
@@ -93,7 +94,7 @@ class DateCheckInManager: ObservableObject {
     /// Start an active check-in
     func startCheckIn(checkInId: String) async throws {
         guard let index = scheduledCheckIns.firstIndex(where: { $0.id == checkInId }) else {
-            throw CelestiaError.checkInNotFound
+            throw TeamUpError.checkInNotFound
         }
 
         var checkIn = scheduledCheckIns.remove(at: index)
@@ -108,10 +109,10 @@ class DateCheckInManager: ObservableObject {
         startMonitoring(checkIn: checkIn)
 
         // Notify emergency contacts
-        await notifyEmergencyContacts(checkIn: checkIn, message: "Check-in started for date with \(checkIn.matchName)")
+        await notifyEmergencyContacts(checkIn: checkIn, message: "Gaming session check-in started for meetup with \(checkIn.squadMemberName)")
 
         // Track analytics
-        AnalyticsManager.shared.logEvent(.dateCheckInStarted, parameters: [
+        AnalyticsManager.shared.logEvent(.sessionCheckInStarted, parameters: [
             "check_in_id": checkInId
         ])
 
@@ -121,7 +122,7 @@ class DateCheckInManager: ObservableObject {
     /// Complete a check-in (user is safe)
     func completeCheckIn(checkInId: String) async throws {
         guard let index = activeCheckIns.firstIndex(where: { $0.id == checkInId }) else {
-            throw CelestiaError.checkInNotFound
+            throw TeamUpError.checkInNotFound
         }
 
         var checkIn = activeCheckIns.remove(at: index)
@@ -136,10 +137,10 @@ class DateCheckInManager: ObservableObject {
         stopMonitoring(checkInId: checkInId)
 
         // Notify emergency contacts
-        await notifyEmergencyContacts(checkIn: checkIn, message: "Check-in completed successfully")
+        await notifyEmergencyContacts(checkIn: checkIn, message: "Gaming session check-in completed successfully")
 
         // Track analytics
-        AnalyticsManager.shared.logEvent(.dateCheckInCompleted, parameters: [
+        AnalyticsManager.shared.logEvent(.sessionCheckInCompleted, parameters: [
             "check_in_id": checkInId,
             "duration": checkIn.completedAt?.timeIntervalSince(checkIn.activatedAt ?? Date()) ?? 0
         ])
@@ -176,13 +177,13 @@ class DateCheckInManager: ObservableObject {
             return
         }
 
-        throw CelestiaError.checkInNotFound
+        throw TeamUpError.checkInNotFound
     }
 
     /// Trigger emergency alert
     func triggerEmergency(checkInId: String) async throws {
         guard let index = activeCheckIns.firstIndex(where: { $0.id == checkInId }) else {
-            throw CelestiaError.checkInNotFound
+            throw TeamUpError.checkInNotFound
         }
 
         var checkIn = activeCheckIns[index]
@@ -203,7 +204,7 @@ class DateCheckInManager: ObservableObject {
 
     // MARK: - Monitoring
 
-    private func startMonitoring(checkIn: DateCheckIn) {
+    private func startMonitoring(checkIn: SessionCheckIn) {
         // Set up timer to check if user checks in on time
         let timer = Timer.scheduledTimer(withTimeInterval: 60, repeats: true) { [weak self] _ in
             Task { @MainActor [weak self] in
@@ -219,7 +220,7 @@ class DateCheckInManager: ObservableObject {
         checkInTimers.removeValue(forKey: checkInId)
     }
 
-    private func checkCheckInStatus(checkIn: DateCheckIn) async {
+    private func checkCheckInStatus(checkIn: SessionCheckIn) async {
         // Check if check-in time has passed
         guard Date() > checkIn.checkInTime else { return }
 
@@ -230,7 +231,7 @@ class DateCheckInManager: ObservableObject {
             // Send warning notification
             await notifyEmergencyContacts(
                 checkIn: checkIn,
-                message: "⚠️ Check-in overdue for date with \(checkIn.matchName)"
+                message: "Check-in overdue for gaming session with \(checkIn.squadMemberName)"
             )
 
             // Trigger emergency after grace period
@@ -243,25 +244,25 @@ class DateCheckInManager: ObservableObject {
 
     // MARK: - Notifications
 
-    private func scheduleCheckInNotifications(for checkIn: DateCheckIn) async throws {
-        // Schedule reminder before date
+    private func scheduleCheckInNotifications(for checkIn: SessionCheckIn) async throws {
+        // Schedule reminder before session
         // Schedule check-in reminder
         // In production, use UNUserNotificationCenter
         Logger.shared.debug("Scheduled notifications for check-in: \(checkIn.id)", category: .general)
     }
 
-    private func notifyEmergencyContacts(checkIn: DateCheckIn, message: String) async {
+    private func notifyEmergencyContacts(checkIn: SessionCheckIn, message: String) async {
         for contact in checkIn.emergencyContacts {
             // In production, send SMS or call emergency contacts
             Logger.shared.info("Notifying emergency contact: \(contact.name)", category: .general)
         }
     }
 
-    private func sendEmergencyAlerts(checkIn: DateCheckIn) async {
+    private func sendEmergencyAlerts(checkIn: SessionCheckIn) async {
         // Send emergency SMS/calls to all contacts
-        // Include location, match info, and emergency details
+        // Include location, squad member info, and emergency details
         for contact in checkIn.emergencyContacts {
-            Logger.shared.warning("EMERGENCY: Notifying \(contact.name) about \(checkIn.matchName)", category: .general)
+            Logger.shared.warning("EMERGENCY: Notifying \(contact.name) about session with \(checkIn.squadMemberName)", category: .general)
         }
 
         // In production, also:
@@ -292,12 +293,12 @@ class DateCheckInManager: ObservableObject {
     }
 }
 
-// MARK: - Date Check-In Model
+// MARK: - Session Check-In Model
 
-struct DateCheckIn: Identifiable, Codable {
+struct SessionCheckIn: Identifiable, Codable {
     let id: String
-    let matchId: String
-    let matchName: String
+    let squadMemberId: String
+    let squadMemberName: String
     let location: String
     let scheduledTime: Date
     let checkInTime: Date
@@ -314,3 +315,9 @@ struct DateCheckIn: Identifiable, Codable {
         case emergency
     }
 }
+
+// MARK: - Backward Compatibility
+
+// Alias for old DateCheckIn references
+typealias DateCheckIn = SessionCheckIn
+typealias DateCheckInManager = SessionCheckInManager

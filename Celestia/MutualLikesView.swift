@@ -1,6 +1,6 @@
 //
 //  MutualLikesView.swift
-//  Celestia
+//  TeamUp
 //
 //  Shows people you both liked (mutual likes that haven't matched yet)
 //
@@ -71,17 +71,17 @@ struct MutualLikesView: View {
 
     private var headerCard: some View {
         VStack(spacing: 8) {
-            Image(systemName: "heart.circle.fill")
+            Image(systemName: "person.2.circle.fill")
                 .font(.system(size: 50))
                 .foregroundStyle(
                     LinearGradient(
-                        colors: [.pink, .purple],
+                        colors: [.green, .cyan],
                         startPoint: .topLeading,
                         endPoint: .bottomTrailing
                     )
                 )
 
-            Text("\(viewModel.mutualLikes.count) Mutual Likes")
+            Text("\(viewModel.mutualLikes.count) Mutual Matches")
                 .font(.title2.bold())
 
             Text("You both liked each other!")
@@ -149,7 +149,7 @@ struct MutualLikeCard: View {
                     CachedCardImage(url: url)
                 } else {
                     LinearGradient(
-                        colors: [.purple.opacity(0.6), .pink.opacity(0.5)],
+                        colors: [.green.opacity(0.6), .cyan.opacity(0.5)],
                         startPoint: .topLeading,
                         endPoint: .bottomTrailing
                     )
@@ -181,7 +181,7 @@ struct MutualLikeCard: View {
                         Text("You both liked!")
                             .font(.caption)
                     }
-                    .foregroundColor(.pink)
+                    .foregroundColor(.cyan)
                 }
                 .padding(12)
             }

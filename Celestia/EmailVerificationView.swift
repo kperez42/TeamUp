@@ -1,6 +1,6 @@
 //
 //  EmailVerificationView.swift
-//  Celestia
+//  TeamUp
 //
 //  Email verification screen shown after signup
 //
@@ -28,7 +28,7 @@ struct EmailVerificationView: View {
                 .font(.system(size: 80))
                 .foregroundStyle(
                     LinearGradient(
-                        colors: [.purple, .pink],
+                        colors: [.green, .cyan],
                         startPoint: .topLeading,
                         endPoint: .bottomTrailing
                     )
@@ -62,7 +62,7 @@ struct EmailVerificationView: View {
                     .font(.system(size: 24))
                     .foregroundStyle(
                         LinearGradient(
-                            colors: [.purple, .pink],
+                            colors: [.green, .cyan],
                             startPoint: .topLeading,
                             endPoint: .bottomTrailing
                         )
@@ -83,12 +83,12 @@ struct EmailVerificationView: View {
             .padding(16)
             .background(
                 RoundedRectangle(cornerRadius: 12)
-                    .fill(Color.purple.opacity(0.08))
+                    .fill(Color.green.opacity(0.08))
                     .overlay(
                         RoundedRectangle(cornerRadius: 12)
                             .stroke(
                                 LinearGradient(
-                                    colors: [.purple.opacity(0.3), .pink.opacity(0.3)],
+                                    colors: [.green.opacity(0.3), .cyan.opacity(0.3)],
                                     startPoint: .topLeading,
                                     endPoint: .bottomTrailing
                                 ),
@@ -141,7 +141,7 @@ struct EmailVerificationView: View {
                     .frame(height: 50)
                     .background(
                         LinearGradient(
-                            colors: [.purple, .pink],
+                            colors: [.green, .cyan],
                             startPoint: .leading,
                             endPoint: .trailing
                         )
@@ -163,10 +163,10 @@ struct EmailVerificationView: View {
                         }
                     }
                     .fontWeight(.semibold)
-                    .foregroundColor(.purple)
+                    .foregroundColor(.green)
                     .frame(maxWidth: .infinity)
                     .frame(height: 50)
-                    .background(Color.purple.opacity(0.1))
+                    .background(Color.green.opacity(0.1))
                     .cornerRadius(12)
                 }
                 .disabled(isSending)
@@ -240,7 +240,7 @@ struct EmailVerificationView: View {
             } catch {
                 await MainActor.run {
                     isSending = false
-                    if let celestiaError = error as? CelestiaError {
+                    if let celestiaError = error as? TeamUpError {
                         errorMessage = celestiaError.errorDescription
                     } else {
                         errorMessage = "Failed to send verification email. Please try again."

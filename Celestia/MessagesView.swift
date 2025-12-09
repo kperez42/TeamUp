@@ -1,8 +1,8 @@
 //
 //  MessagesView.swift
-//  Celestia
+//  TeamUp
 //
-//  ELITE MESSAGES VIEW - Premium Chat Experience
+//  TEAM CHAT VIEW - Premium Gaming Chat Experience
 //
 
 import SwiftUI
@@ -196,8 +196,8 @@ struct MessagesView: View {
             // Gradient background
             LinearGradient(
                 colors: [
-                    Color.purple.opacity(0.9),
-                    Color.pink.opacity(0.7),
+                    Color.green.opacity(0.9),
+                    Color.cyan.opacity(0.7),
                     Color.blue.opacity(0.6)
                 ],
                 startPoint: .topLeading,
@@ -295,13 +295,13 @@ struct MessagesView: View {
                                     .fill(Color.white)
                                     .frame(width: 44, height: 44)
                                     .shadow(color: .white.opacity(0.4), radius: 8)
-                                
+
                                 Text("\(totalUnread)")
                                     .font(.headline)
                                     .fontWeight(.bold)
                                     .foregroundStyle(
                                         LinearGradient(
-                                            colors: [.purple, .pink],
+                                            colors: [.green, .cyan],
                                             startPoint: .topLeading,
                                             endPoint: .bottomTrailing
                                         )
@@ -398,50 +398,50 @@ struct MessagesView: View {
     private var emptyStateView: some View {
         VStack(spacing: 24) {
             Spacer()
-            
+
             // Icon
             ZStack {
                 Circle()
                     .fill(
                         LinearGradient(
-                            colors: [Color.purple.opacity(0.2), Color.pink.opacity(0.1)],
+                            colors: [Color.green.opacity(0.2), Color.cyan.opacity(0.1)],
                             startPoint: .topLeading,
                             endPoint: .bottomTrailing
                         )
                     )
                     .frame(width: 140, height: 140)
-                
+
                 Image(systemName: "message.circle.fill")
                     .font(.system(size: 70))
                     .foregroundStyle(
                         LinearGradient(
-                            colors: [.purple, .pink],
+                            colors: [.green, .cyan],
                             startPoint: .topLeading,
                             endPoint: .bottomTrailing
                         )
                     )
             }
-            
+
             VStack(spacing: 12) {
                 Text("No Messages Yet")
                     .font(.title2)
                     .fontWeight(.bold)
-                
-                Text("When you match with someone, you'll be able to chat here")
+
+                Text("When you connect with teammates, you'll be able to coordinate games here")
                     .font(.subheadline)
                     .foregroundColor(.secondary)
                     .multilineTextAlignment(.center)
                     .padding(.horizontal, 40)
             }
-            
+
             // CTA Button
             Button {
                 selectedTab = 0
                 HapticManager.shared.impact(.medium)
             } label: {
                 HStack(spacing: 10) {
-                    Image(systemName: "heart.fill")
-                    Text("Start Swiping")
+                    Image(systemName: "gamecontroller.fill")
+                    Text("Find Teammates")
                         .fontWeight(.semibold)
                 }
                 .foregroundColor(.white)
@@ -449,16 +449,16 @@ struct MessagesView: View {
                 .padding(.vertical, 14)
                 .background(
                     LinearGradient(
-                        colors: [Color.purple, Color.pink],
+                        colors: [Color.green, Color.cyan],
                         startPoint: .leading,
                         endPoint: .trailing
                     )
                 )
                 .cornerRadius(25)
-                .shadow(color: .purple.opacity(0.4), radius: 15, y: 8)
+                .shadow(color: .green.opacity(0.4), radius: 15, y: 8)
             }
             .padding(.top, 10)
-            
+
             Spacer()
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -474,7 +474,7 @@ struct MessagesView: View {
                 Circle()
                     .fill(
                         LinearGradient(
-                            colors: [Color.purple.opacity(0.15), Color.pink.opacity(0.1)],
+                            colors: [Color.green.opacity(0.15), Color.cyan.opacity(0.1)],
                             startPoint: .topLeading,
                             endPoint: .bottomTrailing
                         )
@@ -485,7 +485,7 @@ struct MessagesView: View {
                     .font(.system(size: 40))
                     .foregroundStyle(
                         LinearGradient(
-                            colors: [.purple, .pink],
+                            colors: [.green, .cyan],
                             startPoint: .topLeading,
                             endPoint: .bottomTrailing
                         )
@@ -622,19 +622,19 @@ struct ConversationRow: View {
                     }
                 }
                 
-                // Last message or new match indicator
+                // Last message or new teammate indicator
                 HStack(spacing: 0) {
                     if isNewMatch {
                         HStack(spacing: 6) {
                             Image(systemName: "sparkles")
                                 .font(.caption)
-                            Text("New match! Say hi 👋")
+                            Text("New teammate! Let's play! 🎮")
                                 .font(.subheadline)
                                 .fontWeight(.medium)
                         }
                         .foregroundStyle(
                             LinearGradient(
-                                colors: [.purple, .pink],
+                                colors: [.green, .cyan],
                                 startPoint: .leading,
                                 endPoint: .trailing
                             )
@@ -662,8 +662,8 @@ struct ConversationRow: View {
                 if unreadCount > 0 {
                     LinearGradient(
                         colors: [
-                            Color.purple.opacity(0.08),
-                            Color.pink.opacity(0.05)
+                            Color.green.opacity(0.08),
+                            Color.cyan.opacity(0.05)
                         ],
                         startPoint: .leading,
                         endPoint: .trailing
@@ -675,7 +675,7 @@ struct ConversationRow: View {
         )
         .cornerRadius(20)
         .shadow(
-            color: unreadCount > 0 ? Color.purple.opacity(0.15) : Color.black.opacity(0.05),
+            color: unreadCount > 0 ? Color.green.opacity(0.15) : Color.black.opacity(0.05),
             radius: 8,
             y: 4
         )
@@ -684,7 +684,7 @@ struct ConversationRow: View {
                 .stroke(
                     unreadCount > 0 || isNewMatch ?
                     LinearGradient(
-                        colors: [Color.purple.opacity(0.3), Color.pink.opacity(0.2)],
+                        colors: [Color.green.opacity(0.3), Color.cyan.opacity(0.2)],
                         startPoint: .topLeading,
                         endPoint: .bottomTrailing
                     ) :
@@ -709,8 +709,8 @@ struct ConversationRow: View {
                 .stroke(
                     LinearGradient(
                         colors: [
-                            Color.purple.opacity(0.3),
-                            Color.pink.opacity(0.2)
+                            Color.green.opacity(0.3),
+                            Color.cyan.opacity(0.2)
                         ],
                         startPoint: .topLeading,
                         endPoint: .bottomTrailing
@@ -719,19 +719,19 @@ struct ConversationRow: View {
                 )
         )
     }
-    
+
     private var placeholderImage: some View {
         ZStack {
             LinearGradient(
                 colors: [
-                    Color.purple.opacity(0.7),
-                    Color.pink.opacity(0.6),
+                    Color.green.opacity(0.7),
+                    Color.cyan.opacity(0.6),
                     Color.blue.opacity(0.5)
                 ],
                 startPoint: .topLeading,
                 endPoint: .bottomTrailing
             )
-            
+
             Text(user.fullName.prefix(1))
                 .font(.system(size: 28, weight: .bold))
                 .foregroundColor(.white)
@@ -747,13 +747,13 @@ struct ConversationRow: View {
             .padding(.horizontal, 6)
             .background(
                 LinearGradient(
-                    colors: [Color.purple, Color.pink],
+                    colors: [Color.green, Color.cyan],
                     startPoint: .topLeading,
                     endPoint: .bottomTrailing
                 )
             )
             .clipShape(Capsule())
-            .shadow(color: .purple.opacity(0.3), radius: 5)
+            .shadow(color: .green.opacity(0.3), radius: 5)
     }
     
     private func timeAgo(from date: Date) -> String {

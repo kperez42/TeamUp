@@ -1,6 +1,6 @@
 //
 //  ChatView.swift
-//  Celestia
+//  TeamUp
 //
 //  Chat view with real-time messaging
 //  ACCESSIBILITY: Full VoiceOver support, Dynamic Type, Reduce Motion, and WCAG 2.1 AA compliant
@@ -280,7 +280,7 @@ struct ChatView: View {
             } label: {
                 Image(systemName: "chevron.left")
                     .font(.body.weight(.semibold))
-                    .foregroundColor(.purple)
+                    .foregroundColor(.green)
                     .frame(width: 44, height: 44)
             }
             .accessibilityElement(
@@ -303,7 +303,7 @@ struct ChatView: View {
                     Circle()
                         .fill(
                             LinearGradient(
-                                colors: [Color.purple.opacity(0.7), Color.pink.opacity(0.6)],
+                                colors: [Color.green.opacity(0.7), Color.cyan.opacity(0.6)],
                                 startPoint: .topLeading,
                                 endPoint: .bottomTrailing
                             )
@@ -337,7 +337,7 @@ struct ChatView: View {
                         .font(.caption)
                         .foregroundStyle(
                             LinearGradient(
-                                colors: [.purple, .pink],
+                                colors: [.green, .cyan],
                                 startPoint: .leading,
                                 endPoint: .trailing
                             )
@@ -482,7 +482,7 @@ struct ChatView: View {
                                     }
                                 }
                                 .buttonStyle(.borderedProminent)
-                                .tint(.purple)
+                                .tint(.green)
                             }
                             .frame(maxWidth: .infinity, maxHeight: .infinity)
                             .padding(.top, 100)
@@ -546,7 +546,7 @@ struct ChatView: View {
                                         .padding(.vertical, 10)
                                         .background(
                                             LinearGradient(
-                                                colors: [Color.purple.opacity(0.7), Color.pink.opacity(0.7)],
+                                                colors: [Color.green.opacity(0.7), Color.cyan.opacity(0.7)],
                                                 startPoint: .topLeading,
                                                 endPoint: .bottomTrailing
                                             )
@@ -636,7 +636,7 @@ struct ChatView: View {
                     .font(.system(size: 40))
                     .foregroundStyle(
                         LinearGradient(
-                            colors: [.purple, .pink],
+                            colors: [.green, .cyan],
                             startPoint: .topLeading,
                             endPoint: .bottomTrailing
                         )
@@ -663,7 +663,7 @@ struct ChatView: View {
                         HStack(spacing: 12) {
                             Image(systemName: starter.icon)
                                 .font(.title3)
-                                .foregroundColor(.purple)
+                                .foregroundColor(.green)
                                 .frame(width: 32)
 
                             Text(starter.text)
@@ -676,7 +676,7 @@ struct ChatView: View {
 
                             Image(systemName: "arrow.right.circle")
                                 .font(.title3)
-                                .foregroundColor(.purple.opacity(0.5))
+                                .foregroundColor(.green.opacity(0.5))
                         }
                         .padding(16)
                         .background(Color(.systemBackground))
@@ -801,7 +801,7 @@ struct ChatView: View {
                         .padding(.horizontal, 12)
                         .padding(.vertical, 6)
                         .background(
-                            LinearGradient(colors: [.purple, .pink], startPoint: .leading, endPoint: .trailing)
+                            LinearGradient(colors: [.green, .cyan], startPoint: .leading, endPoint: .trailing)
                         )
                         .cornerRadius(12)
                 }
@@ -818,7 +818,7 @@ struct ChatView: View {
     private func replyPreviewBar(message: Message) -> some View {
         HStack(spacing: 12) {
             Rectangle()
-                .fill(Color.purple)
+                .fill(Color.green)
                 .frame(width: 3)
                 .cornerRadius(2)
 
@@ -826,7 +826,7 @@ struct ChatView: View {
                 Text("Replying to \(message.senderId == authService.currentUser?.effectiveId ? "yourself" : otherUser.fullName)")
                     .font(.caption)
                     .fontWeight(.semibold)
-                    .foregroundColor(.purple)
+                    .foregroundColor(.green)
 
                 if let imageURL = message.imageURL, !imageURL.isEmpty {
                     HStack(spacing: 4) {
@@ -955,7 +955,7 @@ struct ChatView: View {
                 PhotosPicker(selection: $selectedImageItem, matching: .images) {
                     Image(systemName: "photo.fill")
                         .font(.title3)
-                        .foregroundColor(.purple)
+                        .foregroundColor(.green)
                 }
                 .accessibilityLabel("Attach photo")
                 .accessibilityHint("Select a photo to send")
@@ -998,11 +998,11 @@ struct ChatView: View {
                     ZStack {
                         if isSending {
                             ProgressView()
-                                .progressViewStyle(CircularProgressViewStyle(tint: .purple))
+                                .progressViewStyle(CircularProgressViewStyle(tint: .green))
                         } else {
                             Image(systemName: (messageText.isEmpty && selectedImage == nil) ? "arrow.up.circle" : "arrow.up.circle.fill")
                                 .font(.largeTitle)
-                                .foregroundColor((messageText.isEmpty && selectedImage == nil) ? .gray.opacity(0.5) : .purple)
+                                .foregroundColor((messageText.isEmpty && selectedImage == nil) ? .gray.opacity(0.5) : .green)
                         }
                     }
                     .frame(width: 44, height: 44)
@@ -1227,7 +1227,7 @@ struct ChatView: View {
 
                 // Determine appropriate error message based on error type
                 let errorMessage: String
-                if let celestiaError = error as? CelestiaError {
+                if let celestiaError = error as? TeamUpError {
                     switch celestiaError {
                     case .networkError, .noInternetConnection:
                         errorMessage = "No internet connection. Check your WiFi and tap retry."
@@ -1571,7 +1571,7 @@ struct ChatView: View {
                 showEditSheet = false
                 editingMessage = nil
                 editText = ""
-            } catch let error as CelestiaError {
+            } catch let error as TeamUpError {
                 Logger.shared.error("Failed to edit message", category: .messaging, error: error)
                 errorToastMessage = error.errorDescription ?? "Failed to edit message"
                 showErrorToast = true

@@ -1,6 +1,6 @@
 //
 //  DesignSystem.swift
-//  Celestia
+//  TeamUp
 //
 //  Design system for consistent styling across the app
 //  Eliminates magic numbers and provides centralized design tokens
@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-/// Central design system for Celestia app
+/// Central design system for TeamUp app
 /// Provides consistent spacing, colors, typography, and component styles
 enum DesignSystem {
 
@@ -234,7 +234,7 @@ enum DesignSystem {
 
         // Gradients
         static let primaryGradient = LinearGradient(
-            colors: [Color.pink, Color.purple],
+            colors: [Color.green, Color.cyan],
             startPoint: .topLeading,
             endPoint: .bottomTrailing
         )

@@ -1,8 +1,8 @@
 //
 //  User.swift
-//  GamerLink
+//  TeamUp
 //
-//  Core user model for gaming friend finder
+//  Core user model for gaming teammate finder
 //
 //  PROFILE STATUS FLOW:
 //  --------------------
@@ -49,6 +49,8 @@ enum GamingPlatform: String, Codable, CaseIterable, Identifiable {
     case xbox = "Xbox"
     case nintendoSwitch = "Nintendo Switch"
     case mobile = "Mobile"
+    case vr = "VR"
+    case tabletop = "Tabletop"
 
     var id: String { rawValue }
 
@@ -59,6 +61,8 @@ enum GamingPlatform: String, Codable, CaseIterable, Identifiable {
         case .xbox: return "gamecontroller.fill"
         case .nintendoSwitch: return "gamecontroller"
         case .mobile: return "iphone"
+        case .vr: return "visionpro"
+        case .tabletop: return "dice"
         }
     }
 }
@@ -66,12 +70,34 @@ enum GamingPlatform: String, Codable, CaseIterable, Identifiable {
 enum PlayStyle: String, Codable, CaseIterable, Identifiable {
     case competitive = "Competitive"
     case casual = "Casual"
-    case ranked = "Ranked"
-    case social = "Social"
     case tryhard = "Tryhard"
-    case chill = "Chill"
+    case social = "Social"
+    case roleplay = "Roleplay"
+    case speedrun = "Speedrun"
 
     var id: String { rawValue }
+
+    var description: String {
+        switch self {
+        case .competitive: return "Playing to win"
+        case .casual: return "Relaxed gaming"
+        case .tryhard: return "Always giving 100%"
+        case .social: return "Here for the chat"
+        case .roleplay: return "Immersive character play"
+        case .speedrun: return "Going fast"
+        }
+    }
+
+    var icon: String {
+        switch self {
+        case .competitive: return "trophy"
+        case .casual: return "cup.and.saucer"
+        case .tryhard: return "flame"
+        case .social: return "message"
+        case .roleplay: return "theatermasks"
+        case .speedrun: return "timer"
+        }
+    }
 }
 
 enum SkillLevel: String, Codable, CaseIterable, Identifiable {

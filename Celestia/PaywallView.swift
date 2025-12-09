@@ -1,6 +1,6 @@
 //
 //  PaywallView.swift
-//  Celestia
+//  TeamUp
 //
 //  Subscription paywall with tiered pricing
 //
@@ -68,7 +68,7 @@ struct PaywallView: View {
                 .font(.title)
                 .fontWeight(.bold)
 
-            Text("Find your perfect match faster with unlimited access")
+            Text("Find your perfect teammates faster with unlimited access")
                 .font(.subheadline)
                 .foregroundColor(.secondary)
                 .multilineTextAlignment(.center)

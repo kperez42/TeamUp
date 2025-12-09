@@ -1,6 +1,6 @@
 //
 //  FeedDiscoverView.swift
-//  Celestia
+//  TeamUp
 //
 //  Feed-style discovery view with vertical scrolling and pagination
 //
@@ -54,7 +54,7 @@ struct FeedDiscoverView: View {
     // Helper gradient for buttons
     private var buttonGradient: LinearGradient {
         LinearGradient(
-            colors: [.purple, .pink],
+            colors: [.green, .cyan],
             startPoint: .leading,
             endPoint: .trailing
         )
@@ -73,7 +73,7 @@ struct FeedDiscoverView: View {
                             ZStack(alignment: .topTrailing) {
                                 Image(systemName: "slider.horizontal.3")
                                     .font(.title3)
-                                    .foregroundColor(.purple)
+                                    .foregroundColor(.green)
 
                                 if filters.hasActiveFilters {
                                     Circle()
@@ -261,7 +261,7 @@ struct FeedDiscoverView: View {
                 if isLoading {
                     HStack(spacing: 12) {
                         ProgressView()
-                            .tint(.purple)
+                            .tint(.green)
 
                         Text("Finding more people...")
                             .font(.subheadline)
@@ -550,7 +550,7 @@ struct FeedDiscoverView: View {
                     .padding(.vertical, 14)
                     .background(
                         LinearGradient(
-                            colors: [.purple, .pink],
+                            colors: [.green, .cyan],
                             startPoint: .leading,
                             endPoint: .trailing
                         )
@@ -569,10 +569,10 @@ struct FeedDiscoverView: View {
                         Text("Submit for Review")
                     }
                     .fontWeight(.semibold)
-                    .foregroundColor(.purple)
+                    .foregroundColor(.green)
                     .frame(maxWidth: .infinity)
                     .padding(.vertical, 14)
-                    .background(Color.purple.opacity(0.1))
+                    .background(Color.green.opacity(0.1))
                     .cornerRadius(12)
                 }
             }
@@ -611,17 +611,17 @@ struct FeedDiscoverView: View {
             // Check if user is pending approval
             if authService.currentUser?.profileStatus == "pending" {
                 // Friendly pending message
-                Image(systemName: "sparkles")
+                Image(systemName: "gamecontroller.fill")
                     .font(.system(size: 60))
                     .foregroundStyle(
                         LinearGradient(
-                            colors: [.purple, .pink],
+                            colors: [.green, .cyan],
                             startPoint: .topLeading,
                             endPoint: .bottomTrailing
                         )
                     )
 
-                Text("Welcome to Celestia!")
+                Text("Welcome to TeamUp!")
                     .font(.title2)
                     .fontWeight(.bold)
 
@@ -651,9 +651,9 @@ struct FeedDiscoverView: View {
                     }
 
                     HStack(spacing: 10) {
-                        Image(systemName: "heart.circle")
+                        Image(systemName: "person.2.fill")
                             .foregroundColor(.gray.opacity(0.4))
-                        Text("Start matching")
+                        Text("Start finding teammates")
                             .font(.subheadline)
                             .foregroundColor(.gray)
                         Spacer()
@@ -715,14 +715,14 @@ struct FeedDiscoverView: View {
                     .font(.system(size: 70))
                     .foregroundStyle(
                         LinearGradient(
-                            colors: [.purple, .pink],
+                            colors: [.green, .cyan],
                             startPoint: .topLeading,
                             endPoint: .bottomTrailing
                         )
                     )
 
                 VStack(spacing: 12) {
-                    Text("Welcome to Celestia!")
+                    Text("Welcome to TeamUp!")
                         .font(.title2)
                         .fontWeight(.bold)
 
@@ -808,10 +808,10 @@ struct FeedDiscoverView: View {
                     Image(systemName: "arrow.clockwise")
                     Text("Refresh")
                 }
-                .foregroundColor(.purple)
+                .foregroundColor(.green)
                 .padding(.horizontal, 20)
                 .padding(.vertical, 10)
-                .background(Color.purple.opacity(0.1))
+                .background(Color.green.opacity(0.1))
                 .cornerRadius(10)
             }
         }
@@ -830,13 +830,13 @@ struct FeedDiscoverView: View {
                     .font(.system(size: 80))
                     .foregroundColor(.yellow)
 
-                Text("It's a Match! 🎉")
+                Text("Teammate Found! 🎮")
                     .font(.largeTitle)
                     .fontWeight(.bold)
                     .foregroundColor(.white)
 
                 if let user = matchedUser {
-                    Text("You and \(user.fullName) liked each other!")
+                    Text("You and \(user.fullName) want to team up!")
                         .font(.title3)
                         .foregroundColor(.white)
                         .multilineTextAlignment(.center)
@@ -864,7 +864,7 @@ struct FeedDiscoverView: View {
                     }
                 }
                 .buttonStyle(.borderedProminent)
-                .tint(.purple)
+                .tint(.green)
                 .controlSize(.large)
 
                 Button("Keep Browsing") {
@@ -1123,9 +1123,9 @@ struct FeedDiscoverView: View {
                     await MainActor.run {
                         let truncatedName = user.fullName.count > 20 ? String(user.fullName.prefix(20)) + "..." : user.fullName
                         showToast(
-                            message: "You like \(truncatedName)!",
-                            icon: "heart.fill",
-                            color: .pink
+                            message: "You sent a request to \(truncatedName)!",
+                            icon: "person.badge.plus.fill",
+                            color: .green
                         )
                     }
                 }

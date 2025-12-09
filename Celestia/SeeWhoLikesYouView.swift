@@ -1,6 +1,6 @@
 //
 //  SeeWhoLikesYouView.swift
-//  Celestia
+//  TeamUp
 //
 //  Premium feature: See who has liked you
 //
@@ -78,11 +78,11 @@ struct SeeWhoLikesYouView: View {
     private var headerView: some View {
         VStack(spacing: 8) {
             HStack(spacing: 12) {
-                Image(systemName: "heart.fill")
+                Image(systemName: "person.2.fill")
                     .font(.title)
                     .foregroundStyle(
                         LinearGradient(
-                            colors: [.pink, .purple],
+                            colors: [.green, .cyan],
                             startPoint: .topLeading,
                             endPoint: .bottomTrailing
                         )
@@ -93,7 +93,7 @@ struct SeeWhoLikesYouView: View {
                     .foregroundColor(.primary)
             }
 
-            Text(viewModel.usersWhoLiked.count == 1 ? "person likes you" : "people like you")
+            Text(viewModel.usersWhoLiked.count == 1 ? "gamer wants to team up" : "gamers want to team up")
                 .font(.title3)
                 .foregroundColor(.secondary)
         }
@@ -118,7 +118,7 @@ struct SeeWhoLikesYouView: View {
                         .font(.headline)
                         .foregroundColor(.primary)
 
-                    Text("See who likes you without limits")
+                    Text("See who wants to team up without limits")
                         .font(.subheadline)
                         .foregroundColor(.secondary)
                 }
@@ -131,7 +131,7 @@ struct SeeWhoLikesYouView: View {
             .padding()
             .background(
                 LinearGradient(
-                    colors: [Color.orange.opacity(0.1), Color.pink.opacity(0.1)],
+                    colors: [Color.green.opacity(0.1), Color.cyan.opacity(0.1)],
                     startPoint: .leading,
                     endPoint: .trailing
                 )
@@ -188,16 +188,16 @@ struct SeeWhoLikesYouView: View {
 
     private var emptyStateView: some View {
         VStack(spacing: 24) {
-            Image(systemName: "heart.slash")
+            Image(systemName: "person.2.slash")
                 .font(.system(size: 80))
                 .foregroundColor(.gray.opacity(0.5))
 
             VStack(spacing: 8) {
-                Text("No Likes Yet")
+                Text("No Squad Requests Yet")
                     .font(.title2)
                     .fontWeight(.bold)
 
-                Text("Keep swiping to find your perfect match!")
+                Text("Keep finding teammates to build your squad!")
                     .font(.subheadline)
                     .foregroundColor(.secondary)
                     .multilineTextAlignment(.center)
@@ -237,7 +237,7 @@ struct LikeCardView: View {
                         // Placeholder when no image
                         ZStack {
                             LinearGradient(
-                                colors: [Color.pink.opacity(0.7), Color.purple.opacity(0.5)],
+                                colors: [Color.green.opacity(0.7), Color.cyan.opacity(0.5)],
                                 startPoint: .topLeading,
                                 endPoint: .bottomTrailing
                             )

@@ -1,6 +1,6 @@
 //
 //  InputSanitizer.swift
-//  Celestia
+//  TeamUp
 //
 //  Centralized input sanitization to prevent injection attacks and malformed data
 //  Eliminates code duplication across services

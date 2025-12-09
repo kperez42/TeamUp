@@ -1,6 +1,6 @@
 //
 //  Extensions.swift
-//  Celestia
+//  TeamUp
 //
 //  Useful extensions throughout the app
 //
@@ -235,10 +235,10 @@ extension Color {
 // MARK: - LinearGradient Extensions
 
 extension LinearGradient {
-    /// Primary brand gradient (purple to pink)
+    /// Primary brand gradient (green to cyan - gaming theme)
     static var brandPrimary: LinearGradient {
         LinearGradient(
-            colors: [.purple, .pink],
+            colors: [.green, .cyan],
             startPoint: .leading,
             endPoint: .trailing
         )
@@ -247,7 +247,7 @@ extension LinearGradient {
     /// Primary brand gradient (vertical orientation)
     static var brandPrimaryVertical: LinearGradient {
         LinearGradient(
-            colors: [.purple, .pink],
+            colors: [.green, .cyan],
             startPoint: .top,
             endPoint: .bottom
         )
@@ -256,16 +256,16 @@ extension LinearGradient {
     /// Primary brand gradient (diagonal)
     static var brandPrimaryDiagonal: LinearGradient {
         LinearGradient(
-            colors: [.purple, .pink],
+            colors: [.green, .cyan],
             startPoint: .topLeading,
             endPoint: .bottomTrailing
         )
     }
 
-    /// Secondary gradient (purple to blue)
+    /// Secondary gradient (green to teal)
     static var brandSecondary: LinearGradient {
         LinearGradient(
-            colors: [.purple, .blue],
+            colors: [.green, .teal],
             startPoint: .leading,
             endPoint: .trailing
         )
@@ -396,7 +396,7 @@ extension Bundle {
     
     /// Get app name
     var appName: String {
-        infoDictionary?["CFBundleName"] as? String ?? "Celestia"
+        infoDictionary?["CFBundleName"] as? String ?? "TeamUp"
     }
 }
 

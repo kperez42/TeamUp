@@ -1,6 +1,6 @@
 //
 //  TutorialView.swift
-//  Celestia
+//  TeamUp
 //
 //  Interactive tutorials for core features
 //  Guides new users through swiping, matching, and messaging
@@ -26,7 +26,7 @@ struct TutorialView: View {
         ZStack {
             // Background gradient
             LinearGradient(
-                colors: [Color.purple.opacity(0.1), Color.pink.opacity(0.05)],
+                colors: [Color.green.opacity(0.1), Color.cyan.opacity(0.05)],
                 startPoint: .topLeading,
                 endPoint: .bottomTrailing
             )
@@ -43,7 +43,7 @@ struct TutorialView: View {
                         Text("Skip")
                             .font(.subheadline)
                             .fontWeight(.medium)
-                            .foregroundColor(.purple)
+                            .foregroundColor(.green)
                     }
                     .padding()
                 }
@@ -70,14 +70,14 @@ struct TutorialView: View {
                                 Text("Back")
                             }
                             .fontWeight(.semibold)
-                            .foregroundColor(.purple)
+                            .foregroundColor(.green)
                             .frame(maxWidth: .infinity)
                             .padding(.vertical, 16)
                             .background(Color.white)
                             .cornerRadius(16)
                             .overlay(
                                 RoundedRectangle(cornerRadius: 16)
-                                    .stroke(Color.purple, lineWidth: 2)
+                                    .stroke(Color.green, lineWidth: 2)
                             )
                         }
                     }
@@ -102,13 +102,13 @@ struct TutorialView: View {
                         .padding(.vertical, 16)
                         .background(
                             LinearGradient(
-                                colors: [.purple, .pink],
+                                colors: [.green, .cyan],
                                 startPoint: .leading,
                                 endPoint: .trailing
                             )
                         )
                         .cornerRadius(16)
-                        .shadow(color: .purple.opacity(0.3), radius: 10, y: 5)
+                        .shadow(color: .green.opacity(0.3), radius: 10, y: 5)
                     }
                 }
                 .padding(.horizontal, 24)
@@ -229,7 +229,7 @@ struct Tutorial: Identifiable {
         title: String,
         description: String,
         icon: String,
-        accentColor: Color = .purple,
+        accentColor: Color = .green,
         tips: [String] = [],
         animation: AnyView? = nil,
         interactiveDemo: AnyView? = nil
@@ -299,10 +299,10 @@ class TutorialManager: ObservableObject {
         return [
             Tutorial(
                 id: "welcome",
-                title: "Welcome to Celestia! 🌟",
-                description: "Your journey to meaningful connections starts here. Let's show you around!",
-                icon: "star.fill",
-                accentColor: .purple,
+                title: "Welcome to TeamUp! 🎮",
+                description: "Your journey to finding amazing teammates starts here. Let's show you around!",
+                icon: "gamecontroller.fill",
+                accentColor: .green,
                 tips: [
                     "Be authentic and genuine",
                     "Add photos that show your personality",
@@ -315,7 +315,7 @@ class TutorialManager: ObservableObject {
                 title: "Discover & Scroll",
                 description: "Scroll through profiles one by one. Tap the heart to like or tap the profile card for more details!",
                 icon: "arrow.up.arrow.down",
-                accentColor: .pink,
+                accentColor: .cyan,
                 tips: [
                     "Scroll up and down to browse profiles",
                     "Tap the heart button to like someone",
@@ -326,12 +326,12 @@ class TutorialManager: ObservableObject {
 
             Tutorial(
                 id: "matching",
-                title: "Make Matches",
-                description: "When someone you liked also likes you back, you'll both be notified and can start chatting!",
-                icon: "heart.fill",
-                accentColor: .red,
+                title: "Find Teammates",
+                description: "When someone you requested also wants to team up, you'll both be notified and can start chatting!",
+                icon: "person.2.fill",
+                accentColor: .green,
                 tips: [
-                    "Matches appear in your Matches tab",
+                    "Teammates appear in your Squad tab",
                     "Send the first message to break the ice",
                     "Be respectful and genuine"
                 ]
@@ -470,9 +470,9 @@ struct ScrollBrowseDemo: View {
                                     isLiked[index].toggle()
                                 }
                             } label: {
-                                Image(systemName: isLiked[index] ? "heart.fill" : "heart")
+                                Image(systemName: isLiked[index] ? "person.badge.plus.fill" : "person.badge.plus")
                                     .font(.title3)
-                                    .foregroundColor(isLiked[index] ? .pink : .gray)
+                                    .foregroundColor(isLiked[index] ? .cyan : .gray)
                                     .scaleEffect(isLiked[index] ? 1.2 : 1.0)
                             }
                         }
@@ -599,7 +599,7 @@ struct MessageDemo: View {
                     Spacer()
                     Text("Hey! Nice to match with you 👋")
                         .padding(12)
-                        .background(Color.purple.opacity(0.2))
+                        .background(Color.green.opacity(0.2))
                         .cornerRadius(16)
                 }
 
@@ -617,7 +617,7 @@ struct MessageDemo: View {
                     } label: {
                         Image(systemName: "arrow.up.circle.fill")
                             .font(.title2)
-                            .foregroundColor(message.isEmpty ? .gray : .purple)
+                            .foregroundColor(message.isEmpty ? .gray : .green)
                     }
                 }
             }

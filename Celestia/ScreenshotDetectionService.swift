@@ -1,6 +1,6 @@
 //
 //  ScreenshotDetectionService.swift
-//  Celestia
+//  TeamUp
 //
 //  Service for detecting screenshots and notifying users
 //

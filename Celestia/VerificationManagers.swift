@@ -1,6 +1,6 @@
 //
 //  VerificationManagers.swift
-//  Celestia
+//  TeamUp
 //
 //  Manages verification data structures
 //  NOTE: Face verification has been removed. ID verification is now manual review only.

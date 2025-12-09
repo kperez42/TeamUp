@@ -1,6 +1,6 @@
 //
 //  PerformanceMonitor.swift
-//  Celestia
+//  TeamUp
 //
 //  Comprehensive performance monitoring system
 //  Tracks FPS, memory, network, database queries, and image loading
@@ -690,7 +690,7 @@ struct PerformanceMonitorView: View {
             performanceRow(title: "Memory", value: String(format: "%.1f MB", monitor.memoryUsageMB), color: memoryColor)
             performanceRow(title: "Network", value: String(format: "%.0f ms", monitor.networkLatencyMs), color: monitor.connectionQuality.color)
             performanceRow(title: "Avg Query", value: String(format: "%.0f ms", monitor.averageQueryTimeMs), color: .blue)
-            performanceRow(title: "Avg Image Load", value: String(format: "%.0f ms", monitor.averageImageLoadTimeMs), color: .purple)
+            performanceRow(title: "Avg Image Load", value: String(format: "%.0f ms", monitor.averageImageLoadTimeMs), color: .green)
 
             HStack {
                 Image(systemName: monitor.connectionQuality.icon)

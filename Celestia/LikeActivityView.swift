@@ -1,6 +1,6 @@
 //
 //  LikeActivityView.swift
-//  Celestia
+//  TeamUp
 //
 //  Timeline of like activity (received and sent)
 //
@@ -200,8 +200,8 @@ struct LikeActivity: Identifiable {
 
         var color: Color {
             switch self {
-            case .received: return .pink
-            case .sent: return .purple
+            case .received: return .cyan
+            case .sent: return .green
             case .mutual: return .orange
             case .matched: return .green
             }
@@ -210,13 +210,13 @@ struct LikeActivity: Identifiable {
         var description: String {
             switch self {
             case .received(let isSuperLike):
-                return isSuperLike ? "Super liked you" : "Liked you"
+                return isSuperLike ? "Priority request" : "Wants to team up"
             case .sent(let isSuperLike):
-                return isSuperLike ? "You super liked" : "You liked"
+                return isSuperLike ? "You sent priority request" : "You sent request"
             case .mutual:
-                return "Mutual like!"
+                return "Mutual interest!"
             case .matched:
-                return "It's a match!"
+                return "Teammate found!"
             }
         }
     }

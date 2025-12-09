@@ -1,6 +1,6 @@
 //
 //  Referral.swift
-//  Celestia
+//  TeamUp
 //
 //  Referral system models
 //

@@ -1,6 +1,6 @@
 //
 //  ReviewPromptManager.swift
-//  Celestia
+//  TeamUp
 //
 //  Smart app review prompt manager that shows review prompts at optimal times
 //  Uses iOS StoreKit to request reviews when users have positive experiences
@@ -304,7 +304,7 @@ struct ReviewPromptButton: View {
             HStack {
                 Image(systemName: "star.fill")
                     .foregroundColor(.yellow)
-                Text("Rate Celestia")
+                Text("Rate TeamUp")
                     .font(.body)
                 Spacer()
                 Image(systemName: "chevron.right")

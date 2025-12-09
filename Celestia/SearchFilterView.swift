@@ -1,6 +1,6 @@
 //
 //  SearchFilterView.swift
-//  Celestia
+//  TeamUp
 //
 //  Comprehensive search filter interface
 //
@@ -267,7 +267,7 @@ struct SearchFilterView: View {
     // MARK: - Lifestyle Section
 
     private var lifestyleSection: some View {
-        FilterSection(title: "Lifestyle", icon: "heart.fill") {
+        FilterSection(title: "Lifestyle", icon: "figure.walk") {
             VStack(spacing: 16) {
                 // Smoking
                 Picker("Smoking", selection: $filter.smoking) {
@@ -337,13 +337,13 @@ struct SearchFilterView: View {
         }
     }
 
-    // MARK: - Relationship Section
+    // MARK: - Gaming Goals Section
 
     private var relationshipSection: some View {
-        FilterSection(title: "Relationship Goals", icon: "heart.circle.fill") {
+        FilterSection(title: "Gaming Goals", icon: "gamecontroller.fill") {
             VStack(spacing: 16) {
                 MultiSelectMenu(
-                    title: "Looking for",
+                    title: "Play style",
                     options: RelationshipGoal.allCases,
                     selections: $filter.relationshipGoals,
                     displayName: { $0.displayName }

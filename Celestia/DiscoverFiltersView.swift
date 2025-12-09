@@ -1,6 +1,6 @@
 //
 //  DiscoverFiltersView.swift
-//  Celestia
+//  TeamUp
 //
 //  Professional filter settings for discovery
 //
@@ -39,8 +39,8 @@ struct DiscoverFiltersView: View {
     ]
 
     let relationshipGoalOptions = [
-        "Casual Dating", "Long-term Relationship", "Marriage",
-        "Friendship", "Not Sure Yet"
+        "Casual Gaming", "Competitive Team", "Pro/Esports",
+        "Gaming Friends", "Not Sure Yet"
     ]
 
     let smokingOptions = ["Never", "Socially", "Regularly", "Trying to Quit"]
@@ -156,7 +156,7 @@ struct DiscoverFiltersView: View {
                             .padding(.vertical, 8)
                             .background(
                                 LinearGradient(
-                                    colors: [.purple, .pink],
+                                    colors: [.green, .cyan],
                                     startPoint: .leading,
                                     endPoint: .trailing
                                 )
@@ -175,7 +175,7 @@ struct DiscoverFiltersView: View {
 
         return HStack(spacing: 8) {
             Image(systemName: "line.3.horizontal.decrease.circle.fill")
-                .foregroundColor(.purple)
+                .foregroundColor(.green)
 
             Text("\(activeCount) filter\(activeCount == 1 ? "" : "s") active")
                 .font(.subheadline)
@@ -193,12 +193,12 @@ struct DiscoverFiltersView: View {
                 Text("Clear All")
                     .font(.subheadline)
                     .fontWeight(.medium)
-                    .foregroundColor(.purple)
+                    .foregroundColor(.green)
             }
         }
         .padding(.horizontal, 20)
         .padding(.vertical, 12)
-        .background(Color.purple.opacity(0.08))
+        .background(Color.green.opacity(0.08))
     }
 
     // MARK: - Filter Section Container
@@ -225,7 +225,7 @@ struct DiscoverFiltersView: View {
                         .font(.title3)
                         .foregroundStyle(
                             LinearGradient(
-                                colors: [.purple, .pink],
+                                colors: [.green, .cyan],
                                 startPoint: .topLeading,
                                 endPoint: .bottomTrailing
                             )
@@ -248,7 +248,7 @@ struct DiscoverFiltersView: View {
                             .padding(.vertical, 4)
                             .background(
                                 LinearGradient(
-                                    colors: [.purple, .pink],
+                                    colors: [.green, .cyan],
                                     startPoint: .leading,
                                     endPoint: .trailing
                                 )
@@ -292,10 +292,10 @@ struct DiscoverFiltersView: View {
                 Text("\(filters.minAge) - \(filters.maxAge)")
                     .font(.subheadline)
                     .fontWeight(.semibold)
-                    .foregroundColor(.purple)
+                    .foregroundColor(.green)
                     .padding(.horizontal, 12)
                     .padding(.vertical, 6)
-                    .background(Color.purple.opacity(0.1))
+                    .background(Color.green.opacity(0.1))
                     .cornerRadius(8)
             }
 
@@ -311,7 +311,7 @@ struct DiscoverFiltersView: View {
                         get: { Double(filters.minAge) },
                         set: { filters.minAge = Int($0) }
                     ), in: 18...Double(filters.maxAge - 1), step: 1)
-                    .tint(.purple)
+                    .tint(.green)
                 }
 
                 // Max age slider
@@ -324,7 +324,7 @@ struct DiscoverFiltersView: View {
                         get: { Double(filters.maxAge) },
                         set: { filters.maxAge = Int($0) }
                     ), in: Double(filters.minAge + 1)...65, step: 1)
-                    .tint(.pink)
+                    .tint(.cyan)
                 }
             }
         }
@@ -348,7 +348,7 @@ struct DiscoverFiltersView: View {
 
             Toggle("", isOn: $filters.showVerifiedOnly)
                 .labelsHidden()
-                .tint(.purple)
+                .tint(.green)
         }
     }
 
@@ -369,7 +369,7 @@ struct DiscoverFiltersView: View {
                         filters.selectedInterests.removeAll()
                     }
                     .font(.caption)
-                    .foregroundColor(.purple)
+                    .foregroundColor(.green)
                 }
             }
 
@@ -403,7 +403,7 @@ struct DiscoverFiltersView: View {
                         filters.educationLevels.removeAll()
                     }
                     .font(.caption)
-                    .foregroundColor(.purple)
+                    .foregroundColor(.green)
                 }
             }
 
@@ -438,7 +438,7 @@ struct DiscoverFiltersView: View {
                         filters.maxHeight = nil
                     }
                     .font(.caption)
-                    .foregroundColor(.purple)
+                    .foregroundColor(.green)
                 }
             }
 
@@ -453,7 +453,7 @@ struct DiscoverFiltersView: View {
                         get: { Double(filters.minHeight ?? 140) },
                         set: { filters.minHeight = Int($0) }
                     ), in: 140...220, step: 1)
-                    .tint(.purple)
+                    .tint(.green)
                 }
 
                 // Max height
@@ -466,7 +466,7 @@ struct DiscoverFiltersView: View {
                         get: { Double(filters.maxHeight ?? 220) },
                         set: { filters.maxHeight = Int($0) }
                     ), in: 140...220, step: 1)
-                    .tint(.pink)
+                    .tint(.cyan)
                 }
             }
         }
@@ -496,7 +496,7 @@ struct DiscoverFiltersView: View {
                         filters.religions.removeAll()
                     }
                     .font(.caption)
-                    .foregroundColor(.purple)
+                    .foregroundColor(.green)
                 }
             }
 
@@ -513,12 +513,12 @@ struct DiscoverFiltersView: View {
         }
     }
 
-    // MARK: - Relationship Goals Section
+    // MARK: - Gaming Goals Section
 
     private var relationshipGoalsSection: some View {
         VStack(alignment: .leading, spacing: 12) {
             HStack {
-                Text("Looking For")
+                Text("Play Style")
                     .font(.subheadline)
                     .fontWeight(.medium)
 
@@ -530,7 +530,7 @@ struct DiscoverFiltersView: View {
                         filters.relationshipGoals.removeAll()
                     }
                     .font(.caption)
-                    .foregroundColor(.purple)
+                    .foregroundColor(.green)
                 }
             }
 
@@ -554,7 +554,7 @@ struct DiscoverFiltersView: View {
             HStack {
                 Image(systemName: icon)
                     .font(.subheadline)
-                    .foregroundColor(.purple)
+                    .foregroundColor(.green)
 
                 Text(title)
                     .font(.subheadline)
@@ -568,7 +568,7 @@ struct DiscoverFiltersView: View {
                         selected.wrappedValue.removeAll()
                     }
                     .font(.caption)
-                    .foregroundColor(.purple)
+                    .foregroundColor(.green)
                 }
             }
 
@@ -755,7 +755,7 @@ struct SelectableFilterChip: View {
                 .foregroundColor(isSelected ? .white : .primary)
                 .background(
                     isSelected ?
-                    Color.purple :
+                    Color.green :
                     Color(.systemGray6)
                 )
                 .cornerRadius(20)
