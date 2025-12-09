@@ -384,7 +384,7 @@ struct AdminUserInvestigationView: View {
                     .font(.headline)
                     .foregroundStyle(
                         LinearGradient(
-                            colors: [.blue, .purple],
+                            colors: [.green, .cyan],
                             startPoint: .topLeading,
                             endPoint: .bottomTrailing
                         )
@@ -412,7 +412,7 @@ struct AdminUserInvestigationView: View {
                     icon: "crown.fill",
                     label: "Premium",
                     isVerified: user.isPremium,
-                    color: .purple
+                    color: .green
                 )
             }
         }
@@ -431,7 +431,7 @@ struct AdminUserInvestigationView: View {
                     .font(.headline)
                     .foregroundStyle(
                         LinearGradient(
-                            colors: [.purple, .pink],
+                            colors: [.green, .cyan],
                             startPoint: .topLeading,
                             endPoint: .bottomTrailing
                         )
@@ -445,7 +445,7 @@ struct AdminUserInvestigationView: View {
                     value: "\(matchesCount)",
                     label: "Matches",
                     icon: "heart.fill",
-                    gradientColors: [.pink, .red]
+                    gradientColors: [.red, .orange]
                 )
                 EnhancedActivityStatBox(
                     value: "\(messagesCount)",
@@ -504,7 +504,7 @@ struct AdminUserInvestigationView: View {
                     icon: "person.fill",
                     label: "Gender",
                     value: user.gender.isEmpty ? "Not specified" : user.gender,
-                    color: .purple
+                    color: .green
                 )
             }
 
@@ -611,7 +611,7 @@ struct AdminUserInvestigationView: View {
                         .padding()
                         .background(
                             LinearGradient(
-                                colors: [.purple, .purple.opacity(0.8)],
+                                colors: [.green, .green.opacity(0.8)],
                                 startPoint: .leading,
                                 endPoint: .trailing
                             )
