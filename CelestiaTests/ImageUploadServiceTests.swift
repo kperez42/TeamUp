@@ -383,6 +383,6 @@ struct ImageUploadServiceTests {
     }
 
     private static func generateMockFirebaseUrl(userId: String) -> String {
-        return "https://storage.googleapis.com/celestia-40ce6/gallery_photos/\(userId)/\(UUID().uuidString).jpg"
+        return "https://storage.googleapis.com/teamup-app/gallery_photos/\(userId)/\(UUID().uuidString).jpg"
     }
 }
