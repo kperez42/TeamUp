@@ -623,17 +623,17 @@ enum NotificationPayload {
         if matches > 0 {
             return matches == 1 ? "You got a new match!" : "You got \(matches) new matches!"
         } else if likes > 0 {
-            return likes == 1 ? "Someone new likes you!" : "\(likes) people like you!"
+            return likes == 1 ? "Someone wants to team up!" : "\(likes) gamers want to team up!"
         } else if messages > 0 {
             return messages == 1 ? "You have an unread message" : "You have \(messages) unread messages"
         } else {
             let titles = [
-                "Your dating life awaits!",
-                "New people are nearby",
-                "Time to find your match!",
-                "Ready to meet someone new?"
+                "Your gaming squad awaits!",
+                "New gamers are nearby",
+                "Time to find your teammates!",
+                "Ready to squad up?"
             ]
-            return titles.randomElement() ?? "Your dating life awaits!"
+            return titles.randomElement() ?? "Your gaming squad awaits!"
         }
     }
 
@@ -641,10 +641,10 @@ enum NotificationPayload {
         var parts: [String] = []
 
         if likes > 0 {
-            parts.append("\(likes) new like\(likes == 1 ? "" : "s")")
+            parts.append("\(likes) new squad request\(likes == 1 ? "" : "s")")
         }
         if matches > 0 {
-            parts.append("\(matches) new match\(matches == 1 ? "" : "es")")
+            parts.append("\(matches) new teammate\(matches == 1 ? "" : "s")")
         }
         if messages > 0 {
             parts.append("\(messages) unread message\(messages == 1 ? "" : "s")")
@@ -652,10 +652,10 @@ enum NotificationPayload {
 
         if parts.isEmpty {
             let bodies = [
-                "New profiles are waiting to be discovered!",
-                "Swipe now - your perfect match could be next!",
-                "Don't miss out on today's connections",
-                "The more you swipe, the more you match!"
+                "New gamers are waiting to be discovered!",
+                "Find teammates - your perfect squad could be next!",
+                "Don't miss out on today's gaming connections",
+                "The more you search, the more teammates you find!"
             ]
             return bodies.randomElement() ?? "Open the app to see what's new!"
         }

@@ -1338,11 +1338,11 @@ struct OnboardingView: View {
                 }
 
                 VStack(spacing: 8) {
-                    Text("Get Better Matches")
+                    Text("Get Better Teammates")
                         .font(.title)
                         .fontWeight(.bold)
 
-                    Text("These details help find your perfect match")
+                    Text("These details help find your perfect teammates")
                         .font(.subheadline)
                         .foregroundColor(.secondary)
                         .multilineTextAlignment(.center)

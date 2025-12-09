@@ -1780,11 +1780,11 @@ struct SignUpView: View {
     var stepSubtitle: String {
         switch currentStep {
         case 0: return "Let's get started with your account"
-        case 1: return "This helps us find your perfect match"
-        case 2: return "Connect with people near and far"
-        case 3: return "Photos help you make meaningful connections"
+        case 1: return "This helps us find your perfect teammates"
+        case 2: return "Connect with gamers near and far"
+        case 3: return "Photos help you make gaming connections"
         case 4: return "Let others know what makes you unique"
-        case 5: return "Help us find people with similar vibes"
+        case 5: return "Help us find gamers with similar vibes"
         case 6: return "Optional info to complete your profile"
         default: return ""
         }

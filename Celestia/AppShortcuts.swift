@@ -17,23 +17,23 @@ struct CelestiaAppShortcuts: AppShortcutsProvider {
         AppShortcut(
             intent: ViewMatchesIntent(),
             phrases: [
-                "View my \(.applicationName) matches",
-                "Show my matches in \(.applicationName)",
-                "Check matches on \(.applicationName)"
+                "View my \(.applicationName) squad",
+                "Show my teammates in \(.applicationName)",
+                "Check squad on \(.applicationName)"
             ],
-            shortTitle: "View Matches",
-            systemImageName: "heart.circle.fill"
+            shortTitle: "View Squad",
+            systemImageName: "person.2.circle.fill"
         )
 
         AppShortcut(
             intent: StartSwipingIntent(),
             phrases: [
-                "Start swiping on \(.applicationName)",
-                "Discover people on \(.applicationName)",
+                "Find teammates on \(.applicationName)",
+                "Discover gamers on \(.applicationName)",
                 "Show me profiles on \(.applicationName)"
             ],
-            shortTitle: "Start Swiping",
-            systemImageName: "person.2.circle.fill"
+            shortTitle: "Find Teammates",
+            systemImageName: "gamecontroller.fill"
         )
 
         AppShortcut(
@@ -61,11 +61,11 @@ struct CelestiaAppShortcuts: AppShortcutsProvider {
         AppShortcut(
             intent: ShareDateDetailsIntent(),
             phrases: [
-                "Share my date on \(.applicationName)",
-                "Share date details in \(.applicationName)",
-                "Tell someone about my date on \(.applicationName)"
+                "Share my gaming session on \(.applicationName)",
+                "Share session details in \(.applicationName)",
+                "Tell someone about my gaming meetup on \(.applicationName)"
             ],
-            shortTitle: "Share Date",
+            shortTitle: "Share Session",
             systemImageName: "location.circle.fill"
         )
 
