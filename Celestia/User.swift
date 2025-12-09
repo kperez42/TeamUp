@@ -319,6 +319,24 @@ struct User: Identifiable, Codable, Equatable {
     var fullName: String
     var gamerTag: String  // Gaming username/handle
     var bio: String       // Gaming bio/about
+    var age: Int = 18
+    var gender: String = ""
+    var interests: [String] = []
+
+    // MARK: - Dating Profile
+    var height: Int?              // Height in centimeters
+    var relationshipGoal: String?
+    var educationLevel: String?
+    var smoking: String?
+    var drinking: String?
+    var religion: String?
+    var exercise: String?
+    var diet: String?
+    var pets: String?
+    var languages: [String] = []
+    var ageRangeMin: Int?
+    var ageRangeMax: Int?
+    var showMeGender: String = "Everyone"  // "Men", "Women", "Everyone"
 
     // MARK: - Location (for regional matchmaking)
     var location: String
@@ -461,7 +479,8 @@ struct User: Identifiable, Codable, Equatable {
 
     enum CodingKeys: String, CodingKey {
         case id
-        case email, fullName, gamerTag, bio
+        case email, fullName, gamerTag, bio, age, gender, interests
+        case height, relationshipGoal, educationLevel, smoking, drinking, religion, exercise, diet, pets, languages, ageRangeMin, ageRangeMax, showMeGender
         case location, country, latitude, longitude, region
         case photos, profileImageURL
         case platforms, favoriteGames, gameGenres, playStyle, skillLevel, voiceChatPreference, lookingFor
@@ -496,6 +515,22 @@ struct User: Identifiable, Codable, Equatable {
         try container.encode(fullName, forKey: .fullName)
         try container.encode(gamerTag, forKey: .gamerTag)
         try container.encode(bio, forKey: .bio)
+        try container.encode(age, forKey: .age)
+        try container.encode(gender, forKey: .gender)
+        try container.encode(interests, forKey: .interests)
+        try container.encodeIfPresent(height, forKey: .height)
+        try container.encodeIfPresent(relationshipGoal, forKey: .relationshipGoal)
+        try container.encodeIfPresent(educationLevel, forKey: .educationLevel)
+        try container.encodeIfPresent(smoking, forKey: .smoking)
+        try container.encodeIfPresent(drinking, forKey: .drinking)
+        try container.encodeIfPresent(religion, forKey: .religion)
+        try container.encodeIfPresent(exercise, forKey: .exercise)
+        try container.encodeIfPresent(diet, forKey: .diet)
+        try container.encodeIfPresent(pets, forKey: .pets)
+        try container.encode(languages, forKey: .languages)
+        try container.encodeIfPresent(ageRangeMin, forKey: .ageRangeMin)
+        try container.encodeIfPresent(ageRangeMax, forKey: .ageRangeMax)
+        try container.encode(showMeGender, forKey: .showMeGender)
         try container.encode(location, forKey: .location)
         try container.encode(country, forKey: .country)
         try container.encodeIfPresent(latitude, forKey: .latitude)
@@ -585,6 +620,22 @@ struct User: Identifiable, Codable, Equatable {
         self.fullName = dictionary["fullName"] as? String ?? dictionary["name"] as? String ?? ""
         self.gamerTag = dictionary["gamerTag"] as? String ?? ""
         self.bio = dictionary["bio"] as? String ?? ""
+        self.age = dictionary["age"] as? Int ?? 18
+        self.gender = dictionary["gender"] as? String ?? ""
+        self.interests = dictionary["interests"] as? [String] ?? []
+        self.height = dictionary["height"] as? Int
+        self.relationshipGoal = dictionary["relationshipGoal"] as? String
+        self.educationLevel = dictionary["educationLevel"] as? String
+        self.smoking = dictionary["smoking"] as? String
+        self.drinking = dictionary["drinking"] as? String
+        self.religion = dictionary["religion"] as? String
+        self.exercise = dictionary["exercise"] as? String
+        self.diet = dictionary["diet"] as? String
+        self.pets = dictionary["pets"] as? String
+        self.languages = dictionary["languages"] as? [String] ?? []
+        self.ageRangeMin = dictionary["ageRangeMin"] as? Int
+        self.ageRangeMax = dictionary["ageRangeMax"] as? Int
+        self.showMeGender = dictionary["showMeGender"] as? String ?? "Everyone"
         self.location = dictionary["location"] as? String ?? ""
         self.country = dictionary["country"] as? String ?? ""
         self.latitude = dictionary["latitude"] as? Double
@@ -802,6 +853,22 @@ struct User: Identifiable, Codable, Equatable {
         fullName: String,
         gamerTag: String = "",
         bio: String = "",
+        age: Int = 18,
+        gender: String = "",
+        interests: [String] = [],
+        height: Int? = nil,
+        relationshipGoal: String? = nil,
+        educationLevel: String? = nil,
+        smoking: String? = nil,
+        drinking: String? = nil,
+        religion: String? = nil,
+        exercise: String? = nil,
+        diet: String? = nil,
+        pets: String? = nil,
+        languages: [String] = [],
+        ageRangeMin: Int? = nil,
+        ageRangeMax: Int? = nil,
+        showMeGender: String = "Everyone",
         location: String,
         country: String,
         latitude: Double? = nil,
@@ -834,6 +901,22 @@ struct User: Identifiable, Codable, Equatable {
         self.fullName = fullName
         self.gamerTag = gamerTag
         self.bio = bio
+        self.age = age
+        self.gender = gender
+        self.interests = interests
+        self.height = height
+        self.relationshipGoal = relationshipGoal
+        self.educationLevel = educationLevel
+        self.smoking = smoking
+        self.drinking = drinking
+        self.religion = religion
+        self.exercise = exercise
+        self.diet = diet
+        self.pets = pets
+        self.languages = languages
+        self.ageRangeMin = ageRangeMin
+        self.ageRangeMax = ageRangeMax
+        self.showMeGender = showMeGender
         self.location = location
         self.country = country
         self.latitude = latitude

@@ -20,7 +20,30 @@ struct SearchFilter: Codable, Equatable {
 
     // MARK: - Demographics
     var ageRange: AgeRange = AgeRange(min: 13, max: 99)
+    var heightRange: HeightRange?
+    var showMe: ShowMeFilter = .everyone
     var languages: [Language] = []
+
+    // MARK: - Background
+    var educationLevels: [EducationLevel] = []
+    var ethnicities: [Ethnicity] = []
+    var religions: [Religion] = []
+
+    // MARK: - Lifestyle
+    var smoking: LifestyleFilter = .any
+    var drinking: LifestyleFilter = .any
+    var pets: PetPreference = .any
+    var hasChildren: LifestyleFilter = .any
+    var wantsChildren: LifestyleFilter = .any
+    var exercise: ExerciseFrequency? = .any
+    var diet: DietPreference? = .any
+
+    // MARK: - Relationship
+    var relationshipGoals: [RelationshipGoal] = []
+
+    // MARK: - Advanced
+    var zodiacSigns: [ZodiacSign] = []
+    var politicalViews: [PoliticalView] = []
 
     // MARK: - Gaming Profile
     var games: [String] = []                           // Games played (multi-select from database)
@@ -57,7 +80,22 @@ struct SearchFilter: Codable, Equatable {
         return distanceRadius == 50 &&
                ageRange.min == 13 &&
                ageRange.max == 99 &&
+               heightRange == nil &&
+               showMe == .everyone &&
                region == .any &&
+               educationLevels.isEmpty &&
+               ethnicities.isEmpty &&
+               religions.isEmpty &&
+               smoking == .any &&
+               drinking == .any &&
+               pets == .any &&
+               hasChildren == .any &&
+               wantsChildren == .any &&
+               exercise == .any &&
+               diet == .any &&
+               relationshipGoals.isEmpty &&
+               zodiacSigns.isEmpty &&
+               politicalViews.isEmpty &&
                games.isEmpty &&
                platforms.isEmpty &&
                skillLevels.isEmpty &&
@@ -74,7 +112,22 @@ struct SearchFilter: Codable, Equatable {
 
         if distanceRadius != 50 { count += 1 }
         if ageRange.min != 13 || ageRange.max != 99 { count += 1 }
+        if heightRange != nil { count += 1 }
+        if showMe != .everyone { count += 1 }
         if region != .any { count += 1 }
+        if !educationLevels.isEmpty { count += 1 }
+        if !ethnicities.isEmpty { count += 1 }
+        if !religions.isEmpty { count += 1 }
+        if smoking != .any { count += 1 }
+        if drinking != .any { count += 1 }
+        if pets != .any { count += 1 }
+        if hasChildren != .any { count += 1 }
+        if wantsChildren != .any { count += 1 }
+        if exercise != .any { count += 1 }
+        if diet != .any { count += 1 }
+        if !relationshipGoals.isEmpty { count += 1 }
+        if !zodiacSigns.isEmpty { count += 1 }
+        if !politicalViews.isEmpty { count += 1 }
         if !games.isEmpty { count += 1 }
         if !platforms.isEmpty { count += 1 }
         if !skillLevels.isEmpty { count += 1 }
@@ -109,6 +162,313 @@ struct AgeRange: Codable, Equatable {
 
     func contains(_ age: Int) -> Bool {
         return age >= min && age <= max
+    }
+}
+
+// MARK: - Height Range
+
+struct HeightRange: Codable, Equatable {
+    var minInches: Int = 48  // 4'0"
+    var maxInches: Int = 96  // 8'0"
+
+    init(minInches: Int = 48, maxInches: Int = 96) {
+        self.minInches = Swift.max(48, Swift.min(96, minInches))
+        self.maxInches = Swift.max(48, Swift.min(96, maxInches))
+    }
+
+    static func formatHeight(_ inches: Int) -> String {
+        let feet = inches / 12
+        let remainingInches = inches % 12
+        return "\(feet)'\(remainingInches)\""
+    }
+}
+
+// MARK: - Show Me Filter (Gender Preference)
+
+enum ShowMeFilter: String, Codable, CaseIterable, Hashable {
+    case men = "men"
+    case women = "women"
+    case everyone = "everyone"
+
+    var displayName: String {
+        switch self {
+        case .men: return "Men"
+        case .women: return "Women"
+        case .everyone: return "Everyone"
+        }
+    }
+}
+
+// MARK: - Education Level
+
+enum EducationLevel: String, Codable, CaseIterable, Hashable {
+    case highSchool = "high_school"
+    case someCollege = "some_college"
+    case bachelors = "bachelors"
+    case masters = "masters"
+    case doctorate = "doctorate"
+    case tradeSchool = "trade_school"
+    case preferNotToSay = "prefer_not_to_say"
+
+    var displayName: String {
+        switch self {
+        case .highSchool: return "High school"
+        case .someCollege: return "Some college"
+        case .bachelors: return "Bachelor's degree"
+        case .masters: return "Master's degree"
+        case .doctorate: return "Doctorate"
+        case .tradeSchool: return "Trade school"
+        case .preferNotToSay: return "Prefer not to say"
+        }
+    }
+}
+
+// MARK: - Ethnicity
+
+enum Ethnicity: String, Codable, CaseIterable, Hashable {
+    case asian = "asian"
+    case black = "black"
+    case hispanic = "hispanic"
+    case middleEastern = "middle_eastern"
+    case nativeAmerican = "native_american"
+    case pacificIslander = "pacific_islander"
+    case white = "white"
+    case multiracial = "multiracial"
+    case other = "other"
+    case preferNotToSay = "prefer_not_to_say"
+
+    var displayName: String {
+        switch self {
+        case .asian: return "Asian"
+        case .black: return "Black"
+        case .hispanic: return "Hispanic/Latino"
+        case .middleEastern: return "Middle Eastern"
+        case .nativeAmerican: return "Native American"
+        case .pacificIslander: return "Pacific Islander"
+        case .white: return "White"
+        case .multiracial: return "Multiracial"
+        case .other: return "Other"
+        case .preferNotToSay: return "Prefer not to say"
+        }
+    }
+}
+
+// MARK: - Religion
+
+enum Religion: String, Codable, CaseIterable, Hashable {
+    case agnostic = "agnostic"
+    case atheist = "atheist"
+    case buddhist = "buddhist"
+    case catholic = "catholic"
+    case christian = "christian"
+    case hindu = "hindu"
+    case jewish = "jewish"
+    case muslim = "muslim"
+    case spiritual = "spiritual"
+    case other = "other"
+    case preferNotToSay = "prefer_not_to_say"
+
+    var displayName: String {
+        switch self {
+        case .agnostic: return "Agnostic"
+        case .atheist: return "Atheist"
+        case .buddhist: return "Buddhist"
+        case .catholic: return "Catholic"
+        case .christian: return "Christian"
+        case .hindu: return "Hindu"
+        case .jewish: return "Jewish"
+        case .muslim: return "Muslim"
+        case .spiritual: return "Spiritual"
+        case .other: return "Other"
+        case .preferNotToSay: return "Prefer not to say"
+        }
+    }
+}
+
+// MARK: - Lifestyle Filter (for smoking, drinking, children)
+
+enum LifestyleFilter: String, Codable, CaseIterable, Hashable {
+    case any = "any"
+    case never = "never"
+    case sometimes = "sometimes"
+    case regularly = "regularly"
+    case preferNotToSay = "prefer_not_to_say"
+
+    var displayName: String {
+        switch self {
+        case .any: return "Any"
+        case .never: return "Never"
+        case .sometimes: return "Sometimes"
+        case .regularly: return "Regularly"
+        case .preferNotToSay: return "Prefer not to say"
+        }
+    }
+}
+
+// MARK: - Pet Preference
+
+enum PetPreference: String, Codable, CaseIterable, Hashable {
+    case any = "any"
+    case noPets = "no_pets"
+    case dog = "dog"
+    case cat = "cat"
+    case both = "both"
+    case otherPets = "other_pets"
+    case wantPets = "want_pets"
+    case preferNotToSay = "prefer_not_to_say"
+
+    var displayName: String {
+        switch self {
+        case .any: return "Any"
+        case .noPets: return "No Pets"
+        case .dog: return "Dog"
+        case .cat: return "Cat"
+        case .both: return "Both"
+        case .otherPets: return "Other Pets"
+        case .wantPets: return "Want Pets"
+        case .preferNotToSay: return "Prefer not to say"
+        }
+    }
+}
+
+// MARK: - Exercise Frequency
+
+enum ExerciseFrequency: String, Codable, CaseIterable, Hashable {
+    case any = "any"
+    case never = "never"
+    case rarely = "rarely"
+    case sometimes = "sometimes"
+    case often = "often"
+    case daily = "daily"
+    case preferNotToSay = "prefer_not_to_say"
+
+    var displayName: String {
+        switch self {
+        case .any: return "Any"
+        case .never: return "Never"
+        case .rarely: return "Rarely"
+        case .sometimes: return "Sometimes"
+        case .often: return "Often"
+        case .daily: return "Daily"
+        case .preferNotToSay: return "Prefer not to say"
+        }
+    }
+}
+
+// MARK: - Diet Preference
+
+enum DietPreference: String, Codable, CaseIterable, Hashable {
+    case any = "any"
+    case noRestrictions = "no_restrictions"
+    case vegan = "vegan"
+    case vegetarian = "vegetarian"
+    case pescatarian = "pescatarian"
+    case kosher = "kosher"
+    case halal = "halal"
+    case preferNotToSay = "prefer_not_to_say"
+
+    var displayName: String {
+        switch self {
+        case .any: return "Any"
+        case .noRestrictions: return "No Restrictions"
+        case .vegan: return "Vegan"
+        case .vegetarian: return "Vegetarian"
+        case .pescatarian: return "Pescatarian"
+        case .kosher: return "Kosher"
+        case .halal: return "Halal"
+        case .preferNotToSay: return "Prefer not to say"
+        }
+    }
+}
+
+// MARK: - Relationship Goal
+
+enum RelationshipGoal: String, Codable, CaseIterable, Hashable {
+    case longTerm = "long_term"
+    case casualDating = "casual_dating"
+    case newFriends = "new_friends"
+    case notSure = "not_sure"
+
+    var displayName: String {
+        switch self {
+        case .longTerm: return "Long-term relationship"
+        case .casualDating: return "Casual dating"
+        case .newFriends: return "New friends"
+        case .notSure: return "Not sure yet"
+        }
+    }
+}
+
+// MARK: - Zodiac Sign
+
+enum ZodiacSign: String, Codable, CaseIterable, Hashable {
+    case aries = "aries"
+    case taurus = "taurus"
+    case gemini = "gemini"
+    case cancer = "cancer"
+    case leo = "leo"
+    case virgo = "virgo"
+    case libra = "libra"
+    case scorpio = "scorpio"
+    case sagittarius = "sagittarius"
+    case capricorn = "capricorn"
+    case aquarius = "aquarius"
+    case pisces = "pisces"
+
+    var displayName: String {
+        switch self {
+        case .aries: return "Aries"
+        case .taurus: return "Taurus"
+        case .gemini: return "Gemini"
+        case .cancer: return "Cancer"
+        case .leo: return "Leo"
+        case .virgo: return "Virgo"
+        case .libra: return "Libra"
+        case .scorpio: return "Scorpio"
+        case .sagittarius: return "Sagittarius"
+        case .capricorn: return "Capricorn"
+        case .aquarius: return "Aquarius"
+        case .pisces: return "Pisces"
+        }
+    }
+
+    var symbol: String {
+        switch self {
+        case .aries: return "♈"
+        case .taurus: return "♉"
+        case .gemini: return "♊"
+        case .cancer: return "♋"
+        case .leo: return "♌"
+        case .virgo: return "♍"
+        case .libra: return "♎"
+        case .scorpio: return "♏"
+        case .sagittarius: return "♐"
+        case .capricorn: return "♑"
+        case .aquarius: return "♒"
+        case .pisces: return "♓"
+        }
+    }
+}
+
+// MARK: - Political View
+
+enum PoliticalView: String, Codable, CaseIterable, Hashable {
+    case liberal = "liberal"
+    case moderate = "moderate"
+    case conservative = "conservative"
+    case apolitical = "apolitical"
+    case other = "other"
+    case preferNotToSay = "prefer_not_to_say"
+
+    var displayName: String {
+        switch self {
+        case .liberal: return "Liberal"
+        case .moderate: return "Moderate"
+        case .conservative: return "Conservative"
+        case .apolitical: return "Apolitical"
+        case .other: return "Other"
+        case .preferNotToSay: return "Prefer not to say"
+        }
     }
 }
 

@@ -2057,10 +2057,8 @@ struct OnboardingView: View {
                 user.gameGenres = selectedInterests
                 user.platforms = selectedLanguages
 
-                // lookingFor is now an array in gaming model
-                if !lookingFor.isEmpty && lookingFor != "Everyone" {
-                    user.lookingFor = [lookingFor]
-                }
+                // showMeGender stores the dating preference ("Men", "Women", "Everyone")
+                user.showMeGender = lookingFor
 
                 try await authService.updateUser(user)
 
@@ -2111,8 +2109,8 @@ struct OnboardingView: View {
             location = user.location
             country = user.country
 
-            // Step 4: Gaming Preferences (mapped from gaming model)
-            lookingFor = user.lookingFor.first ?? "Everyone"
+            // Step 4: Preferences
+            lookingFor = user.showMeGender
             selectedInterests = user.gameGenres  // gameGenres -> selectedInterests
             selectedLanguages = user.platforms   // platforms -> selectedLanguages
 
