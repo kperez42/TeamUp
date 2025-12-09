@@ -457,9 +457,9 @@ enum NotificationPayload {
         let titles = [
             "It's a match with \(name)!",
             "You matched with \(name)!",
-            "\(name) likes you too!",
+            "\(name) wants to squad up!",
             "New match: \(name)",
-            "Sparks flying with \(name)!"
+            "You found a teammate: \(name)!"
         ]
         return titles.randomElement() ?? "New Match with \(name)!"
     }
@@ -468,7 +468,7 @@ enum NotificationPayload {
         let bodies = [
             "Say hi before someone else does!",
             "Start chatting now - don't keep \(name) waiting!",
-            "Your next conversation could change everything.",
+            "Your next gaming buddy is just a message away.",
             "The first message matters - make it count!",
             "Break the ice and say hello!"
         ]
@@ -610,10 +610,10 @@ enum NotificationPayload {
         } else {
             let bodies = [
                 "Upgrade to see who likes you!",
-                "Go Premium to reveal your admirers",
-                "Find out who's interested in you",
-                "Your next match could be waiting!",
-                "See who's crushing on you"
+                "Go Premium to reveal who wants to team up",
+                "Find out who's interested in playing with you",
+                "Your next teammate could be waiting!",
+                "See who wants to squad up with you"
             ]
             return bodies.randomElement() ?? "Upgrade to see who likes you!"
         }

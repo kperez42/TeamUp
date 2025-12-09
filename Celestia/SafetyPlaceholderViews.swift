@@ -119,7 +119,7 @@ struct SafeDateLocationsView: View {
             Text("Safe Meeting Spots")
                 .font(.title.bold())
 
-            Text("Public places recommended for first dates. Coming soon")
+            Text("Public places recommended for first meetups. Coming soon")
                 .font(.subheadline)
                 .foregroundColor(.secondary)
                 .multilineTextAlignment(.center)

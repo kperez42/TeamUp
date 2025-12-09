@@ -559,7 +559,7 @@ struct SignUpView: View {
                 }
                 .pickerStyle(.segmented)
                 .accessibilityLabel("Looking for")
-                .accessibilityHint("Select who you're interested in meeting")
+                .accessibilityHint("Select who you're interested in playing with")
                 .accessibilityValue(lookingFor)
                 .accessibilityIdentifier(AccessibilityIdentifier.lookingForPicker)
             }
@@ -1112,7 +1112,7 @@ struct SignUpView: View {
     private let bioPrompts = [
         "I'm happiest when...",
         "On weekends you'll find me...",
-        "Looking for someone who...",
+        "Looking for teammates who...",
         "My friends describe me as...",
         "I can't live without...",
         "Let's talk about..."
