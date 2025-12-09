@@ -129,7 +129,7 @@ struct InterestsViewEnhanced: View {
     private var headerView: some View {
         HStack {
             VStack(alignment: .leading, spacing: 4) {
-                Text("People Who Liked You")
+                Text("Gamers Who Want to Team Up")
                     .font(.headline)
 
                 Text("\(filteredInterests.count) interested")
@@ -269,11 +269,11 @@ struct InterestsViewEnhanced: View {
                 .font(.system(size: 60))
                 .foregroundColor(.green.opacity(0.5))
 
-            Text(interestService.receivedInterests.isEmpty ? "No Interests Yet" : "No Results")
+            Text(interestService.receivedInterests.isEmpty ? "No Team Requests Yet" : "No Results")
                 .font(.title3)
                 .fontWeight(.semibold)
 
-            Text(interestService.receivedInterests.isEmpty ? "People who like you will appear here" : "Try adjusting your filters")
+            Text(interestService.receivedInterests.isEmpty ? "Gamers who want to team up will appear here" : "Try adjusting your filters")
                 .font(.subheadline)
                 .foregroundColor(.secondary)
                 .multilineTextAlignment(.center)

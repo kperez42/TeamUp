@@ -57,9 +57,9 @@ struct InterestsView: View {
     private var headerView: some View {
         HStack {
             VStack(alignment: .leading, spacing: 4) {
-                Text("People Who Liked You")
+                Text("Gamers Who Want to Team Up")
                     .font(.headline)
-                
+
                 Text("\(interestService.receivedInterests.count) interested")
                     .font(.subheadline)
                     .foregroundColor(.secondary)
@@ -136,11 +136,11 @@ struct InterestsView: View {
                 .font(.system(size: 60))
                 .foregroundColor(.green.opacity(0.5))
             
-            Text("No Interests Yet")
+            Text("No Team Requests Yet")
                 .font(.title3)
                 .fontWeight(.semibold)
-            
-            Text("People who like you will appear here")
+
+            Text("Gamers who want to team up will appear here")
                 .font(.subheadline)
                 .foregroundColor(.secondary)
                 .multilineTextAlignment(.center)

@@ -516,7 +516,7 @@ struct PremiumUpgradeView: View {
             HStack {
                 VStack(alignment: .leading, spacing: 4) {
                     HStack(spacing: 8) {
-                        Text("People Who Like You")
+                        Text("Gamers Who Want to Team Up")
                             .font(.title3.weight(.bold))
                             .foregroundColor(.primary)
 
@@ -530,7 +530,7 @@ struct PremiumUpgradeView: View {
                             .clipShape(Capsule())
                     }
 
-                    Text("Unlock to see who's interested in you")
+                    Text("Unlock to see who wants to join your squad")
                         .font(.caption)
                         .foregroundColor(.secondary)
                 }
@@ -597,7 +597,7 @@ struct PremiumUpgradeView: View {
                 HStack {
                     Image(systemName: "eye.fill")
                         .font(.subheadline)
-                    Text("See Who Likes You")
+                    Text("See Who Wants to Team Up")
                         .font(.subheadline.weight(.semibold))
                 }
                 .foregroundColor(.white)
