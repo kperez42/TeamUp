@@ -129,21 +129,12 @@ class ABTestingManager: ObservableObject {
                 return false
             }
 
-            // Platform
+            // Platform (gaming platform, not device platform)
             if let platforms = targeting.platforms, !platforms.contains("ios") {
                 return false
             }
 
-            // User age
-            if let minAge = targeting.minAge, user.age < minAge {
-                return false
-            }
-
-            if let maxAge = targeting.maxAge, user.age > maxAge {
-                return false
-            }
-
-            // Account age
+            // Account age (days since signup)
             let accountAgeInDays = Calendar.current.dateComponents([.day], from: user.timestamp, to: Date()).day ?? 0
             if let minAccountAge = targeting.minAccountAgeDays, accountAgeInDays < minAccountAge {
                 return false
