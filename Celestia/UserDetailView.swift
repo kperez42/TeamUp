@@ -213,13 +213,13 @@ struct UserDetailView: View {
 
                 HStack(spacing: 4) {
                     Image(systemName: "gamecontroller.fill")
-                        .foregroundColor(.purple)
+                        .foregroundColor(.green)
                     Text(user.playStyle)
                         .fontWeight(.medium)
                 }
                 .padding(.horizontal, 12)
                 .padding(.vertical, 6)
-                .background(Color.purple.opacity(0.15))
+                .background(Color.green.opacity(0.15))
                 .cornerRadius(20)
             }
             .font(.subheadline)
@@ -302,8 +302,8 @@ struct UserDetailView: View {
             ProfileSectionCard(
                 icon: "gamecontroller.fill",
                 title: "Games",
-                iconColors: [.purple, .pink],
-                borderColor: .purple
+                iconColors: [.green, .cyan],
+                borderColor: .green
             ) {
                 VStack(spacing: 12) {
                     ForEach(user.favoriteGames) { game in
@@ -428,7 +428,7 @@ struct UserDetailView: View {
             ProfileSectionCard(
                 icon: "link",
                 title: "Gaming Profiles",
-                iconColors: [.indigo, .purple],
+                iconColors: [.teal, .green],
                 borderColor: .indigo
             ) {
                 VStack(spacing: 12) {
@@ -439,7 +439,7 @@ struct UserDetailView: View {
                         ExternalProfileRow(icon: "gamecontroller.fill", platform: "Steam", username: steam, color: .blue)
                     }
                     if let twitch = user.twitchUsername {
-                        ExternalProfileRow(icon: "video.fill", platform: "Twitch", username: twitch, color: .purple)
+                        ExternalProfileRow(icon: "video.fill", platform: "Twitch", username: twitch, color: .green)
                     }
                     if let riot = user.riotId {
                         ExternalProfileRow(icon: "r.circle.fill", platform: "Riot", username: riot, color: .red)
@@ -486,12 +486,12 @@ struct UserDetailView: View {
             ProfileSectionCard(
                 icon: "person.2.fill",
                 title: "Looking For",
-                iconColors: [.pink, .purple],
-                borderColor: .pink
+                iconColors: [.cyan, .green],
+                borderColor: .cyan
             ) {
                 FlowLayout2(spacing: 10) {
                     ForEach(user.lookingFor, id: \.self) { type in
-                        ProfileTagView(text: type, colors: [.pink, .purple], textColor: .pink)
+                        ProfileTagView(text: type, colors: [.cyan, .green], textColor: .cyan)
                     }
                 }
             }
@@ -821,7 +821,7 @@ struct GameCard: View {
                 .font(.title2)
                 .foregroundColor(.purple)
                 .frame(width: 40, height: 40)
-                .background(Color.purple.opacity(0.15))
+                .background(Color.green.opacity(0.15))
                 .cornerRadius(10)
 
             VStack(alignment: .leading, spacing: 2) {
