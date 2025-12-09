@@ -100,7 +100,7 @@ struct ProfileApprovedCelebrationView: View {
                         )
                         .scaleEffect(appearAnimation ? 1.0 : 0.8)
 
-                    Text("Welcome to Celestia")
+                    Text("Welcome to TeamUp")
                         .font(.title2)
                         .foregroundColor(.secondary)
                 }
@@ -119,7 +119,7 @@ struct ProfileApprovedCelebrationView: View {
                             .foregroundColor(.yellow)
                     }
 
-                    Text("Start connecting with amazing people in your community. Your journey begins now!")
+                    Text("Start connecting with gamers in your community. Your journey begins now!")
                         .font(.body)
                         .foregroundColor(.secondary)
                         .multilineTextAlignment(.center)

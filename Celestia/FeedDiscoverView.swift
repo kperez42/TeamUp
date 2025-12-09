@@ -640,11 +640,11 @@ struct FeedDiscoverView: View {
                         )
                     )
 
-                Text("Welcome to Celestia!")
+                Text("Welcome to TeamUp!")
                     .font(.title2)
                     .fontWeight(.bold)
 
-                Text("Your profile is being reviewed by our team. This usually takes just a few hours. Once approved, you'll be visible to others and can start making connections!")
+                Text("Your profile is being reviewed by our team. This usually takes just a few hours. Once approved, you'll be visible to others and can start finding gaming buddies!")
                     .font(.subheadline)
                     .foregroundColor(.secondary)
                     .multilineTextAlignment(.center)
@@ -741,11 +741,11 @@ struct FeedDiscoverView: View {
                     )
 
                 VStack(spacing: 12) {
-                    Text("Welcome to Celestia!")
+                    Text("Welcome to TeamUp!")
                         .font(.title2)
                         .fontWeight(.bold)
 
-                    Text("Your profile is being reviewed. Once approved, you'll see other profiles here and can start connecting!")
+                    Text("Your profile is being reviewed. Once approved, you'll see other profiles here and can start finding teammates!")
                         .font(.subheadline)
                         .foregroundColor(.secondary)
                         .multilineTextAlignment(.center)

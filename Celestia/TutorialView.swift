@@ -299,8 +299,8 @@ class TutorialManager: ObservableObject {
         return [
             Tutorial(
                 id: "welcome",
-                title: "Welcome to Celestia! 🌟",
-                description: "Your journey to meaningful connections starts here. Let's show you around!",
+                title: "Welcome to TeamUp! 🎮",
+                description: "Your journey to finding the perfect gaming squad starts here. Let's show you around!",
                 icon: "star.fill",
                 accentColor: .purple,
                 tips: [

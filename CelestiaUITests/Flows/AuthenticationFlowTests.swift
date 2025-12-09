@@ -281,7 +281,7 @@ class ForgotPasswordScreen: BaseScreen {
 
 class OnboardingScreen: BaseScreen {
     private var welcomeMessage: XCUIElement {
-        app.staticTexts["Welcome to Celestia"]
+        app.staticTexts["Welcome to TeamUp"]
     }
 
     private var continueButton: XCUIElement {
