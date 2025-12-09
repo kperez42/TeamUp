@@ -43,9 +43,9 @@ struct ReportUserView: View {
                             }
 
                             VStack(alignment: .leading, spacing: 4) {
-                                Text(user.fullName)
+                                Text(user.gamerTag.isEmpty ? user.fullName : user.gamerTag)
                                     .font(.headline)
-                                Text("\(user.age) • \(user.location)")
+                                Text("\(user.skillLevel) • \(user.location)")
                                     .font(.subheadline)
                                     .foregroundColor(.secondary)
                             }
@@ -269,9 +269,9 @@ struct BlockedUsersView: View {
                             }
 
                             VStack(alignment: .leading, spacing: 4) {
-                                Text(user.fullName)
+                                Text(user.gamerTag.isEmpty ? user.fullName : user.gamerTag)
                                     .font(.headline)
-                                Text("\(user.age) • \(user.location)")
+                                Text("\(user.skillLevel) • \(user.location)")
                                     .font(.subheadline)
                                     .foregroundColor(.secondary)
                             }
@@ -352,11 +352,13 @@ struct BlockedUsersView: View {
         ReportUserView(user: User(
             email: "test@test.com",
             fullName: "Test User",
-            age: 25,
-            gender: "Male",
-            lookingFor: "Female",
+            gamerTag: "TestGamer",
+            bio: "Casual gamer",
             location: "New York",
-            country: "USA"
+            country: "USA",
+            platforms: ["PC"],
+            skillLevel: SkillLevel.intermediate.rawValue,
+            playStyle: PlayStyle.casual.rawValue
         ))
     }
 }

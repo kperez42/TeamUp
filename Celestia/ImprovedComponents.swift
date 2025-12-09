@@ -120,14 +120,14 @@ struct ImprovedUserDetailSheet: View {
                         // Details grid
                         detailsSection
                         
-                        // Languages
-                        if !user.languages.isEmpty {
-                            languagesSection
+                        // Platforms
+                        if !user.platforms.isEmpty {
+                            platformsSection
                         }
-                        
-                        // Interests
-                        if !user.interests.isEmpty {
-                            interestsSection
+
+                        // Favorite Games
+                        if !user.favoriteGames.isEmpty {
+                            gamesSection
                         }
                         
                         // Action buttons
@@ -218,28 +218,32 @@ struct ImprovedUserDetailSheet: View {
     private var headerInfo: some View {
         VStack(spacing: 12) {
             HStack(spacing: 10) {
-                Text(user.fullName)
+                Text(user.gamerTag.isEmpty ? user.fullName : user.gamerTag)
                     .font(.system(size: 32, weight: .bold))
-                
-                Text("\(user.age)")
-                    .font(.system(size: 28))
+
+                Text(user.skillLevel)
+                    .font(.system(size: 16))
                     .foregroundColor(.gray)
-                
+                    .padding(.horizontal, 8)
+                    .padding(.vertical, 4)
+                    .background(Color.purple.opacity(0.1))
+                    .cornerRadius(8)
+
                 if user.isVerified {
                     Image(systemName: "checkmark.seal.fill")
                         .font(.title2)
                         .foregroundColor(.blue)
                 }
-                
+
                 if user.isPremium {
                     Image(systemName: "crown.fill")
                         .font(.title3)
                         .foregroundColor(.yellow)
                 }
-                
+
                 Spacer()
             }
-            
+
             HStack(spacing: 6) {
                 Image(systemName: "mappin.circle.fill")
                     .foregroundColor(.purple)
@@ -275,19 +279,19 @@ struct ImprovedUserDetailSheet: View {
     }
     
     // MARK: - Stats Section
-    
+
     private var statsSection: some View {
         HStack(spacing: 0) {
-            statItem(icon: "heart.fill", value: "\(user.likesReceived)", label: "Likes", color: .pink)
-            
+            statItem(icon: "gamecontroller.fill", value: "\(user.favoriteGames.count)", label: "Games", color: .pink)
+
             Divider()
                 .frame(height: 40)
-            
-            statItem(icon: "star.fill", value: "\(user.matchCount)", label: "Matches", color: .purple)
-            
+
+            statItem(icon: "person.2.fill", value: "\(user.gamingStats.squadWins)", label: "Squad Wins", color: .purple)
+
             Divider()
                 .frame(height: 40)
-            
+
             statItem(icon: "eye.fill", value: "\(user.profileViews)", label: "Views", color: .blue)
         }
         .padding(.vertical, 20)
@@ -315,11 +319,14 @@ struct ImprovedUserDetailSheet: View {
     }
     
     // MARK: - Details Section
-    
+
     private var detailsSection: some View {
         VStack(spacing: 16) {
-            detailRow(icon: "person.fill", label: "Gender", value: user.gender)
-            detailRow(icon: "heart.circle.fill", label: "Looking for", value: user.lookingFor)
+            detailRow(icon: "flame.fill", label: "Play Style", value: user.playStyle)
+            detailRow(icon: "mic.fill", label: "Voice Chat", value: user.voiceChatPreference)
+            if !user.lookingFor.isEmpty {
+                detailRow(icon: "person.2.fill", label: "Looking for", value: user.lookingFor.joined(separator: ", "))
+            }
         }
         .padding(20)
         .background(Color(.systemGray6))
@@ -347,20 +354,20 @@ struct ImprovedUserDetailSheet: View {
         }
     }
     
-    // MARK: - Languages Section
-    
-    private var languagesSection: some View {
+    // MARK: - Platforms Section
+
+    private var platformsSection: some View {
         VStack(alignment: .leading, spacing: 12) {
             HStack {
-                Image(systemName: "globe")
+                Image(systemName: "gamecontroller.fill")
                     .foregroundColor(.purple)
-                Text("Languages")
+                Text("Platforms")
                     .font(.headline)
             }
-            
+
             FlowLayout(spacing: 8) {
-                ForEach(user.languages, id: \.self) { language in
-                    TagView(text: language, color: .purple)
+                ForEach(user.platforms, id: \.self) { platform in
+                    TagView(text: platform, color: .purple)
                 }
             }
         }
@@ -370,21 +377,21 @@ struct ImprovedUserDetailSheet: View {
         .cornerRadius(16)
         .padding(.horizontal, 24)
     }
-    
-    // MARK: - Interests Section
-    
-    private var interestsSection: some View {
+
+    // MARK: - Games Section
+
+    private var gamesSection: some View {
         VStack(alignment: .leading, spacing: 12) {
             HStack {
                 Image(systemName: "star.fill")
                     .foregroundColor(.purple)
-                Text("Interests")
+                Text("Favorite Games")
                     .font(.headline)
             }
-            
+
             FlowLayout(spacing: 8) {
-                ForEach(user.interests, id: \.self) { interest in
-                    TagView(text: interest, color: .blue)
+                ForEach(user.favoriteGames, id: \.id) { game in
+                    TagView(text: game.title, color: .blue)
                 }
             }
         }
@@ -530,15 +537,19 @@ struct FlowLayout: Layout {
         user: User(
             email: "test@example.com",
             fullName: "Sofia Rodriguez",
-            age: 25,
-            gender: "Female",
-            lookingFor: "Male",
-            bio: "Love to travel and explore new cultures. Passionate about photography and always looking for the next adventure!",
+            gamerTag: "SofiaGamer",
+            bio: "Love competitive FPS games and chill co-op sessions. Always looking for new teammates to grind ranked with!",
             location: "Barcelona",
             country: "Spain",
-            languages: ["Spanish", "English", "French", "Portuguese"],
-            interests: ["Travel", "Photography", "Food", "Music", "Dancing"],
-            profileImageURL: ""
+            platforms: ["PC", "PlayStation", "Nintendo Switch"],
+            favoriteGames: [
+                FavoriteGame(title: "Valorant", platform: "PC", rank: "Diamond"),
+                FavoriteGame(title: "Apex Legends", platform: "PC"),
+                FavoriteGame(title: "Animal Crossing", platform: "Nintendo Switch")
+            ],
+            playStyle: PlayStyle.competitive.rawValue,
+            skillLevel: SkillLevel.advanced.rawValue,
+            lookingFor: [LookingForType.rankedTeammates.rawValue, LookingForType.casualCoOp.rawValue]
         ),
         onSendInterest: {},
         onPass: {}

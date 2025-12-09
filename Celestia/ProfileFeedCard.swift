@@ -195,7 +195,7 @@ struct ProfileFeedCard: View {
 
     private var locationRow: some View {
         HStack(spacing: 4) {
-            Text("\(user.age)")
+            Text(user.skillLevel)
                 .font(.subheadline)
                 .foregroundColor(.secondary)
 
@@ -217,11 +217,11 @@ struct ProfileFeedCard: View {
 
     private var seekingRow: some View {
         HStack(spacing: 4) {
-            Image(systemName: "person.2.fill")
+            Image(systemName: "gamecontroller.fill")
                 .font(.caption)
                 .foregroundColor(.pink)
 
-            Text("Seeking \(user.lookingFor), \(user.ageRangeMin)-\(user.ageRangeMax)")
+            Text("\(user.playStyle) • \(user.platforms.prefix(2).joined(separator: ", "))")
                 .font(.subheadline)
                 .foregroundColor(.secondary)
 
@@ -755,28 +755,34 @@ struct FullScreenPhotoItem: View {
             user: User(
                 email: "test@test.com",
                 fullName: "Sarah Johnson",
-                age: 28,
-                gender: "Female",
-                lookingFor: "Men",
-                bio: "Love hiking and coffee",
+                gamerTag: "SarahPlays",
+                bio: "Love competitive FPS and co-op games",
                 location: "Los Angeles",
                 country: "USA",
-                interests: ["Coffee", "Hiking", "Music", "Art", "Photography"],
-                ageRangeMin: 25,
-                ageRangeMax: 35
+                platforms: ["PC", "PlayStation"],
+                favoriteGames: [
+                    FavoriteGame(title: "Valorant", platform: "PC"),
+                    FavoriteGame(title: "Apex Legends", platform: "PC")
+                ],
+                playStyle: PlayStyle.competitive.rawValue,
+                skillLevel: SkillLevel.advanced.rawValue,
+                lookingFor: [LookingForType.rankedTeammates.rawValue]
             ),
             currentUser: User(
                 email: "me@test.com",
                 fullName: "John Doe",
-                age: 30,
-                gender: "Male",
-                lookingFor: "Women",
-                bio: "Tech enthusiast",
+                gamerTag: "JDGamer",
+                bio: "Tech enthusiast and casual gamer",
                 location: "Los Angeles",
                 country: "USA",
-                interests: ["Coffee", "Music", "Technology", "Hiking"],  // 3 shared: Coffee, Music, Hiking
-                ageRangeMin: 25,
-                ageRangeMax: 35
+                platforms: ["PC", "Xbox"],
+                favoriteGames: [
+                    FavoriteGame(title: "Valorant", platform: "PC"),
+                    FavoriteGame(title: "Halo Infinite", platform: "Xbox")
+                ],
+                playStyle: PlayStyle.casual.rawValue,
+                skillLevel: SkillLevel.intermediate.rawValue,
+                lookingFor: [LookingForType.casualCoOp.rawValue]
             ),
             initialIsFavorited: false,
             initialIsLiked: false,

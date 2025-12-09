@@ -73,9 +73,9 @@ struct CurrentUserProfileCard: View {
                     Spacer()
                 }
 
-                // Age and Location
+                // Skill Level and Location
                 HStack(spacing: 4) {
-                    Text("\(user.age)")
+                    Text(user.skillLevel)
                         .font(.subheadline)
                         .foregroundColor(.secondary)
 
@@ -94,13 +94,13 @@ struct CurrentUserProfileCard: View {
                     Spacer()
                 }
 
-                // Seeking preferences
+                // Play style and platforms
                 HStack(spacing: 4) {
-                    Image(systemName: "person.2.fill")
+                    Image(systemName: "gamecontroller.fill")
                         .font(.caption)
                         .foregroundColor(.pink)
 
-                    Text("Seeking \(user.lookingFor), \(user.ageRangeMin)-\(user.ageRangeMax)")
+                    Text("\(user.playStyle) • \(user.platforms.prefix(2).joined(separator: ", "))")
                         .font(.subheadline)
                         .foregroundColor(.secondary)
 
@@ -196,20 +196,19 @@ struct CurrentUserProfileCard: View {
             user: User(
                 email: "me@test.com",
                 fullName: "John Doe",
-                age: 30,
-                gender: "Male",
-                lookingFor: "Women",
-                bio: "Tech enthusiast and coffee lover",
+                gamerTag: "JDGamer",
+                bio: "Tech enthusiast and competitive gamer",
                 location: "Los Angeles",
                 country: "USA",
-                interests: ["Coffee", "Music", "Technology", "Hiking"],
                 photos: [
                     "https://example.com/photo1.jpg",
                     "https://example.com/photo2.jpg",
                     "https://example.com/photo3.jpg"
                 ],
-                ageRangeMin: 25,
-                ageRangeMax: 35
+                platforms: ["PC", "PlayStation", "Xbox"],
+                playStyle: PlayStyle.competitive.rawValue,
+                skillLevel: SkillLevel.advanced.rawValue,
+                lookingFor: [LookingForType.rankedTeammates.rawValue]
             ),
             onTap: {
                 print("Navigate to profile")
