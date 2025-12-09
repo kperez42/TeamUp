@@ -142,14 +142,14 @@ struct ProfileView: View {
                                     sectionDivider()
                                     sectionHeader(title: "Interests", icon: "sparkles")
 
-                                    // Languages
-                                    if !user.languages.isEmpty {
-                                        languagesCard(languages: user.languages)
+                                    // Platforms
+                                    if !user.platforms.isEmpty {
+                                        platformsCard(platforms: user.platforms)
                                     }
 
-                                    // Interests
-                                    if !user.interests.isEmpty {
-                                        interestsCard(interests: user.interests)
+                                    // Favorite Games
+                                    if !user.favoriteGames.isEmpty {
+                                        gamesCard(games: user.favoriteGames)
                                     }
                                 }
                                 .padding(.top, 8)
@@ -389,10 +389,11 @@ struct ProfileView: View {
                                 .truncationMode(.tail)
                         }
 
-                        Text("•")
-
-                        Text("\(user.age) years old")
-                            .font(.subheadline)
+                        if !user.gamerTag.isEmpty {
+                            Text("•")
+                            Text("@\(user.gamerTag)")
+                                .font(.subheadline)
+                        }
                     }
                     .foregroundColor(.white.opacity(0.9))
                 }
@@ -555,11 +556,11 @@ struct ProfileView: View {
                     if user.photos.count < 3 {
                         missingItem(icon: "photo.on.rectangle", text: "Add more photos")
                     }
-                    if user.interests.count < 3 {
-                        missingItem(icon: "star", text: "Add interests")
+                    if user.favoriteGames.count < 3 {
+                        missingItem(icon: "gamecontroller", text: "Add games")
                     }
-                    if user.languages.isEmpty {
-                        missingItem(icon: "globe", text: "Add languages")
+                    if user.platforms.isEmpty {
+                        missingItem(icon: "desktopcomputer", text: "Add platforms")
                     }
                 }
             }
@@ -1040,14 +1041,14 @@ struct ProfileView: View {
 
     private func detailsCard(user: User) -> some View {
         VStack(spacing: 16) {
-            detailRow(icon: "person.fill", label: "Gender", value: user.gender)
+            detailRow(icon: "gamecontroller.fill", label: "Play Style", value: user.playStyle)
             Divider()
-            detailRow(icon: "heart.circle.fill", label: "Looking for", value: user.lookingFor)
+            detailRow(icon: "person.2.fill", label: "Looking for", value: user.lookingFor.joined(separator: ", "))
 
-            // Height
-            if let height = user.height {
+            // Skill Level
+            if !user.skillLevel.isEmpty {
                 Divider()
-                detailRow(icon: "ruler", label: "Height", value: "\(height) cm (\(heightToFeetInches(height)))")
+                detailRow(icon: "star.fill", label: "Skill Level", value: user.skillLevel)
             }
 
             // Education
@@ -1078,59 +1079,43 @@ struct ProfileView: View {
         .padding(.horizontal, 20)
     }
 
-    // MARK: - Lifestyle Card
+    // MARK: - Gaming Preferences Card
 
     @ViewBuilder
     private func lifestyleCard(user: User) -> some View {
-        let hasLifestyle = (user.smoking != nil && user.smoking != "Prefer not to say") ||
-                           (user.drinking != nil && user.drinking != "Prefer not to say") ||
-                           (user.exercise != nil && user.exercise != "Prefer not to say") ||
-                           (user.diet != nil && user.diet != "Prefer not to say") ||
-                           (user.pets != nil && user.pets != "Prefer not to say")
+        let hasGamingPrefs = !user.voiceChatPreference.isEmpty ||
+                             !user.gameGenres.isEmpty ||
+                             user.gamingStats.weeklyHours != nil
 
-        if hasLifestyle {
+        if hasGamingPrefs {
             VStack(alignment: .leading, spacing: 16) {
                 HStack(spacing: 8) {
-                    Image(systemName: "leaf.fill")
+                    Image(systemName: "headphones")
                         .font(.title3)
                         .foregroundStyle(
                             LinearGradient(
-                                colors: [.green, .mint],
+                                colors: [.purple, .pink],
                                 startPoint: .topLeading,
                                 endPoint: .bottomTrailing
                             )
                         )
 
-                    Text("Lifestyle")
+                    Text("Gaming Preferences")
                         .font(.title3.weight(.semibold))
                         .foregroundColor(.primary)
                 }
 
                 VStack(spacing: 12) {
-                    if let smoking = user.smoking, smoking != "Prefer not to say" {
-                        detailRow(icon: "smoke", label: "Smoking", value: smoking)
+                    if !user.voiceChatPreference.isEmpty {
+                        detailRow(icon: "mic.fill", label: "Voice Chat", value: user.voiceChatPreference)
                     }
-                    if let drinking = user.drinking, drinking != "Prefer not to say" {
-                        if user.smoking != nil && user.smoking != "Prefer not to say" { Divider() }
-                        detailRow(icon: "wineglass", label: "Drinking", value: drinking)
+                    if let weeklyHours = user.gamingStats.weeklyHours {
+                        Divider()
+                        detailRow(icon: "clock.fill", label: "Weekly Hours", value: "\(weeklyHours) hrs/week")
                     }
-                    if let exercise = user.exercise, exercise != "Prefer not to say" {
-                        if (user.smoking != nil && user.smoking != "Prefer not to say") ||
-                           (user.drinking != nil && user.drinking != "Prefer not to say") { Divider() }
-                        detailRow(icon: "figure.run", label: "Exercise", value: exercise)
-                    }
-                    if let diet = user.diet, diet != "Prefer not to say" {
-                        if (user.smoking != nil && user.smoking != "Prefer not to say") ||
-                           (user.drinking != nil && user.drinking != "Prefer not to say") ||
-                           (user.exercise != nil && user.exercise != "Prefer not to say") { Divider() }
-                        detailRow(icon: "fork.knife", label: "Diet", value: diet)
-                    }
-                    if let pets = user.pets, pets != "Prefer not to say" {
-                        if (user.smoking != nil && user.smoking != "Prefer not to say") ||
-                           (user.drinking != nil && user.drinking != "Prefer not to say") ||
-                           (user.exercise != nil && user.exercise != "Prefer not to say") ||
-                           (user.diet != nil && user.diet != "Prefer not to say") { Divider() }
-                        detailRow(icon: "pawprint.fill", label: "Pets", value: pets)
+                    if !user.gameGenres.isEmpty {
+                        Divider()
+                        detailRow(icon: "folder.fill", label: "Genres", value: user.gameGenres.prefix(3).joined(separator: ", "))
                     }
                 }
             }
@@ -1380,18 +1365,6 @@ struct ProfileView: View {
 
             VStack(spacing: 12) {
                 HStack {
-                    Text("Age range")
-                        .font(.subheadline)
-                        .foregroundColor(.secondary)
-                    Spacer()
-                    Text("\(user.ageRangeMin) - \(user.ageRangeMax)")
-                        .font(.subheadline)
-                        .fontWeight(.semibold)
-                }
-
-                Divider()
-
-                HStack {
                     Text("Max distance")
                         .font(.subheadline)
                         .foregroundColor(.secondary)
@@ -1421,11 +1394,11 @@ struct ProfileView: View {
                     colors: [.orange, .red]
                 )
 
-                if user.matchCount >= 10 {
+                if accurateMatchCount >= 10 {
                     achievementBadge(
                         icon: "heart.fill",
                         title: "Popular",
-                        subtitle: "\(user.matchCount) matches",
+                        subtitle: "\(accurateMatchCount) connections",
                         colors: [.pink, .purple]
                     )
                 }
@@ -1689,11 +1662,11 @@ struct ProfileView: View {
             Logger.shared.info("Accurate stats loaded - Matches: \(stats.matchCount), Likes: \(stats.likesReceived), Views: \(stats.profileViews)", category: .general)
         } catch {
             Logger.shared.error("Failed to load accurate stats", category: .general, error: error)
-            // Fall back to user's stored counts on error
+            // Fall back to default values on error
             await MainActor.run {
                 if let user = authService.currentUser {
-                    accurateMatchCount = user.matchCount
-                    accurateLikesReceived = user.likesReceived
+                    accurateMatchCount = 0
+                    accurateLikesReceived = 0
                     accurateProfileViews = user.profileViews
                 }
                 isLoadingStats = false
