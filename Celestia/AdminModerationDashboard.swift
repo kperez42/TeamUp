@@ -22,7 +22,7 @@ struct AdminModerationDashboard: View {
         ("Reports", "exclamationmark.triangle.fill", .orange),
         ("Appeals", "envelope.open.fill", .cyan),
         ("Suspicious", "eye.trianglebadge.exclamationmark", .red),
-        ("ID Review", "person.text.rectangle", .purple),
+        ("ID Review", "person.text.rectangle", .indigo),
         ("Stats", "chart.bar.fill", .green)
     ]
 
@@ -103,7 +103,7 @@ struct AdminModerationDashboard: View {
                     RoundedRectangle(cornerRadius: 12)
                         .fill(
                             LinearGradient(
-                                colors: [.purple.opacity(0.6), .indigo.opacity(0.6)],
+                                colors: [.green.opacity(0.6), .cyan.opacity(0.6)],
                                 startPoint: .topLeading,
                                 endPoint: .bottomTrailing
                             )
@@ -114,7 +114,7 @@ struct AdminModerationDashboard: View {
                     RoundedRectangle(cornerRadius: 12)
                         .fill(
                             LinearGradient(
-                                colors: [.purple, .indigo],
+                                colors: [.green, .cyan],
                                 startPoint: .topLeading,
                                 endPoint: .bottomTrailing
                             )
