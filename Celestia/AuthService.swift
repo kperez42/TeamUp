@@ -240,7 +240,7 @@ class AuthService: ObservableObject, AuthServiceProtocol {
     }
 
     @MainActor
-    func createUser(withEmail email: String, password: String, fullName: String, gamerTag: String, bio: String, location: String, country: String, platforms: [String], referralCode: String = "", photos: [UIImage] = []) async throws {
+    func createUser(withEmail email: String, password: String, fullName: String, age: Int = 18, gender: String = "", lookingFor: String = "Everyone", location: String, country: String, referralCode: String = "", photos: [UIImage] = []) async throws {
         isLoading = true
         errorMessage = nil
 
@@ -248,14 +248,13 @@ class AuthService: ObservableObject, AuthServiceProtocol {
         let sanitizedEmail = InputSanitizer.email(email)
         let sanitizedPassword = InputSanitizer.basic(password)
         let sanitizedFullName = InputSanitizer.strict(fullName)
-        let sanitizedGamerTag = InputSanitizer.strict(gamerTag)
 
         // REFACTORED: Use ValidationHelper for comprehensive sign-up validation
         let signUpValidation = ValidationHelper.validateSignUp(
             email: sanitizedEmail,
             password: sanitizedPassword,
             name: sanitizedFullName,
-            age: 18 // Gaming app doesn't require age, use default
+            age: age
         )
 
         guard signUpValidation.isValid else {
@@ -287,18 +286,19 @@ class AuthService: ObservableObject, AuthServiceProtocol {
             // SECURITY FIX: Never log UIDs
             Logger.shared.auth("Firebase Auth user created successfully", level: .info)
 
-            // Step 2: Create User object with gaming-focused fields
+            // Step 2: Create User object with dating and gaming fields
             var user = User(
                 id: result.user.uid,
                 email: sanitizedEmail,
                 fullName: sanitizedFullName,
-                gamerTag: sanitizedGamerTag,
-                bio: bio,
+                age: age,
+                gender: gender,
+                showMeGender: lookingFor,
                 location: location,
                 country: country,
                 photos: [],
                 profileImageURL: "",
-                platforms: platforms,
+                platforms: [],
                 favoriteGames: [],
                 gameGenres: [],
                 playStyle: PlayStyle.casual.rawValue,

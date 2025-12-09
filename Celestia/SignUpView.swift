@@ -1867,7 +1867,7 @@ struct SignUpView: View {
         name = user.fullName
         age = String(user.age)
         gender = user.gender
-        lookingFor = user.lookingFor
+        lookingFor = user.showMeGender
 
         // Location
         location = user.location
@@ -2007,7 +2007,7 @@ struct SignUpView: View {
             user.fullName = InputSanitizer.strict(name)
             user.age = Int(age) ?? user.age
             user.gender = gender
-            user.lookingFor = lookingFor
+            user.showMeGender = lookingFor
 
             // Update location
             user.location = InputSanitizer.standard(location)

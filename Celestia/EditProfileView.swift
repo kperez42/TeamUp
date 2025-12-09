@@ -146,7 +146,7 @@ struct EditProfileView: View {
         _location = State(initialValue: user?.location ?? "")
         _country = State(initialValue: user?.country ?? "")
         _gender = State(initialValue: user?.gender ?? "Other")
-        _lookingFor = State(initialValue: user?.lookingFor ?? "Everyone")
+        _lookingFor = State(initialValue: user?.showMeGender ?? "Everyone")
         _languages = State(initialValue: user?.languages ?? [])
         _interests = State(initialValue: user?.interests ?? [])
         _prompts = State(initialValue: user?.prompts ?? [])
@@ -2305,7 +2305,7 @@ struct EditProfileView: View {
                 user.location = InputSanitizer.standard(location)
                 user.country = InputSanitizer.basic(country)
                 user.gender = gender
-                user.lookingFor = lookingFor
+                user.showMeGender = lookingFor
                 user.languages = languages
                 user.interests = interests
                 user.prompts = prompts

@@ -236,7 +236,7 @@ struct FilterView: View {
 
             do {
                 // Update user's preferences in their profile
-                currentUser.lookingFor = lookingFor
+                currentUser.showMeGender = lookingFor
                 currentUser.ageRangeMin = ageRangeMin
                 currentUser.ageRangeMax = ageRangeMax
 
