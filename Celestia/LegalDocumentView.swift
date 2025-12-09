@@ -168,7 +168,7 @@ extension LegalDocumentView {
 
             LegalSection(title: "How We Use Your Information") {
                 VStack(alignment: .leading, spacing: 8) {
-                    SimpleBulletPoint("To provide and maintain our dating services")
+                    SimpleBulletPoint("To provide and maintain our gaming teammate services")
                     SimpleBulletPoint("To match you with other users based on your preferences")
                     SimpleBulletPoint("To process transactions and send related information")
                     SimpleBulletPoint("To send you technical notices and support messages")
@@ -234,7 +234,7 @@ extension LegalDocumentView {
                 VStack(alignment: .leading, spacing: 8) {
                     Text("We process your personal data under the following legal bases:")
                         .font(.subheadline)
-                    SimpleBulletPoint("Contract: To provide our dating services as agreed in our Terms of Service")
+                    SimpleBulletPoint("Contract: To provide our gaming teammate services as agreed in our Terms of Service")
                     SimpleBulletPoint("Consent: For marketing communications and optional features")
                     SimpleBulletPoint("Legitimate Interests: For fraud prevention, security, and service improvement")
                     SimpleBulletPoint("Legal Obligation: To comply with applicable laws and regulations")
@@ -467,7 +467,7 @@ extension LegalDocumentView {
                         .fontWeight(.semibold)
                         .foregroundColor(.red)
 
-                    SimpleBulletPoint("Online dating involves inherent risks including meeting strangers")
+                    SimpleBulletPoint("Online gaming communities involve inherent risks including meeting strangers")
                     SimpleBulletPoint("You are solely responsible for your interactions with other users")
                     SimpleBulletPoint("TeamUp does not conduct criminal background checks on users")
                     SimpleBulletPoint("We cannot guarantee the identity, intentions, or conduct of any user")
@@ -863,7 +863,7 @@ extension LegalDocumentView {
     private var safetyTipsContent: some View {
         VStack(alignment: .leading, spacing: 20) {
             LegalSection(title: "Your Safety Matters") {
-                Text("While we work hard to keep TeamUp safe, online dating requires caution. These tips will help protect you while meeting new people.")
+                Text("While we work hard to keep TeamUp safe, online gaming communities require caution. These tips will help protect you while meeting new teammates.")
             }
 
             LegalSection(title: "Protect Your Personal Information") {
