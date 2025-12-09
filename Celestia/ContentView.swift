@@ -166,7 +166,9 @@ struct ContentView: View {
         // 4. Rejected (needs fixes) - user must fix issues and request re-review
         isProfileRejected = isAuthenticated && !isBanned && !isSuspended && !isProfileFlagged && profileStatus == "rejected"
         // 5. Pending (awaiting approval) - user waits for admin review
-        isProfilePending = isAuthenticated && !isBanned && !isSuspended && !isProfileFlagged && !isProfileRejected && profileStatus == "pending"
+        // BYPASS: Admins or users with bypassVerification=true skip pending status
+        let canBypassVerification = authService.currentUser?.isAdmin == true || authService.currentUser?.bypassVerification == true
+        isProfilePending = isAuthenticated && !isBanned && !isSuspended && !isProfileFlagged && !isProfileRejected && profileStatus == "pending" && !canBypassVerification
 
         // Detect approval transition: was pending/rejected/flagged, now approved/active
         let wasWaitingForApproval = previousProfileStatus == "pending" || previousProfileStatus == "rejected" || previousProfileStatus == "flagged"
