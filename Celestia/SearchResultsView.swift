@@ -215,7 +215,7 @@ struct ProfileCard: View {
         Rectangle()
             .fill(
                 LinearGradient(
-                    colors: [.blue.opacity(0.6), .purple.opacity(0.6)],
+                    colors: [.green.opacity(0.6), .cyan.opacity(0.6)],
                     startPoint: .topLeading,
                     endPoint: .bottomTrailing
                 )

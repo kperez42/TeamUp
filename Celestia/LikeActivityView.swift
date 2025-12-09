@@ -200,8 +200,8 @@ struct LikeActivity: Identifiable {
 
         var color: Color {
             switch self {
-            case .received: return .pink
-            case .sent: return .purple
+            case .received: return .cyan
+            case .sent: return .green
             case .mutual: return .orange
             case .matched: return .green
             }
