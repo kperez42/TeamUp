@@ -803,7 +803,7 @@ extension LegalDocumentView {
                     SimpleBulletPoint("Catfishing or identity fraud")
                     SimpleBulletPoint("Soliciting money or promoting businesses")
                     SimpleBulletPoint("Attempting to meet minors")
-                    SimpleBulletPoint("Using the platform while in a committed relationship (without partner's knowledge)")
+                    SimpleBulletPoint("Using fake accounts or impersonating others")
                     SimpleBulletPoint("Mass messaging or spamming users")
                     SimpleBulletPoint("Sharing others' private information")
                 }
