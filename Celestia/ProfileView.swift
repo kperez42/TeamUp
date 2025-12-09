@@ -144,12 +144,12 @@ struct ProfileView: View {
 
                                     // Platforms
                                     if !user.platforms.isEmpty {
-                                        platformsCard(platforms: user.platforms)
+                                        languagesCard(languages: user.platforms)
                                     }
 
                                     // Favorite Games
                                     if !user.favoriteGames.isEmpty {
-                                        gamesCard(games: user.favoriteGames)
+                                        interestsCard(interests: user.favoriteGames.map { $0.title })
                                     }
                                 }
                                 .padding(.top, 8)
@@ -1051,22 +1051,10 @@ struct ProfileView: View {
                 detailRow(icon: "star.fill", label: "Skill Level", value: user.skillLevel)
             }
 
-            // Education
-            if let education = user.educationLevel, education != "Prefer not to say" {
+            // Voice Chat Preference
+            if !user.voiceChatPreference.isEmpty {
                 Divider()
-                detailRow(icon: "graduationcap.fill", label: "Education", value: education)
-            }
-
-            // Relationship goal
-            if let goal = user.relationshipGoal, goal != "Prefer not to say" {
-                Divider()
-                detailRow(icon: "heart.text.square", label: "Relationship goal", value: goal)
-            }
-
-            // Religion
-            if let religion = user.religion, religion != "Prefer not to say" {
-                Divider()
-                detailRow(icon: "sparkles", label: "Religion", value: religion)
+                detailRow(icon: "mic.fill", label: "Voice Chat", value: user.voiceChatPreference)
             }
 
             Divider()
