@@ -240,7 +240,7 @@ class AuthService: ObservableObject, AuthServiceProtocol {
     }
 
     @MainActor
-    func createUser(withEmail email: String, password: String, fullName: String, age: Int, gender: String, lookingFor: String, location: String, country: String, referralCode: String = "", photos: [UIImage] = []) async throws {
+    func createUser(withEmail email: String, password: String, fullName: String, gamerTag: String, bio: String, location: String, country: String, platforms: [String], referralCode: String = "", photos: [UIImage] = []) async throws {
         isLoading = true
         errorMessage = nil
 
@@ -248,13 +248,14 @@ class AuthService: ObservableObject, AuthServiceProtocol {
         let sanitizedEmail = InputSanitizer.email(email)
         let sanitizedPassword = InputSanitizer.basic(password)
         let sanitizedFullName = InputSanitizer.strict(fullName)
+        let sanitizedGamerTag = InputSanitizer.strict(gamerTag)
 
         // REFACTORED: Use ValidationHelper for comprehensive sign-up validation
         let signUpValidation = ValidationHelper.validateSignUp(
             email: sanitizedEmail,
             password: sanitizedPassword,
             name: sanitizedFullName,
-            age: age
+            age: 18 // Gaming app doesn't require age, use default
         )
 
         guard signUpValidation.isValid else {
@@ -267,8 +268,6 @@ class AuthService: ObservableObject, AuthServiceProtocol {
                     throw CelestiaError.invalidCredentials
                 } else if errorMsg.contains("password") || errorMsg.contains("Password") {
                     throw CelestiaError.weakPassword
-                } else if errorMsg.contains("18") {
-                    throw CelestiaError.ageRestriction
                 } else if errorMsg.contains("Name") || errorMsg.contains("name") {
                     throw CelestiaError.invalidProfileData
                 } else {
@@ -288,27 +287,26 @@ class AuthService: ObservableObject, AuthServiceProtocol {
             // SECURITY FIX: Never log UIDs
             Logger.shared.auth("Firebase Auth user created successfully", level: .info)
 
-            // Step 2: Create User object with all required fields
+            // Step 2: Create User object with gaming-focused fields
             var user = User(
                 id: result.user.uid,
                 email: sanitizedEmail,
                 fullName: sanitizedFullName,
-                age: age,
-                gender: gender,
-                lookingFor: lookingFor,
-                bio: "",
+                gamerTag: sanitizedGamerTag,
+                bio: bio,
                 location: location,
                 country: country,
-                languages: [],
-                interests: [],
                 photos: [],
                 profileImageURL: "",
-                timestamp: Date(),
+                platforms: platforms,
+                favoriteGames: [],
+                gameGenres: [],
+                playStyle: PlayStyle.casual.rawValue,
+                skillLevel: SkillLevel.beginner.rawValue,
+                voiceChatPreference: VoiceChatPreference.noPreference.rawValue,
+                lookingFor: [LookingForType.anyGamers.rawValue],
                 isPremium: false,
-                lastActive: Date(),
-                ageRangeMin: 18,
-                ageRangeMax: 99,
-                maxDistance: 100
+                lastActive: Date()
             )
 
             // Set referral code if provided
@@ -594,27 +592,26 @@ class AuthService: ObservableObject, AuthServiceProtocol {
             return
         }
         
-        // Create a minimal user document with defaults
+        // Create a minimal user document with gaming-focused defaults
         let user = User(
             id: uid,
             email: firebaseUser.email ?? "unknown@email.com",
             fullName: firebaseUser.displayName ?? "User",
-            age: 18,
-            gender: "Other",
-            lookingFor: "Everyone",
+            gamerTag: "",
             bio: "",
             location: "Unknown",
             country: "Unknown",
-            languages: [],
-            interests: [],
             photos: [],
             profileImageURL: "",
-            timestamp: Date(),
+            platforms: [],
+            favoriteGames: [],
+            gameGenres: [],
+            playStyle: PlayStyle.casual.rawValue,
+            skillLevel: SkillLevel.beginner.rawValue,
+            voiceChatPreference: VoiceChatPreference.noPreference.rawValue,
+            lookingFor: [LookingForType.anyGamers.rawValue],
             isPremium: false,
-            lastActive: Date(),
-            ageRangeMin: 18,
-            ageRangeMax: 99,
-            maxDistance: 100
+            lastActive: Date()
         )
         
         do {
