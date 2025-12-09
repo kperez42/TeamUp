@@ -39,7 +39,7 @@ struct LazyUserCardStack: View {
                     .offset(cardIndex == 0 ? dragOffset : .zero)
                     .rotationEffect(.degrees(cardIndex == 0 ? Double(dragOffset.width / 20) : 0))
                     .contentShape(Rectangle())
-                    .accessibilityLabel(cardIndex == 0 ? "\(cardData.user.fullName), \(cardData.user.age) years old" : "")
+                    .accessibilityLabel(cardIndex == 0 ? "\(cardData.user.gamerTag.isEmpty ? cardData.user.fullName : cardData.user.gamerTag), \(cardData.user.skillLevel)" : "")
                     .accessibilityHint(cardIndex == 0 ? "Swipe right to like, left to pass, or tap for full profile" : "")
                     .onTapGesture {
                         if cardIndex == 0 {
@@ -134,40 +134,37 @@ struct CardData: Identifiable {
             User(
                 email: "test1@example.com",
                 fullName: "Sofia Rodriguez",
-                age: 25,
-                gender: "Female",
-                lookingFor: "Male",
-                bio: "Love to travel and explore new cultures.",
+                gamerTag: "SofiaGamer",
+                bio: "Love competitive FPS and co-op games.",
                 location: "Barcelona",
                 country: "Spain",
-                languages: ["Spanish", "English"],
-                interests: ["Travel", "Photography"],
+                platforms: ["PC", "PlayStation"],
+                skillLevel: SkillLevel.advanced.rawValue,
+                playStyle: PlayStyle.competitive.rawValue,
                 profileImageURL: ""
             ),
             User(
                 email: "test2@example.com",
                 fullName: "Emma Thompson",
-                age: 28,
-                gender: "Female",
-                lookingFor: "Male",
-                bio: "Artist and coffee enthusiast.",
+                gamerTag: "EmmaPlays",
+                bio: "Casual gamer and coffee enthusiast.",
                 location: "London",
                 country: "UK",
-                languages: ["English"],
-                interests: ["Art", "Coffee"],
+                platforms: ["Nintendo Switch", "PC"],
+                skillLevel: SkillLevel.intermediate.rawValue,
+                playStyle: PlayStyle.casual.rawValue,
                 profileImageURL: ""
             ),
             User(
                 email: "test3@example.com",
                 fullName: "Maria Garcia",
-                age: 26,
-                gender: "Female",
-                lookingFor: "Male",
-                bio: "Dancer and music lover.",
+                gamerTag: "MariaMaster",
+                bio: "Rhythm games and RPG lover.",
                 location: "Madrid",
                 country: "Spain",
-                languages: ["Spanish", "English"],
-                interests: ["Dancing", "Music"],
+                platforms: ["PlayStation", "PC"],
+                skillLevel: SkillLevel.intermediate.rawValue,
+                playStyle: PlayStyle.social.rawValue,
                 profileImageURL: ""
             )
         ],

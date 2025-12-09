@@ -1686,11 +1686,13 @@ struct ChatView: View {
             otherUser: User(
                 email: "test@example.com",
                 fullName: "Test User",
-                age: 25,
-                gender: "Female",
-                lookingFor: "Male",
+                gamerTag: "TestGamer",
+                bio: "Casual gamer looking for friends",
                 location: "New York",
-                country: "USA"
+                country: "USA",
+                platforms: ["PC", "Xbox"],
+                skillLevel: SkillLevel.intermediate.rawValue,
+                playStyle: PlayStyle.casual.rawValue
             )
         )
         .environmentObject(AuthService.shared)

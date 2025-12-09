@@ -23,7 +23,7 @@ class SearchManager: ObservableObject {
     // MARK: - Published Properties
 
     @Published var isSearching: Bool = false
-    @Published var searchResults: [UserProfile] = []
+    @Published var searchResults: [User] = []
     @Published var currentFilter: SearchFilter = SearchFilter()
     @Published var totalResultsCount: Int = 0
     @Published var errorMessage: String?
@@ -129,31 +129,19 @@ class SearchManager: ObservableObject {
 
     // MARK: - Private Methods
 
-    private func performSearch(filter: SearchFilter, startAfter: DocumentSnapshot?) async throws -> [UserProfile] {
+    private func performSearch(filter: SearchFilter, startAfter: DocumentSnapshot?) async throws -> [User] {
         // PERFORMANCE FIX: Changed from 100 to 20 (5x less data transferred)
         var query = firestore.collection("users")
             .limit(to: pageSize)
 
-        // Apply age filter
-        query = query
-            .whereField("age", isGreaterThanOrEqualTo: filter.ageRange.min)
-            .whereField("age", isLessThanOrEqualTo: filter.ageRange.max)
-
-        // Apply gender filter
-        switch filter.showMe {
-        case .men:
-            query = query.whereField("gender", isEqualTo: "Male")
-        case .women:
-            query = query.whereField("gender", isEqualTo: "Female")
-        case .nonBinary:
-            query = query.whereField("gender", isEqualTo: "Non-Binary")
-        case .everyone:
-            break // No filter
-        }
-
         // Apply verified filter
         if filter.verifiedOnly {
             query = query.whereField("isVerified", isEqualTo: true)
+        }
+
+        // Apply region filter
+        if filter.region != .any {
+            query = query.whereField("region", isEqualTo: filter.region.rawValue)
         }
 
         // PERFORMANCE: Add pagination support
@@ -167,127 +155,86 @@ class SearchManager: ObservableObject {
         // PERFORMANCE: Store last document for pagination
         lastDocument = snapshot.documents.last
 
-        // Convert to UserProfile objects
-        var profiles: [UserProfile] = []
+        // Convert to User objects
+        var users: [User] = []
         for document in snapshot.documents {
-            if let profile = UserProfile(document: document) {
+            if let user = try? document.data(as: User.self) {
                 // Apply additional client-side filters
-                if matchesFilter(profile: profile, filter: filter) {
-                    profiles.append(profile)
+                if matchesFilter(user: user, filter: filter) {
+                    users.append(user)
                 }
             }
         }
 
-        return profiles
+        return users
     }
 
-    private func matchesFilter(profile: UserProfile, filter: SearchFilter) -> Bool {
-        // Height filter
-        if let heightRange = filter.heightRange,
-           let profileHeight = profile.heightInInches {
-            if profileHeight < heightRange.minInches || profileHeight > heightRange.maxInches {
+    private func matchesFilter(user: User, filter: SearchFilter) -> Bool {
+        // Platforms filter
+        if !filter.platforms.isEmpty {
+            let userPlatforms = Set(user.platforms.map { $0.lowercased() })
+            let filterPlatforms = Set(filter.platforms.map { $0.rawValue.lowercased() })
+            if userPlatforms.isDisjoint(with: filterPlatforms) {
                 return false
             }
         }
 
-        // Education filter
-        if !filter.educationLevels.isEmpty,
-           let profileEducation = profile.education {
-            if !filter.educationLevels.contains(profileEducation) {
+        // Skill level filter
+        if !filter.skillLevels.isEmpty {
+            let hasMatchingSkill = filter.skillLevels.contains { skillFilter in
+                user.skillLevel.lowercased() == skillFilter.rawValue.lowercased()
+            }
+            if !hasMatchingSkill {
                 return false
             }
         }
 
-        // Relationship goals filter
-        if !filter.relationshipGoals.isEmpty,
-           let profileGoal = profile.relationshipGoal {
-            if !filter.relationshipGoals.contains(profileGoal) {
+        // Play style filter
+        if !filter.playStyles.isEmpty {
+            let hasMatchingStyle = filter.playStyles.contains { styleFilter in
+                user.playStyle.lowercased() == styleFilter.rawValue.lowercased()
+            }
+            if !hasMatchingStyle {
+                return false
+            }
+        }
+
+        // Voice chat filter
+        if filter.voiceChat != .any {
+            let userVoiceChat = user.voiceChatPreference.lowercased()
+            switch filter.voiceChat {
+            case .required:
+                if userVoiceChat != VoiceChatPreference.always.rawValue.lowercased() {
+                    return false
+                }
+            case .preferred:
+                if userVoiceChat == VoiceChatPreference.textOnly.rawValue.lowercased() {
+                    return false
+                }
+            case .noVoice:
+                if userVoiceChat != VoiceChatPreference.textOnly.rawValue.lowercased() {
+                    return false
+                }
+            default:
+                break
+            }
+        }
+
+        // Games filter
+        if !filter.games.isEmpty {
+            let userGames = Set(user.favoriteGames.map { $0.title.lowercased() })
+            let filterGames = Set(filter.games.map { $0.lowercased() })
+            if userGames.isDisjoint(with: filterGames) {
                 return false
             }
         }
 
         // Photos filter
-        if filter.withPhotosOnly && profile.photos.isEmpty {
+        if filter.withPhotosOnly && user.photos.isEmpty && user.profileImageURL.isEmpty {
             return false
         }
 
         return true
-    }
-}
-
-// MARK: - User Profile Model
-
-struct UserProfile: Identifiable, Codable {
-    let id: String
-    let name: String
-    let age: Int
-    let bio: String
-    let photos: [String]
-    let isVerified: Bool
-    let distance: Double? // in miles
-    let heightInInches: Int?
-    let education: EducationLevel?
-    let occupation: String?
-    let relationshipGoal: RelationshipGoal?
-    let zodiacSign: ZodiacSign?
-    let ethnicity: Ethnicity?
-    let religion: Religion?
-
-    var distanceString: String {
-        if let distance = distance {
-            return String(format: "%.1f miles away", distance)
-        }
-        return "Distance unknown"
-    }
-
-    var heightFormatted: String? {
-        guard let heightInInches = heightInInches else { return nil }
-        return HeightRange.formatHeight(heightInInches)
-    }
-
-    init?(document: DocumentSnapshot) {
-        guard let data = document.data() else { return nil }
-
-        self.id = document.documentID
-        self.name = data["name"] as? String ?? "Unknown"
-        self.age = data["age"] as? Int ?? 18
-        self.bio = data["bio"] as? String ?? ""
-        self.photos = data["photos"] as? [String] ?? []
-        self.isVerified = data["isVerified"] as? Bool ?? false
-        self.distance = data["distance"] as? Double
-        self.heightInInches = data["heightInInches"] as? Int
-        self.occupation = data["occupation"] as? String
-
-        // Decode enum values
-        if let educationRaw = data["education"] as? String {
-            self.education = EducationLevel(rawValue: educationRaw)
-        } else {
-            self.education = nil
-        }
-
-        if let goalRaw = data["relationshipGoal"] as? String {
-            self.relationshipGoal = RelationshipGoal(rawValue: goalRaw)
-        } else {
-            self.relationshipGoal = nil
-        }
-
-        if let zodiacRaw = data["zodiacSign"] as? String {
-            self.zodiacSign = ZodiacSign(rawValue: zodiacRaw)
-        } else {
-            self.zodiacSign = nil
-        }
-
-        if let ethnicityRaw = data["ethnicity"] as? String {
-            self.ethnicity = Ethnicity(rawValue: ethnicityRaw)
-        } else {
-            self.ethnicity = nil
-        }
-
-        if let religionRaw = data["religion"] as? String {
-            self.religion = Religion(rawValue: religionRaw)
-        } else {
-            self.religion = nil
-        }
     }
 }
 

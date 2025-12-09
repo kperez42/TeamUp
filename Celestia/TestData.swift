@@ -20,22 +20,28 @@ struct TestData {
             id: "test_user_1",
             email: "sarah.johnson@test.com",
             fullName: "Sarah Johnson",
-            age: 24,
-            gender: "Female",
-            lookingFor: "Male",
-            bio: "Adventure seeker 🏔️ | Coffee enthusiast ☕ | Love hiking, photography, and spontaneous road trips. Always up for trying new restaurants!",
+            gamerTag: "SarahPlays",
+            bio: "Competitive FPS player 🎯 | Diamond in Valorant | Always looking for ranked teammates!",
             location: "San Francisco",
             country: "USA",
             latitude: 37.7749,
             longitude: -122.4194,
-            languages: ["English", "Spanish"],
-            interests: ["Hiking", "Photography", "Coffee", "Travel", "Food"],
             photos: [
                 "https://picsum.photos/seed/sarah1/400/500",
                 "https://picsum.photos/seed/sarah2/400/500",
                 "https://picsum.photos/seed/sarah3/400/500"
             ],
             profileImageURL: "https://picsum.photos/seed/sarah1/400/500",
+            platforms: ["PC", "PlayStation"],
+            favoriteGames: [
+                FavoriteGame(title: "Valorant", platform: "PC", rank: "Diamond 2"),
+                FavoriteGame(title: "Apex Legends", platform: "PC", rank: "Masters")
+            ],
+            gameGenres: ["FPS", "Battle Royale"],
+            playStyle: PlayStyle.competitive.rawValue,
+            skillLevel: SkillLevel.advanced.rawValue,
+            voiceChatPreference: VoiceChatPreference.always.rawValue,
+            lookingFor: [LookingForType.rankedTeammates.rawValue, LookingForType.competitiveTeam.rawValue],
             isPremium: false,
             isVerified: true
         ),
@@ -44,22 +50,29 @@ struct TestData {
             id: "test_user_2",
             email: "mike.chen@test.com",
             fullName: "Mike Chen",
-            age: 28,
-            gender: "Male",
-            lookingFor: "Female",
-            bio: "Tech entrepreneur 💻 | Fitness junkie 💪 | Building the future one line of code at a time. Love cooking, gaming, and good conversations.",
+            gamerTag: "MikeGaming",
+            bio: "Casual gamer 🎮 | Love co-op games and making new friends | Stream on weekends!",
             location: "San Francisco",
             country: "USA",
             latitude: 37.7849,
             longitude: -122.4094,
-            languages: ["English", "Mandarin"],
-            interests: ["Technology", "Fitness", "Cooking", "Gaming", "Startups"],
             photos: [
                 "https://picsum.photos/seed/mike1/400/500",
                 "https://picsum.photos/seed/mike2/400/500",
                 "https://picsum.photos/seed/mike3/400/500"
             ],
             profileImageURL: "https://picsum.photos/seed/mike1/400/500",
+            platforms: ["PC", "Nintendo Switch"],
+            favoriteGames: [
+                FavoriteGame(title: "Stardew Valley", platform: "PC"),
+                FavoriteGame(title: "Animal Crossing", platform: "Nintendo Switch"),
+                FavoriteGame(title: "It Takes Two", platform: "PC")
+            ],
+            gameGenres: ["Co-op", "Simulation", "Indie"],
+            playStyle: PlayStyle.casual.rawValue,
+            skillLevel: SkillLevel.intermediate.rawValue,
+            voiceChatPreference: VoiceChatPreference.preferred.rawValue,
+            lookingFor: [LookingForType.casualCoOp.rawValue, LookingForType.streamingPartner.rawValue],
             isPremium: true,
             isVerified: true
         ),
@@ -68,16 +81,12 @@ struct TestData {
             id: "test_user_3",
             email: "emma.wilson@test.com",
             fullName: "Emma Wilson",
-            age: 26,
-            gender: "Female",
-            lookingFor: "Male",
-            bio: "Artist & dreamer 🎨 | Yoga instructor 🧘‍♀️ | Plant mom 🌱 | Looking for someone who appreciates art, nature, and deep conversations under the stars.",
+            gamerTag: "EmmaRPG",
+            bio: "JRPG enthusiast 🗡️ | D&D Dungeon Master | Looking for a tabletop group!",
             location: "Oakland",
             country: "USA",
             latitude: 37.8044,
             longitude: -122.2712,
-            languages: ["English", "French"],
-            interests: ["Art", "Yoga", "Plants", "Meditation", "Music"],
             photos: [
                 "https://picsum.photos/seed/emma1/400/500",
                 "https://picsum.photos/seed/emma2/400/500",
@@ -85,6 +94,17 @@ struct TestData {
                 "https://picsum.photos/seed/emma4/400/500"
             ],
             profileImageURL: "https://picsum.photos/seed/emma1/400/500",
+            platforms: ["PlayStation", "Nintendo Switch"],
+            favoriteGames: [
+                FavoriteGame(title: "Final Fantasy XIV", platform: "PlayStation"),
+                FavoriteGame(title: "Persona 5", platform: "PlayStation"),
+                FavoriteGame(title: "Fire Emblem", platform: "Nintendo Switch")
+            ],
+            gameGenres: ["JRPG", "Strategy", "Tabletop"],
+            playStyle: PlayStyle.social.rawValue,
+            skillLevel: SkillLevel.intermediate.rawValue,
+            voiceChatPreference: VoiceChatPreference.preferred.rawValue,
+            lookingFor: [LookingForType.dndGroup.rawValue, LookingForType.gamingCommunity.rawValue],
             isPremium: false,
             isVerified: false
         ),
@@ -93,16 +113,12 @@ struct TestData {
             id: "test_user_4",
             email: "alex.rodriguez@test.com",
             fullName: "Alex Rodriguez",
-            age: 30,
-            gender: "Male",
-            lookingFor: "Female",
-            bio: "Marketing director by day, DJ by night 🎧 | Music lover | Foodie | Looking for a partner in crime to explore the city's best hidden gems.",
+            gamerTag: "AlexPro",
+            bio: "Esports aspirant 🏆 | Top 500 in Overwatch | Building a competitive team!",
             location: "Berkeley",
             country: "USA",
             latitude: 37.8715,
             longitude: -122.2730,
-            languages: ["English", "Spanish", "Portuguese"],
-            interests: ["Music", "DJing", "Food", "Travel", "Nightlife"],
             photos: [
                 "https://picsum.photos/seed/alex1/400/500",
                 "https://picsum.photos/seed/alex2/400/500",
@@ -111,6 +127,17 @@ struct TestData {
                 "https://picsum.photos/seed/alex5/400/500"
             ],
             profileImageURL: "https://picsum.photos/seed/alex1/400/500",
+            platforms: ["PC"],
+            favoriteGames: [
+                FavoriteGame(title: "Overwatch 2", platform: "PC", rank: "Top 500"),
+                FavoriteGame(title: "League of Legends", platform: "PC", rank: "Grandmaster"),
+                FavoriteGame(title: "Counter-Strike 2", platform: "PC", rank: "Global Elite")
+            ],
+            gameGenres: ["FPS", "MOBA", "Competitive"],
+            playStyle: PlayStyle.competitive.rawValue,
+            skillLevel: SkillLevel.professional.rawValue,
+            voiceChatPreference: VoiceChatPreference.always.rawValue,
+            lookingFor: [LookingForType.esportsTeam.rawValue, LookingForType.competitiveTeam.rawValue],
             isPremium: true,
             isVerified: true
         ),
@@ -119,16 +146,12 @@ struct TestData {
             id: "test_user_5",
             email: "jessica.lee@test.com",
             fullName: "Jessica Lee",
-            age: 27,
-            gender: "Female",
-            lookingFor: "Male",
-            bio: "Doctor saving lives 👩‍⚕️ | Bookworm 📚 | Dog lover 🐕 | When I'm not at the hospital, you'll find me with a good book and my golden retriever.",
+            gamerTag: "JessGames",
+            bio: "Board game collector 🎲 | Love game nights | Always down for Catan or Ticket to Ride!",
             location: "San Francisco",
             country: "USA",
             latitude: 37.7649,
             longitude: -122.4294,
-            languages: ["English", "Korean"],
-            interests: ["Medicine", "Reading", "Dogs", "Volunteering", "Netflix"],
             photos: [
                 "https://picsum.photos/seed/jessica1/400/500",
                 "https://picsum.photos/seed/jessica2/400/500",
@@ -138,6 +161,17 @@ struct TestData {
                 "https://picsum.photos/seed/jessica6/400/500"
             ],
             profileImageURL: "https://picsum.photos/seed/jessica1/400/500",
+            platforms: ["Nintendo Switch", "Mobile"],
+            favoriteGames: [
+                FavoriteGame(title: "Catan Universe", platform: "Mobile"),
+                FavoriteGame(title: "Mario Party", platform: "Nintendo Switch"),
+                FavoriteGame(title: "Jackbox Party Pack", platform: "Nintendo Switch")
+            ],
+            gameGenres: ["Board Games", "Party", "Casual"],
+            playStyle: PlayStyle.social.rawValue,
+            skillLevel: SkillLevel.beginner.rawValue,
+            voiceChatPreference: VoiceChatPreference.optional.rawValue,
+            lookingFor: [LookingForType.boardGameGroup.rawValue, LookingForType.casualCoOp.rawValue],
             isPremium: false,
             isVerified: true
         )
@@ -154,7 +188,7 @@ struct TestData {
                 user2Id: "test_user_1",
                 timestamp: Date().addingTimeInterval(-86400 * 2), // 2 days ago
                 lastMessageTimestamp: Date().addingTimeInterval(-3600 * 2), // 2 hours ago
-                lastMessage: "Sounds great! See you at 7pm 😊",
+                lastMessage: "GG! That was a great match! Same time tomorrow? 🎮",
                 lastMessageSenderId: "test_user_1", // Sarah sent last - RECEIVED
                 unreadCount: ["current_user": 2],
                 isActive: true
@@ -168,7 +202,7 @@ struct TestData {
                 user2Id: "test_user_2",
                 timestamp: Date().addingTimeInterval(-86400 * 5), // 5 days ago
                 lastMessageTimestamp: Date().addingTimeInterval(-3600 * 8), // 8 hours ago
-                lastMessage: "That startup idea sounds awesome! Let's grab coffee and discuss more.",
+                lastMessage: "Hey, want to play some Stardew Valley co-op this weekend?",
                 lastMessageSenderId: "current_user", // You sent last - SENT
                 unreadCount: [:],
                 isActive: true
@@ -182,7 +216,7 @@ struct TestData {
                 user2Id: "test_user_3",
                 timestamp: Date().addingTimeInterval(-86400), // 1 day ago
                 lastMessageTimestamp: Date().addingTimeInterval(-3600 * 5), // 5 hours ago
-                lastMessage: "I'd love to see your artwork! Do you have an Instagram for your art?",
+                lastMessage: "I'd love to join your D&D campaign! What day do you usually play?",
                 lastMessageSenderId: "current_user", // You sent last - SENT
                 unreadCount: [:],
                 isActive: true
@@ -210,7 +244,7 @@ struct TestData {
                 user2Id: "test_user_5",
                 timestamp: Date().addingTimeInterval(-86400 * 3), // 3 days ago
                 lastMessageTimestamp: Date().addingTimeInterval(-60 * 10), // 10 mins ago
-                lastMessage: "Hey! What's your dog's name? I have a golden too! 🐕",
+                lastMessage: "Board game night this Saturday! You in? 🎲",
                 lastMessageSenderId: "test_user_5", // Jessica sent last - RECEIVED
                 unreadCount: ["current_user": 1],
                 isActive: true
@@ -229,7 +263,7 @@ struct TestData {
                     matchId: matchId,
                     senderId: "current_user",
                     receiverId: "test_user_1",
-                    text: "Hey Sarah! Love your hiking photos! What's your favorite trail in the Bay Area?",
+                    text: "Hey Sarah! Saw you're Diamond in Valorant. I'm Plat 3, looking to climb. Want to duo?",
                     timestamp: Date().addingTimeInterval(-86400 * 2),
                     isRead: true
                 ),
@@ -238,7 +272,7 @@ struct TestData {
                     matchId: matchId,
                     senderId: "test_user_1",
                     receiverId: "current_user",
-                    text: "Thanks! 😊 I'd say the Lands End trail is my favorite - the views are incredible!",
+                    text: "Hey! Yeah I'd be down! What agents do you main?",
                     timestamp: Date().addingTimeInterval(-86400 * 2 + 600),
                     isRead: true
                 ),
@@ -247,7 +281,7 @@ struct TestData {
                     matchId: matchId,
                     senderId: "current_user",
                     receiverId: "test_user_1",
-                    text: "Oh I love that one! Have you done the Dipsea Trail?",
+                    text: "I usually play Sova or Omen. Flex between initiator and controller.",
                     timestamp: Date().addingTimeInterval(-86400 * 2 + 1200),
                     isRead: true
                 ),
@@ -256,7 +290,7 @@ struct TestData {
                     matchId: matchId,
                     senderId: "test_user_1",
                     receiverId: "current_user",
-                    text: "Yes! That's on my list for this weekend actually. Want to join? ⛰️",
+                    text: "Perfect! I main Jett and Reyna. We'd have good synergy! Free tonight?",
                     timestamp: Date().addingTimeInterval(-86400 * 2 + 1800),
                     isRead: true
                 ),
@@ -265,7 +299,7 @@ struct TestData {
                     matchId: matchId,
                     senderId: "current_user",
                     receiverId: "test_user_1",
-                    text: "That would be awesome! What time were you thinking?",
+                    text: "Yeah! I can be on around 8pm PST. Send me your Riot ID!",
                     timestamp: Date().addingTimeInterval(-3600 * 3),
                     isRead: true
                 ),
@@ -274,7 +308,7 @@ struct TestData {
                     matchId: matchId,
                     senderId: "test_user_1",
                     receiverId: "current_user",
-                    text: "How about 7am on Saturday? Early start to beat the crowds!",
+                    text: "SarahPlays#NA1 - See you then!",
                     timestamp: Date().addingTimeInterval(-3600 * 2.5),
                     isRead: false
                 ),
@@ -283,7 +317,7 @@ struct TestData {
                     matchId: matchId,
                     senderId: "test_user_1",
                     receiverId: "current_user",
-                    text: "Sounds great! See you at 7pm 😊",
+                    text: "GG! That was a great match! Same time tomorrow? 🎮",
                     timestamp: Date().addingTimeInterval(-3600 * 2),
                     isRead: false
                 )
@@ -296,7 +330,7 @@ struct TestData {
                     matchId: matchId,
                     senderId: "test_user_2",
                     receiverId: "current_user",
-                    text: "Hey! Saw you're into tech too. What are you building?",
+                    text: "Hey! Saw you also play co-op games. What have you been playing lately?",
                     timestamp: Date().addingTimeInterval(-86400 * 5),
                     isRead: true
                 ),
@@ -305,7 +339,7 @@ struct TestData {
                     matchId: matchId,
                     senderId: "current_user",
                     receiverId: "test_user_2",
-                    text: "Working on an AI-powered productivity app! What about you?",
+                    text: "Just finished It Takes Two! Looking for the next co-op adventure.",
                     timestamp: Date().addingTimeInterval(-86400 * 5 + 1800),
                     isRead: true
                 ),
@@ -314,7 +348,7 @@ struct TestData {
                     matchId: matchId,
                     senderId: "test_user_2",
                     receiverId: "current_user",
-                    text: "Nice! I'm building a fintech platform for Gen Z. Been at it for 2 years now.",
+                    text: "Nice! Have you tried Stardew Valley multiplayer? It's so chill.",
                     timestamp: Date().addingTimeInterval(-86400 * 5 + 3600),
                     isRead: true
                 ),
@@ -323,7 +357,7 @@ struct TestData {
                     matchId: matchId,
                     senderId: "current_user",
                     receiverId: "test_user_2",
-                    text: "That startup idea sounds awesome! Let's grab coffee and discuss more.",
+                    text: "Hey, want to play some Stardew Valley co-op this weekend?",
                     timestamp: Date().addingTimeInterval(-3600 * 8),
                     isRead: true
                 )
@@ -336,7 +370,7 @@ struct TestData {
                     matchId: matchId,
                     senderId: "current_user",
                     receiverId: "test_user_3",
-                    text: "Your bio caught my eye! What kind of art do you create?",
+                    text: "Hey Emma! I saw you're a DM. I've been wanting to get into D&D!",
                     timestamp: Date().addingTimeInterval(-86400),
                     isRead: true
                 ),
@@ -345,7 +379,7 @@ struct TestData {
                     matchId: matchId,
                     senderId: "test_user_3",
                     receiverId: "current_user",
-                    text: "Thank you! 🎨 I mostly do abstract paintings and mixed media. How about you, are you into art?",
+                    text: "That's awesome! 🎲 I actually have a beginner-friendly campaign starting next month!",
                     timestamp: Date().addingTimeInterval(-86400 + 3600),
                     isRead: true
                 ),
@@ -354,7 +388,7 @@ struct TestData {
                     matchId: matchId,
                     senderId: "current_user",
                     receiverId: "test_user_3",
-                    text: "I appreciate art but I'm definitely not talented enough to create it haha. More of an admirer!",
+                    text: "That sounds perfect! What edition do you play?",
                     timestamp: Date().addingTimeInterval(-3600 * 6),
                     isRead: true
                 ),
@@ -363,7 +397,7 @@ struct TestData {
                     matchId: matchId,
                     senderId: "current_user",
                     receiverId: "test_user_3",
-                    text: "I'd love to see your artwork! Do you have an Instagram for your art?",
+                    text: "I'd love to join your D&D campaign! What day do you usually play?",
                     timestamp: Date().addingTimeInterval(-3600 * 5),
                     isRead: true
                 )
@@ -376,7 +410,7 @@ struct TestData {
                     matchId: matchId,
                     senderId: "current_user",
                     receiverId: "test_user_4",
-                    text: "Just matched! What kind of music do you spin? 🎵",
+                    text: "Hey! Top 500 in Overwatch is insane! What role do you main?",
                     timestamp: Date().addingTimeInterval(-1800),
                     isRead: true
                 )
@@ -389,7 +423,7 @@ struct TestData {
                     matchId: matchId,
                     senderId: "test_user_5",
                     receiverId: "current_user",
-                    text: "Hi! Thanks for the match 😊",
+                    text: "Hey! Saw you're interested in board games too! 🎲",
                     timestamp: Date().addingTimeInterval(-86400 * 3),
                     isRead: true
                 ),
@@ -398,7 +432,7 @@ struct TestData {
                     matchId: matchId,
                     senderId: "current_user",
                     receiverId: "test_user_5",
-                    text: "Hey Jessica! How's your week going?",
+                    text: "Yes! I love Catan and Ticket to Ride. What's your favorite?",
                     timestamp: Date().addingTimeInterval(-86400 * 3 + 7200),
                     isRead: true
                 ),
@@ -407,7 +441,7 @@ struct TestData {
                     matchId: matchId,
                     senderId: "test_user_5",
                     receiverId: "current_user",
-                    text: "Busy as always at the hospital, but loving it! How about you?",
+                    text: "Catan is a classic! I also love Wingspan and Azul.",
                     timestamp: Date().addingTimeInterval(-86400 * 2),
                     isRead: true
                 ),
@@ -416,7 +450,7 @@ struct TestData {
                     matchId: matchId,
                     senderId: "test_user_5",
                     receiverId: "current_user",
-                    text: "Hey! What's your dog's name? I have a golden too! 🐕",
+                    text: "Board game night this Saturday! You in? 🎲",
                     timestamp: Date().addingTimeInterval(-60 * 10),
                     isRead: false
                 )
@@ -471,26 +505,32 @@ struct TestData {
         id: "current_user",
         email: "you@test.com",
         fullName: "Kevin Perez",
-        age: 25,
-        gender: "Male",
-        lookingFor: "Female",
-        bio: "iOS Developer | Tech enthusiast | Love building cool apps and meeting interesting people!",
+        gamerTag: "KevinPlays",
+        bio: "iOS Developer by day, gamer by night! 🎮 Love FPS games and co-op adventures. Always down to play!",
         location: "San Francisco",
         country: "USA",
         latitude: 37.7749,
         longitude: -122.4194,
-        languages: ["English"],
-        interests: ["Coding", "Tech", "Apps", "Music", "Travel"],
         photos: [
             "https://picsum.photos/seed/kevin1/400/500",
             "https://picsum.photos/seed/kevin2/400/500",
             "https://picsum.photos/seed/kevin3/400/500"
         ],
         profileImageURL: "https://picsum.photos/seed/kevin1/400/500",
+        platforms: ["PC", "PlayStation", "Nintendo Switch"],
+        favoriteGames: [
+            FavoriteGame(title: "Valorant", platform: "PC", rank: "Platinum 3"),
+            FavoriteGame(title: "Stardew Valley", platform: "PC"),
+            FavoriteGame(title: "Mario Kart 8", platform: "Nintendo Switch")
+        ],
+        gameGenres: ["FPS", "Co-op", "Racing"],
+        playStyle: PlayStyle.casual.rawValue,
+        skillLevel: SkillLevel.intermediate.rawValue,
+        voiceChatPreference: VoiceChatPreference.preferred.rawValue,
+        lookingFor: [LookingForType.rankedTeammates.rawValue, LookingForType.casualCoOp.rawValue],
         isPremium: true,
         isVerified: true
     )
 }
 
 #endif
-
