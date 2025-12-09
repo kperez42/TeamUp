@@ -661,7 +661,7 @@ struct LikesView: View {
                 Circle()
                     .fill(
                         RadialGradient(
-                            colors: [Color.pink.opacity(0.3), Color.clear],
+                            colors: [Color.cyan.opacity(0.3), Color.clear],
                             center: .center,
                             startRadius: 0,
                             endRadius: 60
@@ -812,7 +812,7 @@ struct LikesView: View {
                 HStack(spacing: 8) {
                     Image(systemName: "line.3.horizontal.decrease.circle.fill")
                         .font(.caption)
-                        .foregroundColor(.purple)
+                        .foregroundColor(.green)
                     Text("Filtered: \(users.count) results")
                         .font(.caption)
                         .foregroundColor(.secondary)
@@ -971,7 +971,7 @@ struct LikeProfileCard: View {
                 HStack(spacing: 4) {
                     Image(systemName: "mappin.circle.fill")
                         .font(.system(size: 12))
-                        .foregroundColor(.purple)
+                        .foregroundColor(.green)
                     Text(user.location)
                         .font(.system(size: 13))
                         .foregroundColor(.secondary)
@@ -1142,7 +1142,7 @@ struct BlurredLikeCard: View {
                 HStack(spacing: 4) {
                     Image(systemName: "mappin.circle.fill")
                         .font(.system(size: 12))
-                        .foregroundColor(.purple)
+                        .foregroundColor(.green)
                     Text(user.location)
                         .font(.system(size: 13))
                         .foregroundColor(.secondary)

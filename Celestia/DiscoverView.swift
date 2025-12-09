@@ -25,7 +25,7 @@ struct DiscoverView: View {
             ZStack {
                 // Background
                 LinearGradient(
-                    colors: [Color.purple.opacity(0.1), Color.pink.opacity(0.05)],
+                    colors: [Color.green.opacity(0.1), Color.cyan.opacity(0.05)],
                     startPoint: .topLeading,
                     endPoint: .bottomTrailing
                 )
@@ -162,7 +162,7 @@ struct DiscoverView: View {
                         if viewModel.hasActiveFilters {
                             Image(systemName: "line.3.horizontal.decrease.circle.fill")
                                 .font(.caption)
-                                .foregroundColor(.purple)
+                                .foregroundColor(.green)
                         }
                     }
                 }
@@ -372,7 +372,7 @@ struct DiscoverView: View {
                 .foregroundColor(.white)
                 .background(
                     LinearGradient(
-                        colors: [.purple, .pink],
+                        colors: [.green, .cyan],
                         startPoint: .leading,
                         endPoint: .trailing
                     )
@@ -397,7 +397,7 @@ struct DiscoverView: View {
                 .font(.system(size: 80))
                 .foregroundStyle(
                     LinearGradient(
-                        colors: [.purple.opacity(0.6), .pink.opacity(0.4)],
+                        colors: [.green.opacity(0.6), .cyan.opacity(0.4)],
                         startPoint: .topLeading,
                         endPoint: .bottomTrailing
                     )
@@ -438,7 +438,7 @@ struct DiscoverView: View {
                         .foregroundColor(.white)
                         .background(
                             LinearGradient(
-                                colors: [.purple, .pink],
+                                colors: [.green, .cyan],
                                 startPoint: .leading,
                                 endPoint: .trailing
                             )
@@ -464,7 +464,7 @@ struct DiscoverView: View {
                     }
                     .frame(maxWidth: .infinity)
                     .padding(.vertical, 16)
-                    .foregroundColor(.purple)
+                    .foregroundColor(.green)
                     .background(Color(.systemGray6))
                     .cornerRadius(16)
                     .contentShape(RoundedRectangle(cornerRadius: 16))
