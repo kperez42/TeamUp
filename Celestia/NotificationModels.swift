@@ -609,13 +609,13 @@ enum NotificationPayload {
             return bodies.randomElement() ?? "Like them back to start chatting!"
         } else {
             let bodies = [
-                "Upgrade to see who likes you!",
-                "Go Premium to reveal your admirers",
-                "Find out who's interested in you",
-                "Your next match could be waiting!",
-                "See who's crushing on you"
+                "Upgrade to see who wants to team up!",
+                "Go Premium to reveal your fans",
+                "Find out who's interested in gaming with you",
+                "Your next teammate could be waiting!",
+                "See who wants to join your squad"
             ]
-            return bodies.randomElement() ?? "Upgrade to see who likes you!"
+            return bodies.randomElement() ?? "Upgrade to see who wants to team up!"
         }
     }
 
