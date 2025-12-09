@@ -824,9 +824,23 @@ struct MatchProfileCard: View {
                         .truncationMode(.tail)
                 }
 
-                // First interest or bio preview
-                if let firstInterest = user.interests.first {
-                    Text(firstInterest)
+                // First game or genre preview
+                if let firstGame = user.favoriteGames.first {
+                    Text(firstGame.title)
+                        .font(.system(size: 12))
+                        .foregroundColor(.white)
+                        .padding(.horizontal, 10)
+                        .padding(.vertical, 4)
+                        .background(
+                            LinearGradient(
+                                colors: [Color.purple.opacity(0.8), Color.pink.opacity(0.8)],
+                                startPoint: .leading,
+                                endPoint: .trailing
+                            )
+                        )
+                        .clipShape(Capsule())
+                } else if let firstGenre = user.gameGenres.first {
+                    Text(firstGenre)
                         .font(.system(size: 12))
                         .foregroundColor(.white)
                         .padding(.horizontal, 10)
