@@ -120,7 +120,7 @@ struct SettingsView: View {
                     } label: {
                         HStack {
                             Image(systemName: "gift.fill")
-                                .foregroundColor(.purple)
+                                .foregroundColor(.green)
                             VStack(alignment: .leading, spacing: 2) {
                                 Text("Invite Friends")
                                     .foregroundColor(.primary)
@@ -136,7 +136,7 @@ struct SettingsView: View {
                                     .foregroundColor(.white)
                                     .padding(.horizontal, 8)
                                     .padding(.vertical, 4)
-                                    .background(Color.purple)
+                                    .background(Color.green)
                                     .cornerRadius(10)
                             }
                             Image(systemName: "chevron.right")
@@ -149,8 +149,8 @@ struct SettingsView: View {
                         showSeeWhoLikesYou = true
                     } label: {
                         HStack {
-                            Image(systemName: "heart.fill")
-                                .foregroundColor(.pink)
+                            Image(systemName: "person.2.fill")
+                                .foregroundColor(.cyan)
                             VStack(alignment: .leading, spacing: 2) {
                                 HStack(spacing: 6) {
                                     Text("See Who Likes You")
@@ -260,7 +260,7 @@ struct SettingsView: View {
                     } label: {
                         HStack {
                             Image(systemName: "doc.text")
-                                .foregroundColor(.purple)
+                                .foregroundColor(.green)
                             Text("Terms of Service")
                                 .foregroundColor(.primary)
                             Spacer()

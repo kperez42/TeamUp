@@ -735,7 +735,7 @@ struct ProfileView: View {
             .padding(.vertical, 16)
             .background(
                 LinearGradient(
-                    colors: [Color.purple, Color.pink],
+                    colors: [Color.green, Color.cyan],
                     startPoint: .leading,
                     endPoint: .trailing
                 )
