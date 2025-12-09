@@ -399,6 +399,10 @@ struct User: Identifiable, Codable, Equatable {
     // Admin Access
     var isAdmin: Bool = false
 
+    // Bypass verification - allows admins to skip pending approval via Firebase
+    // Set this to true in Firebase to bypass the profile review process
+    var bypassVerification: Bool = false
+
     // MARK: - Profile Status (for content moderation)
     var profileStatus: String = "pending"
     var profileStatusReason: String?
@@ -489,7 +493,7 @@ struct User: Identifiable, Codable, Equatable {
         case psnId, xboxGamertag, nintendoFriendCode, epicGamesId, riotId, battleNetTag
         case prompts
         case timestamp, lastActive, isOnline
-        case isPremium, isVerified, isAdmin, premiumTier, subscriptionExpiryDate
+        case isPremium, isVerified, isAdmin, bypassVerification, premiumTier, subscriptionExpiryDate
         case idVerificationRejected, idVerificationRejectedAt, idVerificationRejectionReason
         case profileStatus, profileStatusReason, profileStatusReasonCode, profileStatusFixInstructions, profileStatusUpdatedAt
         case isSuspended, suspendedAt, suspendedUntil, suspendReason
@@ -565,6 +569,7 @@ struct User: Identifiable, Codable, Equatable {
         try container.encode(isPremium, forKey: .isPremium)
         try container.encode(isVerified, forKey: .isVerified)
         try container.encode(isAdmin, forKey: .isAdmin)
+        try container.encode(bypassVerification, forKey: .bypassVerification)
         try container.encodeIfPresent(premiumTier, forKey: .premiumTier)
         try container.encodeIfPresent(subscriptionExpiryDate, forKey: .subscriptionExpiryDate)
         try container.encode(idVerificationRejected, forKey: .idVerificationRejected)
@@ -755,6 +760,7 @@ struct User: Identifiable, Codable, Equatable {
         self.isPremium = dictionary["isPremium"] as? Bool ?? false
         self.isVerified = dictionary["isVerified"] as? Bool ?? false
         self.isAdmin = dictionary["isAdmin"] as? Bool ?? false
+        self.bypassVerification = dictionary["bypassVerification"] as? Bool ?? false
         self.premiumTier = dictionary["premiumTier"] as? String
 
         if let expiryDate = dictionary["subscriptionExpiryDate"] as? Timestamp {

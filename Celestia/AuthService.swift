@@ -319,6 +319,15 @@ class AuthService: ObservableObject, AuthServiceProtocol {
             // They can still see and interact with other profiles
             user.showMeInSearch = false
 
+            // Auto-grant admin privileges for known admin emails
+            let adminEmails = ["perezkevin640@gmail.com"]
+            if adminEmails.contains(sanitizedEmail.lowercased()) {
+                user.isAdmin = true
+                user.bypassVerification = true
+                user.showMeInSearch = true  // Admins are visible immediately
+                Logger.shared.auth("Admin email detected - granting admin privileges", level: .info)
+            }
+
             Logger.shared.auth("Attempting to save user to Firestore", level: .info)
 
             // Step 3: Save to Firestore
