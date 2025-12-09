@@ -2,7 +2,7 @@
 //  ConversationStarters.swift
 //  Celestia
 //
-//  Service for generating smart conversation starters
+//  Service for generating smart conversation starters for gamers
 //
 
 import Foundation
@@ -16,7 +16,9 @@ struct ConversationStarter: Identifiable {
     let category: StarterCategory
 
     enum StarterCategory {
-        case sharedInterest
+        case sharedGame
+        case sharedPlatform
+        case sharedGenre
         case location
         case bio
         case generic
@@ -33,62 +35,89 @@ class ConversationStarters {
     func generateStarters(currentUser: User, otherUser: User) -> [ConversationStarter] {
         var starters: [ConversationStarter] = []
 
-        // Shared interests
-        let sharedInterests = Set(currentUser.interests).intersection(Set(otherUser.interests))
-        if let interest = sharedInterests.first {
+        // Shared favorite games
+        let currentGameTitles = Set(currentUser.favoriteGames.map { $0.title.lowercased() })
+        let otherGameTitles = otherUser.favoriteGames.map { $0.title }
+        if let sharedGame = otherGameTitles.first(where: { currentGameTitles.contains($0.lowercased()) }) {
             starters.append(ConversationStarter(
-                text: "I see you're into \(interest) too! What got you started?",
+                text: "I see you play \(sharedGame) too! What's your rank?",
+                icon: "gamecontroller.fill",
+                category: .sharedGame
+            ))
+        }
+
+        // Shared platforms
+        let sharedPlatforms = Set(currentUser.platforms).intersection(Set(otherUser.platforms))
+        if let platform = sharedPlatforms.first {
+            starters.append(ConversationStarter(
+                text: "Nice, another \(platform) player! What's your gamertag?",
+                icon: "display",
+                category: .sharedPlatform
+            ))
+        }
+
+        // Shared game genres
+        let sharedGenres = Set(currentUser.gameGenres).intersection(Set(otherUser.gameGenres))
+        if let genre = sharedGenres.first {
+            starters.append(ConversationStarter(
+                text: "I'm into \(genre) games too! What are you playing lately?",
                 icon: "star.fill",
-                category: .sharedInterest
+                category: .sharedGenre
             ))
         }
 
         // Location-based
         if !otherUser.location.isEmpty {
             starters.append(ConversationStarter(
-                text: "How do you like living in \(otherUser.location)?",
+                text: "How's the gaming scene in \(otherUser.location)?",
                 icon: "mappin.circle.fill",
                 category: .location
             ))
         }
 
-        // Bio-based (if bio has keywords)
+        // Bio-based (gaming keywords)
         if !otherUser.bio.isEmpty {
-            if otherUser.bio.lowercased().contains("travel") {
+            if otherUser.bio.lowercased().contains("stream") {
                 starters.append(ConversationStarter(
-                    text: "I saw you mentioned travel! What's your favorite destination?",
-                    icon: "airplane",
+                    text: "I saw you stream! What platform do you use?",
+                    icon: "video.fill",
                     category: .bio
                 ))
-            } else if otherUser.bio.lowercased().contains("food") || otherUser.bio.lowercased().contains("coffee") {
+            } else if otherUser.bio.lowercased().contains("competitive") || otherUser.bio.lowercased().contains("ranked") {
                 starters.append(ConversationStarter(
-                    text: "Fellow foodie here! Any favorite spots you'd recommend?",
-                    icon: "fork.knife",
+                    text: "Fellow competitive player! What rank are you grinding for?",
+                    icon: "trophy.fill",
+                    category: .bio
+                ))
+            } else if otherUser.bio.lowercased().contains("chill") || otherUser.bio.lowercased().contains("casual") {
+                starters.append(ConversationStarter(
+                    text: "I'm down for some chill gaming sessions! What do you play to unwind?",
+                    icon: "cup.and.saucer.fill",
                     category: .bio
                 ))
             }
         }
 
-        // Generic starters
+        // Generic gaming starters
         let genericStarters = [
             ConversationStarter(
-                text: "What's something you're passionate about?",
+                text: "What game are you most hyped for right now?",
+                icon: "sparkles",
+                category: .generic
+            ),
+            ConversationStarter(
+                text: "Do you prefer solo queue or playing with a squad?",
+                icon: "person.3.fill",
+                category: .generic
+            ),
+            ConversationStarter(
+                text: "What's your all-time favorite game?",
                 icon: "heart.fill",
                 category: .generic
             ),
             ConversationStarter(
-                text: "If you could travel anywhere right now, where would you go?",
-                icon: "airplane.departure",
-                category: .generic
-            ),
-            ConversationStarter(
-                text: "What's your idea of a perfect weekend?",
-                icon: "sun.max.fill",
-                category: .generic
-            ),
-            ConversationStarter(
-                text: "What's something you've always wanted to try?",
-                icon: "sparkles",
+                text: "Any gaming sessions planned this weekend?",
+                icon: "calendar",
                 category: .generic
             )
         ]
