@@ -841,7 +841,7 @@ struct AdminPendingUserDetailView: View {
                 .font(.headline)
                 .foregroundColor(.orange)
 
-            Text(user.lookingFor.isEmpty ? "Everyone" : user.lookingFor.joined(separator: ", "))
+            Text(user.lookingFor.isEmpty ? "Everyone" : user.lookingFor)
                 .font(.body)
         }
         .padding()
