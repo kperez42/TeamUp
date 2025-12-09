@@ -160,9 +160,11 @@ struct MutualLikeCard: View {
                     HStack {
                         Text(user.fullName)
                             .font(.headline)
-                        Text("\(user.age)")
-                            .font(.subheadline)
-                            .foregroundColor(.secondary)
+                        if !user.gamerTag.isEmpty {
+                            Text("@\(user.gamerTag)")
+                                .font(.subheadline)
+                                .foregroundColor(.secondary)
+                        }
                         Spacer()
                     }
 
