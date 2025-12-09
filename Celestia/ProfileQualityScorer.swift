@@ -353,15 +353,15 @@ class ProfileQualityScorer: ObservableObject {
     func updateScore(for user: User) {
         let metrics = ProfileMetrics(
             hasName: !user.fullName.isEmpty,
-            hasAge: user.age > 0,
+            hasAge: !user.gamerTag.isEmpty,  // Use gamerTag instead of age for gaming app
             hasBio: !user.bio.isEmpty,
             bioLength: user.bio.count,
             hasLocation: !user.location.isEmpty,
             photoCount: user.photos.count + (user.profileImageURL.isEmpty ? 0 : 1),
-            hasInterests: !user.interests.isEmpty,
-            interestCount: user.interests.count,
-            hasLanguages: !user.languages.isEmpty,
-            languageCount: user.languages.count,
+            hasInterests: !user.favoriteGames.isEmpty,
+            interestCount: user.favoriteGames.count,
+            hasLanguages: !user.platforms.isEmpty,
+            languageCount: user.platforms.count,
             hasVerifiedPhoto: user.isVerified,
             bioHasEmoji: user.bio.containsEmoji,
             bioWordCount: user.bio.split(separator: " ").count

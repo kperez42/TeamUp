@@ -453,13 +453,8 @@ struct ProfileEnhancementView: View {
                 guard var user = authService.currentUser else { return }
 
                 // Update user with new lifestyle info
-                if !educationLevel.isEmpty { user.educationLevel = educationLevel }
-                if !religion.isEmpty { user.religion = religion }
-                if !smoking.isEmpty { user.smoking = smoking }
-                if !drinking.isEmpty { user.drinking = drinking }
-                if !pets.isEmpty { user.pets = pets }
-                if !exercise.isEmpty { user.exercise = exercise }
-                if !diet.isEmpty { user.diet = diet }
+                // Note: Gaming app - lifestyle fields stored separately if needed
+                // These fields would need to be added to User model if required
 
                 try await authService.updateUser(user)
 
@@ -722,18 +717,18 @@ struct ProfileCompletionCard: View {
 
         // Required fields (always complete after sign-up)
         if !user.fullName.isEmpty { completed += 1 }
-        if user.age > 0 { completed += 1 }
-        if !user.gender.isEmpty { completed += 1 }
+        if !user.gamerTag.isEmpty { completed += 1 }
+        if !user.platforms.isEmpty { completed += 1 }
         if !user.location.isEmpty { completed += 1 }
 
         // Optional but valuable
         if !user.bio.isEmpty { completed += 1 }
         if user.photos.count >= 3 { completed += 1 }
-        if !user.interests.isEmpty { completed += 1 }
+        if !user.favoriteGames.isEmpty { completed += 1 }
 
         // Advanced fields
-        if user.educationLevel != nil { completed += 1 }
-        if user.smoking != nil || user.drinking != nil { completed += 1 }
+        if !user.gameGenres.isEmpty { completed += 1 }
+        if !user.playStyle.isEmpty { completed += 1 }
         if !user.prompts.isEmpty { completed += 1 }
 
         return (completed * 100) / total
