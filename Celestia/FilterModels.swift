@@ -346,8 +346,8 @@ enum GamerGoal: String, Codable, CaseIterable, Identifiable {
         case .casualCoOp: return .green
         case .competitiveTeam: return .red
         case .boardGameGroup: return .brown
-        case .dndGroup: return .purple
-        case .streamingPartner: return .pink
+        case .dndGroup: return .indigo
+        case .streamingPartner: return .teal
         case .esportsTeam: return .yellow
         case .gamingCommunity: return .blue
         case .contentCreation: return .cyan
