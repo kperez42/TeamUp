@@ -478,7 +478,7 @@ struct EditProfileView: View {
         Circle()
             .fill(
                 LinearGradient(
-                    colors: [.purple.opacity(0.6), .pink.opacity(0.6)],
+                    colors: [.green.opacity(0.6), .cyan.opacity(0.6)],
                     startPoint: .topLeading,
                     endPoint: .bottomTrailing
                 )
@@ -504,7 +504,7 @@ struct EditProfileView: View {
                     .frame(width: 20, height: 20)
                 Circle()
                     .trim(from: 0, to: uploadProgress)
-                    .stroke(Color.purple, style: StrokeStyle(lineWidth: 2, lineCap: .round))
+                    .stroke(Color.green, style: StrokeStyle(lineWidth: 2, lineCap: .round))
                     .frame(width: 20, height: 20)
                     .rotationEffect(.degrees(-90))
             }
@@ -525,7 +525,7 @@ struct EditProfileView: View {
                 .font(.system(size: 36))
                 .foregroundStyle(
                     LinearGradient(
-                        colors: [.purple.opacity(0.5), .pink.opacity(0.5)],
+                        colors: [.green.opacity(0.5), .cyan.opacity(0.5)],
                         startPoint: .topLeading,
                         endPoint: .bottomTrailing
                     )
@@ -598,7 +598,7 @@ struct EditProfileView: View {
                             VStack(spacing: 6) {
                                 Image(systemName: "plus")
                                     .font(.title2)
-                                    .foregroundColor(.purple.opacity(0.6))
+                                    .foregroundColor(.green.opacity(0.6))
                             }
                         }
                 }
@@ -731,7 +731,7 @@ struct EditProfileView: View {
         Circle()
             .fill(
                 LinearGradient(
-                    colors: [.purple.opacity(0.6), .pink.opacity(0.6)],
+                    colors: [.green.opacity(0.6), .cyan.opacity(0.6)],
                     startPoint: .topLeading,
                     endPoint: .bottomTrailing
                 )
@@ -815,7 +815,7 @@ struct EditProfileView: View {
 
                                 ForEach(0..<3, id: \.self) { index in
                                     Circle()
-                                        .fill(Color.purple)
+                                        .fill(Color.green)
                                         .frame(width: 3, height: 3)
                                         .opacity(uploadProgress * 3 > Double(index) ? 1.0 : 0.3)
                                         .animation(.easeInOut(duration: 0.6).repeatForever(autoreverses: true).delay(Double(index) * 0.2), value: uploadProgress)
@@ -838,7 +838,7 @@ struct EditProfileView: View {
                         RoundedRectangle(cornerRadius: 14)
                             .stroke(
                                 LinearGradient(
-                                    colors: [.purple.opacity(0.3), .pink.opacity(0.3)],
+                                    colors: [.green.opacity(0.3), .cyan.opacity(0.3)],
                                     startPoint: .leading,
                                     endPoint: .trailing
                                 ),
@@ -858,7 +858,7 @@ struct EditProfileView: View {
                         .font(.system(size: 50))
                         .foregroundStyle(
                             LinearGradient(
-                                colors: [.purple.opacity(0.6), .pink.opacity(0.6)],
+                                colors: [.green.opacity(0.6), .cyan.opacity(0.6)],
                                 startPoint: .topLeading,
                                 endPoint: .bottomTrailing
                             )
@@ -1268,7 +1268,7 @@ struct EditProfileView: View {
                         .padding(.vertical, 6)
                         .background(
                             LinearGradient(
-                                colors: [.pink, .purple],
+                                colors: [.cyan, .green],
                                 startPoint: .leading,
                                 endPoint: .trailing
                             )
@@ -1729,7 +1729,7 @@ struct EditProfileView: View {
                         HStack(spacing: 6) {
                             Image(systemName: "star.fill")
                                 .font(.subheadline)
-                                .foregroundColor(.pink)
+                                .foregroundColor(.cyan)
                             Text("Interests")
                                 .font(.subheadline)
                                 .fontWeight(.semibold)
@@ -1748,7 +1748,7 @@ struct EditProfileView: View {
                                     .font(.caption)
                                     .fontWeight(.semibold)
                             }
-                            .foregroundColor(.pink)
+                            .foregroundColor(.cyan)
                         }
                     }
 
@@ -1773,7 +1773,7 @@ struct EditProfileView: View {
                             ForEach(interests, id: \.self) { interest in
                                 TagChip(
                                     text: interest,
-                                    color: .pink,
+                                    color: .cyan,
                                     onRemove: { interests.removeAll { $0 == interest } }
                                 )
                             }
@@ -2066,7 +2066,7 @@ struct EditProfileView: View {
     private var interestsSection: some View {
         VStack(spacing: 15) {
             HStack {
-                SectionHeader(icon: "star.fill", title: "Interests", color: .pink)
+                SectionHeader(icon: "star.fill", title: "Interests", color: .cyan)
                 
                 Spacer()
                 
@@ -2081,7 +2081,7 @@ struct EditProfileView: View {
                     .fontWeight(.semibold)
                     .foregroundStyle(
                         LinearGradient(
-                            colors: [.pink, .orange],
+                            colors: [.cyan, .teal],
                             startPoint: .leading,
                             endPoint: .trailing
                         )
@@ -2100,7 +2100,7 @@ struct EditProfileView: View {
                     ForEach(interests, id: \.self) { interest in
                         TagChip(
                             text: interest,
-                            color: .pink,
+                            color: .cyan,
                             onRemove: { interests.removeAll { $0 == interest } }
                         )
                     }
@@ -2164,7 +2164,7 @@ struct EditProfileView: View {
                         .padding(12)
                         .background(
                             LinearGradient(
-                                colors: [Color.green.opacity(0.05), Color.pink.opacity(0.03)],
+                                colors: [Color.green.opacity(0.05), Color.cyan.opacity(0.03)],
                                 startPoint: .topLeading,
                                 endPoint: .bottomTrailing
                             )
@@ -2931,7 +2931,7 @@ struct LanguageTagButton: View {
                     }
                 }
             )
-            .foregroundColor(isSelected ? .purple : .primary)
+            .foregroundColor(isSelected ? .green : .primary)
             .cornerRadius(25)
             .overlay(
                 RoundedRectangle(cornerRadius: 25)
@@ -2946,7 +2946,7 @@ struct LanguageTagButton: View {
                         lineWidth: 2
                     )
             )
-            .shadow(color: isSelected ? .purple.opacity(0.2) : .clear, radius: 8, y: 4)
+            .shadow(color: isSelected ? .green.opacity(0.2) : .clear, radius: 8, y: 4)
         }
         .scaleButton()
     }
@@ -2984,7 +2984,7 @@ struct InterestPickerView: View {
                         .font(.headline)
                         .foregroundStyle(
                             LinearGradient(
-                                colors: [.pink, .orange],
+                                colors: [.cyan, .teal],
                                 startPoint: .leading,
                                 endPoint: .trailing
                             )
@@ -3041,7 +3041,7 @@ struct InterestTagButton: View {
                 Group {
                     if isSelected {
                         LinearGradient(
-                            colors: [.pink, .orange],
+                            colors: [.cyan, .teal],
                             startPoint: .leading,
                             endPoint: .trailing
                         )
@@ -3051,14 +3051,14 @@ struct InterestTagButton: View {
                     }
                 }
             )
-            .foregroundColor(isSelected ? .pink : .primary)
+            .foregroundColor(isSelected ? .cyan : .primary)
             .cornerRadius(25)
             .overlay(
                 RoundedRectangle(cornerRadius: 25)
                     .stroke(
                         isSelected ?
                         AnyShapeStyle(LinearGradient(
-                            colors: [.pink, .orange],
+                            colors: [.cyan, .teal],
                             startPoint: .leading,
                             endPoint: .trailing
                         )) :
@@ -3066,7 +3066,7 @@ struct InterestTagButton: View {
                         lineWidth: 2
                     )
             )
-            .shadow(color: isSelected ? .pink.opacity(0.2) : .clear, radius: 8, y: 4)
+            .shadow(color: isSelected ? .cyan.opacity(0.2) : .clear, radius: 8, y: 4)
         }
         .scaleButton()
     }
@@ -3084,7 +3084,7 @@ struct UploadingPhotoPlaceholder: View {
                 LinearGradient(
                     colors: [
                         Color.green.opacity(isPulsing ? 0.15 : 0.08),
-                        Color.pink.opacity(isPulsing ? 0.12 : 0.06)
+                        Color.cyan.opacity(isPulsing ? 0.12 : 0.06)
                     ],
                     startPoint: .topLeading,
                     endPoint: .bottomTrailing
@@ -3122,7 +3122,7 @@ struct UploadingPhotoPlaceholder: View {
                 RoundedRectangle(cornerRadius: 12)
                     .stroke(
                         LinearGradient(
-                            colors: [.purple.opacity(0.3), .pink.opacity(0.2)],
+                            colors: [.green.opacity(0.3), .cyan.opacity(0.2)],
                             startPoint: .topLeading,
                             endPoint: .bottomTrailing
                         ),
@@ -3175,7 +3175,7 @@ struct DraggablePhotoGridItem: View {
                 RoundedRectangle(cornerRadius: 12)
                     .stroke(
                         LinearGradient(
-                            colors: isDragging ? [.purple, .pink] : [.clear, .clear],
+                            colors: isDragging ? [.green, .cyan] : [.clear, .clear],
                             startPoint: .topLeading,
                             endPoint: .bottomTrailing
                         ),
@@ -3205,7 +3205,7 @@ struct DraggablePhotoGridItem: View {
                 RoundedRectangle(cornerRadius: 12)
                     .fill(
                         LinearGradient(
-                            colors: [Color.green.opacity(0.15), Color.pink.opacity(0.1)],
+                            colors: [Color.green.opacity(0.15), Color.cyan.opacity(0.1)],
                             startPoint: .topLeading,
                             endPoint: .bottomTrailing
                         )
@@ -3215,7 +3215,7 @@ struct DraggablePhotoGridItem: View {
         }
         .scaleEffect(isDragging ? 1.08 : 1.0)
         .rotation3DEffect(.degrees(isDragging ? 2 : 0), axis: (x: 0, y: 1, z: 0))
-        .shadow(color: isDragging ? .purple.opacity(0.5) : .black.opacity(0.08), radius: isDragging ? 16 : 4, y: isDragging ? 8 : 2)
+        .shadow(color: isDragging ? .green.opacity(0.5) : .black.opacity(0.08), radius: isDragging ? 16 : 4, y: isDragging ? 8 : 2)
         .animation(.interpolatingSpring(stiffness: 350, damping: 18), value: isDragging)
         .confirmationDialog("Delete this photo?", isPresented: $showDeleteConfirmation, titleVisibility: .visible) {
             Button("Delete", role: .destructive) {

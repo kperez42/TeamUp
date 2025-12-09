@@ -291,7 +291,7 @@ struct ProfilePromptsEditorView: View {
             Text(category)
                 .font(.subheadline)
                 .fontWeight(.semibold)
-                .foregroundColor(selectedCategory == category ? .white : .purple)
+                .foregroundColor(selectedCategory == category ? .white : .green)
                 .padding(.horizontal, 20)
                 .padding(.vertical, 10)
                 .background(
@@ -407,7 +407,7 @@ struct ProfilePromptsEditorView: View {
                         .padding(.vertical, 16)
                         .background(
                             LinearGradient(
-                                colors: answerText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty || answerText.count > 150 ? [.gray] : [.purple, .pink],
+                                colors: answerText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty || answerText.count > 150 ? [.gray] : [.green, .cyan],
                                 startPoint: .leading,
                                 endPoint: .trailing
                             )
