@@ -131,13 +131,13 @@ class DeepLinkRouter: ObservableObject {
     // MARK: - URL Parsing
 
     private func parseURL(_ url: URL) -> DeepLink? {
-        // Handle Universal Links (https://celestia.app/...)
-        if url.scheme == "https" && (url.host == "celestia.app" || url.host == "www.celestia.app") {
+        // Handle Universal Links (https://teamup.gg/...)
+        if url.scheme == "https" && (url.host == "teamup.gg" || url.host == "www.teamup.gg") {
             return parseUniversalLink(url)
         }
 
-        // Handle URL Scheme (celestia://...)
-        if url.scheme == "celestia" {
+        // Handle URL Scheme (teamup://...)
+        if url.scheme == "teamup" {
             return parseURLScheme(url)
         }
 
@@ -371,7 +371,7 @@ class DeepLinkRouter: ObservableObject {
     func generateReferralLink(code: String) -> URL? {
         var components = URLComponents()
         components.scheme = "https"
-        components.host = "celestia.app"
+        components.host = "teamup.gg"
         components.path = "/join/\(code)"
 
         return components.url
@@ -381,7 +381,7 @@ class DeepLinkRouter: ObservableObject {
     func generateProfileLink(userId: String) -> URL? {
         var components = URLComponents()
         components.scheme = "https"
-        components.host = "celestia.app"
+        components.host = "teamup.gg"
         components.path = "/profile/\(userId)"
 
         return components.url
@@ -391,7 +391,7 @@ class DeepLinkRouter: ObservableObject {
     func generateEmailVerificationLink(token: String) -> URL? {
         var components = URLComponents()
         components.scheme = "https"
-        components.host = "celestia.app"
+        components.host = "teamup.gg"
         components.path = "/verify-email"
         components.queryItems = [URLQueryItem(name: "token", value: token)]
 
@@ -402,7 +402,7 @@ class DeepLinkRouter: ObservableObject {
     func generatePasswordResetLink(token: String) -> URL? {
         var components = URLComponents()
         components.scheme = "https"
-        components.host = "celestia.app"
+        components.host = "teamup.gg"
         components.path = "/reset-password"
         components.queryItems = [URLQueryItem(name: "token", value: token)]
 

@@ -118,13 +118,13 @@ class CrashlyticsManager {
         }
 
         let nsError = NSError(
-            domain: "com.celestia.error",
+            domain: "com.teamup.error",
             code: 1000,
             userInfo: userInfo
         )
 
         crashlytics.record(error: nsError)
-        Logger.shared.error("Celestia error recorded: \(error)", category: .analytics)
+        Logger.shared.error("TeamUp error recorded: \(error)", category: .analytics)
     }
 
     // MARK: - Breadcrumbs

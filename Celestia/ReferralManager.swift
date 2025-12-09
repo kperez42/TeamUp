@@ -1089,7 +1089,7 @@ class ReferralManager: ObservableObject {
     }
 
     func getReferralURL(code: String) -> URL? {
-        return URL(string: "https://celestia.app/join/\(code)")
+        return URL(string: "https://teamup.gg/join/\(code)")
     }
 
     // MARK: - Analytics (Enhanced)
