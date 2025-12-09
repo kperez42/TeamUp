@@ -890,16 +890,6 @@ struct FeedDiscoverView: View {
         isLoading = true
 
         do {
-            // Fetch from Firestore with filters
-            let currentLocation: (lat: Double, lon: Double)? = {
-                if let user = authService.currentUser,
-                   let lat = user.latitude,
-                   let lon = user.longitude {
-                    return (lat, lon)
-                }
-                return nil
-            }()
-
             // Get age range with proper optional handling
             let ageRange: ClosedRange<Int>? = {
                 if let minAge = authService.currentUser?.ageRangeMin,
@@ -910,7 +900,9 @@ struct FeedDiscoverView: View {
             }()
 
             let lookingForValue = authService.currentUser?.showMeGender
-            Logger.shared.info("FeedDiscoverView: Loading users with filters - lookingFor: \(lookingForValue ?? "nil"), ageRange: \(ageRange?.description ?? "nil")", category: .database)
+            let lookingForLog = lookingForValue ?? "nil"
+            let ageRangeLog = ageRange.map { "\($0.lowerBound)...\($0.upperBound)" } ?? "nil"
+            Logger.shared.info("FeedDiscoverView: Loading users with filters - lookingFor: \(lookingForLog), ageRange: \(ageRangeLog)", category: .database)
 
             // Fetch users from Firestore using UserService
             try await UserService.shared.fetchUsers(
