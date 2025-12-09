@@ -125,14 +125,20 @@ class DiscoverViewModel: ObservableObject {
 
             do {
                 // Use UserService instead of direct Firestore access
-                let ageRange = currentUser.ageRangeMin...currentUser.ageRangeMax
+                let ageRange: ClosedRange<Int>? = {
+                    if let minAge = currentUser.ageRangeMin, let maxAge = currentUser.ageRangeMax {
+                        return minAge...maxAge
+                    }
+                    return nil
+                }()
                 let lookingFor = currentUser.lookingFor != "Everyone" ? currentUser.lookingFor : nil
 
                 try await userService.fetchUsers(
                     excludingUserId: userId,
                     lookingFor: lookingFor,
-                    ageRange: ageRange,
+                    platforms: nil,
                     country: nil,
+                    ageRange: ageRange,
                     limit: limit,
                     reset: users.isEmpty
                 )

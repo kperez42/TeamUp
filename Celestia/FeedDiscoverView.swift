@@ -916,6 +916,8 @@ struct FeedDiscoverView: View {
             try await UserService.shared.fetchUsers(
                 excludingUserId: currentUserId,
                 lookingFor: lookingForValue,
+                platforms: nil,
+                country: nil,
                 ageRange: ageRange ?? 18...99,
                 limit: 50,
                 reset: true
@@ -932,6 +934,8 @@ struct FeedDiscoverView: View {
                 try await UserService.shared.fetchUsers(
                     excludingUserId: currentUserId,
                     lookingFor: lookingForValue,
+                    platforms: nil,
+                    country: nil,
                     ageRange: expandedMin...expandedMax,
                     limit: 50,
                     reset: true
@@ -944,6 +948,8 @@ struct FeedDiscoverView: View {
                     try await UserService.shared.fetchUsers(
                         excludingUserId: currentUserId,
                         lookingFor: lookingForValue,
+                        platforms: nil,
+                        country: nil,
                         ageRange: nil,
                         limit: 50,
                         reset: true
