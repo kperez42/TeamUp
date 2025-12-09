@@ -217,44 +217,8 @@ struct FeedDiscoverView: View {
                     .animation(.quick, value: authService.currentUser)
                 }
 
-                ForEach(Array(displayedUsers.enumerated()), id: \.element.effectiveId) { index, user in
-                    ProfileFeedCard(
-                        user: user,
-                        currentUser: authService.currentUser,  // NEW: Pass current user for shared interests
-                        initialIsFavorited: favorites.contains(user.effectiveId ?? ""),
-                        initialIsLiked: likedUsers.contains(user.effectiveId ?? ""),
-                        onLike: { completion in
-                            handleLike(user: user, completion: completion)
-                        },
-                        onUnlike: { completion in
-                            handleUnlike(user: user, completion: completion)
-                        },
-                        onFavorite: {
-                            handleFavorite(user: user)
-                        },
-                        onMessage: {
-                            handleMessage(user: user)
-                        },
-                        onViewPhotos: {
-                            selectedUserForPhotos = user
-                        },
-                        onViewProfile: {
-                            HapticManager.shared.impact(.light)
-                            selectedUserForDetail = user
-                        }
-                    )
-                    .onAppear {
-                        // PERFORMANCE: Prefetch images as cards appear in viewport
-                        ImageCache.shared.prefetchUserPhotosHighPriority(user: user)
-
-                        if index == displayedUsers.count - preloadThreshold {
-                            loadMoreUsers()
-                        }
-                    }
-                    // Butter-smooth card appearance
-                    .transition(.opacity)
-                    .animation(.butterSmooth, value: displayedUsers.count)
-                    .smoothScrollOptimized()
+                ForEach(Array(displayedUsers.enumerated()), id: \.offset) { index, user in
+                    profileCard(for: user, at: index)
                 }
 
                 // Loading indicator with instant appearance
@@ -378,6 +342,50 @@ struct FeedDiscoverView: View {
                 Logger.shared.error("Error loading liked users", category: .matching, error: error)
             }
         }
+    }
+
+    // MARK: - Profile Card Builder
+
+    @ViewBuilder
+    private func profileCard(for user: User, at index: Int) -> some View {
+        let userId = user.effectiveId ?? ""
+        let isFavorited = favorites.contains(userId)
+        let isLiked = likedUsers.contains(userId)
+
+        ProfileFeedCard(
+            user: user,
+            currentUser: authService.currentUser,
+            initialIsFavorited: isFavorited,
+            initialIsLiked: isLiked,
+            onLike: { completion in
+                handleLike(user: user, completion: completion)
+            },
+            onUnlike: { completion in
+                handleUnlike(user: user, completion: completion)
+            },
+            onFavorite: {
+                handleFavorite(user: user)
+            },
+            onMessage: {
+                handleMessage(user: user)
+            },
+            onViewPhotos: {
+                selectedUserForPhotos = user
+            },
+            onViewProfile: {
+                HapticManager.shared.impact(.light)
+                selectedUserForDetail = user
+            }
+        )
+        .onAppear {
+            ImageCache.shared.prefetchUserPhotosHighPriority(user: user)
+            if index == displayedUsers.count - preloadThreshold {
+                loadMoreUsers()
+            }
+        }
+        .transition(.opacity)
+        .animation(.butterSmooth, value: displayedUsers.count)
+        .smoothScrollOptimized()
     }
 
     // MARK: - Initial Loading View
