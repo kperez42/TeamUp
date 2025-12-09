@@ -267,9 +267,9 @@ struct FilterView: View {
     private func loadCurrentPreferences() {
         guard let currentUser = authService.currentUser else { return }
 
-        lookingFor = currentUser.lookingFor
-        ageRangeMin = currentUser.ageRangeMin
-        ageRangeMax = currentUser.ageRangeMax
+        lookingFor = currentUser.showMeGender
+        ageRangeMin = currentUser.ageRangeMin ?? 18
+        ageRangeMax = currentUser.ageRangeMax ?? 99
     }
 
     private func resetFilters() {
