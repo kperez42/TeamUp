@@ -804,7 +804,7 @@ struct ProfileSubscriptionsView: View {
 
             VStack(spacing: 0) {
                 Button {
-                    if let url = URL(string: "mailto:support@celestia.app") {
+                    if let url = URL(string: "mailto:support@teamup.gg") {
                         UIApplication.shared.open(url)
                     }
                 } label: {
@@ -825,7 +825,7 @@ struct ProfileSubscriptionsView: View {
                 Divider()
 
                 Button {
-                    if let url = URL(string: "https://celestia.app/faq") {
+                    if let url = URL(string: "https://teamup.gg/faq") {
                         UIApplication.shared.open(url)
                     }
                 } label: {
@@ -846,7 +846,7 @@ struct ProfileSubscriptionsView: View {
                 Divider()
 
                 Button {
-                    if let url = URL(string: "https://celestia.app/terms") {
+                    if let url = URL(string: "https://teamup.gg/terms") {
                         UIApplication.shared.open(url)
                     }
                 } label: {

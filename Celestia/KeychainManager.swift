@@ -18,7 +18,7 @@ class KeychainManager {
 
     // MARK: - Properties
 
-    private let serviceName = "com.celestia.app"
+    private let serviceName = "com.teamup.app"
 
     // MARK: - Initialization
 

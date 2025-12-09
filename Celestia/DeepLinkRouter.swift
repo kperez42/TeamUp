@@ -154,49 +154,49 @@ class DeepLinkRouter: ObservableObject {
 
         switch components[0] {
         case "join":
-            // celestia.app/join/REFERRAL_CODE
+            // teamup.gg/join/REFERRAL_CODE
             guard components.count > 1 else { return .home }
             return .referral(code: components[1])
 
         case "profile":
-            // celestia.app/profile/USER_ID
+            // teamup.gg/profile/USER_ID
             guard components.count > 1 else { return .home }
             return .profile(userId: components[1])
 
         case "match":
-            // celestia.app/match/MATCH_ID
+            // teamup.gg/match/MATCH_ID
             guard components.count > 1 else { return .home }
             return .match(matchId: components[1])
 
         case "message":
-            // celestia.app/message/MATCH_ID
+            // teamup.gg/message/MATCH_ID
             guard components.count > 1 else { return .home }
             return .message(matchId: components[1])
 
         case "verify-email":
-            // celestia.app/verify-email?token=TOKEN
+            // teamup.gg/verify-email?token=TOKEN
             if let token = extractQueryParameter(from: url, parameter: "token") {
                 return .emailVerification(token: token)
             }
             return .home
 
         case "reset-password":
-            // celestia.app/reset-password?token=TOKEN
+            // teamup.gg/reset-password?token=TOKEN
             if let token = extractQueryParameter(from: url, parameter: "token") {
                 return .resetPassword(token: token)
             }
             return .home
 
         case "upgrade":
-            // celestia.app/upgrade
+            // teamup.gg/upgrade
             return .upgrade
 
         case "settings":
-            // celestia.app/settings
+            // teamup.gg/settings
             return .settings
 
         case "notifications":
-            // celestia.app/notifications
+            // teamup.gg/notifications
             return .notifications
 
         default:
@@ -212,28 +212,28 @@ class DeepLinkRouter: ObservableObject {
             return .home
 
         case "join":
-            // celestia://join?code=REFERRAL_CODE
+            // teamup://join?code=REFERRAL_CODE
             if let code = extractQueryParameter(from: url, parameter: "code") {
                 return .referral(code: code)
             }
             return .home
 
         case "profile":
-            // celestia://profile?id=USER_ID
+            // teamup://profile?id=USER_ID
             if let userId = extractQueryParameter(from: url, parameter: "id") {
                 return .profile(userId: userId)
             }
             return .home
 
         case "match":
-            // celestia://match?id=MATCH_ID
+            // teamup://match?id=MATCH_ID
             if let matchId = extractQueryParameter(from: url, parameter: "id") {
                 return .match(matchId: matchId)
             }
             return .home
 
         case "message":
-            // celestia://message?id=MATCH_ID
+            // teamup://message?id=MATCH_ID
             if let matchId = extractQueryParameter(from: url, parameter: "id") {
                 return .message(matchId: matchId)
             }
