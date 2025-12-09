@@ -139,16 +139,16 @@ struct DateCheckInView: View {
                 .font(.system(size: 60))
                 .foregroundColor(.orange)
 
-            Text("Date Check-In")
+            Text("Meetup Check-In")
                 .font(.title.bold())
 
-            Text("Set reminders during your date. Coming soon")
+            Text("Set reminders during your meetup. Coming soon")
                 .font(.subheadline)
                 .foregroundColor(.secondary)
                 .multilineTextAlignment(.center)
                 .padding(.horizontal)
         }
-        .navigationTitle("Date Check-In")
+        .navigationTitle("Meetup Check-In")
         .navigationBarTitleDisplayMode(.inline)
     }
 }

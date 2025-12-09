@@ -22,14 +22,14 @@ struct TeamUpAppShortcuts: AppShortcutsProvider {
                 "Check matches on \(.applicationName)"
             ],
             shortTitle: "View Matches",
-            systemImageName: "heart.circle.fill"
+            systemImageName: "gamecontroller.fill"
         )
 
         AppShortcut(
             intent: StartSwipingIntent(),
             phrases: [
                 "Start swiping on \(.applicationName)",
-                "Discover people on \(.applicationName)",
+                "Discover gamers on \(.applicationName)",
                 "Show me profiles on \(.applicationName)"
             ],
             shortTitle: "Start Swiping",
@@ -61,11 +61,11 @@ struct TeamUpAppShortcuts: AppShortcutsProvider {
         AppShortcut(
             intent: ShareDateDetailsIntent(),
             phrases: [
-                "Share my date on \(.applicationName)",
-                "Share date details in \(.applicationName)",
-                "Tell someone about my date on \(.applicationName)"
+                "Share my meetup on \(.applicationName)",
+                "Share meetup details in \(.applicationName)",
+                "Tell someone about my meetup on \(.applicationName)"
             ],
-            shortTitle: "Share Date",
+            shortTitle: "Share Meetup",
             systemImageName: "location.circle.fill"
         )
 

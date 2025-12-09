@@ -2,14 +2,14 @@
 //  DateCheckInManager.swift
 //  TeamUp
 //
-//  Manages date check-in and safety features for in-person meetups
+//  Manages meetup check-in and safety features for in-person gaming sessions
 //
 
 import Foundation
 import Combine
 import CoreLocation
 
-// MARK: - Date Check-In Manager
+// MARK: - Meetup Check-In Manager
 
 @MainActor
 class DateCheckInManager: ObservableObject {
@@ -39,7 +39,7 @@ class DateCheckInManager: ObservableObject {
 
     // MARK: - Check-In Management
 
-    /// Schedule a date check-in
+    /// Schedule a meetup check-in
     func scheduleCheckIn(
         matchId: String,
         matchName: String,
@@ -108,7 +108,7 @@ class DateCheckInManager: ObservableObject {
         startMonitoring(checkIn: checkIn)
 
         // Notify emergency contacts
-        await notifyEmergencyContacts(checkIn: checkIn, message: "Check-in started for date with \(checkIn.matchName)")
+        await notifyEmergencyContacts(checkIn: checkIn, message: "Check-in started for meetup with \(checkIn.matchName)")
 
         // Track analytics
         AnalyticsManager.shared.logEvent(.dateCheckInStarted, parameters: [
