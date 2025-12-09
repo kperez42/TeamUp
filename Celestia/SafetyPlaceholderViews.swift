@@ -105,7 +105,7 @@ struct SafetySettingsView: View {
     }
 }
 
-// MARK: - Date Safety Views
+// MARK: - Meetup Safety Views
 
 struct SafeDateLocationsView: View {
     @Environment(\.dismiss) var dismiss

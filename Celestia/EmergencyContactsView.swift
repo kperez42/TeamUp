@@ -2,7 +2,7 @@
 //  EmergencyContactsView.swift
 //  TeamUp
 //
-//  Manage emergency contacts for date safety
+//  Manage emergency contacts for meetup safety
 //
 
 import SwiftUI
