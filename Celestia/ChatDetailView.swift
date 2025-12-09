@@ -248,8 +248,8 @@ struct ChatDetailView: View {
             location: "Paris",
             country: "France",
             platforms: ["PC", "PlayStation"],
-            skillLevel: SkillLevel.intermediate.rawValue,
-            playStyle: PlayStyle.casual.rawValue
+            playStyle: PlayStyle.casual.rawValue,
+            skillLevel: SkillLevel.intermediate.rawValue
         ))
     }
     .environmentObject(AuthService.shared)

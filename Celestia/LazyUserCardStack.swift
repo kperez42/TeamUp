@@ -138,10 +138,10 @@ struct CardData: Identifiable {
                 bio: "Love competitive FPS and co-op games.",
                 location: "Barcelona",
                 country: "Spain",
+                profileImageURL: "",
                 platforms: ["PC", "PlayStation"],
-                skillLevel: SkillLevel.advanced.rawValue,
                 playStyle: PlayStyle.competitive.rawValue,
-                profileImageURL: ""
+                skillLevel: SkillLevel.advanced.rawValue
             ),
             User(
                 email: "test2@example.com",
@@ -150,10 +150,10 @@ struct CardData: Identifiable {
                 bio: "Casual gamer and coffee enthusiast.",
                 location: "London",
                 country: "UK",
+                profileImageURL: "",
                 platforms: ["Nintendo Switch", "PC"],
-                skillLevel: SkillLevel.intermediate.rawValue,
                 playStyle: PlayStyle.casual.rawValue,
-                profileImageURL: ""
+                skillLevel: SkillLevel.intermediate.rawValue
             ),
             User(
                 email: "test3@example.com",
@@ -162,10 +162,10 @@ struct CardData: Identifiable {
                 bio: "Rhythm games and RPG lover.",
                 location: "Madrid",
                 country: "Spain",
+                profileImageURL: "",
                 platforms: ["PlayStation", "PC"],
-                skillLevel: SkillLevel.intermediate.rawValue,
                 playStyle: PlayStyle.social.rawValue,
-                profileImageURL: ""
+                skillLevel: SkillLevel.intermediate.rawValue
             )
         ],
         currentIndex: 0,

@@ -72,7 +72,7 @@ struct TestData {
             playStyle: PlayStyle.casual.rawValue,
             skillLevel: SkillLevel.intermediate.rawValue,
             voiceChatPreference: VoiceChatPreference.preferred.rawValue,
-            lookingFor: [LookingForType.casualCoOp.rawValue, LookingForType.streamingPartner.rawValue],
+            lookingFor: [LookingForType.casualCoOp.rawValue, LookingForType.streamingPartners.rawValue],
             isPremium: true,
             isVerified: true
         ),
@@ -104,7 +104,7 @@ struct TestData {
             playStyle: PlayStyle.social.rawValue,
             skillLevel: SkillLevel.intermediate.rawValue,
             voiceChatPreference: VoiceChatPreference.preferred.rawValue,
-            lookingFor: [LookingForType.dndGroup.rawValue, LookingForType.gamingCommunity.rawValue],
+            lookingFor: [LookingForType.boardGameGroup.rawValue, LookingForType.anyGamers.rawValue],
             isPremium: false,
             isVerified: false
         ),
@@ -137,7 +137,7 @@ struct TestData {
             playStyle: PlayStyle.competitive.rawValue,
             skillLevel: SkillLevel.professional.rawValue,
             voiceChatPreference: VoiceChatPreference.always.rawValue,
-            lookingFor: [LookingForType.esportsTeam.rawValue, LookingForType.competitiveTeam.rawValue],
+            lookingFor: [LookingForType.tournamentTeam.rawValue, LookingForType.competitiveTeam.rawValue],
             isPremium: true,
             isVerified: true
         ),
@@ -170,7 +170,7 @@ struct TestData {
             gameGenres: ["Board Games", "Party", "Casual"],
             playStyle: PlayStyle.social.rawValue,
             skillLevel: SkillLevel.beginner.rawValue,
-            voiceChatPreference: VoiceChatPreference.optional.rawValue,
+            voiceChatPreference: VoiceChatPreference.sometimes.rawValue,
             lookingFor: [LookingForType.boardGameGroup.rawValue, LookingForType.casualCoOp.rawValue],
             isPremium: false,
             isVerified: true
