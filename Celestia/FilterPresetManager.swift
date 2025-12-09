@@ -136,7 +136,7 @@ class FilterPresetManager: ObservableObject {
 
         // Preset 3: Long-term Relationship
         var longTerm = SearchFilter()
-        longTerm.relationshipGoals = [.longTerm, .marriage]
+        longTerm.relationshipGoals = [.longTerm]
         longTerm.verifiedOnly = true
         _ = try? savePreset(name: "Looking for Love", filter: longTerm)
 

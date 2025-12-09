@@ -440,7 +440,7 @@ class DiscoverViewModel: ObservableObject {
         }
 
         // Check if user has super likes remaining
-        if currentUser.superLikesRemaining <= 0 {
+        if currentUser.superRequestsRemaining <= 0 {
             isProcessingAction = false
             upgradeReason = .superLikesExhausted
             showingUpgradeSheet = true
@@ -509,7 +509,7 @@ class DiscoverViewModel: ObservableObject {
 
         await userService.decrementSuperLikes(userId: userId)
         await authService.fetchUser()
-        Logger.shared.info("Super Like used. Remaining: \(authService.currentUser?.superLikesRemaining ?? 0)", category: .matching)
+        Logger.shared.info("Super Like used. Remaining: \(authService.currentUser?.superRequestsRemaining ?? 0)", category: .matching)
     }
 
     /// Apply filters

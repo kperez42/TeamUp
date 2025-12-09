@@ -16,6 +16,21 @@ class DiscoveryFilters: ObservableObject {
     @Published var showVerifiedOnly: Bool = false
     @Published var showOnlineOnly: Bool = false
 
+    // MARK: - Dating Filters
+    @Published var minAge: Int = 18
+    @Published var maxAge: Int = 65
+    @Published var selectedInterests: Set<String> = []
+    @Published var educationLevels: Set<String> = []
+    @Published var minHeight: Int? = nil
+    @Published var maxHeight: Int? = nil
+    @Published var religions: Set<String> = []
+    @Published var relationshipGoals: Set<String> = []
+    @Published var smokingPreferences: Set<String> = []
+    @Published var drinkingPreferences: Set<String> = []
+    @Published var petPreferences: Set<String> = []
+    @Published var exercisePreferences: Set<String> = []
+    @Published var dietPreferences: Set<String> = []
+
     // MARK: - Platform Filters
     @Published var selectedPlatforms: Set<String> = []  // GamingPlatform raw values
 
@@ -46,6 +61,123 @@ class DiscoveryFilters: ObservableObject {
     }
 
     // MARK: - Filter Logic
+
+    /// Convenience overload that accepts location tuple instead of full User object
+    func matchesFilters(user: User, currentUserLocation: (lat: Double, lon: Double)?) -> Bool {
+        // Verification filter
+        if showVerifiedOnly && !user.isVerified {
+            return false
+        }
+
+        // Online only filter
+        if showOnlineOnly && !user.isOnline {
+            return false
+        }
+
+        // Distance filter (for regional matchmaking)
+        if let currentLocation = currentUserLocation,
+           let userLat = user.latitude,
+           let userLon = user.longitude {
+            let distance = calculateDistance(
+                from: currentLocation,
+                to: (userLat, userLon)
+            )
+            if distance > maxDistance {
+                return false
+            }
+        }
+
+        // Age filter
+        if user.age < minAge || user.age > maxAge {
+            return false
+        }
+
+        // Interests filter
+        if !selectedInterests.isEmpty {
+            let userInterests = Set(user.interests)
+            if selectedInterests.isDisjoint(with: userInterests) {
+                return false
+            }
+        }
+
+        // Education filter
+        if !educationLevels.isEmpty {
+            if let userEducation = user.educationLevel, !educationLevels.contains(userEducation) {
+                return false
+            } else if user.educationLevel == nil {
+                return false
+            }
+        }
+
+        // Height filter
+        if let minH = minHeight, let userHeight = user.height, userHeight < minH {
+            return false
+        }
+        if let maxH = maxHeight, let userHeight = user.height, userHeight > maxH {
+            return false
+        }
+
+        // Religion filter
+        if !religions.isEmpty {
+            if let userReligion = user.religion, !religions.contains(userReligion) {
+                return false
+            } else if user.religion == nil {
+                return false
+            }
+        }
+
+        // Relationship goals filter
+        if !relationshipGoals.isEmpty {
+            if let userGoal = user.relationshipGoal, !relationshipGoals.contains(userGoal) {
+                return false
+            } else if user.relationshipGoal == nil {
+                return false
+            }
+        }
+
+        // Lifestyle filters
+        if !smokingPreferences.isEmpty {
+            if let userSmoking = user.smoking, !smokingPreferences.contains(userSmoking) {
+                return false
+            } else if user.smoking == nil {
+                return false
+            }
+        }
+
+        if !drinkingPreferences.isEmpty {
+            if let userDrinking = user.drinking, !drinkingPreferences.contains(userDrinking) {
+                return false
+            } else if user.drinking == nil {
+                return false
+            }
+        }
+
+        if !petPreferences.isEmpty {
+            if let userPets = user.pets, !petPreferences.contains(userPets) {
+                return false
+            } else if user.pets == nil {
+                return false
+            }
+        }
+
+        if !exercisePreferences.isEmpty {
+            if let userExercise = user.exercise, !exercisePreferences.contains(userExercise) {
+                return false
+            } else if user.exercise == nil {
+                return false
+            }
+        }
+
+        if !dietPreferences.isEmpty {
+            if let userDiet = user.diet, !dietPreferences.contains(userDiet) {
+                return false
+            } else if user.diet == nil {
+                return false
+            }
+        }
+
+        return true
+    }
 
     func matchesFilters(user: User, currentUser: User?) -> Bool {
         // Verification filter
@@ -323,6 +455,21 @@ class DiscoveryFilters: ObservableObject {
         UserDefaults.standard.set(preferredTimezone, forKey: "gl_preferredTimezone")
         UserDefaults.standard.set(scheduleMustOverlap, forKey: "gl_scheduleMustOverlap")
         UserDefaults.standard.set(Array(selectedRegions), forKey: "gl_selectedRegions")
+
+        // Dating filters
+        UserDefaults.standard.set(minAge, forKey: "gl_minAge")
+        UserDefaults.standard.set(maxAge, forKey: "gl_maxAge")
+        UserDefaults.standard.set(Array(selectedInterests), forKey: "gl_selectedInterests")
+        UserDefaults.standard.set(Array(educationLevels), forKey: "gl_educationLevels")
+        UserDefaults.standard.set(minHeight, forKey: "gl_minHeight")
+        UserDefaults.standard.set(maxHeight, forKey: "gl_maxHeight")
+        UserDefaults.standard.set(Array(religions), forKey: "gl_religions")
+        UserDefaults.standard.set(Array(relationshipGoals), forKey: "gl_relationshipGoals")
+        UserDefaults.standard.set(Array(smokingPreferences), forKey: "gl_smokingPreferences")
+        UserDefaults.standard.set(Array(drinkingPreferences), forKey: "gl_drinkingPreferences")
+        UserDefaults.standard.set(Array(petPreferences), forKey: "gl_petPreferences")
+        UserDefaults.standard.set(Array(exercisePreferences), forKey: "gl_exercisePreferences")
+        UserDefaults.standard.set(Array(dietPreferences), forKey: "gl_dietPreferences")
     }
 
     private func loadFromUserDefaults() {
@@ -361,6 +508,43 @@ class DiscoveryFilters: ObservableObject {
         if let regions = UserDefaults.standard.array(forKey: "gl_selectedRegions") as? [String] {
             selectedRegions = Set(regions)
         }
+
+        // Dating filters
+        if let savedMinAge = UserDefaults.standard.object(forKey: "gl_minAge") as? Int {
+            minAge = savedMinAge
+        }
+        if let savedMaxAge = UserDefaults.standard.object(forKey: "gl_maxAge") as? Int {
+            maxAge = savedMaxAge
+        }
+        if let interests = UserDefaults.standard.array(forKey: "gl_selectedInterests") as? [String] {
+            selectedInterests = Set(interests)
+        }
+        if let education = UserDefaults.standard.array(forKey: "gl_educationLevels") as? [String] {
+            educationLevels = Set(education)
+        }
+        minHeight = UserDefaults.standard.object(forKey: "gl_minHeight") as? Int
+        maxHeight = UserDefaults.standard.object(forKey: "gl_maxHeight") as? Int
+        if let savedReligions = UserDefaults.standard.array(forKey: "gl_religions") as? [String] {
+            religions = Set(savedReligions)
+        }
+        if let goals = UserDefaults.standard.array(forKey: "gl_relationshipGoals") as? [String] {
+            relationshipGoals = Set(goals)
+        }
+        if let smoking = UserDefaults.standard.array(forKey: "gl_smokingPreferences") as? [String] {
+            smokingPreferences = Set(smoking)
+        }
+        if let drinking = UserDefaults.standard.array(forKey: "gl_drinkingPreferences") as? [String] {
+            drinkingPreferences = Set(drinking)
+        }
+        if let pets = UserDefaults.standard.array(forKey: "gl_petPreferences") as? [String] {
+            petPreferences = Set(pets)
+        }
+        if let exercise = UserDefaults.standard.array(forKey: "gl_exercisePreferences") as? [String] {
+            exercisePreferences = Set(exercise)
+        }
+        if let diet = UserDefaults.standard.array(forKey: "gl_dietPreferences") as? [String] {
+            dietPreferences = Set(diet)
+        }
     }
 
     func resetFilters() {
@@ -382,6 +566,21 @@ class DiscoveryFilters: ObservableObject {
         scheduleMustOverlap = false
         selectedRegions.removeAll()
 
+        // Dating filters
+        minAge = 18
+        maxAge = 65
+        selectedInterests.removeAll()
+        educationLevels.removeAll()
+        minHeight = nil
+        maxHeight = nil
+        religions.removeAll()
+        relationshipGoals.removeAll()
+        smokingPreferences.removeAll()
+        drinkingPreferences.removeAll()
+        petPreferences.removeAll()
+        exercisePreferences.removeAll()
+        dietPreferences.removeAll()
+
         saveToUserDefaults()
     }
 
@@ -391,7 +590,13 @@ class DiscoveryFilters: ObservableObject {
                !selectedGenres.isEmpty || mustHaveGamesInCommon ||
                !selectedSkillLevels.isEmpty || !selectedPlayStyles.isEmpty ||
                !selectedLookingForTypes.isEmpty || !selectedVoiceChatPreferences.isEmpty ||
-               preferredTimezone != nil || scheduleMustOverlap || !selectedRegions.isEmpty
+               preferredTimezone != nil || scheduleMustOverlap || !selectedRegions.isEmpty ||
+               minAge > 18 || maxAge < 65 ||
+               !selectedInterests.isEmpty || !educationLevels.isEmpty ||
+               minHeight != nil || maxHeight != nil ||
+               !religions.isEmpty || !relationshipGoals.isEmpty ||
+               !smokingPreferences.isEmpty || !drinkingPreferences.isEmpty ||
+               !petPreferences.isEmpty || !exercisePreferences.isEmpty || !dietPreferences.isEmpty
     }
 
     var activeFilterCount: Int {
@@ -409,6 +614,20 @@ class DiscoveryFilters: ObservableObject {
         if preferredTimezone != nil { count += 1 }
         if scheduleMustOverlap { count += 1 }
         count += selectedRegions.count
+        // Dating filters
+        if minAge > 18 { count += 1 }
+        if maxAge < 65 { count += 1 }
+        count += selectedInterests.count
+        count += educationLevels.count
+        if minHeight != nil { count += 1 }
+        if maxHeight != nil { count += 1 }
+        count += religions.count
+        count += relationshipGoals.count
+        count += smokingPreferences.count
+        count += drinkingPreferences.count
+        count += petPreferences.count
+        count += exercisePreferences.count
+        count += dietPreferences.count
         return count
     }
 

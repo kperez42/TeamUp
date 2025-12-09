@@ -909,7 +909,7 @@ struct FeedDiscoverView: View {
                 return nil
             }()
 
-            let lookingForValue = authService.currentUser?.lookingFor
+            let lookingForValue = authService.currentUser?.showMeGender
             Logger.shared.info("FeedDiscoverView: Loading users with filters - lookingFor: \(lookingForValue ?? "nil"), ageRange: \(ageRange?.description ?? "nil")", category: .database)
 
             // Fetch users from Firestore using UserService

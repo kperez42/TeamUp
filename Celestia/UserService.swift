@@ -46,6 +46,7 @@ class UserService: ObservableObject, UserServiceProtocol {
         lookingFor: String? = nil,
         platforms: [String]? = nil,
         country: String? = nil,
+        ageRange: ClosedRange<Int>? = nil,
         limit: Int = 20,
         reset: Bool = true
     ) async throws {
@@ -131,6 +132,12 @@ class UserService: ObservableObject, UserServiceProtocol {
                         let userPlatforms = Set(user.platforms)
                         let hasMatchingPlatform = !filterPlatforms.filter { userPlatforms.contains($0) }.isEmpty
                         if !hasMatchingPlatform { return false }
+                    }
+                    // Client-side age range filter (if specified)
+                    if let ageRange = ageRange {
+                        if user.age < ageRange.lowerBound || user.age > ageRange.upperBound {
+                            return false
+                        }
                     }
                     return true
                 }
