@@ -1,5 +1,5 @@
 /*
- * Celestia Localization - Spanish
+ * TeamUp Localization - Spanish
  * Language: Español (es)
  */
 
@@ -122,8 +122,8 @@
 
 // MARK: - Onboarding
 
-"onboarding.welcome" = "Bienvenido a Celestia";
-"onboarding.find_your_match" = "Encuentra tu pareja perfecta";
+"onboarding.welcome" = "Bienvenido a TeamUp";
+"onboarding.find_your_match" = "Encuentra tu equipo de juego perfecto";
 "onboarding.get_started" = "Comenzar";
 
 // MARK: - Referrals
