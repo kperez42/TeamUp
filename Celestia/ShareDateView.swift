@@ -59,10 +59,10 @@ struct ShareDateView: View {
                 .font(.system(size: 50))
                 .foregroundColor(.blue)
 
-            Text("Stay Safe on Your Date")
+            Text("Stay Safe on Your Meetup")
                 .font(.title2.bold())
 
-            Text("Share your date plans with trusted contacts. They'll receive your details and can check in on you.")
+            Text("Share your meetup plans with trusted contacts. They'll receive your details and can check in on you.")
                 .font(.subheadline)
                 .foregroundColor(.secondary)
                 .multilineTextAlignment(.center)
@@ -73,11 +73,11 @@ struct ShareDateView: View {
         .cornerRadius(16)
     }
 
-    // MARK: - Date Details Section
+    // MARK: - Meetup Details Section
 
     private var dateDetailsSection: some View {
         VStack(alignment: .leading, spacing: 16) {
-            Text("Date Details")
+            Text("Meetup Details")
                 .font(.headline)
 
             VStack(spacing: 16) {
@@ -187,7 +187,7 @@ struct ShareDateView: View {
                         .font(.headline)
                         .foregroundColor(.secondary)
 
-                    Text("Add trusted contacts who can check on you during your date.")
+                    Text("Add trusted contacts who can check on you during your meetup.")
                         .font(.caption)
                         .foregroundColor(.secondary)
                         .multilineTextAlignment(.center)
@@ -244,7 +244,7 @@ struct ShareDateView: View {
         } label: {
             HStack {
                 Image(systemName: "paperplane.fill")
-                Text("Share Date Details")
+                Text("Share Meetup Details")
             }
             .font(.headline)
             .foregroundColor(.white)
@@ -343,7 +343,7 @@ struct DateSharedConfirmationView: View {
 
                 // Message
                 VStack(spacing: 12) {
-                    Text("Date Details Shared!")
+                    Text("Meetup Details Shared!")
                         .font(.title.bold())
 
                     Text("Your trusted contacts have been notified and will receive updates.")
@@ -596,7 +596,7 @@ struct MatchPickerView: View {
                 Text("No Matches Yet")
                     .font(.title2.bold())
 
-                Text("You don't have any matches to share your date with yet. Start swiping to find matches!")
+                Text("You don't have any matches to share your meetup with yet. Start swiping to find matches!")
                     .font(.body)
                     .foregroundColor(.secondary)
                     .multilineTextAlignment(.center)
