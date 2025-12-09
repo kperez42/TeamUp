@@ -887,7 +887,7 @@ struct SignUpView: View {
                                         .font(.system(size: 36))
                                         .foregroundStyle(
                                             LinearGradient(
-                                                colors: [.purple, .pink],
+                                                colors: [.green, .cyan],
                                                 startPoint: .topLeading,
                                                 endPoint: .bottomTrailing
                                             )

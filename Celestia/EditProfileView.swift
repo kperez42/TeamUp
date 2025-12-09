@@ -230,7 +230,7 @@ struct EditProfileView: View {
                         }
                         .foregroundStyle(
                             LinearGradient(
-                                colors: [.purple, .pink],
+                                colors: [.green, .cyan],
                                 startPoint: .leading,
                                 endPoint: .trailing
                             )
@@ -245,7 +245,7 @@ struct EditProfileView: View {
                     } label: {
                         if isLoading {
                             ProgressView()
-                                .tint(.purple)
+                                .tint(.green)
                         } else {
                             HStack(spacing: 4) {
                                 Text("Save")
@@ -255,7 +255,7 @@ struct EditProfileView: View {
                             }
                             .foregroundStyle(
                                 LinearGradient(
-                                    colors: [.purple, .pink],
+                                    colors: [.green, .cyan],
                                     startPoint: .leading,
                                     endPoint: .trailing
                                 )
@@ -321,7 +321,7 @@ struct EditProfileView: View {
         VStack(spacing: 0) {
             // Header
             HStack {
-                SectionHeader(icon: "camera.fill", title: "Your Photos", color: .purple)
+                SectionHeader(icon: "camera.fill", title: "Your Photos", color: .green)
                 Spacer()
             }
             .padding(.horizontal, 20)
@@ -372,14 +372,14 @@ struct EditProfileView: View {
                         Circle()
                             .stroke(
                                 LinearGradient(
-                                    colors: [.purple, .pink],
+                                    colors: [.green, .cyan],
                                     startPoint: .topLeading,
                                     endPoint: .bottomTrailing
                                 ),
                                 lineWidth: 3
                             )
                     }
-                    .shadow(color: .purple.opacity(0.25), radius: 12, y: 6)
+                    .shadow(color: .green.opacity(0.25), radius: 12, y: 6)
 
                     PhotosPicker(selection: $selectedImage, matching: .images) {
                         ZStack {
@@ -391,7 +391,7 @@ struct EditProfileView: View {
                             Circle()
                                 .fill(
                                     LinearGradient(
-                                        colors: [.purple, .pink],
+                                        colors: [.green, .cyan],
                                         startPoint: .topLeading,
                                         endPoint: .bottomTrailing
                                     )
@@ -442,10 +442,10 @@ struct EditProfileView: View {
                         Text("\(photos.count)/6")
                             .font(.caption)
                             .fontWeight(.semibold)
-                            .foregroundColor(.purple)
+                            .foregroundColor(.green)
                             .padding(.horizontal, 10)
                             .padding(.vertical, 4)
-                            .background(Color.purple.opacity(0.1))
+                            .background(Color.green.opacity(0.1))
                             .cornerRadius(12)
                     }
                 }
@@ -500,7 +500,7 @@ struct EditProfileView: View {
         HStack(spacing: 6) {
             ZStack {
                 Circle()
-                    .stroke(Color.purple.opacity(0.2), lineWidth: 2)
+                    .stroke(Color.green.opacity(0.2), lineWidth: 2)
                     .frame(width: 20, height: 20)
                 Circle()
                     .trim(from: 0, to: uploadProgress)
@@ -511,11 +511,11 @@ struct EditProfileView: View {
             Text("\(Int(uploadProgress * 100))%")
                 .font(.caption2)
                 .fontWeight(.bold)
-                .foregroundColor(.purple)
+                .foregroundColor(.green)
         }
         .padding(.horizontal, 10)
         .padding(.vertical, 4)
-        .background(Color.purple.opacity(0.1))
+        .background(Color.green.opacity(0.1))
         .cornerRadius(12)
     }
 
@@ -548,7 +548,7 @@ struct EditProfileView: View {
                 .padding(.vertical, 10)
                 .background(
                     LinearGradient(
-                        colors: [.purple, .pink],
+                        colors: [.green, .cyan],
                         startPoint: .leading,
                         endPoint: .trailing
                     )
@@ -592,7 +592,7 @@ struct EditProfileView: View {
             if photos.count + uploadingPhotoCount < 6 {
                 PhotosPicker(selection: $selectedPhotoItems, maxSelectionCount: 6 - photos.count - uploadingPhotoCount, matching: .images) {
                     RoundedRectangle(cornerRadius: 10)
-                        .stroke(Color.purple.opacity(0.3), style: StrokeStyle(lineWidth: 2, dash: [6]))
+                        .stroke(Color.green.opacity(0.3), style: StrokeStyle(lineWidth: 2, dash: [6]))
                         .frame(height: 100)
                         .overlay {
                             VStack(spacing: 6) {
@@ -643,14 +643,14 @@ struct EditProfileView: View {
                     Circle()
                         .stroke(
                             LinearGradient(
-                                colors: [.purple, .pink],
+                                colors: [.green, .cyan],
                                 startPoint: .topLeading,
                                 endPoint: .bottomTrailing
                             ),
                             lineWidth: 3
                         )
                 }
-                .shadow(color: .purple.opacity(0.3), radius: 15, y: 8)
+                .shadow(color: .green.opacity(0.3), radius: 15, y: 8)
 
                 // Camera button with loading indicator
                 PhotosPicker(selection: $selectedImage, matching: .images) {
@@ -663,7 +663,7 @@ struct EditProfileView: View {
                         Circle()
                             .fill(
                                 LinearGradient(
-                                    colors: [.purple, .pink],
+                                    colors: [.green, .cyan],
                                     startPoint: .topLeading,
                                     endPoint: .bottomTrailing
                                 )
@@ -714,7 +714,7 @@ struct EditProfileView: View {
                     .fontWeight(.medium)
                     .foregroundStyle(
                         LinearGradient(
-                            colors: [.purple, .pink],
+                            colors: [.green, .cyan],
                             startPoint: .leading,
                             endPoint: .trailing
                         )
@@ -772,7 +772,7 @@ struct EditProfileView: View {
                         ZStack {
                             // Background circle
                             Circle()
-                                .stroke(Color.purple.opacity(0.2), lineWidth: 4)
+                                .stroke(Color.green.opacity(0.2), lineWidth: 4)
                                 .frame(width: 44, height: 44)
 
                             // Progress circle
@@ -780,7 +780,7 @@ struct EditProfileView: View {
                                 .trim(from: 0, to: uploadProgress)
                                 .stroke(
                                     LinearGradient(
-                                        colors: [.purple, .pink],
+                                        colors: [.green, .cyan],
                                         startPoint: .leading,
                                         endPoint: .trailing
                                     ),
@@ -802,7 +802,7 @@ struct EditProfileView: View {
                             // Percentage text
                             Text("\(Int(uploadProgress * 100))%")
                                 .font(.system(size: 11, weight: .bold))
-                                .foregroundColor(.purple)
+                                .foregroundColor(.green)
                         }
 
                         VStack(alignment: .leading, spacing: 3) {
@@ -811,7 +811,7 @@ struct EditProfileView: View {
                                 Text("Uploading")
                                     .font(.caption)
                                     .fontWeight(.bold)
-                                    .foregroundColor(.purple)
+                                    .foregroundColor(.green)
 
                                 ForEach(0..<3, id: \.self) { index in
                                     Circle()
@@ -831,8 +831,8 @@ struct EditProfileView: View {
                     .padding(.vertical, 10)
                     .background(
                         RoundedRectangle(cornerRadius: 14)
-                            .fill(Color.purple.opacity(0.15))
-                            .shadow(color: .purple.opacity(0.2), radius: 8, x: 0, y: 2)
+                            .fill(Color.green.opacity(0.15))
+                            .shadow(color: .green.opacity(0.2), radius: 8, x: 0, y: 2)
                     )
                     .overlay(
                         RoundedRectangle(cornerRadius: 14)
@@ -886,7 +886,7 @@ struct EditProfileView: View {
                         .padding(.vertical, 14)
                         .background(
                             LinearGradient(
-                                colors: [.purple, .pink],
+                                colors: [.green, .cyan],
                                 startPoint: .leading,
                                 endPoint: .trailing
                             )
@@ -931,13 +931,13 @@ struct EditProfileView: View {
                     if photos.count + uploadingPhotoCount < 6 {
                         PhotosPicker(selection: $selectedPhotoItems, maxSelectionCount: 6 - photos.count - uploadingPhotoCount, matching: .images) {
                             RoundedRectangle(cornerRadius: 12)
-                                .stroke(Color.purple.opacity(0.3), style: StrokeStyle(lineWidth: 2, dash: [8]))
+                                .stroke(Color.green.opacity(0.3), style: StrokeStyle(lineWidth: 2, dash: [8]))
                                 .frame(height: 120)
                                 .overlay {
                                     VStack(spacing: 8) {
                                         Image(systemName: "plus.circle.fill")
                                             .font(.title)
-                                            .foregroundColor(.purple)
+                                            .foregroundColor(.green)
                                         Text("Add Photo")
                                             .font(.caption)
                                             .foregroundColor(.secondary)
@@ -990,7 +990,7 @@ struct EditProfileView: View {
                     .fontWeight(.bold)
                     .foregroundStyle(
                         LinearGradient(
-                            colors: [.purple, .pink],
+                            colors: [.green, .cyan],
                             startPoint: .leading,
                             endPoint: .trailing
                         )
@@ -1006,7 +1006,7 @@ struct EditProfileView: View {
                     Capsule()
                         .fill(
                             LinearGradient(
-                                colors: [.purple, .pink],
+                                colors: [.green, .cyan],
                                 startPoint: .leading,
                                 endPoint: .trailing
                             )
@@ -1034,7 +1034,7 @@ struct EditProfileView: View {
 
     private var basicInfoSection: some View {
         VStack(spacing: 20) {
-            SectionHeader(icon: "person.fill", title: "Basic Information", color: .purple)
+            SectionHeader(icon: "person.fill", title: "Basic Information", color: .green)
 
             // Full Name (Required)
             VStack(alignment: .leading, spacing: 8) {
@@ -1524,7 +1524,7 @@ struct EditProfileView: View {
                         label: "Drinking",
                         value: $drinking,
                         options: drinkingOptions,
-                        color: .purple
+                        color: .green
                     )
                 }
 
@@ -1650,7 +1650,7 @@ struct EditProfileView: View {
         VStack(spacing: 0) {
             // Header
             HStack {
-                SectionHeader(icon: "sparkles", title: "Express Yourself", color: .purple)
+                SectionHeader(icon: "sparkles", title: "Express Yourself", color: .green)
                 Spacer()
             }
             .padding(.horizontal, 20)
@@ -1664,7 +1664,7 @@ struct EditProfileView: View {
                         HStack(spacing: 6) {
                             Image(systemName: "globe")
                                 .font(.subheadline)
-                                .foregroundColor(.purple)
+                                .foregroundColor(.green)
                             Text("Languages")
                                 .font(.subheadline)
                                 .fontWeight(.semibold)
@@ -1683,7 +1683,7 @@ struct EditProfileView: View {
                                     .font(.caption)
                                     .fontWeight(.semibold)
                             }
-                            .foregroundColor(.purple)
+                            .foregroundColor(.green)
                         }
                     }
 
@@ -1708,7 +1708,7 @@ struct EditProfileView: View {
                             ForEach(languages, id: \.self) { language in
                                 TagChip(
                                     text: language,
-                                    color: .purple,
+                                    color: .green,
                                     onRemove: { languages.removeAll { $0 == language } }
                                 )
                             }
@@ -2014,7 +2014,7 @@ struct EditProfileView: View {
     private var languagesSection: some View {
         VStack(spacing: 15) {
             HStack {
-                SectionHeader(icon: "globe", title: "Languages", color: .purple)
+                SectionHeader(icon: "globe", title: "Languages", color: .green)
                 
                 Spacer()
                 
@@ -2029,7 +2029,7 @@ struct EditProfileView: View {
                     .fontWeight(.semibold)
                     .foregroundStyle(
                         LinearGradient(
-                            colors: [.purple, .pink],
+                            colors: [.green, .cyan],
                             startPoint: .leading,
                             endPoint: .trailing
                         )
@@ -2048,7 +2048,7 @@ struct EditProfileView: View {
                     ForEach(languages, id: \.self) { language in
                         TagChip(
                             text: language,
-                            color: .purple,
+                            color: .green,
                             onRemove: { languages.removeAll { $0 == language } }
                         )
                     }
@@ -2118,7 +2118,7 @@ struct EditProfileView: View {
     private var promptsSection: some View {
         VStack(spacing: 15) {
             HStack {
-                SectionHeader(icon: "quote.bubble.fill", title: "Profile Prompts", color: .purple)
+                SectionHeader(icon: "quote.bubble.fill", title: "Profile Prompts", color: .green)
 
                 Spacer()
 
@@ -2133,7 +2133,7 @@ struct EditProfileView: View {
                     .fontWeight(.semibold)
                     .foregroundStyle(
                         LinearGradient(
-                            colors: [.purple, .pink],
+                            colors: [.green, .cyan],
                             startPoint: .leading,
                             endPoint: .trailing
                         )
@@ -2154,7 +2154,7 @@ struct EditProfileView: View {
                             Text(prompt.question)
                                 .font(.caption)
                                 .fontWeight(.semibold)
-                                .foregroundColor(.purple)
+                                .foregroundColor(.green)
 
                             Text(prompt.answer)
                                 .font(.subheadline)
@@ -2164,7 +2164,7 @@ struct EditProfileView: View {
                         .padding(12)
                         .background(
                             LinearGradient(
-                                colors: [Color.purple.opacity(0.05), Color.pink.opacity(0.03)],
+                                colors: [Color.green.opacity(0.05), Color.pink.opacity(0.03)],
                                 startPoint: .topLeading,
                                 endPoint: .bottomTrailing
                             )
@@ -2209,13 +2209,13 @@ struct EditProfileView: View {
             .frame(height: 56)
             .background(
                 LinearGradient(
-                    colors: [.purple, .pink],
+                    colors: [.green, .cyan],
                     startPoint: .leading,
                     endPoint: .trailing
                 )
             )
             .cornerRadius(16)
-            .shadow(color: .purple.opacity(0.4), radius: 15, y: 8)
+            .shadow(color: .green.opacity(0.4), radius: 15, y: 8)
         }
         .disabled(isLoading || !isFormValid)
         .opacity(isFormValid ? 1.0 : 0.6)
@@ -2864,7 +2864,7 @@ struct LanguagePickerView: View {
                         .font(.headline)
                         .foregroundStyle(
                             LinearGradient(
-                                colors: [.purple, .pink],
+                                colors: [.green, .cyan],
                                 startPoint: .leading,
                                 endPoint: .trailing
                             )
@@ -2921,7 +2921,7 @@ struct LanguageTagButton: View {
                 Group {
                     if isSelected {
                         LinearGradient(
-                            colors: [.purple, .pink],
+                            colors: [.green, .cyan],
                             startPoint: .leading,
                             endPoint: .trailing
                         )
@@ -2938,7 +2938,7 @@ struct LanguageTagButton: View {
                     .stroke(
                         isSelected ?
                         AnyShapeStyle(LinearGradient(
-                            colors: [.purple, .pink],
+                            colors: [.green, .cyan],
                             startPoint: .leading,
                             endPoint: .trailing
                         )) :
@@ -3083,7 +3083,7 @@ struct UploadingPhotoPlaceholder: View {
             .fill(
                 LinearGradient(
                     colors: [
-                        Color.purple.opacity(isPulsing ? 0.15 : 0.08),
+                        Color.green.opacity(isPulsing ? 0.15 : 0.08),
                         Color.pink.opacity(isPulsing ? 0.12 : 0.06)
                     ],
                     startPoint: .topLeading,
@@ -3095,14 +3095,14 @@ struct UploadingPhotoPlaceholder: View {
                 VStack(spacing: 10) {
                     ZStack {
                         Circle()
-                            .stroke(Color.purple.opacity(0.2), lineWidth: 3)
+                            .stroke(Color.green.opacity(0.2), lineWidth: 3)
                             .frame(width: 40, height: 40)
 
                         Circle()
                             .trim(from: 0, to: 0.7)
                             .stroke(
                                 LinearGradient(
-                                    colors: [.purple, .pink],
+                                    colors: [.green, .cyan],
                                     startPoint: .topLeading,
                                     endPoint: .bottomTrailing
                                 ),
@@ -3115,7 +3115,7 @@ struct UploadingPhotoPlaceholder: View {
                     Text("Uploading...")
                         .font(.caption)
                         .fontWeight(.medium)
-                        .foregroundColor(.purple)
+                        .foregroundColor(.green)
                 }
             }
             .overlay(
@@ -3205,7 +3205,7 @@ struct DraggablePhotoGridItem: View {
                 RoundedRectangle(cornerRadius: 12)
                     .fill(
                         LinearGradient(
-                            colors: [Color.purple.opacity(0.15), Color.pink.opacity(0.1)],
+                            colors: [Color.green.opacity(0.15), Color.pink.opacity(0.1)],
                             startPoint: .topLeading,
                             endPoint: .bottomTrailing
                         )

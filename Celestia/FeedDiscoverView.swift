@@ -550,7 +550,7 @@ struct FeedDiscoverView: View {
                     .padding(.vertical, 14)
                     .background(
                         LinearGradient(
-                            colors: [.purple, .pink],
+                            colors: [.green, .cyan],
                             startPoint: .leading,
                             endPoint: .trailing
                         )
@@ -572,7 +572,7 @@ struct FeedDiscoverView: View {
                     .foregroundColor(.green)
                     .frame(maxWidth: .infinity)
                     .padding(.vertical, 14)
-                    .background(Color.purple.opacity(0.1))
+                    .background(Color.green.opacity(0.1))
                     .cornerRadius(12)
                 }
             }
@@ -611,17 +611,17 @@ struct FeedDiscoverView: View {
             // Check if user is pending approval
             if authService.currentUser?.profileStatus == "pending" {
                 // Friendly pending message
-                Image(systemName: "sparkles")
+                Image(systemName: "gamecontroller.fill")
                     .font(.system(size: 60))
                     .foregroundStyle(
                         LinearGradient(
-                            colors: [.purple, .pink],
+                            colors: [.green, .cyan],
                             startPoint: .topLeading,
                             endPoint: .bottomTrailing
                         )
                     )
 
-                Text("Welcome to Celestia!")
+                Text("Welcome to TeamUp!")
                     .font(.title2)
                     .fontWeight(.bold)
 
@@ -811,7 +811,7 @@ struct FeedDiscoverView: View {
                 .foregroundColor(.green)
                 .padding(.horizontal, 20)
                 .padding(.vertical, 10)
-                .background(Color.purple.opacity(0.1))
+                .background(Color.green.opacity(0.1))
                 .cornerRadius(10)
             }
         }

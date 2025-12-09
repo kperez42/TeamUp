@@ -1089,7 +1089,7 @@ struct OnboardingView: View {
         }
     }
 
-    private func photoTipRow(icon: String, text: String, color: Color = .purple) -> some View {
+    private func photoTipRow(icon: String, text: String, color: Color = .green) -> some View {
         HStack(alignment: .center, spacing: 12) {
             ZStack {
                 Circle()
@@ -1253,7 +1253,7 @@ struct OnboardingView: View {
                                 Text(interest)
                                     .font(.subheadline)
                                     .fontWeight(.medium)
-                                    .foregroundColor(selectedInterests.contains(interest) ? .white : .purple)
+                                    .foregroundColor(selectedInterests.contains(interest) ? .white : .green)
                                     .padding(.horizontal, 14)
                                     .padding(.vertical, 8)
                                     .background(
@@ -1914,7 +1914,7 @@ struct OnboardingView: View {
                     .cornerRadius(16)
                     .overlay(
                         RoundedRectangle(cornerRadius: 16)
-                            .stroke(Color.purple, lineWidth: 2)
+                            .stroke(Color.green, lineWidth: 2)
                     )
                 }
                 .accessibilityLabel("Back")

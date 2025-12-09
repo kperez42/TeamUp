@@ -55,7 +55,7 @@ struct ProfilePromptsEditorView: View {
                     Button("Cancel") {
                         dismiss()
                     }
-                    .foregroundColor(.purple)
+                    .foregroundColor(.green)
                 }
 
                 ToolbarItem(placement: .navigationBarTrailing) {
@@ -63,7 +63,7 @@ struct ProfilePromptsEditorView: View {
                         HapticManager.shared.impact(.medium)
                         dismiss()
                     }
-                    .foregroundColor(.purple)
+                    .foregroundColor(.green)
                     .fontWeight(.semibold)
                 }
             }
@@ -85,7 +85,7 @@ struct ProfilePromptsEditorView: View {
                     .font(.title3)
                     .foregroundStyle(
                         LinearGradient(
-                            colors: [.purple, .pink],
+                            colors: [.green, .cyan],
                             startPoint: .topLeading,
                             endPoint: .bottomTrailing
                         )
@@ -104,7 +104,7 @@ struct ProfilePromptsEditorView: View {
         .padding(20)
         .background(
             LinearGradient(
-                colors: [Color.purple.opacity(0.08), Color.pink.opacity(0.06)],
+                colors: [Color.green.opacity(0.08), Color.cyan.opacity(0.06)],
                 startPoint: .topLeading,
                 endPoint: .bottomTrailing
             )
@@ -112,7 +112,7 @@ struct ProfilePromptsEditorView: View {
         .cornerRadius(20)
         .overlay(
             RoundedRectangle(cornerRadius: 20)
-                .stroke(Color.purple.opacity(0.2), lineWidth: 1)
+                .stroke(Color.green.opacity(0.2), lineWidth: 1)
         )
     }
 
@@ -124,7 +124,7 @@ struct ProfilePromptsEditorView: View {
                 .font(.system(size: 56))
                 .foregroundStyle(
                     LinearGradient(
-                        colors: [.purple, .pink],
+                        colors: [.green, .cyan],
                         startPoint: .topLeading,
                         endPoint: .bottomTrailing
                     )
@@ -154,7 +154,7 @@ struct ProfilePromptsEditorView: View {
             // Question
             Text(prompt.question)
                 .font(.headline)
-                .foregroundColor(.purple)
+                .foregroundColor(.green)
 
             // Answer
             Text(prompt.answer)
@@ -175,7 +175,7 @@ struct ProfilePromptsEditorView: View {
                     }
                     .font(.subheadline)
                     .fontWeight(.medium)
-                    .foregroundColor(.purple)
+                    .foregroundColor(.green)
                 }
 
                 Spacer()
@@ -221,7 +221,7 @@ struct ProfilePromptsEditorView: View {
                     .font(.subheadline)
                     .foregroundColor(.secondary)
             }
-            .foregroundColor(.purple)
+            .foregroundColor(.green)
             .padding()
             .background(Color(.systemBackground))
             .cornerRadius(16)
@@ -297,7 +297,7 @@ struct ProfilePromptsEditorView: View {
                 .background(
                     selectedCategory == category ?
                         LinearGradient(
-                            colors: [.purple, .pink],
+                            colors: [.green, .cyan],
                             startPoint: .leading,
                             endPoint: .trailing
                         ) :
@@ -348,13 +348,13 @@ struct ProfilePromptsEditorView: View {
                     Text(selectedQuestion)
                         .font(.title3)
                         .fontWeight(.semibold)
-                        .foregroundColor(.purple)
+                        .foregroundColor(.green)
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding()
                 .background(
                     LinearGradient(
-                        colors: [Color.purple.opacity(0.08), Color.pink.opacity(0.06)],
+                        colors: [Color.green.opacity(0.08), Color.cyan.opacity(0.06)],
                         startPoint: .topLeading,
                         endPoint: .bottomTrailing
                     )
@@ -375,7 +375,7 @@ struct ProfilePromptsEditorView: View {
                         .cornerRadius(12)
                         .overlay(
                             RoundedRectangle(cornerRadius: 12)
-                                .stroke(Color.purple.opacity(0.3), lineWidth: 1)
+                                .stroke(Color.green.opacity(0.3), lineWidth: 1)
                         )
 
                     HStack {
@@ -426,7 +426,7 @@ struct ProfilePromptsEditorView: View {
                         showingAnswerEntry = false
                         answerText = ""
                     }
-                    .foregroundColor(.purple)
+                    .foregroundColor(.green)
                 }
             }
         }

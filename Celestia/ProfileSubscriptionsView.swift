@@ -46,16 +46,16 @@ struct ProfileSubscriptionsView: View {
             icon: "infinity",
             title: "Unlimited Likes",
             description: "Like as many profiles as you want without daily limits. Never miss a potential match!",
-            color: .purple,
-            gradient: [Color.purple, Color.indigo],
+            color: .green,
+            gradient: [Color.green, Color.teal],
             benefit: "No restrictions on finding teammates"
         ),
         FeatureCardItem(
             icon: "eye.fill",
             title: "See Who Likes You",
             description: "Know who's interested in you before you swipe. Make confident decisions!",
-            color: .pink,
-            gradient: [Color.pink, Color.red.opacity(0.8)],
+            color: .cyan,
+            gradient: [Color.cyan, Color.blue.opacity(0.8)],
             benefit: "Skip the guessing game"
         ),
         FeatureCardItem(
@@ -587,7 +587,7 @@ struct ProfileSubscriptionsView: View {
                             )
                         )
                         .cornerRadius(25)
-                        .shadow(color: .purple.opacity(0.4), radius: 10, y: 5)
+                        .shadow(color: .green.opacity(0.4), radius: 10, y: 5)
                     }
                 }
 
