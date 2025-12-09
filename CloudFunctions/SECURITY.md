@@ -119,7 +119,7 @@ const validationResult = await receiptValidation.validateAppleReceipt(
 {
   "isValid": true,
   "transactionId": "1000000123456789",
-  "productId": "com.celestia.premium.monthly",
+  "productId": "com.teamup.premium.monthly",
   "fraudScore": 15,  // 0-100, higher is more suspicious
   "jailbreakRisk": 0.2,  // 0-1, higher is more suspicious
   "expiryDate": "2025-02-14T..."

@@ -73,7 +73,7 @@ struct CameraView: View {
 
                         if isCapturing {
                             ProgressView()
-                                .tint(.purple)
+                                .tint(.green)
                         }
                     }
                 }
@@ -87,14 +87,14 @@ struct CameraView: View {
             Circle()
                 .stroke(
                     LinearGradient(
-                        colors: [.purple.opacity(0.6), .pink.opacity(0.6)],
+                        colors: [.green.opacity(0.6), .cyan.opacity(0.6)],
                         startPoint: .topLeading,
                         endPoint: .bottomTrailing
                     ),
                     lineWidth: 3
                 )
                 .frame(width: 280, height: 280)
-                .shadow(color: .purple.opacity(0.3), radius: 8)
+                .shadow(color: .green.opacity(0.3), radius: 8)
         }
         .background(Color.black)
         .onAppear {
@@ -193,7 +193,7 @@ class CameraManager: NSObject, ObservableObject {
     let session = AVCaptureSession()
     private var photoOutput = AVCapturePhotoOutput()
     private var captureCompletion: ((UIImage?) -> Void)?
-    private let sessionQueue = DispatchQueue(label: "com.celestia.camera.session")
+    private let sessionQueue = DispatchQueue(label: "com.teamup.camera.session")
 
     func requestPermission() async -> Bool {
         let status = AVCaptureDevice.authorizationStatus(for: .video)
