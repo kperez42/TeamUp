@@ -287,7 +287,7 @@ struct ImprovedUserDetailSheet: View {
             Divider()
                 .frame(height: 40)
 
-            statItem(icon: "person.2.fill", value: "\(user.gamingStats.squadWins)", label: "Squad Wins", color: .purple)
+            statItem(icon: "person.2.fill", value: "\(user.gamingStats.teamCount)", label: "Teams", color: .purple)
 
             Divider()
                 .frame(height: 40)

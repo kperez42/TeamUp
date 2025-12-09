@@ -303,8 +303,8 @@ struct BasicInterestCard: View {
                     Text(isBlurred ? "Premium User" : user.fullName)
                         .font(.headline)
                     
-                    if !isBlurred {
-                        Text("\(user.age)")
+                    if !isBlurred && !user.gamerTag.isEmpty {
+                        Text("@\(user.gamerTag)")
                             .font(.subheadline)
                             .foregroundColor(.secondary)
                     }

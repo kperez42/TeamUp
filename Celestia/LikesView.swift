@@ -27,7 +27,7 @@ struct LikesView: View {
 
     // Filter state
     @State private var showFilters = false
-    @State private var selectedAgeFilter: AgeFilter = .all
+    @State private var selectedSkillFilter: SkillFilter = .all
     @State private var selectedSortOption: SortOption = .recent
 
     // Match celebration state
@@ -47,28 +47,28 @@ struct LikesView: View {
         let user: User
     }
 
-    enum AgeFilter: String, CaseIterable {
-        case all = "All Ages"
-        case under25 = "Under 25"
-        case twenties = "25-30"
-        case thirties = "30-40"
-        case over40 = "40+"
+    enum SkillFilter: String, CaseIterable {
+        case all = "All Skill Levels"
+        case beginner = "Beginner"
+        case intermediate = "Intermediate"
+        case advanced = "Advanced"
+        case professional = "Professional"
 
-        func matches(age: Int) -> Bool {
+        func matches(skillLevel: String) -> Bool {
             switch self {
             case .all: return true
-            case .under25: return age < 25
-            case .twenties: return age >= 25 && age <= 30
-            case .thirties: return age > 30 && age <= 40
-            case .over40: return age > 40
+            case .beginner: return skillLevel == SkillLevel.beginner.rawValue
+            case .intermediate: return skillLevel == SkillLevel.intermediate.rawValue
+            case .advanced: return skillLevel == SkillLevel.advanced.rawValue
+            case .professional: return skillLevel == SkillLevel.professional.rawValue
             }
         }
     }
 
     enum SortOption: String, CaseIterable {
         case recent = "Most Recent"
-        case ageYoungest = "Youngest First"
-        case ageOldest = "Oldest First"
+        case skillHighest = "Highest Skill First"
+        case skillLowest = "Lowest Skill First"
         case nameAZ = "Name A-Z"
     }
 
@@ -208,19 +208,19 @@ struct LikesView: View {
     private func applyFiltersAndSort(to users: [User]) -> [User] {
         var result = users
 
-        // Apply age filter
-        if selectedAgeFilter != .all {
-            result = result.filter { selectedAgeFilter.matches(age: $0.age) }
+        // Apply skill filter
+        if selectedSkillFilter != .all {
+            result = result.filter { selectedSkillFilter.matches(skillLevel: $0.skillLevel) }
         }
 
         // Apply sort
         switch selectedSortOption {
         case .recent:
             break // Already sorted by most recent from backend
-        case .ageYoungest:
-            result.sort { $0.age < $1.age }
-        case .ageOldest:
-            result.sort { $0.age > $1.age }
+        case .skillHighest:
+            result.sort { skillLevelOrder($0.skillLevel) > skillLevelOrder($1.skillLevel) }
+        case .skillLowest:
+            result.sort { skillLevelOrder($0.skillLevel) < skillLevelOrder($1.skillLevel) }
         case .nameAZ:
             result.sort { $0.fullName.localizedCompare($1.fullName) == .orderedAscending }
         }
@@ -228,22 +228,32 @@ struct LikesView: View {
         return result
     }
 
+    private func skillLevelOrder(_ skillLevel: String) -> Int {
+        switch skillLevel {
+        case SkillLevel.beginner.rawValue: return 1
+        case SkillLevel.intermediate.rawValue: return 2
+        case SkillLevel.advanced.rawValue: return 3
+        case SkillLevel.professional.rawValue: return 4
+        default: return 0
+        }
+    }
+
     // MARK: - Filter Sheet
 
     private var filterSheet: some View {
         NavigationStack {
             List {
-                Section("Age Range") {
-                    ForEach(AgeFilter.allCases, id: \.self) { filter in
+                Section("Skill Level") {
+                    ForEach(SkillFilter.allCases, id: \.self) { filter in
                         Button {
-                            selectedAgeFilter = filter
+                            selectedSkillFilter = filter
                             HapticManager.shared.selection()
                         } label: {
                             HStack {
                                 Text(filter.rawValue)
                                     .foregroundColor(.primary)
                                 Spacer()
-                                if selectedAgeFilter == filter {
+                                if selectedSkillFilter == filter {
                                     Image(systemName: "checkmark")
                                         .foregroundColor(.pink)
                                 }
@@ -273,7 +283,7 @@ struct LikesView: View {
 
                 Section {
                     Button {
-                        selectedAgeFilter = .all
+                        selectedSkillFilter = .all
                         selectedSortOption = .recent
                         HapticManager.shared.impact(.light)
                     } label: {
@@ -435,7 +445,7 @@ struct LikesView: View {
                                 Text("Filter")
                                     .font(.caption)
                                     .fontWeight(.medium)
-                                if selectedAgeFilter != .all || selectedSortOption != .recent {
+                                if selectedSkillFilter != .all || selectedSortOption != .recent {
                                     Circle()
                                         .fill(Color.yellow)
                                         .frame(width: 6, height: 6)
@@ -808,7 +818,7 @@ struct LikesView: View {
     private func likesGrid(users: [User], showLikeBack: Bool = false, showMessage: Bool = false) -> some View {
         ScrollView(showsIndicators: false) {
             // Show filter indicator if filters are active
-            if selectedAgeFilter != .all || selectedSortOption != .recent {
+            if selectedSkillFilter != .all || selectedSortOption != .recent {
                 HStack(spacing: 8) {
                     Image(systemName: "line.3.horizontal.decrease.circle.fill")
                         .font(.caption)
@@ -818,7 +828,7 @@ struct LikesView: View {
                         .foregroundColor(.secondary)
                     Spacer()
                     Button("Clear") {
-                        selectedAgeFilter = .all
+                        selectedSkillFilter = .all
                         selectedSortOption = .recent
                         HapticManager.shared.impact(.light)
                     }
@@ -961,9 +971,11 @@ struct LikeProfileCard: View {
                         .font(.system(size: 17, weight: .semibold))
                         .lineLimit(1)
 
-                    Text("\(user.age)")
-                        .font(.system(size: 17))
-                        .foregroundColor(.secondary)
+                    if !user.gamerTag.isEmpty {
+                        Text("@\(user.gamerTag)")
+                            .font(.system(size: 17))
+                            .foregroundColor(.secondary)
+                    }
 
                     Spacer()
                 }
@@ -1127,9 +1139,11 @@ struct BlurredLikeCard: View {
                         .font(.system(size: 17, weight: .semibold))
                         .lineLimit(1)
 
-                    Text("\(user.age)")
-                        .font(.system(size: 17))
-                        .foregroundColor(.secondary)
+                    if !user.gamerTag.isEmpty {
+                        Text("@\(user.gamerTag)")
+                            .font(.system(size: 17))
+                            .foregroundColor(.secondary)
+                    }
 
                     Spacer()
 
