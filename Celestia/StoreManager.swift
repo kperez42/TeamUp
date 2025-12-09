@@ -1,6 +1,6 @@
 //
 //  StoreManager.swift
-//  TeamUp
+//  Celestia
 //
 //  StoreKit 2 manager for In-App Purchases
 //

@@ -84,7 +84,7 @@ async function verifyToken(token) {
 ```json
 {
   "transaction_id": "1000000123456789",
-  "product_id": "com.teamup.subscription.premium.monthly",
+  "product_id": "com.celestia.subscription.premium.monthly",
   "purchase_date": "2025-01-15T10:30:00Z",
   "user_id": "firebase_user_id_123",
   "original_transaction_id": "1000000987654321",
@@ -97,7 +97,7 @@ async function verifyToken(token) {
 {
   "is_valid": true,
   "transaction_id": "1000000123456789",
-  "product_id": "com.teamup.subscription.premium.monthly",
+  "product_id": "com.celestia.subscription.premium.monthly",
   "subscription_tier": "premium",
   "expiration_date": "2025-02-15T10:30:00Z",
   "reason": null
@@ -109,7 +109,7 @@ async function verifyToken(token) {
 {
   "is_valid": false,
   "transaction_id": "1000000123456789",
-  "product_id": "com.teamup.subscription.premium.monthly",
+  "product_id": "com.celestia.subscription.premium.monthly",
   "subscription_tier": null,
   "expiration_date": null,
   "reason": "Receipt verification failed with Apple"
@@ -568,7 +568,7 @@ curl -X POST https://api.celestia.app/v1/purchases/validate \
   -H "Content-Type: application/json" \
   -d '{
     "transaction_id": "1000000123456789",
-    "product_id": "com.teamup.subscription.premium.monthly",
+    "product_id": "com.celestia.subscription.premium.monthly",
     "purchase_date": "2025-01-15T10:30:00Z",
     "user_id": "firebase_user_id_123",
     "original_transaction_id": "1000000987654321",

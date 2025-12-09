@@ -1,6 +1,6 @@
 //
 //  ProfileApprovedCelebrationView.swift
-//  TeamUp
+//  Celestia
 //
 //  Celebrates user profile approval with confetti and animations
 //
@@ -23,9 +23,9 @@ struct ProfileApprovedCelebrationView: View {
             // Background gradient
             LinearGradient(
                 colors: [
-                    Color.green.opacity(0.3),
-                    Color.cyan.opacity(0.2),
-                    Color.teal.opacity(0.2)
+                    Color.purple.opacity(0.3),
+                    Color.blue.opacity(0.2),
+                    Color.pink.opacity(0.2)
                 ],
                 startPoint: .topLeading,
                 endPoint: .bottomTrailing
@@ -100,7 +100,7 @@ struct ProfileApprovedCelebrationView: View {
                         )
                         .scaleEffect(appearAnimation ? 1.0 : 0.8)
 
-                    Text("Welcome to TeamUp")
+                    Text("Welcome to Celestia")
                         .font(.title2)
                         .foregroundColor(.secondary)
                 }
@@ -119,7 +119,7 @@ struct ProfileApprovedCelebrationView: View {
                             .foregroundColor(.yellow)
                     }
 
-                    Text("Start connecting with amazing gamers and find your perfect teammates. Your gaming journey begins now!")
+                    Text("Start connecting with amazing people in your community. Your journey begins now!")
                         .font(.body)
                         .foregroundColor(.secondary)
                         .multilineTextAlignment(.center)
@@ -206,11 +206,11 @@ struct ProfileApprovedCelebrationView: View {
 
     private func generateConfetti() {
         let colors: [Color] = [
-            .green, .cyan, .teal, .mint, .blue, .yellow, .orange,
-            .indigo, .white
+            .red, .orange, .yellow, .green, .blue, .purple, .pink,
+            .mint, .cyan, .indigo, .teal
         ]
         let shapes = [
-            "circle.fill", "star.fill", "gamecontroller.fill", "diamond.fill",
+            "circle.fill", "star.fill", "heart.fill", "diamond.fill",
             "sparkle", "seal.fill", "hexagon.fill", "triangle.fill"
         ]
 

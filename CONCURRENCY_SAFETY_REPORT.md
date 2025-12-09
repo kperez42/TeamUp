@@ -358,7 +358,7 @@ func loadMessages(for matchID: String) async {
 **Severity:** MEDIUM (Old pattern, inefficient)
 
 ```swift
-private let monitorQueue = DispatchQueue(label: "com.teamup.network.monitor")
+private let monitorQueue = DispatchQueue(label: "com.celestia.network.monitor")
 
 // ...
 

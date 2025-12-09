@@ -1,6 +1,6 @@
 //
 //  SavedProfilesView.swift
-//  TeamUp
+//  Celestia
 //
 //  Shows bookmarked/saved profiles for later viewing
 //
@@ -230,8 +230,8 @@ struct SavedProfilesView: View {
             LinearGradient(
                 colors: [
                     Color.orange.opacity(0.9),
-                    Color.green.opacity(0.7),
-                    Color.cyan.opacity(0.6)
+                    Color.pink.opacity(0.7),
+                    Color.purple.opacity(0.6)
                 ],
                 startPoint: .topLeading,
                 endPoint: .bottomTrailing
@@ -528,7 +528,7 @@ struct SavedProfilesView: View {
                 .foregroundColor(.white)
                 .background(
                     LinearGradient(
-                        colors: [.green, .cyan],
+                        colors: [.purple, .pink],
                         startPoint: .leading,
                         endPoint: .trailing
                     )
@@ -575,7 +575,7 @@ struct SavedProfilesView: View {
                 .foregroundColor(.white)
                 .background(
                     LinearGradient(
-                        colors: [.green, .cyan],
+                        colors: [.purple, .pink],
                         startPoint: .leading,
                         endPoint: .trailing
                     )
@@ -612,7 +612,7 @@ struct SavedProfilesView: View {
                             Circle()
                                 .fill(
                                     LinearGradient(
-                                        colors: [.green, .cyan],
+                                        colors: [.purple, .pink],
                                         startPoint: .topLeading,
                                         endPoint: .bottomTrailing
                                     )
@@ -807,7 +807,7 @@ struct SavedProfilesView: View {
                         Logger.shared.info("Liked saved profile", category: .matching)
                     }
                 }
-            } catch let error as TeamUpError {
+            } catch let error as CelestiaError {
                 Logger.shared.error("Error liking saved profile", category: .matching, error: error)
                 await MainActor.run {
                     HapticManager.shared.notification(.error)
@@ -846,7 +846,7 @@ struct SavedProfileCard: View {
                                 .frame(height: imageHeight)
                         } else {
                             LinearGradient(
-                                colors: [.green.opacity(0.7), .cyan.opacity(0.6)],
+                                colors: [.purple.opacity(0.7), .pink.opacity(0.6)],
                                 startPoint: .topLeading,
                                 endPoint: .bottomTrailing
                             )
@@ -906,7 +906,7 @@ struct SavedProfileCard: View {
                     HStack(spacing: 4) {
                         Image(systemName: "mappin.circle.fill")
                             .font(.system(size: 12))
-                            .foregroundColor(.green)
+                            .foregroundColor(.purple)
                         Text(savedProfile.user.location)
                             .font(.system(size: 13))
                             .foregroundColor(.secondary)
@@ -1043,7 +1043,7 @@ struct EnhancedSavedProfileCard: View {
                                 .frame(height: imageHeight)
                         } else {
                             LinearGradient(
-                                colors: [.green.opacity(0.7), .cyan.opacity(0.6)],
+                                colors: [.purple.opacity(0.7), .pink.opacity(0.6)],
                                 startPoint: .topLeading,
                                 endPoint: .bottomTrailing
                             )
@@ -1105,7 +1105,7 @@ struct EnhancedSavedProfileCard: View {
                     HStack(spacing: 4) {
                         Image(systemName: "mappin.circle.fill")
                             .font(.system(size: 11))
-                            .foregroundColor(.green)
+                            .foregroundColor(.purple)
                         Text(savedProfile.user.location)
                             .font(.system(size: 12))
                             .foregroundColor(.secondary)
@@ -1272,7 +1272,7 @@ struct SavedYouCard: View {
                             .frame(height: imageHeight)
                     } else {
                         LinearGradient(
-                            colors: [.green.opacity(0.7), .cyan.opacity(0.6)],
+                            colors: [.purple.opacity(0.7), .pink.opacity(0.6)],
                             startPoint: .topLeading,
                             endPoint: .bottomTrailing
                         )
@@ -1312,7 +1312,7 @@ struct SavedYouCard: View {
                     HStack(spacing: 4) {
                         Image(systemName: "mappin.circle.fill")
                             .font(.system(size: 12))
-                            .foregroundColor(.green)
+                            .foregroundColor(.purple)
                         Text(profile.user.location)
                             .font(.system(size: 13))
                             .foregroundColor(.secondary)
@@ -1350,7 +1350,7 @@ struct ViewedProfileCard: View {
                             .frame(height: imageHeight)
                     } else {
                         LinearGradient(
-                            colors: [.green.opacity(0.7), .cyan.opacity(0.6)],
+                            colors: [.purple.opacity(0.7), .pink.opacity(0.6)],
                             startPoint: .topLeading,
                             endPoint: .bottomTrailing
                         )
@@ -1390,7 +1390,7 @@ struct ViewedProfileCard: View {
                     HStack(spacing: 4) {
                         Image(systemName: "eye.fill")
                             .font(.system(size: 12))
-                            .foregroundColor(.green)
+                            .foregroundColor(.purple)
                         Text(profile.viewedAt.timeAgoDisplay())
                             .font(.system(size: 13))
                             .foregroundColor(.secondary)

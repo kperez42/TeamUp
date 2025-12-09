@@ -406,9 +406,9 @@ struct LanguageSettingsView: View {
 ```xml
 <key>NSUserActivityTypes</key>
 <array>
-    <string>com.teamup.discover</string>
-    <string>com.teamup.matches</string>
-    <string>com.teamup.messages</string>
+    <string>com.celestia.discover</string>
+    <string>com.celestia.matches</string>
+    <string>com.celestia.messages</string>
 </array>
 ```
 
@@ -436,7 +436,7 @@ struct ViewMatchesIntent: AppIntent {
 }
 
 // Register shortcuts
-struct TeamUpShortcuts: AppShortcutsProvider {
+struct CelestiaShortcuts: AppShortcutsProvider {
     static var appShortcuts: [AppShortcut] {
         AppShortcut(
             intent: OpenDiscoverIntent(),

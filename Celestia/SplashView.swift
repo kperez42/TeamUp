@@ -1,6 +1,6 @@
 //
 //  SplashView.swift
-//  TeamUp
+//  Celestia
 //
 //  Professional splash screen with brand animation
 //
@@ -63,7 +63,7 @@ struct SplashView: View {
                 .opacity(logoOpacity)
 
                 // App name
-                Text("TeamUp")
+                Text("Celestia")
                     .font(.system(size: 48, weight: .bold, design: .rounded))
                     .foregroundColor(.white)
                     .opacity(logoOpacity)

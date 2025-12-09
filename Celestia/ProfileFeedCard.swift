@@ -1,6 +1,6 @@
 //
 //  ProfileFeedCard.swift
-//  TeamUp
+//  Celestia
 //
 //  Feed-style profile card for vertical scrolling discovery
 //
@@ -204,7 +204,7 @@ struct ProfileFeedCard: View {
 
             Image(systemName: "mappin.circle.fill")
                 .font(.caption)
-                .foregroundColor(.green)
+                .foregroundColor(.purple)
 
             Text("\(user.location), \(user.country)")
                 .font(.subheadline)
@@ -219,7 +219,7 @@ struct ProfileFeedCard: View {
         HStack(spacing: 4) {
             Image(systemName: "person.2.fill")
                 .font(.caption)
-                .foregroundColor(.cyan)
+                .foregroundColor(.pink)
 
             Text("Seeking \(user.lookingFor), \(user.ageRangeMin)-\(user.ageRangeMax)")
                 .font(.subheadline)
@@ -260,11 +260,11 @@ struct ProfileFeedCard: View {
 
     private var actionButtons: some View {
         HStack(spacing: 12) {
-            // Team Up button (toggle)
+            // Like/Heart button (toggle)
             ActionButton(
-                icon: isLiked ? "person.badge.plus.fill" : "person.badge.plus",
-                color: .cyan,
-                label: isLiked ? "Requested" : "Team Up",
+                icon: isLiked ? "heart.fill" : "heart",
+                color: .pink,
+                label: isLiked ? "Liked" : "Like",
                 isProcessing: isProcessingLike,
                 action: {
                     guard !isProcessingLike else { return }
@@ -338,7 +338,7 @@ struct ProfileFeedCard: View {
             // View photos button
             ActionButton(
                 icon: "camera.fill",
-                color: .green,
+                color: .purple,
                 label: "Photos",
                 isProcessing: false,
                 action: {
@@ -619,13 +619,13 @@ struct CardFullScreenPhotoViewer: View {
                             .padding(.vertical, 14)
                             .background(
                                 LinearGradient(
-                                    colors: [.green, .cyan],
+                                    colors: [.purple, .pink],
                                     startPoint: .leading,
                                     endPoint: .trailing
                                 )
                             )
                             .cornerRadius(25)
-                            .shadow(color: .green.opacity(0.4), radius: 10, y: 4)
+                            .shadow(color: .purple.opacity(0.4), radius: 10, y: 4)
                         }
                     }
                     .padding(.bottom, 50)

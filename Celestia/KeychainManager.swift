@@ -1,6 +1,6 @@
 //
 //  KeychainManager.swift
-//  TeamUp
+//  Celestia
 //
 //  Secure storage for sensitive data using iOS Keychain
 //  Provides encrypted storage for tokens, passwords, and other sensitive information
@@ -18,7 +18,7 @@ class KeychainManager {
 
     // MARK: - Properties
 
-    private let serviceName = "com.teamup.app"
+    private let serviceName = "com.celestia.app"
 
     // MARK: - Initialization
 

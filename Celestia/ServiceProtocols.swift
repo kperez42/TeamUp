@@ -1,6 +1,6 @@
 //
 //  ServiceProtocols.swift
-//  TeamUp
+//  Celestia
 //
 //  Protocol definitions for all services to enable dependency injection and testing
 //  These protocols make the codebase testable by allowing mock implementations

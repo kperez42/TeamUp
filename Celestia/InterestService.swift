@@ -1,6 +1,6 @@
 //
 //  InterestService.swift
-//  TeamUp
+//  Celestia
 //
 //  Service for handling user interests and likes
 //
@@ -62,9 +62,9 @@ class InterestService: ObservableObject, ListenerLifecycleAware {
         // Check rate limiting
         guard RateLimiter.shared.canSendLike() else {
             if let timeRemaining = RateLimiter.shared.timeUntilReset(for: .like) {
-                throw TeamUpError.rateLimitExceededWithTime(timeRemaining)
+                throw CelestiaError.rateLimitExceededWithTime(timeRemaining)
             }
-            throw TeamUpError.rateLimitExceeded
+            throw CelestiaError.rateLimitExceeded
         }
 
         // UX FIX: Properly handle interest check instead of silent failure
@@ -82,7 +82,7 @@ class InterestService: ObservableObject, ListenerLifecycleAware {
         if let msg = message, !msg.isEmpty {
             guard ContentModerator.shared.isAppropriate(msg) else {
                 let violations = ContentModerator.shared.getViolations(msg)
-                throw TeamUpError.inappropriateContentWithReasons(violations)
+                throw CelestiaError.inappropriateContentWithReasons(violations)
             }
         }
 

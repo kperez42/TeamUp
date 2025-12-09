@@ -1,6 +1,6 @@
 //
 //  SyncConflictResolver.swift
-//  TeamUp
+//  Celestia
 //
 //  Handles synchronization conflicts when offline changes conflict with server state
 //

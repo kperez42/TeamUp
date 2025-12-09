@@ -1,6 +1,6 @@
 //
 //  SearchManager.swift
-//  TeamUp
+//  Celestia
 //
 //  Manages user search and filtering functionality
 //  Filter types are defined in FilterModels.swift

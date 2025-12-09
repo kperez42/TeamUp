@@ -1,6 +1,6 @@
 //
 //  BlockReportService.swift
-//  TeamUp
+//  Celestia
 //
 //  Service for managing blocked and reported users
 //

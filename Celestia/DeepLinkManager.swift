@@ -1,6 +1,6 @@
 //
 //  DeepLinkManager.swift
-//  TeamUp
+//  Celestia
 //
 //  Manages deep linking for referral codes
 //

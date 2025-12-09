@@ -1,6 +1,6 @@
 //
 //  ShimmerEffect.swift
-//  TeamUp
+//  Celestia
 //
 //  Beautiful shimmer loading effects for skeleton placeholders
 //

@@ -1,6 +1,6 @@
 //
 //  SignUpView.swift
-//  TeamUp
+//  Celestia
 //
 //  Multi-step sign up flow
 //
@@ -81,7 +81,7 @@ struct SignUpView: View {
     @State private var ageRangeMin: Int = 18
     @State private var ageRangeMax: Int = 35
 
-    let relationshipGoalOptions = ["Competitive Team", "Casual Gaming", "Gaming Friends", "Not sure yet"]
+    let relationshipGoalOptions = ["Long-term relationship", "Casual dating", "New friends", "Not sure yet"]
     let educationLevelOptions = ["High school", "Some college", "Bachelor's degree", "Master's degree", "Doctorate", "Trade school", "Prefer not to say"]
     let smokingOptions = ["Never", "Sometimes", "Regularly", "Prefer not to say"]
     let drinkingOptions = ["Never", "Socially", "Regularly", "Prefer not to say"]
@@ -134,7 +134,7 @@ struct SignUpView: View {
                             HStack(spacing: 8) {
                                 ForEach(0..<7, id: \.self) { step in
                                     Circle()
-                                        .fill(currentStep >= step ? Color.green : Color.gray.opacity(0.3))
+                                        .fill(currentStep >= step ? Color.purple : Color.gray.opacity(0.3))
                                         .frame(width: 10, height: 10)
                                         .scaleEffect(currentStep == step ? 1.2 : 1.0)
                                         .accessibleAnimation(.spring(response: 0.3, dampingFraction: 0.6), value: currentStep)
@@ -147,9 +147,9 @@ struct SignUpView: View {
                         
                         // Header
                         VStack(spacing: 10) {
-                            Image(systemName: "gamecontroller.fill")
+                            Image(systemName: "star.circle.fill")
                                 .font(.system(size: 50))
-                                .foregroundColor(.green)
+                                .foregroundColor(.purple)
 
                             Text(stepTitle)
                                 .font(.title2.bold())
@@ -244,7 +244,7 @@ struct SignUpView: View {
                                     Text(isEditingProfile && currentStep == 1 ? "Cancel" : "Back")
                                         .font(.headline)
                                 }
-                                .foregroundColor(.green)
+                                .foregroundColor(.purple)
                                 .frame(maxWidth: .infinity)
                                 .padding()
                                 .background(Color.white)
@@ -286,7 +286,7 @@ struct SignUpView: View {
                             .padding()
                             .background(
                                 LinearGradient(
-                                    colors: [Color.green, Color.cyan],
+                                    colors: [Color.purple, Color.blue],
                                     startPoint: .leading,
                                     endPoint: .trailing
                                 )
@@ -390,7 +390,7 @@ struct SignUpView: View {
                             Spacer()
                             if languages.contains(language) {
                                 Image(systemName: "checkmark.circle.fill")
-                                    .foregroundColor(.green)
+                                    .foregroundColor(.purple)
                             }
                         }
                     }
@@ -581,7 +581,7 @@ struct SignUpView: View {
                             HStack(spacing: 6) {
                                 Image(systemName: "exclamationmark.circle.fill")
                                     .foregroundColor(.red)
-                                Text("You must be 13 or older to use TeamUp")
+                                Text("You must be 18 or older to use Celestia")
                                     .font(.caption)
                                     .foregroundColor(.red)
                             }
@@ -660,7 +660,7 @@ struct SignUpView: View {
             VStack(alignment: .leading, spacing: 8) {
                 HStack(spacing: 6) {
                     Image(systemName: "gift.fill")
-                        .foregroundColor(.green)
+                        .foregroundColor(.purple)
                         .font(.caption)
                     Text("Referral Code (Optional)")
                         .font(.subheadline)
@@ -695,7 +695,7 @@ struct SignUpView: View {
                         .stroke(
                             referralCodeValid == true ? Color.green :
                             referralCodeValid == false ? Color.red :
-                            Color.green.opacity(0.3),
+                            Color.purple.opacity(0.3),
                             lineWidth: 2
                         )
                 )
@@ -722,10 +722,10 @@ struct SignUpView: View {
                     HStack(spacing: 4) {
                         Image(systemName: "sparkles")
                             .font(.caption2)
-                            .foregroundColor(.green)
+                            .foregroundColor(.purple)
                         Text("Get 3 days of Premium free with a code!")
                             .font(.caption)
-                            .foregroundColor(.green)
+                            .foregroundColor(.purple)
                     }
                 }
             }
@@ -747,12 +747,12 @@ struct SignUpView: View {
                 // Camera icon
                 ZStack {
                     Circle()
-                        .fill(Color.green.opacity(0.12))
+                        .fill(Color.purple.opacity(0.12))
                         .frame(width: 56, height: 56)
 
                     Image(systemName: "camera.fill")
                         .font(.system(size: 24))
-                        .foregroundColor(.green)
+                        .foregroundColor(.purple)
                 }
 
                 VStack(alignment: .leading, spacing: 4) {
@@ -760,7 +760,7 @@ struct SignUpView: View {
                         .font(.headline)
                         .foregroundColor(.primary)
 
-                    Text("Great photos get 10x more teammate requests")
+                    Text("Great photos get 10x more matches")
                         .font(.subheadline)
                         .foregroundColor(.secondary)
                 }
@@ -777,8 +777,8 @@ struct SignUpView: View {
             // Quick tips in a horizontal scroll
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 12) {
-                    photoTipChip(icon: "face.smiling.fill", text: "Clear face shot", color: .green)
-                    photoTipChip(icon: "gamecontroller.fill", text: "Show personality", color: .cyan)
+                    photoTipChip(icon: "face.smiling.fill", text: "Clear face shot", color: .purple)
+                    photoTipChip(icon: "heart.fill", text: "Show personality", color: .pink)
                     photoTipChip(icon: "sun.max.fill", text: "Good lighting", color: .orange)
                 }
                 .padding(.horizontal, 4)
@@ -798,7 +798,7 @@ struct SignUpView: View {
                     .clipShape(RoundedRectangle(cornerRadius: 16))
                     .overlay(
                         RoundedRectangle(cornerRadius: 16)
-                            .stroke(Color.green.opacity(0.3), lineWidth: 2)
+                            .stroke(Color.purple.opacity(0.3), lineWidth: 2)
                     )
                     .overlay(
                         VStack {
@@ -816,7 +816,7 @@ struct SignUpView: View {
                                 .padding(.vertical, 6)
                                 .background(
                                     Capsule()
-                                        .fill(Color.green)
+                                        .fill(Color.purple)
                                 )
 
                                 Spacer()
@@ -870,7 +870,7 @@ struct SignUpView: View {
                     RoundedRectangle(cornerRadius: 20)
                         .fill(
                             LinearGradient(
-                                colors: [Color.green.opacity(0.08), Color.cyan.opacity(0.05), Color.teal.opacity(0.03)],
+                                colors: [Color.purple.opacity(0.08), Color.pink.opacity(0.05), Color.orange.opacity(0.03)],
                                 startPoint: .topLeading,
                                 endPoint: .bottomTrailing
                             )
@@ -880,14 +880,14 @@ struct SignUpView: View {
                             VStack(spacing: 16) {
                                 ZStack {
                                     Circle()
-                                        .fill(Color.green.opacity(0.1))
+                                        .fill(Color.purple.opacity(0.1))
                                         .frame(width: 70, height: 70)
 
                                     Image(systemName: "person.crop.circle.badge.plus")
                                         .font(.system(size: 36))
                                         .foregroundStyle(
                                             LinearGradient(
-                                                colors: [.green, .cyan],
+                                                colors: [.purple, .pink],
                                                 startPoint: .topLeading,
                                                 endPoint: .bottomTrailing
                                             )
@@ -909,7 +909,7 @@ struct SignUpView: View {
                             RoundedRectangle(cornerRadius: 20)
                                 .stroke(
                                     LinearGradient(
-                                        colors: [.green.opacity(0.4), .cyan.opacity(0.3), .orange.opacity(0.2)],
+                                        colors: [.purple.opacity(0.4), .pink.opacity(0.3), .orange.opacity(0.2)],
                                         startPoint: .topLeading,
                                         endPoint: .bottomTrailing
                                     ),
@@ -930,12 +930,12 @@ struct SignUpView: View {
                 HStack(spacing: 16) {
                     ZStack {
                         Circle()
-                            .fill(Color.cyan.opacity(0.12))
+                            .fill(Color.pink.opacity(0.12))
                             .frame(width: 56, height: 56)
 
                         Image(systemName: "photo.stack.fill")
                             .font(.system(size: 24))
-                            .foregroundColor(.cyan)
+                            .foregroundColor(.pink)
                     }
 
                     VStack(alignment: .leading, spacing: 4) {
@@ -972,7 +972,7 @@ struct SignUpView: View {
                                 .clipShape(RoundedRectangle(cornerRadius: 12))
                                 .overlay(
                                     RoundedRectangle(cornerRadius: 12)
-                                        .stroke(Color.green.opacity(0.2), lineWidth: 1)
+                                        .stroke(Color.purple.opacity(0.2), lineWidth: 1)
                                 )
                                 .contentShape(Rectangle())
                                 .onTapGesture {
@@ -1004,7 +1004,7 @@ struct SignUpView: View {
                                             .font(.title2)
                                             .foregroundStyle(
                                                 LinearGradient(
-                                                    colors: [.green.opacity(0.4), .cyan.opacity(0.3)],
+                                                    colors: [.purple.opacity(0.4), .pink.opacity(0.3)],
                                                     startPoint: .topLeading,
                                                     endPoint: .bottomTrailing
                                                 )
@@ -1015,7 +1015,7 @@ struct SignUpView: View {
                                     RoundedRectangle(cornerRadius: 14)
                                         .stroke(
                                             LinearGradient(
-                                                colors: [.green.opacity(0.2), .cyan.opacity(0.15)],
+                                                colors: [.purple.opacity(0.2), .pink.opacity(0.15)],
                                                 startPoint: .topLeading,
                                                 endPoint: .bottomTrailing
                                             ),
@@ -1045,13 +1045,13 @@ struct SignUpView: View {
                     .padding(.vertical, 16)
                     .background(
                         LinearGradient(
-                            colors: [Color.green, Color.cyan, Color.teal.opacity(0.8)],
+                            colors: [Color.purple, Color.pink, Color.orange.opacity(0.8)],
                             startPoint: .leading,
                             endPoint: .trailing
                         )
                     )
                     .cornerRadius(16)
-                    .shadow(color: .green.opacity(0.3), radius: 8, x: 0, y: 4)
+                    .shadow(color: .purple.opacity(0.3), radius: 8, x: 0, y: 4)
                 }
                 .disabled(photoImages.count >= 6 || isLoadingPhotos)
                 .onChange(of: selectedPhotos) { _, newValue in
@@ -1088,7 +1088,7 @@ struct SignUpView: View {
                             Circle()
                                 .fill(
                                     index < photoImages.count
-                                        ? LinearGradient(colors: [.green, .cyan], startPoint: .topLeading, endPoint: .bottomTrailing)
+                                        ? LinearGradient(colors: [.purple, .pink], startPoint: .topLeading, endPoint: .bottomTrailing)
                                         : LinearGradient(colors: [Color.gray.opacity(0.2), Color.gray.opacity(0.2)], startPoint: .topLeading, endPoint: .bottomTrailing)
                                 )
                                 .frame(width: 8, height: 8)
@@ -1139,16 +1139,16 @@ struct SignUpView: View {
                             } label: {
                                 Text(prompt)
                                     .font(.caption)
-                                    .foregroundColor(.green)
+                                    .foregroundColor(.purple)
                                     .padding(.horizontal, 12)
                                     .padding(.vertical, 8)
                                     .background(
                                         Capsule()
-                                            .fill(Color.green.opacity(0.1))
+                                            .fill(Color.purple.opacity(0.1))
                                     )
                                     .overlay(
                                         Capsule()
-                                            .stroke(Color.green.opacity(0.3), lineWidth: 1)
+                                            .stroke(Color.purple.opacity(0.3), lineWidth: 1)
                                     )
                             }
                         }
@@ -1195,11 +1195,11 @@ struct SignUpView: View {
             HStack(alignment: .top, spacing: 14) {
                 ZStack {
                     Circle()
-                        .fill(Color.green.opacity(0.12))
+                        .fill(Color.purple.opacity(0.12))
                         .frame(width: 44, height: 44)
                     Image(systemName: "lightbulb.fill")
                         .font(.system(size: 18))
-                        .foregroundColor(.green)
+                        .foregroundColor(.purple)
                 }
 
                 VStack(alignment: .leading, spacing: 8) {
@@ -1238,13 +1238,13 @@ struct SignUpView: View {
                     Spacer()
                     Text("\(selectedInterests.count) selected")
                         .font(.caption)
-                        .foregroundColor(selectedInterests.count >= 3 ? .green : .green.opacity(0.6))
+                        .foregroundColor(selectedInterests.count >= 3 ? .purple : .purple.opacity(0.6))
                 }
 
                 if selectedInterests.count < 3 {
                     Text("Pick at least 3 interests to continue")
                         .font(.caption)
-                        .foregroundColor(.green)
+                        .foregroundColor(.purple)
                 }
             }
 
@@ -1272,7 +1272,7 @@ struct SignUpView: View {
             if selectedInterests.count >= 3 {
                 HStack {
                     Image(systemName: "checkmark.circle.fill")
-                        .foregroundColor(.green)
+                        .foregroundColor(.purple)
                     Text("Great choices! You can select more if you'd like.")
                         .font(.caption)
                         .foregroundColor(.secondary)
@@ -1280,7 +1280,7 @@ struct SignUpView: View {
                 .padding()
                 .background(
                     RoundedRectangle(cornerRadius: 12)
-                        .fill(Color.green.opacity(0.1))
+                        .fill(Color.purple.opacity(0.1))
                 )
             }
         }
@@ -1306,12 +1306,12 @@ struct SignUpView: View {
             HStack(spacing: 16) {
                 ZStack {
                     Circle()
-                        .fill(Color.green.opacity(0.12))
+                        .fill(Color.purple.opacity(0.12))
                         .frame(width: 56, height: 56)
 
                     Image(systemName: "person.fill")
                         .font(.system(size: 24))
-                        .foregroundColor(.green)
+                        .foregroundColor(.purple)
                 }
 
                 VStack(alignment: .leading, spacing: 4) {
@@ -1538,12 +1538,12 @@ struct SignUpView: View {
                 HStack(spacing: 16) {
                     ZStack {
                         Circle()
-                            .fill(Color.cyan.opacity(0.12))
+                            .fill(Color.pink.opacity(0.12))
                             .frame(width: 56, height: 56)
 
-                        Image(systemName: "person.2.circle.fill")
+                        Image(systemName: "heart.circle.fill")
                             .font(.system(size: 24))
-                            .foregroundColor(.cyan)
+                            .foregroundColor(.pink)
                     }
 
                     VStack(alignment: .leading, spacing: 4) {
@@ -1566,7 +1566,7 @@ struct SignUpView: View {
                         .padding(.vertical, 5)
                         .background(
                             LinearGradient(
-                                colors: [.green, .cyan],
+                                colors: [.pink, .purple],
                                 startPoint: .leading,
                                 endPoint: .trailing
                             )
@@ -1634,12 +1634,12 @@ struct SignUpView: View {
             HStack(spacing: 16) {
                 ZStack {
                     Circle()
-                        .fill(Color.green.opacity(0.12))
+                        .fill(Color.purple.opacity(0.12))
                         .frame(width: 56, height: 56)
 
                     Image(systemName: "checkmark.circle.fill")
                         .font(.system(size: 24))
-                        .foregroundColor(.green)
+                        .foregroundColor(.purple)
                 }
 
                 VStack(alignment: .leading, spacing: 4) {
@@ -1726,7 +1726,7 @@ struct SignUpView: View {
         HStack(alignment: .top, spacing: 8) {
             Image(systemName: icon)
                 .font(.caption)
-                .foregroundColor(.green)
+                .foregroundColor(.purple)
                 .frame(width: 16)
             Text(text)
                 .font(.caption)
@@ -1780,11 +1780,11 @@ struct SignUpView: View {
     var stepSubtitle: String {
         switch currentStep {
         case 0: return "Let's get started with your account"
-        case 1: return "This helps us find your perfect teammates"
-        case 2: return "Connect with gamers near and far"
-        case 3: return "Photos help you make gaming connections"
+        case 1: return "This helps us find your perfect match"
+        case 2: return "Connect with people near and far"
+        case 3: return "Photos help you make meaningful connections"
         case 4: return "Let others know what makes you unique"
-        case 5: return "Help us find gamers with similar vibes"
+        case 5: return "Help us find people with similar vibes"
         case 6: return "Optional info to complete your profile"
         default: return ""
         }
@@ -1809,7 +1809,7 @@ struct SignUpView: View {
         } else if photoImages.count < 4 {
             return .green
         } else {
-            return .cyan
+            return .purple
         }
     }
 
@@ -1831,7 +1831,7 @@ struct SignUpView: View {
         } else if photoImages.count == 1 {
             return "Add 1 more photo to continue"
         } else if photoImages.count < 4 {
-            return "More photos = more teammates"
+            return "More photos = more matches"
         } else {
             return "Your profile will stand out"
         }

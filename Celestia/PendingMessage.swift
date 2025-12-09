@@ -1,6 +1,6 @@
 //
 //  PendingMessage.swift
-//  TeamUp
+//  Celestia
 //
 //  Model for messages awaiting server-side validation
 //  Used in offline queue when backend validation is unavailable

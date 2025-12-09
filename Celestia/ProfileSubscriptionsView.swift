@@ -1,6 +1,6 @@
 //
 //  ProfileSubscriptionsView.swift
-//  TeamUp
+//  Celestia
 //
 //  Shows subscription management with swipeable tabs - consistent with LikesView and SavedProfilesView
 //  Features tab now uses Tinder-style card swiping for better UX
@@ -44,24 +44,24 @@ struct ProfileSubscriptionsView: View {
     private let featureCards: [FeatureCardItem] = [
         FeatureCardItem(
             icon: "infinity",
-            title: "Unlimited Requests",
-            description: "Send team requests to as many gamers as you want without daily limits. Never miss a potential teammate!",
-            color: .green,
-            gradient: [Color.green, Color.teal],
-            benefit: "No restrictions on finding teammates"
+            title: "Unlimited Likes",
+            description: "Like as many profiles as you want without daily limits. Never miss a potential match!",
+            color: .purple,
+            gradient: [Color.purple, Color.indigo],
+            benefit: "No restrictions on your dating journey"
         ),
         FeatureCardItem(
             icon: "eye.fill",
-            title: "See Who Wants to Team Up",
-            description: "Know who's interested in gaming with you before you swipe. Make confident decisions!",
-            color: .cyan,
-            gradient: [Color.cyan, Color.blue.opacity(0.8)],
+            title: "See Who Likes You",
+            description: "Know who's interested in you before you swipe. Make confident decisions!",
+            color: .pink,
+            gradient: [Color.pink, Color.red.opacity(0.8)],
             benefit: "Skip the guessing game"
         ),
         FeatureCardItem(
             icon: "star.fill",
-            title: "Priority Requests",
-            description: "Stand out from the crowd and show you're really interested. Get 3x more teammates!",
+            title: "Super Likes",
+            description: "Stand out from the crowd and show you're really interested. Get 3x more matches!",
             color: .cyan,
             gradient: [Color.cyan, Color.teal],
             benefit: "Make a lasting impression"
@@ -118,8 +118,8 @@ struct ProfileSubscriptionsView: View {
             // Gradient background - matching LikesView and SavedProfilesView
             LinearGradient(
                 colors: [
-                    Color.green.opacity(0.9),
-                    Color.cyan.opacity(0.7),
+                    Color.purple.opacity(0.9),
+                    Color.pink.opacity(0.7),
                     Color.orange.opacity(0.6)
                 ],
                 startPoint: .topLeading,
@@ -223,10 +223,10 @@ struct ProfileSubscriptionsView: View {
                                     .foregroundColor(selectedTab == index ? .green : .gray)
                             }
                         }
-                        .foregroundColor(selectedTab == index ? .green : .gray)
+                        .foregroundColor(selectedTab == index ? .purple : .gray)
 
                         Rectangle()
-                            .fill(selectedTab == index ? Color.green : Color.clear)
+                            .fill(selectedTab == index ? Color.purple : Color.clear)
                             .frame(height: 3)
                             .cornerRadius(1.5)
                     }
@@ -307,8 +307,8 @@ struct ProfileSubscriptionsView: View {
             // Plan details
             VStack(spacing: 12) {
                 planDetailRow(icon: "calendar", label: "Status", value: authService.currentUser?.isPremium == true ? "Active" : "Free Tier")
-                planDetailRow(icon: "gamecontroller.fill", label: "Daily Requests", value: authService.currentUser?.isPremium == true ? "Unlimited" : "Limited")
-                planDetailRow(icon: "eye.fill", label: "See Squad Requests", value: authService.currentUser?.isPremium == true ? "Yes" : "No")
+                planDetailRow(icon: "heart.fill", label: "Daily Likes", value: authService.currentUser?.isPremium == true ? "Unlimited" : "Limited")
+                planDetailRow(icon: "eye.fill", label: "See Who Likes You", value: authService.currentUser?.isPremium == true ? "Yes" : "No")
             }
         }
         .padding(20)
@@ -322,7 +322,7 @@ struct ProfileSubscriptionsView: View {
             HStack(spacing: 10) {
                 Image(systemName: icon)
                     .font(.subheadline)
-                    .foregroundColor(.green)
+                    .foregroundColor(.purple)
                     .frame(width: 24)
 
                 Text(label)
@@ -365,7 +365,7 @@ struct ProfileSubscriptionsView: View {
                         .font(.headline)
                         .foregroundColor(.primary)
 
-                    Text("Get unlimited squad requests & exclusive features")
+                    Text("Get unlimited likes & exclusive features")
                         .font(.caption)
                         .foregroundColor(.secondary)
                 }
@@ -376,7 +376,7 @@ struct ProfileSubscriptionsView: View {
                     .font(.title2)
                     .foregroundStyle(
                         LinearGradient(
-                            colors: [.green, .cyan],
+                            colors: [.purple, .pink],
                             startPoint: .topLeading,
                             endPoint: .bottomTrailing
                         )
@@ -428,10 +428,10 @@ struct ProfileSubscriptionsView: View {
                     Text("Manage")
                         .font(.subheadline)
                         .fontWeight(.semibold)
-                        .foregroundColor(.green)
+                        .foregroundColor(.purple)
                         .padding(.horizontal, 16)
                         .padding(.vertical, 8)
-                        .background(Color.green.opacity(0.1))
+                        .background(Color.purple.opacity(0.1))
                         .cornerRadius(8)
                 }
             }
@@ -449,9 +449,9 @@ struct ProfileSubscriptionsView: View {
 
             VStack(spacing: 12) {
                 benefitRow(icon: "flame.fill", text: "Daily profile discovery", included: true)
-                benefitRow(icon: "person.badge.plus.fill", text: "Unlimited team requests", included: authService.currentUser?.isPremium == true)
-                benefitRow(icon: "eye.fill", text: "See who wants to team up", included: authService.currentUser?.isPremium == true)
-                benefitRow(icon: "star.fill", text: "Priority requests", included: authService.currentUser?.isPremium == true)
+                benefitRow(icon: "heart.fill", text: "Unlimited likes", included: authService.currentUser?.isPremium == true)
+                benefitRow(icon: "eye.fill", text: "See who likes you", included: authService.currentUser?.isPremium == true)
+                benefitRow(icon: "star.fill", text: "Super likes", included: authService.currentUser?.isPremium == true)
                 benefitRow(icon: "bolt.fill", text: "Profile boost", included: authService.currentUser?.isPremium == true)
             }
         }
@@ -465,7 +465,7 @@ struct ProfileSubscriptionsView: View {
         HStack(spacing: 12) {
             Image(systemName: icon)
                 .font(.subheadline)
-                .foregroundColor(included ? .green : .gray.opacity(0.5))
+                .foregroundColor(included ? .purple : .gray.opacity(0.5))
                 .frame(width: 24)
 
             Text(text)
@@ -494,7 +494,7 @@ struct ProfileSubscriptionsView: View {
                 HStack(spacing: 6) {
                     ForEach(0..<featureCards.count, id: \.self) { index in
                         Circle()
-                            .fill(index == currentFeatureIndex ? Color.green : Color.gray.opacity(0.3))
+                            .fill(index == currentFeatureIndex ? Color.purple : Color.gray.opacity(0.3))
                             .frame(width: index == currentFeatureIndex ? 10 : 8, height: index == currentFeatureIndex ? 10 : 8)
                             .animation(.spring(response: 0.3), value: currentFeatureIndex)
                     }
@@ -559,7 +559,7 @@ struct ProfileSubscriptionsView: View {
 
                         Image(systemName: "arrow.left")
                             .font(.title2.weight(.semibold))
-                            .foregroundColor(currentFeatureIndex > 0 ? .green : .gray.opacity(0.4))
+                            .foregroundColor(currentFeatureIndex > 0 ? .purple : .gray.opacity(0.4))
                     }
                 }
                 .disabled(currentFeatureIndex == 0)
@@ -581,13 +581,13 @@ struct ProfileSubscriptionsView: View {
                         .padding(.vertical, 14)
                         .background(
                             LinearGradient(
-                                colors: [.green, .cyan],
+                                colors: [.purple, .pink],
                                 startPoint: .leading,
                                 endPoint: .trailing
                             )
                         )
                         .cornerRadius(25)
-                        .shadow(color: .green.opacity(0.4), radius: 10, y: 5)
+                        .shadow(color: .purple.opacity(0.4), radius: 10, y: 5)
                     }
                 }
 
@@ -602,7 +602,7 @@ struct ProfileSubscriptionsView: View {
 
                         Image(systemName: "arrow.right")
                             .font(.title2.weight(.semibold))
-                            .foregroundColor(currentFeatureIndex < featureCards.count - 1 ? .green : .gray.opacity(0.4))
+                            .foregroundColor(currentFeatureIndex < featureCards.count - 1 ? .purple : .gray.opacity(0.4))
                     }
                 }
                 .disabled(currentFeatureIndex == featureCards.count - 1)
@@ -753,7 +753,7 @@ struct ProfileSubscriptionsView: View {
                             .frame(width: 20, height: 20)
                     } else {
                         Image(systemName: "arrow.clockwise")
-                            .foregroundColor(.green)
+                            .foregroundColor(.purple)
                     }
                     Text(isRestoring ? "Restoring..." : "Restore Purchases")
                         .font(.subheadline)
@@ -779,7 +779,7 @@ struct ProfileSubscriptionsView: View {
             } label: {
                 HStack {
                     Image(systemName: "gear")
-                        .foregroundColor(.green)
+                        .foregroundColor(.purple)
                     Text("Manage Subscriptions")
                         .font(.subheadline)
                         .fontWeight(.medium)

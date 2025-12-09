@@ -1,6 +1,6 @@
 //
 //  SharedUIComponents.swift
-//  TeamUp
+//  Celestia
 //
 //  Shared UI components used across the app
 //
@@ -82,7 +82,7 @@ struct BenefitRow: View {
     let text: String
     let color: Color
 
-    init(icon: String, text: String, color: Color = .green) {
+    init(icon: String, text: String, color: Color = .purple) {
         self.icon = icon
         self.text = text
         self.color = color

@@ -1,6 +1,6 @@
 //
 //  PendingMessageQueue.swift
-//  TeamUp
+//  Celestia
 //
 //  Queue service for messages awaiting server-side validation
 //  Provides security by preventing client-side validation bypass
@@ -21,7 +21,7 @@ class PendingMessageQueue: ObservableObject {
     /// Track message IDs that are being dequeued asynchronously (to prevent race conditions)
     private var pendingDequeuIds: Set<String> = []
 
-    private let persistenceKey = "com.teamup.pendingMessageQueue"
+    private let persistenceKey = "com.celestia.pendingMessageQueue"
     private var processingTimer: Timer?
     private let db = Firestore.firestore()
 

@@ -1,6 +1,6 @@
 //
 //  TestData.swift
-//  TeamUp
+//  Celestia
 //
 //  Created by Claude
 //  Test data for previews and development
@@ -96,7 +96,7 @@ struct TestData {
             age: 30,
             gender: "Male",
             lookingFor: "Female",
-            bio: "Marketing director by day, DJ by night 🎧 | Music lover | Gamer | Looking for a squad to dominate ranked lobbies and chill in between sessions.",
+            bio: "Marketing director by day, DJ by night 🎧 | Music lover | Foodie | Looking for a partner in crime to explore the city's best hidden gems.",
             location: "Berkeley",
             country: "USA",
             latitude: 37.8715,

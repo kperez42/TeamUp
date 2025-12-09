@@ -1,6 +1,6 @@
 //
 //  InterestsView.swift
-//  TeamUp
+//  Celestia
 //
 
 import SwiftUI
@@ -57,9 +57,9 @@ struct InterestsView: View {
     private var headerView: some View {
         HStack {
             VStack(alignment: .leading, spacing: 4) {
-                Text("Gamers Who Want to Team Up")
+                Text("People Who Liked You")
                     .font(.headline)
-
+                
                 Text("\(interestService.receivedInterests.count) interested")
                     .font(.subheadline)
                     .foregroundColor(.secondary)
@@ -132,15 +132,15 @@ struct InterestsView: View {
     
     private var emptyStateView: some View {
         VStack(spacing: 20) {
-            Image(systemName: "person.2.slash")
+            Image(systemName: "heart.slash")
                 .font(.system(size: 60))
-                .foregroundColor(.green.opacity(0.5))
+                .foregroundColor(.purple.opacity(0.5))
             
-            Text("No Team Requests Yet")
+            Text("No Interests Yet")
                 .font(.title3)
                 .fontWeight(.semibold)
-
-            Text("Gamers who want to team up will appear here")
+            
+            Text("People who like you will appear here")
                 .font(.subheadline)
                 .foregroundColor(.secondary)
                 .multilineTextAlignment(.center)
@@ -160,13 +160,13 @@ struct InterestsView: View {
                     .font(.system(size: 80))
                     .foregroundColor(.yellow)
                 
-                Text("Teammate Found! 🎮")
+                Text("It's a Match! 🎉")
                     .font(.largeTitle)
                     .fontWeight(.bold)
                     .foregroundColor(.white)
-
+                
                 if let user = matchedUser {
-                    Text("You and \(user.fullName) want to team up!")
+                    Text("You and \(user.fullName) liked each other!")
                         .font(.title3)
                         .foregroundColor(.white)
                         .multilineTextAlignment(.center)
@@ -176,7 +176,7 @@ struct InterestsView: View {
                     showMatchAnimation = false
                 }
                 .buttonStyle(.borderedProminent)
-                .tint(.green)
+                .tint(.purple)
                 
                 Button("Keep Browsing") {
                     showMatchAnimation = false
@@ -288,7 +288,7 @@ struct BasicInterestCard: View {
                     .scaledToFill()
             } placeholder: {
                 LinearGradient(
-                    colors: [Color.green.opacity(0.6), Color.cyan.opacity(0.5)],
+                    colors: [Color.purple.opacity(0.6), Color.pink.opacity(0.5)],
                     startPoint: .topLeading,
                     endPoint: .bottomTrailing
                 )
@@ -320,7 +320,7 @@ struct BasicInterestCard: View {
                     if let message = interest.message {
                         Text("💬 \(message)")
                             .font(.caption)
-                            .foregroundColor(.green)
+                            .foregroundColor(.purple)
                             .lineLimit(2)
                     }
                 }
@@ -339,7 +339,7 @@ struct BasicInterestCard: View {
                         }
                         
                         Button(action: onAccept) {
-                            Image(systemName: "person.badge.plus.fill")
+                            Image(systemName: "heart.fill")
                                 .font(.caption)
                                 .foregroundColor(.green)
                                 .frame(maxWidth: .infinity)

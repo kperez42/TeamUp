@@ -1,6 +1,6 @@
 //
 //  ContentModerationService.swift
-//  TeamUp
+//  Celestia
 //
 //  Service to check photos for inappropriate content before upload
 //  Uses Google Cloud Vision SafeSearch via Firebase Cloud Functions

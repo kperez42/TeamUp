@@ -1,6 +1,6 @@
 //
 //  ProfileRejectionFeedbackView.swift
-//  TeamUp
+//  Celestia
 //
 //  Shows rejection feedback to users whose profiles need corrections
 //
@@ -208,7 +208,7 @@ struct ProfileRejectionFeedbackView: View {
                         HStack {
                             Image(systemName: "checklist")
                                 .font(.headline)
-                                .foregroundColor(.green)
+                                .foregroundColor(.purple)
                             Text("Common Issues to Check")
                                 .font(.headline)
                         }
@@ -246,7 +246,7 @@ struct ProfileRejectionFeedbackView: View {
                             .padding(.vertical, 16)
                             .background(
                                 LinearGradient(
-                                    colors: [.green, .cyan],
+                                    colors: [.blue, .purple],
                                     startPoint: .leading,
                                     endPoint: .trailing
                                 )
@@ -338,7 +338,7 @@ struct ProfileRejectionFeedbackView: View {
         if reasonCode.contains("low_quality") || reasonCode.contains("blurry") {
             issues.append(IssueItem(
                 icon: "camera.metering.unknown",
-                color: .green,
+                color: .purple,
                 title: "Photo Quality",
                 description: "Use clear, well-lit photos. Avoid blurry or pixelated images."
             ))
@@ -403,7 +403,7 @@ struct ProfileRejectionFeedbackView: View {
         if reasonCode.contains("underage") {
             issues.append(IssueItem(
                 icon: "person.badge.shield.checkmark.fill",
-                color: .green,
+                color: .purple,
                 title: "Age Verification",
                 description: "All users must be 18 or older. Contact support if this is an error."
             ))
@@ -429,7 +429,7 @@ struct ProfileRejectionFeedbackView: View {
                 ),
                 IssueItem(
                     icon: "text.alignleft",
-                    color: .green,
+                    color: .purple,
                     title: "Complete Bio",
                     description: "Add a bio that tells others about yourself"
                 ),

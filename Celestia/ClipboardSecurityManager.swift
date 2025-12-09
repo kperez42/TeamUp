@@ -1,6 +1,6 @@
 //
 //  ClipboardSecurityManager.swift
-//  TeamUp
+//  Celestia
 //
 //  Manages clipboard security to protect sensitive user data
 //  Prevents accidental leakage of private messages and personal information

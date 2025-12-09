@@ -1,6 +1,6 @@
 //
 //  AnalyticsManager.swift
-//  TeamUp
+//  Celestia
 //
 //  Analytics tracking and event logging
 //  Integrates with Firebase Analytics

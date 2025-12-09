@@ -1,8 +1,8 @@
 //
-//  TeamUpApp.swift
-//  TeamUp
+//  GamerLinkApp.swift
+//  GamerLink
 //
-//  Main app entry point for the gaming teammate finder
+//  Main app entry point for the gaming friend finder
 //
 
 import SwiftUI
@@ -161,7 +161,7 @@ extension Notification.Name {
 // MARK: - Main App
 
 @main
-struct TeamUpApp: App {
+struct GamerLinkApp: App {
     // Connect AppDelegate for push notification handling
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
 
@@ -203,10 +203,10 @@ struct TeamUpApp: App {
     private func handleDeepLink(_ url: URL) {
         Logger.shared.info("Deep link received: \(url)", category: .general)
 
-        // Handle teamup://join/TU-XXXXXXXX or https://teamup.gg/join/TU-XXXXXXXX
+        // Handle gamerlink://join/GL-XXXXXXXX or https://gamerlink.app/join/GL-XXXXXXXX
         if url.pathComponents.contains("join"),
            let code = url.pathComponents.last,
-           code.hasPrefix("TU-") {
+           code.hasPrefix("GL-") {
             deepLinkManager.referralCode = code
             Logger.shared.info("Extracted referral code from deep link: \(code)", category: .referral)
         }
@@ -214,5 +214,4 @@ struct TeamUpApp: App {
 }
 
 // Type alias for backward compatibility
-typealias CelestiaApp = TeamUpApp
-typealias GamerLinkApp = TeamUpApp
+typealias CelestiaApp = GamerLinkApp

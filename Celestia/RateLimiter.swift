@@ -1,6 +1,6 @@
 //
 //  RateLimiter.swift
-//  TeamUp
+//  Celestia
 //
 //  Client-side rate limiting to prevent abuse
 //

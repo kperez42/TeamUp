@@ -1,6 +1,6 @@
 //
 //  ReferralManager.swift
-//  TeamUp
+//  Celestia
 //
 //  Manages referral system logic
 //  Optimized for 10k+ users with caching, rate limiting, and efficient queries
@@ -1054,11 +1054,11 @@ class ReferralManager: ObservableObject {
 
     func getReferralShareMessage(code: String, userName: String) -> String {
         return """
-        Hey! Join me on TeamUp, the best app to find gaming teammates! 🎮
+        Hey! Join me on Celestia, the best dating app for meaningful connections! 💜
 
         Use my code \(code) when you sign up and we'll both get 3 days of Premium free!
 
-        Download now: https://teamup.gg/join/\(code)
+        Download now: https://celestia.app/join/\(code)
         """
     }
 

@@ -1,6 +1,6 @@
 //
 //  ConversationStarters.swift
-//  TeamUp
+//  Celestia
 //
 //  Service for generating smart conversation starters
 //

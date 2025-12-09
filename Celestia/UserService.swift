@@ -1,6 +1,6 @@
 //
 //  UserService.swift
-//  TeamUp
+//  Celestia
 //
 //  Service for user-related operations
 //

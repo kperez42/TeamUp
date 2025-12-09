@@ -1,8 +1,8 @@
 //
 //  ProfileView.swift
-//  TeamUp
+//  Celestia
 //
-//  GAMER PROFILE VIEW - Your Gaming Identity
+//  ELITE PROFILE VIEW - Your Digital Identity
 //  ACCESSIBILITY: Full VoiceOver support, Dynamic Type, Reduce Motion, and WCAG 2.1 AA compliant
 //
 
@@ -311,8 +311,8 @@ struct ProfileView: View {
             ZStack {
                 LinearGradient(
                     colors: [
-                        Color.green.opacity(0.9),
-                        Color.cyan.opacity(0.7),
+                        Color.purple.opacity(0.9),
+                        Color.pink.opacity(0.7),
                         Color.blue.opacity(0.6)
                     ],
                     startPoint: .topLeading,
@@ -406,9 +406,9 @@ struct ProfileView: View {
                     // Share button - only show if user ID exists and URL is valid
                     if let userId = user.id,
                        !userId.isEmpty,
-                       let shareURL = URL(string: "https://teamup.gg/profile/\(userId)"),
+                       let shareURL = URL(string: "https://celestia.app/profile/\(userId)"),
                        shareURL.scheme == "https" {
-                        ShareLink(item: shareURL, subject: Text("Check out \(user.fullName)'s gamer profile"), message: Text("See \(user.fullName) on TeamUp!")) {
+                        ShareLink(item: shareURL, subject: Text("Check out \(user.fullName)'s profile"), message: Text("See \(user.fullName) on Celestia!")) {
                             Image(systemName: "square.and.arrow.up")
                                 .font(.title3)
                                 .foregroundColor(.white)
@@ -420,7 +420,7 @@ struct ProfileView: View {
                             HapticManager.shared.impact(.light)
                         })
                         .accessibilityLabel("Share profile")
-                        .accessibilityHint("Share your TeamUp gamer profile with others")
+                        .accessibilityHint("Share your Celestia profile with others")
                     }
 
                     Spacer()
@@ -473,7 +473,7 @@ struct ProfileView: View {
                 Circle()
                     .fill(
                         LinearGradient(
-                            colors: [.green, .cyan],
+                            colors: [.purple, .pink],
                             startPoint: .topLeading,
                             endPoint: .bottomTrailing
                         )
@@ -492,8 +492,8 @@ struct ProfileView: View {
         ZStack {
             LinearGradient(
                 colors: [
-                    Color.green.opacity(0.8),
-                    Color.cyan.opacity(0.7),
+                    Color.purple.opacity(0.8),
+                    Color.pink.opacity(0.7),
                     Color.blue.opacity(0.6)
                 ],
                 startPoint: .topLeading,
@@ -529,7 +529,7 @@ struct ProfileView: View {
                         .trim(from: 0, to: CGFloat(profileCompletion) / 100)
                         .stroke(
                             LinearGradient(
-                                colors: [.green, .cyan],
+                                colors: [.purple, .pink],
                                 startPoint: .topLeading,
                                 endPoint: .bottomTrailing
                             ),
@@ -541,7 +541,7 @@ struct ProfileView: View {
                     Text("\(profileCompletion)%")
                         .font(.caption)
                         .fontWeight(.bold)
-                        .foregroundColor(.green)
+                        .foregroundColor(.purple)
                 }
                 .frame(width: 50, height: 50)
             }
@@ -575,7 +575,7 @@ struct ProfileView: View {
         HStack(spacing: 10) {
             Image(systemName: icon)
                 .font(.caption)
-                .foregroundColor(.green)
+                .foregroundColor(.purple)
                 .frame(width: 20)
             
             Text(text)
@@ -594,10 +594,10 @@ struct ProfileView: View {
                 HapticManager.shared.impact(.light)
             } label: {
                 statCard(
-                    icon: "person.badge.plus.fill",
+                    icon: "heart.fill",
                     value: isLoadingStats ? "-" : "\(accurateLikesReceived)",
-                    label: "Requests",
-                    color: .cyan
+                    label: "Liked",
+                    color: .pink
                 )
             }
 
@@ -633,7 +633,7 @@ struct ProfileView: View {
                     icon: "bookmark.fill",
                     value: isLoadingStats ? "-" : "\(accurateMatchCount)",
                     label: "Saved",
-                    color: .green
+                    color: .purple
                 )
             }
         }
@@ -735,7 +735,7 @@ struct ProfileView: View {
             .padding(.vertical, 16)
             .background(
                 LinearGradient(
-                    colors: [Color.green, Color.cyan],
+                    colors: [Color.purple, Color.pink],
                     startPoint: .leading,
                     endPoint: .trailing
                 )
@@ -810,7 +810,7 @@ struct ProfileView: View {
                     Circle()
                         .fill(
                             LinearGradient(
-                                colors: [Color.green.opacity(0.15), Color.cyan.opacity(0.1)],
+                                colors: [Color.purple.opacity(0.15), Color.pink.opacity(0.1)],
                                 startPoint: .topLeading,
                                 endPoint: .bottomTrailing
                             )
@@ -821,7 +821,7 @@ struct ProfileView: View {
                         .font(.title)
                         .foregroundStyle(
                             LinearGradient(
-                                colors: [.green, .cyan],
+                                colors: [.purple, .pink],
                                 startPoint: .topLeading,
                                 endPoint: .bottomTrailing
                             )
@@ -833,7 +833,7 @@ struct ProfileView: View {
                         .font(.headline)
                         .foregroundColor(.primary)
 
-                    Text("Unlimited requests & see who wants to team up")
+                    Text("Unlimited likes & see who likes you")
                         .font(.caption)
                         .foregroundColor(.secondary)
                         .lineLimit(1)
@@ -851,7 +851,7 @@ struct ProfileView: View {
             .shadow(color: .black.opacity(0.06), radius: 12, y: 4)
         }
         .accessibilityLabel("Upgrade to Premium")
-        .accessibilityHint("Unlock unlimited requests, see who wants to team up, and access all premium features")
+        .accessibilityHint("Unlock unlimited likes, see who likes you, and access all premium features")
         .padding(.horizontal, 20)
     }
 
@@ -867,7 +867,7 @@ struct ProfileView: View {
                     Circle()
                         .fill(
                             LinearGradient(
-                                colors: [Color.green.opacity(0.15), Color.cyan.opacity(0.1)],
+                                colors: [Color.purple.opacity(0.15), Color.pink.opacity(0.1)],
                                 startPoint: .topLeading,
                                 endPoint: .bottomTrailing
                             )
@@ -878,7 +878,7 @@ struct ProfileView: View {
                         .font(.title)
                         .foregroundStyle(
                             LinearGradient(
-                                colors: [.green, .cyan],
+                                colors: [.purple, .pink],
                                 startPoint: .topLeading,
                                 endPoint: .bottomTrailing
                             )
@@ -947,7 +947,7 @@ struct ProfileView: View {
                     .font(.title3)
                     .foregroundStyle(
                         LinearGradient(
-                            colors: [.green, .cyan],
+                            colors: [.purple, .pink],
                             startPoint: .topLeading,
                             endPoint: .bottomTrailing
                         )
@@ -973,7 +973,7 @@ struct ProfileView: View {
         )
         .overlay(
             RoundedRectangle(cornerRadius: 16)
-                .stroke(Color.green.opacity(0.1), lineWidth: 1)
+                .stroke(Color.purple.opacity(0.1), lineWidth: 1)
         )
         .padding(.horizontal, 20)
     }
@@ -989,7 +989,7 @@ struct ProfileView: View {
                             .font(.caption)
                             .foregroundStyle(
                                 LinearGradient(
-                                    colors: [.green, .cyan],
+                                    colors: [.purple, .pink],
                                     startPoint: .topLeading,
                                     endPoint: .bottomTrailing
                                 )
@@ -1000,7 +1000,7 @@ struct ProfileView: View {
                             .fontWeight(.semibold)
                             .foregroundStyle(
                                 LinearGradient(
-                                    colors: [.green, .cyan],
+                                    colors: [.purple, .pink],
                                     startPoint: .leading,
                                     endPoint: .trailing
                                 )
@@ -1024,7 +1024,7 @@ struct ProfileView: View {
                     RoundedRectangle(cornerRadius: 16)
                         .stroke(
                             LinearGradient(
-                                colors: [Color.green.opacity(0.2), Color.cyan.opacity(0.15)],
+                                colors: [Color.purple.opacity(0.2), Color.pink.opacity(0.15)],
                                 startPoint: .topLeading,
                                 endPoint: .bottomTrailing
                             ),
@@ -1042,7 +1042,7 @@ struct ProfileView: View {
         VStack(spacing: 16) {
             detailRow(icon: "person.fill", label: "Gender", value: user.gender)
             Divider()
-            detailRow(icon: "gamecontroller.fill", label: "Play style", value: user.lookingFor)
+            detailRow(icon: "heart.circle.fill", label: "Looking for", value: user.lookingFor)
 
             // Height
             if let height = user.height {
@@ -1056,10 +1056,10 @@ struct ProfileView: View {
                 detailRow(icon: "graduationcap.fill", label: "Education", value: education)
             }
 
-            // Gaming goal
+            // Relationship goal
             if let goal = user.relationshipGoal, goal != "Prefer not to say" {
                 Divider()
-                detailRow(icon: "gamecontroller", label: "Gaming style", value: goal)
+                detailRow(icon: "heart.text.square", label: "Relationship goal", value: goal)
             }
 
             // Religion
@@ -1159,7 +1159,7 @@ struct ProfileView: View {
     private func detailRow(icon: String, label: String, value: String) -> some View {
         HStack(spacing: 12) {
             Image(systemName: icon)
-                .foregroundColor(.green)
+                .foregroundColor(.purple)
                 .frame(width: 24)
             
             Text(label)
@@ -1200,7 +1200,7 @@ struct ProfileView: View {
                 .padding(.vertical, 6)
                 .background(
                     LinearGradient(
-                        colors: [.green, .cyan],
+                        colors: [.purple, .pink],
                         startPoint: .leading,
                         endPoint: .trailing
                     )
@@ -1233,7 +1233,7 @@ struct ProfileView: View {
                                 RoundedRectangle(cornerRadius: 16)
                                     .stroke(
                                         LinearGradient(
-                                            colors: [.green.opacity(0.3), .cyan.opacity(0.2)],
+                                            colors: [.purple.opacity(0.3), .pink.opacity(0.2)],
                                             startPoint: .topLeading,
                                             endPoint: .bottomTrailing
                                         ),
@@ -1264,7 +1264,7 @@ struct ProfileView: View {
                     .font(.title3)
                     .foregroundStyle(
                         LinearGradient(
-                            colors: [.green, .cyan],
+                            colors: [.purple, .pink],
                             startPoint: .topLeading,
                             endPoint: .bottomTrailing
                         )
@@ -1283,16 +1283,16 @@ struct ProfileView: View {
                         .padding(.vertical, 8)
                         .background(
                             LinearGradient(
-                                colors: [Color.green.opacity(0.15), Color.cyan.opacity(0.1)],
+                                colors: [Color.purple.opacity(0.15), Color.pink.opacity(0.1)],
                                 startPoint: .topLeading,
                                 endPoint: .bottomTrailing
                             )
                         )
-                        .foregroundColor(.green)
+                        .foregroundColor(.purple)
                         .cornerRadius(20)
                         .overlay(
                             RoundedRectangle(cornerRadius: 20)
-                                .stroke(Color.green.opacity(0.2), lineWidth: 1)
+                                .stroke(Color.purple.opacity(0.2), lineWidth: 1)
                         )
                 }
             }
@@ -1306,7 +1306,7 @@ struct ProfileView: View {
         )
         .overlay(
             RoundedRectangle(cornerRadius: 16)
-                .stroke(Color.green.opacity(0.1), lineWidth: 1)
+                .stroke(Color.purple.opacity(0.1), lineWidth: 1)
         )
         .padding(.horizontal, 20)
     }
@@ -1320,7 +1320,7 @@ struct ProfileView: View {
                     .font(.title3)
                     .foregroundStyle(
                         LinearGradient(
-                            colors: [.green, .cyan],
+                            colors: [.pink, .purple],
                             startPoint: .topLeading,
                             endPoint: .bottomTrailing
                         )
@@ -1339,16 +1339,16 @@ struct ProfileView: View {
                         .padding(.vertical, 8)
                         .background(
                             LinearGradient(
-                                colors: [Color.cyan.opacity(0.15), Color.green.opacity(0.1)],
+                                colors: [Color.pink.opacity(0.15), Color.purple.opacity(0.1)],
                                 startPoint: .topLeading,
                                 endPoint: .bottomTrailing
                             )
                         )
-                        .foregroundColor(.green)
+                        .foregroundColor(.pink)
                         .cornerRadius(20)
                         .overlay(
                             RoundedRectangle(cornerRadius: 20)
-                                .stroke(Color.cyan.opacity(0.2), lineWidth: 1)
+                                .stroke(Color.pink.opacity(0.2), lineWidth: 1)
                         )
                 }
             }
@@ -1362,7 +1362,7 @@ struct ProfileView: View {
         )
         .overlay(
             RoundedRectangle(cornerRadius: 16)
-                .stroke(Color.cyan.opacity(0.1), lineWidth: 1)
+                .stroke(Color.pink.opacity(0.1), lineWidth: 1)
         )
         .padding(.horizontal, 20)
     }
@@ -1373,7 +1373,7 @@ struct ProfileView: View {
         VStack(alignment: .leading, spacing: 12) {
             HStack(spacing: 8) {
                 Image(systemName: "slider.horizontal.3")
-                    .foregroundColor(.green)
+                    .foregroundColor(.purple)
                 Text("Discovery Preferences")
                     .font(.headline)
             }
@@ -1426,7 +1426,7 @@ struct ProfileView: View {
                         icon: "heart.fill",
                         title: "Popular",
                         subtitle: "\(user.matchCount) matches",
-                        colors: [.green, .cyan]
+                        colors: [.pink, .purple]
                     )
                 }
 
@@ -1499,9 +1499,9 @@ struct ProfileView: View {
                 icon: "questionmark.circle.fill",
                 title: "Help & Support",
                 color: .blue,
-                accessibilityHint: "Contact TeamUp support team for assistance"
+                accessibilityHint: "Contact Celestia support team for assistance"
             ) {
-                guard let url = URL(string: "mailto:support@teamup.gg"),
+                guard let url = URL(string: "mailto:support@celestia.app"),
                       UIApplication.shared.canOpenURL(url) else {
                     Logger.shared.error("Cannot open mail client - email URL invalid or no mail app configured", category: .general)
                     return
@@ -1522,7 +1522,7 @@ struct ProfileView: View {
                 icon: "arrow.right.square.fill",
                 title: "Sign Out",
                 color: .red,
-                accessibilityHint: "Sign out of your TeamUp account"
+                accessibilityHint: "Sign out of your Celestia account"
             ) {
                 showingLogoutConfirmation = true
             }
@@ -1572,7 +1572,7 @@ struct ProfileView: View {
                 // Hero header skeleton
                 ZStack {
                     LinearGradient(
-                        colors: [.green.opacity(0.3), .cyan.opacity(0.2)],
+                        colors: [.purple.opacity(0.3), .pink.opacity(0.2)],
                         startPoint: .topLeading,
                         endPoint: .bottomTrailing
                     )

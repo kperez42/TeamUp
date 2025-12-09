@@ -1,6 +1,6 @@
 //
 //  ABTestingManager.swift
-//  TeamUp
+//  Celestia
 //
 //  A/B Testing framework using existing feature flags
 //  Enables experimentation and data-driven decision making

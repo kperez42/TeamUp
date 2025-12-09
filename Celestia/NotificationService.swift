@@ -1,6 +1,6 @@
 //
 //  NotificationService.swift
-//  TeamUp
+//  Celestia
 //
 //  Service for sending notifications (local and remote)
 //  Used by other services to trigger notifications

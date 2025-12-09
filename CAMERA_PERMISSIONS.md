@@ -55,7 +55,7 @@ You need to add the following key to your `Info.plist` file in Xcode:
 
 **Fix:** All AVCaptureSession operations now run on dedicated `sessionQueue`:
 ```swift
-private let sessionQueue = DispatchQueue(label: "com.teamup.camera.session")
+private let sessionQueue = DispatchQueue(label: "com.celestia.camera.session")
 ```
 
 ## Testing

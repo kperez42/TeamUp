@@ -1,6 +1,6 @@
 //
 //  NetworkMonitor.swift
-//  TeamUp
+//  Celestia
 //
 //  Network reachability monitoring with NWPathMonitor
 //  Tracks internet connectivity and connection quality
@@ -90,7 +90,7 @@ class NetworkMonitor: ObservableObject {
     // MARK: - Properties
 
     private let monitor = NWPathMonitor()
-    private let monitorQueue = DispatchQueue(label: "com.teamup.networkmonitor")
+    private let monitorQueue = DispatchQueue(label: "com.celestia.networkmonitor")
     private var lastConnectivityChange = Date()
 
     // MARK: - Initialization

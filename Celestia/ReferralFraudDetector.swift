@@ -1,6 +1,6 @@
 //
 //  ReferralFraudDetector.swift
-//  TeamUp
+//  Celestia
 //
 //  Advanced fraud detection for referral system
 //  Features: Device fingerprinting, IP analysis, behavioral patterns, ML-based risk scoring
