@@ -320,7 +320,7 @@ class AuthService: ObservableObject, AuthServiceProtocol {
             user.showMeInSearch = false
 
             // Auto-grant admin privileges for known admin emails
-            let adminEmails = ["perezkevin640@gmail.com", "admin@celestia.app"]
+            let adminEmails = ["perezkevin640@gmail.com"]
             if adminEmails.contains(sanitizedEmail.lowercased()) {
                 user.isAdmin = true
                 user.bypassVerification = true
