@@ -360,7 +360,7 @@ struct ImprovedUserDetailSheet: View {
             
             FlowLayout(spacing: 8) {
                 ForEach(user.languages, id: \.self) { language in
-                    TagView(text: language, color: .purple)
+                    TagView(text: language, color: .green)
                 }
             }
         }
@@ -440,7 +440,7 @@ struct ImprovedUserDetailSheet: View {
                     )
                 )
                 .cornerRadius(16)
-                .shadow(color: .purple.opacity(0.4), radius: 10, y: 5)
+                .shadow(color: .green.opacity(0.4), radius: 10, y: 5)
             }
         }
         .padding(.horizontal, 24)

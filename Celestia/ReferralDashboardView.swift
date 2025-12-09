@@ -225,7 +225,7 @@ struct ReferralDashboardView: View {
                         Text("Copy Code")
                             .fontWeight(.semibold)
                     }
-                    .foregroundColor(referralCode.isEmpty ? .gray : .purple)
+                    .foregroundColor(referralCode.isEmpty ? .gray : .green)
                     .frame(maxWidth: .infinity)
                     .padding(.vertical, 14)
                     .background(referralCode.isEmpty ? Color.gray.opacity(0.1) : Color.green.opacity(0.1))
@@ -259,7 +259,7 @@ struct ReferralDashboardView: View {
                     .padding(.vertical, 14)
                     .background(
                         LinearGradient(
-                            colors: referralCode.isEmpty ? [.gray, .gray] : [.purple, .pink],
+                            colors: referralCode.isEmpty ? [.gray, .gray] : [.green, .cyan],
                             startPoint: .leading,
                             endPoint: .trailing
                         )
@@ -589,7 +589,7 @@ struct ReferralDashboardView: View {
                 .padding(.vertical, 12)
                 .background(
                     LinearGradient(
-                        colors: referralCode.isEmpty ? [.gray, .gray] : [.purple, .pink],
+                        colors: referralCode.isEmpty ? [.gray, .gray] : [.green, .cyan],
                         startPoint: .leading,
                         endPoint: .trailing
                     )

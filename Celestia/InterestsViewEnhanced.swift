@@ -676,7 +676,7 @@ struct InterestCard: View {
                     if isSelectionMode {
                         Image(systemName: isSelected ? "checkmark.circle.fill" : "circle")
                             .font(.title2)
-                            .foregroundColor(isSelected ? .purple : .white)
+                            .foregroundColor(isSelected ? .green : .white)
                             .padding(8)
                             .background(Circle().fill(Color.white.opacity(isSelected ? 0 : 0.3)))
                     }

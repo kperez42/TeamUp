@@ -413,7 +413,7 @@ struct ManualIDVerificationView: View {
 
                 Image(systemName: icon)
                     .font(.title2)
-                    .foregroundColor(image != nil ? .green : .purple)
+                    .foregroundColor(image != nil ? .green : .cyan)
             }
             .padding()
 

@@ -253,7 +253,7 @@ struct PendingApprovalView: View {
                     title: "Decision",
                     isCompleted: false,
                     isActive: false,
-                    color: .purple,
+                    color: .green,
                     isAnimated: stepAnimations[2]
                 )
             }
@@ -297,7 +297,7 @@ struct PendingApprovalView: View {
                     icon: "text.alignleft",
                     title: "Bio & Information",
                     description: "Complete and authentic profile details",
-                    color: .purple
+                    color: .teal
                 )
 
                 ChecklistRow(
