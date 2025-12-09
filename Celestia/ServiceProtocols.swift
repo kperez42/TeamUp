@@ -23,7 +23,7 @@ protocol AuthServiceProtocol: ObservableObject {
     var isInitialized: Bool { get set }
 
     func signIn(withEmail email: String, password: String) async throws
-    func createUser(withEmail email: String, password: String, fullName: String, gamerTag: String, bio: String, location: String, country: String, platforms: [String], referralCode: String, photos: [UIImage]) async throws
+    func createUser(withEmail email: String, password: String, fullName: String, age: Int, gender: String, lookingFor: String, location: String, country: String, referralCode: String, photos: [UIImage]) async throws
     func signOut()
     func fetchUser() async
     func updateUser(_ user: User) async throws

@@ -13,9 +13,10 @@ import Combine
 // MARK: - Listener Lifecycle Protocol
 
 /// Protocol for services that have Firestore listeners and need lifecycle management
+@MainActor
 protocol ListenerLifecycleAware: AnyObject {
     /// Unique identifier for this listener owner
-    var listenerId: String { get }
+    nonisolated var listenerId: String { get }
 
     /// Called when app enters foreground or network is restored - should restart listeners
     func reconnectListeners()
