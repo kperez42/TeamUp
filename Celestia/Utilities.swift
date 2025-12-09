@@ -243,13 +243,13 @@ extension User {
         if !fullName.isEmpty { completed += 1 }
         if !bio.isEmpty { completed += 1 }
         if !location.isEmpty { completed += 1 }
-        if !interests.isEmpty { completed += 1 }
-        if !languages.isEmpty { completed += 1 }
+        if !gamerTag.isEmpty { completed += 1 }
+        if !platforms.isEmpty { completed += 1 }
         if !photos.isEmpty { completed += 1 }
         if photos.count >= 3 { completed += 1 }
         if !profileImageURL.isEmpty { completed += 1 }
-        if age >= 18 { completed += 1 }
-        if !gender.isEmpty { completed += 1 }
+        if !favoriteGames.isEmpty { completed += 1 }
+        if !gameGenres.isEmpty { completed += 1 }
 
         return (completed * 100) / total
     }
@@ -281,20 +281,26 @@ extension User {
     static var preview: User {
         User(
             id: "preview",
-            email: "test@celestia.app",
-            fullName: "Alex Johnson",
-            age: 28,
-            gender: "Male",
-            lookingFor: "Female",
-            bio: "Love hiking, coffee, and good conversations. Always up for an adventure!",
+            email: "test@teamup.app",
+            fullName: "Alex Storm",
+            gamerTag: "StormPlayer99",
+            bio: "Competitive FPS player looking for ranked teammates. Diamond in Valorant, Masters in Apex.",
             location: "San Francisco",
             country: "USA",
             latitude: 37.7749,
             longitude: -122.4194,
-            languages: ["English", "Spanish"],
-            interests: ["Travel", "Photography", "Hiking", "Coffee"],
             photos: ["photo1", "photo2", "photo3"],
             profileImageURL: "https://picsum.photos/400/500",
+            platforms: ["PC", "PlayStation"],
+            favoriteGames: [
+                FavoriteGame(title: "Valorant", platform: "PC", rank: "Diamond 2"),
+                FavoriteGame(title: "Apex Legends", platform: "PC", rank: "Masters")
+            ],
+            gameGenres: ["FPS", "Battle Royale"],
+            playStyle: PlayStyle.competitive.rawValue,
+            skillLevel: SkillLevel.advanced.rawValue,
+            voiceChatPreference: VoiceChatPreference.always.rawValue,
+            lookingFor: [LookingForType.rankedTeammates.rawValue],
             isPremium: true,
             isVerified: true
         )
@@ -306,22 +312,24 @@ extension User {
             User(
                 email: "sarah@test.com",
                 fullName: "Sarah Miller",
-                age: 25,
-                gender: "Female",
-                lookingFor: "Male",
-                bio: "Artist and dreamer",
+                gamerTag: "SarahGames",
+                bio: "Casual gamer, love co-op adventures!",
                 location: "Los Angeles",
-                country: "USA"
+                country: "USA",
+                platforms: ["Nintendo Switch", "PC"],
+                playStyle: PlayStyle.casual.rawValue,
+                skillLevel: SkillLevel.intermediate.rawValue
             ),
             User(
                 email: "mike@test.com",
                 fullName: "Mike Chen",
-                age: 30,
-                gender: "Male",
-                lookingFor: "Female",
-                bio: "Tech enthusiast",
+                gamerTag: "MikePlays",
+                bio: "Strategy game enthusiast",
                 location: "Seattle",
-                country: "USA"
+                country: "USA",
+                platforms: ["PC"],
+                playStyle: PlayStyle.competitive.rawValue,
+                skillLevel: SkillLevel.advanced.rawValue
             )
         ]
     }

@@ -28,7 +28,7 @@ class SyncConflictResolver: ObservableObject {
         lastSyncTimestamp: Date?
     ) -> SyncConflict? where T.ID == String {
         // If local was modified after last sync, and server was also modified, we have a conflict
-        guard let lastSync = lastSyncTimestamp else {
+        guard lastSyncTimestamp != nil else {
             // No last sync timestamp - use server version
             return nil
         }
@@ -227,9 +227,6 @@ class SyncConflictResolver: ObservableObject {
         // But use server's system fields (isPremium, isVerified, etc.)
         localUser.isPremium = serverUser.isPremium
         localUser.isVerified = serverUser.isVerified
-        localUser.likesGiven = serverUser.likesGiven
-        localUser.likesReceived = serverUser.likesReceived
-        localUser.matchCount = serverUser.matchCount
         localUser.profileViews = serverUser.profileViews
 
         // Save merged version
@@ -237,8 +234,8 @@ class SyncConflictResolver: ObservableObject {
     }
 
     private func mergeMatchData(entityId: String, localData: Data, serverData: Data) async throws {
-        let localMatch = try JSONDecoder().decode(Match.self, from: localData)
-        var serverMatch = try JSONDecoder().decode(Match.self, from: serverData)
+        _ = try JSONDecoder().decode(Match.self, from: localData)
+        let serverMatch = try JSONDecoder().decode(Match.self, from: serverData)
 
         // For matches, prefer server's message data but keep local's unread status if newer
         // Use server version as base

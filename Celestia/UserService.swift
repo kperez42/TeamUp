@@ -44,7 +44,7 @@ class UserService: ObservableObject, UserServiceProtocol {
     func fetchUsers(
         excludingUserId: String,
         lookingFor: String? = nil,
-        ageRange: ClosedRange<Int>? = nil,
+        platforms: [String]? = nil,
         country: String? = nil,
         limit: Int = 20,
         reset: Bool = true
@@ -57,41 +57,14 @@ class UserService: ObservableObject, UserServiceProtocol {
         isLoading = true
         defer { isLoading = false }
 
-        Logger.shared.debug("UserService.fetchUsers called - lookingFor: \(lookingFor ?? "nil"), ageRange: \(ageRange?.description ?? "nil")", category: .database)
+        Logger.shared.debug("UserService.fetchUsers called - lookingFor: \(lookingFor ?? "nil"), platforms: \(platforms?.joined(separator: ",") ?? "nil")", category: .database)
 
         // NOTE: profileStatus filter moved to client-side to avoid needing new composite index
-        // Server-side filter would require index: profileStatus + showMeInSearch + gender + age + lastActive
         // Client-side filter excludes: pending, suspended, flagged profiles
         var query = db.collection("users")
             .whereField("showMeInSearch", isEqualTo: true)
             .order(by: "lastActive", descending: true)
             .limit(to: limit)
-
-        // Apply filters
-        // IMPORTANT: Skip gender filter when lookingFor is "Everyone" to show all genders
-        if let lookingFor = lookingFor, lookingFor != "Everyone" {
-            // Convert lookingFor values to match gender field values
-            // lookingFor uses: "Men", "Women", "Everyone"
-            // gender uses: "Male", "Female", "Non-binary", "Other"
-            let genderToMatch: String
-            switch lookingFor {
-            case "Women":
-                genderToMatch = "Female"
-            case "Men":
-                genderToMatch = "Male"
-            default:
-                genderToMatch = lookingFor // Use as-is if already in correct format
-            }
-            Logger.shared.info("UserService: Filtering by gender = \(genderToMatch) (from lookingFor: \(lookingFor))", category: .database)
-            query = query.whereField("gender", isEqualTo: genderToMatch)
-        }
-
-        if let ageRange = ageRange {
-            Logger.shared.debug("UserService: Filtering by age range \(ageRange.lowerBound)-\(ageRange.upperBound)", category: .database)
-            query = query
-                .whereField("age", isGreaterThanOrEqualTo: ageRange.lowerBound)
-                .whereField("age", isLessThanOrEqualTo: ageRange.upperBound)
-        }
 
         if let country = country {
             Logger.shared.debug("UserService: Filtering by country = \(country)", category: .database)
@@ -105,7 +78,7 @@ class UserService: ObservableObject, UserServiceProtocol {
 
         do {
             Logger.shared.info("UserService: Executing Firestore query...", category: .database)
-            Logger.shared.info("UserService: Query details - showMeInSearch=true, ageRange=\(ageRange?.description ?? "none"), lookingFor=\(lookingFor ?? "Everyone")", category: .database)
+            Logger.shared.info("UserService: Query details - showMeInSearch=true, lookingFor=\(lookingFor ?? "any")", category: .database)
 
             let snapshot = try await query.getDocuments()
             lastDocument = snapshot.documents.last
@@ -126,12 +99,12 @@ class UserService: ObservableObject, UserServiceProtocol {
                 let diagnosticCount = diagnosticSnapshot?.documents.count ?? 0
                 Logger.shared.info("UserService: DIAGNOSTIC - Users with showMeInSearch=true: \(diagnosticCount)", category: .database)
 
-                // Check age distribution of those users
+                // Check platform distribution of those users
                 if let docs = diagnosticSnapshot?.documents {
                     for doc in docs {
-                        let age = doc.data()["age"] as? Int ?? -1
-                        let gender = doc.data()["gender"] as? String ?? "unknown"
-                        Logger.shared.info("UserService: DIAGNOSTIC - Found user age=\(age), gender=\(gender)", category: .database)
+                        let userPlatforms = doc.data()["platforms"] as? [String] ?? []
+                        let skillLevel = doc.data()["skillLevel"] as? String ?? "unknown"
+                        Logger.shared.info("UserService: DIAGNOSTIC - Found user platforms=\(userPlatforms.joined(separator: ",")), skillLevel=\(skillLevel)", category: .database)
                     }
                 }
             }
@@ -153,6 +126,12 @@ class UserService: ObservableObject, UserServiceProtocol {
                     if status == "pending" || status == "suspended" || status == "flagged" || status == "banned" {
                         return false
                     }
+                    // Client-side platform filter (if specified)
+                    if let filterPlatforms = platforms, !filterPlatforms.isEmpty {
+                        let userPlatforms = Set(user.platforms)
+                        let hasMatchingPlatform = !filterPlatforms.filter { userPlatforms.contains($0) }.isEmpty
+                        if !hasMatchingPlatform { return false }
+                    }
                     return true
                 }
 
@@ -161,7 +140,7 @@ class UserService: ObservableObject, UserServiceProtocol {
             if newUsers.isEmpty {
                 Logger.shared.warning("UserService: No users found! Check Firebase indexes and user data.", category: .database)
             } else {
-                Logger.shared.info("UserService: Found users - \(newUsers.map { "\($0.fullName) (gender: \($0.gender))" }.joined(separator: ", "))", category: .database)
+                Logger.shared.info("UserService: Found users - \(newUsers.map { "\($0.fullName) (gamerTag: \($0.gamerTag))" }.joined(separator: ", "))", category: .database)
             }
 
             users.append(contentsOf: newUsers)
@@ -411,36 +390,37 @@ class UserService: ObservableObject, UserServiceProtocol {
     }
     
     /// Load more users (pagination)
-    func loadMoreUsers(excludingUserId: String, lookingFor: String? = nil, ageRange: ClosedRange<Int>? = nil) async throws {
+    func loadMoreUsers(excludingUserId: String, lookingFor: String? = nil, platforms: [String]? = nil) async throws {
         try await fetchUsers(
             excludingUserId: excludingUserId,
             lookingFor: lookingFor,
-            ageRange: ageRange,
+            platforms: platforms,
             reset: false
         )
     }
-    
-    /// Check if user has completed profile
+
+    /// Check if user has completed profile (gaming-focused)
     func isProfileComplete(_ user: User) -> Bool {
         return !user.fullName.isEmpty &&
                !user.bio.isEmpty &&
                !user.profileImageURL.isEmpty &&
-               user.interests.count >= 3 &&
-               user.languages.count >= 1
+               !user.gamerTag.isEmpty &&
+               !user.platforms.isEmpty
     }
-    
-    /// Calculate profile completion percentage
+
+    /// Calculate profile completion percentage (gaming-focused)
     func profileCompletionPercentage(_ user: User) -> Int {
         var completedSteps = 0
-        let totalSteps = 7
+        let totalSteps = 8
 
         if !user.fullName.isEmpty { completedSteps += 1 }
         if !user.bio.isEmpty { completedSteps += 1 }
         if !user.profileImageURL.isEmpty { completedSteps += 1 }
-        if user.interests.count >= 3 { completedSteps += 1 }
-        if user.languages.count >= 1 { completedSteps += 1 }
+        if !user.gamerTag.isEmpty { completedSteps += 1 }
+        if !user.platforms.isEmpty { completedSteps += 1 }
+        if !user.favoriteGames.isEmpty { completedSteps += 1 }
+        if !user.gameGenres.isEmpty { completedSteps += 1 }
         if user.photos.count >= 2 { completedSteps += 1 }
-        if user.age >= 18 { completedSteps += 1 }
 
         return (completedSteps * 100) / totalSteps
     }
