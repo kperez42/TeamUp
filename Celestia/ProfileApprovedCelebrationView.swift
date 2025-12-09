@@ -206,11 +206,11 @@ struct ProfileApprovedCelebrationView: View {
 
     private func generateConfetti() {
         let colors: [Color] = [
-            .red, .orange, .yellow, .green, .blue, .purple, .pink,
-            .mint, .cyan, .indigo, .teal
+            .green, .cyan, .teal, .mint, .blue, .yellow, .orange,
+            .indigo, .white
         ]
         let shapes = [
-            "circle.fill", "star.fill", "heart.fill", "diamond.fill",
+            "circle.fill", "star.fill", "gamecontroller.fill", "diamond.fill",
             "sparkle", "seal.fill", "hexagon.fill", "triangle.fill"
         ]
 

@@ -870,7 +870,7 @@ struct SignUpView: View {
                     RoundedRectangle(cornerRadius: 20)
                         .fill(
                             LinearGradient(
-                                colors: [Color.purple.opacity(0.08), Color.pink.opacity(0.05), Color.orange.opacity(0.03)],
+                                colors: [Color.green.opacity(0.08), Color.cyan.opacity(0.05), Color.teal.opacity(0.03)],
                                 startPoint: .topLeading,
                                 endPoint: .bottomTrailing
                             )
@@ -1088,7 +1088,7 @@ struct SignUpView: View {
                             Circle()
                                 .fill(
                                     index < photoImages.count
-                                        ? LinearGradient(colors: [.purple, .pink], startPoint: .topLeading, endPoint: .bottomTrailing)
+                                        ? LinearGradient(colors: [.green, .cyan], startPoint: .topLeading, endPoint: .bottomTrailing)
                                         : LinearGradient(colors: [Color.gray.opacity(0.2), Color.gray.opacity(0.2)], startPoint: .topLeading, endPoint: .bottomTrailing)
                                 )
                                 .frame(width: 8, height: 8)

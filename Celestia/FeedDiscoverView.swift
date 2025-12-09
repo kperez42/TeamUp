@@ -715,14 +715,14 @@ struct FeedDiscoverView: View {
                     .font(.system(size: 70))
                     .foregroundStyle(
                         LinearGradient(
-                            colors: [.purple, .pink],
+                            colors: [.green, .cyan],
                             startPoint: .topLeading,
                             endPoint: .bottomTrailing
                         )
                     )
 
                 VStack(spacing: 12) {
-                    Text("Welcome to Celestia!")
+                    Text("Welcome to TeamUp!")
                         .font(.title2)
                         .fontWeight(.bold)
 
@@ -1123,9 +1123,9 @@ struct FeedDiscoverView: View {
                     await MainActor.run {
                         let truncatedName = user.fullName.count > 20 ? String(user.fullName.prefix(20)) + "..." : user.fullName
                         showToast(
-                            message: "You like \(truncatedName)!",
-                            icon: "heart.fill",
-                            color: .pink
+                            message: "You sent a request to \(truncatedName)!",
+                            icon: "person.badge.plus.fill",
+                            color: .green
                         )
                     }
                 }

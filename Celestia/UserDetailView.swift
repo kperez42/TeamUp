@@ -819,7 +819,7 @@ struct GameCard: View {
         HStack(spacing: 12) {
             Image(systemName: "gamecontroller.fill")
                 .font(.title2)
-                .foregroundColor(.purple)
+                .foregroundColor(.green)
                 .frame(width: 40, height: 40)
                 .background(Color.green.opacity(0.15))
                 .cornerRadius(10)
