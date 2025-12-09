@@ -44,7 +44,7 @@ protocol UserServiceProtocol: ObservableObject {
     var hasMoreUsers: Bool { get set }
 
     func fetchUser(userId: String) async throws -> User?
-    func fetchUsers(excludingUserId: String, lookingFor: String?, platforms: [String]?, country: String?, limit: Int, reset: Bool) async throws
+    func fetchUsers(excludingUserId: String, lookingFor: String?, platforms: [String]?, country: String?, ageRange: ClosedRange<Int>?, limit: Int, reset: Bool) async throws
     func updateUser(_ user: User) async throws
     func updateUserFields(userId: String, fields: [String: Any]) async throws
     func incrementProfileViews(userId: String) async throws
