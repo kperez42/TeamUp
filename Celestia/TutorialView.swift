@@ -326,12 +326,12 @@ class TutorialManager: ObservableObject {
 
             Tutorial(
                 id: "matching",
-                title: "Make Matches",
-                description: "When someone you liked also likes you back, you'll both be notified and can start chatting!",
-                icon: "heart.fill",
-                accentColor: .red,
+                title: "Find Teammates",
+                description: "When someone you requested also wants to team up, you'll both be notified and can start chatting!",
+                icon: "person.2.fill",
+                accentColor: .green,
                 tips: [
-                    "Matches appear in your Matches tab",
+                    "Teammates appear in your Squad tab",
                     "Send the first message to break the ice",
                     "Be respectful and genuine"
                 ]
@@ -470,7 +470,7 @@ struct ScrollBrowseDemo: View {
                                     isLiked[index].toggle()
                                 }
                             } label: {
-                                Image(systemName: isLiked[index] ? "heart.fill" : "heart")
+                                Image(systemName: isLiked[index] ? "person.badge.plus.fill" : "person.badge.plus")
                                     .font(.title3)
                                     .foregroundColor(isLiked[index] ? .cyan : .gray)
                                     .scaleEffect(isLiked[index] ? 1.2 : 1.0)

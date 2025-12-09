@@ -1053,7 +1053,7 @@ struct OnboardingView: View {
 
                 // Motivation card
                 HStack(spacing: 12) {
-                    Image(systemName: "heart.circle.fill")
+                    Image(systemName: "gamecontroller.fill")
                         .font(.title2)
                         .foregroundStyle(
                             LinearGradient(
@@ -1364,12 +1364,12 @@ struct OnboardingView: View {
                 }
 
                 VStack(spacing: 20) {
-                    // Relationship Goal
+                    // Gaming Goal
                     VStack(alignment: .leading, spacing: 12) {
                         HStack(spacing: 8) {
-                            Image(systemName: "heart.text.square.fill")
+                            Image(systemName: "gamecontroller.fill")
                                 .foregroundColor(.green)
-                            Text("What are you looking for?")
+                            Text("What's your play style?")
                                 .font(.headline)
                         }
 

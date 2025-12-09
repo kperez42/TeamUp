@@ -1427,9 +1427,9 @@ struct EditProfileView: View {
                         }
                     }
 
-                    // Relationship Goal
+                    // Gaming Goal
                     VStack(alignment: .leading, spacing: 8) {
-                        Label("Looking For", systemImage: "heart.circle")
+                        Label("Play Style", systemImage: "gamecontroller.fill")
                             .font(.caption)
                             .fontWeight(.semibold)
                             .foregroundColor(.secondary)
