@@ -92,18 +92,18 @@ enum GameCategory: String, Codable, CaseIterable, Identifiable {
         case .fps: return .red
         case .moba: return .blue
         case .battleRoyale: return .orange
-        case .mmo: return .purple
+        case .mmo: return .teal
         case .sports: return .green
         case .survival: return .brown
         case .boardCard: return .indigo
-        case .tabletop: return .purple
+        case .tabletop: return .indigo
         case .racing: return .yellow
         case .fighting: return .red
         case .rpg: return .cyan
         case .sandbox: return .mint
         case .horror: return .gray
         case .coOp: return .teal
-        case .party: return .pink
+        case .party: return .cyan
         case .strategy: return .blue
         }
     }

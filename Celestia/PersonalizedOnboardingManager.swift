@@ -75,8 +75,8 @@ class PersonalizedOnboardingManager: ObservableObject {
             case .rankedTeammates: return .orange
             case .casualGaming: return .green
             case .competitiveTeam: return .red
-            case .tabletopGroup: return .purple
-            case .streamingCollab: return .pink
+            case .tabletopGroup: return .indigo
+            case .streamingCollab: return .cyan
             case .gamingCommunity: return .blue
             }
         }
