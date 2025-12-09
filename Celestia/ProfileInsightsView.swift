@@ -175,7 +175,7 @@ struct ProfileInsightsView: View {
                                 .font(.subheadline)
                                 .fontWeight(selectedTab == index ? .bold : .medium)
                         }
-                        .foregroundColor(selectedTab == index ? .purple : .gray)
+                        .foregroundColor(selectedTab == index ? .green : .gray)
 
                         // Indicator line
                         Rectangle()

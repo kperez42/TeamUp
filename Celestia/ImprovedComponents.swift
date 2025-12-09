@@ -278,12 +278,12 @@ struct ImprovedUserDetailSheet: View {
     
     private var statsSection: some View {
         HStack(spacing: 0) {
-            statItem(icon: "heart.fill", value: "\(user.likesReceived)", label: "Likes", color: .pink)
+            statItem(icon: "gamecontroller.fill", value: "\(user.likesReceived)", label: "Requests", color: .cyan)
             
             Divider()
                 .frame(height: 40)
             
-            statItem(icon: "star.fill", value: "\(user.matchCount)", label: "Matches", color: .purple)
+            statItem(icon: "star.fill", value: "\(user.matchCount)", label: "Squad", color: .green)
             
             Divider()
                 .frame(height: 40)

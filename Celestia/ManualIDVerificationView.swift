@@ -283,7 +283,7 @@ struct ManualIDVerificationView: View {
 
                 Image(systemName: "doc.text.fill")
                     .font(.title2)
-                    .foregroundColor(viewModel.selectedIDType != nil ? .green : .purple)
+                    .foregroundColor(viewModel.selectedIDType != nil ? .green : .cyan)
             }
             .padding()
 
@@ -297,7 +297,7 @@ struct ManualIDVerificationView: View {
                         HStack(spacing: 12) {
                             Image(systemName: idType.icon)
                                 .font(.body)
-                                .foregroundColor(viewModel.selectedIDType == idType ? .white : .purple)
+                                .foregroundColor(viewModel.selectedIDType == idType ? .white : .green)
                                 .frame(width: 24)
 
                             Text(idType.rawValue)

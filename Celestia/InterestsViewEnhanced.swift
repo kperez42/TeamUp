@@ -592,7 +592,7 @@ struct InterestFilterChip: View {
                 Text(title)
                     .font(.subheadline.weight(.medium))
             }
-            .foregroundColor(isSelected ? .white : .purple)
+            .foregroundColor(isSelected ? .white : .green)
             .padding(.horizontal, 16)
             .padding(.vertical, 8)
             .background(

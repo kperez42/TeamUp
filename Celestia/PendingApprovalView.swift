@@ -112,7 +112,7 @@ struct PendingApprovalView: View {
                 .font(.system(size: 42, weight: .medium))
                 .foregroundStyle(
                     LinearGradient(
-                        colors: [.blue, .purple],
+                        colors: [.green, .cyan],
                         startPoint: .topLeading,
                         endPoint: .bottomTrailing
                     )
