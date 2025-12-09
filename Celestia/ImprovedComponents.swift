@@ -319,7 +319,7 @@ struct ImprovedUserDetailSheet: View {
     private var detailsSection: some View {
         VStack(spacing: 16) {
             detailRow(icon: "person.fill", label: "Gender", value: user.gender)
-            detailRow(icon: "heart.circle.fill", label: "Looking for", value: user.lookingFor)
+            detailRow(icon: "gamecontroller.fill", label: "Play style", value: user.lookingFor)
         }
         .padding(20)
         .background(Color(.systemGray6))
@@ -420,13 +420,13 @@ struct ImprovedUserDetailSheet: View {
                 )
             }
             
-            // Like button
+            // Team Up button
             Button {
                 onSendInterest()
             } label: {
                 HStack(spacing: 8) {
-                    Image(systemName: "heart.fill")
-                    Text("Like")
+                    Image(systemName: "person.badge.plus")
+                    Text("Team Up")
                         .fontWeight(.semibold)
                 }
                 .foregroundColor(.white)

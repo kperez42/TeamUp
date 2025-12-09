@@ -594,9 +594,9 @@ struct ProfileView: View {
                 HapticManager.shared.impact(.light)
             } label: {
                 statCard(
-                    icon: "heart.fill",
+                    icon: "person.badge.plus.fill",
                     value: isLoadingStats ? "-" : "\(accurateLikesReceived)",
-                    label: "Liked",
+                    label: "Requests",
                     color: .cyan
                 )
             }

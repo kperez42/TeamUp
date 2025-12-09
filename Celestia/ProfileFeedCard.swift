@@ -260,11 +260,11 @@ struct ProfileFeedCard: View {
 
     private var actionButtons: some View {
         HStack(spacing: 12) {
-            // Like/Heart button (toggle)
+            // Team Up button (toggle)
             ActionButton(
-                icon: isLiked ? "heart.fill" : "heart",
+                icon: isLiked ? "person.badge.plus.fill" : "person.badge.plus",
                 color: .cyan,
-                label: isLiked ? "Liked" : "Like",
+                label: isLiked ? "Requested" : "Team Up",
                 isProcessing: isProcessingLike,
                 action: {
                     guard !isProcessingLike else { return }
