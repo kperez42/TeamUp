@@ -1,6 +1,6 @@
 //
 //  SmartRetryManager.swift
-//  Celestia
+//  TeamUp
 //
 //  Smart retry logic with circuit breaker integration and exponential backoff
 //  Provides intelligent retry strategies based on error type and service health

@@ -1,6 +1,6 @@
 //
 //  ImagePerformanceDashboard.swift
-//  Celestia
+//  TeamUp
 //
 //  Admin dashboard for monitoring image optimization performance
 //

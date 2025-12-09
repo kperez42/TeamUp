@@ -1,6 +1,6 @@
 //
 //  BatchOperationManager.swift
-//  Celestia
+//  TeamUp
 //
 //  Handles batch operations with transaction logging, idempotency, and retry logic
 //

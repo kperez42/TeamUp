@@ -1,7 +1,7 @@
 # ViewModel Testing Infrastructure - Coverage Report
 
 ## Overview
-This testing infrastructure provides comprehensive unit tests for ALL ViewModels in the Celestia app, achieving 90%+ test coverage for ViewModel logic.
+This testing infrastructure provides comprehensive unit tests for ALL ViewModels in the TeamUp app, achieving 90%+ test coverage for ViewModel logic.
 
 ## Test Files Created
 

@@ -1,6 +1,6 @@
 //
 //  PhoneVerificationView.swift
-//  Celestia
+//  TeamUp
 //
 //  Full phone number verification flow with SMS OTP
 //

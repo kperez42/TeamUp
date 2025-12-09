@@ -1,6 +1,6 @@
 //
 //  AnalyticsDashboardView.swift
-//  Celestia
+//  TeamUp
 //
 //  Comprehensive analytics dashboard showing profile insights,
 //  match quality, trends, and personalized recommendations
@@ -380,7 +380,7 @@ struct MatchQualityScoreCard: View {
 
     private func getQualityMessage(score: Double) -> String {
         switch score {
-        case 80...100: return "Excellent! You two have great chemistry 💕"
+        case 80...100: return "Excellent! Great squad vibes! 🎮"
         case 60..<80: return "Good connection! Keep the conversation going"
         case 40..<60: return "Average. Try asking more questions"
         case 20..<40: return "Needs improvement. Engage more actively"

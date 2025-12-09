@@ -1,6 +1,6 @@
 //
 //  SeeWhoLikesYouView.swift
-//  Celestia
+//  TeamUp
 //
 //  Premium feature: See who has liked you
 //
@@ -197,7 +197,7 @@ struct SeeWhoLikesYouView: View {
                     .font(.title2)
                     .fontWeight(.bold)
 
-                Text("Keep swiping to find your perfect match!")
+                Text("Keep swiping to find your perfect teammates!")
                     .font(.subheadline)
                     .foregroundColor(.secondary)
                     .multilineTextAlignment(.center)

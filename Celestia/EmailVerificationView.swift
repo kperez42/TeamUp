@@ -1,6 +1,6 @@
 //
 //  EmailVerificationView.swift
-//  Celestia
+//  TeamUp
 //
 //  Email verification screen shown after signup
 //

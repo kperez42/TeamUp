@@ -1,6 +1,6 @@
 //
 //  ProfileEnhancementView.swift
-//  Celestia
+//  TeamUp
 //
 //  Additional profile information collection view
 //  Shown after sign-up to help users get better matches
@@ -117,7 +117,7 @@ struct ProfileEnhancementView: View {
                     .font(.headline)
                     .foregroundColor(.primary)
 
-                Text("Help us find your perfect match")
+                Text("Help us find your perfect squad")
                     .font(.caption)
                     .foregroundColor(.secondary)
             }
@@ -241,8 +241,8 @@ struct ProfileEnhancementView: View {
                 }
 
                 infoCard(
-                    icon: "heart.fill",
-                    text: "Lifestyle compatibility leads to stronger connections",
+                    icon: "person.3.fill",
+                    text: "Lifestyle compatibility helps you find the right squad",
                     color: .pink
                 )
             }
@@ -486,15 +486,15 @@ struct ProfilePromptsOnboardingView: View {
     @State private var errorMessage = ""
 
     let availablePrompts = [
-        "A perfect first date would be...",
-        "I'm looking for someone who...",
+        "A perfect gaming session would be...",
+        "I'm looking for teammates who...",
         "My ideal weekend looks like...",
         "Two truths and a lie...",
-        "The way to my heart is...",
+        "The way to win me over is...",
         "I geek out on...",
         "My most spontaneous moment...",
         "I'm convinced that...",
-        "The key to my heart is...",
+        "My gaming hot take is...",
         "My simple pleasures are..."
     ]
 

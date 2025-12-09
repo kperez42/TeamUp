@@ -1,6 +1,6 @@
 //
 //  SplashView.swift
-//  Celestia
+//  TeamUp
 //
 //  Professional splash screen with brand animation
 //

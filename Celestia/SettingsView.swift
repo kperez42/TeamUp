@@ -1,6 +1,6 @@
 //
 //  SettingsView.swift
-//  Celestia
+//  TeamUp
 //
 //  Created by Kevin Perez on 10/29/25.
 //
@@ -291,7 +291,7 @@ struct SettingsView: View {
                         HStack {
                             Image(systemName: "shield.checkered")
                                 .foregroundColor(.orange)
-                            Text("Dating Safety Tips")
+                            Text("Gaming Safety Tips")
                                 .foregroundColor(.primary)
                             Spacer()
                             Image(systemName: "chevron.right")

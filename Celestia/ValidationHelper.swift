@@ -1,6 +1,6 @@
 //
 //  ValidationHelper.swift
-//  Celestia
+//  TeamUp
 //
 //  Centralized input validation utility
 //  Eliminates code duplication and ensures consistent validation across the app

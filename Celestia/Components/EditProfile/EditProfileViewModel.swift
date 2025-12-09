@@ -1,6 +1,6 @@
 //
 //  EditProfileViewModel.swift
-//  Celestia
+//  TeamUp
 //
 //  ViewModel for Edit Profile - centralizes state and business logic
 //  Extracted from EditProfileView.swift to reduce file size and improve testability

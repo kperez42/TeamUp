@@ -1,6 +1,6 @@
 //
 //  PhoneVerificationService.swift
-//  Celestia
+//  TeamUp
 //
 //  Phone number verification using Firebase Auth
 //

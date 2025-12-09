@@ -390,13 +390,13 @@ struct ReferralFlowTests {
     func testShareableReferralLink() async throws {
         let userId = "user123"
         let referralCode = "ABC123"
-        let baseURL = "https://celestia.app"
+        let baseURL = "https://teamup.gg"
 
         let shareableLink = "\(baseURL)/signup?ref=\(referralCode)"
-        #expect(shareableLink == "https://celestia.app/signup?ref=ABC123")
+        #expect(shareableLink == "https://teamup.gg/signup?ref=ABC123")
 
         // Shareable message
-        let shareMessage = "Join Celestia using my code \(referralCode) and get 2 free Super Likes! \(shareableLink)"
+        let shareMessage = "Join TeamUp using my code \(referralCode) and get 2 free Super Likes! \(shareableLink)"
         #expect(shareMessage.contains(referralCode))
         #expect(shareMessage.contains(shareableLink))
     }

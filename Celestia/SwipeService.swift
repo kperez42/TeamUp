@@ -1,6 +1,6 @@
 //
 //  SwipeService.swift
-//  Celestia
+//  TeamUp
 //
 //  Service for handling swipes (likes/passes) and creating matches
 //

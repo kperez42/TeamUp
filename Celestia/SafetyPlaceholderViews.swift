@@ -1,6 +1,6 @@
 //
 //  SafetyPlaceholderViews.swift
-//  Celestia
+//  TeamUp
 //
 //  Placeholder views for safety features not yet implemented
 //  NOTE: Phone verification is now functional - see PhoneVerificationView.swift
@@ -105,7 +105,7 @@ struct SafetySettingsView: View {
     }
 }
 
-// MARK: - Date Safety Views
+// MARK: - Meetup Safety Views
 
 struct SafeDateLocationsView: View {
     @Environment(\.dismiss) var dismiss
@@ -119,7 +119,7 @@ struct SafeDateLocationsView: View {
             Text("Safe Meeting Spots")
                 .font(.title.bold())
 
-            Text("Public places recommended for first dates. Coming soon")
+            Text("Public places recommended for first meetups. Coming soon")
                 .font(.subheadline)
                 .foregroundColor(.secondary)
                 .multilineTextAlignment(.center)
@@ -139,16 +139,16 @@ struct DateCheckInView: View {
                 .font(.system(size: 60))
                 .foregroundColor(.orange)
 
-            Text("Date Check-In")
+            Text("Meetup Check-In")
                 .font(.title.bold())
 
-            Text("Set reminders during your date. Coming soon")
+            Text("Set reminders during your meetup. Coming soon")
                 .font(.subheadline)
                 .foregroundColor(.secondary)
                 .multilineTextAlignment(.center)
                 .padding(.horizontal)
         }
-        .navigationTitle("Date Check-In")
+        .navigationTitle("Meetup Check-In")
         .navigationBarTitleDisplayMode(.inline)
     }
 }

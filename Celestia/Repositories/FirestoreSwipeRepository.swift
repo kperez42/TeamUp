@@ -1,6 +1,6 @@
 //
 //  FirestoreSwipeRepository.swift
-//  Celestia
+//  TeamUp
 //
 //  Concrete implementation of SwipeRepository using Firestore
 //  Separates data access logic from business logic

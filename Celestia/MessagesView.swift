@@ -1,6 +1,6 @@
 //
 //  MessagesView.swift
-//  Celestia
+//  TeamUp
 //
 //  ELITE MESSAGES VIEW - Premium Chat Experience
 //

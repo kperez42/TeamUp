@@ -1,6 +1,6 @@
 //
 //  WelcomeView.swift - IMPROVED VERSION
-//  Celestia
+//  TeamUp
 //
 //  ✨ Enhanced with:
 //  - Animated gradient background
@@ -26,9 +26,9 @@ struct WelcomeView: View {
     @State private var showPrivacyPolicy = false
 
     let features = [
-        Feature(icon: "heart.circle.fill", title: "Find Your Match", description: "Meet amazing people near you"),
-        Feature(icon: "heart.text.square.fill", title: "Smart Matching", description: "AI-powered compatibility algorithm"),
-        Feature(icon: "message.fill", title: "Real-Time Chat", description: "Instant messaging with your matches")
+        Feature(icon: "gamecontroller.fill", title: "Find Your Squad", description: "Meet gamers near you"),
+        Feature(icon: "person.3.fill", title: "Smart Matching", description: "AI-powered gaming compatibility"),
+        Feature(icon: "message.fill", title: "Real-Time Chat", description: "Instant messaging with your teammates")
     ]
     
     var body: some View {
@@ -175,12 +175,12 @@ struct WelcomeView: View {
             }
             
             VStack(spacing: 8) {
-                Text("Celestia")
+                Text("TeamUp")
                     .font(.system(size: 52, weight: .bold, design: .rounded))
                     .foregroundColor(.white)
                     .shadow(color: .black.opacity(0.2), radius: 5)
-                
-                Text("Find friends, dates, and meaningful connections")
+
+                Text("Find gaming buddies and build your squad")
                     .font(.headline)
                     .foregroundColor(.white.opacity(0.95))
                     .multilineTextAlignment(.center)
@@ -261,7 +261,7 @@ struct WelcomeView: View {
                 .shadow(color: .white.opacity(0.5), radius: 15, y: 5)
             }
             .accessibilityLabel("Create Account")
-            .accessibilityHint("Start creating your Celestia account")
+            .accessibilityHint("Start creating your TeamUp account")
             .accessibilityIdentifier(AccessibilityIdentifier.signUpButton)
             .scaleButton()
 
@@ -442,30 +442,30 @@ struct WelcomeAwarenessSlidesView: View {
     let slides: [AwarenessSlide] = [
         AwarenessSlide(
             icon: "star.circle.fill",
-            title: "Welcome to Celestia!",
-            description: "Your journey to meaningful connections starts here. Let us show you how it works!",
+            title: "Welcome to TeamUp!",
+            description: "Your journey to finding the perfect gaming squad starts here. Let us show you how it works!",
             color: .purple,
             tips: [
                 "Be authentic and genuine in your profile",
-                "Add photos that show your personality",
-                "Write a bio that sparks conversation"
+                "Add photos and showcase your gaming setup",
+                "Write a bio that highlights your gaming style"
             ]
         ),
         AwarenessSlide(
             icon: "scroll.fill",
             title: "Browse & Discover",
-            description: "Scroll through profiles in your feed. Tap the heart to like someone, or keep scrolling to see more!",
+            description: "Scroll through profiles in your feed. Like gamers who match your style, or keep scrolling to discover more!",
             color: .pink,
             tips: [
                 "Scroll up and down to browse profiles",
                 "Tap any card to view full profile details",
-                "Like profiles that interest you"
+                "Like gamers with similar interests"
             ]
         ),
         AwarenessSlide(
             icon: "heart.fill",
             title: "Likes & Matches",
-            description: "Tap the heart on profiles you like. When they like you back, it's a match and you can start chatting!",
+            description: "Like profiles of gamers you want to team up with. When they like you back, it's a match and you can start chatting!",
             color: .red,
             tips: [
                 "Your matches appear in the Matches tab",
@@ -476,29 +476,29 @@ struct WelcomeAwarenessSlidesView: View {
         AwarenessSlide(
             icon: "message.fill",
             title: "Start Conversations",
-            description: "Once matched, send a message to start getting to know each other better.",
+            description: "Once matched, send a message to coordinate your next gaming session!",
             color: .blue,
             tips: [
-                "Ask about their interests",
-                "Reference something from their profile",
+                "Ask about their favorite games",
+                "Reference their gaming style or rank",
                 "Be yourself and have fun!"
             ]
         ),
         AwarenessSlide(
             icon: "person.crop.circle.fill.badge.checkmark",
             title: "Complete Your Profile",
-            description: "High-quality profiles get 5x more matches. Add photos, write a bio, and share your interests!",
+            description: "High-quality profiles get 5x more matches. Add photos, list your games, and share your playstyle!",
             color: .green,
             tips: [
-                "Add 4-6 clear photos of yourself",
-                "Write a bio that shows your personality",
-                "Select interests to find like-minded people"
+                "Add photos of yourself or your gaming setup",
+                "List your favorite games and platforms",
+                "Select your skill level and play schedule"
             ]
         ),
         AwarenessSlide(
             icon: "checklist",
             title: "What We Review",
-            description: "All profiles are reviewed before going live. Here's what our team checks to keep Celestia safe and authentic:",
+            description: "All profiles are reviewed before going live. Here's what our team checks to keep TeamUp safe and authentic:",
             color: .blue,
             tips: [
                 "Profile Photos - Clear, appropriate photos that show you",
@@ -512,7 +512,7 @@ struct WelcomeAwarenessSlidesView: View {
             description: "Your safety is our priority. We review all profiles and provide tools to report inappropriate behavior.",
             color: .orange,
             tips: [
-                "Meet in public places for first dates",
+                "Meet in public places for first meetups",
                 "Tell a friend about your plans",
                 "Trust your instincts always",
                 "Report and block suspicious accounts"

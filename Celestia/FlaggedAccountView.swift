@@ -1,6 +1,6 @@
 //
 //  FlaggedAccountView.swift
-//  Celestia
+//  TeamUp
 //
 //  Shows feedback to users whose profiles are under moderator review (flagged status).
 //

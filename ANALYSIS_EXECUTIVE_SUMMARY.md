@@ -322,7 +322,7 @@ Accessibility:
 
 ## CONCLUSION
 
-The Celestia codebase has a **solid foundation with good architectural decisions**, but suffers from:
+The TeamUp codebase has a **solid foundation with good architectural decisions**, but suffers from:
 
 1. **Critical stability issues** that need immediate fixing
 2. **Maintainability problems** from monolithic views

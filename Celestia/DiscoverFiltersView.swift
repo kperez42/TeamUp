@@ -1,6 +1,6 @@
 //
 //  DiscoverFiltersView.swift
-//  Celestia
+//  TeamUp
 //
 //  Professional filter settings for discovery
 //
@@ -39,8 +39,8 @@ struct DiscoverFiltersView: View {
     ]
 
     let relationshipGoalOptions = [
-        "Casual Dating", "Long-term Relationship", "Marriage",
-        "Friendship", "Not Sure Yet"
+        "Casual Gaming", "Regular Squad", "Competitive Team",
+        "Just Chatting", "Looking for Teammates"
     ]
 
     let smokingOptions = ["Never", "Socially", "Regularly", "Trying to Quit"]
@@ -513,7 +513,7 @@ struct DiscoverFiltersView: View {
         }
     }
 
-    // MARK: - Relationship Goals Section
+    // MARK: - Gaming Goals Section
 
     private var relationshipGoalsSection: some View {
         VStack(alignment: .leading, spacing: 12) {

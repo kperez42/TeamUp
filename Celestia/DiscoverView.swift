@@ -1,6 +1,6 @@
 //
 //  DiscoverView.swift
-//  Celestia
+//  TeamUp
 //
 //  ACCESSIBILITY: Full VoiceOver support, Dynamic Type, Reduce Motion, and WCAG 2.1 AA compliant
 //
@@ -70,7 +70,7 @@ struct DiscoverView: View {
             .accessibilityIdentifier(AccessibilityIdentifier.discoverView)
             .task {
                 await viewModel.loadUsers()
-                VoiceOverAnnouncement.screenChanged(to: "Discover view. \(viewModel.users.count) potential matches available.")
+                VoiceOverAnnouncement.screenChanged(to: "Discover view. \(viewModel.users.count) potential teammates available.")
             }
             .refreshable {
                 HapticManager.shared.impact(.light)
@@ -183,7 +183,7 @@ struct DiscoverView: View {
             }
             .accessibilityElement(
                 label: "Shuffle users",
-                hint: "Randomly reorder the list of potential matches",
+                hint: "Randomly reorder the list of potential teammates",
                 traits: .isButton,
                 identifier: AccessibilityIdentifier.shuffleButton
             )
@@ -211,7 +211,7 @@ struct DiscoverView: View {
             }
             .accessibilityElement(
                 label: viewModel.hasActiveFilters ? "Filters active" : "Filters",
-                hint: "Show discovery filters to refine your matches",
+                hint: "Show discovery filters to refine your search",
                 traits: .isButton,
                 identifier: AccessibilityIdentifier.filterButton,
                 value: viewModel.hasActiveFilters ? "Active" : "Inactive"

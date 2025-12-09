@@ -1,6 +1,6 @@
 //
 //  TestData.swift
-//  Celestia
+//  TeamUp
 //
 //  Created by Claude
 //  Test data for previews and development

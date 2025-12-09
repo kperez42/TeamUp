@@ -8,7 +8,7 @@ This document describes the comprehensive accessibility implementation for the C
 
 ### WCAG 2.1 Level AA Compliance
 
-The Celestia app implements the following WCAG 2.1 Level AA standards:
+The TeamUp app implements the following WCAG 2.1 Level AA standards:
 
 - **Perceivable**: Information and UI components must be presentable to users in ways they can perceive
 - **Operable**: UI components and navigation must be operable
@@ -422,7 +422,7 @@ For accessibility-related issues or suggestions:
 
 ## Conclusion
 
-The Celestia app now provides comprehensive accessibility support, ensuring that all users can enjoy a premium dating experience regardless of their abilities. By following WCAG 2.1 Level AA guidelines and implementing best practices for VoiceOver, Dynamic Type, and Reduce Motion, we've created an inclusive platform that welcomes everyone.
+The TeamUp app now provides comprehensive accessibility support, ensuring that all users can enjoy a premium dating experience regardless of their abilities. By following WCAG 2.1 Level AA guidelines and implementing best practices for VoiceOver, Dynamic Type, and Reduce Motion, we've created an inclusive platform that welcomes everyone.
 
 ---
 

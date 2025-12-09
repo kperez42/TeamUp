@@ -1,6 +1,6 @@
 //
 //  TypingIndicator.swift
-//  Celestia
+//  TeamUp
 //
 //  Typing indicator animation for chat
 //

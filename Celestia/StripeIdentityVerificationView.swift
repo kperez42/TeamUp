@@ -1,6 +1,6 @@
 //
 //  StripeIdentityVerificationView.swift
-//  Celestia
+//  TeamUp
 //
 //  SwiftUI view for Stripe Identity verification flow
 //  This is the primary and recommended method for ID verification

@@ -1,6 +1,6 @@
 //
 //  ProfileRejectionFeedbackView.swift
-//  Celestia
+//  TeamUp
 //
 //  Shows rejection feedback to users whose profiles need corrections
 //

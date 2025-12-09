@@ -1,6 +1,6 @@
 //
 //  OfflineManager.swift
-//  Celestia
+//  TeamUp
 //
 //  Manages offline functionality and data synchronization
 //  Handles caching, queue management, and sync when online

@@ -1,8 +1,8 @@
 //
 //  SafeDatingTipsView.swift
-//  Celestia
+//  TeamUp
 //
-//  Safety tips and resources for dating
+//  Safety tips and resources for meeting gamers
 //
 
 import SwiftUI
@@ -25,7 +25,7 @@ struct SafeDatingTipsView: View {
                 .padding()
             }
         }
-        .navigationTitle("Safe Dating Tips")
+        .navigationTitle("Gaming Safety Tips")
         .navigationBarTitleDisplayMode(.inline)
     }
 
@@ -166,7 +166,7 @@ enum TipCategory: CaseIterable {
     var title: String {
         switch self {
         case .beforeMeeting: return "Before"
-        case .firstDate: return "First Date"
+        case .firstDate: return "First Meetup"
         case .ongoingSafety: return "Ongoing"
         case .redFlags: return "Red Flags"
         case .resources: return "Resources"
@@ -238,8 +238,8 @@ struct SafetyTip: Identifiable {
                     description: "Always tell a friend or family member where you're going and who you're meeting.",
                     priority: .critical,
                     actionItems: [
-                        "Share date location and time",
-                        "Send match's profile info",
+                        "Share meetup location and time",
+                        "Send their profile info",
                         "Set up check-in times"
                     ]
                 ),
@@ -261,10 +261,10 @@ struct SafetyTip: Identifiable {
                 SafetyTip(
                     icon: "building.2.fill",
                     title: "Meet in Public",
-                    description: "Always choose a busy, public place for first dates. Never go to their home or invite them to yours.",
+                    description: "Always choose a busy, public place for first meetups. LAN centers, gaming cafes, or conventions are great options.",
                     priority: .critical,
                     actionItems: [
-                        "Choose a busy cafe or restaurant",
+                        "Choose a gaming cafe or public venue",
                         "Avoid secluded areas",
                         "Stay in well-lit places"
                     ]

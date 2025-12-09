@@ -1,6 +1,6 @@
 //
 //  ChatView.swift
-//  Celestia
+//  TeamUp
 //
 //  Chat view with real-time messaging
 //  ACCESSIBILITY: Full VoiceOver support, Dynamic Type, Reduce Motion, and WCAG 2.1 AA compliant

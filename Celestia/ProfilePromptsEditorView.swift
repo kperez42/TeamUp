@@ -1,6 +1,6 @@
 //
 //  ProfilePromptsEditorView.swift
-//  Celestia
+//  TeamUp
 //
 //  Editor for selecting and answering profile prompts
 //
@@ -497,7 +497,7 @@ struct ProfilePromptsEditorView: View {
 
 #Preview {
     ProfilePromptsEditorView(prompts: .constant([
-        ProfilePrompt(question: "My ideal Sunday is...", answer: "Brunch with friends, a long walk in the park, and ending the day with a good book and wine."),
-        ProfilePrompt(question: "I'm looking for someone who...", answer: "Can make me laugh, loves adventures, and isn't afraid to be vulnerable.")
+        ProfilePrompt(question: "My ideal gaming session is...", answer: "A full squad, voice chat on, and a mix of competitive and fun games."),
+        ProfilePrompt(question: "I'm looking for teammates who...", answer: "Communicate well, stay positive even when losing, and are down for late night sessions.")
     ]))
 }

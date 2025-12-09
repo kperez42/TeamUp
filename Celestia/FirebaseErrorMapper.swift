@@ -1,6 +1,6 @@
 //
 //  FirebaseErrorMapper.swift
-//  Celestia
+//  TeamUp
 //
 //  Centralized Firebase error mapping to eliminate code duplication
 //  Converts Firebase error codes to user-friendly messages

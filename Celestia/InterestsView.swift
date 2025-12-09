@@ -1,6 +1,6 @@
 //
 //  InterestsView.swift
-//  Celestia
+//  TeamUp
 //
 
 import SwiftUI

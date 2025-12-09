@@ -1,6 +1,6 @@
 //
 //  ChatViewModel.swift
-//  Celestia
+//  TeamUp
 //
 //  Handles chat and messaging functionality
 //

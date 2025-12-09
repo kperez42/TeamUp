@@ -1,6 +1,6 @@
 //
 //  AppShortcuts.swift
-//  Celestia
+//  TeamUp
 //
 //  App Shortcuts and Siri integration for quick actions
 //  Requires iOS 16+ for App Intents framework
@@ -12,7 +12,7 @@ import AppIntents
 // MARK: - App Shortcuts Provider
 
 @available(iOS 16.0, *)
-struct CelestiaAppShortcuts: AppShortcutsProvider {
+struct TeamUpAppShortcuts: AppShortcutsProvider {
     static var appShortcuts: [AppShortcut] {
         AppShortcut(
             intent: ViewMatchesIntent(),
@@ -22,14 +22,14 @@ struct CelestiaAppShortcuts: AppShortcutsProvider {
                 "Check matches on \(.applicationName)"
             ],
             shortTitle: "View Matches",
-            systemImageName: "heart.circle.fill"
+            systemImageName: "gamecontroller.fill"
         )
 
         AppShortcut(
             intent: StartSwipingIntent(),
             phrases: [
                 "Start swiping on \(.applicationName)",
-                "Discover people on \(.applicationName)",
+                "Discover gamers on \(.applicationName)",
                 "Show me profiles on \(.applicationName)"
             ],
             shortTitle: "Start Swiping",
@@ -61,11 +61,11 @@ struct CelestiaAppShortcuts: AppShortcutsProvider {
         AppShortcut(
             intent: ShareDateDetailsIntent(),
             phrases: [
-                "Share my date on \(.applicationName)",
-                "Share date details in \(.applicationName)",
-                "Tell someone about my date on \(.applicationName)"
+                "Share my meetup on \(.applicationName)",
+                "Share meetup details in \(.applicationName)",
+                "Tell someone about my meetup on \(.applicationName)"
             ],
-            shortTitle: "Share Date",
+            shortTitle: "Share Meetup",
             systemImageName: "location.circle.fill"
         )
 
@@ -98,7 +98,7 @@ struct CelestiaAppShortcuts: AppShortcutsProvider {
 @available(iOS 16.0, *)
 struct ViewMatchesIntent: AppIntent {
     static var title: LocalizedStringResource = "View Matches"
-    static var description = IntentDescription("View your current matches in Celestia")
+    static var description = IntentDescription("View your current matches in TeamUp")
     static var openAppWhenRun: Bool = true
 
     @MainActor
@@ -119,7 +119,7 @@ struct ViewMatchesIntent: AppIntent {
 @available(iOS 16.0, *)
 struct StartSwipingIntent: AppIntent {
     static var title: LocalizedStringResource = "Start Swiping"
-    static var description = IntentDescription("Start discovering new people on Celestia")
+    static var description = IntentDescription("Start discovering new gamers on TeamUp")
     static var openAppWhenRun: Bool = true
 
     @MainActor
@@ -138,7 +138,7 @@ struct StartSwipingIntent: AppIntent {
 @available(iOS 16.0, *)
 struct CheckMessagesIntent: AppIntent {
     static var title: LocalizedStringResource = "Check Messages"
-    static var description = IntentDescription("Check your messages on Celestia")
+    static var description = IntentDescription("Check your messages on TeamUp")
     static var openAppWhenRun: Bool = true
 
     @MainActor
@@ -217,7 +217,7 @@ struct ShareDateDetailsIntent: AppIntent {
         } else {
             // Open app to share date screen
             return .result(
-                dialog: IntentDialog("Opening Celestia to share your date details")
+                dialog: IntentDialog("Opening TeamUp to share your meetup details")
             )
         }
     }
@@ -262,7 +262,7 @@ struct AddEmergencyContactIntent: AppIntent {
             )
         } else {
             return .result(
-                dialog: IntentDialog("Opening Celestia to add emergency contact")
+                dialog: IntentDialog("Opening TeamUp to add emergency contact")
             )
         }
     }

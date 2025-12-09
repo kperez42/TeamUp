@@ -45,7 +45,7 @@ This guide will help you configure Firebase to send email verification emails to
 3. If enabled, make sure it's configured to allow verification emails
 
 ### 6. Test the Email Flow
-1. Build and run the Celestia app
+1. Build and run the TeamUp app
 2. Create a new account with a **real email address you have access to**
 3. Check the Xcode console for these logs:
    ```

@@ -1,6 +1,6 @@
 //
 //  LoginView.swift
-//  Celestia
+//  TeamUp
 //
 //  Login view (wrapper for SignInView)
 //

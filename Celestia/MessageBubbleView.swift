@@ -1,6 +1,6 @@
 //
 //  MessageBubbleView.swift
-//  Celestia
+//  TeamUp
 //
 //  Shared message bubble component for chat views
 //

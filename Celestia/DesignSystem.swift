@@ -1,6 +1,6 @@
 //
 //  DesignSystem.swift
-//  Celestia
+//  TeamUp
 //
 //  Design system for consistent styling across the app
 //  Eliminates magic numbers and provides centralized design tokens

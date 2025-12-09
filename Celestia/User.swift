@@ -323,7 +323,7 @@ struct User: Identifiable, Codable, Equatable {
     var gender: String = ""
     var interests: [String] = []
 
-    // MARK: - Dating Profile
+    // MARK: - Extended Profile
     var height: Int?              // Height in centimeters
     var relationshipGoal: String?
     var educationLevel: String?

@@ -16,7 +16,7 @@ class DiscoveryFilters: ObservableObject {
     @Published var showVerifiedOnly: Bool = false
     @Published var showOnlineOnly: Bool = false
 
-    // MARK: - Dating Filters
+    // MARK: - User Preference Filters
     @Published var minAge: Int = 18
     @Published var maxAge: Int = 65
     @Published var selectedInterests: Set<String> = []
@@ -126,7 +126,7 @@ class DiscoveryFilters: ObservableObject {
             }
         }
 
-        // Relationship goals filter
+        // Gaming goals filter
         if !relationshipGoals.isEmpty {
             if let userGoal = user.relationshipGoal, !relationshipGoals.contains(userGoal) {
                 return false
@@ -456,7 +456,7 @@ class DiscoveryFilters: ObservableObject {
         UserDefaults.standard.set(scheduleMustOverlap, forKey: "gl_scheduleMustOverlap")
         UserDefaults.standard.set(Array(selectedRegions), forKey: "gl_selectedRegions")
 
-        // Dating filters
+        // User preference filters
         UserDefaults.standard.set(minAge, forKey: "gl_minAge")
         UserDefaults.standard.set(maxAge, forKey: "gl_maxAge")
         UserDefaults.standard.set(Array(selectedInterests), forKey: "gl_selectedInterests")
@@ -509,7 +509,7 @@ class DiscoveryFilters: ObservableObject {
             selectedRegions = Set(regions)
         }
 
-        // Dating filters
+        // User preference filters
         if let savedMinAge = UserDefaults.standard.object(forKey: "gl_minAge") as? Int {
             minAge = savedMinAge
         }
@@ -566,7 +566,7 @@ class DiscoveryFilters: ObservableObject {
         scheduleMustOverlap = false
         selectedRegions.removeAll()
 
-        // Dating filters
+        // User preference filters
         minAge = 18
         maxAge = 65
         selectedInterests.removeAll()
@@ -614,7 +614,7 @@ class DiscoveryFilters: ObservableObject {
         if preferredTimezone != nil { count += 1 }
         if scheduleMustOverlap { count += 1 }
         count += selectedRegions.count
-        // Dating filters
+        // User preference filters
         if minAge > 18 { count += 1 }
         if maxAge < 65 { count += 1 }
         count += selectedInterests.count

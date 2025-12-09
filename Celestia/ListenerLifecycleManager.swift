@@ -1,6 +1,6 @@
 //
 //  ListenerLifecycleManager.swift
-//  Celestia
+//  TeamUp
 //
 //  Manages Firestore listener lifecycle across app state changes
 //  Handles reconnection on foreground/network recovery

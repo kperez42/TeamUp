@@ -381,23 +381,26 @@ enum DietPreference: String, Codable, CaseIterable, Hashable {
     }
 }
 
-// MARK: - Relationship Goal
+// MARK: - Gaming Goal (formerly Relationship Goal)
 
 enum RelationshipGoal: String, Codable, CaseIterable, Hashable {
-    case longTerm = "long_term"
-    case casualDating = "casual_dating"
-    case newFriends = "new_friends"
-    case notSure = "not_sure"
+    case longTerm = "long_term"           // Maps to Regular Squad
+    case casualDating = "casual_dating"   // Maps to Casual Gaming
+    case newFriends = "new_friends"       // Maps to New Friends
+    case notSure = "not_sure"             // Maps to Just Looking
 
     var displayName: String {
         switch self {
-        case .longTerm: return "Long-term relationship"
-        case .casualDating: return "Casual dating"
-        case .newFriends: return "New friends"
-        case .notSure: return "Not sure yet"
+        case .longTerm: return "Regular Squad"
+        case .casualDating: return "Casual Gaming"
+        case .newFriends: return "New Friends"
+        case .notSure: return "Just Looking"
         }
     }
 }
+
+// Type alias for clearer naming in new code
+typealias GamingGoal = RelationshipGoal
 
 // MARK: - Zodiac Sign
 

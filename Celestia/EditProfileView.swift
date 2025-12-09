@@ -1,6 +1,6 @@
 //
 //  EditProfileView.swift
-//  Celestia
+//  TeamUp
 //
 //  Enhanced profile editing with beautiful UI and better UX
 //

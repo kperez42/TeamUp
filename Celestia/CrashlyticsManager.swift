@@ -1,6 +1,6 @@
 //
 //  CrashlyticsManager.swift
-//  Celestia
+//  TeamUp
 //
 //  Manages Firebase Crashlytics and Performance Monitoring
 //  Provides crash reporting, custom logging, and performance tracking

@@ -1,6 +1,6 @@
 //
 //  MainTabView.swift
-//  Celestia
+//  TeamUp
 //
 //  ELITE TAB BAR - Smooth Navigation Experience
 //
@@ -368,9 +368,9 @@ struct TabBarButton: View {
     private var accessibilityHint: String {
         switch title {
         case "Discover":
-            return "Browse potential matches"
+            return "Browse potential teammates"
         case "Matches":
-            return "View your matches"
+            return "View your gaming connections"
         case "Messages":
             return "Read and send messages"
         case "Saved":

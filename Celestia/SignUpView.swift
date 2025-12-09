@@ -1,6 +1,6 @@
 //
 //  SignUpView.swift
-//  Celestia
+//  TeamUp
 //
 //  Multi-step sign up flow
 //
@@ -559,7 +559,7 @@ struct SignUpView: View {
                 }
                 .pickerStyle(.segmented)
                 .accessibilityLabel("Looking for")
-                .accessibilityHint("Select who you're interested in meeting")
+                .accessibilityHint("Select who you're interested in playing with")
                 .accessibilityValue(lookingFor)
                 .accessibilityIdentifier(AccessibilityIdentifier.lookingForPicker)
             }
@@ -1112,7 +1112,7 @@ struct SignUpView: View {
     private let bioPrompts = [
         "I'm happiest when...",
         "On weekends you'll find me...",
-        "Looking for someone who...",
+        "Looking for teammates who...",
         "My friends describe me as...",
         "I can't live without...",
         "Let's talk about..."
@@ -1780,11 +1780,11 @@ struct SignUpView: View {
     var stepSubtitle: String {
         switch currentStep {
         case 0: return "Let's get started with your account"
-        case 1: return "This helps us find your perfect match"
-        case 2: return "Connect with people near and far"
-        case 3: return "Photos help you make meaningful connections"
-        case 4: return "Let others know what makes you unique"
-        case 5: return "Help us find people with similar vibes"
+        case 1: return "This helps us find your perfect teammates"
+        case 2: return "Connect with gamers near and far"
+        case 3: return "Photos help you make gaming connections"
+        case 4: return "Let others know your gaming style"
+        case 5: return "Help us find gamers with similar vibes"
         case 6: return "Optional info to complete your profile"
         default: return ""
         }

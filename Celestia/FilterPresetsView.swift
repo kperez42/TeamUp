@@ -1,6 +1,6 @@
 //
 //  FilterPresetsView.swift
-//  Celestia
+//  TeamUp
 //
 //  Manage and load saved filter presets
 //

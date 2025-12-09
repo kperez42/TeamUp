@@ -331,7 +331,7 @@ Date: 2025-11-18
 ### Accessing the Dashboard
 
 **For Admins:**
-1. Open Celestia app
+1. Open TeamUp app
 2. Navigate to Profile → Settings
 3. Tap "Admin Tools" (if admin)
 4. Select "Image Performance"

@@ -1,6 +1,6 @@
 //
 //  Utilities.swift
-//  Celestia
+//  TeamUp
 //
 //  Created by Claude
 //  General utility functions and helpers
@@ -229,7 +229,7 @@ struct AppInfo {
     }
 
     static var appName: String {
-        Bundle.main.infoDictionary?["CFBundleName"] as? String ?? "Celestia"
+        Bundle.main.infoDictionary?["CFBundleName"] as? String ?? "TeamUp"
     }
 }
 

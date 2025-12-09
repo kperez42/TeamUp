@@ -1,6 +1,6 @@
 //
 //  BackendAPIService.swift
-//  Celestia
+//  TeamUp
 //
 //  Backend API service for server-side validation and operations
 //  SECURITY: All critical operations should be validated server-side

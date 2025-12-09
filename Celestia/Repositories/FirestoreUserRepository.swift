@@ -1,6 +1,6 @@
 //
 //  FirestoreUserRepository.swift
-//  Celestia
+//  TeamUp
 //
 //  Concrete implementation of UserRepository using Firestore
 //  Separates data access logic from business logic

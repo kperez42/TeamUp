@@ -1,6 +1,6 @@
 //
 //  ProfilePrompt.swift
-//  Celestia
+//  TeamUp
 //
 //  Personality prompts for engaging profiles
 //
@@ -33,27 +33,27 @@ struct PromptLibrary {
     static let allPrompts: [String] = [
         // Lifestyle & Personality
         "My ideal Sunday is...",
-        "The key to my heart is...",
+        "My go-to gaming snack is...",
         "Don't judge me, but I love...",
         "I'm the type of person who...",
         "My perfect day includes...",
         "You'll know I like you if...",
         "My greatest passion is...",
-        "I find it attractive when...",
+        "I respect players who...",
 
-        // Relationship & Dating
-        "I'm looking for someone who...",
+        // Gaming & Teammates
+        "I'm looking for teammates who...",
         "The way to win me over is...",
-        "My love language is...",
-        "A relationship deal-breaker for me is...",
-        "I know I'm dating the right person when...",
-        "In a relationship, I value...",
-        "My idea of a perfect date is...",
+        "My gaming communication style is...",
+        "A squad deal-breaker for me is...",
+        "I know I've found the right squad when...",
+        "In a team, I value...",
+        "My ideal gaming session is...",
 
         // Quirks & Fun
         "An unpopular opinion I have is...",
         "My most controversial take is...",
-        "I'm weirdly attracted to...",
+        "I'm weirdly good at...",
         "A random fact I love is...",
         "My guilty pleasure is...",
         "I'm convinced that...",
@@ -99,9 +99,9 @@ struct PromptLibrary {
         "Two truths and a lie...",
         "Let's debate...",
         "Change my mind about...",
-        "I'll fall for you if...",
+        "I'll add you if...",
         "Together we could...",
-        "We'll get along if...",
+        "We'll squad up if...",
 
         // Unique & Creative
         "If I could have any superpower, it would be...",
@@ -119,11 +119,11 @@ struct PromptLibrary {
             "My greatest passion is...",
             "My favorite way to spend a weekend is..."
         ],
-        "Dating": [
-            "I'm looking for someone who...",
+        "Gaming": [
+            "I'm looking for teammates who...",
             "The way to win me over is...",
-            "My love language is...",
-            "My idea of a perfect date is..."
+            "My gaming communication style is...",
+            "My ideal gaming session is..."
         ],
         "Personality": [
             "I'm the type of person who...",
@@ -159,10 +159,10 @@ struct PromptLibrary {
         // Return a curated mix of prompts
         return [
             "My ideal Sunday is...",
-            "I'm looking for someone who...",
+            "I'm looking for teammates who...",
             "Don't judge me, but I love...",
             "My perfect day includes...",
-            "The key to my heart is..."
+            "My go-to gaming snack is..."
         ]
     }
 }

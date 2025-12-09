@@ -1,6 +1,6 @@
 //
 //  InterestService.swift
-//  Celestia
+//  TeamUp
 //
 //  Service for handling user interests and likes
 //

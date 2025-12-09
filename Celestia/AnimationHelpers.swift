@@ -1,6 +1,6 @@
 //
 //  AnimationHelpers.swift
-//  Celestia
+//  TeamUp
 //
 //  Created by Claude
 //  Reusable animations and transitions for smooth UX

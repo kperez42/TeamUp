@@ -1,6 +1,6 @@
 //
 //  NetworkInterceptors.swift
-//  Celestia
+//  TeamUp
 //
 //  Consolidated network interceptor protocols and implementations
 //  Shared between BackendAPIService and NetworkManager

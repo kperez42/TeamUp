@@ -1,6 +1,6 @@
 //
 //  NotificationPreferencesView.swift
-//  Celestia
+//  TeamUp
 //
 //  SwiftUI view for managing notification preferences
 //

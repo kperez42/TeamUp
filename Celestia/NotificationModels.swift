@@ -1,6 +1,6 @@
 //
 //  NotificationModels.swift
-//  Celestia
+//  TeamUp
 //
 //  Models and types for notification system
 //  NotificationData is defined in NotificationSettingsView.swift
@@ -457,9 +457,9 @@ enum NotificationPayload {
         let titles = [
             "It's a match with \(name)!",
             "You matched with \(name)!",
-            "\(name) likes you too!",
+            "\(name) wants to squad up!",
             "New match: \(name)",
-            "Sparks flying with \(name)!"
+            "You found a teammate: \(name)!"
         ]
         return titles.randomElement() ?? "New Match with \(name)!"
     }
@@ -468,7 +468,7 @@ enum NotificationPayload {
         let bodies = [
             "Say hi before someone else does!",
             "Start chatting now - don't keep \(name) waiting!",
-            "Your next conversation could change everything.",
+            "Your next gaming buddy is just a message away.",
             "The first message matters - make it count!",
             "Break the ice and say hello!"
         ]
@@ -490,7 +490,7 @@ enum NotificationPayload {
         let bodies = [
             "Like them back before they move on!",
             "See if you're a match - tap to view",
-            "Could this be the one? Check out their profile",
+            "Could this be your next teammate? Check out their profile",
             "They made the first move. Your turn!",
             "Don't miss your chance - see their profile now"
         ]
@@ -500,8 +500,8 @@ enum NotificationPayload {
     private static func randomSuperLikeTitle(name: String) -> String {
         let titles = [
             "\(name) SUPER Liked you!",
-            "Someone really likes you!",
-            "\(name) thinks you're special",
+            "Someone really wants to team up!",
+            "\(name) thinks you'd be a great teammate",
             "You got a Super Like from \(name)!",
             "\(name) went all in on you!"
         ]
@@ -568,10 +568,10 @@ enum NotificationPayload {
             // Premium users see who liked them
             let titles = [
                 "\(name) likes you!",
-                "\(name) is interested in you",
+                "\(name) is interested in teaming up",
                 "You caught \(name)'s attention!",
-                "\(name) wants to meet you",
-                "Someone special likes you: \(name)"
+                "\(name) wants to squad up",
+                "A new gamer likes you: \(name)"
             ]
             return titles.randomElement() ?? "\(name) likes you!"
         } else {
@@ -580,7 +580,7 @@ enum NotificationPayload {
                 let titles = [
                     "You have \(count) new likes!",
                     "\(count) people like you!",
-                    "\(count) new admirers are waiting",
+                    "\(count) gamers want to connect",
                     "You're getting noticed! \(count) new likes"
                 ]
                 return titles.randomElement() ?? "You have \(count) new likes!"
@@ -610,10 +610,10 @@ enum NotificationPayload {
         } else {
             let bodies = [
                 "Upgrade to see who likes you!",
-                "Go Premium to reveal your admirers",
-                "Find out who's interested in you",
-                "Your next match could be waiting!",
-                "See who's crushing on you"
+                "Go Premium to reveal who wants to team up",
+                "Find out who's interested in playing with you",
+                "Your next teammate could be waiting!",
+                "See who wants to squad up with you"
             ]
             return bodies.randomElement() ?? "Upgrade to see who likes you!"
         }
@@ -628,12 +628,12 @@ enum NotificationPayload {
             return messages == 1 ? "You have an unread message" : "You have \(messages) unread messages"
         } else {
             let titles = [
-                "Your dating life awaits!",
-                "New people are nearby",
-                "Time to find your match!",
-                "Ready to meet someone new?"
+                "Your gaming squad awaits!",
+                "New gamers are online",
+                "Time to find your teammates!",
+                "Ready to squad up?"
             ]
-            return titles.randomElement() ?? "Your dating life awaits!"
+            return titles.randomElement() ?? "Your gaming squad awaits!"
         }
     }
 
@@ -652,10 +652,10 @@ enum NotificationPayload {
 
         if parts.isEmpty {
             let bodies = [
-                "New profiles are waiting to be discovered!",
-                "Swipe now - your perfect match could be next!",
-                "Don't miss out on today's connections",
-                "The more you swipe, the more you match!"
+                "New gamers are waiting to be discovered!",
+                "Swipe now - your perfect teammate could be next!",
+                "Don't miss out on today's squad connections",
+                "The more you swipe, the more you team up!"
             ]
             return bodies.randomElement() ?? "Open the app to see what's new!"
         }

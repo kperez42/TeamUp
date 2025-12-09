@@ -1,8 +1,8 @@
 //
 //  FirebaseManager.swift
-//  Celestia
+//  TeamUp
 //
-//  Dating app for international connections
+//  Gaming app for connecting gamers worldwide
 //
 
 import Foundation
