@@ -48,7 +48,7 @@ struct ProfileSubscriptionsView: View {
             description: "Like as many profiles as you want without daily limits. Never miss a potential match!",
             color: .purple,
             gradient: [Color.purple, Color.indigo],
-            benefit: "No restrictions on your dating journey"
+            benefit: "No restrictions on finding teammates"
         ),
         FeatureCardItem(
             icon: "eye.fill",

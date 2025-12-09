@@ -2,7 +2,7 @@
 //  MatchesView.swift
 //  TeamUp
 //
-//  ELITE MATCHES VIEW - Premium Dating Experience
+//  ELITE MATCHES VIEW - Premium Gaming Squad Experience
 //  ACCESSIBILITY: Full VoiceOver support, Dynamic Type, Reduce Motion, and WCAG 2.1 AA compliant
 //
 
@@ -526,7 +526,7 @@ struct MatchesView: View {
                     .dynamicTypeSize(min: .large, max: .accessibility2)
                     .accessibilityAddTraits(.isHeader)
 
-                Text("Head to the Discover tab to start swiping and finding your perfect match!")
+                Text("Head to the Discover tab to start swiping and finding your perfect teammates!")
                     .font(.subheadline)
                     .foregroundColor(.secondary)
                     .multilineTextAlignment(.center)

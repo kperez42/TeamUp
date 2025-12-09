@@ -39,8 +39,8 @@ struct DiscoverFiltersView: View {
     ]
 
     let relationshipGoalOptions = [
-        "Casual Dating", "Long-term Relationship", "Marriage",
-        "Friendship", "Not Sure Yet"
+        "Casual Gaming", "Regular Squad", "Competitive Team",
+        "Just Chatting", "Looking for Teammates"
     ]
 
     let smokingOptions = ["Never", "Socially", "Regularly", "Trying to Quit"]

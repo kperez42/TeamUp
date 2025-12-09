@@ -286,7 +286,7 @@ class AuthService: ObservableObject, AuthServiceProtocol {
             // SECURITY FIX: Never log UIDs
             Logger.shared.auth("Firebase Auth user created successfully", level: .info)
 
-            // Step 2: Create User object with dating and gaming fields
+            // Step 2: Create User object with gaming profile fields
             var user = User(
                 id: result.user.uid,
                 email: sanitizedEmail,

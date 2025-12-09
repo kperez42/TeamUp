@@ -1341,7 +1341,7 @@ struct OnboardingView: View {
                         .font(.title)
                         .fontWeight(.bold)
 
-                    Text("These details help find your perfect match")
+                    Text("These details help find your perfect gaming squad")
                         .font(.subheadline)
                         .foregroundColor(.secondary)
                         .multilineTextAlignment(.center)

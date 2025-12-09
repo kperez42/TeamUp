@@ -628,12 +628,12 @@ enum NotificationPayload {
             return messages == 1 ? "You have an unread message" : "You have \(messages) unread messages"
         } else {
             let titles = [
-                "Your dating life awaits!",
-                "New people are nearby",
-                "Time to find your match!",
-                "Ready to meet someone new?"
+                "Your gaming squad awaits!",
+                "New gamers are online",
+                "Time to find your teammates!",
+                "Ready to squad up?"
             ]
-            return titles.randomElement() ?? "Your dating life awaits!"
+            return titles.randomElement() ?? "Your gaming squad awaits!"
         }
     }
 
@@ -652,10 +652,10 @@ enum NotificationPayload {
 
         if parts.isEmpty {
             let bodies = [
-                "New profiles are waiting to be discovered!",
-                "Swipe now - your perfect match could be next!",
-                "Don't miss out on today's connections",
-                "The more you swipe, the more you match!"
+                "New gamers are waiting to be discovered!",
+                "Swipe now - your perfect teammate could be next!",
+                "Don't miss out on today's squad connections",
+                "The more you swipe, the more you team up!"
             ]
             return bodies.randomElement() ?? "Open the app to see what's new!"
         }
