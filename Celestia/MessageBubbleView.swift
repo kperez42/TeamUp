@@ -53,7 +53,7 @@ struct MessageBubble: View {
                         .background {
                             if isFromCurrentUser {
                                 LinearGradient(
-                                    colors: [Color.purple, Color.pink],
+                                    colors: [Color.green, Color.cyan],
                                     startPoint: .leading,
                                     endPoint: .trailing
                                 )
@@ -439,7 +439,7 @@ struct MessageBubbleGradient: View {
     private var bubbleBackground: some View {
         if isFromCurrentUser {
             LinearGradient(
-                colors: [Color.purple, Color.pink],
+                colors: [Color.green, Color.cyan],
                 startPoint: .leading,
                 endPoint: .trailing
             )
