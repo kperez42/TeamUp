@@ -56,23 +56,23 @@ struct ProfileTip: Identifiable {
             ))
         }
 
-        // Interests tip
-        if user.interests.count < 3 {
+        // Games tip
+        if user.favoriteGames.count < 3 {
             tips.append(ProfileTip(
-                icon: "star.fill",
-                title: "Add Interests",
-                description: "Help people find common ground with you",
+                icon: "gamecontroller.fill",
+                title: "Add Games",
+                description: "Help people find common games to play",
                 action: .addInterests,
                 priority: 4
             ))
         }
 
-        // Languages tip
-        if user.languages.isEmpty {
+        // Platforms tip
+        if user.platforms.isEmpty {
             tips.append(ProfileTip(
-                icon: "globe",
-                title: "Add Languages",
-                description: "Show the languages you speak",
+                icon: "desktopcomputer",
+                title: "Add Platforms",
+                description: "Show which platforms you game on",
                 action: .addLanguages,
                 priority: 5
             ))

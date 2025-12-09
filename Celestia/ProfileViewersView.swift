@@ -261,9 +261,11 @@ struct ProfileViewerCard: View {
                     HStack {
                         Text(viewer.user.fullName)
                             .font(.headline)
-                        Text("\(viewer.user.age)")
-                            .font(.subheadline)
-                            .foregroundColor(.secondary)
+                        if !viewer.user.gamerTag.isEmpty {
+                            Text("@\(viewer.user.gamerTag)")
+                                .font(.subheadline)
+                                .foregroundColor(.secondary)
+                        }
                     }
 
                     Text(viewer.user.location)

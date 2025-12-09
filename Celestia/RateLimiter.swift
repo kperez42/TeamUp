@@ -110,7 +110,7 @@ class RateLimiter: ObservableObject {
     func canSendLike() -> Bool {
         cleanupOldTimestamps(&likeTimes, window: 86400) // 24 hour window
 
-        guard likeTimes.count < AppConstants.RateLimit.maxLikesPerDay else {
+        guard likeTimes.count < AppConstants.RateLimit.maxRequestsPerDay else {
             return false
         }
 
@@ -124,7 +124,7 @@ class RateLimiter: ObservableObject {
 
     func getRemainingLikes() -> Int {
         cleanupOldTimestamps(&likeTimes, window: 86400)
-        return max(0, AppConstants.RateLimit.maxLikesPerDay - likeTimes.count)
+        return max(0, AppConstants.RateLimit.maxRequestsPerDay - likeTimes.count)
     }
 
     // MARK: - Report Rate Limiting
@@ -202,7 +202,7 @@ class RateLimiter: ObservableObject {
             return messageTimes.count >= AppConstants.RateLimit.maxMessagesPerMinute
         case .like:
             cleanupOldTimestamps(&likeTimes, window: 86400)
-            return likeTimes.count >= AppConstants.RateLimit.maxLikesPerDay
+            return likeTimes.count >= AppConstants.RateLimit.maxRequestsPerDay
         case .report:
             cleanupOldTimestamps(&reportTimes, window: 3600)
             return reportTimes.count >= 5
