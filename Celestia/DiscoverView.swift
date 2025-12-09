@@ -1,6 +1,6 @@
 //
 //  DiscoverView.swift
-//  TeamUp
+//  Celestia
 //
 //  ACCESSIBILITY: Full VoiceOver support, Dynamic Type, Reduce Motion, and WCAG 2.1 AA compliant
 //
@@ -25,7 +25,7 @@ struct DiscoverView: View {
             ZStack {
                 // Background
                 LinearGradient(
-                    colors: [Color.green.opacity(0.1), Color.cyan.opacity(0.05)],
+                    colors: [Color.purple.opacity(0.1), Color.pink.opacity(0.05)],
                     startPoint: .topLeading,
                     endPoint: .bottomTrailing
                 )
@@ -70,13 +70,13 @@ struct DiscoverView: View {
             .accessibilityIdentifier(AccessibilityIdentifier.discoverView)
             .task {
                 await viewModel.loadUsers()
-                VoiceOverAnnouncement.screenChanged(to: "Find teammates view. \(viewModel.users.count) potential teammates available.")
+                VoiceOverAnnouncement.screenChanged(to: "Discover view. \(viewModel.users.count) potential matches available.")
             }
             .refreshable {
                 HapticManager.shared.impact(.light)
                 await viewModel.loadUsers()
                 HapticManager.shared.notification(.success)
-                VoiceOverAnnouncement.announce("Profiles refreshed. \(viewModel.users.count) gamers available.")
+                VoiceOverAnnouncement.announce("Profiles refreshed. \(viewModel.users.count) profiles available.")
             }
             .sheet(isPresented: $viewModel.showingUserDetail) {
                 if let user = viewModel.selectedUser {
@@ -147,14 +147,14 @@ struct DiscoverView: View {
     private var headerView: some View {
         HStack {
             VStack(alignment: .leading, spacing: 4) {
-                Text("Find Teammates")
-                    .font(.system(size: 32, weight: .bold))
+                Text("Discover")
+                    .font(.system(size: 36, weight: .bold))
                     .dynamicTypeSize(min: .large, max: .accessibility2)
                     .accessibilityAddTraits(.isHeader)
 
                 if !viewModel.users.isEmpty {
                     HStack(spacing: 4) {
-                        Text("\(viewModel.remainingCount) gamers")
+                        Text("\(viewModel.remainingCount) people")
                             .font(.subheadline)
                             .foregroundColor(.secondary)
                             .dynamicTypeSize(min: .xSmall, max: .accessibility1)
@@ -162,7 +162,7 @@ struct DiscoverView: View {
                         if viewModel.hasActiveFilters {
                             Image(systemName: "line.3.horizontal.decrease.circle.fill")
                                 .font(.caption)
-                                .foregroundColor(.green)
+                                .foregroundColor(.purple)
                         }
                     }
                 }
@@ -174,16 +174,16 @@ struct DiscoverView: View {
             Button {
                 viewModel.shuffleUsers()
                 HapticManager.shared.impact(.light)
-                VoiceOverAnnouncement.announce("Gamers shuffled")
+                VoiceOverAnnouncement.announce("Profiles shuffled")
             } label: {
                 Image(systemName: "shuffle")
                     .font(.title3)
-                    .foregroundColor(.green)
+                    .foregroundColor(.purple)
                     .frame(width: 44, height: 44)
             }
             .accessibilityElement(
-                label: "Shuffle gamers",
-                hint: "Randomly reorder the list of potential teammates",
+                label: "Shuffle users",
+                hint: "Randomly reorder the list of potential matches",
                 traits: .isButton,
                 identifier: AccessibilityIdentifier.shuffleButton
             )
@@ -197,7 +197,7 @@ struct DiscoverView: View {
                 ZStack(alignment: .topTrailing) {
                     Image(systemName: viewModel.hasActiveFilters ? "line.3.horizontal.decrease.circle.fill" : "line.3.horizontal.decrease.circle")
                         .font(.title2)
-                        .foregroundColor(.green)
+                        .foregroundColor(.purple)
 
                     if viewModel.hasActiveFilters {
                         Circle()
@@ -211,7 +211,7 @@ struct DiscoverView: View {
             }
             .accessibilityElement(
                 label: viewModel.hasActiveFilters ? "Filters active" : "Filters",
-                hint: "Show filters to refine your teammate search",
+                hint: "Show discovery filters to refine your matches",
                 traits: .isButton,
                 identifier: AccessibilityIdentifier.filterButton,
                 value: viewModel.hasActiveFilters ? "Active" : "Inactive"
@@ -245,7 +245,7 @@ struct DiscoverView: View {
 
                 // Button container with explicit hit testing
                 HStack(spacing: 24) {
-                    // Skip button
+                    // Pass button
                     SwipeActionButton(
                         icon: "xmark",
                         iconSize: .title,
@@ -257,18 +257,18 @@ struct DiscoverView: View {
                     ) {
                         Task {
                             await viewModel.handlePass()
-                            VoiceOverAnnouncement.announce("Skipped. Next gamer.")
+                            VoiceOverAnnouncement.announce("Passed. Next profile.")
                         }
                     }
                     .accessibilityElement(
-                        label: "Skip",
-                        hint: "Skip this gamer and move to the next",
+                        label: "Pass",
+                        hint: "Skip this profile and move to the next",
                         traits: .isButton,
                         identifier: AccessibilityIdentifier.passButton
                     )
                     .disabled(viewModel.isProcessingAction)
 
-                    // Priority Request button
+                    // Super Like button
                     SwipeActionButton(
                         icon: "star.fill",
                         iconSize: .title2,
@@ -280,20 +280,20 @@ struct DiscoverView: View {
                     ) {
                         Task {
                             await viewModel.handleSuperLike()
-                            VoiceOverAnnouncement.announce("Priority request sent!")
+                            VoiceOverAnnouncement.announce("Super like sent!")
                         }
                     }
                     .accessibilityElement(
-                        label: "Priority Request",
-                        hint: "Send a priority request to stand out and increase your chances of teaming up",
+                        label: "Super Like",
+                        hint: "Send a super like to stand out and increase your chances of matching",
                         traits: .isButton,
                         identifier: AccessibilityIdentifier.superLikeButton
                     )
                     .disabled(viewModel.isProcessingAction)
 
-                    // Add to Squad button
+                    // Like button
                     SwipeActionButton(
-                        icon: "person.badge.plus",
+                        icon: "heart.fill",
                         iconSize: .title,
                         iconWeight: .bold,
                         size: 68,
@@ -303,12 +303,12 @@ struct DiscoverView: View {
                     ) {
                         Task {
                             await viewModel.handleLike()
-                            VoiceOverAnnouncement.announce("Squad request sent! Next gamer.")
+                            VoiceOverAnnouncement.announce("Liked! Next profile.")
                         }
                     }
                     .accessibilityElement(
-                        label: "Add to Squad",
-                        hint: "Send a squad request to team up with this gamer",
+                        label: "Like",
+                        hint: "Like this profile to potentially match",
                         traits: .isButton,
                         identifier: AccessibilityIdentifier.likeButton
                     )
@@ -372,7 +372,7 @@ struct DiscoverView: View {
                 .foregroundColor(.white)
                 .background(
                     LinearGradient(
-                        colors: [.green, .cyan],
+                        colors: [.purple, .pink],
                         startPoint: .leading,
                         endPoint: .trailing
                     )
@@ -397,22 +397,22 @@ struct DiscoverView: View {
                 .font(.system(size: 80))
                 .foregroundStyle(
                     LinearGradient(
-                        colors: [.green.opacity(0.6), .cyan.opacity(0.4)],
+                        colors: [.purple.opacity(0.6), .pink.opacity(0.4)],
                         startPoint: .topLeading,
                         endPoint: .bottomTrailing
                     )
                 )
 
             VStack(spacing: 12) {
-                Text(viewModel.hasActiveFilters ? "No Gamers Found" : "No More Gamers")
+                Text(viewModel.hasActiveFilters ? "No Matches Found" : "No More Profiles")
                     .font(.title2)
                     .fontWeight(.bold)
                     .dynamicTypeSize(min: .large, max: .accessibility2)
                     .accessibilityAddTraits(.isHeader)
 
                 Text(viewModel.hasActiveFilters ?
-                     "Try adjusting your filters to see more gamers" :
-                     "Check back later for new teammates")
+                     "Try adjusting your filters to see more people" :
+                     "Check back later for new people nearby")
                     .font(.subheadline)
                     .foregroundColor(.secondary)
                     .multilineTextAlignment(.center)
@@ -438,7 +438,7 @@ struct DiscoverView: View {
                         .foregroundColor(.white)
                         .background(
                             LinearGradient(
-                                colors: [.green, .cyan],
+                                colors: [.purple, .pink],
                                 startPoint: .leading,
                                 endPoint: .trailing
                             )
@@ -464,7 +464,7 @@ struct DiscoverView: View {
                     }
                     .frame(maxWidth: .infinity)
                     .padding(.vertical, 16)
-                    .foregroundColor(.green)
+                    .foregroundColor(.purple)
                     .background(Color(.systemGray6))
                     .cornerRadius(16)
                     .contentShape(RoundedRectangle(cornerRadius: 16))
@@ -478,25 +478,19 @@ struct DiscoverView: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
     
-    // MARK: - Squad Match Animation
-
+    // MARK: - Match Animation
+    
     private var matchCelebrationView: some View {
         ZStack {
             Color.black.opacity(0.8)
                 .ignoresSafeArea()
 
             VStack(spacing: 30) {
-                Image(systemName: "gamecontroller.fill")
+                Image(systemName: "sparkles")
                     .font(.system(size: 80))
-                    .foregroundStyle(
-                        LinearGradient(
-                            colors: [.green, .cyan],
-                            startPoint: .topLeading,
-                            endPoint: .bottomTrailing
-                        )
-                    )
+                    .foregroundColor(.yellow)
 
-                Text("New Squad Member!")
+                Text("It's a Match! 🎉")
                     .font(.largeTitle)
                     .fontWeight(.bold)
                     .foregroundColor(.white)
@@ -504,14 +498,14 @@ struct DiscoverView: View {
                     .accessibilityAddTraits(.isHeader)
 
                 if let user = viewModel.matchedUser {
-                    Text("You and \(user.fullName) want to team up!")
+                    Text("You and \(user.fullName) liked each other!")
                         .font(.title3)
                         .foregroundColor(.white)
                         .multilineTextAlignment(.center)
                         .dynamicTypeSize(min: .medium, max: .accessibility1)
                 }
 
-                Button("Party Up!") {
+                Button("Send Message") {
                     // Navigate to Messages tab (tab index 2)
                     if let matchedUserId = viewModel.matchedUser?.id {
                         NotificationCenter.default.post(
@@ -523,17 +517,17 @@ struct DiscoverView: View {
                     viewModel.dismissMatchAnimation()
                 }
                 .buttonStyle(.borderedProminent)
-                .tint(.green)
+                .tint(.purple)
                 .controlSize(.large)
 
-                Button("Keep Looking") {
+                Button("Keep Swiping") {
                     viewModel.dismissMatchAnimation()
                 }
                 .foregroundColor(.white)
             }
             .task {
                 if let user = viewModel.matchedUser {
-                    VoiceOverAnnouncement.announce("New squad member! You and \(user.fullName) want to team up!")
+                    VoiceOverAnnouncement.announce("It's a match! You and \(user.fullName) liked each other!")
                 }
             }
             .padding(40)
@@ -546,16 +540,16 @@ struct DiscoverView: View {
     private func cardView(for user: User, at cardIndex: Int) -> some View {
         UserCardView(user: user)
             .overlay(alignment: .topLeading) {
-                // Skip indicator
+                // Pass indicator
                 if cardIndex == 0 && viewModel.dragOffset.width < -50 {
-                    swipeIndicator(icon: "xmark", color: .red, text: "SKIP")
+                    swipeIndicator(icon: "xmark", color: .red, text: "PASS")
                         .opacity(min(1.0, abs(Double(viewModel.dragOffset.width)) / 100.0))
                 }
             }
             .overlay(alignment: .topTrailing) {
-                // Squad indicator
+                // Like indicator
                 if cardIndex == 0 && viewModel.dragOffset.width > 50 {
-                    swipeIndicator(icon: "person.badge.plus", color: .green, text: "SQUAD")
+                    swipeIndicator(icon: "heart.fill", color: .green, text: "LIKE")
                         .opacity(min(1.0, Double(viewModel.dragOffset.width) / 100.0))
                 }
             }
@@ -572,19 +566,19 @@ struct DiscoverView: View {
             .contentShape(Rectangle()) // Define tappable area
             .accessibilityElement(
                 label: cardIndex == 0 ? "\(user.fullName), \(user.age) years old, from \(user.location)" : "",
-                hint: cardIndex == 0 ? "Swipe right to add to squad, left to skip, or tap for full profile. Use the action buttons below for more options" : "",
+                hint: cardIndex == 0 ? "Swipe right to like, left to pass, or tap for full profile. Use the action buttons below for more options" : "",
                 traits: cardIndex == 0 ? .isButton : [],
                 identifier: cardIndex == 0 ? AccessibilityIdentifier.userCard : nil,
                 isHidden: cardIndex != 0
             )
             .accessibilityActions(cardIndex == 0 ? [
-                AccessibilityCustomAction(name: "Add to Squad") {
+                AccessibilityCustomAction(name: "Like") {
                     Task { await viewModel.handleLike() }
                 },
-                AccessibilityCustomAction(name: "Skip") {
+                AccessibilityCustomAction(name: "Pass") {
                     Task { await viewModel.handlePass() }
                 },
-                AccessibilityCustomAction(name: "Priority Request") {
+                AccessibilityCustomAction(name: "Super Like") {
                     Task { await viewModel.handleSuperLike() }
                 },
                 AccessibilityCustomAction(name: "View Profile") {

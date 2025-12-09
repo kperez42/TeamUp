@@ -1,6 +1,6 @@
 //
 //  WelcomeView.swift - IMPROVED VERSION
-//  TeamUp
+//  Celestia
 //
 //  ✨ Enhanced with:
 //  - Animated gradient background
@@ -26,9 +26,9 @@ struct WelcomeView: View {
     @State private var showPrivacyPolicy = false
 
     let features = [
-        Feature(icon: "gamecontroller.fill", title: "Find Your Squad", description: "Connect with gamers who share your playstyle"),
-        Feature(icon: "person.2.fill", title: "Smart Gamer Matching", description: "AI-powered teammate compatibility"),
-        Feature(icon: "message.fill", title: "Coordinate Games", description: "Chat and plan gaming sessions together")
+        Feature(icon: "heart.circle.fill", title: "Find Your Match", description: "Meet amazing people near you"),
+        Feature(icon: "heart.text.square.fill", title: "Smart Matching", description: "AI-powered compatibility algorithm"),
+        Feature(icon: "message.fill", title: "Real-Time Chat", description: "Instant messaging with your matches")
     ]
     
     var body: some View {
@@ -108,20 +108,20 @@ struct WelcomeView: View {
             // Base gradient
             LinearGradient(
                 colors: [
-                    Color.green.opacity(0.9),
-                    Color.cyan.opacity(0.8),
+                    Color.purple.opacity(0.9),
+                    Color.pink.opacity(0.8),
                     Color.blue.opacity(0.7)
                 ],
                 startPoint: animateGradient ? .topLeading : .bottomTrailing,
                 endPoint: animateGradient ? .bottomTrailing : .topLeading
             )
-
+            
             // Overlay gradient
             LinearGradient(
                 colors: [
-                    Color.green.opacity(0.3),
+                    Color.purple.opacity(0.3),
                     Color.clear,
-                    Color.cyan.opacity(0.3)
+                    Color.pink.opacity(0.3)
                 ],
                 startPoint: .topLeading,
                 endPoint: .bottomTrailing
@@ -175,12 +175,12 @@ struct WelcomeView: View {
             }
             
             VStack(spacing: 8) {
-                Text("TeamUp")
+                Text("Celestia")
                     .font(.system(size: 52, weight: .bold, design: .rounded))
                     .foregroundColor(.white)
                     .shadow(color: .black.opacity(0.2), radius: 5)
-
-                Text("Find Your Player 2")
+                
+                Text("Find friends, dates, and meaningful connections")
                     .font(.headline)
                     .foregroundColor(.white.opacity(0.95))
                     .multilineTextAlignment(.center)
@@ -237,7 +237,7 @@ struct WelcomeView: View {
                         .font(.headline)
                         .fontWeight(.semibold)
                 }
-                .foregroundColor(.green)
+                .foregroundColor(.purple)
                 .frame(maxWidth: .infinity)
                 .frame(height: 56)
                 .background(
@@ -261,7 +261,7 @@ struct WelcomeView: View {
                 .shadow(color: .white.opacity(0.5), radius: 15, y: 5)
             }
             .accessibilityLabel("Create Account")
-            .accessibilityHint("Start creating your TeamUp account")
+            .accessibilityHint("Start creating your Celestia account")
             .accessibilityIdentifier(AccessibilityIdentifier.signUpButton)
             .scaleButton()
 
@@ -441,67 +441,67 @@ struct WelcomeAwarenessSlidesView: View {
     // Awareness slides content - educates users about the app
     let slides: [AwarenessSlide] = [
         AwarenessSlide(
-            icon: "gamecontroller.fill",
-            title: "Welcome to TeamUp!",
-            description: "Your journey to finding awesome gaming teammates starts here. Let us show you how it works!",
-            color: .green,
+            icon: "star.circle.fill",
+            title: "Welcome to Celestia!",
+            description: "Your journey to meaningful connections starts here. Let us show you how it works!",
+            color: .purple,
             tips: [
-                "Be authentic and showcase your gaming style",
-                "Add photos of yourself or your gaming setup",
-                "Write a bio about your favorite games and playstyle"
+                "Be authentic and genuine in your profile",
+                "Add photos that show your personality",
+                "Write a bio that sparks conversation"
             ]
         ),
         AwarenessSlide(
             icon: "scroll.fill",
             title: "Browse & Discover",
-            description: "Scroll through gamer profiles in your feed. Tap to add someone to your squad, or keep scrolling!",
-            color: .cyan,
+            description: "Scroll through profiles in your feed. Tap the heart to like someone, or keep scrolling to see more!",
+            color: .pink,
             tips: [
-                "Scroll up and down to browse gamer profiles",
+                "Scroll up and down to browse profiles",
                 "Tap any card to view full profile details",
-                "Add gamers that match your playstyle"
+                "Like profiles that interest you"
             ]
         ),
         AwarenessSlide(
-            icon: "person.2.fill",
-            title: "Squad Up",
-            description: "When you and another gamer both want to team up, you're matched and can start coordinating games!",
-            color: .green,
+            icon: "heart.fill",
+            title: "Likes & Matches",
+            description: "Tap the heart on profiles you like. When they like you back, it's a match and you can start chatting!",
+            color: .red,
             tips: [
-                "Your teammates appear in the Squad tab",
-                "Send a message to coordinate games",
-                "Be respectful and ready to game"
+                "Your matches appear in the Matches tab",
+                "Send a message to start the conversation",
+                "Be genuine and respectful"
             ]
         ),
         AwarenessSlide(
             icon: "message.fill",
-            title: "Coordinate Games",
-            description: "Once matched, send a message to plan your gaming sessions and discuss strategies.",
+            title: "Start Conversations",
+            description: "Once matched, send a message to start getting to know each other better.",
             color: .blue,
             tips: [
-                "Ask about their favorite games and ranks",
-                "Discuss available play times",
-                "Share your Discord or gamertag"
+                "Ask about their interests",
+                "Reference something from their profile",
+                "Be yourself and have fun!"
             ]
         ),
         AwarenessSlide(
             icon: "person.crop.circle.fill.badge.checkmark",
             title: "Complete Your Profile",
-            description: "High-quality profiles get 5x more teammate requests. Add photos, list your games, and share your playstyle!",
+            description: "High-quality profiles get 5x more matches. Add photos, write a bio, and share your interests!",
             color: .green,
             tips: [
-                "Add photos of yourself or your gaming setup",
-                "Write a bio about your gaming preferences",
-                "Select your favorite games and platforms"
+                "Add 4-6 clear photos of yourself",
+                "Write a bio that shows your personality",
+                "Select interests to find like-minded people"
             ]
         ),
         AwarenessSlide(
             icon: "checklist",
             title: "What We Review",
-            description: "All profiles are reviewed before going live. Here's what our team checks to keep TeamUp safe and authentic:",
+            description: "All profiles are reviewed before going live. Here's what our team checks to keep Celestia safe and authentic:",
             color: .blue,
             tips: [
-                "Profile Photos - Clear, appropriate photos",
+                "Profile Photos - Clear, appropriate photos that show you",
                 "Bio & Information - Complete and authentic profile details",
                 "Community Guidelines - Content follows our safety policies"
             ]
@@ -512,10 +512,10 @@ struct WelcomeAwarenessSlidesView: View {
             description: "Your safety is our priority. We review all profiles and provide tools to report inappropriate behavior.",
             color: .orange,
             tips: [
-                "Keep personal info private until you trust someone",
-                "Use in-game voice chat before sharing other contact info",
+                "Meet in public places for first dates",
+                "Tell a friend about your plans",
                 "Trust your instincts always",
-                "Report and block toxic players"
+                "Report and block suspicious accounts"
             ]
         )
     ]
@@ -533,7 +533,7 @@ struct WelcomeAwarenessSlidesView: View {
                     HStack(spacing: 8) {
                         ForEach(0..<slides.count, id: \.self) { index in
                             Circle()
-                                .fill(currentPage >= index ? Color.green : Color.gray.opacity(0.3))
+                                .fill(currentPage >= index ? Color.purple : Color.gray.opacity(0.3))
                                 .frame(width: currentPage == index ? 10 : 8, height: currentPage == index ? 10 : 8)
                                 .scaleEffect(currentPage == index ? 1.2 : 1.0)
                                 .animation(.spring(response: 0.3, dampingFraction: 0.6), value: currentPage)
@@ -549,7 +549,7 @@ struct WelcomeAwarenessSlidesView: View {
                             Text("Skip")
                                 .font(.subheadline)
                                 .fontWeight(.medium)
-                                .foregroundColor(.green)
+                                .foregroundColor(.purple)
                         }
                     }
                 }
@@ -580,7 +580,7 @@ struct WelcomeAwarenessSlidesView: View {
                                 Text("Back")
                                     .font(.headline)
                             }
-                            .foregroundColor(.green)
+                            .foregroundColor(.purple)
                             .frame(maxWidth: .infinity)
                             .padding()
                             .background(Color.white)
@@ -611,7 +611,7 @@ struct WelcomeAwarenessSlidesView: View {
                         .padding()
                         .background(
                             LinearGradient(
-                                colors: [Color.green, Color.cyan],
+                                colors: [Color.purple, Color.blue],
                                 startPoint: .leading,
                                 endPoint: .trailing
                             )
@@ -652,12 +652,12 @@ struct AwarenessSlideView: View {
                     // Icon circle - matching signup page header cards
                     ZStack {
                         Circle()
-                            .fill(Color.green.opacity(0.12))
+                            .fill(Color.purple.opacity(0.12))
                             .frame(width: 80, height: 80)
 
                         Image(systemName: slide.icon)
                             .font(.system(size: 36))
-                            .foregroundColor(.green)
+                            .foregroundColor(.purple)
                     }
 
                     VStack(spacing: 10) {
@@ -686,12 +686,12 @@ struct AwarenessSlideView: View {
                     HStack(spacing: 12) {
                         ZStack {
                             Circle()
-                                .fill(Color.green.opacity(0.12))
+                                .fill(Color.purple.opacity(0.12))
                                 .frame(width: 44, height: 44)
 
                             Image(systemName: "lightbulb.fill")
                                 .font(.system(size: 18))
-                                .foregroundColor(.green)
+                                .foregroundColor(.purple)
                         }
 
                         Text("Quick Tips")
@@ -706,7 +706,7 @@ struct AwarenessSlideView: View {
                             HStack(alignment: .top, spacing: 12) {
                                 Image(systemName: "checkmark.circle.fill")
                                     .font(.body)
-                                    .foregroundColor(.green)
+                                    .foregroundColor(.purple)
 
                                 Text(tip)
                                     .font(.subheadline)

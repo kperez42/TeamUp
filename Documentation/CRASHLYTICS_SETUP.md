@@ -231,7 +231,7 @@ CrashlyticsManager.shared.recordCelestiaError(.matchNotFound, context: [
 
 ```swift
 CrashlyticsManager.shared.recordError(
-    domain: "com.teamup.matching",
+    domain: "com.celestia.matching",
     code: 1001,
     message: "Failed to create match",
     userInfo: [

@@ -1,6 +1,6 @@
 //
 //  ImagePerformanceDashboard.swift
-//  TeamUp
+//  Celestia
 //
 //  Admin dashboard for monitoring image optimization performance
 //
@@ -66,7 +66,7 @@ struct ImagePerformanceDashboard: View {
                     .font(.title2)
                     .foregroundStyle(
                         LinearGradient(
-                            colors: [.green, .cyan],
+                            colors: [.purple, .pink],
                             startPoint: .leading,
                             endPoint: .trailing
                         )
@@ -118,7 +118,7 @@ struct ImagePerformanceDashboard: View {
                 value: String(format: "%.1f", monitor.cdnHitRate * 100),
                 unit: "%",
                 icon: "network",
-                color: .green,
+                color: .purple,
                 trend: monitor.cdnHitRate > 0.8 ? .improving : .stable
             )
 
@@ -146,7 +146,7 @@ struct ImagePerformanceDashboard: View {
                     RoundedRectangle(cornerRadius: 4)
                         .fill(
                             LinearGradient(
-                                colors: [.green.opacity(0.7), .cyan.opacity(0.7)],
+                                colors: [.purple.opacity(0.7), .pink.opacity(0.7)],
                                 startPoint: .bottom,
                                 endPoint: .top
                             )
@@ -171,7 +171,7 @@ struct ImagePerformanceDashboard: View {
         VStack(alignment: .leading, spacing: 12) {
             HStack {
                 Image(systemName: "network")
-                    .foregroundColor(.green)
+                    .foregroundColor(.purple)
                 Text("CDN Performance")
                     .font(.headline)
                 Spacer()
@@ -312,7 +312,7 @@ struct ImagePerformanceDashboard: View {
                 .padding()
                 .background(
                     LinearGradient(
-                        colors: [.green, .cyan],
+                        colors: [.purple, .pink],
                         startPoint: .leading,
                         endPoint: .trailing
                     )

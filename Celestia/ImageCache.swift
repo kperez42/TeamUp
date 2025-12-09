@@ -1,6 +1,6 @@
 //
 //  ImageCache.swift
-//  TeamUp
+//  Celestia
 //
 //  Created by Claude
 //  High-performance image caching with memory and disk storage
@@ -650,7 +650,7 @@ struct CachedAsyncImage<Content: View, Placeholder: View>: View {
                             Text("Retry")
                         }
                         .font(.caption)
-                        .foregroundColor(.green)
+                        .foregroundColor(.purple)
                     }
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -887,7 +887,7 @@ struct CachedProfileImage: View {
                         } label: {
                             Text("Retry")
                                 .font(.caption)
-                                .foregroundColor(.green)
+                                .foregroundColor(.purple)
                         }
                     }
                 }
@@ -896,7 +896,7 @@ struct CachedProfileImage: View {
                 Circle()
                     .fill(
                         LinearGradient(
-                            colors: [Color.green.opacity(0.3), Color.cyan.opacity(0.2)],
+                            colors: [Color.purple.opacity(0.3), Color.pink.opacity(0.2)],
                             startPoint: .topLeading,
                             endPoint: .bottomTrailing
                         )
@@ -1133,7 +1133,7 @@ struct CachedCardImage: View {
                             .padding(.vertical, 8)
                             .background(
                                 LinearGradient(
-                                    colors: [.green, .cyan],
+                                    colors: [.purple, .pink],
                                     startPoint: .leading,
                                     endPoint: .trailing
                                 )
@@ -1144,7 +1144,7 @@ struct CachedCardImage: View {
                     .frame(width: displayWidth, height: displayHeight)
                     .background(
                         LinearGradient(
-                            colors: [Color.green.opacity(0.1), Color.cyan.opacity(0.05)],
+                            colors: [Color.purple.opacity(0.1), Color.pink.opacity(0.05)],
                             startPoint: .topLeading,
                             endPoint: .bottomTrailing
                         )
@@ -1154,7 +1154,7 @@ struct CachedCardImage: View {
                 if image == nil && loadError == nil {
                     // Static placeholder - no loading animation for cleaner look
                     LinearGradient(
-                        colors: [Color.green.opacity(0.2), Color.cyan.opacity(0.1)],
+                        colors: [Color.purple.opacity(0.2), Color.pink.opacity(0.1)],
                         startPoint: .topLeading,
                         endPoint: .bottomTrailing
                     )
@@ -1341,7 +1341,7 @@ struct HighQualityCardImage: View {
                         } label: {
                             Text("Tap to retry")
                                 .font(.caption)
-                                .foregroundColor(.green)
+                                .foregroundColor(.purple)
                         }
                     }
                 } else {
@@ -1349,9 +1349,9 @@ struct HighQualityCardImage: View {
                     ZStack {
                         LinearGradient(
                             colors: [
-                                Color.green.opacity(0.15),
-                                Color.cyan.opacity(0.1),
-                                Color.green.opacity(0.08)
+                                Color.purple.opacity(0.15),
+                                Color.pink.opacity(0.1),
+                                Color.purple.opacity(0.08)
                             ],
                             startPoint: .topLeading,
                             endPoint: .bottomTrailing

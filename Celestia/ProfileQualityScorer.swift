@@ -1,6 +1,6 @@
 //
 //  ProfileQualityScorer.swift
-//  TeamUp
+//  Celestia
 //
 //  Real-time profile quality scoring with actionable tips
 //  Helps users create high-quality profiles that get more matches
@@ -386,7 +386,7 @@ class ProfileQualityScorer: ObservableObject {
         case 85..<100:
             return ("Excellent", .blue, "Almost perfect! Keep it up")
         case 100:
-            return ("Perfect", .green, "🌟 Your profile is amazing!")
+            return ("Perfect", .purple, "🌟 Your profile is amazing!")
         default:
             return ("Unknown", .gray, "")
         }
@@ -452,7 +452,7 @@ struct ProfileQualityCard: View {
                         .trim(from: 0, to: scorer.getCompletionPercentage())
                         .stroke(
                             LinearGradient(
-                                colors: [.green, .cyan],
+                                colors: [.purple, .pink],
                                 startPoint: .leading,
                                 endPoint: .trailing
                             ),

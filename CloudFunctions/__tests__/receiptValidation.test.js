@@ -73,7 +73,7 @@ describe('Receipt Validation Module', () => {
           status: 0, // Success
           latest_receipt_info: [{
             transaction_id: 'txn_12345',
-            product_id: 'com.teamup.premium.monthly',
+            product_id: 'com.celestia.premium.monthly',
             purchase_date_ms: '1700000000000',
             expires_date_ms: '1702592000000',
             original_transaction_id: 'original_txn_12345',
@@ -84,7 +84,7 @@ describe('Receipt Validation Module', () => {
             auto_renew_status: '1'
           }],
           receipt: {
-            bundle_id: 'com.teamup.app',
+            bundle_id: 'com.celestia.app',
             receipt_creation_date_ms: '1700000000000'
           }
         }
@@ -94,7 +94,7 @@ describe('Receipt Validation Module', () => {
 
       expect(result.isValid).toBe(true);
       expect(result.transactionId).toBe('txn_12345');
-      expect(result.productId).toBe('com.teamup.premium.monthly');
+      expect(result.productId).toBe('com.celestia.premium.monthly');
       expect(result.isSubscription).toBe(true);
       expect(result.autoRenewStatus).toBe(true);
       expect(axios.post).toHaveBeenCalledWith(
@@ -121,13 +121,13 @@ describe('Receipt Validation Module', () => {
           status: 0,
           latest_receipt_info: [{
             transaction_id: 'sandbox_txn_123',
-            product_id: 'com.teamup.premium.annual',
+            product_id: 'com.celestia.premium.annual',
             purchase_date_ms: '1700000000000',
             expires_date_ms: null,
             original_transaction_id: 'sandbox_original_123'
           }],
           receipt: {
-            bundle_id: 'com.teamup.app',
+            bundle_id: 'com.celestia.app',
             environment: 'Sandbox'
           }
         }
@@ -179,7 +179,7 @@ describe('Receipt Validation Module', () => {
           status: 0,
           latest_receipt_info: [{
             transaction_id: 'duplicate_txn_999',
-            product_id: 'com.teamup.premium.monthly',
+            product_id: 'com.celestia.premium.monthly',
             purchase_date_ms: '1700000000000',
             original_transaction_id: 'dup_original_999'
           }],
@@ -213,7 +213,7 @@ describe('Receipt Validation Module', () => {
           status: 0,
           latest_receipt_info: [{
             transaction_id: 'promo_txn_456',
-            product_id: 'com.teamup.premium.monthly',
+            product_id: 'com.celestia.premium.monthly',
             purchase_date_ms: '1700000000000',
             promotional_offer_id: 'PROMO50OFF',
             original_transaction_id: 'promo_original'
@@ -248,7 +248,7 @@ describe('Receipt Validation Module', () => {
           status: 0,
           latest_receipt_info: [{
             transaction_id: 'risky_txn_789',
-            product_id: 'com.teamup.premium.lifetime',
+            product_id: 'com.celestia.premium.lifetime',
             purchase_date_ms: '1700000000000',
             original_transaction_id: 'risky_original'
           }],
@@ -279,12 +279,12 @@ describe('Receipt Validation Module', () => {
           status: 0,
           latest_receipt_info: [{
             transaction_id: 'jb_txn_111',
-            product_id: 'com.teamup.premium.monthly',
+            product_id: 'com.celestia.premium.monthly',
             purchase_date_ms: '1700000000000',
             original_transaction_id: 'jb_original'
           }],
           receipt: {
-            bundle_id: 'com.teamup.cracked'
+            bundle_id: 'com.celestia.cracked'
           }
         }
       });
@@ -306,7 +306,7 @@ describe('Receipt Validation Module', () => {
           status: 0,
           latest_receipt_info: [{
             transaction_id: 'onetime_txn',
-            product_id: 'com.teamup.boost.5',
+            product_id: 'com.celestia.boost.5',
             purchase_date_ms: '1700000000000',
             expires_date_ms: null, // No expiry for one-time
             original_transaction_id: 'onetime_original'
@@ -328,7 +328,7 @@ describe('Receipt Validation Module', () => {
           status: 0,
           latest_receipt_info: [{
             transaction_id: 'trial_txn',
-            product_id: 'com.teamup.premium.monthly',
+            product_id: 'com.celestia.premium.monthly',
             purchase_date_ms: '1700000000000',
             expires_date_ms: '1700604800000',
             is_trial_period: 'true',
@@ -351,7 +351,7 @@ describe('Receipt Validation Module', () => {
           status: 0,
           latest_receipt_info: [{
             transaction_id: 'intro_txn',
-            product_id: 'com.teamup.premium.annual',
+            product_id: 'com.celestia.premium.annual',
             purchase_date_ms: '1700000000000',
             expires_date_ms: '1731536000000',
             is_in_intro_offer_period: 'true',
@@ -375,7 +375,7 @@ describe('Receipt Validation Module', () => {
           status: 0,
           latest_receipt_info: [{
             transaction_id: 'canceled_txn',
-            product_id: 'com.teamup.premium.monthly',
+            product_id: 'com.celestia.premium.monthly',
             purchase_date_ms: '1700000000000',
             expires_date_ms: '1702592000000',
             cancellation_date_ms: '1701000000000',
@@ -466,7 +466,7 @@ describe('Receipt Validation Module', () => {
       jwt.verify.mockImplementationOnce((token, getKey, options, callback) => {
         callback(null, {
           notificationType: 'SUBSCRIBED',
-          data: { bundleId: 'com.teamup.app' }
+          data: { bundleId: 'com.celestia.app' }
         });
       });
 
@@ -474,7 +474,7 @@ describe('Receipt Validation Module', () => {
 
       expect(result).toEqual({
         notificationType: 'SUBSCRIBED',
-        data: { bundleId: 'com.teamup.app' }
+        data: { bundleId: 'com.celestia.app' }
       });
     });
 

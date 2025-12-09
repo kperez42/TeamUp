@@ -1,6 +1,6 @@
 //
 //  TypingStatusService.swift
-//  TeamUp
+//  Celestia
 //
 //  Service for managing real-time typing indicators synced to Firestore
 //

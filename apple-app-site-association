@@ -3,11 +3,11 @@
     "apps": [],
     "details": [
       {
-        "appID": "TEAM_ID.com.teamup.app",
+        "appID": "TEAM_ID.com.celestia.app",
         "paths": [
           "/join/*",
           "/profile/*",
-          "/squad/*",
+          "/match/*",
           "/message/*",
           "/verify-email",
           "/reset-password",
@@ -20,7 +20,7 @@
   },
   "webcredentials": {
     "apps": [
-      "TEAM_ID.com.teamup.app"
+      "TEAM_ID.com.celestia.app"
     ]
   }
 }

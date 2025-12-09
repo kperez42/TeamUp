@@ -1,6 +1,6 @@
 //
 //  SendInterestView.swift
-//  TeamUp
+//  Celestia
 //
 //  Created by Kevin Perez on 10/29/25.
 //
@@ -38,7 +38,7 @@ struct SendInterestView: View {
                         Circle()
                             .fill(
                                 LinearGradient(
-                                    colors: [.green.opacity(0.6), .cyan.opacity(0.6)],
+                                    colors: [.purple.opacity(0.6), .pink.opacity(0.6)],
                                     startPoint: .topLeading,
                                     endPoint: .bottomTrailing
                                 )
@@ -108,7 +108,7 @@ struct SendInterestView: View {
                             .frame(height: 55)
                             .background(
                                 LinearGradient(
-                                    colors: [.green, .cyan],
+                                    colors: [.purple, .pink],
                                     startPoint: .leading,
                                     endPoint: .trailing
                                 )
@@ -122,7 +122,7 @@ struct SendInterestView: View {
                             .frame(height: 55)
                             .background(
                                 LinearGradient(
-                                    colors: [.green, .cyan],
+                                    colors: [.purple, .pink],
                                     startPoint: .leading,
                                     endPoint: .trailing
                                 )

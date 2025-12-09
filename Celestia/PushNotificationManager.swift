@@ -1,6 +1,6 @@
 //
 //  PushNotificationManager.swift
-//  TeamUp
+//  Celestia
 //
 //  Manages push notifications via APNs and Firebase Cloud Messaging
 //  Handles registration, delivery, actions, and user preferences

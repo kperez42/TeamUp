@@ -1,6 +1,6 @@
 //
 //  AdminUserInvestigationView.swift
-//  TeamUp
+//  Celestia
 //
 //  Admin tool for investigating user profiles
 //
@@ -384,7 +384,7 @@ struct AdminUserInvestigationView: View {
                     .font(.headline)
                     .foregroundStyle(
                         LinearGradient(
-                            colors: [.green, .cyan],
+                            colors: [.blue, .purple],
                             startPoint: .topLeading,
                             endPoint: .bottomTrailing
                         )
@@ -412,7 +412,7 @@ struct AdminUserInvestigationView: View {
                     icon: "crown.fill",
                     label: "Premium",
                     isVerified: user.isPremium,
-                    color: .green
+                    color: .purple
                 )
             }
         }
@@ -431,7 +431,7 @@ struct AdminUserInvestigationView: View {
                     .font(.headline)
                     .foregroundStyle(
                         LinearGradient(
-                            colors: [.green, .cyan],
+                            colors: [.purple, .pink],
                             startPoint: .topLeading,
                             endPoint: .bottomTrailing
                         )
@@ -445,7 +445,7 @@ struct AdminUserInvestigationView: View {
                     value: "\(matchesCount)",
                     label: "Matches",
                     icon: "heart.fill",
-                    gradientColors: [.red, .orange]
+                    gradientColors: [.pink, .red]
                 )
                 EnhancedActivityStatBox(
                     value: "\(messagesCount)",
@@ -504,7 +504,7 @@ struct AdminUserInvestigationView: View {
                     icon: "person.fill",
                     label: "Gender",
                     value: user.gender.isEmpty ? "Not specified" : user.gender,
-                    color: .green
+                    color: .purple
                 )
             }
 
@@ -611,7 +611,7 @@ struct AdminUserInvestigationView: View {
                         .padding()
                         .background(
                             LinearGradient(
-                                colors: [.green, .green.opacity(0.8)],
+                                colors: [.purple, .purple.opacity(0.8)],
                                 startPoint: .leading,
                                 endPoint: .trailing
                             )

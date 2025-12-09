@@ -1,6 +1,6 @@
 //
 //  HapticManager.swift
-//  TeamUp
+//  Celestia
 //
 //  Created by Claude
 //  Centralized haptic feedback management
@@ -94,7 +94,7 @@ class HapticManager {
         impact(.heavy)
     }
 
-    // MARK: - Gaming App Specific
+    // MARK: - Dating App Specific
 
     func swipeLeft() {
         impact(.light)

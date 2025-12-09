@@ -1,6 +1,6 @@
 //
 //  PendingApprovalView.swift
-//  TeamUp
+//  Celestia
 //
 //  Shows pending approval status to users whose profiles are under review
 //
@@ -84,7 +84,7 @@ struct PendingApprovalView: View {
             Circle()
                 .stroke(
                     LinearGradient(
-                        colors: [.blue.opacity(0.3), .green.opacity(0.3)],
+                        colors: [.blue.opacity(0.3), .purple.opacity(0.3)],
                         startPoint: .topLeading,
                         endPoint: .bottomTrailing
                     ),
@@ -96,7 +96,7 @@ struct PendingApprovalView: View {
             Circle()
                 .fill(
                     LinearGradient(
-                        colors: [.blue.opacity(0.15), .green.opacity(0.1)],
+                        colors: [.blue.opacity(0.15), .purple.opacity(0.1)],
                         startPoint: .topLeading,
                         endPoint: .bottomTrailing
                     )
@@ -112,7 +112,7 @@ struct PendingApprovalView: View {
                 .font(.system(size: 42, weight: .medium))
                 .foregroundStyle(
                     LinearGradient(
-                        colors: [.green, .cyan],
+                        colors: [.blue, .purple],
                         startPoint: .topLeading,
                         endPoint: .bottomTrailing
                     )
@@ -253,7 +253,7 @@ struct PendingApprovalView: View {
                     title: "Decision",
                     isCompleted: false,
                     isActive: false,
-                    color: .green,
+                    color: .purple,
                     isAnimated: stepAnimations[2]
                 )
             }
@@ -280,7 +280,7 @@ struct PendingApprovalView: View {
             HStack {
                 Image(systemName: "checklist")
                     .font(.headline)
-                    .foregroundColor(.green)
+                    .foregroundColor(.purple)
                 Text("What We're Checking")
                     .font(.headline)
             }
@@ -297,7 +297,7 @@ struct PendingApprovalView: View {
                     icon: "text.alignleft",
                     title: "Bio & Information",
                     description: "Complete and authentic profile details",
-                    color: .teal
+                    color: .purple
                 )
 
                 ChecklistRow(
@@ -381,13 +381,13 @@ struct PendingApprovalView: View {
                 .padding(.vertical, 16)
                 .background(
                     LinearGradient(
-                        colors: [.green, .cyan],
+                        colors: [.purple, .pink],
                         startPoint: .leading,
                         endPoint: .trailing
                     )
                 )
                 .cornerRadius(16)
-                .shadow(color: .green.opacity(0.3), radius: 8, y: 4)
+                .shadow(color: .purple.opacity(0.3), radius: 8, y: 4)
             }
 
             Button(action: {

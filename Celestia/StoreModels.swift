@@ -1,6 +1,6 @@
 //
 //  StoreModels.swift
-//  TeamUp
+//  Celestia
 //
 //  Product models and types for In-App Purchases
 //
@@ -14,22 +14,22 @@ struct ProductIdentifiers {
 
     // MARK: - Subscriptions (Auto-Renewable)
 
-    static let subscriptionBasicMonthly = "com.teamup.subscription.basic.monthly"
-    static let subscriptionBasicYearly = "com.teamup.subscription.basic.yearly"
+    static let subscriptionBasicMonthly = "com.celestia.subscription.basic.monthly"
+    static let subscriptionBasicYearly = "com.celestia.subscription.basic.yearly"
 
-    static let subscriptionPlusMonthly = "com.teamup.subscription.plus.monthly"
-    static let subscriptionPlusYearly = "com.teamup.subscription.plus.yearly"
+    static let subscriptionPlusMonthly = "com.celestia.subscription.plus.monthly"
+    static let subscriptionPlusYearly = "com.celestia.subscription.plus.yearly"
 
-    static let subscriptionPremiumMonthly = "com.teamup.subscription.premium.monthly"
-    static let subscriptionPremiumYearly = "com.teamup.subscription.premium.yearly"
+    static let subscriptionPremiumMonthly = "com.celestia.subscription.premium.monthly"
+    static let subscriptionPremiumYearly = "com.celestia.subscription.premium.yearly"
 
     // MARK: - Consumables
 
-    static let boost1Hour = "com.teamup.consumable.boost.1hour"
-    static let boost3Hours = "com.teamup.consumable.boost.3hours"
-    static let boost24Hours = "com.teamup.consumable.boost.24hours"
+    static let boost1Hour = "com.celestia.consumable.boost.1hour"
+    static let boost3Hours = "com.celestia.consumable.boost.3hours"
+    static let boost24Hours = "com.celestia.consumable.boost.24hours"
 
-    static let spotlightWeekend = "com.teamup.consumable.spotlight.weekend"
+    static let spotlightWeekend = "com.celestia.consumable.spotlight.weekend"
 
     // MARK: - All Products
 
@@ -201,11 +201,11 @@ enum SubscriptionFeature: Equatable {
     var displayName: String {
         switch self {
         case .unlimitedMatches(let enabled):
-            return enabled ? "Unlimited Teammates" : "Limited Teammates"
+            return enabled ? "Unlimited Matches" : "Limited Matches"
         case .unlimitedLikes(let enabled):
-            return enabled ? "Unlimited Requests" : "10 Requests per day"
+            return enabled ? "Unlimited Likes" : "10 Likes per day"
         case .seeWhoLikesYou(let enabled):
-            return enabled ? "See Who Wants to Team Up" : "Hidden Requests"
+            return enabled ? "See Who Likes You" : "Hidden Likes"
         case .boosts(let count):
             return count > 0 ? "\(count) Boost\(count == 1 ? "" : "s") per month" : "No Boosts"
         case .advancedFilters(let enabled):
@@ -213,7 +213,7 @@ enum SubscriptionFeature: Equatable {
         case .readReceipts(let enabled):
             return enabled ? "Read Receipts" : "No Read Receipts"
         case .priorityLikes(let enabled):
-            return enabled ? "Priority Requests" : "Standard Queue"
+            return enabled ? "Priority Likes" : "Standard Queue"
         case .noAds(let enabled):
             return enabled ? "Ad-Free Experience" : "Includes Ads"
         case .profileBoost(let enabled):
@@ -226,9 +226,9 @@ enum SubscriptionFeature: Equatable {
         case .unlimitedMatches:
             return "infinity"
         case .unlimitedLikes:
-            return "person.badge.plus.fill"
+            return "heart.fill"
         case .seeWhoLikesYou:
-            return "eye.fill"
+            return "heart.circle.fill"
         case .boosts:
             return "flame.fill"
         case .advancedFilters:

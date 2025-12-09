@@ -245,7 +245,7 @@ describe('Fraud Detection Module', () => {
         jailbreakRisk: 0.95,
         isPromotional: true,
         deviceFingerprint: 'shared_device_123',
-        productId: 'com.teamup.premium.lifetime'
+        productId: 'com.celestia.premium.lifetime'
       });
 
       expect(score).toBeLessThanOrEqual(100);
@@ -256,7 +256,7 @@ describe('Fraud Detection Module', () => {
   describe('detectJailbreakIndicators', () => {
     test('should detect suspicious bundle ID', () => {
       const receipt = {
-        bundle_id: 'com.teamup.cracked.app',
+        bundle_id: 'com.celestia.cracked.app',
         receipt_creation_date_ms: String(Date.now())
       };
 
@@ -287,7 +287,7 @@ describe('Fraud Detection Module', () => {
       process.env.NODE_ENV = 'production';
 
       const receipt = {
-        bundle_id: 'com.teamup.app',
+        bundle_id: 'com.celestia.app',
         environment: 'Sandbox',
         receipt_creation_date_ms: String(Date.now())
       };
@@ -301,7 +301,7 @@ describe('Fraud Detection Module', () => {
 
     test('should detect abnormally large in_app array', () => {
       const receipt = {
-        bundle_id: 'com.teamup.app',
+        bundle_id: 'com.celestia.app',
         in_app: Array(100).fill({}), // Abnormally large
         receipt_creation_date_ms: String(Date.now())
       };
@@ -315,7 +315,7 @@ describe('Fraud Detection Module', () => {
       const twoYearsAgo = Date.now() - 730 * 24 * 60 * 60 * 1000;
 
       const receipt = {
-        bundle_id: 'com.teamup.app',
+        bundle_id: 'com.celestia.app',
         receipt_creation_date_ms: String(twoYearsAgo)
       };
 
@@ -326,7 +326,7 @@ describe('Fraud Detection Module', () => {
 
     test('should return low risk for legitimate receipt', () => {
       const receipt = {
-        bundle_id: 'com.teamup.app',
+        bundle_id: 'com.celestia.app',
         environment: 'Production',
         receipt_creation_date: new Date().toISOString(),
         receipt_creation_date_ms: String(Date.now()),
@@ -617,7 +617,7 @@ describe('Fraud Detection Module', () => {
 
       const transaction = {
         transaction_id: 'txn_suspicious',
-        product_id: 'com.teamup.premium.lifetime'
+        product_id: 'com.celestia.premium.lifetime'
       };
 
       await fraudDetection.flagTransactionForReview('user_suspicious', transaction, 65);
@@ -642,7 +642,7 @@ describe('Fraud Detection Module', () => {
 
       const transaction = {
         transaction_id: 'txn_highrisk',
-        product_id: 'com.teamup.premium.lifetime'
+        product_id: 'com.celestia.premium.lifetime'
       };
 
       await fraudDetection.flagTransactionForReview('user_highrisk', transaction, 85);

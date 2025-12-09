@@ -2,7 +2,7 @@
 
 ## Overview
 
-This document provides critical security configuration steps for the TeamUp iOS app's Firebase integration. While Firebase API keys in `GoogleService-Info.plist` are unavoidable for iOS apps, proper configuration of Google Cloud restrictions and Firestore security rules is essential to prevent unauthorized access.
+This document provides critical security configuration steps for the Celestia iOS app's Firebase integration. While Firebase API keys in `GoogleService-Info.plist` are unavoidable for iOS apps, proper configuration of Google Cloud restrictions and Firestore security rules is essential to prevent unauthorized access.
 
 ---
 
@@ -36,7 +36,7 @@ This document provides critical security configuration steps for the TeamUp iOS 
 **iOS Apps:**
 - Click on the API key
 - Under "Application restrictions", select **iOS apps**
-- Add your bundle identifier: `com.teamup.app` (or your actual bundle ID)
+- Add your bundle identifier: `com.celestia.app` (or your actual bundle ID)
 - Save changes
 
 This ensures the API key only works from your iOS app.

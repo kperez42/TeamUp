@@ -1,6 +1,6 @@
 //
 //  FakeProfileDetector.swift
-//  TeamUp
+//  Celestia
 //
 //  AI-powered fake profile detection system
 //  Analyzes photos, bio, behavior patterns to detect fake/bot profiles

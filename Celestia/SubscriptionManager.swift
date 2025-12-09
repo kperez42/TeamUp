@@ -1,6 +1,6 @@
 //
 //  SubscriptionManager.swift
-//  TeamUp
+//  Celestia
 //
 //  Manages subscription status and premium features
 //  Types defined in StoreModels.swift: SubscriptionTier, BillingPeriod, SubscriptionStatus

@@ -1,6 +1,6 @@
 //
 //  SignInView.swift
-//  TeamUp
+//  Celestia
 //
 //  Sign in screen
 //
@@ -30,9 +30,9 @@ struct SignInView: View {
                     VStack(spacing: 25) {
                         // Header
                         VStack(spacing: 10) {
-                            Image(systemName: "gamecontroller.fill")
+                            Image(systemName: "star.circle.fill")
                                 .font(.system(size: 60))
-                                .foregroundColor(.green)
+                                .foregroundColor(.purple)
                             
                             Text("Welcome Back")
                                 .font(.title.bold())
@@ -140,7 +140,7 @@ struct SignInView: View {
                             } label: {
                                 Text("Forgot Password?")
                                     .font(.subheadline)
-                                    .foregroundColor(.green)
+                                    .foregroundColor(.purple)
                             }
                             .scaleButton(scale: 0.97)
                         }

@@ -1,6 +1,6 @@
 //
 //  Utilities.swift
-//  TeamUp
+//  Celestia
 //
 //  Created by Claude
 //  General utility functions and helpers
@@ -153,17 +153,17 @@ enum ImageValidator {
 
     static func validate(_ data: Data) throws {
         guard data.count <= maxImageSize else {
-            throw TeamUpError.imageTooBig
+            throw CelestiaError.imageTooBig
         }
 
         guard let image = UIImage(data: data) else {
-            throw TeamUpError.invalidImageFormat
+            throw CelestiaError.invalidImageFormat
         }
 
         // Additional validation
         let maxDimension: CGFloat = 4096
         if image.size.width > maxDimension || image.size.height > maxDimension {
-            throw TeamUpError.imageTooBig
+            throw CelestiaError.imageTooBig
         }
     }
 
@@ -229,7 +229,7 @@ struct AppInfo {
     }
 
     static var appName: String {
-        Bundle.main.infoDictionary?["CFBundleName"] as? String ?? "TeamUp"
+        Bundle.main.infoDictionary?["CFBundleName"] as? String ?? "Celestia"
     }
 }
 
@@ -281,7 +281,7 @@ extension User {
     static var preview: User {
         User(
             id: "preview",
-            email: "test@teamup.gg",
+            email: "test@celestia.app",
             fullName: "Alex Johnson",
             age: 28,
             gender: "Male",

@@ -1,6 +1,6 @@
 //
 //  ImagePicker.swift
-//  TeamUp
+//  Celestia
 //
 //  Photo picker component for profile pictures
 //

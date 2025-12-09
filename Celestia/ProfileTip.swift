@@ -1,6 +1,6 @@
 //
 //  ProfileTip.swift
-//  TeamUp
+//  Celestia
 //
 //  Model for profile completion tips
 //

@@ -1,6 +1,6 @@
 //
 //  FirestoreSwipeRepository.swift
-//  TeamUp
+//  Celestia
 //
 //  Concrete implementation of SwipeRepository using Firestore
 //  Separates data access logic from business logic
@@ -18,12 +18,12 @@ class FirestoreSwipeRepository: SwipeRepository {
         // Validate inputs at repository level as defense-in-depth
         guard !fromUserId.isEmpty, !toUserId.isEmpty else {
             Logger.shared.error("Repository received empty user IDs", category: .matching)
-            throw TeamUpError.invalidInput("User IDs cannot be empty")
+            throw CelestiaError.invalidInput("User IDs cannot be empty")
         }
 
         guard fromUserId != toUserId else {
             Logger.shared.error("Repository received self-like attempt", category: .matching)
-            throw TeamUpError.invalidOperation("Cannot like yourself")
+            throw CelestiaError.invalidOperation("Cannot like yourself")
         }
 
         let likeData: [String: Any] = [

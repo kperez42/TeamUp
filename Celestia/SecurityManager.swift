@@ -1,6 +1,6 @@
 //
 //  SecurityManager.swift
-//  TeamUp
+//  Celestia
 //
 //  Central coordinator for all security features
 //  Manages biometric auth, clipboard security, circuit breakers, and security policies

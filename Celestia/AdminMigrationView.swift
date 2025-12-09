@@ -1,6 +1,6 @@
 //
 //  AdminMigrationView.swift
-//  TeamUp
+//  Celestia
 //
 //  Admin interface for migrating images to CDN
 //
@@ -115,7 +115,7 @@ struct AdminMigrationView: View {
                     RoundedRectangle(cornerRadius: 8)
                         .fill(
                             LinearGradient(
-                                colors: [.green, .cyan],
+                                colors: [.purple, .pink],
                                 startPoint: .leading,
                                 endPoint: .trailing
                             )
@@ -188,7 +188,7 @@ struct AdminMigrationView: View {
                 .padding()
                 .background(
                     LinearGradient(
-                        colors: [.green, .cyan],
+                        colors: [.purple, .pink],
                         startPoint: .leading,
                         endPoint: .trailing
                     )

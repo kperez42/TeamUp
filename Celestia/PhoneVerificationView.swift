@@ -1,6 +1,6 @@
 //
 //  PhoneVerificationView.swift
-//  TeamUp
+//  Celestia
 //
 //  Full phone number verification flow with SMS OTP
 //
@@ -68,7 +68,7 @@ struct PhoneVerificationView: View {
                     .font(.system(size: 50))
                     .foregroundStyle(
                         LinearGradient(
-                            colors: service.verificationState == .verified ? [.green, .blue] : [.green, .cyan],
+                            colors: service.verificationState == .verified ? [.green, .blue] : [.blue, .purple],
                             startPoint: .topLeading,
                             endPoint: .bottomTrailing
                         )
@@ -138,7 +138,7 @@ struct PhoneVerificationView: View {
                 .padding()
                 .background(
                     LinearGradient(
-                        colors: phoneInput.isEmpty ? [.gray, .gray] : [.green, .cyan],
+                        colors: phoneInput.isEmpty ? [.gray, .gray] : [.blue, .purple],
                         startPoint: .leading,
                         endPoint: .trailing
                     )
@@ -334,7 +334,7 @@ struct PhoneVerificationView: View {
                 .padding()
                 .background(
                     LinearGradient(
-                        colors: [.green, .cyan],
+                        colors: [.blue, .purple],
                         startPoint: .leading,
                         endPoint: .trailing
                     )

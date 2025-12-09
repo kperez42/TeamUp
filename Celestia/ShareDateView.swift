@@ -1,24 +1,24 @@
 //
-//  ShareSessionView.swift
-//  TeamUp
+//  ShareDateView.swift
+//  Celestia
 //
-//  Share gaming session details with trusted contacts for safety (LAN parties, meetups)
+//  Share date details with trusted contacts for safety
 //
 
 import SwiftUI
 import FirebaseFirestore
 import MapKit
 
-struct ShareSessionView: View {
+struct ShareDateView: View {
     @EnvironmentObject var authService: AuthService
-    @StateObject private var viewModel = ShareSessionViewModel()
+    @StateObject private var viewModel = ShareDateViewModel()
     @Environment(\.dismiss) var dismiss
-    @State private var selectedSquadMember: User?
-    @State private var sessionTime = Date()
+    @State private var selectedMatch: User?
+    @State private var dateTime = Date()
     @State private var location = ""
     @State private var additionalNotes = ""
     @State private var selectedContacts: Set<EmergencyContact> = []
-    @State private var showSquadPicker = false
+    @State private var showMatchPicker = false
 
     var body: some View {
         ScrollView {
@@ -26,8 +26,8 @@ struct ShareSessionView: View {
                 // Header
                 headerSection
 
-                // Session Details
-                sessionDetailsSection
+                // Date Details
+                dateDetailsSection
 
                 // Emergency Contacts
                 contactsSection
@@ -38,16 +38,16 @@ struct ShareSessionView: View {
             .padding()
         }
         .background(Color(.systemGroupedBackground))
-        .navigationTitle("Share Your Meetup")
+        .navigationTitle("Share Your Date")
         .navigationBarTitleDisplayMode(.inline)
         .task {
             await viewModel.loadEmergencyContacts()
         }
         .sheet(item: $viewModel.shareConfirmation) { confirmation in
-            SessionSharedConfirmationView(confirmation: confirmation)
+            DateSharedConfirmationView(confirmation: confirmation)
         }
-        .sheet(isPresented: $showSquadPicker) {
-            SquadMemberPickerView(selectedMember: $selectedSquadMember)
+        .sheet(isPresented: $showMatchPicker) {
+            MatchPickerView(selectedMatch: $selectedMatch)
         }
     }
 
@@ -57,12 +57,12 @@ struct ShareSessionView: View {
         VStack(spacing: 12) {
             Image(systemName: "person.2.badge.gearshape")
                 .font(.system(size: 50))
-                .foregroundColor(.green)
+                .foregroundColor(.blue)
 
-            Text("Stay Safe at Your Gaming Meetup")
+            Text("Stay Safe on Your Date")
                 .font(.title2.bold())
 
-            Text("Share your LAN party or gaming meetup plans with trusted contacts. They'll receive your details and can check in on you.")
+            Text("Share your date plans with trusted contacts. They'll receive your details and can check in on you.")
                 .font(.subheadline)
                 .foregroundColor(.secondary)
                 .multilineTextAlignment(.center)
@@ -73,29 +73,29 @@ struct ShareSessionView: View {
         .cornerRadius(16)
     }
 
-    // MARK: - Session Details Section
+    // MARK: - Date Details Section
 
-    private var sessionDetailsSection: some View {
+    private var dateDetailsSection: some View {
         VStack(alignment: .leading, spacing: 16) {
-            Text("Session Details")
+            Text("Date Details")
                 .font(.headline)
 
             VStack(spacing: 16) {
-                // Squad Member Selection
+                // Match Selection
                 Button {
-                    showSquadPicker = true
+                    showMatchPicker = true
                 } label: {
                     HStack {
-                        Image(systemName: "gamecontroller.fill")
+                        Image(systemName: "person.crop.circle")
                             .font(.title2)
-                            .foregroundColor(.green)
+                            .foregroundColor(.purple)
 
                         VStack(alignment: .leading) {
                             Text("Who are you meeting?")
                                 .font(.caption)
                                 .foregroundColor(.secondary)
 
-                            Text(selectedSquadMember?.fullName ?? "Select squad member")
+                            Text(selectedMatch?.fullName ?? "Select match")
                                 .font(.body)
                                 .foregroundColor(.primary)
                         }
@@ -117,7 +117,7 @@ struct ShareSessionView: View {
                         .font(.caption)
                         .foregroundColor(.secondary)
 
-                    DatePicker("", selection: $sessionTime, in: Date()...)
+                    DatePicker("", selection: $dateTime, in: Date()...)
                         .datePickerStyle(.graphical)
                         .padding()
                         .background(Color.white)
@@ -130,7 +130,7 @@ struct ShareSessionView: View {
                         .font(.caption)
                         .foregroundColor(.secondary)
 
-                    TextField("Gaming cafe, venue, or address", text: $location)
+                    TextField("Restaurant name or address", text: $location)
                         .textFieldStyle(.plain)
                         .padding()
                         .background(Color.white)
@@ -172,7 +172,7 @@ struct ShareSessionView: View {
                 } label: {
                     Text("Manage")
                         .font(.subheadline)
-                        .foregroundColor(.green)
+                        .foregroundColor(.blue)
                 }
             }
 
@@ -187,7 +187,7 @@ struct ShareSessionView: View {
                         .font(.headline)
                         .foregroundColor(.secondary)
 
-                    Text("Add trusted contacts who can check on you during your gaming session.")
+                    Text("Add trusted contacts who can check on you during your date.")
                         .font(.caption)
                         .foregroundColor(.secondary)
                         .multilineTextAlignment(.center)
@@ -200,7 +200,7 @@ struct ShareSessionView: View {
                             .foregroundColor(.white)
                             .padding(.horizontal, 24)
                             .padding(.vertical, 12)
-                            .background(Color.green)
+                            .background(Color.blue)
                             .cornerRadius(10)
                     }
                 }
@@ -212,7 +212,7 @@ struct ShareSessionView: View {
                 // Contacts list
                 VStack(spacing: 8) {
                     ForEach(viewModel.emergencyContacts) { contact in
-                        SessionContactSelectionRow(
+                        ContactSelectionRow(
                             contact: contact,
                             isSelected: selectedContacts.contains(contact)
                         ) {
@@ -233,9 +233,9 @@ struct ShareSessionView: View {
     private var shareButton: some View {
         Button {
             Task {
-                await viewModel.shareSessionDetails(
-                    squadMember: selectedSquadMember,
-                    sessionTime: sessionTime,
+                await viewModel.shareDateDetails(
+                    match: selectedMatch,
+                    dateTime: dateTime,
                     location: location,
                     notes: additionalNotes,
                     contacts: Array(selectedContacts)
@@ -244,7 +244,7 @@ struct ShareSessionView: View {
         } label: {
             HStack {
                 Image(systemName: "paperplane.fill")
-                Text("Share Session Details")
+                Text("Share Date Details")
             }
             .font(.headline)
             .foregroundColor(.white)
@@ -252,21 +252,21 @@ struct ShareSessionView: View {
             .padding()
             .background(
                 LinearGradient(
-                    colors: [.green, .cyan],
+                    colors: [.blue, .purple],
                     startPoint: .leading,
                     endPoint: .trailing
                 )
             )
             .cornerRadius(16)
-            .shadow(color: .green.opacity(0.3), radius: 10, y: 5)
+            .shadow(color: .blue.opacity(0.3), radius: 10, y: 5)
         }
         .disabled(!viewModel.canShare(
-            squadMember: selectedSquadMember,
+            match: selectedMatch,
             location: location,
             contacts: selectedContacts
         ))
         .opacity(viewModel.canShare(
-            squadMember: selectedSquadMember,
+            match: selectedMatch,
             location: location,
             contacts: selectedContacts
         ) ? 1.0 : 0.5)
@@ -275,7 +275,7 @@ struct ShareSessionView: View {
 
 // MARK: - Contact Selection Row
 
-struct SessionContactSelectionRow: View {
+struct ContactSelectionRow: View {
     let contact: EmergencyContact
     let isSelected: Bool
     let onTap: () -> Void
@@ -285,12 +285,12 @@ struct SessionContactSelectionRow: View {
             HStack(spacing: 12) {
                 // Profile image
                 Circle()
-                    .fill(Color.green.opacity(0.1))
+                    .fill(Color.blue.opacity(0.1))
                     .frame(width: 40, height: 40)
                     .overlay(
                         Text(contact.name.prefix(1))
                             .font(.headline)
-                            .foregroundColor(.green)
+                            .foregroundColor(.blue)
                     )
 
                 // Info
@@ -309,7 +309,7 @@ struct SessionContactSelectionRow: View {
                 // Checkmark
                 Image(systemName: isSelected ? "checkmark.circle.fill" : "circle")
                     .font(.title3)
-                    .foregroundColor(isSelected ? .green : .gray.opacity(0.3))
+                    .foregroundColor(isSelected ? .blue : .gray.opacity(0.3))
             }
             .padding()
             .background(Color.white)
@@ -319,10 +319,10 @@ struct SessionContactSelectionRow: View {
     }
 }
 
-// MARK: - Session Shared Confirmation View
+// MARK: - Date Shared Confirmation View
 
-struct SessionSharedConfirmationView: View {
-    let confirmation: SessionShareConfirmation
+struct DateSharedConfirmationView: View {
+    let confirmation: DateShareConfirmation
     @Environment(\.dismiss) var dismiss
 
     var body: some View {
@@ -343,7 +343,7 @@ struct SessionSharedConfirmationView: View {
 
                 // Message
                 VStack(spacing: 12) {
-                    Text("Session Details Shared!")
+                    Text("Date Details Shared!")
                         .font(.title.bold())
 
                     Text("Your trusted contacts have been notified and will receive updates.")
@@ -384,7 +384,7 @@ struct SessionSharedConfirmationView: View {
                         .foregroundColor(.white)
                         .frame(maxWidth: .infinity)
                         .padding()
-                        .background(Color.green)
+                        .background(Color.blue)
                         .cornerRadius(16)
                 }
             }
@@ -397,18 +397,18 @@ struct SessionSharedConfirmationView: View {
 
 // MARK: - Models
 
-struct SessionShareConfirmation: Identifiable {
+struct DateShareConfirmation: Identifiable {
     let id = UUID()
     let sharedWith: [String]
-    let sessionTime: Date
+    let dateTime: Date
 }
 
 // MARK: - View Model
 
 @MainActor
-class ShareSessionViewModel: ObservableObject {
+class ShareDateViewModel: ObservableObject {
     @Published var emergencyContacts: [EmergencyContact] = []
-    @Published var shareConfirmation: SessionShareConfirmation?
+    @Published var shareConfirmation: DateShareConfirmation?
 
     private let db = Firestore.firestore()
 
@@ -422,6 +422,7 @@ class ShareSessionViewModel: ObservableObject {
 
             emergencyContacts = snapshot.documents.compactMap { doc in
                 let contact = try? doc.data(as: EmergencyContact.self)
+                // Filter for contacts that have date alerts enabled
                 return contact?.notificationPreferences.receiveScheduledDateAlerts == true ? contact : nil
             }
 
@@ -431,25 +432,25 @@ class ShareSessionViewModel: ObservableObject {
         }
     }
 
-    func canShare(squadMember: User?, location: String, contacts: Set<EmergencyContact>) -> Bool {
-        squadMember != nil && !location.isEmpty && !contacts.isEmpty
+    func canShare(match: User?, location: String, contacts: Set<EmergencyContact>) -> Bool {
+        match != nil && !location.isEmpty && !contacts.isEmpty
     }
 
-    func shareSessionDetails(
-        squadMember: User?,
-        sessionTime: Date,
+    func shareDateDetails(
+        match: User?,
+        dateTime: Date,
         location: String,
         notes: String,
         contacts: [EmergencyContact]
     ) async {
-        guard let squadMember = squadMember, let userId = AuthService.shared.currentUser?.id else { return }
+        guard let match = match, let userId = AuthService.shared.currentUser?.id else { return }
 
         do {
-            let sessionShare: [String: Any] = [
+            let dateShare: [String: Any] = [
                 "userId": userId,
-                "squadMemberId": squadMember.id as Any,
-                "squadMemberName": squadMember.fullName,
-                "sessionTime": Timestamp(date: sessionTime),
+                "matchId": match.id as Any,
+                "matchName": match.fullName,
+                "dateTime": Timestamp(date: dateTime),
                 "location": location,
                 "notes": notes,
                 "sharedWith": contacts.map { $0.id },
@@ -457,36 +458,36 @@ class ShareSessionViewModel: ObservableObject {
                 "status": "active"
             ]
 
-            try await db.collection("shared_sessions").addDocument(data: sessionShare)
+            try await db.collection("shared_dates").addDocument(data: dateShare)
 
             // Send notifications to contacts
             for contact in contacts {
-                try await sendSessionNotification(to: contact, squadMember: squadMember, sessionTime: sessionTime, location: location)
+                try await sendDateNotification(to: contact, match: match, dateTime: dateTime, location: location)
             }
 
-            shareConfirmation = SessionShareConfirmation(
+            shareConfirmation = DateShareConfirmation(
                 sharedWith: contacts.map { $0.name },
-                sessionTime: sessionTime
+                dateTime: dateTime
             )
 
             AnalyticsServiceEnhanced.shared.trackEvent(
                 .featureUsed,
                 properties: [
-                    "feature": "share_session",
+                    "feature": "share_date",
                     "contactsCount": contacts.count
                 ]
             )
 
-            Logger.shared.info("Session details shared with \(contacts.count) contacts", category: .general)
+            Logger.shared.info("Date details shared with \(contacts.count) contacts", category: .general)
         } catch {
-            Logger.shared.error("Error sharing session details", category: .general, error: error)
+            Logger.shared.error("Error sharing date details", category: .general, error: error)
         }
     }
 
-    private func sendSessionNotification(
+    private func sendDateNotification(
         to contact: EmergencyContact,
-        squadMember: User,
-        sessionTime: Date,
+        match: User,
+        dateTime: Date,
         location: String
     ) async throws {
         guard let userId = AuthService.shared.currentUser?.id else { return }
@@ -501,22 +502,37 @@ class ShareSessionViewModel: ObservableObject {
             "contactEmail": contact.email ?? "",
             "contactPhone": contact.phoneNumber,
             "userId": userId,
-            "squadMemberName": squadMember.fullName,
-            "sessionTime": Timestamp(date: sessionTime),
+            "matchName": match.fullName,
+            "dateTime": Timestamp(date: dateTime),
             "location": location,
-            "formattedDateTime": dateFormatter.string(from: sessionTime),
+            "formattedDateTime": dateFormatter.string(from: dateTime),
             "sentAt": Timestamp(date: Date()),
-            "type": "safety_session_alert"
+            "type": "safety_date_alert"
         ]
 
+        // Save notification to Firestore for tracking
         try await db.collection("safety_notifications").addDocument(data: notificationData)
 
-        let message = """
-        Safety Alert from TeamUp:
-        \(AuthService.shared.currentUser?.fullName ?? "A user") has shared their gaming meetup details with you.
+        // PRODUCTION NOTE: Actual SMS/Email sending would be handled by a backend service
+        // This would typically integrate with services like:
+        // - Twilio for SMS
+        // - SendGrid for Email
+        // - Firebase Cloud Functions to trigger these services
+        //
+        // Example backend flow:
+        // 1. Cloud Function watches 'safety_notifications' collection
+        // 2. When new document added, function triggers
+        // 3. Function calls Twilio/SendGrid to send SMS/Email to contact
+        // 4. Updates notification document with delivery status
+        //
+        // For development/testing, notification is logged and saved to database
 
-        Session: \(dateFormatter.string(from: sessionTime))
-        Meeting: \(squadMember.fullName)
+        let message = """
+        Safety Alert from Celestia:
+        \(AuthService.shared.currentUser?.fullName ?? "A user") has shared their date details with you.
+
+        Date: \(dateFormatter.string(from: dateTime))
+        Meeting: \(match.fullName)
         Location: \(location)
 
         This is an automated safety notification.
@@ -531,29 +547,29 @@ class ShareSessionViewModel: ObservableObject {
     }
 }
 
-// MARK: - Squad Member Picker View
+// MARK: - Match Picker View
 
-struct SquadMemberPickerView: View {
-    @Binding var selectedMember: User?
+struct MatchPickerView: View {
+    @Binding var selectedMatch: User?
     @Environment(\.dismiss) var dismiss
     @StateObject private var matchService = MatchService.shared
     @State private var isLoading = false
-    @State private var squadMembers: [Match] = []
-    @State private var memberUsers: [String: User] = [:]
+    @State private var matches: [Match] = []
+    @State private var matchUsers: [String: User] = [:] // Map of match ID to User
 
     var body: some View {
         NavigationStack {
             Group {
                 if isLoading {
-                    ProgressView("Loading squad...")
+                    ProgressView("Loading matches...")
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
-                } else if squadMembers.isEmpty {
+                } else if matches.isEmpty {
                     emptyStateView
                 } else {
-                    memberList
+                    matchList
                 }
             }
-            .navigationTitle("Select Squad Member")
+            .navigationTitle("Select Match")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
@@ -563,10 +579,12 @@ struct SquadMemberPickerView: View {
                 }
             }
             .task {
-                await loadSquadMembers()
+                await loadMatches()
             }
         }
     }
+
+    // MARK: - Empty State
 
     private var emptyStateView: some View {
         VStack(spacing: 24) {
@@ -575,10 +593,10 @@ struct SquadMemberPickerView: View {
                 .foregroundColor(.gray.opacity(0.5))
 
             VStack(spacing: 12) {
-                Text("No Squad Members Yet")
+                Text("No Matches Yet")
                     .font(.title2.bold())
 
-                Text("You don't have any squad members to share your session with yet. Start finding teammates!")
+                Text("You don't have any matches to share your date with yet. Start swiping to find matches!")
                     .font(.body)
                     .foregroundColor(.secondary)
                     .multilineTextAlignment(.center)
@@ -588,17 +606,20 @@ struct SquadMemberPickerView: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 
-    private var memberList: some View {
+    // MARK: - Match List
+
+    private var matchList: some View {
         List {
-            ForEach(Array(squadMembers.enumerated()), id: \.0) { index, match in
+            ForEach(Array(matches.enumerated()), id: \.0) { index, match in
                 if let otherUser = getOtherUser(from: match) {
-                    SquadMemberPickerRow(user: otherUser) {
-                        selectedMember = otherUser
+                    MatchPickerRow(user: otherUser) {
+                        selectedMatch = otherUser
                         dismiss()
 
+                        // Track analytics
                         AnalyticsManager.shared.logEvent(.matchSelected, parameters: [
                             "match_id": match.id ?? "",
-                            "source": "share_session"
+                            "source": "share_date"
                         ])
                     }
                 }
@@ -607,22 +628,28 @@ struct SquadMemberPickerView: View {
         .listStyle(.insetGrouped)
     }
 
-    private func loadSquadMembers() async {
+    // MARK: - Helper Methods
+
+    // PERFORMANCE FIX: Use batch queries instead of N+1 queries
+    private func loadMatches() async {
         guard let currentUserId = AuthService.shared.currentUser?.id else { return }
 
         isLoading = true
         defer { isLoading = false }
 
         do {
+            // Fetch matches
             try await matchService.fetchMatches(userId: currentUserId)
-            squadMembers = matchService.matches
+            matches = matchService.matches
 
-            let otherUserIds = squadMembers.map { match in
+            // Collect all other user IDs
+            let otherUserIds = matches.map { match in
                 match.user1Id == currentUserId ? match.user2Id : match.user1Id
             }
 
             guard !otherUserIds.isEmpty else { return }
 
+            // Batch fetch users in groups of 10 (Firestore 'in' query limit)
             let db = Firestore.firestore()
             let uniqueUserIds = Array(Set(otherUserIds))
 
@@ -638,35 +665,47 @@ struct SquadMemberPickerView: View {
 
                 let batchUsers = batchSnapshot.documents.compactMap { try? $0.data(as: User.self) }
 
+                // Map users to their match IDs
                 for user in batchUsers {
                     guard let userId = user.id else { continue }
-                    for match in squadMembers {
+                    // Find match that includes this user
+                    if let match = matches.first(where: {
+                        ($0.user1Id == userId || $0.user2Id == userId) && $0.user1Id != userId || $0.user2Id != userId
+                    }), let matchId = match.id {
+                        matchUsers[matchId] = user
+                    }
+                    // Also store by user ID for easier lookup
+                    for match in matches {
                         let otherUserId = match.user1Id == currentUserId ? match.user2Id : match.user1Id
                         if otherUserId == userId, let matchId = match.id {
-                            memberUsers[matchId] = user
+                            matchUsers[matchId] = user
                         }
                     }
                 }
             }
 
-            Logger.shared.info("Loaded \(squadMembers.count) squad members for session sharing", category: .general)
+            Logger.shared.info("Loaded \(matches.count) matches for date sharing using batch queries", category: .general)
         } catch {
-            Logger.shared.error("Error loading squad members for picker", category: .general, error: error)
+            Logger.shared.error("Error loading matches for picker", category: .general, error: error)
         }
     }
 
     private func getOtherUser(from match: Match) -> User? {
-        return memberUsers[match.id ?? ""]
+        guard let currentUserId = AuthService.shared.currentUser?.id else { return nil }
+        return matchUsers[match.id ?? ""]
     }
 }
 
-struct SquadMemberPickerRow: View {
+// MARK: - Match Picker Row
+
+struct MatchPickerRow: View {
     let user: User
     let onSelect: () -> Void
 
     var body: some View {
         Button(action: onSelect) {
             HStack(spacing: 16) {
+                // Profile Image - PERFORMANCE: Use CachedAsyncImage
                 if let photoURL = user.photos.first, let url = URL(string: photoURL) {
                     CachedAsyncImage(url: url) { image in
                         image
@@ -682,7 +721,7 @@ struct SquadMemberPickerRow: View {
                     Circle()
                         .fill(
                             LinearGradient(
-                                colors: [.green, .cyan],
+                                colors: [.blue, .purple],
                                 startPoint: .topLeading,
                                 endPoint: .bottomTrailing
                             )
@@ -695,13 +734,14 @@ struct SquadMemberPickerRow: View {
                         )
                 }
 
+                // User Info
                 VStack(alignment: .leading, spacing: 4) {
                     Text(user.name)
                         .font(.headline)
                         .foregroundColor(.primary)
 
-                    if let gamerTag = user.gamerTag {
-                        Text(gamerTag)
+                    if user.age > 0 {
+                        Text("\(user.age) years old")
                             .font(.subheadline)
                             .foregroundColor(.secondary)
                     }
@@ -719,14 +759,9 @@ struct SquadMemberPickerRow: View {
     }
 }
 
-// Backward compatibility aliases
-typealias ShareDateView = ShareSessionView
-typealias ShareDateViewModel = ShareSessionViewModel
-typealias DateShareConfirmation = SessionShareConfirmation
-
 #Preview {
     NavigationStack {
-        ShareSessionView()
+        ShareDateView()
             .environmentObject(AuthService.shared)
     }
 }

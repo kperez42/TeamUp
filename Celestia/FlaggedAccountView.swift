@@ -1,6 +1,6 @@
 //
 //  FlaggedAccountView.swift
-//  TeamUp
+//  Celestia
 //
 //  Shows feedback to users whose profiles are under moderator review (flagged status).
 //
@@ -152,7 +152,7 @@ struct FlaggedAccountView: View {
                             )
                             BulletPoint(
                                 icon: "bell.fill",
-                                color: .green,
+                                color: .purple,
                                 text: "You'll be notified when the review is complete"
                             )
                             BulletPoint(
@@ -235,7 +235,7 @@ struct FlaggedAccountView: View {
                             .padding(.vertical, 16)
                             .background(
                                 LinearGradient(
-                                    colors: [.green, .cyan],
+                                    colors: [.blue, .purple],
                                     startPoint: .leading,
                                     endPoint: .trailing
                                 )

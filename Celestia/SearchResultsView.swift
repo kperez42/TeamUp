@@ -1,6 +1,6 @@
 //
 //  SearchResultsView.swift
-//  TeamUp
+//  Celestia
 //
 //  Search results display with profile cards
 //
@@ -215,7 +215,7 @@ struct ProfileCard: View {
         Rectangle()
             .fill(
                 LinearGradient(
-                    colors: [.green.opacity(0.6), .cyan.opacity(0.6)],
+                    colors: [.blue.opacity(0.6), .purple.opacity(0.6)],
                     startPoint: .topLeading,
                     endPoint: .bottomTrailing
                 )

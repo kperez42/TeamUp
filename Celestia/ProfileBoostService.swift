@@ -1,6 +1,6 @@
 //
 //  ProfileBoostService.swift
-//  TeamUp
+//  Celestia
 //
 //  Profile Boost functionality - temporarily increases profile visibility
 //

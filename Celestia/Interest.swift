@@ -1,6 +1,6 @@
 //
 //  Interest.swift
-//  TeamUp
+//  Celestia
 //
 //  Model for user interests/likes
 //

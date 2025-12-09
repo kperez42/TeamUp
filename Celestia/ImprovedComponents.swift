@@ -1,6 +1,6 @@
 //
 //  ImprovedComponents.swift
-//  TeamUp
+//  Celestia
 //
 //  Reusable improved UI components
 //
@@ -199,8 +199,8 @@ struct ImprovedUserDetailSheet: View {
         ZStack {
             LinearGradient(
                 colors: [
-                    Color.green.opacity(0.7),
-                    Color.cyan.opacity(0.6),
+                    Color.purple.opacity(0.7),
+                    Color.pink.opacity(0.6),
                     Color.blue.opacity(0.5)
                 ],
                 startPoint: .topLeading,
@@ -242,7 +242,7 @@ struct ImprovedUserDetailSheet: View {
             
             HStack(spacing: 6) {
                 Image(systemName: "mappin.circle.fill")
-                    .foregroundColor(.green)
+                    .foregroundColor(.purple)
                 Text("\(user.location), \(user.country)")
                     .foregroundColor(.gray)
             }
@@ -257,7 +257,7 @@ struct ImprovedUserDetailSheet: View {
         VStack(alignment: .leading, spacing: 12) {
             HStack {
                 Image(systemName: "text.alignleft")
-                    .foregroundColor(.green)
+                    .foregroundColor(.purple)
                 Text("About")
                     .font(.headline)
             }
@@ -278,12 +278,12 @@ struct ImprovedUserDetailSheet: View {
     
     private var statsSection: some View {
         HStack(spacing: 0) {
-            statItem(icon: "gamecontroller.fill", value: "\(user.likesReceived)", label: "Requests", color: .cyan)
+            statItem(icon: "heart.fill", value: "\(user.likesReceived)", label: "Likes", color: .pink)
             
             Divider()
                 .frame(height: 40)
             
-            statItem(icon: "star.fill", value: "\(user.matchCount)", label: "Squad", color: .green)
+            statItem(icon: "star.fill", value: "\(user.matchCount)", label: "Matches", color: .purple)
             
             Divider()
                 .frame(height: 40)
@@ -319,7 +319,7 @@ struct ImprovedUserDetailSheet: View {
     private var detailsSection: some View {
         VStack(spacing: 16) {
             detailRow(icon: "person.fill", label: "Gender", value: user.gender)
-            detailRow(icon: "gamecontroller.fill", label: "Play style", value: user.lookingFor)
+            detailRow(icon: "heart.circle.fill", label: "Looking for", value: user.lookingFor)
         }
         .padding(20)
         .background(Color(.systemGray6))
@@ -331,7 +331,7 @@ struct ImprovedUserDetailSheet: View {
         HStack {
             HStack(spacing: 10) {
                 Image(systemName: icon)
-                    .foregroundColor(.green)
+                    .foregroundColor(.purple)
                     .frame(width: 24)
                 
                 Text(label)
@@ -353,14 +353,14 @@ struct ImprovedUserDetailSheet: View {
         VStack(alignment: .leading, spacing: 12) {
             HStack {
                 Image(systemName: "globe")
-                    .foregroundColor(.green)
+                    .foregroundColor(.purple)
                 Text("Languages")
                     .font(.headline)
             }
             
             FlowLayout(spacing: 8) {
                 ForEach(user.languages, id: \.self) { language in
-                    TagView(text: language, color: .green)
+                    TagView(text: language, color: .purple)
                 }
             }
         }
@@ -377,7 +377,7 @@ struct ImprovedUserDetailSheet: View {
         VStack(alignment: .leading, spacing: 12) {
             HStack {
                 Image(systemName: "star.fill")
-                    .foregroundColor(.green)
+                    .foregroundColor(.purple)
                 Text("Interests")
                     .font(.headline)
             }
@@ -420,13 +420,13 @@ struct ImprovedUserDetailSheet: View {
                 )
             }
             
-            // Team Up button
+            // Like button
             Button {
                 onSendInterest()
             } label: {
                 HStack(spacing: 8) {
-                    Image(systemName: "person.badge.plus")
-                    Text("Team Up")
+                    Image(systemName: "heart.fill")
+                    Text("Like")
                         .fontWeight(.semibold)
                 }
                 .foregroundColor(.white)
@@ -434,13 +434,13 @@ struct ImprovedUserDetailSheet: View {
                 .frame(height: 56)
                 .background(
                     LinearGradient(
-                        colors: [Color.cyan, Color.green],
+                        colors: [Color.pink, Color.purple],
                         startPoint: .leading,
                         endPoint: .trailing
                     )
                 )
                 .cornerRadius(16)
-                .shadow(color: .green.opacity(0.4), radius: 10, y: 5)
+                .shadow(color: .purple.opacity(0.4), radius: 10, y: 5)
             }
         }
         .padding(.horizontal, 24)

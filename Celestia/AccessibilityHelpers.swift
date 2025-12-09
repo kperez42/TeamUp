@@ -1,6 +1,6 @@
 //
 //  AccessibilityHelpers.swift
-//  TeamUp
+//  Celestia
 //
 //  Comprehensive accessibility utilities and extensions for WCAG 2.1 Level AA compliance
 //
@@ -276,8 +276,8 @@ extension Color {
     }
 
     /// Common accessible color pairs for the app
-    static let accessiblePrimary = Color.green
-    static let accessibleSecondary = Color.cyan
+    static let accessiblePrimary = Color.purple
+    static let accessibleSecondary = Color.pink
     static let accessibleAccent = Color.blue
     static let accessibleSuccess = Color.green
     static let accessibleWarning = Color.orange

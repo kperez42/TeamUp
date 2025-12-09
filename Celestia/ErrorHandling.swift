@@ -1,6 +1,6 @@
 //
 //  ErrorHandling.swift
-//  TeamUp
+//  Celestia
 //
 //  Created by Claude
 //  Comprehensive error handling system
@@ -11,7 +11,7 @@ import SwiftUI
 
 // MARK: - App Errors
 
-enum TeamUpError: LocalizedError, Identifiable {
+enum CelestiaError: LocalizedError, Identifiable {
     var id: String { errorDescription ?? "unknown_error" }
 
     // Authentication Errors
@@ -148,7 +148,7 @@ enum TeamUpError: LocalizedError, Identifiable {
         case .invalidProfileData:
             return "Some profile information is invalid. Please check and try again."
         case .ageRestriction:
-            return "You must be 13 or older to use TeamUp."
+            return "You must be 18 or older to use Celestia."
         case .validationError(let field, let reason):
             return "Validation error for \(field): \(reason)"
 
@@ -223,7 +223,7 @@ enum TeamUpError: LocalizedError, Identifiable {
 
         // Premium
         case .premiumRequired:
-            return "This feature requires TeamUp Premium."
+            return "This feature requires Celestia Premium."
         case .subscriptionExpired:
             return "Your premium subscription has expired."
         case .purchaseFailed:
@@ -337,9 +337,9 @@ enum TeamUpError: LocalizedError, Identifiable {
         }
     }
 
-    static func from(_ error: Error) -> TeamUpError {
-        if let teamUpError = error as? TeamUpError {
-            return teamUpError
+    static func from(_ error: Error) -> CelestiaError {
+        if let celestiaError = error as? CelestiaError {
+            return celestiaError
         }
 
         let nsError = error as NSError
@@ -385,7 +385,7 @@ enum TeamUpError: LocalizedError, Identifiable {
 // MARK: - Error Alert Modifier
 
 struct ErrorAlert: ViewModifier {
-    @Binding var error: TeamUpError?
+    @Binding var error: CelestiaError?
 
     func body(content: Content) -> some View {
         content
@@ -398,7 +398,7 @@ struct ErrorAlert: ViewModifier {
             }
     }
 
-    private func errorMessage(for error: TeamUpError) -> String {
+    private func errorMessage(for error: CelestiaError) -> String {
         var message = error.errorDescription ?? "An error occurred"
         if let suggestion = error.recoverySuggestion {
             message += "\n\n\(suggestion)"
@@ -408,7 +408,7 @@ struct ErrorAlert: ViewModifier {
 }
 
 extension View {
-    func errorAlert(_ error: Binding<TeamUpError?>) -> some View {
+    func errorAlert(_ error: Binding<CelestiaError?>) -> some View {
         modifier(ErrorAlert(error: error))
     }
 }
@@ -416,7 +416,7 @@ extension View {
 // MARK: - Error Banner
 
 struct ErrorBanner: View {
-    let error: TeamUpError
+    let error: CelestiaError
     let onDismiss: () -> Void
 
     var body: some View {
@@ -457,10 +457,10 @@ struct ErrorBanner: View {
 // MARK: - Error View
 
 struct ErrorView: View {
-    let error: TeamUpError
+    let error: CelestiaError
     let retryAction: (() -> Void)?
 
-    init(error: TeamUpError, retryAction: (() -> Void)? = nil) {
+    init(error: CelestiaError, retryAction: (() -> Void)? = nil) {
         self.error = error
         self.retryAction = retryAction
     }
@@ -505,7 +505,7 @@ struct ErrorView: View {
                     .padding(.vertical, 12)
                     .background(
                         LinearGradient(
-                            colors: [Color.green, Color.cyan],
+                            colors: [Color.purple, Color.pink],
                             startPoint: .leading,
                             endPoint: .trailing
                         )

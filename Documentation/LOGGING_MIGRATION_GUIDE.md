@@ -289,7 +289,7 @@ Logs appear in Xcode console with full formatting:
 
 1. Open Console.app
 2. Select your device/simulator
-3. Filter by subsystem: `com.teamup.app`
+3. Filter by subsystem: `com.celestia.app`
 4. Filter by category: `Auth`, `Network`, etc.
 
 ### View Log File

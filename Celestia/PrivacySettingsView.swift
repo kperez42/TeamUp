@@ -1,6 +1,6 @@
 //
 //  PrivacySettingsView.swift
-//  TeamUp
+//  Celestia
 //
 //  Privacy controls for user safety
 //
@@ -52,7 +52,7 @@ struct PrivacySettingsView: View {
                 Circle()
                     .fill(
                         LinearGradient(
-                            colors: [.green.opacity(0.2), .cyan.opacity(0.1)],
+                            colors: [.purple.opacity(0.2), .blue.opacity(0.1)],
                             startPoint: .topLeading,
                             endPoint: .bottomTrailing
                         )
@@ -63,7 +63,7 @@ struct PrivacySettingsView: View {
                     .font(.system(size: 40))
                     .foregroundStyle(
                         LinearGradient(
-                            colors: [.green, .cyan],
+                            colors: [.purple, .blue],
                             startPoint: .topLeading,
                             endPoint: .bottomTrailing
                         )
@@ -196,7 +196,7 @@ struct PrivacyToggleCard: View {
         Toggle(isOn: $isOn) {
             HStack(spacing: 12) {
                 Image(systemName: icon)
-                    .foregroundColor(.green)
+                    .foregroundColor(.purple)
                     .frame(width: 30)
 
                 VStack(alignment: .leading, spacing: 2) {
@@ -210,7 +210,7 @@ struct PrivacyToggleCard: View {
                 }
             }
         }
-        .tint(.green)
+        .tint(.purple)
         .padding()
         .background(Color(.systemBackground))
         .cornerRadius(12)

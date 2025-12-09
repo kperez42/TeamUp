@@ -1,6 +1,6 @@
 //
 //  ProfilePrompt.swift
-//  TeamUp
+//  Celestia
 //
 //  Personality prompts for engaging profiles
 //

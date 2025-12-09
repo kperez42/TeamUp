@@ -1,6 +1,6 @@
 //
 //  Message.swift
-//  TeamUp
+//  Celestia
 //
 //  Message model for chat functionality
 //

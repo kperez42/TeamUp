@@ -1,6 +1,6 @@
 //
 //  ButtonStyles.swift
-//  TeamUp
+//  Celestia
 //
 //  Unified button styles for consistent interactive feedback
 //
@@ -36,7 +36,7 @@ struct PrimaryButtonStyle: ButtonStyle {
             .padding(.vertical, 16)
             .background(
                 LinearGradient(
-                    colors: [Color.green, Color.cyan],
+                    colors: [Color.purple, Color.pink],
                     startPoint: .leading,
                     endPoint: .trailing
                 )
@@ -59,7 +59,7 @@ struct SecondaryButtonStyle: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .font(.headline)
-            .foregroundColor(.green)
+            .foregroundColor(.purple)
             .frame(maxWidth: .infinity)
             .padding(.vertical, 16)
             .background(Color.white)
@@ -68,7 +68,7 @@ struct SecondaryButtonStyle: ButtonStyle {
                 RoundedRectangle(cornerRadius: 16)
                     .stroke(
                         LinearGradient(
-                            colors: [Color.green, Color.cyan],
+                            colors: [Color.purple, Color.pink],
                             startPoint: .leading,
                             endPoint: .trailing
                         ),

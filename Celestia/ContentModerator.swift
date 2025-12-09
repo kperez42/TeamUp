@@ -1,6 +1,6 @@
 //
 //  ContentModerator.swift
-//  TeamUp
+//  Celestia
 //
 //  Content moderation service to filter inappropriate content
 //

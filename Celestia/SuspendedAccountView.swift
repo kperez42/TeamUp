@@ -1,6 +1,6 @@
 //
 //  SuspendedAccountView.swift
-//  TeamUp
+//  Celestia
 //
 //  Shows suspension feedback to users whose accounts have been suspended
 //
@@ -230,7 +230,7 @@ struct SuspendedAccountView: View {
                             .padding()
                             .background(
                                 LinearGradient(
-                                    colors: [.green, .cyan],
+                                    colors: [.blue, .purple],
                                     startPoint: .leading,
                                     endPoint: .trailing
                                 )
