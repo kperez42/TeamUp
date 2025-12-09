@@ -131,11 +131,11 @@ class DiscoverViewModel: ObservableObject {
                     }
                     return nil
                 }()
-                let lookingFor = currentUser.lookingFor != "Everyone" ? currentUser.lookingFor : nil
+                let lookingForGender = currentUser.showMeGender != "Everyone" ? currentUser.showMeGender : nil
 
                 try await userService.fetchUsers(
                     excludingUserId: userId,
-                    lookingFor: lookingFor,
+                    lookingFor: lookingForGender,
                     platforms: nil,
                     country: nil,
                     ageRange: ageRange,
