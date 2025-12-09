@@ -79,19 +79,19 @@ class ImageUploadService {
     // MARK: - Background Image Processing
 
     private func optimizeImageAsync(_ image: UIImage) async throws -> Data {
-        // Perform image processing on background thread to avoid blocking UI
-        return try await Task.detached(priority: .userInitiated) { [weak self] in
-            guard let self = self else {
-                throw CelestiaError.invalidImageFormat
-            }
+        // Capture values before detached task (Swift 6 strict concurrency)
+        let compressionQuality = self.compressionQuality
+        let maxDimension = self.maxDimension
 
+        // Perform image processing on background thread to avoid blocking UI
+        return try await Task.detached(priority: .userInitiated) {
             // Optimize image using modern UIGraphicsImageRenderer
-            guard let optimizedImage = self.optimizeImageOnBackgroundThread(image) else {
+            guard let optimizedImage = Self.optimizeImage(image, maxDimension: maxDimension) else {
                 throw CelestiaError.invalidImageFormat
             }
 
             // Convert to data
-            guard let imageData = optimizedImage.jpegData(compressionQuality: self.compressionQuality) else {
+            guard let imageData = optimizedImage.jpegData(compressionQuality: compressionQuality) else {
                 throw CelestiaError.invalidImageFormat
             }
 
@@ -205,7 +205,7 @@ class ImageUploadService {
 
     // MARK: - Image Optimization (Background Thread)
 
-    private func optimizeImageOnBackgroundThread(_ image: UIImage) -> UIImage? {
+    private static func optimizeImage(_ image: UIImage, maxDimension: CGFloat) -> UIImage? {
         let size = image.size
 
         // Calculate new size if needed
@@ -301,18 +301,18 @@ class ImageUploadService {
 
     /// Optimize profile images with maximum quality settings
     private func optimizeProfileImageAsync(_ image: UIImage) async throws -> Data {
-        return try await Task.detached(priority: .userInitiated) { [weak self] in
-            guard let self = self else {
-                throw CelestiaError.invalidImageFormat
-            }
+        // Capture values before detached task (Swift 6 strict concurrency)
+        let profileCompressionQuality = self.profileCompressionQuality
+        let profileMaxDimension = self.profileMaxDimension
 
+        return try await Task.detached(priority: .userInitiated) {
             // Optimize image using HIGH QUALITY settings
-            guard let optimizedImage = self.optimizeProfileImage(image) else {
+            guard let optimizedImage = Self.optimizeProfileImage(image, maxDimension: profileMaxDimension) else {
                 throw CelestiaError.invalidImageFormat
             }
 
             // Convert to data with MAXIMUM quality for profile photos
-            guard let imageData = optimizedImage.jpegData(compressionQuality: self.profileCompressionQuality) else {
+            guard let imageData = optimizedImage.jpegData(compressionQuality: profileCompressionQuality) else {
                 throw CelestiaError.invalidImageFormat
             }
 
@@ -321,13 +321,13 @@ class ImageUploadService {
     }
 
     /// Optimize profile image with high-quality interpolation
-    private func optimizeProfileImage(_ image: UIImage) -> UIImage? {
+    private static func optimizeProfileImage(_ image: UIImage, maxDimension: CGFloat) -> UIImage? {
         let size = image.size
 
         // Calculate new size if needed (use profile-specific max dimension)
         var newSize = size
-        if size.width > profileMaxDimension || size.height > profileMaxDimension {
-            let scale = min(profileMaxDimension / size.width, profileMaxDimension / size.height)
+        if size.width > maxDimension || size.height > maxDimension {
+            let scale = min(maxDimension / size.width, maxDimension / size.height)
             newSize = CGSize(width: size.width * scale, height: size.height * scale)
         }
 

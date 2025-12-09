@@ -357,8 +357,8 @@ struct BlockedUsersView: View {
             location: "New York",
             country: "USA",
             platforms: ["PC"],
-            skillLevel: SkillLevel.intermediate.rawValue,
-            playStyle: PlayStyle.casual.rawValue
+            playStyle: PlayStyle.casual.rawValue,
+            skillLevel: SkillLevel.intermediate.rawValue
         ))
     }
 }

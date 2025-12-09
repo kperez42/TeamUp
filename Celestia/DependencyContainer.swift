@@ -180,8 +180,9 @@ class DependencyContainer: ObservableObject {
 // MARK: - SwiftUI Environment Key
 
 /// Environment key for dependency injection in SwiftUI
+@MainActor
 struct DependencyContainerKey: EnvironmentKey {
-    static let defaultValue: DependencyContainer = .shared
+    @MainActor static let defaultValue: DependencyContainer = .shared
 }
 
 extension EnvironmentValues {

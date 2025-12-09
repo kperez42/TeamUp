@@ -37,9 +37,11 @@ class BlockReportService: ObservableObject, ListenerLifecycleAware {
         }
     }
 
-    func pauseListeners() {
-        Logger.shared.info("BlockReportService: Pausing listeners", category: .general)
-        stopListening()
+    nonisolated func pauseListeners() {
+        Task { @MainActor in
+            Logger.shared.info("BlockReportService: Pausing listeners", category: .general)
+            self.stopListening()
+        }
     }
 
     private init() {

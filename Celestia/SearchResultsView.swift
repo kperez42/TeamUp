@@ -60,7 +60,7 @@ struct SearchResultsView: View {
     private var loadingView: some View {
         ScrollView {
             VStack(spacing: 16) {
-                Text("Searching for matches...")
+                Text("Searching for gamers...")
                     .font(.headline)
                     .foregroundColor(.secondary)
                     .padding()
@@ -85,7 +85,7 @@ struct SearchResultsView: View {
                 .foregroundColor(.gray)
 
             VStack(spacing: 12) {
-                Text("No matches found")
+                Text("No gamers found")
                     .font(.title2)
                     .fontWeight(.bold)
 
@@ -116,8 +116,8 @@ struct SearchResultsView: View {
                 resultsHeader
 
                 // Profile cards
-                ForEach(searchManager.searchResults) { profile in
-                    ProfileCard(profile: profile)
+                ForEach(searchManager.searchResults) { user in
+                    SearchProfileCard(user: user)
                         .padding(.horizontal)
                         .padding(.vertical, 8)
                 }
@@ -127,7 +127,7 @@ struct SearchResultsView: View {
 
     private var resultsHeader: some View {
         HStack {
-            Text("\(searchManager.totalResultsCount) matches")
+            Text("\(searchManager.totalResultsCount) gamers found")
                 .font(.subheadline)
                 .foregroundColor(.secondary)
 
@@ -151,11 +151,11 @@ struct SearchResultsView: View {
     }
 }
 
-// MARK: - Profile Card
+// MARK: - Search Profile Card
 
-struct ProfileCard: View {
+struct SearchProfileCard: View {
 
-    let profile: UserProfile
+    let user: User
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
@@ -164,19 +164,23 @@ struct ProfileCard: View {
 
             // Info
             VStack(alignment: .leading, spacing: 8) {
-                // Name and age
+                // Name and skill level
                 HStack {
                     HStack(spacing: 4) {
-                        Text(profile.name)
+                        Text(user.gamerTag.isEmpty ? user.fullName : user.gamerTag)
                             .font(.title2)
                             .fontWeight(.bold)
 
-                        Text(String(profile.age))
-                            .font(.title3)
+                        Text(user.skillLevel)
+                            .font(.subheadline)
                             .foregroundColor(.secondary)
+                            .padding(.horizontal, 6)
+                            .padding(.vertical, 2)
+                            .background(Color.purple.opacity(0.1))
+                            .cornerRadius(4)
                     }
 
-                    if profile.isVerified {
+                    if user.isVerified {
                         Image(systemName: "checkmark.seal.fill")
                             .foregroundColor(.blue)
                     }
@@ -184,19 +188,19 @@ struct ProfileCard: View {
                     Spacer()
                 }
 
-                // Distance and location
+                // Location
                 HStack(spacing: 4) {
                     Image(systemName: "location.fill")
                         .font(.caption)
                         .foregroundColor(.gray)
 
-                    Text(profile.distanceString)
+                    Text("\(user.location), \(user.country)")
                         .font(.subheadline)
                         .foregroundColor(.secondary)
                 }
 
                 // Bio
-                Text(profile.bio)
+                Text(user.bio)
                     .font(.subheadline)
                     .foregroundColor(.secondary)
                     .lineLimit(2)
@@ -212,6 +216,32 @@ struct ProfileCard: View {
     }
 
     private var profileImage: some View {
+        ZStack {
+            if !user.profileImageURL.isEmpty, let url = URL(string: user.profileImageURL) {
+                AsyncImage(url: url) { phase in
+                    switch phase {
+                    case .empty:
+                        placeholderImage
+                    case .success(let image):
+                        image
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                    case .failure:
+                        placeholderImage
+                    @unknown default:
+                        placeholderImage
+                    }
+                }
+            } else {
+                placeholderImage
+            }
+        }
+        .frame(height: 300)
+        .clipped()
+        .cornerRadius(16, corners: [.topLeft, .topRight])
+    }
+
+    private var placeholderImage: some View {
         Rectangle()
             .fill(
                 LinearGradient(
@@ -220,33 +250,27 @@ struct ProfileCard: View {
                     endPoint: .bottomTrailing
                 )
             )
-            .frame(height: 300)
             .overlay(
-                // Placeholder for actual image
-                Image(systemName: "person.crop.circle.fill")
-                    .font(.system(size: 80))
+                Text(user.gamerTag.isEmpty ? user.fullName.prefix(1).uppercased() : user.gamerTag.prefix(1).uppercased())
+                    .font(.system(size: 80, weight: .bold))
                     .foregroundColor(.white.opacity(0.7))
             )
-            .cornerRadius(16, corners: [.topLeft, .topRight])
     }
 
     private var tags: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 8) {
-                if let height = profile.heightFormatted {
-                    SearchTagView(text: height, icon: "ruler")
+                // Platforms
+                ForEach(user.platforms.prefix(2), id: \.self) { platform in
+                    SearchTagView(text: platform, icon: "gamecontroller")
                 }
 
-                if let education = profile.education {
-                    SearchTagView(text: education.displayName, icon: education.icon)
-                }
+                // Play style
+                SearchTagView(text: user.playStyle, icon: "flame")
 
-                if let occupation = profile.occupation {
-                    SearchTagView(text: occupation, icon: "briefcase")
-                }
-
-                if let goal = profile.relationshipGoal {
-                    SearchTagView(text: goal.displayName, icon: goal.icon)
+                // Voice chat preference
+                if !user.voiceChatPreference.isEmpty && user.voiceChatPreference != VoiceChatPreference.noPreference.rawValue {
+                    SearchTagView(text: user.voiceChatPreference, icon: "mic")
                 }
             }
         }
