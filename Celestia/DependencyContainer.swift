@@ -181,9 +181,7 @@ class DependencyContainer: ObservableObject {
 
 /// Environment key for dependency injection in SwiftUI
 struct DependencyContainerKey: EnvironmentKey {
-    // Use nonisolated(unsafe) to satisfy EnvironmentKey protocol requirement
-    // Safe because DependencyContainer.shared is only accessed on MainActor in practice
-    nonisolated(unsafe) static let defaultValue: DependencyContainer = DependencyContainer.shared
+    @MainActor static let defaultValue: DependencyContainer = DependencyContainer.shared
 }
 
 extension EnvironmentValues {
