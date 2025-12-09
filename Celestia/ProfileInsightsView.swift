@@ -1056,7 +1056,8 @@ struct ProfileInsightsView: View {
                     insights.likesReceived = accurateStats.likesReceived
                     insights.profileViews = accurateStats.profileViews
                 } else {
-                    insights.matchCount = authService.currentUser?.matchCount ?? 0
+                    // matchCount comes from ProfileStatsService, not directly from User
+                    insights.matchCount = 0
                 }
 
                 // Mock data for features not yet tracked (will be implemented later)
@@ -1087,18 +1088,18 @@ struct ProfileInsightsView: View {
                         insights.matchCount = accurateStats.matchCount
                     }
                 } catch {
-                    Logger.shared.error("Failed to load accurate stats for insights, using user stored values", category: .general, error: error)
+                    Logger.shared.error("Failed to load accurate stats for insights, using defaults", category: .general, error: error)
                     await MainActor.run {
                         insights.profileViews = user.profileViews
-                        insights.likesReceived = user.likesReceived
-                        insights.matchCount = user.matchCount
+                        insights.likesReceived = 0
+                        insights.matchCount = 0
                     }
                 }
             }
         }
         insights.viewsThisWeek = Int.random(in: 15...50)
         insights.viewsLastWeek = Int.random(in: 10...40)
-        insights.swipesReceived = user.likesReceived + Int.random(in: 10...30)
+        insights.swipesReceived = insights.likesReceived + Int.random(in: 10...30)
         insights.passesReceived = insights.swipesReceived - insights.likesReceived
 
         if insights.swipesReceived > 0 {
@@ -1138,11 +1139,11 @@ struct ProfileInsightsView: View {
         // Prompts (max 15 points) - NEW!
         score += user.prompts.count * 5
 
-        // Interests (max 10 points)
-        score += min(user.interests.count * 2, 10)
+        // Favorite Games (max 10 points)
+        score += min(user.favoriteGames.count * 2, 10)
 
-        // Languages (max 5 points)
-        score += min(user.languages.count * 2, 5)
+        // Game Genres (max 5 points)
+        score += min(user.gameGenres.count, 5)
 
         // Verification (15 points)
         if user.isVerified {
@@ -1193,11 +1194,11 @@ struct ProfileInsightsView: View {
             ))
         }
 
-        if user.interests.count < 5 {
+        if user.favoriteGames.count < 3 {
             suggestions.append(ProfileSuggestion(
                 id: UUID().uuidString,
-                title: "Add More Interests",
-                description: "Add at least 5 interests to help find better matches with shared passions.",
+                title: "Add More Games",
+                description: "Add at least 3 favorite games to help find gaming teammates.",
                 priority: .medium,
                 category: .interests,
                 actionType: .addInterests
