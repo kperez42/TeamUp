@@ -62,115 +62,126 @@ struct FeedDiscoverView: View {
 
     var body: some View {
         NavigationStack {
-            mainContent
-                .navigationTitle("Discover")
-                .navigationBarTitleDisplayMode(.inline)
-                .toolbar {
-                    ToolbarItem(placement: .navigationBarTrailing) {
-                        Button {
-                            showFilters = true
-                        } label: {
-                            ZStack(alignment: .topTrailing) {
-                                Image(systemName: "slider.horizontal.3")
-                                    .font(.title3)
-                                    .foregroundColor(.purple)
-
-                                if filters.hasActiveFilters {
-                                    Circle()
-                                        .fill(Color.red)
-                                        .frame(width: 8, height: 8)
-                                        .offset(x: 2, y: -2)
-                                }
-                            }
-                        }
-                        .padding(.trailing, 4)
-                    }
-                }
-                .sheet(isPresented: $showFilters) {
-                    DiscoverFiltersView()
-                        .environmentObject(authService)
-                }
-                .sheet(item: $selectedUserForDetail) { user in
-                    UserDetailView(
-                        user: user,
-                        initialIsLiked: likedUsers.contains(user.effectiveId ?? ""),
-                        onLikeChanged: { isLiked in
-                            // Sync like state with feed cards
-                            if let userId = user.effectiveId {
-                                if isLiked {
-                                    likedUsers.insert(userId)
-                                } else {
-                                    likedUsers.remove(userId)
-                                }
-                            }
-                        }
-                    )
+            navigationContent
+        }
+        .sheet(isPresented: $showFilters) {
+            DiscoverFiltersView()
+                .environmentObject(authService)
+        }
+        .sheet(item: $selectedUserForDetail) { user in
+            userDetailSheet(for: user)
+        }
+        .sheet(item: $selectedUserForPhotos) { user in
+            PhotoGalleryView(user: user)
+        }
+        .sheet(isPresented: $showOwnProfileDetail) {
+            ownProfileSheet
+        }
+        .sheet(isPresented: $showEditProfile) {
+            EditProfileView()
+                .environmentObject(authService)
+        }
+        .sheet(item: $chatPresentation) { presentation in
+            NavigationStack {
+                ChatView(match: presentation.match, otherUser: presentation.user)
                     .environmentObject(authService)
-                }
-                .sheet(item: $selectedUserForPhotos) { user in
-                    PhotoGalleryView(user: user)
-                }
-                .onAppear {
-                    Logger.shared.debug("FeedDiscoverView appeared - users.count: \(users.count), currentUser.lookingFor: \(authService.currentUser?.lookingFor ?? "nil")", category: .general)
+            }
+        }
+        .sheet(isPresented: $showPremiumUpgrade) {
+            PremiumUpgradeView(contextMessage: upgradeContextMessage)
+                .environmentObject(authService)
+        }
+    }
 
-                    // BUGFIX: Always sync favorites when view appears
-                    // This ensures save state is correct after navigating from other tabs
-                    syncFavorites()
-                    loadLikedUsers()
+    // MARK: - Navigation Content
 
-                    if users.isEmpty {
-                        Task {
-                            await loadUsers()
-                            await savedProfilesViewModel.loadSavedProfiles()
-                            syncFavorites()
-                        }
+    private var navigationContent: some View {
+        mainContent
+            .navigationTitle("Discover")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    filterButton
+                }
+            }
+            .onAppear(perform: handleOnAppear)
+            .onChange(of: filters.hasActiveFilters) { _ in
+                Task { await reloadWithFilters() }
+            }
+            .onChange(of: authService.currentUser?.lookingFor) { _, _ in
+                Task { await reloadWithFilters() }
+            }
+            .onChange(of: savedProfilesViewModel.savedProfiles) { oldProfiles, newProfiles in
+                let oldIds = Set(oldProfiles.compactMap { $0.user.effectiveId })
+                let newIds = Set(newProfiles.compactMap { $0.user.effectiveId })
+                if oldIds != newIds { syncFavorites() }
+            }
+    }
+
+    private var filterButton: some View {
+        Button {
+            showFilters = true
+        } label: {
+            ZStack(alignment: .topTrailing) {
+                Image(systemName: "slider.horizontal.3")
+                    .font(.title3)
+                    .foregroundColor(.purple)
+
+                if filters.hasActiveFilters {
+                    Circle()
+                        .fill(Color.red)
+                        .frame(width: 8, height: 8)
+                        .offset(x: 2, y: -2)
+                }
+            }
+        }
+        .padding(.trailing, 4)
+    }
+
+    private func handleOnAppear() {
+        Logger.shared.debug("FeedDiscoverView appeared - users.count: \(users.count)", category: .general)
+        syncFavorites()
+        loadLikedUsers()
+
+        if users.isEmpty {
+            Task {
+                await loadUsers()
+                await savedProfilesViewModel.loadSavedProfiles()
+                syncFavorites()
+            }
+        }
+    }
+
+    @ViewBuilder
+    private func userDetailSheet(for user: User) -> some View {
+        let userId = user.effectiveId ?? ""
+        let isLiked = likedUsers.contains(userId)
+
+        UserDetailView(
+            user: user,
+            initialIsLiked: isLiked,
+            onLikeChanged: { liked in
+                if let id = user.effectiveId {
+                    if liked {
+                        likedUsers.insert(id)
+                    } else {
+                        likedUsers.remove(id)
                     }
                 }
-                .onChange(of: filters.hasActiveFilters) { _ in
-                    Logger.shared.debug("Filters changed - reloading users", category: .general)
-                    Task {
-                        await reloadWithFilters()
-                    }
+            }
+        )
+        .environmentObject(authService)
+    }
+
+    @ViewBuilder
+    private var ownProfileSheet: some View {
+        if let currentUser = authService.currentUser {
+            CurrentUserDetailView(
+                user: currentUser,
+                onEditProfile: {
+                    showEditProfile = true
                 }
-                .onChange(of: authService.currentUser?.lookingFor) { oldValue, newValue in
-                    Logger.shared.debug("lookingFor changed from \(oldValue ?? "nil") to \(newValue ?? "nil") - reloading users", category: .general)
-                    Task {
-                        await reloadWithFilters()
-                    }
-                }
-                .onChange(of: savedProfilesViewModel.savedProfiles) { oldProfiles, newProfiles in
-                    // PERFORMANCE: Only sync if the actual user IDs changed
-                    // This prevents unnecessary re-renders when only metadata changes
-                    let oldIds = Set(oldProfiles.compactMap { $0.user.effectiveId })
-                    let newIds = Set(newProfiles.compactMap { $0.user.effectiveId })
-                    if oldIds != newIds {
-                        syncFavorites()
-                    }
-                }
-                .sheet(isPresented: $showOwnProfileDetail) {
-                    if let currentUser = authService.currentUser {
-                        CurrentUserDetailView(
-                            user: currentUser,
-                            onEditProfile: {
-                                showEditProfile = true
-                            }
-                        )
-                    }
-                }
-                .sheet(isPresented: $showEditProfile) {
-                    EditProfileView()
-                        .environmentObject(authService)
-                }
-                .sheet(item: $chatPresentation) { presentation in
-                    NavigationStack {
-                        ChatView(match: presentation.match, otherUser: presentation.user)
-                            .environmentObject(authService)
-                    }
-                }
-                .sheet(isPresented: $showPremiumUpgrade) {
-                    PremiumUpgradeView(contextMessage: upgradeContextMessage)
-                        .environmentObject(authService)
-                }
+            )
         }
     }
 
@@ -217,44 +228,8 @@ struct FeedDiscoverView: View {
                     .animation(.quick, value: authService.currentUser)
                 }
 
-                ForEach(Array(displayedUsers.enumerated()), id: \.element.effectiveId) { index, user in
-                    ProfileFeedCard(
-                        user: user,
-                        currentUser: authService.currentUser,  // NEW: Pass current user for shared interests
-                        initialIsFavorited: favorites.contains(user.effectiveId ?? ""),
-                        initialIsLiked: likedUsers.contains(user.effectiveId ?? ""),
-                        onLike: { completion in
-                            handleLike(user: user, completion: completion)
-                        },
-                        onUnlike: { completion in
-                            handleUnlike(user: user, completion: completion)
-                        },
-                        onFavorite: {
-                            handleFavorite(user: user)
-                        },
-                        onMessage: {
-                            handleMessage(user: user)
-                        },
-                        onViewPhotos: {
-                            selectedUserForPhotos = user
-                        },
-                        onViewProfile: {
-                            HapticManager.shared.impact(.light)
-                            selectedUserForDetail = user
-                        }
-                    )
-                    .onAppear {
-                        // PERFORMANCE: Prefetch images as cards appear in viewport
-                        ImageCache.shared.prefetchUserPhotosHighPriority(user: user)
-
-                        if index == displayedUsers.count - preloadThreshold {
-                            loadMoreUsers()
-                        }
-                    }
-                    // Butter-smooth card appearance
-                    .transition(.opacity)
-                    .animation(.butterSmooth, value: displayedUsers.count)
-                    .smoothScrollOptimized()
+                ForEach(Array(displayedUsers.enumerated()), id: \.offset) { index, user in
+                    profileCard(for: user, at: index)
                 }
 
                 // Loading indicator with instant appearance
@@ -378,6 +353,50 @@ struct FeedDiscoverView: View {
                 Logger.shared.error("Error loading liked users", category: .matching, error: error)
             }
         }
+    }
+
+    // MARK: - Profile Card Builder
+
+    @ViewBuilder
+    private func profileCard(for user: User, at index: Int) -> some View {
+        let userId = user.effectiveId ?? ""
+        let isFavorited = favorites.contains(userId)
+        let isLiked = likedUsers.contains(userId)
+
+        ProfileFeedCard(
+            user: user,
+            currentUser: authService.currentUser,
+            initialIsFavorited: isFavorited,
+            initialIsLiked: isLiked,
+            onLike: { completion in
+                handleLike(user: user, completion: completion)
+            },
+            onUnlike: { completion in
+                handleUnlike(user: user, completion: completion)
+            },
+            onFavorite: {
+                handleFavorite(user: user)
+            },
+            onMessage: {
+                handleMessage(user: user)
+            },
+            onViewPhotos: {
+                selectedUserForPhotos = user
+            },
+            onViewProfile: {
+                HapticManager.shared.impact(.light)
+                selectedUserForDetail = user
+            }
+        )
+        .onAppear {
+            ImageCache.shared.prefetchUserPhotosHighPriority(user: user)
+            if index == displayedUsers.count - preloadThreshold {
+                loadMoreUsers()
+            }
+        }
+        .transition(.opacity)
+        .animation(.butterSmooth, value: displayedUsers.count)
+        .smoothScrollOptimized()
     }
 
     // MARK: - Initial Loading View
