@@ -257,7 +257,7 @@ struct ManualIDVerificationView: View {
                 // Step number
                 ZStack {
                     Circle()
-                        .fill(viewModel.selectedIDType != nil ? Color.green : Color.purple)
+                        .fill(viewModel.selectedIDType != nil ? Color.green : Color.green)
                         .frame(width: 28, height: 28)
 
                     if viewModel.selectedIDType != nil {
@@ -317,8 +317,8 @@ struct ManualIDVerificationView: View {
                         .background(
                             RoundedRectangle(cornerRadius: 10)
                                 .fill(viewModel.selectedIDType == idType ?
-                                      LinearGradient(colors: [.purple, .pink], startPoint: .leading, endPoint: .trailing) :
-                                      LinearGradient(colors: [Color.purple.opacity(0.08), Color.purple.opacity(0.08)], startPoint: .leading, endPoint: .trailing))
+                                      LinearGradient(colors: [.green, .cyan], startPoint: .leading, endPoint: .trailing) :
+                                      LinearGradient(colors: [Color.green.opacity(0.08), Color.green.opacity(0.08)], startPoint: .leading, endPoint: .trailing))
                         )
                     }
                 }
@@ -387,7 +387,7 @@ struct ManualIDVerificationView: View {
                 // Step number
                 ZStack {
                     Circle()
-                        .fill(image != nil ? Color.green : (isActive ? Color.purple : Color.gray.opacity(0.3)))
+                        .fill(image != nil ? Color.green : (isActive ? Color.green : Color.gray.opacity(0.3)))
                         .frame(width: 28, height: 28)
 
                     if image != nil {
@@ -468,15 +468,15 @@ struct ManualIDVerificationView: View {
                     VStack(spacing: 12) {
                         Image(systemName: "camera.fill")
                             .font(.system(size: 32))
-                            .foregroundColor(.purple)
+                            .foregroundColor(.green)
 
                         Text("Tap to add photo")
                             .font(.subheadline)
-                            .foregroundColor(.purple)
+                            .foregroundColor(.green)
                     }
                     .frame(maxWidth: .infinity)
                     .frame(height: 140)
-                    .background(Color.purple.opacity(0.08))
+                    .background(Color.green.opacity(0.08))
                 }
             } else {
                 // Inactive state
@@ -549,13 +549,13 @@ struct ManualIDVerificationView: View {
             .padding(.vertical, 16)
             .background(
                 LinearGradient(
-                    colors: [.purple, .pink],
+                    colors: [.green, .cyan],
                     startPoint: .leading,
                     endPoint: .trailing
                 )
             )
             .cornerRadius(14)
-            .shadow(color: .purple.opacity(0.3), radius: 8, y: 4)
+            .shadow(color: .green.opacity(0.3), radius: 8, y: 4)
         }
         .disabled(viewModel.isSubmitting)
         .scaleEffect(viewModel.isSubmitting ? 0.98 : 1.0)
@@ -711,7 +711,7 @@ struct ManualIDVerificationView: View {
                     .padding(.vertical, 16)
                     .background(
                         LinearGradient(
-                            colors: [.purple, .pink],
+                            colors: [.green, .cyan],
                             startPoint: .leading,
                             endPoint: .trailing
                         )
