@@ -435,7 +435,7 @@ class AuthService: ObservableObject, AuthServiceProtocol {
             let actionCodeSettings = ActionCodeSettings()
             actionCodeSettings.handleCodeInApp = false
             // Set the URL to redirect to after email verification
-            actionCodeSettings.url = URL(string: "https://celestia-40ce6.firebaseapp.com")
+            actionCodeSettings.url = URL(string: "https://teamup-ea0da.firebaseapp.com")
 
             do {
                 try await result.user.sendEmailVerification(with: actionCodeSettings)
@@ -1477,7 +1477,7 @@ class AuthService: ObservableObject, AuthServiceProtocol {
         let actionCodeSettings = ActionCodeSettings()
         actionCodeSettings.handleCodeInApp = false
         // Set the URL to redirect to after email verification
-        actionCodeSettings.url = URL(string: "https://celestia-40ce6.firebaseapp.com")
+        actionCodeSettings.url = URL(string: "https://teamup-ea0da.firebaseapp.com")
 
         do {
             try await user.sendEmailVerification(with: actionCodeSettings)
