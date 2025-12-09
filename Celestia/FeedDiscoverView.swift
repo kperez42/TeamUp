@@ -155,14 +155,14 @@ struct FeedDiscoverView: View {
     @ViewBuilder
     private func userDetailSheet(for user: User) -> some View {
         let userId = user.effectiveId ?? ""
-        let isLiked = likedUsers.contains(userId)
+        let isRequested = likedUsers.contains(userId)
 
         UserDetailView(
             user: user,
-            initialIsLiked: isLiked,
-            onLikeChanged: { liked in
+            initialIsRequested: isRequested,
+            onRequestChanged: { requested in
                 if let id = user.effectiveId {
-                    if liked {
+                    if requested {
                         likedUsers.insert(id)
                     } else {
                         likedUsers.remove(id)
