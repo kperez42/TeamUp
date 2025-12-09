@@ -54,7 +54,7 @@ class EditProfileViewModel: ObservableObject {
 
     let platformOptions = ["PC", "PlayStation", "Xbox", "Nintendo Switch", "Mobile", "Steam Deck"]
     let genreOptions = ["FPS", "RPG", "MMORPG", "Battle Royale", "Strategy", "Sports", "Racing", "Fighting", "Puzzle", "Simulation", "Horror", "Adventure", "Indie"]
-    let playStyleOptions = [PlayStyle.casual.rawValue, PlayStyle.competitive.rawValue, PlayStyle.both.rawValue]
+    let playStyleOptions = [PlayStyle.casual.rawValue, PlayStyle.competitive.rawValue, PlayStyle.social.rawValue]
     let skillLevelOptions = [SkillLevel.beginner.rawValue, SkillLevel.intermediate.rawValue, SkillLevel.advanced.rawValue, SkillLevel.professional.rawValue]
     let voiceChatOptions = [VoiceChatPreference.always.rawValue, VoiceChatPreference.preferred.rawValue, VoiceChatPreference.sometimes.rawValue, VoiceChatPreference.textOnly.rawValue, VoiceChatPreference.noPreference.rawValue]
     let lookingForOptions = [LookingForType.rankedTeammates.rawValue, LookingForType.casualCoOp.rawValue, LookingForType.boardGameGroup.rawValue, LookingForType.competitiveTeam.rawValue, LookingForType.streamingPartners.rawValue, LookingForType.anyGamers.rawValue]

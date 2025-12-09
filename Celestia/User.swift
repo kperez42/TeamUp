@@ -179,6 +179,24 @@ struct FavoriteGame: Codable, Equatable, Identifiable {
         self.rank = rank
         self.mainCharacter = mainCharacter
     }
+
+    func toDictionary() -> [String: Any] {
+        var dict: [String: Any] = [
+            "id": id,
+            "title": title,
+            "platform": platform
+        ]
+        if let hoursPlayed = hoursPlayed {
+            dict["hoursPlayed"] = hoursPlayed
+        }
+        if let rank = rank {
+            dict["rank"] = rank
+        }
+        if let mainCharacter = mainCharacter {
+            dict["mainCharacter"] = mainCharacter
+        }
+        return dict
+    }
 }
 
 // MARK: - Gaming Stats
