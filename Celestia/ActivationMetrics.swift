@@ -208,13 +208,13 @@ class ActivationMetrics: ObservableObject {
 
         let wasIncomplete = metrics.profileCompletionPercentage < 70
 
-        // Update profile metrics
+        // Update profile metrics (gaming-focused)
         metrics.hasProfilePhoto = !user.profileImageURL.isEmpty
         metrics.profilePhotoCount = user.photos.count + (user.profileImageURL.isEmpty ? 0 : 1)
         metrics.hasBio = !user.bio.isEmpty
         metrics.bioLength = user.bio.count
-        metrics.hasInterests = !user.interests.isEmpty
-        metrics.interestCount = user.interests.count
+        metrics.hasInterests = !user.favoriteGames.isEmpty || !user.gameGenres.isEmpty
+        metrics.interestCount = user.favoriteGames.count + user.gameGenres.count
         metrics.hasLocation = !user.location.isEmpty
         metrics.hasVerifiedProfile = user.isVerified
 

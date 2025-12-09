@@ -230,10 +230,10 @@ struct AdminUserInvestigationView: View {
                     }
 
                     HStack(spacing: 6) {
-                        Image(systemName: "calendar")
+                        Image(systemName: "gamecontroller")
                             .font(.caption)
                             .foregroundColor(.secondary)
-                        Text("\(user.age) years old")
+                        Text(user.gamerTag.isEmpty ? "No gamer tag" : user.gamerTag)
                             .font(.subheadline)
                             .foregroundColor(.secondary)
                     }
@@ -501,9 +501,9 @@ struct AdminUserInvestigationView: View {
                 )
 
                 EnhancedStatusRow(
-                    icon: "person.fill",
-                    label: "Gender",
-                    value: user.gender.isEmpty ? "Not specified" : user.gender,
+                    icon: "gamecontroller.fill",
+                    label: "Platforms",
+                    value: user.platforms.isEmpty ? "Not specified" : user.platforms.joined(separator: ", "),
                     color: .purple
                 )
             }

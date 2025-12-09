@@ -15,32 +15,27 @@ class EditProfileViewModel: ObservableObject {
 
     // Basic Info
     @Published var fullName: String
-    @Published var age: String
+    @Published var gamerTag: String
     @Published var bio: String
     @Published var location: String
     @Published var country: String
-    @Published var gender: String
-    @Published var lookingFor: String
+
+    // Gaming-specific
+    @Published var platforms: [String]
+    @Published var favoriteGames: [FavoriteGame]
+    @Published var gameGenres: [String]
+    @Published var playStyle: String
+    @Published var skillLevel: String
+    @Published var voiceChatPreference: String
+    @Published var lookingFor: [String]
 
     // Collections
-    @Published var languages: [String]
-    @Published var interests: [String]
     @Published var prompts: [ProfilePrompt]
     @Published var photos: [String]
 
-    // Advanced Profile Fields
-    @Published var height: Int?
-    @Published var religion: String?
-    @Published var relationshipGoal: String?
-    @Published var smoking: String?
-    @Published var drinking: String?
-    @Published var pets: String?
-    @Published var exercise: String?
-    @Published var diet: String?
-
     // UI State
-    @Published var newLanguage = ""
-    @Published var newInterest = ""
+    @Published var newPlatform = ""
+    @Published var newGenre = ""
     @Published var isLoading = false
     @Published var showImagePicker = false
     @Published var selectedImage: PhotosPickerItem?
@@ -48,8 +43,8 @@ class EditProfileViewModel: ObservableObject {
     @Published var showSuccessAlert = false
     @Published var showErrorAlert = false
     @Published var errorMessage = ""
-    @Published var showLanguagePicker = false
-    @Published var showInterestPicker = false
+    @Published var showPlatformPicker = false
+    @Published var showGenrePicker = false
     @Published var showPromptsEditor = false
     @Published var selectedPhotoItems: [PhotosPickerItem] = []
     @Published var isUploadingPhotos = false
@@ -57,24 +52,12 @@ class EditProfileViewModel: ObservableObject {
 
     // MARK: - Constants
 
-    let genderOptions = ["Male", "Female", "Non-binary", "Other"]
-    let lookingForOptions = ["Men", "Women", "Everyone"]
-    let religionOptions = ["Prefer not to say", "Agnostic", "Atheist", "Buddhist", "Catholic", "Christian", "Hindu", "Jewish", "Muslim", "Spiritual", "Other"]
-    let relationshipGoalOptions = ["Prefer not to say", "Casual dating", "Relationship", "Long-term partner", "Marriage", "Open to anything"]
-    let smokingOptions = ["Prefer not to say", "Non-smoker", "Social smoker", "Regular smoker", "Trying to quit"]
-    let drinkingOptions = ["Prefer not to say", "Non-drinker", "Social drinker", "Regular drinker"]
-    let petsOptions = ["Prefer not to say", "No pets", "Dog", "Cat", "Dog & Cat", "Other pets"]
-    let exerciseOptions = ["Prefer not to say", "Never", "Sometimes", "Often", "Daily"]
-    let dietOptions = ["Prefer not to say", "Anything", "Vegetarian", "Vegan", "Pescatarian", "Halal", "Kosher", "Other"]
-    let predefinedLanguages = [
-        "English", "Spanish", "French", "German", "Italian", "Portuguese",
-        "Russian", "Chinese", "Japanese", "Korean", "Arabic", "Hindi"
-    ]
-    let predefinedInterests = [
-        "Travel", "Music", "Movies", "Sports", "Food", "Art",
-        "Photography", "Reading", "Gaming", "Fitness", "Cooking",
-        "Dancing", "Nature", "Technology", "Fashion", "Yoga"
-    ]
+    let platformOptions = ["PC", "PlayStation", "Xbox", "Nintendo Switch", "Mobile", "Steam Deck"]
+    let genreOptions = ["FPS", "RPG", "MMORPG", "Battle Royale", "Strategy", "Sports", "Racing", "Fighting", "Puzzle", "Simulation", "Horror", "Adventure", "Indie"]
+    let playStyleOptions = [PlayStyle.casual.rawValue, PlayStyle.competitive.rawValue, PlayStyle.both.rawValue]
+    let skillLevelOptions = [SkillLevel.beginner.rawValue, SkillLevel.intermediate.rawValue, SkillLevel.advanced.rawValue, SkillLevel.professional.rawValue]
+    let voiceChatOptions = [VoiceChatPreference.always.rawValue, VoiceChatPreference.preferred.rawValue, VoiceChatPreference.sometimes.rawValue, VoiceChatPreference.textOnly.rawValue, VoiceChatPreference.noPreference.rawValue]
+    let lookingForOptions = [LookingForType.rankedTeammates.rawValue, LookingForType.casualCoOp.rawValue, LookingForType.boardGameGroup.rawValue, LookingForType.competitiveTeam.rawValue, LookingForType.streamingPartners.rawValue, LookingForType.anyGamers.rawValue]
 
     // MARK: - Initialization
 
@@ -83,36 +66,30 @@ class EditProfileViewModel: ObservableObject {
 
         // Initialize basic info
         self.fullName = currentUser?.fullName ?? ""
-        self.age = "\(currentUser?.age ?? 18)"
+        self.gamerTag = currentUser?.gamerTag ?? ""
         self.bio = currentUser?.bio ?? ""
         self.location = currentUser?.location ?? ""
         self.country = currentUser?.country ?? ""
-        self.gender = currentUser?.gender ?? "Other"
-        self.lookingFor = currentUser?.lookingFor ?? "Everyone"
+
+        // Initialize gaming fields
+        self.platforms = currentUser?.platforms ?? []
+        self.favoriteGames = currentUser?.favoriteGames ?? []
+        self.gameGenres = currentUser?.gameGenres ?? []
+        self.playStyle = currentUser?.playStyle ?? PlayStyle.casual.rawValue
+        self.skillLevel = currentUser?.skillLevel ?? SkillLevel.beginner.rawValue
+        self.voiceChatPreference = currentUser?.voiceChatPreference ?? VoiceChatPreference.noPreference.rawValue
+        self.lookingFor = currentUser?.lookingFor ?? [LookingForType.anyGamers.rawValue]
 
         // Initialize collections
-        self.languages = currentUser?.languages ?? []
-        self.interests = currentUser?.interests ?? []
         self.prompts = currentUser?.prompts ?? []
         self.photos = currentUser?.photos ?? []
-
-        // Initialize advanced fields
-        self.height = currentUser?.height
-        self.religion = currentUser?.religion
-        self.relationshipGoal = currentUser?.relationshipGoal
-        self.smoking = currentUser?.smoking
-        self.drinking = currentUser?.drinking
-        self.pets = currentUser?.pets
-        self.exercise = currentUser?.exercise
-        self.diet = currentUser?.diet
     }
 
     // MARK: - Computed Properties
 
     var isFormValid: Bool {
-        // CODE QUALITY FIX: Removed force unwrapping - use optional chaining
         !fullName.isEmpty &&
-        (Int(age) ?? 0) >= 18 &&
+        !gamerTag.isEmpty &&
         !location.isEmpty &&
         !country.isEmpty
     }
@@ -122,38 +99,38 @@ class EditProfileViewModel: ObservableObject {
         let total: Double = 7
 
         if !fullName.isEmpty { completed += 1 }
-        if (Int(age) ?? 0) >= 18 { completed += 1 }
+        if !gamerTag.isEmpty { completed += 1 }
         if !bio.isEmpty { completed += 1 }
-        if !interests.isEmpty { completed += 1 }
-        if !languages.isEmpty { completed += 1 }
+        if !platforms.isEmpty { completed += 1 }
+        if !favoriteGames.isEmpty { completed += 1 }
         if !photos.isEmpty { completed += 1 }
-        if !prompts.isEmpty { completed += 1 }
+        if !gameGenres.isEmpty { completed += 1 }
 
         return completed / total
     }
 
     // MARK: - Actions
 
-    func addLanguage(_ language: String) {
-        guard !language.isEmpty, !languages.contains(language) else { return }
-        languages.append(language)
-        newLanguage = ""
-        showLanguagePicker = false
+    func addPlatform(_ platform: String) {
+        guard !platform.isEmpty, !platforms.contains(platform) else { return }
+        platforms.append(platform)
+        newPlatform = ""
+        showPlatformPicker = false
     }
 
-    func removeLanguage(_ language: String) {
-        languages.removeAll { $0 == language }
+    func removePlatform(_ platform: String) {
+        platforms.removeAll { $0 == platform }
     }
 
-    func addInterest(_ interest: String) {
-        guard !interest.isEmpty, !interests.contains(interest), interests.count < 10 else { return }
-        interests.append(interest)
-        newInterest = ""
-        showInterestPicker = false
+    func addGenre(_ genre: String) {
+        guard !genre.isEmpty, !gameGenres.contains(genre), gameGenres.count < 10 else { return }
+        gameGenres.append(genre)
+        newGenre = ""
+        showGenrePicker = false
     }
 
-    func removeInterest(_ interest: String) {
-        interests.removeAll { $0 == interest }
+    func removeGenre(_ genre: String) {
+        gameGenres.removeAll { $0 == genre }
     }
 
     func saveProfile(authService: AuthService, completion: @escaping () -> Void) async {
@@ -209,14 +186,17 @@ class EditProfileViewModel: ObservableObject {
 
         var updateData: [String: Any] = [
             "fullName": fullName,
-            "age": Int(age) ?? 18,
+            "gamerTag": gamerTag,
             "bio": bio,
             "location": location,
             "country": country,
-            "gender": gender,
+            "platforms": platforms,
+            "favoriteGames": favoriteGames.map { $0.toDictionary() },
+            "gameGenres": gameGenres,
+            "playStyle": playStyle,
+            "skillLevel": skillLevel,
+            "voiceChatPreference": voiceChatPreference,
             "lookingFor": lookingFor,
-            "languages": languages,
-            "interests": interests,
             "prompts": prompts.map { $0.toDictionary() },
             "photos": photos
         ]
@@ -224,30 +204,6 @@ class EditProfileViewModel: ObservableObject {
         // Add optional fields if present
         if let profileImageURL = profileImageURL {
             updateData["profileImageURL"] = profileImageURL
-        }
-        if let height = height {
-            updateData["height"] = height
-        }
-        if let religion = religion {
-            updateData["religion"] = religion
-        }
-        if let relationshipGoal = relationshipGoal {
-            updateData["relationshipGoal"] = relationshipGoal
-        }
-        if let smoking = smoking {
-            updateData["smoking"] = smoking
-        }
-        if let drinking = drinking {
-            updateData["drinking"] = drinking
-        }
-        if let pets = pets {
-            updateData["pets"] = pets
-        }
-        if let exercise = exercise {
-            updateData["exercise"] = exercise
-        }
-        if let diet = diet {
-            updateData["diet"] = diet
         }
 
         do {
