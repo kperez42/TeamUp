@@ -1,6 +1,6 @@
 //
 //  SafetyPlaceholderViews.swift
-//  Celestia
+//  TeamUp
 //
 //  Placeholder views for safety features not yet implemented
 //  NOTE: Phone verification is now functional - see PhoneVerificationView.swift

@@ -1,6 +1,6 @@
 //
 //  MessageService.swift
-//  Celestia
+//  TeamUp
 //
 //  Service for message-related operations
 //

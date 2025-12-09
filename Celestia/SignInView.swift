@@ -1,6 +1,6 @@
 //
 //  SignInView.swift
-//  Celestia
+//  TeamUp
 //
 //  Sign in screen
 //

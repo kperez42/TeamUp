@@ -1,6 +1,6 @@
 //
 //  PrivacySettingsView.swift
-//  Celestia
+//  TeamUp
 //
 //  Privacy controls for user safety
 //

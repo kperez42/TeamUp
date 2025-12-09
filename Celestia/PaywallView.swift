@@ -1,6 +1,6 @@
 //
 //  PaywallView.swift
-//  Celestia
+//  TeamUp
 //
 //  Subscription paywall with tiered pricing
 //

@@ -1,6 +1,6 @@
 //
 //  ReferralABTestManager.swift
-//  Celestia
+//  TeamUp
 //
 //  A/B Testing system for referral program optimization
 //  Features: Experiment management, variant assignment, statistical analysis

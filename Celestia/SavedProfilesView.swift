@@ -1,6 +1,6 @@
 //
 //  SavedProfilesView.swift
-//  Celestia
+//  TeamUp
 //
 //  Shows bookmarked/saved profiles for later viewing
 //

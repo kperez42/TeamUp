@@ -1,6 +1,6 @@
 //
 //  BackgroundCheckManager.swift
-//  Celestia
+//  TeamUp
 //
 //  Background check integration with third-party services (Checkr, Onfido)
 //  Premium feature for enhanced safety verification

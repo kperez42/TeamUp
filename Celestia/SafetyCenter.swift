@@ -1,6 +1,6 @@
 //
 //  SafetyCenter.swift
-//  Celestia
+//  TeamUp
 //
 //  Safety features: reporting and blocking
 //

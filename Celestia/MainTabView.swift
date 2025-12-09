@@ -1,6 +1,6 @@
 //
 //  MainTabView.swift
-//  Celestia
+//  TeamUp
 //
 //  ELITE TAB BAR - Smooth Navigation Experience
 //

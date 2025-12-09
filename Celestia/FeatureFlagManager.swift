@@ -1,6 +1,6 @@
 //
 //  FeatureFlagManager.swift
-//  Celestia
+//  TeamUp
 //
 //  Feature flags system for A/B testing and gradual rollouts
 //  Supports remote configuration via Firebase Remote Config

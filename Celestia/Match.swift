@@ -1,6 +1,6 @@
 //
 //  Match.swift
-//  Celestia
+//  TeamUp
 //
 //  Match model for tracking user matches
 //

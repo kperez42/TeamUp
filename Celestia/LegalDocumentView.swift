@@ -477,7 +477,7 @@ extension LegalDocumentView {
             }
 
             LegalSection(title: "No Background Checks") {
-                Text("CELESTIA DOES NOT CONDUCT CRIMINAL BACKGROUND CHECKS OR IDENTITY VERIFICATION ON ALL USERS. We are not responsible for the conduct of any user, whether online or offline. You are solely responsible for your safety and should exercise caution when communicating with or meeting other users.")
+                Text("TEAMUP DOES NOT CONDUCT CRIMINAL BACKGROUND CHECKS OR IDENTITY VERIFICATION ON ALL USERS. We are not responsible for the conduct of any user, whether online or offline. You are solely responsible for your safety and should exercise caution when communicating with or meeting other users.")
                     .font(.caption)
             }
 
@@ -562,7 +562,7 @@ extension LegalDocumentView {
 
             LegalSection(title: "Disclaimers") {
                 VStack(alignment: .leading, spacing: 8) {
-                    Text("CELESTIA IS PROVIDED \"AS IS\" WITHOUT WARRANTIES OF ANY KIND. WE DO NOT GUARANTEE:")
+                    Text("TEAMUP IS PROVIDED \"AS IS\" WITHOUT WARRANTIES OF ANY KIND. WE DO NOT GUARANTEE:")
                         .font(.subheadline)
                         .fontWeight(.semibold)
 
@@ -574,7 +574,7 @@ extension LegalDocumentView {
             }
 
             LegalSection(title: "Limitation of Liability") {
-                Text("TO THE MAXIMUM EXTENT PERMITTED BY LAW, CELESTIA SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES ARISING FROM YOUR USE OF THE SERVICE, INCLUDING DAMAGES FOR LOSS OF PROFITS, DATA, OR OTHER INTANGIBLE LOSSES.")
+                Text("TO THE MAXIMUM EXTENT PERMITTED BY LAW, TEAMUP SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES ARISING FROM YOUR USE OF THE SERVICE, INCLUDING DAMAGES FOR LOSS OF PROFITS, DATA, OR OTHER INTANGIBLE LOSSES.")
                     .font(.caption)
             }
 
@@ -623,7 +623,7 @@ extension LegalDocumentView {
 
             LegalSection(title: "Class Action Waiver") {
                 VStack(alignment: .leading, spacing: 8) {
-                    Text("YOU AND CELESTIA AGREE THAT EACH MAY BRING CLAIMS AGAINST THE OTHER ONLY IN YOUR OR ITS INDIVIDUAL CAPACITY AND NOT AS A PLAINTIFF OR CLASS MEMBER IN ANY PURPORTED CLASS, CONSOLIDATED, OR REPRESENTATIVE ACTION.")
+                    Text("YOU AND TEAMUP AGREE THAT EACH MAY BRING CLAIMS AGAINST THE OTHER ONLY IN YOUR OR ITS INDIVIDUAL CAPACITY AND NOT AS A PLAINTIFF OR CLASS MEMBER IN ANY PURPORTED CLASS, CONSOLIDATED, OR REPRESENTATIVE ACTION.")
                         .font(.caption)
                         .fontWeight(.semibold)
 
@@ -1316,12 +1316,12 @@ extension LegalDocumentView {
             }
 
             LegalSection(title: "Disclaimer of Warranties") {
-                Text("THE APP IS PROVIDED \"AS IS\" AND \"AS AVAILABLE\" WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT. CELESTIA DOES NOT WARRANT THAT THE APP WILL BE UNINTERRUPTED, ERROR-FREE, OR FREE OF HARMFUL COMPONENTS.")
+                Text("THE APP IS PROVIDED \"AS IS\" AND \"AS AVAILABLE\" WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT. TEAMUP DOES NOT WARRANT THAT THE APP WILL BE UNINTERRUPTED, ERROR-FREE, OR FREE OF HARMFUL COMPONENTS.")
                     .font(.caption)
             }
 
             LegalSection(title: "Limitation of Liability") {
-                Text("TO THE FULLEST EXTENT PERMITTED BY LAW, CELESTIA SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES ARISING OUT OF OR RELATED TO YOUR USE OF THE APP, REGARDLESS OF WHETHER SUCH DAMAGES ARE BASED ON CONTRACT, TORT, STRICT LIABILITY, OR ANY OTHER THEORY.")
+                Text("TO THE FULLEST EXTENT PERMITTED BY LAW, TEAMUP SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES ARISING OUT OF OR RELATED TO YOUR USE OF THE APP, REGARDLESS OF WHETHER SUCH DAMAGES ARE BASED ON CONTRACT, TORT, STRICT LIABILITY, OR ANY OTHER THEORY.")
                     .font(.caption)
             }
 

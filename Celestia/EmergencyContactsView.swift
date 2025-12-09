@@ -1,6 +1,6 @@
 //
 //  EmergencyContactsView.swift
-//  Celestia
+//  TeamUp
 //
 //  Manage emergency contacts for date safety
 //

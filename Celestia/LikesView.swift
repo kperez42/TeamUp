@@ -1,6 +1,6 @@
 //
 //  LikesView.swift
-//  Celestia
+//  TeamUp
 //
 //  Likes view with three tabs: Liked Me, My Likes, Mutual Likes
 //

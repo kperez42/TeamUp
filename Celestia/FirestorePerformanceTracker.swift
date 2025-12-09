@@ -1,6 +1,6 @@
 //
 //  FirestorePerformanceTracker.swift
-//  Celestia
+//  TeamUp
 //
 //  Firestore query performance tracking
 //  Identifies slow queries and reports to backend

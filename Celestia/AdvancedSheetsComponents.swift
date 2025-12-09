@@ -1,6 +1,6 @@
 //
 //  AdvancedFiltersSheet.swift
-//  Celestia
+//  TeamUp
 //
 //  Advanced filtering options for user discovery
 //

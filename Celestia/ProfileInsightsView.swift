@@ -1,6 +1,6 @@
 //
 //  ProfileInsightsView.swift
-//  Celestia
+//  TeamUp
 //
 //  Comprehensive profile analytics and insights dashboard
 //

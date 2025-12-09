@@ -1,6 +1,6 @@
 //
 //  DateCheckInManager.swift
-//  Celestia
+//  TeamUp
 //
 //  Manages date check-in and safety features for in-person meetups
 //

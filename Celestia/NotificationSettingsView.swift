@@ -1,6 +1,6 @@
 //
 //  NotificationSettingsView.swift
-//  Celestia
+//  TeamUp
 //
 //  Notification preferences and settings
 //

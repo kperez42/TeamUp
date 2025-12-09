@@ -1,6 +1,6 @@
 //
 //  BannedAccountView.swift
-//  Celestia
+//  TeamUp
 //
 //  Shows ban feedback to users whose accounts have been permanently banned
 //

@@ -1,6 +1,6 @@
 //
 //  SafeDatingTipsView.swift
-//  Celestia
+//  TeamUp
 //
 //  Safety tips and resources for dating
 //

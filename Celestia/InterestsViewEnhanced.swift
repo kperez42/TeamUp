@@ -1,6 +1,6 @@
 //
 //  InterestsViewEnhanced.swift
-//  Celestia
+//  TeamUp
 //
 //  Enhanced version with swipe gestures, filters, batch actions, and undo
 //

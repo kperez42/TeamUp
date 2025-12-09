@@ -1,6 +1,6 @@
 //
 //  FilterPresetManager.swift
-//  Celestia
+//  TeamUp
 //
 //  Manages saved filter presets and search history
 //

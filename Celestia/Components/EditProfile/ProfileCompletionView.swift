@@ -1,6 +1,6 @@
 //
 //  ProfileCompletionView.swift
-//  Celestia
+//  TeamUp
 //
 //  Profile completion progress indicator
 //  Extracted from EditProfileView.swift

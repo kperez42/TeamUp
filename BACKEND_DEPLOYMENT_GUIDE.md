@@ -9,7 +9,7 @@
 
 ## Overview
 
-Your Celestia app has a fully implemented **Backend API client** (`BackendAPIService.swift`) but the **backend endpoints are NOT deployed**. This means:
+Your TeamUp app has a fully implemented **Backend API client** (`BackendAPIService.swift`) but the **backend endpoints are NOT deployed**. This means:
 
 - ❌ No receipt validation → Purchase fraud risk
 - ❌ No server-side content moderation → Spam/abuse risk

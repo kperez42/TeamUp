@@ -1,6 +1,6 @@
 //
 //  PhotoUploadService.swift
-//  Celestia
+//  TeamUp
 //
 //  Photo upload service for gallery and profile photos
 //  Includes network connectivity checks for reliable uploads

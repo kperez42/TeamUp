@@ -1,6 +1,6 @@
 //
 //  ProfileApprovedCelebrationView.swift
-//  Celestia
+//  TeamUp
 //
 //  Celebrates user profile approval with confetti and animations
 //

@@ -1,6 +1,6 @@
 //
 //  NotificationModels.swift
-//  Celestia
+//  TeamUp
 //
 //  Models and types for notification system
 //  NotificationData is defined in NotificationSettingsView.swift

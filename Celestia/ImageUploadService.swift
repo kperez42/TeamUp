@@ -1,6 +1,6 @@
 //
 //  ImageUploadService.swift
-//  Celestia
+//  TeamUp
 //
 //  Enhanced with comprehensive error handling, retry logic, background processing,
 //  and content moderation to prevent inappropriate uploads

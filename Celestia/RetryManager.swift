@@ -1,6 +1,6 @@
 //
 //  RetryManager.swift
-//  Celestia
+//  TeamUp
 //
 //  Retry logic with exponential backoff for failed operations
 //

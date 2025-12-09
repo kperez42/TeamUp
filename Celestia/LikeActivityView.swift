@@ -1,6 +1,6 @@
 //
 //  LikeActivityView.swift
-//  Celestia
+//  TeamUp
 //
 //  Timeline of like activity (received and sent)
 //

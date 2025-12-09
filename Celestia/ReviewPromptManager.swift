@@ -1,6 +1,6 @@
 //
 //  ReviewPromptManager.swift
-//  Celestia
+//  TeamUp
 //
 //  Smart app review prompt manager that shows review prompts at optimal times
 //  Uses iOS StoreKit to request reviews when users have positive experiences

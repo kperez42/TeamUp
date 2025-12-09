@@ -1,6 +1,6 @@
 //
 //  ProfileView.swift
-//  Celestia
+//  TeamUp
 //
 //  ELITE PROFILE VIEW - Your Digital Identity
 //  ACCESSIBILITY: Full VoiceOver support, Dynamic Type, Reduce Motion, and WCAG 2.1 AA compliant

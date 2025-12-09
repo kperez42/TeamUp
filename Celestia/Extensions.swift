@@ -1,6 +1,6 @@
 //
 //  Extensions.swift
-//  Celestia
+//  TeamUp
 //
 //  Useful extensions throughout the app
 //

@@ -1,6 +1,6 @@
 //
 //  ShareDateView.swift
-//  Celestia
+//  TeamUp
 //
 //  Share date details with trusted contacts for safety
 //

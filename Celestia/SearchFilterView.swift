@@ -1,6 +1,6 @@
 //
 //  SearchFilterView.swift
-//  Celestia
+//  TeamUp
 //
 //  Comprehensive search filter interface
 //

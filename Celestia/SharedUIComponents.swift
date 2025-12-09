@@ -1,6 +1,6 @@
 //
 //  SharedUIComponents.swift
-//  Celestia
+//  TeamUp
 //
 //  Shared UI components used across the app
 //

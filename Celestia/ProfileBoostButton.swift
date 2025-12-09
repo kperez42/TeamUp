@@ -1,6 +1,6 @@
 //
 //  ProfileBoostButton.swift
-//  Celestia
+//  TeamUp
 //
 //  UI component for activating profile boost
 //

@@ -1,6 +1,6 @@
 //
 //  ProfileEditViewModel.swift
-//  Celestia
+//  TeamUp
 //
 //  ViewModel for profile editing
 //

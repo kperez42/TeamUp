@@ -1,6 +1,6 @@
 //
 //  DiscoverFiltersView.swift
-//  Celestia
+//  TeamUp
 //
 //  Professional filter settings for discovery
 //
