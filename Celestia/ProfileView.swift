@@ -1483,7 +1483,7 @@ struct ProfileView: View {
                 icon: "arrow.right.square.fill",
                 title: "Sign Out",
                 color: .red,
-                accessibilityHint: "Sign out of your Celestia account"
+                accessibilityHint: "Sign out of your TeamUp account"
             ) {
                 showingLogoutConfirmation = true
             }

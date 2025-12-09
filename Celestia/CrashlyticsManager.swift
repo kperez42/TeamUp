@@ -22,7 +22,7 @@ class CrashlyticsManager {
 
     private let crashlytics = Crashlytics.crashlytics()
     private var activeTraces: [String: Trace] = [:]
-    private let traceQueue = DispatchQueue(label: "com.celestia.crashlytics.traces")
+    private let traceQueue = DispatchQueue(label: "com.teamup.crashlytics.traces")
 
     // MARK: - Initialization
 
@@ -272,7 +272,7 @@ class CrashlyticsManager {
     /// Force a non-fatal error for testing
     func testNonFatalError() {
         let error = NSError(
-            domain: "com.celestia.test",
+            domain: "com.teamup.test",
             code: 9999,
             userInfo: [
                 NSLocalizedDescriptionKey: "This is a test non-fatal error"
