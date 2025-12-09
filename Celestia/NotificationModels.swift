@@ -490,7 +490,7 @@ enum NotificationPayload {
         let bodies = [
             "Like them back before they move on!",
             "See if you're a match - tap to view",
-            "Could this be the one? Check out their profile",
+            "Could this be your next teammate? Check out their profile",
             "They made the first move. Your turn!",
             "Don't miss your chance - see their profile now"
         ]
@@ -500,8 +500,8 @@ enum NotificationPayload {
     private static func randomSuperLikeTitle(name: String) -> String {
         let titles = [
             "\(name) SUPER Liked you!",
-            "Someone really likes you!",
-            "\(name) thinks you're special",
+            "Someone really wants to team up!",
+            "\(name) thinks you'd be a great teammate",
             "You got a Super Like from \(name)!",
             "\(name) went all in on you!"
         ]
@@ -568,10 +568,10 @@ enum NotificationPayload {
             // Premium users see who liked them
             let titles = [
                 "\(name) likes you!",
-                "\(name) is interested in you",
+                "\(name) is interested in teaming up",
                 "You caught \(name)'s attention!",
-                "\(name) wants to meet you",
-                "Someone special likes you: \(name)"
+                "\(name) wants to squad up",
+                "A new gamer likes you: \(name)"
             ]
             return titles.randomElement() ?? "\(name) likes you!"
         } else {
@@ -580,7 +580,7 @@ enum NotificationPayload {
                 let titles = [
                     "You have \(count) new likes!",
                     "\(count) people like you!",
-                    "\(count) new admirers are waiting",
+                    "\(count) gamers want to connect",
                     "You're getting noticed! \(count) new likes"
                 ]
                 return titles.randomElement() ?? "You have \(count) new likes!"

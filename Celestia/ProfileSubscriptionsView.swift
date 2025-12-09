@@ -53,7 +53,7 @@ struct ProfileSubscriptionsView: View {
         FeatureCardItem(
             icon: "eye.fill",
             title: "See Who Likes You",
-            description: "Know who's interested in you before you swipe. Make confident decisions!",
+            description: "Know who wants to team up before you decide. Connect with confidence!",
             color: .pink,
             gradient: [Color.pink, Color.red.opacity(0.8)],
             benefit: "Skip the guessing game"
@@ -61,7 +61,7 @@ struct ProfileSubscriptionsView: View {
         FeatureCardItem(
             icon: "star.fill",
             title: "Super Likes",
-            description: "Stand out from the crowd and show you're really interested. Get 3x more matches!",
+            description: "Stand out from the crowd and show you're really interested. Get 3x more connections!",
             color: .cyan,
             gradient: [Color.cyan, Color.teal],
             benefit: "Make a lasting impression"

@@ -530,7 +530,7 @@ struct PremiumUpgradeView: View {
                             .clipShape(Capsule())
                     }
 
-                    Text("Unlock to see who's interested in you")
+                    Text("Unlock to see who wants to team up")
                         .font(.caption)
                         .foregroundColor(.secondary)
                 }
@@ -956,21 +956,21 @@ struct PremiumUpgradeView: View {
                 successStoryCard(
                     initials: "JM",
                     name: "Jake M.",
-                    story: "Found my match within 2 weeks! The 'See Who Likes You' feature was a game changer.",
+                    story: "Found my squad within 2 weeks! The 'See Who Likes You' feature was a game changer.",
                     color: .purple
                 )
 
                 successStoryCard(
                     initials: "SE",
                     name: "Sarah E.",
-                    story: "So many more quality matches since upgrading. Unlimited likes means I never miss someone.",
+                    story: "So many more quality teammates since upgrading. Unlimited likes means I never miss a connection.",
                     color: .pink
                 )
 
                 successStoryCard(
                     initials: "AT",
                     name: "Alex T.",
-                    story: "Profile boost got me 3x the views. Met amazing people I would have missed.",
+                    story: "Profile boost got me 3x the views. Met amazing gamers I would have missed.",
                     color: .orange
                 )
             }

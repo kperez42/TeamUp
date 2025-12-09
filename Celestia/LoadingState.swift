@@ -257,9 +257,9 @@ struct LoadingState_Previews: PreviewProvider {
 
             EmptyStateView(
                 title: "No Messages",
-                message: "Start matching with people to begin chatting!",
+                message: "Connect with gamers to start chatting!",
                 systemImage: "bubble.left.and.bubble.right",
-                actionTitle: "Find Matches",
+                actionTitle: "Find Teammates",
                 action: { print("Action tapped") }
             )
             .previewDisplayName("Empty State")
