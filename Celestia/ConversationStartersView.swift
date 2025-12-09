@@ -142,8 +142,12 @@ struct StarterCard: View {
 
     private var gradientColor: Color {
         switch starter.category {
-        case .sharedInterest:
+        case .sharedGame:
             return .purple
+        case .sharedPlatform:
+            return .indigo
+        case .sharedGenre:
+            return .orange
         case .location:
             return .blue
         case .bio:
