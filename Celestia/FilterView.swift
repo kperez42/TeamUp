@@ -247,8 +247,11 @@ struct FilterView: View {
                 try await userService.fetchUsers(
                     excludingUserId: currentUserId,
                     lookingFor: lookingFor == "Everyone" ? nil : lookingFor,
+                    platforms: nil,
+                    country: nil,
                     ageRange: ageRangeInt,
-                    country: nil
+                    limit: 20,
+                    reset: true
                 )
 
                 await MainActor.run {
