@@ -591,7 +591,7 @@ struct ActivationDashboardView: View {
 
                         // Stats Grid
                         LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 12) {
-                            StatCard(title: "Matches", value: "\(metrics.totalMatches)", icon: "heart.fill", color: .red)
+                            StatCard(title: "Squad", value: "\(metrics.totalMatches)", icon: "person.2.fill", color: .green)
                             StatCard(title: "Messages", value: "\(metrics.totalMessages)", icon: "message.fill", color: .blue)
                             StatCard(title: "Sessions", value: "\(metrics.sessionCount)", icon: "clock.fill", color: .green)
                             StatCard(title: "Profile", value: "\(Int(metrics.profileCompletionPercentage))%", icon: "person.fill", color: .purple)
