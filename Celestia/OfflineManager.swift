@@ -46,8 +46,8 @@ class OfflineManager: ObservableObject {
     // MARK: - Properties
 
     private let networkMonitor = NWPathMonitor()
-    private let monitorQueue = DispatchQueue(label: "com.celestia.network-monitor")
-    private let syncQueue = DispatchQueue(label: "com.celestia.sync-queue")
+    private let monitorQueue = DispatchQueue(label: "com.teamup.network-monitor")
+    private let syncQueue = DispatchQueue(label: "com.teamup.sync-queue")
 
     private var cancellables = Set<AnyCancellable>()
     private let cache = OfflineCache.shared
