@@ -490,6 +490,7 @@ enum CardSwipeAction {
             bio: "Competitive FPS player looking for ranked teammates. Diamond in Valorant, Masters in Apex. Let's climb!",
             location: "Los Angeles",
             country: "USA",
+            profileImageURL: "",
             platforms: ["PC", "PlayStation"],
             favoriteGames: [
                 FavoriteGame(title: "Valorant", platform: "PC", rank: "Diamond 2"),
@@ -499,8 +500,7 @@ enum CardSwipeAction {
             playStyle: PlayStyle.competitive.rawValue,
             skillLevel: SkillLevel.advanced.rawValue,
             voiceChatPreference: VoiceChatPreference.always.rawValue,
-            lookingFor: [LookingForType.rankedTeammates.rawValue],
-            profileImageURL: ""
+            lookingFor: [LookingForType.rankedTeammates.rawValue]
         ),
         onSwipe: { _ in },
         onTap: {}
