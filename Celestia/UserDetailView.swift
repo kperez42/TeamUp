@@ -302,7 +302,7 @@ struct UserDetailView: View {
             ProfileSectionCard(
                 icon: "gamecontroller.fill",
                 title: "Games",
-                iconColors: [.purple, .pink],
+                iconColors: [.green, .cyan],
                 borderColor: .green
             ) {
                 VStack(spacing: 12) {
@@ -428,7 +428,7 @@ struct UserDetailView: View {
             ProfileSectionCard(
                 icon: "link",
                 title: "Gaming Profiles",
-                iconColors: [.indigo, .purple],
+                iconColors: [.blue, .green],
                 borderColor: .indigo
             ) {
                 VStack(spacing: 12) {
@@ -486,7 +486,7 @@ struct UserDetailView: View {
             ProfileSectionCard(
                 icon: "person.2.fill",
                 title: "Show Me",
-                iconColors: [.pink, .purple],
+                iconColors: [.cyan, .green],
                 borderColor: .cyan
             ) {
                 FlowLayout2(spacing: 10) {

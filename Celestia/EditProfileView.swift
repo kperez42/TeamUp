@@ -1268,7 +1268,7 @@ struct EditProfileView: View {
                         .padding(.vertical, 6)
                         .background(
                             LinearGradient(
-                                colors: [.pink, .purple],
+                                colors: [.cyan, .green],
                                 startPoint: .leading,
                                 endPoint: .trailing
                             )
@@ -1729,7 +1729,7 @@ struct EditProfileView: View {
                         HStack(spacing: 6) {
                             Image(systemName: "star.fill")
                                 .font(.subheadline)
-                                .foregroundColor(.pink)
+                                .foregroundColor(.cyan)
                             Text("Interests")
                                 .font(.subheadline)
                                 .fontWeight(.semibold)
@@ -1748,7 +1748,7 @@ struct EditProfileView: View {
                                     .font(.caption)
                                     .fontWeight(.semibold)
                             }
-                            .foregroundColor(.pink)
+                            .foregroundColor(.cyan)
                         }
                     }
 
@@ -1773,7 +1773,7 @@ struct EditProfileView: View {
                             ForEach(interests, id: \.self) { interest in
                                 TagChip(
                                     text: interest,
-                                    color: .pink,
+                                    color: .cyan,
                                     onRemove: { interests.removeAll { $0 == interest } }
                                 )
                             }
@@ -2066,7 +2066,7 @@ struct EditProfileView: View {
     private var interestsSection: some View {
         VStack(spacing: 15) {
             HStack {
-                SectionHeader(icon: "star.fill", title: "Interests", color: .pink)
+                SectionHeader(icon: "star.fill", title: "Interests", color: .cyan)
                 
                 Spacer()
                 
@@ -2081,7 +2081,7 @@ struct EditProfileView: View {
                     .fontWeight(.semibold)
                     .foregroundStyle(
                         LinearGradient(
-                            colors: [.pink, .orange],
+                            colors: [.cyan, .blue],
                             startPoint: .leading,
                             endPoint: .trailing
                         )
@@ -2100,7 +2100,7 @@ struct EditProfileView: View {
                     ForEach(interests, id: \.self) { interest in
                         TagChip(
                             text: interest,
-                            color: .pink,
+                            color: .cyan,
                             onRemove: { interests.removeAll { $0 == interest } }
                         )
                     }
@@ -2931,7 +2931,7 @@ struct LanguageTagButton: View {
                     }
                 }
             )
-            .foregroundColor(isSelected ? .purple : .primary)
+            .foregroundColor(isSelected ? .green : .primary)
             .cornerRadius(25)
             .overlay(
                 RoundedRectangle(cornerRadius: 25)
@@ -2984,7 +2984,7 @@ struct InterestPickerView: View {
                         .font(.headline)
                         .foregroundStyle(
                             LinearGradient(
-                                colors: [.pink, .orange],
+                                colors: [.cyan, .blue],
                                 startPoint: .leading,
                                 endPoint: .trailing
                             )
@@ -3041,7 +3041,7 @@ struct InterestTagButton: View {
                 Group {
                     if isSelected {
                         LinearGradient(
-                            colors: [.pink, .orange],
+                            colors: [.cyan, .blue],
                             startPoint: .leading,
                             endPoint: .trailing
                         )
@@ -3051,14 +3051,14 @@ struct InterestTagButton: View {
                     }
                 }
             )
-            .foregroundColor(isSelected ? .pink : .primary)
+            .foregroundColor(isSelected ? .cyan : .primary)
             .cornerRadius(25)
             .overlay(
                 RoundedRectangle(cornerRadius: 25)
                     .stroke(
                         isSelected ?
                         AnyShapeStyle(LinearGradient(
-                            colors: [.pink, .orange],
+                            colors: [.cyan, .blue],
                             startPoint: .leading,
                             endPoint: .trailing
                         )) :
@@ -3175,7 +3175,7 @@ struct DraggablePhotoGridItem: View {
                 RoundedRectangle(cornerRadius: 12)
                     .stroke(
                         LinearGradient(
-                            colors: isDragging ? [.purple, .pink] : [.clear, .clear],
+                            colors: isDragging ? [.green, .cyan] : [.clear, .clear],
                             startPoint: .topLeading,
                             endPoint: .bottomTrailing
                         ),
