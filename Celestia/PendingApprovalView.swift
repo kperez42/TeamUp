@@ -231,7 +231,7 @@ struct PendingApprovalView: View {
                     title: "Submitted",
                     isCompleted: true,
                     isActive: false,
-                    color: .green,
+                    color: .teal,
                     isAnimated: stepAnimations[0]
                 )
 
