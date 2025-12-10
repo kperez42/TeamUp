@@ -534,7 +534,7 @@ struct EditProfileView: View {
                     )
                 )
 
-            Text("Add photos to get more connections!")
+            Text("Add photos to find more teammates!")
                 .font(.subheadline)
                 .foregroundColor(.secondary)
 
@@ -872,7 +872,7 @@ struct EditProfileView: View {
                             .font(.headline)
                             .foregroundColor(.primary)
 
-                        Text("Add up to 6 photos to showcase yourself.\nPhotos help you get more connections!")
+                        Text("Add up to 6 photos to showcase your gaming setup.\nPhotos help you find more teammates!")
                             .font(.subheadline)
                             .foregroundColor(.secondary)
                             .multilineTextAlignment(.center)
