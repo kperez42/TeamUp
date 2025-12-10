@@ -1,5 +1,5 @@
 //
-//  ShareDateView.swift
+//  ShareMeetupView.swift
 //  TeamUp
 //
 //  Share meetup details with trusted contacts for safety
@@ -9,9 +9,9 @@ import SwiftUI
 import FirebaseFirestore
 import MapKit
 
-struct ShareDateView: View {
+struct ShareMeetupView: View {
     @EnvironmentObject var authService: AuthService
-    @StateObject private var viewModel = ShareDateViewModel()
+    @StateObject private var viewModel = ShareMeetupViewModel()
     @Environment(\.dismiss) var dismiss
     @State private var selectedMatch: User?
     @State private var dateTime = Date()
@@ -44,7 +44,7 @@ struct ShareDateView: View {
             await viewModel.loadEmergencyContacts()
         }
         .sheet(item: $viewModel.shareConfirmation) { confirmation in
-            DateSharedConfirmationView(confirmation: confirmation)
+            MeetupSharedConfirmationView(confirmation: confirmation)
         }
         .sheet(isPresented: $showMatchPicker) {
             MatchPickerView(selectedMatch: $selectedMatch)
@@ -233,7 +233,7 @@ struct ShareDateView: View {
     private var shareButton: some View {
         Button {
             Task {
-                await viewModel.shareDateDetails(
+                await viewModel.shareMeetupDetails(
                     match: selectedMatch,
                     dateTime: dateTime,
                     location: location,
@@ -319,10 +319,10 @@ struct ContactSelectionRow: View {
     }
 }
 
-// MARK: - Date Shared Confirmation View
+// MARK: - Meetup Shared Confirmation View
 
-struct DateSharedConfirmationView: View {
-    let confirmation: DateShareConfirmation
+struct MeetupSharedConfirmationView: View {
+    let confirmation: MeetupShareConfirmation
     @Environment(\.dismiss) var dismiss
 
     var body: some View {
@@ -397,7 +397,7 @@ struct DateSharedConfirmationView: View {
 
 // MARK: - Models
 
-struct DateShareConfirmation: Identifiable {
+struct MeetupShareConfirmation: Identifiable {
     let id = UUID()
     let sharedWith: [String]
     let dateTime: Date
@@ -406,9 +406,9 @@ struct DateShareConfirmation: Identifiable {
 // MARK: - View Model
 
 @MainActor
-class ShareDateViewModel: ObservableObject {
+class ShareMeetupViewModel: ObservableObject {
     @Published var emergencyContacts: [EmergencyContact] = []
-    @Published var shareConfirmation: DateShareConfirmation?
+    @Published var shareConfirmation: MeetupShareConfirmation?
 
     private let db = Firestore.firestore()
 
@@ -422,8 +422,8 @@ class ShareDateViewModel: ObservableObject {
 
             emergencyContacts = snapshot.documents.compactMap { doc in
                 let contact = try? doc.data(as: EmergencyContact.self)
-                // Filter for contacts that have date alerts enabled
-                return contact?.notificationPreferences.receiveScheduledDateAlerts == true ? contact : nil
+                // Filter for contacts that have meetup alerts enabled
+                return contact?.notificationPreferences.receiveScheduledMeetupAlerts == true ? contact : nil
             }
 
             Logger.shared.info("Loaded \(emergencyContacts.count) emergency contacts", category: .general)
@@ -436,7 +436,7 @@ class ShareDateViewModel: ObservableObject {
         match != nil && !location.isEmpty && !contacts.isEmpty
     }
 
-    func shareDateDetails(
+    func shareMeetupDetails(
         match: User?,
         dateTime: Date,
         location: String,
@@ -446,7 +446,7 @@ class ShareDateViewModel: ObservableObject {
         guard let match = match, let userId = AuthService.shared.currentUser?.id else { return }
 
         do {
-            let dateShare: [String: Any] = [
+            let meetupShare: [String: Any] = [
                 "userId": userId,
                 "matchId": match.id as Any,
                 "matchName": match.fullName,
@@ -458,14 +458,14 @@ class ShareDateViewModel: ObservableObject {
                 "status": "active"
             ]
 
-            try await db.collection("shared_dates").addDocument(data: dateShare)
+            try await db.collection("shared_meetups").addDocument(data: meetupShare)
 
             // Send notifications to contacts
             for contact in contacts {
-                try await sendDateNotification(to: contact, match: match, dateTime: dateTime, location: location)
+                try await sendMeetupNotification(to: contact, match: match, dateTime: dateTime, location: location)
             }
 
-            shareConfirmation = DateShareConfirmation(
+            shareConfirmation = MeetupShareConfirmation(
                 sharedWith: contacts.map { $0.name },
                 dateTime: dateTime
             )
@@ -473,18 +473,18 @@ class ShareDateViewModel: ObservableObject {
             AnalyticsServiceEnhanced.shared.trackEvent(
                 .featureUsed,
                 properties: [
-                    "feature": "share_date",
+                    "feature": "share_meetup",
                     "contactsCount": contacts.count
                 ]
             )
 
-            Logger.shared.info("Date details shared with \(contacts.count) contacts", category: .general)
+            Logger.shared.info("Meetup details shared with \(contacts.count) contacts", category: .general)
         } catch {
-            Logger.shared.error("Error sharing date details", category: .general, error: error)
+            Logger.shared.error("Error sharing meetup details", category: .general, error: error)
         }
     }
 
-    private func sendDateNotification(
+    private func sendMeetupNotification(
         to contact: EmergencyContact,
         match: User,
         dateTime: Date,
@@ -507,7 +507,7 @@ class ShareDateViewModel: ObservableObject {
             "location": location,
             "formattedDateTime": dateFormatter.string(from: dateTime),
             "sentAt": Timestamp(date: Date()),
-            "type": "safety_date_alert"
+            "type": "safety_meetup_alert"
         ]
 
         // Save notification to Firestore for tracking

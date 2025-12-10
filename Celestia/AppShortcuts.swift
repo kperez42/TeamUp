@@ -210,7 +210,7 @@ struct ShareDateDetailsIntent: AppIntent {
 
         // If parameters provided, create share meetup automatically
         if let matchName = matchName, let location = location, let dateTime = dateTime {
-            // This would integrate with ShareDateView functionality
+            // This would integrate with ShareMeetupView functionality
             return .result(
                 dialog: IntentDialog("Meetup details shared with your emergency contacts")
             )
@@ -289,11 +289,11 @@ struct CheckInIntent: AppIntent {
             throw AppShortcutError.notAuthenticated
         }
 
-        // This would integrate with DateCheckInManager
+        // This would integrate with MeetupCheckInManager
         let message = statusMessage ?? "I'm safe"
 
-        // Mark current date as checked in
-        // DateCheckInManager.shared.checkIn(message: message)
+        // Mark current meetup as checked in
+        // MeetupCheckInManager.shared.checkIn(message: message)
 
         return .result(
             dialog: IntentDialog("Check-in recorded. Your emergency contacts have been notified you're safe.")
