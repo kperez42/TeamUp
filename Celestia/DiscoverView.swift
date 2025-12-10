@@ -291,9 +291,9 @@ struct DiscoverView: View {
                     )
                     .disabled(viewModel.isProcessingAction)
 
-                    // Like button
+                    // Interest button
                     SwipeActionButton(
-                        icon: "heart.fill",
+                        icon: "gamecontroller.fill",
                         iconSize: .title,
                         iconWeight: .bold,
                         size: 68,
@@ -303,12 +303,12 @@ struct DiscoverView: View {
                     ) {
                         Task {
                             await viewModel.handleLike()
-                            VoiceOverAnnouncement.announce("Liked! Next profile.")
+                            VoiceOverAnnouncement.announce("Interest sent! Next profile.")
                         }
                     }
                     .accessibilityElement(
-                        label: "Like",
-                        hint: "Like this profile to potentially match",
+                        label: "Show Interest",
+                        hint: "Show interest in this profile to potentially connect",
                         traits: .isButton,
                         identifier: AccessibilityIdentifier.likeButton
                     )
@@ -547,9 +547,9 @@ struct DiscoverView: View {
                 }
             }
             .overlay(alignment: .topTrailing) {
-                // Like indicator
+                // Interest indicator
                 if cardIndex == 0 && viewModel.dragOffset.width > 50 {
-                    swipeIndicator(icon: "heart.fill", color: .green, text: "LIKE")
+                    swipeIndicator(icon: "gamecontroller.fill", color: .green, text: "INTERESTED")
                         .opacity(min(1.0, Double(viewModel.dragOffset.width) / 100.0))
                 }
             }
@@ -566,19 +566,19 @@ struct DiscoverView: View {
             .contentShape(Rectangle()) // Define tappable area
             .accessibilityElement(
                 label: cardIndex == 0 ? "\(user.fullName), \(user.age) years old, from \(user.location)" : "",
-                hint: cardIndex == 0 ? "Tap the heart to like, X to pass, or tap the card for full profile. Use the action buttons below for more options" : "",
+                hint: cardIndex == 0 ? "Tap to show interest or pass, or tap the card for full profile. Use the action buttons below for more options" : "",
                 traits: cardIndex == 0 ? .isButton : [],
                 identifier: cardIndex == 0 ? AccessibilityIdentifier.userCard : nil,
                 isHidden: cardIndex != 0
             )
             .accessibilityActions(cardIndex == 0 ? [
-                AccessibilityCustomAction(name: "Like") {
+                AccessibilityCustomAction(name: "Show Interest") {
                     Task { await viewModel.handleLike() }
                 },
                 AccessibilityCustomAction(name: "Pass") {
                     Task { await viewModel.handlePass() }
                 },
-                AccessibilityCustomAction(name: "Super Like") {
+                AccessibilityCustomAction(name: "Priority Request") {
                     Task { await viewModel.handleSuperLike() }
                 },
                 AccessibilityCustomAction(name: "View Profile") {

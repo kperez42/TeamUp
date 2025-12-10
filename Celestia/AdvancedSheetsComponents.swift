@@ -460,7 +460,7 @@ struct BoostProfileSheet: View {
                 }
             }
             .alert("Boost Activated! ⚡", isPresented: $showPurchaseSuccess) {
-                Button("Start Swiping") {
+                Button("Start Browsing") {
                     dismiss()
                 }
             } message: {
