@@ -827,7 +827,7 @@ struct FeedDiscoverView: View {
                     Image(systemName: "arrow.clockwise")
                     Text("Refresh")
                 }
-                .foregroundColor(.green)
+                .foregroundColor(.blue)
                 .padding(.horizontal, 20)
                 .padding(.vertical, 10)
                 .background(Color.blue.opacity(0.1))
