@@ -373,7 +373,7 @@ Savings: 1.44 GB (60%)
 **Expected Improvements:**
 ```
 Profile view duration: 8s → 3s (62.5% faster)
-Swipes per session: +20-30%
+Likes per session: +20-30%
 Session duration: +15-25%
 User satisfaction: Significant improvement
 ```

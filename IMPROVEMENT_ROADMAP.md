@@ -72,7 +72,7 @@
 ### 🟢 Daily Match Recommendations (2-3 hours)
 **Impact**: 25% more engagement, better match quality
 - AI-curated "Top Picks" daily (10 profiles)
-- Personalized based on swipe history
+- Personalized based on like history
 - Machine learning compatibility score
 - Premium feature: See mutual interests
 
@@ -80,7 +80,7 @@
 - Collaborative filtering algorithm
 - BigQuery ML for recommendations
 - Scheduled Cloud Function (daily at 9 AM)
-- Feature importance: photos liked, bio similarity, swipe patterns
+- Feature importance: photos liked, bio similarity, like patterns
 
 ---
 
@@ -458,7 +458,7 @@
 - A/B testing vs. random
 
 **Features**:
-- Swipe pattern similarity
+- Like pattern similarity
 - Message response rate
 - Profile completeness match
 - Interest overlap
@@ -483,7 +483,7 @@
 ---
 
 ### 🟢 Profile Photo Recommendations (2-3 hours)
-**Impact**: 30% more right swipes
+**Impact**: 30% more likes
 - AI analyzes which photos get most likes
 - Suggest best photo as primary
 - Photo quality scoring
@@ -518,7 +518,7 @@
 **Impact**: Accessibility for 7M+ blind/low vision users
 - Full VoiceOver compatibility
 - Descriptive labels for images
-- Audio feedback for swipes
+- Audio feedback for actions
 - Accessible color contrast
 
 **Technical**:

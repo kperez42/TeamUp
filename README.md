@@ -204,7 +204,7 @@ TeamUp follows the **MVVM (Model-View-ViewModel)** architecture pattern with a s
 │  - UserService                           │
 │  - ConnectionService                     │
 │  - MessageService                        │
-│  - SwipeService                          │
+│  - DiscoveryService (likes/passes)       │
 │  - ReferralManager                       │
 │  - StoreManager                          │
 │  - NotificationService                   │
@@ -236,11 +236,11 @@ TeamUp follows the **MVVM (Model-View-ViewModel)** architecture pattern with a s
 - Unread count tracking
 - Connection deletion/disconnect
 
-**SwipeService** (`SwipeService.swift`)
-- Like/pass recording
+**DiscoveryService** (`SwipeService.swift`)
+- Like/pass recording from scrolling feed
 - Mutual connection detection
 - Super likes
-- Swipe history tracking
+- Like history tracking
 
 **ReferralManager** (`ReferralManager.swift`)
 - Referral code generation
@@ -329,7 +329,7 @@ The following services have comprehensive unit tests:
 - **AuthServiceTests** - Authentication flows, validation, error handling
 - **ConnectionServiceTests** - Connection creation, sorting, unread counts
 - **ContentModeratorTests** - Profanity, spam, personal info detection
-- **SwipeServiceTests** - Like/pass logic, mutual matching
+- **DiscoveryServiceTests** - Like/pass logic, mutual matching
 - **ReferralManagerTests** - Code generation, rewards calculation
 
 ### Test Files
@@ -339,7 +339,7 @@ TeamUpTests/
 ├── AuthServiceTests.swift          (56 tests)
 ├── ConnectionServiceTests.swift    (32 tests)
 ├── ContentModeratorTests.swift     (45 tests)
-├── SwipeServiceTests.swift         (38 tests)
+├── SwipeServiceTests.swift         (38 tests) # Discovery/likes logic
 └── ReferralManagerTests.swift      (41 tests)
 ```
 
@@ -410,7 +410,7 @@ TeamUp/
 │   ├── UserService.swift            # User management
 │   ├── ConnectionService.swift      # Connection operations
 │   ├── MessageService.swift         # Messaging
-│   ├── SwipeService.swift           # Like/pass logic
+│   ├── SwipeService.swift           # Discovery feed likes/passes
 │   ├── ReferralManager.swift        # Referral system
 │   ├── StoreManager.swift           # In-app purchases
 │   ├── NotificationService.swift    # Push notifications
@@ -458,7 +458,7 @@ TeamUp/
 │   ├── AuthServiceTests.swift
 │   ├── ConnectionServiceTests.swift
 │   ├── ContentModeratorTests.swift
-│   ├── SwipeServiceTests.swift
+│   ├── SwipeServiceTests.swift       # Discovery/likes tests
 │   └── ReferralManagerTests.swift
 │
 └── Documentation/                   # Documentation

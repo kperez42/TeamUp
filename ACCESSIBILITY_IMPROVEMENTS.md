@@ -329,7 +329,7 @@ Based on user flow importance:
 2. **Discovery Views** (DiscoverView, UserCardStack, ImprovedUserCard)
    - Already has some accessibility (7/10)
    - Extend to all user cards
-   - Add swipe action announcements
+   - Add like/pass action announcements
 
 3. **Messaging Views** (ChatView, MessagesView, MessageBubbleView)
    - Add labels to message bubbles

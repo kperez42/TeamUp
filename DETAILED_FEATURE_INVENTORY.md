@@ -129,10 +129,10 @@
 ```
 **Backend Implementation:** Cloud Functions
 **Features:**
-- Free users: 50 swipes/day
+- Free users: 50 likes/day
 - Messages: 100/hour
 - Super likes: 1/day
-- Premium: Unlimited swipes
+- Premium: Unlimited likes
 - Photo uploads: 6/hour
 
 ---

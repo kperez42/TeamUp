@@ -23,7 +23,7 @@ Ran thorough codebase exploration to identify:
 
 **HIGH PRIORITY - User-Facing Non-Functional Features:**
 1. ✅ **Super Likes** - ALREADY FUNCTIONAL (backend existed, UI existed)
-2. ❌ **Rewind/Undo Swipes** - Advertised premium feature, NO implementation
+2. ❌ **Rewind/Undo Likes** - Advertised premium feature, NO implementation
 3. ❌ **Profile Boost** - Advertised premium feature, NO implementation
 4. ❌ Voice Chat - Feature flag disabled
 5. ❌ Voice Notes - Feature flag enabled but not implemented
@@ -41,29 +41,29 @@ Ran thorough codebase exploration to identify:
 
 ## ✅ Features Implemented Today
 
-### 1. Rewind/Undo Swipes Feature ⏮️
+### 1. Rewind/Undo Likes Feature ⏮️
 
 **Status:** ✅ FULLY FUNCTIONAL (was 0% → now 100%)
 
 **What It Does:**
-- Allows users to undo their last swipe and see the previous profile again
-- Tracks last 10 swipes in history
+- Allows users to undo their last like/pass and see the previous profile again
+- Tracks last 10 actions in history
 - Requires premium (rewindsRemaining > 0)
 - Shows upgrade sheet if user has no rewinds
 
 **Implementation Details:**
 
 **ViewModel (DiscoverViewModel.swift):**
-- Added `SwipeHistory` struct to track swipes (user, index, action, timestamp)
-- Added `swipeHistory` array (stores last 10 swipes)
+- Added `SwipeHistory` struct to track actions (user, index, action, timestamp)
+- Added `swipeHistory` array (stores last 10 actions)
 - Added `canRewind` computed property (checks history + rewindsRemaining)
 - Implemented `handleRewind()`:
   - Restores `currentIndex` to previous state
   - Re-inserts user at correct position in discovery queue
-  - Deletes swipe from Firestore (both likes and passes collections)
+  - Deletes action from Firestore (both likes and passes collections)
   - Decrements `rewindsRemaining` count
   - Shows success haptic feedback
-- Implemented `recordSwipeInHistory()` - called in handleLike(), handlePass(), handleSuperLike()
+- Implemented `recordActionInHistory()` - called in handleLike(), handlePass(), handleSuperLike()
 
 **Services:**
 - `UserService.decrementRewinds()` - decrements count in Firestore
@@ -279,12 +279,12 @@ struct SwipeHistory {
 }
 ```
 
-- Stores last 10 swipes (circular buffer)
-- Tracks exact state at time of swipe
+- Stores last 10 actions (circular buffer)
+- Tracks exact state at time of action
 - Allows restoration to previous state
 
 **Backend Cleanup:**
-- Deletes swipe from Firestore when rewinding
+- Deletes like/pass from Firestore when rewinding
 - Removes from both `likes` and `passes` collections
 - Properly decrements `rewindsRemaining` count
 
@@ -425,5 +425,5 @@ Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
 **Branch:** `claude/code-review-qa-01WQffHnyJCaGsGjCtJY6Tro`
 **Date:** November 19, 2025
 **Commits:**
-- `feat: implement Rewind/Undo swipes feature (premium)`
+- `feat: implement Rewind/Undo likes feature (premium)`
 - `feat: implement Profile Boost feature (premium)`
