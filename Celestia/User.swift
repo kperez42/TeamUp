@@ -134,6 +134,19 @@ enum LookingForType: String, Codable, CaseIterable, Identifiable {
     case contentCreation = "Content Creation"
 
     var id: String { rawValue }
+
+    var icon: String {
+        switch self {
+        case .rankedTeammates: return "chart.bar.fill"
+        case .casualCoOp: return "person.2.fill"
+        case .boardGameGroup: return "dice.fill"
+        case .competitiveTeam: return "flag.fill"
+        case .streamingPartners: return "video.fill"
+        case .anyGamers: return "gamecontroller.fill"
+        case .tournamentTeam: return "trophy.fill"
+        case .contentCreation: return "camera.fill"
+        }
+    }
 }
 
 enum GameGenre: String, Codable, CaseIterable, Identifiable {
