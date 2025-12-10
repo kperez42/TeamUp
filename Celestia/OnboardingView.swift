@@ -1724,7 +1724,7 @@ struct OnboardingView: View {
                             .font(.subheadline)
                             .fontWeight(.semibold)
 
-                        Text("Users with similar lifestyles are 60% more likely to match")
+                        Text("Users with similar lifestyles are 60% more likely to connect")
                             .font(.caption)
                             .foregroundColor(.secondary)
                     }

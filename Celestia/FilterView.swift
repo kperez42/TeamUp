@@ -104,7 +104,7 @@ struct FilterView: View {
                     Text("Age Preference")
                         .font(.subheadline)
                         .fontWeight(.semibold)
-                    Text("Who would you like to meet?")
+                    Text("Who would you like to team up with?")
                         .font(.caption)
                         .foregroundColor(.secondary)
                 }

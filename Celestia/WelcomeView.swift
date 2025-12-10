@@ -463,12 +463,12 @@ struct WelcomeAwarenessSlidesView: View {
             ]
         ),
         AwarenessSlide(
-            icon: "heart.fill",
-            title: "Likes & Matches",
-            description: "Like profiles of gamers you want to team up with. When they like you back, it's a match and you can start chatting!",
-            color: .red,
+            icon: "gamecontroller.fill",
+            title: "Interest & Connections",
+            description: "Show interest in gamers you want to team up with. When they're interested too, you're connected and can start chatting!",
+            color: .purple,
             tips: [
-                "Your matches appear in the Matches tab",
+                "Your connections appear in the Connections tab",
                 "Send a message to start the conversation",
                 "Be genuine and respectful"
             ]
@@ -476,7 +476,7 @@ struct WelcomeAwarenessSlidesView: View {
         AwarenessSlide(
             icon: "message.fill",
             title: "Start Conversations",
-            description: "Once matched, send a message to coordinate your next gaming session!",
+            description: "Once connected, send a message to coordinate your next gaming session!",
             color: .blue,
             tips: [
                 "Ask about their favorite games",

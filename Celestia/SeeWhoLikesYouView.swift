@@ -118,7 +118,7 @@ struct SeeWhoLikesYouView: View {
                         .font(.headline)
                         .foregroundColor(.primary)
 
-                    Text("See who likes you without limits")
+                    Text("See who's interested without limits")
                         .font(.subheadline)
                         .foregroundColor(.secondary)
                 }
@@ -188,16 +188,16 @@ struct SeeWhoLikesYouView: View {
 
     private var emptyStateView: some View {
         VStack(spacing: 24) {
-            Image(systemName: "heart.slash")
+            Image(systemName: "gamecontroller")
                 .font(.system(size: 80))
                 .foregroundColor(.gray.opacity(0.5))
 
             VStack(spacing: 8) {
-                Text("No Likes Yet")
+                Text("No Interest Yet")
                     .font(.title2)
                     .fontWeight(.bold)
 
-                Text("Keep swiping to find your perfect teammates!")
+                Text("Keep browsing to find your perfect teammates!")
                     .font(.subheadline)
                     .foregroundColor(.secondary)
                     .multilineTextAlignment(.center)

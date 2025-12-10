@@ -595,10 +595,10 @@ struct ProfileView: View {
                 HapticManager.shared.impact(.light)
             } label: {
                 statCard(
-                    icon: "heart.fill",
+                    icon: "gamecontroller.fill",
                     value: isLoadingStats ? "-" : "\(accurateLikesReceived)",
-                    label: "Liked",
-                    color: .pink
+                    label: "Interest",
+                    color: .purple
                 )
             }
 
@@ -834,7 +834,7 @@ struct ProfileView: View {
                         .font(.headline)
                         .foregroundColor(.primary)
 
-                    Text("Unlimited likes & see who likes you")
+                    Text("Unlimited interest & see who's interested")
                         .font(.caption)
                         .foregroundColor(.secondary)
                         .lineLimit(1)
