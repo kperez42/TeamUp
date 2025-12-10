@@ -1683,7 +1683,7 @@ struct EditProfileView: View {
                                     .font(.caption)
                                     .fontWeight(.semibold)
                             }
-                            .foregroundColor(.green)
+                            .foregroundColor(.blue)
                         }
                     }
 
@@ -2154,7 +2154,7 @@ struct EditProfileView: View {
                             Text(prompt.question)
                                 .font(.caption)
                                 .fontWeight(.semibold)
-                                .foregroundColor(.green)
+                                .foregroundColor(.teal)
 
                             Text(prompt.answer)
                                 .font(.subheadline)
@@ -3115,7 +3115,7 @@ struct UploadingPhotoPlaceholder: View {
                     Text("Uploading...")
                         .font(.caption)
                         .fontWeight(.medium)
-                        .foregroundColor(.green)
+                        .foregroundColor(.blue)
                 }
             }
             .overlay(
