@@ -335,11 +335,11 @@ struct MilestoneCelebrationView: View {
 
                         Text("+\(milestone.rewardPoints) points")
                             .font(.headline)
-                            .foregroundColor(.green)
+                            .foregroundColor(.blue)
                     }
                     .padding(.horizontal, 20)
                     .padding(.vertical, 10)
-                    .background(Color.green.opacity(0.1))
+                    .background(Color.blue.opacity(0.1))
                     .cornerRadius(20)
                     .opacity(opacity)
                 }
