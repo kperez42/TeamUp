@@ -158,7 +158,7 @@ struct SafetyTipCard: View {
 
 enum TipCategory: CaseIterable {
     case beforeMeeting
-    case firstDate
+    case firstMeetup
     case ongoingSafety
     case redFlags
     case resources
@@ -166,7 +166,7 @@ enum TipCategory: CaseIterable {
     var title: String {
         switch self {
         case .beforeMeeting: return "Before"
-        case .firstDate: return "First Meetup"
+        case .firstMeetup: return "First Meetup"
         case .ongoingSafety: return "Ongoing"
         case .redFlags: return "Red Flags"
         case .resources: return "Resources"
@@ -176,7 +176,7 @@ enum TipCategory: CaseIterable {
     var icon: String {
         switch self {
         case .beforeMeeting: return "calendar.badge.clock"
-        case .firstDate: return "hand.wave.fill"
+        case .firstMeetup: return "hand.wave.fill"
         case .ongoingSafety: return "shield.checkered"
         case .redFlags: return "exclamationmark.triangle.fill"
         case .resources: return "link"
@@ -256,7 +256,7 @@ struct SafetyTip: Identifiable {
                 )
             ]
 
-        case .firstDate:
+        case .firstMeetup:
             return [
                 SafetyTip(
                     icon: "building.2.fill",
