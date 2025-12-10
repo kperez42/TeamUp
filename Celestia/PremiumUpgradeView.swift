@@ -746,10 +746,10 @@ struct PremiumUpgradeView: View {
 
     private var showcaseCard: some View {
         let showcases = [
-            ("23 people liked you today", "heart.circle.fill", Color.pink, "See who they are with Premium"),
+            ("23 gamers are interested in you", "gamecontroller.fill", Color.pink, "See who they are with Premium"),
             ("You're missing 15+ profiles", "eye.slash.fill", Color.purple, "Get unlimited browsing"),
-            ("Unlimited likes available", "heart.fill", Color.red, "Like as many profiles as you want"),
-            ("Send unlimited messages", "message.circle.fill", Color.blue, "Connect with anyone you like")
+            ("Unlimited interest available", "gamecontroller.fill", Color.purple, "Show interest in as many profiles as you want"),
+            ("Send unlimited messages", "message.circle.fill", Color.blue, "Connect with any gamer you want")
         ]
 
         let current = showcases[currentShowcaseIndex]
@@ -796,7 +796,7 @@ struct PremiumUpgradeView: View {
 
     private var impactStats: some View {
         HStack(spacing: 0) {
-            impactStat(value: "3x", label: "More Matches", icon: "heart.fill", color: .pink)
+            impactStat(value: "3x", label: "More Connections", icon: "gamecontroller.fill", color: .purple)
 
             Rectangle()
                 .fill(Color.gray.opacity(0.15))

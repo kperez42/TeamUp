@@ -505,8 +505,8 @@ extension NotificationService {
         notificationHistory = [
             NotificationData(
                 type: .newMatch,
-                title: "New Match!",
-                body: "You matched with Sarah",
+                title: "New Connection!",
+                body: "You connected with Sarah",
                 timestamp: Date().addingTimeInterval(-3600)
             ),
             NotificationData(
