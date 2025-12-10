@@ -56,7 +56,7 @@ The TeamUp gaming social app has **strong core functionality** with most critica
 **Files:** `DiscoverView.swift`, `DiscoverViewModel.swift`, `SwipeService.swift`, `FirestoreSwipeRepository.swift`
 - **Status:** FULLY IMPLEMENTED
 - **Details:**
-  - Card-stack UI for browsing users
+  - Scrolling feed UI for browsing users
   - Real-time user fetching from Firestore
   - Like/Pass functionality with engagement tracking
   - Mutual like detection (creates match)
@@ -64,7 +64,7 @@ The TeamUp gaming social app has **strong core functionality** with most critica
   - Backend rate limiting for likes
   - Client-side rate limiting fallback
   - Filtering by age range, gender preference, location
-  - Image preloading for next 2 cards
+  - Image preloading for smooth scrolling
   - Performance monitoring for connection quality
 - **Firebase Integration:** ✓ Complete
 - **Real Data:** ✓ Uses actual Firestore user data

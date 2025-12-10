@@ -367,11 +367,10 @@ struct MyFeatureTests {
 | Feature | Free | Monthly | 6 Months | Annual |
 |---------|------|---------|----------|--------|
 | **Price** | $0 | $19.99/mo | $14.99/mo | $9.99/mo |
-| **Swipes/Day** | 50 | Unlimited | Unlimited | Unlimited |
+| **Likes/Day** | 50 | Unlimited | Unlimited | Unlimited |
 | **See Likes** | No | Yes | Yes | Yes |
 | **Super Likes** | 1/day | 5/day | 5/day | 5/day |
 | **Profile Boost** | No | Yes | Yes | Yes |
-| **Rewind** | No | Yes | Yes | Yes |
 | **Priority Support** | No | Yes | Yes | Yes |
 
 ### StoreKit 2 Implementation
