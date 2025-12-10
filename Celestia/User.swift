@@ -111,6 +111,16 @@ enum SkillLevel: String, Codable, CaseIterable, Identifiable {
         case .professional: return 5
         }
     }
+
+    var icon: String {
+        switch self {
+        case .beginner: return "star"
+        case .intermediate: return "star.leadinghalf.filled"
+        case .advanced: return "star.fill"
+        case .expert: return "star.circle.fill"
+        case .professional: return "trophy.fill"
+        }
+    }
 }
 
 enum VoiceChatPreference: String, Codable, CaseIterable, Identifiable {
@@ -121,6 +131,16 @@ enum VoiceChatPreference: String, Codable, CaseIterable, Identifiable {
     case noPreference = "No Preference"
 
     var id: String { rawValue }
+
+    var icon: String {
+        switch self {
+        case .always: return "mic.fill"
+        case .preferred: return "mic"
+        case .sometimes: return "mic.badge.plus"
+        case .textOnly: return "keyboard"
+        case .noPreference: return "questionmark.circle"
+        }
+    }
 }
 
 enum LookingForType: String, Codable, CaseIterable, Identifiable {

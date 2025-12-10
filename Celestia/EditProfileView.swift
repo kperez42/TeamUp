@@ -203,7 +203,11 @@ struct EditProfileView: View {
                         // Weekly hours, Gaming Goal
                         gamingScheduleSection
 
-                        // SECTION 7: External Profiles
+                        // SECTION 7: Game Genres
+                        // FPS, MOBA, RPG, etc.
+                        gameGenresSection
+
+                        // SECTION 8: External Profiles
                         // Discord, Steam, PSN, Xbox, etc.
                         externalProfilesSection
 
@@ -1285,10 +1289,14 @@ struct EditProfileView: View {
 
             // Skill Level
             VStack(alignment: .leading, spacing: 12) {
-                Text("Skill Level")
-                    .font(.subheadline)
-                    .fontWeight(.semibold)
-                    .foregroundColor(.secondary)
+                HStack {
+                    Image(systemName: "star.fill")
+                        .foregroundColor(.yellow)
+                    Text("Skill Level")
+                        .font(.subheadline)
+                        .fontWeight(.semibold)
+                        .foregroundColor(.secondary)
+                }
 
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: 10) {
@@ -1297,18 +1305,22 @@ struct EditProfileView: View {
                                 skillLevel = level
                                 HapticManager.shared.impact(.light)
                             } label: {
-                                Text(level.rawValue)
-                                    .font(.subheadline)
-                                    .fontWeight(.medium)
-                                    .padding(.horizontal, 16)
-                                    .padding(.vertical, 10)
-                                    .background(
-                                        skillLevel == level ?
-                                        LinearGradient(colors: [.blue, .teal], startPoint: .leading, endPoint: .trailing) :
-                                        LinearGradient(colors: [Color(.systemGray6), Color(.systemGray6)], startPoint: .leading, endPoint: .trailing)
-                                    )
-                                    .foregroundColor(skillLevel == level ? .white : .primary)
-                                    .cornerRadius(10)
+                                HStack(spacing: 6) {
+                                    Image(systemName: level.icon)
+                                        .font(.caption)
+                                    Text(level.rawValue)
+                                        .font(.subheadline)
+                                        .fontWeight(.medium)
+                                }
+                                .padding(.horizontal, 14)
+                                .padding(.vertical, 10)
+                                .background(
+                                    skillLevel == level ?
+                                    LinearGradient(colors: [.yellow.opacity(0.8), .orange], startPoint: .leading, endPoint: .trailing) :
+                                    LinearGradient(colors: [Color(.systemGray6), Color(.systemGray6)], startPoint: .leading, endPoint: .trailing)
+                                )
+                                .foregroundColor(skillLevel == level ? .white : .primary)
+                                .cornerRadius(12)
                             }
                         }
                     }
@@ -1418,18 +1430,22 @@ struct EditProfileView: View {
                                 voiceChatPreference = pref
                                 HapticManager.shared.impact(.light)
                             } label: {
-                                Text(pref.rawValue)
-                                    .font(.caption)
-                                    .fontWeight(.medium)
-                                    .padding(.horizontal, 14)
-                                    .padding(.vertical, 10)
-                                    .background(
-                                        voiceChatPreference == pref ?
-                                        LinearGradient(colors: [.blue, .teal], startPoint: .leading, endPoint: .trailing) :
-                                        LinearGradient(colors: [Color(.systemGray6), Color(.systemGray6)], startPoint: .leading, endPoint: .trailing)
-                                    )
-                                    .foregroundColor(voiceChatPreference == pref ? .white : .primary)
-                                    .cornerRadius(10)
+                                HStack(spacing: 6) {
+                                    Image(systemName: pref.icon)
+                                        .font(.caption)
+                                    Text(pref.rawValue)
+                                        .font(.caption)
+                                        .fontWeight(.medium)
+                                }
+                                .padding(.horizontal, 14)
+                                .padding(.vertical, 10)
+                                .background(
+                                    voiceChatPreference == pref ?
+                                    LinearGradient(colors: [.blue, .teal], startPoint: .leading, endPoint: .trailing) :
+                                    LinearGradient(colors: [Color(.systemGray6), Color(.systemGray6)], startPoint: .leading, endPoint: .trailing)
+                                )
+                                .foregroundColor(voiceChatPreference == pref ? .white : .primary)
+                                .cornerRadius(12)
                             }
                         }
                     }
@@ -1580,38 +1596,56 @@ struct EditProfileView: View {
                 }
             }
 
-            // Game Genres
-            VStack(alignment: .leading, spacing: 12) {
-                Text("Favorite Genres")
-                    .font(.subheadline)
-                    .fontWeight(.semibold)
-                    .foregroundColor(.secondary)
+        }
+        .padding(20)
+        .background(Color(.systemBackground))
+        .cornerRadius(16)
+        .shadow(color: .black.opacity(0.05), radius: 8)
+    }
 
-                LazyVGrid(columns: [GridItem(.adaptive(minimum: 90))], spacing: 8) {
-                    ForEach(GameGenre.allCases) { genre in
-                        Button {
-                            if gameGenres.contains(genre) {
-                                gameGenres.remove(genre)
-                            } else {
-                                gameGenres.insert(genre)
-                            }
-                            HapticManager.shared.impact(.light)
-                        } label: {
-                            Text(genre.rawValue)
-                                .font(.caption2)
-                                .fontWeight(.medium)
-                                .padding(.horizontal, 8)
-                                .padding(.vertical, 6)
-                                .frame(maxWidth: .infinity)
-                                .background(
-                                    gameGenres.contains(genre) ?
-                                    LinearGradient(colors: [.blue, .teal], startPoint: .leading, endPoint: .trailing) :
-                                    LinearGradient(colors: [Color(.systemGray6), Color(.systemGray6)], startPoint: .leading, endPoint: .trailing)
-                                )
-                                .foregroundColor(gameGenres.contains(genre) ? .white : .primary)
-                                .cornerRadius(8)
+    // MARK: - Game Genres Section
+
+    private var gameGenresSection: some View {
+        VStack(spacing: 20) {
+            SectionHeader(icon: "folder.fill", title: "Game Genres", color: .cyan, subtitle: "What types of games you play")
+
+            LazyVGrid(columns: [GridItem(.adaptive(minimum: 100))], spacing: 10) {
+                ForEach(GameGenre.allCases) { genre in
+                    Button {
+                        if gameGenres.contains(genre) {
+                            gameGenres.remove(genre)
+                        } else {
+                            gameGenres.insert(genre)
                         }
+                        HapticManager.shared.impact(.light)
+                    } label: {
+                        HStack(spacing: 4) {
+                            Image(systemName: genreIcon(for: genre))
+                                .font(.caption2)
+                            Text(genre.rawValue)
+                                .font(.caption)
+                                .fontWeight(.medium)
+                        }
+                        .padding(.horizontal, 10)
+                        .padding(.vertical, 8)
+                        .frame(maxWidth: .infinity)
+                        .background(
+                            gameGenres.contains(genre) ?
+                            LinearGradient(colors: [.cyan, .blue], startPoint: .leading, endPoint: .trailing) :
+                            LinearGradient(colors: [Color(.systemGray6), Color(.systemGray6)], startPoint: .leading, endPoint: .trailing)
+                        )
+                        .foregroundColor(gameGenres.contains(genre) ? .white : .primary)
+                        .cornerRadius(12)
                     }
+                }
+            }
+
+            if !gameGenres.isEmpty {
+                HStack {
+                    Text("\(gameGenres.count) genre\(gameGenres.count == 1 ? "" : "s") selected")
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+                    Spacer()
                 }
             }
         }
@@ -1619,6 +1653,31 @@ struct EditProfileView: View {
         .background(Color(.systemBackground))
         .cornerRadius(16)
         .shadow(color: .black.opacity(0.05), radius: 8)
+    }
+
+    private func genreIcon(for genre: GameGenre) -> String {
+        switch genre {
+        case .fps: return "scope"
+        case .moba: return "person.3.fill"
+        case .battleRoyale: return "crown.fill"
+        case .rpg: return "sparkles"
+        case .mmorpg: return "globe"
+        case .sports: return "sportscourt.fill"
+        case .racing: return "car.fill"
+        case .fighting: return "figure.boxing"
+        case .strategy: return "brain.head.profile"
+        case .simulation: return "gearshape.fill"
+        case .survival: return "leaf.fill"
+        case .horror: return "moon.fill"
+        case .puzzle: return "puzzlepiece.fill"
+        case .platformer: return "figure.walk"
+        case .sandbox: return "cube.fill"
+        case .cardGame: return "suit.spade.fill"
+        case .boardGame: return "dice.fill"
+        case .indie: return "star.fill"
+        case .coOp: return "person.2.fill"
+        case .party: return "party.popper.fill"
+        }
     }
 
     // MARK: - External Profiles Section
