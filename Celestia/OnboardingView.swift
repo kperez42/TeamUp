@@ -807,10 +807,10 @@ struct OnboardingView: View {
                     }
 
                     VStack(alignment: .leading, spacing: 10) {
-                        photoTipRow(icon: "gamecontroller.fill", text: "Gaming setup photos work great!", color: .green)
+                        photoTipRow(icon: "gamecontroller.fill", text: "Gaming setup photos work great!", color: .blue)
                         photoTipRow(icon: "person.crop.circle", text: "Show your face or use your favorite avatar", color: .orange)
-                        photoTipRow(icon: "desktopcomputer", text: "Battlestation pics are always appreciated", color: .blue)
-                        photoTipRow(icon: "sparkles", text: "Be yourself - authenticity builds trust", color: .green)
+                        photoTipRow(icon: "desktopcomputer", text: "Battlestation pics are always appreciated", color: .teal)
+                        photoTipRow(icon: "sparkles", text: "Be yourself - authenticity builds trust", color: .blue)
                     }
                 }
                 .padding(16)

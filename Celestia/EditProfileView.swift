@@ -321,7 +321,7 @@ struct EditProfileView: View {
         VStack(spacing: 0) {
             // Header
             HStack {
-                SectionHeader(icon: "camera.fill", title: "Your Photos", color: .green)
+                SectionHeader(icon: "camera.fill", title: "Your Photos", color: .blue)
                 Spacer()
             }
             .padding(.horizontal, 20)
@@ -1034,7 +1034,7 @@ struct EditProfileView: View {
 
     private var basicInfoSection: some View {
         VStack(spacing: 20) {
-            SectionHeader(icon: "person.fill", title: "Basic Information", color: .green)
+            SectionHeader(icon: "person.fill", title: "Basic Information", color: .blue)
 
             // Full Name (Required)
             VStack(alignment: .leading, spacing: 8) {
@@ -1220,7 +1220,7 @@ struct EditProfileView: View {
 
     private var preferencesSection: some View {
         VStack(spacing: 20) {
-            SectionHeader(icon: "gamecontroller.fill", title: "Gaming Preferences", color: .green)
+            SectionHeader(icon: "gamecontroller.fill", title: "Gaming Preferences", color: .blue)
 
             VStack(alignment: .leading, spacing: 8) {
                 Text("Show Me")
@@ -1501,7 +1501,7 @@ struct EditProfileView: View {
         VStack(spacing: 0) {
             // Header
             HStack {
-                SectionHeader(icon: "leaf.fill", title: "Lifestyle", color: .green)
+                SectionHeader(icon: "leaf.fill", title: "Lifestyle", color: .teal)
                 Spacer()
             }
             .padding(.horizontal, 20)
@@ -1650,7 +1650,7 @@ struct EditProfileView: View {
         VStack(spacing: 0) {
             // Header
             HStack {
-                SectionHeader(icon: "sparkles", title: "Express Yourself", color: .green)
+                SectionHeader(icon: "sparkles", title: "Express Yourself", color: .blue)
                 Spacer()
             }
             .padding(.horizontal, 20)
@@ -2014,7 +2014,7 @@ struct EditProfileView: View {
     private var languagesSection: some View {
         VStack(spacing: 15) {
             HStack {
-                SectionHeader(icon: "globe", title: "Languages", color: .green)
+                SectionHeader(icon: "globe", title: "Languages", color: .teal)
                 
                 Spacer()
                 
