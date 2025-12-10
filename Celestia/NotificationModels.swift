@@ -588,7 +588,7 @@ enum NotificationPayload {
                 let titles = [
                     "Someone likes you!",
                     "A gamer wants to team up",
-                    "Someone swiped right on you!",
+                    "Someone wants to connect!",
                     "You're being noticed!",
                     "A new player is interested"
                 ]
