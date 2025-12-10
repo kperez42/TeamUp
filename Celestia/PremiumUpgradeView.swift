@@ -350,7 +350,7 @@ struct PremiumUpgradeView: View {
     private func previewCardLabel(for index: Int) -> String {
         switch index {
         case 0: return "Unlimited"
-        case 1: return "See Likes"
+        case 1: return "See Requests"
         case 2: return "Message"
         default: return "Premium"
         }
@@ -614,7 +614,7 @@ struct PremiumUpgradeView: View {
             }
         }
         .padding(20)
-        .background(Color.white)
+        .background(Color(.systemBackground))
         .cornerRadius(20)
         .shadow(color: .teal.opacity(0.15), radius: 15, y: 8)
     }
@@ -746,10 +746,10 @@ struct PremiumUpgradeView: View {
 
     private var showcaseCard: some View {
         let showcases = [
-            ("23 gamers are interested in you", "gamecontroller.fill", Color.teal, "See who they are with Premium"),
+            ("23 gamers want to team up", "gamecontroller.fill", Color.teal, "See who they are with Premium"),
             ("You're missing 15+ profiles", "eye.slash.fill", Color.blue, "Get unlimited browsing"),
-            ("Unlimited interest available", "gamecontroller.fill", Color.blue, "Show interest in as many profiles as you want"),
-            ("Send unlimited messages", "message.circle.fill", Color.blue, "Connect with any gamer you want")
+            ("Unlimited team up requests", "gamecontroller.fill", Color.blue, "Send requests to any gamer you want"),
+            ("Send unlimited messages", "message.circle.fill", Color.teal, "Connect with any gamer you want")
         ]
 
         let current = showcases[currentShowcaseIndex]
@@ -770,10 +770,12 @@ struct PremiumUpgradeView: View {
                 Text(current.0)
                     .font(.subheadline.weight(.semibold))
                     .foregroundColor(.primary)
+                    .lineLimit(1)
 
                 Text(current.3)
                     .font(.caption)
                     .foregroundColor(.secondary)
+                    .lineLimit(1)
             }
 
             Spacer()
@@ -783,13 +785,14 @@ struct PremiumUpgradeView: View {
                 .foregroundColor(.gray)
         }
         .padding(18)
-        .background(Color.white)
+        .background(Color(.systemBackground))
         .cornerRadius(16)
         .overlay(
             RoundedRectangle(cornerRadius: 16)
                 .stroke(current.2.opacity(0.2), lineWidth: 1)
         )
         .shadow(color: current.2.opacity(0.12), radius: 12, y: 6)
+        .id(currentShowcaseIndex) // Force view recreation on index change
     }
 
     // MARK: - Impact Stats
@@ -865,8 +868,8 @@ struct PremiumUpgradeView: View {
 
                 VStack(spacing: 0) {
                     comparisonRow(feature: "Send Messages", free: "10/day", premium: "Unlimited", icon: "message.fill")
-                    comparisonRow(feature: "Daily Interest", free: "10/day", premium: "Unlimited", icon: "gamecontroller.fill")
-                    comparisonRow(feature: "See Who's Interested", free: "Hidden", premium: "Full Access", icon: "eye.fill")
+                    comparisonRow(feature: "Team Up Requests", free: "10/day", premium: "Unlimited", icon: "gamecontroller.fill")
+                    comparisonRow(feature: "See Who Wants to Team Up", free: "Hidden", premium: "Full Access", icon: "eye.fill")
                     comparisonRow(feature: "Advanced Filters", free: "Basic", premium: "All Filters", icon: "slider.horizontal.3")
                     comparisonRow(feature: "Read Receipts", free: "No", premium: "Yes", icon: "checkmark.message.fill")
                     comparisonRow(feature: "Priority in Feed", free: "Standard", premium: "Top Priority", icon: "arrow.up.circle.fill")
@@ -881,28 +884,29 @@ struct PremiumUpgradeView: View {
     }
 
     private func comparisonRow(feature: String, free: String, premium: String, icon: String) -> some View {
-        HStack(spacing: 8) {
+        HStack(spacing: 6) {
             Image(systemName: icon)
                 .font(.caption)
                 .foregroundColor(.blue)
-                .frame(width: 20)
+                .frame(width: 18)
 
             Text(feature)
-                .font(.caption)
+                .font(.system(size: 11))
                 .foregroundColor(.primary)
                 .lineLimit(1)
+                .minimumScaleFactor(0.8)
 
-            Spacer(minLength: 4)
+            Spacer(minLength: 2)
 
             Text(free)
-                .font(.caption2)
+                .font(.system(size: 10))
                 .foregroundColor(.secondary)
-                .frame(width: 60, alignment: .trailing)
+                .frame(width: 55, alignment: .trailing)
 
             Text(premium)
-                .font(.caption2.weight(.semibold))
+                .font(.system(size: 10, weight: .semibold))
                 .foregroundColor(.blue)
-                .frame(width: 70, alignment: .trailing)
+                .frame(width: 65, alignment: .trailing)
         }
         .padding(.vertical, 10)
     }
@@ -956,14 +960,14 @@ struct PremiumUpgradeView: View {
                 successStoryCard(
                     initials: "JM",
                     name: "Jake M.",
-                    story: "Found my squad within 2 weeks! The 'See Who's Interested' feature was a game changer.",
+                    story: "Found my squad within 2 weeks! The 'See Who Wants to Team Up' feature was a game changer.",
                     color: .blue
                 )
 
                 successStoryCard(
                     initials: "SE",
                     name: "Sarah E.",
-                    story: "So many more quality teammates since upgrading. Unlimited likes means I never miss a connection.",
+                    story: "So many more quality teammates since upgrading. Unlimited requests means I never miss a teammate.",
                     color: .teal
                 )
 
@@ -1085,8 +1089,8 @@ struct PremiumUpgradeView: View {
                 )
 
                 FAQItem(
-                    question: "Do I keep my connections if I cancel?",
-                    answer: "Absolutely! All your connections and conversations are yours to keep. You just won't have access to premium features."
+                    question: "Do I keep my teammates if I cancel?",
+                    answer: "Absolutely! All your teammates and conversations are yours to keep. You just won't have access to premium features."
                 )
 
                 FAQItem(

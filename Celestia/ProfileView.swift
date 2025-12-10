@@ -541,17 +541,17 @@ struct ProfileView: View {
                 VStack(alignment: .leading, spacing: 4) {
                     Text("Profile Completion")
                         .font(.headline)
-                    Text("Complete your profile to get more connections")
+                    Text("Complete your profile to get more teammates")
                         .font(.caption)
                         .foregroundColor(.secondary)
                 }
-                
+
                 Spacer()
-                
+
                 ZStack {
                     Circle()
                         .stroke(Color.gray.opacity(0.2), lineWidth: 6)
-                    
+
                     Circle()
                         .trim(from: 0, to: CGFloat(profileCompletion) / 100)
                         .stroke(
@@ -564,15 +564,15 @@ struct ProfileView: View {
                         )
                         .rotationEffect(.degrees(-90))
                         .animation(.spring(response: 1.0, dampingFraction: 0.7), value: profileCompletion)
-                    
+
                     Text("\(profileCompletion)%")
                         .font(.caption)
                         .fontWeight(.bold)
-                        .foregroundColor(.red)
+                        .foregroundColor(.blue)
                 }
                 .frame(width: 50, height: 50)
             }
-            
+
             // Missing items
             if profileCompletion < 100 {
                 VStack(alignment: .leading, spacing: 8) {
@@ -592,7 +592,7 @@ struct ProfileView: View {
             }
         }
         .padding(20)
-        .background(Color.white)
+        .background(Color(.systemBackground))
         .cornerRadius(16)
         .shadow(color: .black.opacity(0.05), radius: 10, y: 5)
         .padding(.horizontal, 20)
@@ -602,9 +602,9 @@ struct ProfileView: View {
         HStack(spacing: 10) {
             Image(systemName: icon)
                 .font(.caption)
-                .foregroundColor(.red)
+                .foregroundColor(.blue)
                 .frame(width: 20)
-            
+
             Text(text)
                 .font(.caption)
                 .foregroundColor(.secondary)
@@ -615,7 +615,7 @@ struct ProfileView: View {
 
     private func statsRow(user: User) -> some View {
         HStack(spacing: 0) {
-            // Liked
+            // Team Up Requests (Interest)
             Button {
                 showingPremiumUpgrade = true
                 HapticManager.shared.impact(.light)
@@ -623,8 +623,8 @@ struct ProfileView: View {
                 statCard(
                     icon: "gamecontroller.fill",
                     value: isLoadingStats ? "-" : "\(accurateLikesReceived)",
-                    label: "Interest",
-                    color: .red
+                    label: "Team Up",
+                    color: .blue
                 )
             }
 
@@ -644,7 +644,7 @@ struct ProfileView: View {
                     icon: "eye.fill",
                     value: isLoadingStats ? "-" : "\(accurateProfileViews)",
                     label: "Viewed",
-                    color: .blue
+                    color: .teal
                 )
             }
 
@@ -660,12 +660,12 @@ struct ProfileView: View {
                     icon: "bookmark.fill",
                     value: isLoadingStats ? "-" : "\(accurateMatchCount)",
                     label: "Saved",
-                    color: .red
+                    color: .orange
                 )
             }
         }
         .padding(.vertical, 20)
-        .background(Color.white)
+        .background(Color(.systemBackground))
         .cornerRadius(16)
         .shadow(color: .black.opacity(0.05), radius: 10, y: 5)
         .padding(.horizontal, 20)
@@ -1085,7 +1085,7 @@ struct ProfileView: View {
                     RoundedRectangle(cornerRadius: 16)
                         .stroke(
                             LinearGradient(
-                                colors: [Color.red.opacity(0.2), Color.pink.opacity(0.15)],
+                                colors: [Color.blue.opacity(0.2), Color.teal.opacity(0.15)],
                                 startPoint: .topLeading,
                                 endPoint: .bottomTrailing
                             ),
@@ -1271,7 +1271,7 @@ struct ProfileView: View {
                                 RoundedRectangle(cornerRadius: 16)
                                     .stroke(
                                         LinearGradient(
-                                            colors: [.red.opacity(0.3), .pink.opacity(0.2)],
+                                            colors: [.blue.opacity(0.3), .teal.opacity(0.2)],
                                             startPoint: .topLeading,
                                             endPoint: .bottomTrailing
                                         ),
@@ -1442,16 +1442,16 @@ struct ProfileView: View {
                     .padding(.vertical, 8)
                     .background(
                         LinearGradient(
-                            colors: [Color.orange.opacity(0.15), Color.red.opacity(0.1)],
+                            colors: [Color.teal.opacity(0.15), Color.blue.opacity(0.1)],
                             startPoint: .topLeading,
                             endPoint: .bottomTrailing
                         )
                     )
-                    .foregroundColor(.orange)
+                    .foregroundColor(.teal)
                     .cornerRadius(20)
                     .overlay(
                         RoundedRectangle(cornerRadius: 20)
-                            .stroke(Color.orange.opacity(0.2), lineWidth: 1)
+                            .stroke(Color.teal.opacity(0.2), lineWidth: 1)
                     )
                 }
             }
@@ -1465,7 +1465,7 @@ struct ProfileView: View {
         )
         .overlay(
             RoundedRectangle(cornerRadius: 16)
-                .stroke(Color.orange.opacity(0.1), lineWidth: 1)
+                .stroke(Color.teal.opacity(0.1), lineWidth: 1)
         )
         .padding(.horizontal, 20)
     }
@@ -1674,14 +1674,14 @@ struct ProfileView: View {
                     .foregroundColor(.secondary)
             }
             .padding(16)
-            .background(Color.white)
+            .background(Color(.systemBackground))
             .cornerRadius(16)
             .shadow(color: .black.opacity(0.05), radius: 8, y: 4)
         }
         .accessibilityLabel(title)
         .accessibilityHint(accessibilityHint)
     }
-    
+
     // MARK: - Loading View
 
     private var profileLoadingView: some View {
@@ -1690,7 +1690,7 @@ struct ProfileView: View {
                 // Hero header skeleton
                 ZStack {
                     LinearGradient(
-                        colors: [.red.opacity(0.3), .pink.opacity(0.2)],
+                        colors: [.blue.opacity(0.3), .teal.opacity(0.2)],
                         startPoint: .topLeading,
                         endPoint: .bottomTrailing
                     )
@@ -1745,7 +1745,7 @@ struct ProfileView: View {
                                 .cornerRadius(6)
                         }
                         .padding(20)
-                        .background(Color.white)
+                        .background(Color(.systemBackground))
                         .cornerRadius(16)
                         .shadow(color: .black.opacity(0.05), radius: 8, y: 4)
                         .padding(.horizontal)

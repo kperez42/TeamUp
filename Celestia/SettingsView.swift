@@ -36,15 +36,12 @@ struct SettingsView: View {
         NavigationStack {
             List {
                 Section("Account") {
-                    HStack {
-                        Text("Email")
-                        Spacer()
-                        Text(authService.currentUser?.email ?? "")
-                            .foregroundColor(.gray)
-                    }
+                    settingsInfoRow(icon: "envelope.fill", iconColor: .blue, title: "Email", value: authService.currentUser?.email ?? "")
 
                     HStack {
+                        settingsIconView(icon: "person.crop.circle.fill", color: .teal)
                         Text("Account Type")
+                            .foregroundColor(.primary)
                         Spacer()
                         HStack(spacing: 4) {
                             if authService.currentUser?.isPremium == true {
@@ -53,7 +50,7 @@ struct SettingsView: View {
                                     .foregroundColor(.orange)
                             }
                             Text(authService.currentUser?.isPremium == true ? "Premium" : "Free")
-                                .foregroundColor(.gray)
+                                .foregroundColor(.secondary)
                         }
                     }
 
@@ -62,7 +59,9 @@ struct SettingsView: View {
                        user.isPremium,
                        let expiryDate = user.subscriptionExpiryDate {
                         HStack {
+                            settingsIconView(icon: "calendar.badge.clock", color: .orange)
                             Text("Premium Until")
+                                .foregroundColor(.primary)
                             Spacer()
                             Text(expiryDate.formatted(date: .abbreviated, time: .omitted))
                                 .foregroundColor(.orange)
@@ -73,7 +72,9 @@ struct SettingsView: View {
                     // Profile Status
                     if let user = authService.currentUser {
                         HStack {
+                            settingsIconView(icon: "checkmark.seal.fill", color: profileStatusColor(for: user.profileStatus))
                             Text("Profile Status")
+                                .foregroundColor(.primary)
                             Spacer()
                             HStack(spacing: 4) {
                                 Image(systemName: profileStatusIcon(for: user.profileStatus))
@@ -86,7 +87,9 @@ struct SettingsView: View {
 
                         // ID Verification Status
                         HStack {
+                            settingsIconView(icon: "checkmark.shield.fill", color: verificationStatusColor(for: user))
                             Text("ID Verification")
+                                .foregroundColor(.primary)
                             Spacer()
                             HStack(spacing: 4) {
                                 Image(systemName: verificationStatusIcon(for: user))
@@ -103,24 +106,22 @@ struct SettingsView: View {
                     Button {
                         showPremiumUpgrade = true
                     } label: {
-                        HStack {
-                            Image(systemName: "crown.fill")
-                                .foregroundColor(.orange)
+                        HStack(spacing: 12) {
+                            settingsIconView(icon: "crown.fill", color: .orange)
                             Text("Upgrade to Premium")
                                 .foregroundColor(.primary)
                             Spacer()
                             Image(systemName: "chevron.right")
-                                .font(.caption)
-                                .foregroundColor(.gray)
+                                .font(.caption.weight(.semibold))
+                                .foregroundColor(.gray.opacity(0.5))
                         }
                     }
 
                     Button {
                         showReferralDashboard = true
                     } label: {
-                        HStack {
-                            Image(systemName: "gift.fill")
-                                .foregroundColor(.blue)
+                        HStack(spacing: 12) {
+                            settingsIconView(icon: "gift.fill", color: .blue)
                             VStack(alignment: .leading, spacing: 2) {
                                 Text("Invite Friends")
                                     .foregroundColor(.primary)
@@ -132,7 +133,7 @@ struct SettingsView: View {
                             if let referrals = authService.currentUser?.referralStats.totalReferrals, referrals > 0 {
                                 Text("\(referrals)")
                                     .font(.caption)
-                                    .fontWeight(.semibold)
+                                    .fontWeight(.bold)
                                     .foregroundColor(.white)
                                     .padding(.horizontal, 8)
                                     .padding(.vertical, 4)
@@ -140,20 +141,19 @@ struct SettingsView: View {
                                     .cornerRadius(10)
                             }
                             Image(systemName: "chevron.right")
-                                .font(.caption)
-                                .foregroundColor(.gray)
+                                .font(.caption.weight(.semibold))
+                                .foregroundColor(.gray.opacity(0.5))
                         }
                     }
 
                     Button {
                         showSeeWhoLikesYou = true
                     } label: {
-                        HStack {
-                            Image(systemName: "gamecontroller.fill")
-                                .foregroundColor(.blue)
+                        HStack(spacing: 12) {
+                            settingsIconView(icon: "gamecontroller.fill", color: .teal)
                             VStack(alignment: .leading, spacing: 2) {
                                 HStack(spacing: 6) {
-                                    Text("See Who's Interested")
+                                    Text("See Who Wants to Team Up")
                                         .foregroundColor(.primary)
                                     if !(authService.currentUser?.isPremium ?? false) {
                                         Image(systemName: "crown.fill")
@@ -167,8 +167,8 @@ struct SettingsView: View {
                             }
                             Spacer()
                             Image(systemName: "chevron.right")
-                                .font(.caption)
-                                .foregroundColor(.gray)
+                                .font(.caption.weight(.semibold))
+                                .foregroundColor(.gray.opacity(0.5))
                         }
                     }
                 } header: {
@@ -179,9 +179,10 @@ struct SettingsView: View {
                     NavigationLink {
                         FilterView()
                     } label: {
-                        HStack {
-                            Image(systemName: "slider.horizontal.3")
+                        HStack(spacing: 12) {
+                            settingsIconView(icon: "slider.horizontal.3", color: .purple)
                             Text("Discovery Filters")
+                                .foregroundColor(.primary)
                         }
                     }
                 }
@@ -190,9 +191,10 @@ struct SettingsView: View {
                     NavigationLink {
                         NotificationSettingsView()
                     } label: {
-                        HStack {
-                            Image(systemName: "bell.badge.fill")
+                        HStack(spacing: 12) {
+                            settingsIconView(icon: "bell.badge.fill", color: .red)
                             Text("Notification Preferences")
+                                .foregroundColor(.primary)
                         }
                     }
                 }
@@ -201,40 +203,44 @@ struct SettingsView: View {
                     NavigationLink {
                         PrivacySettingsView()
                     } label: {
-                        HStack {
-                            Image(systemName: "hand.raised.fill")
+                        HStack(spacing: 12) {
+                            settingsIconView(icon: "hand.raised.fill", color: .blue)
                             Text("Privacy Controls")
+                                .foregroundColor(.primary)
                         }
                     }
 
                     NavigationLink {
                         SafetyCenterView()
                     } label: {
-                        HStack {
-                            Image(systemName: "shield.checkered")
+                        HStack(spacing: 12) {
+                            settingsIconView(icon: "shield.fill", color: .green)
                             Text("Safety Center")
+                                .foregroundColor(.primary)
                         }
                     }
 
                     NavigationLink {
                         BlockedUsersView()
                     } label: {
-                        HStack {
-                            Image(systemName: "hand.raised.slash")
+                        HStack(spacing: 12) {
+                            settingsIconView(icon: "person.fill.xmark", color: .gray)
                             Text("Blocked Users")
+                                .foregroundColor(.primary)
                         }
                     }
                 }
-                
+
                 Section("Support") {
                     Link(destination: Self.supportEmailURL) {
-                        HStack {
-                            Image(systemName: "envelope")
+                        HStack(spacing: 12) {
+                            settingsIconView(icon: "envelope.fill", color: .blue)
                             Text("Contact Support")
+                                .foregroundColor(.primary)
                             Spacer()
                             Image(systemName: "arrow.up.right")
-                                .font(.caption)
-                                .foregroundColor(.gray)
+                                .font(.caption.weight(.semibold))
+                                .foregroundColor(.gray.opacity(0.5))
                         }
                     }
                 }
@@ -243,124 +249,116 @@ struct SettingsView: View {
                     Button {
                         showPrivacyPolicy = true
                     } label: {
-                        HStack {
-                            Image(systemName: "lock.shield")
-                                .foregroundColor(.blue)
+                        HStack(spacing: 12) {
+                            settingsIconView(icon: "lock.shield.fill", color: .blue)
                             Text("Privacy Policy")
                                 .foregroundColor(.primary)
                             Spacer()
                             Image(systemName: "chevron.right")
-                                .font(.caption)
-                                .foregroundColor(.gray)
+                                .font(.caption.weight(.semibold))
+                                .foregroundColor(.gray.opacity(0.5))
                         }
                     }
 
                     Button {
                         showTermsOfService = true
                     } label: {
-                        HStack {
-                            Image(systemName: "doc.text")
-                                .foregroundColor(.blue)
+                        HStack(spacing: 12) {
+                            settingsIconView(icon: "doc.text.fill", color: .teal)
                             Text("Terms of Service")
                                 .foregroundColor(.primary)
                             Spacer()
                             Image(systemName: "chevron.right")
-                                .font(.caption)
-                                .foregroundColor(.gray)
+                                .font(.caption.weight(.semibold))
+                                .foregroundColor(.gray.opacity(0.5))
                         }
                     }
 
                     Button {
                         showCommunityGuidelines = true
                     } label: {
-                        HStack {
-                            Image(systemName: "person.3.fill")
-                                .foregroundColor(.blue)
+                        HStack(spacing: 12) {
+                            settingsIconView(icon: "person.3.fill", color: .indigo)
                             Text("Community Guidelines")
                                 .foregroundColor(.primary)
                             Spacer()
                             Image(systemName: "chevron.right")
-                                .font(.caption)
-                                .foregroundColor(.gray)
+                                .font(.caption.weight(.semibold))
+                                .foregroundColor(.gray.opacity(0.5))
                         }
                     }
 
                     Button {
                         showSafetyTips = true
                     } label: {
-                        HStack {
-                            Image(systemName: "shield.checkered")
-                                .foregroundColor(.orange)
+                        HStack(spacing: 12) {
+                            settingsIconView(icon: "gamecontroller.fill", color: .orange)
                             Text("Gaming Safety Tips")
                                 .foregroundColor(.primary)
                             Spacer()
                             Image(systemName: "chevron.right")
-                                .font(.caption)
-                                .foregroundColor(.gray)
+                                .font(.caption.weight(.semibold))
+                                .foregroundColor(.gray.opacity(0.5))
                         }
                     }
 
                     Button {
                         showCookiePolicy = true
                     } label: {
-                        HStack {
-                            Image(systemName: "server.rack")
-                                .foregroundColor(.gray)
+                        HStack(spacing: 12) {
+                            settingsIconView(icon: "externaldrive.fill", color: .gray)
                             Text("Cookie & Data Policy")
                                 .foregroundColor(.primary)
                             Spacer()
                             Image(systemName: "chevron.right")
-                                .font(.caption)
-                                .foregroundColor(.gray)
+                                .font(.caption.weight(.semibold))
+                                .foregroundColor(.gray.opacity(0.5))
                         }
                     }
 
                     Button {
                         showEULA = true
                     } label: {
-                        HStack {
-                            Image(systemName: "doc.badge.gearshape")
-                                .foregroundColor(.indigo)
+                        HStack(spacing: 12) {
+                            settingsIconView(icon: "doc.badge.gearshape.fill", color: .purple)
                             Text("End User License Agreement")
                                 .foregroundColor(.primary)
                             Spacer()
                             Image(systemName: "chevron.right")
-                                .font(.caption)
-                                .foregroundColor(.gray)
+                                .font(.caption.weight(.semibold))
+                                .foregroundColor(.gray.opacity(0.5))
                         }
                     }
 
                     Button {
                         showAccessibility = true
                     } label: {
-                        HStack {
-                            Image(systemName: "accessibility")
-                                .foregroundColor(.teal)
+                        HStack(spacing: 12) {
+                            settingsIconView(icon: "accessibility", color: .cyan)
                             Text("Accessibility Statement")
                                 .foregroundColor(.primary)
                             Spacer()
                             Image(systemName: "chevron.right")
-                                .font(.caption)
-                                .foregroundColor(.gray)
+                                .font(.caption.weight(.semibold))
+                                .foregroundColor(.gray.opacity(0.5))
                         }
                     }
                 }
-                
+
                 // Admin section - only visible for admin users
                 if isAdminUser {
                     Section("Admin") {
                         Button {
                             showAdminDashboard = true
                         } label: {
-                            HStack {
-                                Image(systemName: "shield.checkered")
-                                    .foregroundColor(.red)
+                            HStack(spacing: 12) {
+                                settingsIconView(icon: "shield.checkered", color: .red)
                                 Text("Moderation Dashboard")
                                     .foregroundColor(.primary)
                                 Spacer()
                                 Image(systemName: "chevron.right")
-                                    .font(.caption)
-                                    .foregroundColor(.gray)
+                                    .font(.caption.weight(.semibold))
+                                    .foregroundColor(.gray.opacity(0.5))
                             }
                         }
                     }
@@ -370,8 +368,8 @@ struct SettingsView: View {
                     Button(role: .destructive) {
                         showDeleteConfirmation = true
                     } label: {
-                        HStack {
-                            Image(systemName: "trash")
+                        HStack(spacing: 12) {
+                            settingsIconView(icon: "trash.fill", color: .red)
                             Text("Delete Account")
                             if isDeleting {
                                 Spacer()
@@ -390,6 +388,8 @@ struct SettingsView: View {
                     Button("Done") {
                         dismiss()
                     }
+                    .fontWeight(.semibold)
+                    .foregroundColor(.blue)
                 }
             }
             .alert("Delete Account", isPresented: $showDeleteConfirmation) {
@@ -485,6 +485,32 @@ struct SettingsView: View {
         guard let email = authService.currentUser?.email else { return false }
         let adminEmails = ["perezkevin640@gmail.com", "admin@teamup.gg"]
         return adminEmails.contains(email.lowercased())
+    }
+
+    // MARK: - Settings Row Helpers
+
+    private func settingsIconView(icon: String, color: Color) -> some View {
+        ZStack {
+            RoundedRectangle(cornerRadius: 8)
+                .fill(color.gradient)
+                .frame(width: 30, height: 30)
+
+            Image(systemName: icon)
+                .font(.system(size: 14, weight: .semibold))
+                .foregroundColor(.white)
+        }
+    }
+
+    private func settingsInfoRow(icon: String, iconColor: Color, title: String, value: String) -> some View {
+        HStack(spacing: 12) {
+            settingsIconView(icon: icon, color: iconColor)
+            Text(title)
+                .foregroundColor(.primary)
+            Spacer()
+            Text(value)
+                .foregroundColor(.secondary)
+                .lineLimit(1)
+        }
     }
 
     // MARK: - Profile Status Helpers

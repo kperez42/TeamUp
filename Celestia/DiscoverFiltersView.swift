@@ -11,43 +11,50 @@ struct DiscoverFiltersView: View {
     @ObservedObject var filters = DiscoveryFilters.shared
     @Environment(\.dismiss) var dismiss
 
-    // Section expansion state - basics, interests, and background open by default
-    @State private var expandedSections: Set<FilterSection> = [.basics, .interests, .background]
+    // Section expansion state - basics, gaming, and preferences open by default
+    @State private var expandedSections: Set<FilterSection> = [.basics, .gaming, .preferences]
 
     enum FilterSection: String, CaseIterable {
         case basics = "Basics"
-        case interests = "Interests"
-        case background = "Background"
-        case lifestyle = "Lifestyle"
+        case gaming = "Gaming"
+        case preferences = "Preferences"
+        case availability = "Availability"
     }
 
-    let commonInterests = [
-        "Travel", "Hiking", "Coffee", "Food", "Photography",
-        "Music", "Fitness", "Art", "Reading", "Cooking",
-        "Dancing", "Movies", "Gaming", "Yoga", "Sports",
-        "Wine", "Dogs", "Cats", "Beach", "Mountains"
+    // Gaming platforms
+    let platformOptions = [
+        "PC", "PlayStation", "Xbox", "Nintendo Switch",
+        "Mobile", "VR", "Tabletop"
     ]
 
-    let educationOptions = [
-        "High School", "Some College", "Associate's", "Bachelor's",
-        "Master's", "Doctorate", "Trade School"
+    // Game genres
+    let genreOptions = [
+        "FPS", "MOBA", "Battle Royale", "RPG", "MMORPG",
+        "Sports", "Racing", "Fighting", "Strategy", "Simulation",
+        "Survival", "Horror", "Puzzle", "Platformer", "Sandbox",
+        "Card Game", "Board Game", "Indie", "Co-op", "Party"
     ]
 
-    let religionOptions = [
-        "Agnostic", "Atheist", "Buddhist", "Catholic", "Christian",
-        "Hindu", "Jewish", "Muslim", "Spiritual", "Other", "Prefer not to say"
+    // Skill levels
+    let skillLevelOptions = [
+        "Beginner", "Intermediate", "Advanced", "Expert", "Professional"
     ]
 
-    let relationshipGoalOptions = [
+    // Gaming goals
+    let gamingGoalOptions = [
         "Casual Gaming", "Regular Squad", "Competitive Team",
-        "New Friends", "Not Sure Yet"
+        "Streaming Partners", "Tournament Team", "Any Gamers"
     ]
 
-    let smokingOptions = ["Never", "Socially", "Regularly", "Trying to Quit"]
-    let drinkingOptions = ["Never", "Socially", "Regularly", "Rarely"]
-    let petOptions = ["Dog", "Cat", "Both", "Other Pets", "No Pets", "Want Pets"]
-    let exerciseOptions = ["Daily", "Often", "Sometimes", "Rarely", "Never"]
-    let dietOptions = ["Vegan", "Vegetarian", "Pescatarian", "Kosher", "Halal", "No Restrictions"]
+    // Voice chat preferences
+    let voiceChatOptions = ["Always", "Preferred", "Sometimes", "Text Only", "No Preference"]
+
+    // Play style
+    let playStyleOptions = ["Competitive", "Casual", "Ranked", "Social", "Tryhard", "Chill", "Roleplay", "Speedrun"]
+
+    // Availability
+    let availabilityOptions = ["Weekday Mornings", "Weekday Afternoons", "Weekday Evenings", "Weekday Nights", "Weekends", "Flexible"]
+    let weeklyHoursOptions = ["5+ hrs", "10+ hrs", "15+ hrs", "20+ hrs", "25+ hrs"]
 
     var body: some View {
         NavigationStack {
@@ -60,7 +67,7 @@ struct DiscoverFiltersView: View {
 
                     // Filter Sections
                     VStack(spacing: 12) {
-                        // Basics Section (no distance - advertising in specific city)
+                        // Basics Section
                         filterSection(
                             section: .basics,
                             icon: "slider.horizontal.3",
@@ -73,47 +80,45 @@ struct DiscoverFiltersView: View {
                             }
                         )
 
-                        // Interests Section
+                        // Gaming Section
                         filterSection(
-                            section: .interests,
-                            icon: "star.circle.fill",
-                            content: {
-                                interestsSection
-                            }
-                        )
-
-                        // Background Section
-                        filterSection(
-                            section: .background,
-                            icon: "person.text.rectangle",
+                            section: .gaming,
+                            icon: "gamecontroller.fill",
                             content: {
                                 VStack(spacing: 20) {
-                                    educationSection
+                                    platformsSection
                                     Divider().padding(.horizontal)
-                                    heightSection
+                                    genresSection
                                     Divider().padding(.horizontal)
-                                    religionSection
-                                    Divider().padding(.horizontal)
-                                    relationshipGoalsSection
+                                    skillLevelSection
                                 }
                             }
                         )
 
-                        // Lifestyle Section
+                        // Preferences Section
                         filterSection(
-                            section: .lifestyle,
-                            icon: "leaf.circle.fill",
+                            section: .preferences,
+                            icon: "person.2.fill",
                             content: {
                                 VStack(spacing: 20) {
-                                    lifestyleChipsSection("Smoking", icon: "smoke.fill", options: smokingOptions, selected: $filters.smokingPreferences)
+                                    gamingGoalsSection
                                     Divider().padding(.horizontal)
-                                    lifestyleChipsSection("Drinking", icon: "wineglass.fill", options: drinkingOptions, selected: $filters.drinkingPreferences)
+                                    voiceChatSection
                                     Divider().padding(.horizontal)
-                                    lifestyleChipsSection("Pets", icon: "pawprint.fill", options: petOptions, selected: $filters.petPreferences)
+                                    playStyleSection
+                                }
+                            }
+                        )
+
+                        // Availability Section
+                        filterSection(
+                            section: .availability,
+                            icon: "clock.fill",
+                            content: {
+                                VStack(spacing: 20) {
+                                    availabilityTimesSection
                                     Divider().padding(.horizontal)
-                                    lifestyleChipsSection("Exercise", icon: "figure.run", options: exerciseOptions, selected: $filters.exercisePreferences)
-                                    Divider().padding(.horizontal)
-                                    lifestyleChipsSection("Diet", icon: "leaf.fill", options: dietOptions, selected: $filters.dietPreferences)
+                                    weeklyHoursSection
                                 }
                             }
                         )
@@ -352,14 +357,18 @@ struct DiscoverFiltersView: View {
         }
     }
 
-    // MARK: - Interests Section
+    // MARK: - Platforms Section
 
-    private var interestsSection: some View {
+    private var platformsSection: some View {
         VStack(alignment: .leading, spacing: 12) {
             HStack {
-                Text("Find gamers with these interests")
-                    .font(.caption)
-                    .foregroundColor(.secondary)
+                Image(systemName: "desktopcomputer")
+                    .font(.subheadline)
+                    .foregroundColor(.blue)
+
+                Text("Platforms")
+                    .font(.subheadline)
+                    .fontWeight(.medium)
 
                 Spacer()
 
@@ -373,25 +382,33 @@ struct DiscoverFiltersView: View {
                 }
             }
 
+            Text("Find gamers on these platforms")
+                .font(.caption)
+                .foregroundColor(.secondary)
+
             FlowLayout(spacing: 8) {
-                ForEach(commonInterests, id: \.self) { interest in
+                ForEach(platformOptions, id: \.self) { platform in
                     SelectableFilterChip(
-                        title: interest,
-                        isSelected: filters.selectedInterests.contains(interest)
+                        title: platform,
+                        isSelected: filters.selectedInterests.contains(platform)
                     ) {
-                        toggleInterest(interest)
+                        toggleInterest(platform)
                     }
                 }
             }
         }
     }
 
-    // MARK: - Education Section
+    // MARK: - Genres Section
 
-    private var educationSection: some View {
+    private var genresSection: some View {
         VStack(alignment: .leading, spacing: 12) {
             HStack {
-                Text("Education Level")
+                Image(systemName: "square.grid.2x2.fill")
+                    .font(.subheadline)
+                    .foregroundColor(.teal)
+
+                Text("Game Genres")
                     .font(.subheadline)
                     .fontWeight(.medium)
 
@@ -407,84 +424,33 @@ struct DiscoverFiltersView: View {
                 }
             }
 
+            Text("Filter by favorite game genres")
+                .font(.caption)
+                .foregroundColor(.secondary)
+
             FlowLayout(spacing: 8) {
-                ForEach(educationOptions, id: \.self) { option in
+                ForEach(genreOptions, id: \.self) { genre in
                     SelectableFilterChip(
-                        title: option,
-                        isSelected: filters.educationLevels.contains(option)
+                        title: genre,
+                        isSelected: filters.educationLevels.contains(genre)
                     ) {
-                        toggleEducation(option)
+                        toggleEducation(genre)
                     }
                 }
             }
         }
     }
 
-    // MARK: - Height Section
+    // MARK: - Skill Level Section
 
-    private var heightSection: some View {
-        VStack(alignment: .leading, spacing: 16) {
-            HStack {
-                Text("Height Range")
-                    .font(.subheadline)
-                    .fontWeight(.medium)
-
-                Spacer()
-
-                if filters.minHeight != nil || filters.maxHeight != nil {
-                    Button("Clear") {
-                        HapticManager.shared.impact(.light)
-                        filters.minHeight = nil
-                        filters.maxHeight = nil
-                    }
-                    .font(.caption)
-                    .foregroundColor(.blue)
-                }
-            }
-
-            VStack(spacing: 12) {
-                // Min height
-                VStack(alignment: .leading, spacing: 4) {
-                    Text("Min: \(filters.minHeight ?? 140) cm (\(heightToFeetInches(filters.minHeight ?? 140)))")
-                        .font(.caption)
-                        .foregroundColor(.secondary)
-
-                    Slider(value: Binding(
-                        get: { Double(filters.minHeight ?? 140) },
-                        set: { filters.minHeight = Int($0) }
-                    ), in: 140...220, step: 1)
-                    .tint(.blue)
-                }
-
-                // Max height
-                VStack(alignment: .leading, spacing: 4) {
-                    Text("Max: \(filters.maxHeight ?? 220) cm (\(heightToFeetInches(filters.maxHeight ?? 220)))")
-                        .font(.caption)
-                        .foregroundColor(.secondary)
-
-                    Slider(value: Binding(
-                        get: { Double(filters.maxHeight ?? 220) },
-                        set: { filters.maxHeight = Int($0) }
-                    ), in: 140...220, step: 1)
-                    .tint(.teal)
-                }
-            }
-        }
-    }
-
-    private func heightToFeetInches(_ cm: Int) -> String {
-        let totalInches = Double(cm) / 2.54
-        let feet = Int(totalInches / 12)
-        let inches = Int(totalInches.truncatingRemainder(dividingBy: 12))
-        return "\(feet)'\(inches)\""
-    }
-
-    // MARK: - Religion Section
-
-    private var religionSection: some View {
+    private var skillLevelSection: some View {
         VStack(alignment: .leading, spacing: 12) {
             HStack {
-                Text("Religion/Spirituality")
+                Image(systemName: "star.fill")
+                    .font(.subheadline)
+                    .foregroundColor(.yellow)
+
+                Text("Skill Level")
                     .font(.subheadline)
                     .fontWeight(.medium)
 
@@ -500,13 +466,17 @@ struct DiscoverFiltersView: View {
                 }
             }
 
+            Text("Match with gamers at your level")
+                .font(.caption)
+                .foregroundColor(.secondary)
+
             FlowLayout(spacing: 8) {
-                ForEach(religionOptions, id: \.self) { option in
+                ForEach(skillLevelOptions, id: \.self) { level in
                     SelectableFilterChip(
-                        title: option,
-                        isSelected: filters.religions.contains(option)
+                        title: level,
+                        isSelected: filters.religions.contains(level)
                     ) {
-                        toggleReligion(option)
+                        toggleReligion(level)
                     }
                 }
             }
@@ -515,10 +485,14 @@ struct DiscoverFiltersView: View {
 
     // MARK: - Gaming Goals Section
 
-    private var relationshipGoalsSection: some View {
+    private var gamingGoalsSection: some View {
         VStack(alignment: .leading, spacing: 12) {
             HStack {
-                Text("Show Me")
+                Image(systemName: "flag.fill")
+                    .font(.subheadline)
+                    .foregroundColor(.orange)
+
+                Text("Looking For")
                     .font(.subheadline)
                     .fontWeight(.medium)
 
@@ -534,55 +508,204 @@ struct DiscoverFiltersView: View {
                 }
             }
 
+            Text("What type of teammates are you looking for?")
+                .font(.caption)
+                .foregroundColor(.secondary)
+
             FlowLayout(spacing: 8) {
-                ForEach(relationshipGoalOptions, id: \.self) { option in
+                ForEach(gamingGoalOptions, id: \.self) { goal in
                     SelectableFilterChip(
-                        title: option,
-                        isSelected: filters.relationshipGoals.contains(option)
+                        title: goal,
+                        isSelected: filters.relationshipGoals.contains(goal)
                     ) {
-                        toggleRelationshipGoal(option)
+                        toggleRelationshipGoal(goal)
                     }
                 }
             }
         }
     }
 
-    // MARK: - Lifestyle Chips Section
+    // MARK: - Voice Chat Section
 
-    private func lifestyleChipsSection(_ title: String, icon: String, options: [String], selected: Binding<Set<String>>) -> some View {
+    private var voiceChatSection: some View {
         VStack(alignment: .leading, spacing: 12) {
             HStack {
-                Image(systemName: icon)
+                Image(systemName: "mic.fill")
                     .font(.subheadline)
                     .foregroundColor(.blue)
 
-                Text(title)
+                Text("Voice Chat")
                     .font(.subheadline)
                     .fontWeight(.medium)
 
                 Spacer()
 
-                if !selected.wrappedValue.isEmpty {
+                if !filters.smokingPreferences.isEmpty {
                     Button("Clear") {
                         HapticManager.shared.impact(.light)
-                        selected.wrappedValue.removeAll()
+                        filters.smokingPreferences.removeAll()
                     }
                     .font(.caption)
                     .foregroundColor(.blue)
                 }
             }
 
+            Text("Voice chat preference")
+                .font(.caption)
+                .foregroundColor(.secondary)
+
             FlowLayout(spacing: 8) {
-                ForEach(options, id: \.self) { option in
+                ForEach(voiceChatOptions, id: \.self) { option in
                     SelectableFilterChip(
                         title: option,
-                        isSelected: selected.wrappedValue.contains(option)
+                        isSelected: filters.smokingPreferences.contains(option)
                     ) {
                         HapticManager.shared.impact(.light)
-                        if selected.wrappedValue.contains(option) {
-                            selected.wrappedValue.remove(option)
+                        if filters.smokingPreferences.contains(option) {
+                            filters.smokingPreferences.remove(option)
                         } else {
-                            selected.wrappedValue.insert(option)
+                            filters.smokingPreferences.insert(option)
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    // MARK: - Play Style Section
+
+    private var playStyleSection: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            HStack {
+                Image(systemName: "flame.fill")
+                    .font(.subheadline)
+                    .foregroundColor(.orange)
+
+                Text("Play Style")
+                    .font(.subheadline)
+                    .fontWeight(.medium)
+
+                Spacer()
+
+                if !filters.drinkingPreferences.isEmpty {
+                    Button("Clear") {
+                        HapticManager.shared.impact(.light)
+                        filters.drinkingPreferences.removeAll()
+                    }
+                    .font(.caption)
+                    .foregroundColor(.blue)
+                }
+            }
+
+            Text("How do you like to play?")
+                .font(.caption)
+                .foregroundColor(.secondary)
+
+            FlowLayout(spacing: 8) {
+                ForEach(playStyleOptions, id: \.self) { style in
+                    SelectableFilterChip(
+                        title: style,
+                        isSelected: filters.drinkingPreferences.contains(style)
+                    ) {
+                        HapticManager.shared.impact(.light)
+                        if filters.drinkingPreferences.contains(style) {
+                            filters.drinkingPreferences.remove(style)
+                        } else {
+                            filters.drinkingPreferences.insert(style)
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    // MARK: - Availability Times Section
+
+    private var availabilityTimesSection: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            HStack {
+                Image(systemName: "calendar")
+                    .font(.subheadline)
+                    .foregroundColor(.green)
+
+                Text("When You Play")
+                    .font(.subheadline)
+                    .fontWeight(.medium)
+
+                Spacer()
+
+                if !filters.petPreferences.isEmpty {
+                    Button("Clear") {
+                        HapticManager.shared.impact(.light)
+                        filters.petPreferences.removeAll()
+                    }
+                    .font(.caption)
+                    .foregroundColor(.blue)
+                }
+            }
+
+            Text("Find gamers available when you are")
+                .font(.caption)
+                .foregroundColor(.secondary)
+
+            FlowLayout(spacing: 8) {
+                ForEach(availabilityOptions, id: \.self) { time in
+                    SelectableFilterChip(
+                        title: time,
+                        isSelected: filters.petPreferences.contains(time)
+                    ) {
+                        HapticManager.shared.impact(.light)
+                        if filters.petPreferences.contains(time) {
+                            filters.petPreferences.remove(time)
+                        } else {
+                            filters.petPreferences.insert(time)
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    // MARK: - Weekly Hours Section
+
+    private var weeklyHoursSection: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            HStack {
+                Image(systemName: "clock.fill")
+                    .font(.subheadline)
+                    .foregroundColor(.teal)
+
+                Text("Weekly Gaming Hours")
+                    .font(.subheadline)
+                    .fontWeight(.medium)
+
+                Spacer()
+
+                if !filters.exercisePreferences.isEmpty {
+                    Button("Clear") {
+                        HapticManager.shared.impact(.light)
+                        filters.exercisePreferences.removeAll()
+                    }
+                    .font(.caption)
+                    .foregroundColor(.blue)
+                }
+            }
+
+            Text("Match with gamers who play similar hours")
+                .font(.caption)
+                .foregroundColor(.secondary)
+
+            FlowLayout(spacing: 8) {
+                ForEach(weeklyHoursOptions, id: \.self) { hours in
+                    SelectableFilterChip(
+                        title: hours,
+                        isSelected: filters.exercisePreferences.contains(hours)
+                    ) {
+                        HapticManager.shared.impact(.light)
+                        if filters.exercisePreferences.contains(hours) {
+                            filters.exercisePreferences.remove(hours)
+                        } else {
+                            filters.exercisePreferences.insert(hours)
                         }
                     }
                 }
@@ -621,21 +744,21 @@ struct DiscoverFiltersView: View {
 
     private func countActiveFilters() -> Int {
         var count = 0
-        // Removed distance filter - not needed for city-specific advertising
+        // Basics
         if filters.minAge > 18 { count += 1 }
         if filters.maxAge < 65 { count += 1 }
         if filters.showVerifiedOnly { count += 1 }
+        // Gaming (Platforms, Genres, Skill Level)
         count += filters.selectedInterests.count
         count += filters.educationLevels.count
-        if filters.minHeight != nil { count += 1 }
-        if filters.maxHeight != nil { count += 1 }
         count += filters.religions.count
+        // Preferences (Gaming Goals, Voice Chat, Play Style)
         count += filters.relationshipGoals.count
         count += filters.smokingPreferences.count
         count += filters.drinkingPreferences.count
+        // Availability (When You Play, Weekly Hours)
         count += filters.petPreferences.count
         count += filters.exercisePreferences.count
-        count += filters.dietPreferences.count
         return count
     }
 
@@ -643,25 +766,24 @@ struct DiscoverFiltersView: View {
         switch section {
         case .basics:
             var count = 0
-            // Removed distance filter
             if filters.minAge > 18 || filters.maxAge < 65 { count += 1 }
             if filters.showVerifiedOnly { count += 1 }
             return count > 0 ? count : nil
-        case .interests:
-            return filters.selectedInterests.isEmpty ? nil : filters.selectedInterests.count
-        case .background:
+        case .gaming:
             var count = 0
-            count += filters.educationLevels.count
-            if filters.minHeight != nil || filters.maxHeight != nil { count += 1 }
-            count += filters.religions.count
-            count += filters.relationshipGoals.count
+            count += filters.selectedInterests.count // Platforms
+            count += filters.educationLevels.count // Genres
+            count += filters.religions.count // Skill Level
             return count > 0 ? count : nil
-        case .lifestyle:
-            let count = filters.smokingPreferences.count +
-                       filters.drinkingPreferences.count +
-                       filters.petPreferences.count +
-                       filters.exercisePreferences.count +
-                       filters.dietPreferences.count
+        case .preferences:
+            var count = 0
+            count += filters.relationshipGoals.count // Gaming Goals
+            count += filters.smokingPreferences.count // Voice Chat
+            count += filters.drinkingPreferences.count // Play Style
+            return count > 0 ? count : nil
+        case .availability:
+            let count = filters.petPreferences.count + // When You Play
+                       filters.exercisePreferences.count // Weekly Hours
             return count > 0 ? count : nil
         }
     }
