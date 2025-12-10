@@ -136,7 +136,7 @@ struct SettingsView: View {
                                     .foregroundColor(.white)
                                     .padding(.horizontal, 8)
                                     .padding(.vertical, 4)
-                                    .background(Color.green)
+                                    .background(Color.blue)
                                     .cornerRadius(10)
                             }
                             Image(systemName: "chevron.right")

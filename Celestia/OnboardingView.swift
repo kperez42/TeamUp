@@ -1076,7 +1076,7 @@ struct OnboardingView: View {
                 .padding(14)
                 .background(
                     RoundedRectangle(cornerRadius: 12)
-                        .fill(Color.green.opacity(0.08))
+                        .fill(Color.blue.opacity(0.08))
                         .overlay(
                             RoundedRectangle(cornerRadius: 12)
                                 .stroke(Color.blue.opacity(0.2), lineWidth: 1)
