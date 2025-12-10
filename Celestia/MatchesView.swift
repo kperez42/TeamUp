@@ -299,11 +299,11 @@ struct MatchesView: View {
             Image(systemName: "magnifyingglass")
                 .foregroundColor(.white.opacity(0.8))
             
-            TextField("Search matches...", text: $searchText)
+            TextField("Search connections...", text: $searchText)
                 .foregroundColor(.white)
                 .accentColor(.white)
                 .placeholder(when: searchText.isEmpty) {
-                    Text("Search matches...")
+                    Text("Search connections...")
                         .foregroundColor(.white.opacity(0.6))
                 }
                 .onChange(of: searchText) { _, newValue in

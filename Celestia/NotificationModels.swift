@@ -310,7 +310,7 @@ enum NotificationCategory: String, CaseIterable, Codable {
     var summaryArgument: String {
         switch self {
         case .newMatch:
-            return "matches"
+            return "connections"
         case .newMessage, .messageReminder:
             return "messages"
         case .profileView:
@@ -1093,9 +1093,9 @@ struct NotificationPreferenceItem: Identifiable {
     static let allItems: [NotificationPreferenceItem] = [
         NotificationPreferenceItem(
             category: .newMatch,
-            title: "Matches & Likes",
-            description: "Get notified when someone matches or likes you",
-            icon: "heart.fill"
+            title: "Connections & Interest",
+            description: "Get notified when someone connects or shows interest",
+            icon: "gamecontroller.fill"
         ),
         NotificationPreferenceItem(
             category: .newMessage,

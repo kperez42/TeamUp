@@ -85,7 +85,7 @@ struct TeamUpAppShortcuts: AppShortcutsProvider {
             phrases: [
                 "Check in on \(.applicationName)",
                 "I'm safe on \(.applicationName)",
-                "Mark date as safe in \(.applicationName)"
+                "Mark meetup as safe in \(.applicationName)"
             ],
             shortTitle: "Safety Check-In",
             systemImageName: "checkmark.shield.fill"
@@ -273,7 +273,7 @@ struct AddEmergencyContactIntent: AppIntent {
 @available(iOS 16.0, *)
 struct CheckInIntent: AppIntent {
     static var title: LocalizedStringResource = "Safety Check-In"
-    static var description = IntentDescription("Check in to confirm you're safe during a date")
+    static var description = IntentDescription("Check in to confirm you're safe during a meetup")
 
     @Parameter(title: "Status Message")
     var statusMessage: String?

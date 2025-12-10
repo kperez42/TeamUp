@@ -1337,7 +1337,7 @@ struct OnboardingView: View {
                 }
 
                 VStack(spacing: 8) {
-                    Text("Get Better Matches")
+                    Text("Find Better Teammates")
                         .font(.title)
                         .fontWeight(.bold)
 
@@ -1589,11 +1589,11 @@ struct OnboardingView: View {
                         .foregroundColor(.green)
 
                     VStack(alignment: .leading, spacing: 4) {
-                        Text("40% More Matches")
+                        Text("40% More Connections")
                             .font(.subheadline)
                             .fontWeight(.semibold)
 
-                        Text("Users with complete profiles get significantly more matches")
+                        Text("Users with complete profiles get significantly more connections")
                             .font(.caption)
                             .foregroundColor(.secondary)
                     }
@@ -1654,7 +1654,7 @@ struct OnboardingView: View {
                         .font(.title)
                         .fontWeight(.bold)
 
-                    Text("Help us find compatible matches")
+                    Text("Help us find compatible teammates")
                         .font(.subheadline)
                         .foregroundColor(.secondary)
                         .multilineTextAlignment(.center)
@@ -1720,7 +1720,7 @@ struct OnboardingView: View {
                         .foregroundColor(.yellow)
 
                     VStack(alignment: .leading, spacing: 4) {
-                        Text("Lifestyle Matching")
+                        Text("Lifestyle Compatibility")
                             .font(.subheadline)
                             .fontWeight(.semibold)
 
