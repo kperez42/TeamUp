@@ -105,12 +105,12 @@ struct WelcomeView: View {
     
     private var animatedBackground: some View {
         ZStack {
-            // Base gradient
+            // Base gradient - BLUE/TEAL THEME
             LinearGradient(
                 colors: [
-                    Color.green.opacity(0.9),
-                    Color.cyan.opacity(0.8),
-                    Color.blue.opacity(0.7)
+                    Color.blue.opacity(0.9),
+                    Color.teal.opacity(0.8),
+                    Color.cyan.opacity(0.7)
                 ],
                 startPoint: animateGradient ? .topLeading : .bottomTrailing,
                 endPoint: animateGradient ? .bottomTrailing : .topLeading
@@ -119,9 +119,9 @@ struct WelcomeView: View {
             // Overlay gradient
             LinearGradient(
                 colors: [
-                    Color.green.opacity(0.3),
+                    Color.blue.opacity(0.3),
                     Color.clear,
-                    Color.cyan.opacity(0.3)
+                    Color.teal.opacity(0.3)
                 ],
                 startPoint: .topLeading,
                 endPoint: .bottomTrailing
@@ -237,7 +237,7 @@ struct WelcomeView: View {
                         .font(.headline)
                         .fontWeight(.semibold)
                 }
-                .foregroundColor(.green)
+                .foregroundColor(.blue)
                 .frame(maxWidth: .infinity)
                 .frame(height: 56)
                 .background(
@@ -549,7 +549,7 @@ struct WelcomeAwarenessSlidesView: View {
                             Text("Skip")
                                 .font(.subheadline)
                                 .fontWeight(.medium)
-                                .foregroundColor(.green)
+                                .foregroundColor(.blue)
                         }
                     }
                 }
@@ -580,7 +580,7 @@ struct WelcomeAwarenessSlidesView: View {
                                 Text("Back")
                                     .font(.headline)
                             }
-                            .foregroundColor(.green)
+                            .foregroundColor(.blue)
                             .frame(maxWidth: .infinity)
                             .padding()
                             .background(Color.white)
@@ -611,7 +611,7 @@ struct WelcomeAwarenessSlidesView: View {
                         .padding()
                         .background(
                             LinearGradient(
-                                colors: [Color.green, Color.cyan],
+                                colors: [Color.blue, Color.teal],
                                 startPoint: .leading,
                                 endPoint: .trailing
                             )
@@ -652,12 +652,12 @@ struct AwarenessSlideView: View {
                     // Icon circle - matching signup page header cards
                     ZStack {
                         Circle()
-                            .fill(Color.green.opacity(0.12))
+                            .fill(Color.blue.opacity(0.12))
                             .frame(width: 80, height: 80)
 
                         Image(systemName: slide.icon)
                             .font(.system(size: 36))
-                            .foregroundColor(.green)
+                            .foregroundColor(.blue)
                     }
 
                     VStack(spacing: 10) {
@@ -686,12 +686,12 @@ struct AwarenessSlideView: View {
                     HStack(spacing: 12) {
                         ZStack {
                             Circle()
-                                .fill(Color.green.opacity(0.12))
+                                .fill(Color.blue.opacity(0.12))
                                 .frame(width: 44, height: 44)
 
                             Image(systemName: "lightbulb.fill")
                                 .font(.system(size: 18))
-                                .foregroundColor(.green)
+                                .foregroundColor(.blue)
                         }
 
                         Text("Quick Tips")
@@ -706,7 +706,7 @@ struct AwarenessSlideView: View {
                             HStack(alignment: .top, spacing: 12) {
                                 Image(systemName: "checkmark.circle.fill")
                                     .font(.body)
-                                    .foregroundColor(.green)
+                                    .foregroundColor(.blue)
 
                                 Text(tip)
                                     .font(.subheadline)
