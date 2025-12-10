@@ -521,7 +521,7 @@ struct LikesView: View {
                                     .clipShape(Capsule())
                             }
                         }
-                        .foregroundColor(selectedTab == index ? .pink : .gray)
+                        .foregroundColor(selectedTab == index ? .green : .gray)
 
                         Rectangle()
                             .fill(selectedTab == index ? Color.cyan : Color.clear)
@@ -1595,7 +1595,7 @@ struct MatchCelebrationOverlay: View {
                         Circle()
                             .fill(
                                 LinearGradient(
-                                    colors: [.purple, .pink],
+                                    colors: [.green, .cyan],
                                     startPoint: .topLeading,
                                     endPoint: .bottomTrailing
                                 )
@@ -1626,7 +1626,7 @@ struct MatchCelebrationOverlay: View {
                             Circle()
                                 .fill(
                                     LinearGradient(
-                                        colors: [.pink, .orange],
+                                        colors: [.green, .cyan],
                                         startPoint: .topLeading,
                                         endPoint: .bottomTrailing
                                     )
