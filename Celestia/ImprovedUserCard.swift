@@ -158,7 +158,7 @@ struct ImprovedUserCard: View {
         LinearGradient(
             colors: [
                 Color.green.opacity(0.7),
-                Color.purple.opacity(0.6),
+                Color.green.opacity(0.6),
                 Color.cyan.opacity(0.5)
             ],
             startPoint: .topLeading,
