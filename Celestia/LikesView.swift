@@ -416,7 +416,7 @@ struct LikesView: View {
                                     .frame(width: 4, height: 4)
 
                                 HStack(spacing: 4) {
-                                    Image(systemName: "heart.circle.fill")
+                                    Image(systemName: "gamecontroller.fill")
                                         .font(.caption)
                                     Text("\(viewModel.mutualLikes.count) mutual")
                                         .fontWeight(.semibold)
@@ -1538,10 +1538,10 @@ struct SwipeableLikeCard: View {
             // Like overlay on card
             if showLikeOverlay && showLikeBack {
                 VStack {
-                    Image(systemName: "heart.fill")
+                    Image(systemName: "gamecontroller.fill")
                         .font(.system(size: 50))
-                        .foregroundColor(.pink)
-                        .shadow(color: .pink.opacity(0.5), radius: 10)
+                        .foregroundColor(.purple)
+                        .shadow(color: .purple.opacity(0.5), radius: 10)
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .background(Color.black.opacity(0.3))
@@ -1641,10 +1641,10 @@ struct MatchCelebrationOverlay: View {
                         }
                     }
 
-                    // Heart in center
-                    Image(systemName: "heart.fill")
+                    // Icon in center
+                    Image(systemName: "gamecontroller.fill")
                         .font(.system(size: 30))
-                        .foregroundColor(.pink)
+                        .foregroundColor(.purple)
                         .offset(y: 40)
                         .scaleEffect(heartScale)
                 }

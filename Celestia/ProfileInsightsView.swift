@@ -539,10 +539,10 @@ struct ProfileInsightsView: View {
 
             HStack(spacing: 20) {
                 statBox(
-                    title: "Likes",
+                    title: "Interests",
                     value: "\(insights.likesReceived)",
-                    color: .pink,
-                    icon: "heart.fill"
+                    color: .purple,
+                    icon: "gamecontroller.fill"
                 )
 
                 statBox(

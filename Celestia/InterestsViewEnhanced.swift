@@ -265,7 +265,7 @@ struct InterestsViewEnhanced: View {
 
     private var emptyStateView: some View {
         VStack(spacing: 20) {
-            Image(systemName: "heart.slash")
+            Image(systemName: "gamecontroller")
                 .font(.system(size: 60))
                 .foregroundColor(.purple.opacity(0.5))
 

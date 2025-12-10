@@ -366,11 +366,11 @@ struct PremiumUpgradeView: View {
                     .fill(Color.purple.opacity(0.15))
                     .frame(width: 44, height: 44)
 
-                Image(systemName: "heart.slash.fill")
+                Image(systemName: "gamecontroller")
                     .font(.title3)
                     .foregroundStyle(
                         LinearGradient(
-                            colors: [.purple, .pink],
+                            colors: [.purple, .indigo],
                             startPoint: .topLeading,
                             endPoint: .bottomTrailing
                         )

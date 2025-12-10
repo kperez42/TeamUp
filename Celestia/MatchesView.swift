@@ -566,7 +566,7 @@ struct MatchesView: View {
             VStack(spacing: 12) {
                 tipRow(icon: "photo.fill", text: "Add more photos to your profile")
                 tipRow(icon: "text.alignleft", text: "Write an interesting bio")
-                tipRow(icon: "heart.fill", text: "Be active and swipe regularly")
+                tipRow(icon: "gamecontroller.fill", text: "Be active and browse regularly")
             }
             .padding(20)
             .background(Color.white)

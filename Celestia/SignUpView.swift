@@ -778,7 +778,7 @@ struct SignUpView: View {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 12) {
                     photoTipChip(icon: "face.smiling.fill", text: "Clear face shot", color: .purple)
-                    photoTipChip(icon: "heart.fill", text: "Show personality", color: .pink)
+                    photoTipChip(icon: "gamecontroller.fill", text: "Show personality", color: .purple)
                     photoTipChip(icon: "sun.max.fill", text: "Good lighting", color: .orange)
                 }
                 .padding(.horizontal, 4)

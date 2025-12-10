@@ -1242,11 +1242,11 @@ struct EditProfileView: View {
                 HStack(spacing: 12) {
                     ZStack {
                         Circle()
-                            .fill(Color.pink.opacity(0.12))
+                            .fill(Color.purple.opacity(0.12))
                             .frame(width: 40, height: 40)
-                        Image(systemName: "heart.circle.fill")
+                        Image(systemName: "person.2.fill")
                             .font(.title3)
-                            .foregroundColor(.pink)
+                            .foregroundColor(.purple)
                     }
 
                     VStack(alignment: .leading, spacing: 2) {
@@ -1429,7 +1429,7 @@ struct EditProfileView: View {
 
                     // Relationship Goal
                     VStack(alignment: .leading, spacing: 8) {
-                        Label("Looking For", systemImage: "heart.circle")
+                        Label("Looking For", systemImage: "person.2")
                             .font(.caption)
                             .fontWeight(.semibold)
                             .foregroundColor(.secondary)
@@ -1638,7 +1638,7 @@ struct EditProfileView: View {
         case "cat": return "cat.fill"
         case "both": return "pawprint.fill"
         case "other pets": return "hare.fill"
-        case "want pets": return "heart.fill"
+        case "want pets": return "star.fill"
         case "no pets": return "xmark.circle"
         default: return "pawprint"
         }

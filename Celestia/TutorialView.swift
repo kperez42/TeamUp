@@ -526,7 +526,7 @@ struct SwipeGestureDemo: View {
                             Text("Demo Profile")
                                 .font(.headline)
 
-                            Text("Swipe me!")
+                            Text("Tap to browse!")
                                 .font(.caption)
                                 .foregroundColor(.secondary)
                         }
