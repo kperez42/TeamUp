@@ -556,7 +556,7 @@ enum NotificationPayload {
         let bodies = [
             "Keep the conversation going!",
             "They're probably checking their phone right now...",
-            "A quick reply keeps the spark alive",
+            "A quick reply keeps the connection strong",
             "Don't leave them on read!",
             "Good things happen when you show up"
         ]
@@ -587,10 +587,10 @@ enum NotificationPayload {
             } else {
                 let titles = [
                     "Someone likes you!",
-                    "You have a secret admirer",
+                    "A gamer wants to team up",
                     "Someone swiped right on you!",
                     "You're being noticed!",
-                    "A new admirer is waiting"
+                    "A new player is interested"
                 ]
                 return titles.randomElement() ?? "Someone likes you!"
             }

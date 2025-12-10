@@ -381,7 +381,7 @@ struct NotificationHistoryRow: View {
             return "gamecontroller.fill"
         case .newMessage:
             return "message.circle.fill"
-        case .secretAdmirer:
+        case .playerInterested:
             return "sparkles"
         case .profileView:
             return "eye.circle.fill"
@@ -402,7 +402,7 @@ struct NotificationHistoryRow: View {
 enum NotificationType: String, Codable {
     case newMatch
     case newMessage
-    case secretAdmirer
+    case playerInterested
     case profileView
     case weeklyDigest
     case activityReminder
