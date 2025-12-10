@@ -485,7 +485,7 @@ struct UserDetailView: View {
         if !user.lookingFor.isEmpty {
             ProfileSectionCard(
                 icon: "person.2.fill",
-                title: "Show Me",
+                title: "Looking For",
                 iconColors: [.teal, .blue],
                 borderColor: .teal
             ) {

@@ -20,7 +20,7 @@ struct EditProfileView: View {
     @State private var location: String
     @State private var country: String
     @State private var gender: String
-    @State private var lookingFor: String
+    @State private var gamerTag: String
     @State private var languages: [String]
     @State private var interests: [String]
     @State private var prompts: [ProfilePrompt]
@@ -51,47 +51,34 @@ struct EditProfileView: View {
     // Network monitoring for upload operations
     @ObservedObject var networkMonitor = NetworkMonitor.shared
 
-    // Advanced profile fields
-    @State private var educationLevel: String?
-    @State private var height: Int?
-    @State private var religion: String?
-    @State private var relationshipGoal: String?
-    @State private var smoking: String?
-    @State private var drinking: String?
-    @State private var pets: String?
-    @State private var exercise: String?
-    @State private var diet: String?
+    // Gaming profile fields
+    @State private var platforms: Set<GamingPlatform> = []
+    @State private var skillLevel: SkillLevel = .intermediate
+    @State private var playStyle: PlayStyle = .casual
+    @State private var voiceChatPreference: VoiceChatPreference = .noPreference
+    @State private var lookingForTypes: Set<LookingForType> = []
+    @State private var gameGenres: Set<GameGenre> = []
+    @State private var weeklyHours: Int = 10
+    @State private var gamingGoal: String?
+
+    // External gaming profiles
+    @State private var discordTag: String = ""
+    @State private var steamId: String = ""
+    @State private var psnId: String = ""
+    @State private var xboxGamertag: String = ""
+    @State private var nintendoFriendCode: String = ""
+    @State private var riotId: String = ""
+    @State private var battleNetTag: String = ""
+    @State private var twitchUsername: String = ""
 
     // Preference fields
     @State private var ageRangeMin: Int
     @State private var ageRangeMax: Int
     @State private var maxDistance: Int
 
-    let genderOptions = ["Male", "Female", "Non-binary", "Other"]
-    let lookingForOptions = ["Men", "Women", "Everyone"]
-    let educationOptions = ["Prefer not to say", "High School", "Some College", "Associate's", "Bachelor's", "Master's", "Doctorate", "Trade School"]
-    let religionOptions = ["Prefer not to say", "Agnostic", "Atheist", "Buddhist", "Catholic", "Christian", "Hindu", "Jewish", "Muslim", "Spiritual", "Other"]
-    let relationshipGoalOptions = ["Prefer not to say", "Casual Gaming", "Regular Squad", "Competitive Team", "New Friends", "Not Sure Yet"]
-    let smokingOptions = ["Prefer not to say", "Never", "Socially", "Regularly", "Trying to Quit"]
-    let drinkingOptions = ["Prefer not to say", "Never", "Rarely", "Socially", "Regularly"]
-    let petsOptions = ["Prefer not to say", "No Pets", "Dog", "Cat", "Both", "Other Pets", "Want Pets"]
-
-    // Height options from 4'8" to 7'0" with cm values
-    var heightOptionsForPicker: [(cm: Int, display: String)] {
-        var options: [(cm: Int, display: String)] = []
-        for feet in 4...7 {
-            let maxInches = feet == 7 ? 0 : 11
-            let minInches = feet == 4 ? 8 : 0
-            for inches in minInches...maxInches {
-                let totalInches = feet * 12 + inches
-                let cm = Int(Double(totalInches) * 2.54)
-                options.append((cm: cm, display: "\(feet)'\(inches)\""))
-            }
-        }
-        return options
-    }
-    let exerciseOptions = ["Prefer not to say", "Never", "Rarely", "Sometimes", "Often", "Daily"]
-    let dietOptions = ["Prefer not to say", "No Restrictions", "Vegan", "Vegetarian", "Pescatarian", "Kosher", "Halal"]
+    let genderOptions = ["Male", "Female", "Non-binary", "Prefer not to say"]
+    let gamingGoalOptions = ["Casual Gaming", "Regular Squad", "Competitive Team", "Streaming Partners", "Tournament Team", "Just Vibing"]
+    let weeklyHoursOptions = [5, 10, 15, 20, 25, 30, 40, 50]
     let availableCountries = [
         "United States",
         "Canada",
@@ -145,23 +132,35 @@ struct EditProfileView: View {
         _bio = State(initialValue: user?.bio ?? "")
         _location = State(initialValue: user?.location ?? "")
         _country = State(initialValue: user?.country ?? "")
-        _gender = State(initialValue: user?.gender ?? "Other")
-        _lookingFor = State(initialValue: user?.showMeGender ?? "Everyone")
+        _gender = State(initialValue: user?.gender ?? "Prefer not to say")
+        _gamerTag = State(initialValue: user?.gamerTag ?? "")
         _languages = State(initialValue: user?.languages ?? [])
         _interests = State(initialValue: user?.interests ?? [])
         _prompts = State(initialValue: user?.prompts ?? [])
         _photos = State(initialValue: user?.photos ?? [])
 
-        // Initialize advanced profile fields
-        _educationLevel = State(initialValue: user?.educationLevel)
-        _height = State(initialValue: user?.height)
-        _religion = State(initialValue: user?.religion)
-        _relationshipGoal = State(initialValue: user?.relationshipGoal)
-        _smoking = State(initialValue: user?.smoking)
-        _drinking = State(initialValue: user?.drinking)
-        _pets = State(initialValue: user?.pets)
-        _exercise = State(initialValue: user?.exercise)
-        _diet = State(initialValue: user?.diet)
+        // Initialize gaming profile fields
+        let platformStrings = user?.platforms ?? []
+        _platforms = State(initialValue: Set(platformStrings.compactMap { GamingPlatform(rawValue: $0) }))
+        _skillLevel = State(initialValue: SkillLevel(rawValue: user?.skillLevel ?? "") ?? .intermediate)
+        _playStyle = State(initialValue: PlayStyle(rawValue: user?.playStyle ?? "") ?? .casual)
+        _voiceChatPreference = State(initialValue: VoiceChatPreference(rawValue: user?.voiceChatPreference ?? "") ?? .noPreference)
+        let lookingForStrings = user?.lookingFor ?? []
+        _lookingForTypes = State(initialValue: Set(lookingForStrings.compactMap { LookingForType(rawValue: $0) }))
+        let genreStrings = user?.gameGenres ?? []
+        _gameGenres = State(initialValue: Set(genreStrings.compactMap { GameGenre(rawValue: $0) }))
+        _weeklyHours = State(initialValue: user?.gamingStats.weeklyHours ?? 10)
+        _gamingGoal = State(initialValue: user?.relationshipGoal)
+
+        // Initialize external gaming profiles
+        _discordTag = State(initialValue: user?.discordTag ?? "")
+        _steamId = State(initialValue: user?.steamId ?? "")
+        _psnId = State(initialValue: user?.psnId ?? "")
+        _xboxGamertag = State(initialValue: user?.xboxGamertag ?? "")
+        _nintendoFriendCode = State(initialValue: user?.nintendoFriendCode ?? "")
+        _riotId = State(initialValue: user?.riotId ?? "")
+        _battleNetTag = State(initialValue: user?.battleNetTag ?? "")
+        _twitchUsername = State(initialValue: user?.twitchUsername ?? "")
 
         // Initialize preference fields
         _ageRangeMin = State(initialValue: user?.ageRangeMin ?? 18)
@@ -185,30 +184,34 @@ struct EditProfileView: View {
                         profileCompletionProgress
 
                         // SECTION 2: Basic Info
-                        // Name, Age, Gender, Location - essentials
+                        // Name, Age, GamerTag, Location - essentials
                         basicInfoSection
 
                         // SECTION 3: About Me
-                        // Bio - self expression
+                        // Gaming Bio - self expression
                         aboutMeSection
 
-                        // SECTION 4: Gaming Preferences
-                        // Looking For, Age Range - what they want
-                        preferencesSection
+                        // SECTION 4: Gaming Setup
+                        // Platforms, Skill Level, Play Style
+                        gamingSetupSection
 
-                        // SECTION 5: Personal Details
-                        // Height, Education, Religion, Relationship Goal
-                        personalDetailsSection
+                        // SECTION 5: Gaming Preferences
+                        // What type of teammates, Voice Chat, Age Range
+                        gamingPreferencesSection
 
-                        // SECTION 6: Lifestyle Habits
-                        // Smoking, Drinking, Exercise, Diet, Pets
-                        lifestyleHabitsSection
+                        // SECTION 6: Gaming Schedule
+                        // Weekly hours, Gaming Goal
+                        gamingScheduleSection
 
-                        // SECTION 7: Express Yourself
+                        // SECTION 7: External Profiles
+                        // Discord, Steam, PSN, Xbox, etc.
+                        externalProfilesSection
+
+                        // SECTION 8: Express Yourself
                         // Languages & Interests combined
                         expressYourselfSection
 
-                        // SECTION 8: Profile Prompts
+                        // SECTION 9: Profile Prompts
                         // Personality showcase
                         promptsSection
                     }
@@ -1057,6 +1060,26 @@ struct EditProfileView: View {
                     )
             }
 
+            // Gamer Tag
+            VStack(alignment: .leading, spacing: 8) {
+                HStack(spacing: 4) {
+                    Text("Gamer Tag")
+                        .font(.subheadline)
+                        .fontWeight(.semibold)
+                        .foregroundColor(.secondary)
+                    Image(systemName: "gamecontroller.fill")
+                        .font(.caption)
+                        .foregroundColor(.blue)
+                }
+                TextField("YourGamerTag", text: $gamerTag)
+                    .padding()
+                    .background(Color(.systemGray6))
+                    .cornerRadius(12)
+                Text("Your gaming username others will know you by")
+                    .font(.caption)
+                    .foregroundColor(.gray)
+            }
+
             // Age (Required)
             VStack(alignment: .leading, spacing: 8) {
                 HStack(spacing: 4) {
@@ -1087,7 +1110,7 @@ struct EditProfileView: View {
                     }
                 }
             }
-            
+
             // Gender Picker
             VStack(alignment: .leading, spacing: 8) {
                 Text("Gender")
@@ -1205,7 +1228,7 @@ struct EditProfileView: View {
                         }
                     }
                 
-                Text("Tell others what makes you unique")
+                Text("Tell others about your gaming style and what makes you a great teammate")
                     .font(.caption)
                     .foregroundColor(.gray)
             }
@@ -1216,121 +1239,115 @@ struct EditProfileView: View {
         .shadow(color: .black.opacity(0.05), radius: 8)
     }
     
-    // MARK: - Preferences Section
+    // MARK: - Gaming Setup Section
 
-    private var preferencesSection: some View {
+    private var gamingSetupSection: some View {
         VStack(spacing: 20) {
-            SectionHeader(icon: "gamecontroller.fill", title: "Gaming Preferences", color: .blue)
+            SectionHeader(icon: "gamecontroller.fill", title: "Gaming Setup", color: .blue)
 
-            VStack(alignment: .leading, spacing: 8) {
-                Text("Show Me")
+            // Platforms
+            VStack(alignment: .leading, spacing: 12) {
+                Text("Platforms")
                     .font(.subheadline)
                     .fontWeight(.semibold)
                     .foregroundColor(.secondary)
 
-                Picker("Show Me", selection: $lookingFor) {
-                    ForEach(lookingForOptions, id: \.self) { option in
-                        Text(option).tag(option)
-                    }
-                }
-                .pickerStyle(.segmented)
-            }
-
-            // Age Range Preference
-            VStack(spacing: 16) {
-                // Header with icon
-                HStack(spacing: 12) {
-                    ZStack {
-                        Circle()
-                            .fill(Color.blue.opacity(0.12))
-                            .frame(width: 40, height: 40)
-                        Image(systemName: "person.2.fill")
-                            .font(.title3)
-                            .foregroundColor(.blue)
-                    }
-
-                    VStack(alignment: .leading, spacing: 2) {
-                        Text("Age Preference")
-                            .font(.subheadline)
-                            .fontWeight(.semibold)
-                        Text("Who would you like to team up with?")
-                            .font(.caption)
-                            .foregroundColor(.secondary)
-                    }
-
-                    Spacer()
-
-                    // Age range badge
-                    Text("\(ageRangeMin) - \(ageRangeMax)")
-                        .font(.subheadline.weight(.bold))
-                        .foregroundColor(.white)
-                        .padding(.horizontal, 12)
-                        .padding(.vertical, 6)
-                        .background(
-                            LinearGradient(
-                                colors: [.teal, .blue],
-                                startPoint: .leading,
-                                endPoint: .trailing
+                LazyVGrid(columns: [GridItem(.adaptive(minimum: 100))], spacing: 10) {
+                    ForEach(GamingPlatform.allCases) { platform in
+                        Button {
+                            if platforms.contains(platform) {
+                                platforms.remove(platform)
+                            } else {
+                                platforms.insert(platform)
+                            }
+                            HapticManager.shared.impact(.light)
+                        } label: {
+                            HStack(spacing: 6) {
+                                Image(systemName: platform.icon)
+                                    .font(.caption)
+                                Text(platform.rawValue)
+                                    .font(.caption)
+                            }
+                            .padding(.horizontal, 12)
+                            .padding(.vertical, 10)
+                            .frame(maxWidth: .infinity)
+                            .background(
+                                platforms.contains(platform) ?
+                                LinearGradient(colors: [.blue, .teal], startPoint: .leading, endPoint: .trailing) :
+                                LinearGradient(colors: [Color(.systemGray6), Color(.systemGray6)], startPoint: .leading, endPoint: .trailing)
                             )
-                        )
-                        .cornerRadius(16)
-                }
-
-                // Age pickers
-                HStack(spacing: 20) {
-                    // Min age
-                    VStack(spacing: 8) {
-                        Text("From")
-                            .font(.caption)
-                            .foregroundColor(.secondary)
-
-                        Picker("Min Age", selection: $ageRangeMin) {
-                            ForEach(18..<99, id: \.self) { age in
-                                Text("\(age)").tag(age)
-                            }
-                        }
-                        .pickerStyle(.wheel)
-                        .frame(width: 80, height: 100)
-                        .clipped()
-                        .onChange(of: ageRangeMin) { _, newValue in
-                            if newValue >= ageRangeMax {
-                                ageRangeMax = newValue + 1
-                            }
-                        }
-                    }
-
-                    // Divider
-                    Text("to")
-                        .font(.subheadline)
-                        .foregroundColor(.secondary)
-
-                    // Max age
-                    VStack(spacing: 8) {
-                        Text("To")
-                            .font(.caption)
-                            .foregroundColor(.secondary)
-
-                        Picker("Max Age", selection: $ageRangeMax) {
-                            ForEach(19..<100, id: \.self) { age in
-                                Text("\(age)").tag(age)
-                            }
-                        }
-                        .pickerStyle(.wheel)
-                        .frame(width: 80, height: 100)
-                        .clipped()
-                        .onChange(of: ageRangeMax) { _, newValue in
-                            if newValue <= ageRangeMin {
-                                ageRangeMin = newValue - 1
-                            }
+                            .foregroundColor(platforms.contains(platform) ? .white : .primary)
+                            .cornerRadius(10)
                         }
                     }
                 }
-                .frame(maxWidth: .infinity)
             }
-            .padding()
-            .background(Color(.systemBackground))
-            .cornerRadius(16)
-            .shadow(color: .black.opacity(0.04), radius: 8, y: 2)
+
+            // Skill Level
+            VStack(alignment: .leading, spacing: 12) {
+                Text("Skill Level")
+                    .font(.subheadline)
+                    .fontWeight(.semibold)
+                    .foregroundColor(.secondary)
+
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack(spacing: 10) {
+                        ForEach(SkillLevel.allCases) { level in
+                            Button {
+                                skillLevel = level
+                                HapticManager.shared.impact(.light)
+                            } label: {
+                                Text(level.rawValue)
+                                    .font(.subheadline)
+                                    .fontWeight(.medium)
+                                    .padding(.horizontal, 16)
+                                    .padding(.vertical, 10)
+                                    .background(
+                                        skillLevel == level ?
+                                        LinearGradient(colors: [.blue, .teal], startPoint: .leading, endPoint: .trailing) :
+                                        LinearGradient(colors: [Color(.systemGray6), Color(.systemGray6)], startPoint: .leading, endPoint: .trailing)
+                                    )
+                                    .foregroundColor(skillLevel == level ? .white : .primary)
+                                    .cornerRadius(10)
+                            }
+                        }
+                    }
+                }
+            }
+
+            // Play Style
+            VStack(alignment: .leading, spacing: 12) {
+                Text("Play Style")
+                    .font(.subheadline)
+                    .fontWeight(.semibold)
+                    .foregroundColor(.secondary)
+
+                LazyVGrid(columns: [GridItem(.adaptive(minimum: 90))], spacing: 10) {
+                    ForEach(PlayStyle.allCases) { style in
+                        Button {
+                            playStyle = style
+                            HapticManager.shared.impact(.light)
+                        } label: {
+                            HStack(spacing: 4) {
+                                Image(systemName: style.icon)
+                                    .font(.caption)
+                                Text(style.rawValue)
+                                    .font(.caption)
+                            }
+                            .padding(.horizontal, 10)
+                            .padding(.vertical, 8)
+                            .frame(maxWidth: .infinity)
+                            .background(
+                                playStyle == style ?
+                                LinearGradient(colors: [.teal, .blue], startPoint: .leading, endPoint: .trailing) :
+                                LinearGradient(colors: [Color(.systemGray6), Color(.systemGray6)], startPoint: .leading, endPoint: .trailing)
+                            )
+                            .foregroundColor(playStyle == style ? .white : .primary)
+                            .cornerRadius(10)
+                        }
+                    }
+                }
+            }
         }
         .padding(20)
         .background(Color.white)
@@ -1338,310 +1355,390 @@ struct EditProfileView: View {
         .shadow(color: .black.opacity(0.05), radius: 8)
     }
 
-    // MARK: - Personal Details Section
+    // MARK: - Gaming Preferences Section
 
-    private var personalDetailsSection: some View {
-        VStack(spacing: 0) {
-            // Header
-            HStack {
-                SectionHeader(icon: "person.text.rectangle", title: "Personal Details", color: .blue)
-                Spacer()
-            }
-            .padding(.horizontal, 20)
-            .padding(.top, 20)
-            .padding(.bottom, 16)
+    private var gamingPreferencesSection: some View {
+        VStack(spacing: 20) {
+            SectionHeader(icon: "person.2.fill", title: "Looking For", color: .teal)
 
-            VStack(spacing: 16) {
-                // Height with picker
-                VStack(alignment: .leading, spacing: 8) {
-                    Label("Height", systemImage: "ruler")
-                        .font(.caption)
-                        .fontWeight(.semibold)
-                        .foregroundColor(.secondary)
+            // Looking For Types
+            VStack(alignment: .leading, spacing: 12) {
+                Text("What type of teammates?")
+                    .font(.subheadline)
+                    .fontWeight(.semibold)
+                    .foregroundColor(.secondary)
 
-                    Menu {
-                        Button("Not specified") {
-                            height = nil
-                        }
-                        ForEach(heightOptionsForPicker, id: \.cm) { option in
-                            Button(option.display) {
-                                height = option.cm
-                            }
-                        }
-                    } label: {
-                        HStack {
-                            if let h = height {
-                                Text(heightToFeetInches(h))
-                                    .font(.subheadline)
-                                    .foregroundColor(.primary)
+                LazyVGrid(columns: [GridItem(.adaptive(minimum: 140))], spacing: 10) {
+                    ForEach(LookingForType.allCases) { type in
+                        Button {
+                            if lookingForTypes.contains(type) {
+                                lookingForTypes.remove(type)
                             } else {
-                                Text("Select height")
-                                    .font(.subheadline)
-                                    .foregroundColor(.gray)
+                                lookingForTypes.insert(type)
                             }
-                            Spacer()
-                            if let h = height {
-                                Text("\(h) cm")
-                                    .font(.caption)
-                                    .foregroundColor(.blue)
-                            }
-                            Image(systemName: "chevron.down")
+                            HapticManager.shared.impact(.light)
+                        } label: {
+                            Text(type.rawValue)
                                 .font(.caption)
-                                .foregroundColor(.gray)
-                        }
-                        .padding()
-                        .background(Color(.systemGray6))
-                        .cornerRadius(12)
-                    }
-                }
-                .padding(.horizontal, 20)
-
-                // Two column grid for related fields
-                HStack(spacing: 12) {
-                    // Education
-                    VStack(alignment: .leading, spacing: 8) {
-                        Label("Education", systemImage: "graduationcap")
-                            .font(.caption)
-                            .fontWeight(.semibold)
-                            .foregroundColor(.secondary)
-
-                        Menu {
-                            ForEach(educationOptions, id: \.self) { option in
-                                Button(option) {
-                                    educationLevel = option == "Prefer not to say" ? nil : option
-                                }
-                            }
-                        } label: {
-                            HStack {
-                                Text(educationLevel ?? "Select")
-                                    .font(.subheadline)
-                                    .foregroundColor(educationLevel == nil ? .gray : .primary)
-                                Spacer()
-                                Image(systemName: "chevron.down")
-                                    .font(.caption)
-                                    .foregroundColor(.gray)
-                            }
-                            .padding()
-                            .background(Color(.systemGray6))
-                            .cornerRadius(12)
-                        }
-                    }
-
-                    // Gaming Goal
-                    VStack(alignment: .leading, spacing: 8) {
-                        Label("Gaming Goal", systemImage: "gamecontroller.fill")
-                            .font(.caption)
-                            .fontWeight(.semibold)
-                            .foregroundColor(.secondary)
-
-                        Menu {
-                            ForEach(relationshipGoalOptions, id: \.self) { option in
-                                Button(option) {
-                                    relationshipGoal = option == "Prefer not to say" ? nil : option
-                                }
-                            }
-                        } label: {
-                            HStack {
-                                Text(relationshipGoal ?? "Select")
-                                    .font(.subheadline)
-                                    .foregroundColor(relationshipGoal == nil ? .gray : .primary)
-                                Spacer()
-                                Image(systemName: "chevron.down")
-                                    .font(.caption)
-                                    .foregroundColor(.gray)
-                            }
-                            .padding()
-                            .background(Color(.systemGray6))
-                            .cornerRadius(12)
+                                .fontWeight(.medium)
+                                .padding(.horizontal, 12)
+                                .padding(.vertical, 10)
+                                .frame(maxWidth: .infinity)
+                                .background(
+                                    lookingForTypes.contains(type) ?
+                                    LinearGradient(colors: [.teal, .blue], startPoint: .leading, endPoint: .trailing) :
+                                    LinearGradient(colors: [Color(.systemGray6), Color(.systemGray6)], startPoint: .leading, endPoint: .trailing)
+                                )
+                                .foregroundColor(lookingForTypes.contains(type) ? .white : .primary)
+                                .cornerRadius(10)
                         }
                     }
                 }
-                .padding(.horizontal, 20)
+            }
 
-                // Religion - Full width
-                VStack(alignment: .leading, spacing: 8) {
-                    Label("Religion / Spirituality", systemImage: "sparkles")
-                        .font(.caption)
+            // Voice Chat Preference
+            VStack(alignment: .leading, spacing: 12) {
+                HStack {
+                    Image(systemName: "mic.fill")
+                        .foregroundColor(.blue)
+                    Text("Voice Chat")
+                        .font(.subheadline)
                         .fontWeight(.semibold)
                         .foregroundColor(.secondary)
+                }
 
-                    Menu {
-                        ForEach(religionOptions, id: \.self) { option in
-                            Button(option) {
-                                religion = option == "Prefer not to say" ? nil : option
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack(spacing: 10) {
+                        ForEach(VoiceChatPreference.allCases) { pref in
+                            Button {
+                                voiceChatPreference = pref
+                                HapticManager.shared.impact(.light)
+                            } label: {
+                                Text(pref.rawValue)
+                                    .font(.caption)
+                                    .fontWeight(.medium)
+                                    .padding(.horizontal, 14)
+                                    .padding(.vertical, 10)
+                                    .background(
+                                        voiceChatPreference == pref ?
+                                        LinearGradient(colors: [.blue, .teal], startPoint: .leading, endPoint: .trailing) :
+                                        LinearGradient(colors: [Color(.systemGray6), Color(.systemGray6)], startPoint: .leading, endPoint: .trailing)
+                                    )
+                                    .foregroundColor(voiceChatPreference == pref ? .white : .primary)
+                                    .cornerRadius(10)
                             }
                         }
-                    } label: {
-                        HStack {
-                            Text(religion ?? "Select")
-                                .font(.subheadline)
-                                .foregroundColor(religion == nil ? .gray : .primary)
-                            Spacer()
-                            Image(systemName: "chevron.down")
-                                .font(.caption)
-                                .foregroundColor(.gray)
-                        }
-                        .padding()
-                        .background(Color(.systemGray6))
-                        .cornerRadius(12)
                     }
                 }
-                .padding(.horizontal, 20)
             }
-            .padding(.bottom, 20)
+
+            // Teammate Age Preference
+            VStack(spacing: 12) {
+                HStack {
+                    Text("Teammate Age Range")
+                        .font(.subheadline)
+                        .fontWeight(.semibold)
+                        .foregroundColor(.secondary)
+                    Spacer()
+                    Text("\(ageRangeMin) - \(ageRangeMax)")
+                        .font(.subheadline.weight(.bold))
+                        .foregroundColor(.white)
+                        .padding(.horizontal, 12)
+                        .padding(.vertical, 6)
+                        .background(
+                            LinearGradient(colors: [.teal, .blue], startPoint: .leading, endPoint: .trailing)
+                        )
+                        .cornerRadius(12)
+                }
+
+                HStack(spacing: 20) {
+                    VStack(spacing: 4) {
+                        Text("Min")
+                            .font(.caption)
+                            .foregroundColor(.secondary)
+                        Picker("Min Age", selection: $ageRangeMin) {
+                            ForEach(18..<99, id: \.self) { age in
+                                Text("\(age)").tag(age)
+                            }
+                        }
+                        .pickerStyle(.wheel)
+                        .frame(width: 70, height: 80)
+                        .clipped()
+                    }
+
+                    Text("to")
+                        .foregroundColor(.secondary)
+
+                    VStack(spacing: 4) {
+                        Text("Max")
+                            .font(.caption)
+                            .foregroundColor(.secondary)
+                        Picker("Max Age", selection: $ageRangeMax) {
+                            ForEach(19..<100, id: \.self) { age in
+                                Text("\(age)").tag(age)
+                            }
+                        }
+                        .pickerStyle(.wheel)
+                        .frame(width: 70, height: 80)
+                        .clipped()
+                    }
+                }
+            }
+            .padding()
+            .background(Color(.systemGray6))
+            .cornerRadius(12)
         }
+        .padding(20)
         .background(Color.white)
         .cornerRadius(16)
         .shadow(color: .black.opacity(0.05), radius: 8)
     }
 
-    // MARK: - Lifestyle Habits Section
+    // MARK: - Gaming Schedule Section
 
-    private var lifestyleHabitsSection: some View {
-        VStack(spacing: 0) {
-            // Header
-            HStack {
-                SectionHeader(icon: "leaf.fill", title: "Lifestyle", color: .teal)
-                Spacer()
+    private var gamingScheduleSection: some View {
+        VStack(spacing: 20) {
+            SectionHeader(icon: "clock.fill", title: "Gaming Schedule", color: .teal)
+
+            // Weekly Hours
+            VStack(alignment: .leading, spacing: 12) {
+                HStack {
+                    Text("Weekly Gaming Hours")
+                        .font(.subheadline)
+                        .fontWeight(.semibold)
+                        .foregroundColor(.secondary)
+                    Spacer()
+                    Text("\(weeklyHours)+ hrs/week")
+                        .font(.caption)
+                        .fontWeight(.bold)
+                        .foregroundColor(.white)
+                        .padding(.horizontal, 10)
+                        .padding(.vertical, 4)
+                        .background(
+                            LinearGradient(colors: [.blue, .teal], startPoint: .leading, endPoint: .trailing)
+                        )
+                        .cornerRadius(8)
+                }
+
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack(spacing: 10) {
+                        ForEach(weeklyHoursOptions, id: \.self) { hours in
+                            Button {
+                                weeklyHours = hours
+                                HapticManager.shared.impact(.light)
+                            } label: {
+                                Text("\(hours)+")
+                                    .font(.subheadline)
+                                    .fontWeight(.medium)
+                                    .padding(.horizontal, 16)
+                                    .padding(.vertical, 10)
+                                    .background(
+                                        weeklyHours == hours ?
+                                        LinearGradient(colors: [.blue, .teal], startPoint: .leading, endPoint: .trailing) :
+                                        LinearGradient(colors: [Color(.systemGray6), Color(.systemGray6)], startPoint: .leading, endPoint: .trailing)
+                                    )
+                                    .foregroundColor(weeklyHours == hours ? .white : .primary)
+                                    .cornerRadius(10)
+                            }
+                        }
+                    }
+                }
             }
-            .padding(.horizontal, 20)
-            .padding(.top, 20)
-            .padding(.bottom, 16)
+
+            // Gaming Goal
+            VStack(alignment: .leading, spacing: 12) {
+                Text("Gaming Goal")
+                    .font(.subheadline)
+                    .fontWeight(.semibold)
+                    .foregroundColor(.secondary)
+
+                LazyVGrid(columns: [GridItem(.adaptive(minimum: 130))], spacing: 10) {
+                    ForEach(gamingGoalOptions, id: \.self) { goal in
+                        Button {
+                            gamingGoal = goal
+                            HapticManager.shared.impact(.light)
+                        } label: {
+                            Text(goal)
+                                .font(.caption)
+                                .fontWeight(.medium)
+                                .padding(.horizontal, 12)
+                                .padding(.vertical, 10)
+                                .frame(maxWidth: .infinity)
+                                .background(
+                                    gamingGoal == goal ?
+                                    LinearGradient(colors: [.teal, .blue], startPoint: .leading, endPoint: .trailing) :
+                                    LinearGradient(colors: [Color(.systemGray6), Color(.systemGray6)], startPoint: .leading, endPoint: .trailing)
+                                )
+                                .foregroundColor(gamingGoal == goal ? .white : .primary)
+                                .cornerRadius(10)
+                        }
+                    }
+                }
+            }
+
+            // Game Genres
+            VStack(alignment: .leading, spacing: 12) {
+                Text("Favorite Genres")
+                    .font(.subheadline)
+                    .fontWeight(.semibold)
+                    .foregroundColor(.secondary)
+
+                LazyVGrid(columns: [GridItem(.adaptive(minimum: 90))], spacing: 8) {
+                    ForEach(GameGenre.allCases) { genre in
+                        Button {
+                            if gameGenres.contains(genre) {
+                                gameGenres.remove(genre)
+                            } else {
+                                gameGenres.insert(genre)
+                            }
+                            HapticManager.shared.impact(.light)
+                        } label: {
+                            Text(genre.rawValue)
+                                .font(.caption2)
+                                .fontWeight(.medium)
+                                .padding(.horizontal, 8)
+                                .padding(.vertical, 6)
+                                .frame(maxWidth: .infinity)
+                                .background(
+                                    gameGenres.contains(genre) ?
+                                    LinearGradient(colors: [.blue, .teal], startPoint: .leading, endPoint: .trailing) :
+                                    LinearGradient(colors: [Color(.systemGray6), Color(.systemGray6)], startPoint: .leading, endPoint: .trailing)
+                                )
+                                .foregroundColor(gameGenres.contains(genre) ? .white : .primary)
+                                .cornerRadius(8)
+                        }
+                    }
+                }
+            }
+        }
+        .padding(20)
+        .background(Color.white)
+        .cornerRadius(16)
+        .shadow(color: .black.opacity(0.05), radius: 8)
+    }
+
+    // MARK: - External Profiles Section
+
+    private var externalProfilesSection: some View {
+        VStack(spacing: 20) {
+            SectionHeader(icon: "link.circle.fill", title: "Gaming Profiles", color: .blue)
+
+            Text("Connect your gaming accounts so teammates can find you")
+                .font(.caption)
+                .foregroundColor(.secondary)
+                .frame(maxWidth: .infinity, alignment: .leading)
 
             VStack(spacing: 12) {
-                // Row 1: Smoking & Drinking
-                HStack(spacing: 12) {
-                    lifestylePickerItem(
-                        icon: "smoke",
-                        label: "Smoking",
-                        value: $smoking,
-                        options: smokingOptions,
-                        color: .orange
-                    )
+                // Discord
+                externalProfileField(
+                    icon: "message.fill",
+                    label: "Discord",
+                    placeholder: "Username#0000",
+                    value: $discordTag,
+                    color: .indigo
+                )
 
-                    lifestylePickerItem(
-                        icon: "wineglass",
-                        label: "Drinking",
-                        value: $drinking,
-                        options: drinkingOptions,
-                        color: .teal
-                    )
-                }
+                // Steam
+                externalProfileField(
+                    icon: "gamecontroller.fill",
+                    label: "Steam",
+                    placeholder: "Steam ID or Profile URL",
+                    value: $steamId,
+                    color: .blue
+                )
 
-                // Row 2: Exercise & Diet
-                HStack(spacing: 12) {
-                    lifestylePickerItem(
-                        icon: "figure.run",
-                        label: "Exercise",
-                        value: $exercise,
-                        options: exerciseOptions,
-                        color: .blue
-                    )
+                // PlayStation
+                externalProfileField(
+                    icon: "playstation.logo",
+                    label: "PSN",
+                    placeholder: "PSN ID",
+                    value: $psnId,
+                    color: .blue
+                )
 
-                    lifestylePickerItem(
-                        icon: "fork.knife",
-                        label: "Diet",
-                        value: $diet,
-                        options: dietOptions,
-                        color: .teal
-                    )
-                }
+                // Xbox
+                externalProfileField(
+                    icon: "xbox.logo",
+                    label: "Xbox",
+                    placeholder: "Gamertag",
+                    value: $xboxGamertag,
+                    color: .green
+                )
 
-                // Row 3: Pets - Full width with special treatment
-                VStack(alignment: .leading, spacing: 8) {
-                    Label("Pets", systemImage: "pawprint.fill")
-                        .font(.caption)
-                        .fontWeight(.semibold)
-                        .foregroundColor(.secondary)
+                // Nintendo
+                externalProfileField(
+                    icon: "gamecontroller",
+                    label: "Nintendo",
+                    placeholder: "Friend Code (SW-XXXX-XXXX-XXXX)",
+                    value: $nintendoFriendCode,
+                    color: .red
+                )
 
-                    Menu {
-                        ForEach(petsOptions, id: \.self) { option in
-                            Button(option) {
-                                pets = option == "Prefer not to say" ? nil : option
-                            }
-                        }
-                    } label: {
-                        HStack {
-                            if let petsValue = pets {
-                                HStack(spacing: 6) {
-                                    Image(systemName: getPetIcon(petsValue))
-                                        .foregroundColor(.orange)
-                                    Text(petsValue)
-                                        .font(.subheadline)
-                                        .foregroundColor(.primary)
-                                }
-                            } else {
-                                Text("Select")
-                                    .font(.subheadline)
-                                    .foregroundColor(.gray)
-                            }
-                            Spacer()
-                            Image(systemName: "chevron.down")
-                                .font(.caption)
-                                .foregroundColor(.gray)
-                        }
-                        .padding()
-                        .background(Color(.systemGray6))
-                        .cornerRadius(12)
-                    }
-                }
+                // Riot Games
+                externalProfileField(
+                    icon: "r.circle.fill",
+                    label: "Riot ID",
+                    placeholder: "Name#TAG",
+                    value: $riotId,
+                    color: .red
+                )
+
+                // Battle.net
+                externalProfileField(
+                    icon: "b.circle.fill",
+                    label: "Battle.net",
+                    placeholder: "BattleTag#0000",
+                    value: $battleNetTag,
+                    color: .blue
+                )
+
+                // Twitch
+                externalProfileField(
+                    icon: "video.fill",
+                    label: "Twitch",
+                    placeholder: "Username",
+                    value: $twitchUsername,
+                    color: .purple
+                )
             }
-            .padding(.horizontal, 20)
-            .padding(.bottom, 20)
         }
+        .padding(20)
         .background(Color.white)
         .cornerRadius(16)
         .shadow(color: .black.opacity(0.05), radius: 8)
     }
 
-    private func lifestylePickerItem(
+    private func externalProfileField(
         icon: String,
         label: String,
-        value: Binding<String?>,
-        options: [String],
+        placeholder: String,
+        value: Binding<String>,
         color: Color
     ) -> some View {
-        VStack(alignment: .leading, spacing: 8) {
-            Label(label, systemImage: icon)
-                .font(.caption)
-                .fontWeight(.semibold)
-                .foregroundColor(.secondary)
+        HStack(spacing: 12) {
+            ZStack {
+                Circle()
+                    .fill(color.opacity(0.15))
+                    .frame(width: 36, height: 36)
+                Image(systemName: icon)
+                    .font(.body)
+                    .foregroundColor(color)
+            }
 
-            Menu {
-                ForEach(options, id: \.self) { option in
-                    Button(option) {
-                        value.wrappedValue = option == "Prefer not to say" ? nil : option
-                    }
-                }
-            } label: {
-                HStack {
-                    Text(value.wrappedValue ?? "Select")
-                        .font(.subheadline)
-                        .foregroundColor(value.wrappedValue == nil ? .gray : .primary)
-                        .lineLimit(1)
-                    Spacer()
-                    Image(systemName: "chevron.down")
-                        .font(.caption)
-                        .foregroundColor(.gray)
-                }
-                .padding(.horizontal, 12)
-                .padding(.vertical, 12)
-                .background(Color(.systemGray6))
-                .cornerRadius(10)
+            VStack(alignment: .leading, spacing: 2) {
+                Text(label)
+                    .font(.caption)
+                    .fontWeight(.semibold)
+                    .foregroundColor(.secondary)
+                TextField(placeholder, text: value)
+                    .font(.subheadline)
+                    .autocapitalization(.none)
+                    .autocorrectionDisabled()
             }
         }
-    }
-
-    private func getPetIcon(_ pet: String) -> String {
-        switch pet.lowercased() {
-        case "dog": return "dog.fill"
-        case "cat": return "cat.fill"
-        case "both": return "pawprint.fill"
-        case "other pets": return "hare.fill"
-        case "want pets": return "star.fill"
-        case "no pets": return "xmark.circle"
-        default: return "pawprint"
-        }
+        .padding(12)
+        .background(Color(.systemGray6))
+        .cornerRadius(12)
     }
 
     // MARK: - Express Yourself Section (Languages & Interests)
@@ -2305,22 +2402,30 @@ struct EditProfileView: View {
                 user.location = InputSanitizer.standard(location)
                 user.country = InputSanitizer.basic(country)
                 user.gender = gender
-                user.showMeGender = lookingFor
+                user.gamerTag = gamerTag
                 user.languages = languages
                 user.interests = interests
                 user.prompts = prompts
                 user.photos = photos
 
-                // Update advanced profile fields
-                user.educationLevel = educationLevel
-                user.height = height
-                user.religion = religion
-                user.relationshipGoal = relationshipGoal
-                user.smoking = smoking
-                user.drinking = drinking
-                user.pets = pets
-                user.exercise = exercise
-                user.diet = diet
+                // Update gaming profile fields
+                user.platforms = platforms.map { $0.rawValue }
+                user.skillLevel = skillLevel.rawValue
+                user.playStyle = playStyle.rawValue
+                user.voiceChatPreference = voiceChatPreference.rawValue
+                user.lookingFor = lookingForTypes.map { $0.rawValue }
+                user.gameGenres = gameGenres.map { $0.rawValue }
+                user.gamingStats.weeklyHours = weeklyHours
+
+                // Update external gaming profiles
+                user.discordTag = discordTag.isEmpty ? nil : discordTag
+                user.steamId = steamId.isEmpty ? nil : steamId
+                user.psnId = psnId.isEmpty ? nil : psnId
+                user.xboxGamertag = xboxGamertag.isEmpty ? nil : xboxGamertag
+                user.nintendoFriendCode = nintendoFriendCode.isEmpty ? nil : nintendoFriendCode
+                user.riotId = riotId.isEmpty ? nil : riotId
+                user.battleNetTag = battleNetTag.isEmpty ? nil : battleNetTag
+                user.twitchUsername = twitchUsername.isEmpty ? nil : twitchUsername
 
                 // Update preference fields
                 user.ageRangeMin = ageRangeMin

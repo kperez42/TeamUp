@@ -240,7 +240,7 @@ class AuthService: ObservableObject, AuthServiceProtocol {
     }
 
     @MainActor
-    func createUser(withEmail email: String, password: String, fullName: String, age: Int = 18, gender: String = "", lookingFor: String = "Everyone", location: String, country: String, referralCode: String = "", photos: [UIImage] = []) async throws {
+    func createUser(withEmail email: String, password: String, fullName: String, age: Int = 18, gender: String = "", gamerTag: String = "", location: String, country: String, referralCode: String = "", photos: [UIImage] = []) async throws {
         isLoading = true
         errorMessage = nil
 
@@ -291,9 +291,9 @@ class AuthService: ObservableObject, AuthServiceProtocol {
                 id: result.user.uid,
                 email: sanitizedEmail,
                 fullName: sanitizedFullName,
+                gamerTag: gamerTag,
                 age: age,
                 gender: gender,
-                showMeGender: lookingFor,
                 location: location,
                 country: country,
                 photos: [],

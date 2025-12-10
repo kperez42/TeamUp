@@ -28,9 +28,9 @@ struct SignUpView: View {
 
     // Step 2: Profile info
     @State private var name = ""
+    @State private var gamerTag = ""
     @State private var age = ""
     @State private var gender = "Male"
-    @State private var lookingFor = "Everyone"
 
     // Step 3: Location
     @State private var location = ""
@@ -66,29 +66,23 @@ struct SignUpView: View {
         "Coffee", "Wine", "Beach", "Mountains", "Nightlife", "Concerts"
     ]
 
-    // Step 7: Lifestyle & Details
-    @State private var height = ""
-    @State private var relationshipGoal = ""
-    @State private var educationLevel = ""
-    @State private var smoking = ""
-    @State private var drinking = ""
-    @State private var religion = ""
-    @State private var exercise = ""
-    @State private var diet = ""
-    @State private var pets = ""
+    // Step 7: Gaming Setup & Preferences
+    @State private var platforms: Set<GamingPlatform> = []
+    @State private var skillLevel: SkillLevel = .intermediate
+    @State private var playStyle: PlayStyle = .casual
+    @State private var voiceChatPreference: VoiceChatPreference = .noPreference
+    @State private var lookingForTypes: Set<LookingForType> = []
+    @State private var gameGenres: Set<GameGenre> = []
+    @State private var weeklyHours: Int = 10
     @State private var languages: [String] = []
     @State private var showLanguagePicker = false
     @State private var ageRangeMin: Int = 18
     @State private var ageRangeMax: Int = 35
 
-    let relationshipGoalOptions = ["Casual Gaming", "Regular Squad", "Competitive Team", "New Friends", "Not Sure Yet"]
-    let educationLevelOptions = ["High school", "Some college", "Bachelor's degree", "Master's degree", "Doctorate", "Trade school", "Prefer not to say"]
-    let smokingOptions = ["Never", "Sometimes", "Regularly", "Prefer not to say"]
-    let drinkingOptions = ["Never", "Socially", "Regularly", "Prefer not to say"]
-    let religionOptions = ["Agnostic", "Atheist", "Buddhist", "Catholic", "Christian", "Hindu", "Jewish", "Muslim", "Spiritual", "Other", "Prefer not to say"]
-    let exerciseOptions = ["Never", "Rarely", "Sometimes", "Often", "Daily", "Prefer not to say"]
-    let dietOptions = ["No Restrictions", "Vegan", "Vegetarian", "Pescatarian", "Kosher", "Halal", "Prefer not to say"]
-    let petsOptions = ["No Pets", "Dog", "Cat", "Both", "Other Pets", "Want Pets", "Prefer not to say"]
+    // External gaming profiles
+    @State private var discordTag = ""
+    @State private var steamId = ""
+
     let availableLanguages = [
         "English", "Spanish", "French", "German", "Italian", "Portuguese",
         "Chinese", "Japanese", "Korean", "Arabic", "Hindi", "Russian",
@@ -97,7 +91,6 @@ struct SignUpView: View {
     ]
 
     let genderOptions = ["Male", "Female", "Non-binary", "Other"]
-    let lookingForOptions = ["Men", "Women", "Everyone"]
     let availableCountries = [
         "United States", "Canada", "Mexico", "United Kingdom", "Australia",
         "Germany", "France", "Spain", "Italy", "Brazil", "Argentina",
@@ -505,7 +498,7 @@ struct SignUpView: View {
                 Text("Name")
                     .font(.subheadline)
                     .foregroundColor(.secondary)
-                
+
                 TextField("Your name", text: $name)
                     .padding()
                     .background(Color(.systemBackground))
@@ -514,12 +507,31 @@ struct SignUpView: View {
                     .accessibilityHint("Enter your full name")
                     .accessibilityIdentifier(AccessibilityIdentifier.nameField)
             }
-            
+
+            VStack(alignment: .leading, spacing: 8) {
+                HStack(spacing: 6) {
+                    Image(systemName: "gamecontroller.fill")
+                        .foregroundColor(.blue)
+                        .font(.caption)
+                    Text("GamerTag")
+                        .font(.subheadline)
+                        .foregroundColor(.secondary)
+                }
+
+                TextField("Your gaming username", text: $gamerTag)
+                    .padding()
+                    .background(Color(.systemBackground))
+                    .cornerRadius(10)
+                    .accessibilityLabel("GamerTag")
+                    .accessibilityHint("Enter your gaming username or handle")
+                    .accessibilityIdentifier("gamertag_field")
+            }
+
             VStack(alignment: .leading, spacing: 8) {
                 Text("Age")
                     .font(.subheadline)
                     .foregroundColor(.secondary)
-                
+
                 TextField("18", text: $age)
                     .keyboardType(.numberPad)
                     .padding()
@@ -529,12 +541,12 @@ struct SignUpView: View {
                     .accessibilityHint("Enter your age, must be 18 or older")
                     .accessibilityIdentifier(AccessibilityIdentifier.ageField)
             }
-            
+
             VStack(alignment: .leading, spacing: 8) {
                 Text("I am")
                     .font(.subheadline)
                     .foregroundColor(.secondary)
-                
+
                 Picker("Gender", selection: $gender) {
                     ForEach(genderOptions, id: \.self) { option in
                         Text(option).tag(option)
@@ -545,23 +557,6 @@ struct SignUpView: View {
                 .accessibilityHint("Select your gender identity")
                 .accessibilityValue(gender)
                 .accessibilityIdentifier(AccessibilityIdentifier.genderPicker)
-            }
-            
-            VStack(alignment: .leading, spacing: 8) {
-                Text("Show Me")
-                    .font(.subheadline)
-                    .foregroundColor(.secondary)
-
-                Picker("Show Me", selection: $lookingFor) {
-                    ForEach(lookingForOptions, id: \.self) { option in
-                        Text(option).tag(option)
-                    }
-                }
-                .pickerStyle(.segmented)
-                .accessibilityLabel("Show Me")
-                .accessibilityHint("Select which gamers to show in your feed")
-                .accessibilityValue(lookingFor)
-                .accessibilityIdentifier(AccessibilityIdentifier.lookingForPicker)
             }
 
             // Validation feedback for step 2
@@ -1286,40 +1281,28 @@ struct SignUpView: View {
         }
     }
 
-    // MARK: - Step 7: Lifestyle Details
-    private let heightOptions: [String] = {
-        var heights: [String] = [""]
-        // Generate heights from 4'8" to 7'0"
-        for feet in 4...7 {
-            let maxInches = feet == 7 ? 0 : 11
-            let minInches = feet == 4 ? 8 : 0
-            for inches in minInches...maxInches {
-                heights.append("\(feet)'\(inches)\"")
-            }
-        }
-        return heights
-    }()
+    // MARK: - Step 7: Gaming Setup
 
     var step7LifestyleContent: some View {
         VStack(spacing: 20) {
-            // About You Card - matching photos page style
+            // Gaming Platforms Card
             HStack(spacing: 16) {
                 ZStack {
                     Circle()
                         .fill(Color.blue.opacity(0.12))
                         .frame(width: 56, height: 56)
 
-                    Image(systemName: "person.fill")
+                    Image(systemName: "gamecontroller.fill")
                         .font(.system(size: 24))
                         .foregroundColor(.blue)
                 }
 
                 VStack(alignment: .leading, spacing: 4) {
-                    Text("About You")
+                    Text("Gaming Platforms")
                         .font(.headline)
                         .foregroundColor(.primary)
 
-                    Text("Optional details")
+                    Text("Where do you play?")
                         .font(.subheadline)
                         .foregroundColor(.secondary)
                 }
@@ -1333,46 +1316,185 @@ struct SignUpView: View {
                     .shadow(color: .black.opacity(0.06), radius: 8, x: 0, y: 2)
             )
 
-            // Height and Relationship dropdowns - stacked vertically
+            // Platform selection grid
+            LazyVGrid(columns: [GridItem(.adaptive(minimum: 100))], spacing: 10) {
+                ForEach(GamingPlatform.allCases, id: \.self) { platform in
+                    Button {
+                        withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
+                            if platforms.contains(platform) {
+                                platforms.remove(platform)
+                            } else {
+                                platforms.insert(platform)
+                            }
+                        }
+                        HapticManager.shared.impact(.light)
+                    } label: {
+                        HStack(spacing: 6) {
+                            Image(systemName: platform.icon)
+                                .font(.caption)
+                            Text(platform.rawValue)
+                                .font(.caption)
+                                .fontWeight(.medium)
+                        }
+                        .foregroundColor(platforms.contains(platform) ? .white : .primary)
+                        .padding(.horizontal, 12)
+                        .padding(.vertical, 10)
+                        .background(
+                            Capsule()
+                                .fill(platforms.contains(platform) ?
+                                    AnyShapeStyle(LinearGradient(colors: [.blue, .teal], startPoint: .leading, endPoint: .trailing)) :
+                                    AnyShapeStyle(Color(.systemBackground)))
+                        )
+                        .overlay(
+                            Capsule()
+                                .stroke(platforms.contains(platform) ? Color.clear : Color.gray.opacity(0.3), lineWidth: 1)
+                        )
+                    }
+                }
+            }
+
+            // Play Style Card
+            HStack(spacing: 16) {
+                ZStack {
+                    Circle()
+                        .fill(Color.teal.opacity(0.12))
+                        .frame(width: 56, height: 56)
+
+                    Image(systemName: "flame.fill")
+                        .font(.system(size: 24))
+                        .foregroundColor(.teal)
+                }
+
+                VStack(alignment: .leading, spacing: 4) {
+                    Text("Play Style")
+                        .font(.headline)
+                        .foregroundColor(.primary)
+
+                    Text("How do you like to game?")
+                        .font(.subheadline)
+                        .foregroundColor(.secondary)
+                }
+
+                Spacer()
+            }
+            .padding(16)
+            .background(
+                RoundedRectangle(cornerRadius: 16)
+                    .fill(Color(.systemBackground))
+                    .shadow(color: .black.opacity(0.06), radius: 8, x: 0, y: 2)
+            )
+
+            // Play style and skill level
             VStack(spacing: 12) {
-                detailsDropdown(
-                    label: "Height",
-                    selection: height.isEmpty ? "Select" : height,
-                    options: heightOptions.dropFirst().map { $0 },
-                    onSelect: { height = $0 }
-                )
-
-                detailsDropdown(
-                    label: "Gaming Goal",
-                    selection: relationshipGoal.isEmpty ? "Select" : relationshipGoal,
-                    options: relationshipGoalOptions,
-                    onSelect: { relationshipGoal = $0 }
-                )
-            }
-
-            // Education Card
-            HStack(spacing: 16) {
-                ZStack {
-                    Circle()
-                        .fill(Color.blue.opacity(0.12))
-                        .frame(width: 56, height: 56)
-
-                    Image(systemName: "graduationcap.fill")
-                        .font(.system(size: 24))
-                        .foregroundColor(.blue)
+                // Play Style selector
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack(spacing: 10) {
+                        ForEach(PlayStyle.allCases, id: \.self) { style in
+                            Button {
+                                withAnimation { playStyle = style }
+                                HapticManager.shared.impact(.light)
+                            } label: {
+                                VStack(spacing: 6) {
+                                    Image(systemName: style.icon)
+                                        .font(.title2)
+                                    Text(style.rawValue)
+                                        .font(.caption)
+                                        .fontWeight(.medium)
+                                }
+                                .foregroundColor(playStyle == style ? .white : .primary)
+                                .frame(width: 80, height: 70)
+                                .background(
+                                    RoundedRectangle(cornerRadius: 12)
+                                        .fill(playStyle == style ?
+                                            AnyShapeStyle(LinearGradient(colors: [.blue, .teal], startPoint: .topLeading, endPoint: .bottomTrailing)) :
+                                            AnyShapeStyle(Color(.systemBackground)))
+                                )
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 12)
+                                        .stroke(playStyle == style ? Color.clear : Color.gray.opacity(0.2), lineWidth: 1)
+                                )
+                            }
+                        }
+                    }
+                    .padding(.horizontal, 4)
                 }
 
-                VStack(alignment: .leading, spacing: 4) {
-                    Text("Education")
-                        .font(.headline)
-                        .foregroundColor(.primary)
+                // Skill Level selector
+                VStack(alignment: .leading, spacing: 8) {
+                    Text("Skill Level")
+                        .font(.subheadline)
+                        .foregroundColor(.secondary)
 
-                    Text("Your background")
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        HStack(spacing: 10) {
+                            ForEach(SkillLevel.allCases, id: \.self) { level in
+                                Button {
+                                    withAnimation { skillLevel = level }
+                                    HapticManager.shared.impact(.light)
+                                } label: {
+                                    Text(level.rawValue)
+                                        .font(.subheadline)
+                                        .fontWeight(.medium)
+                                        .foregroundColor(skillLevel == level ? .white : .primary)
+                                        .padding(.horizontal, 16)
+                                        .padding(.vertical, 10)
+                                        .background(
+                                            Capsule()
+                                                .fill(skillLevel == level ?
+                                                    AnyShapeStyle(LinearGradient(colors: [.blue, .teal], startPoint: .leading, endPoint: .trailing)) :
+                                                    AnyShapeStyle(Color(.systemBackground)))
+                                        )
+                                        .overlay(
+                                            Capsule()
+                                                .stroke(skillLevel == level ? Color.clear : Color.gray.opacity(0.2), lineWidth: 1)
+                                        )
+                                }
+                            }
+                        }
+                        .padding(.horizontal, 4)
+                    }
+                }
+            }
+
+            // Voice Chat Preference
+            VStack(alignment: .leading, spacing: 12) {
+                HStack(spacing: 6) {
+                    Image(systemName: "mic.fill")
+                        .foregroundColor(.blue)
+                        .font(.caption)
+                    Text("Voice Chat Preference")
                         .font(.subheadline)
                         .foregroundColor(.secondary)
                 }
 
-                Spacer()
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack(spacing: 10) {
+                        ForEach(VoiceChatPreference.allCases, id: \.self) { pref in
+                            Button {
+                                withAnimation { voiceChatPreference = pref }
+                                HapticManager.shared.impact(.light)
+                            } label: {
+                                Text(pref.rawValue)
+                                    .font(.caption)
+                                    .fontWeight(.medium)
+                                    .foregroundColor(voiceChatPreference == pref ? .white : .primary)
+                                    .padding(.horizontal, 14)
+                                    .padding(.vertical, 8)
+                                    .background(
+                                        Capsule()
+                                            .fill(voiceChatPreference == pref ?
+                                                AnyShapeStyle(LinearGradient(colors: [.blue, .teal], startPoint: .leading, endPoint: .trailing)) :
+                                                AnyShapeStyle(Color(.systemBackground)))
+                                    )
+                                    .overlay(
+                                        Capsule()
+                                            .stroke(voiceChatPreference == pref ? Color.clear : Color.gray.opacity(0.2), lineWidth: 1)
+                                    )
+                            }
+                        }
+                    }
+                    .padding(.horizontal, 4)
+                }
             }
             .padding(16)
             .background(
@@ -1381,93 +1503,92 @@ struct SignUpView: View {
                     .shadow(color: .black.opacity(0.06), radius: 8, x: 0, y: 2)
             )
 
-            detailsDropdown(
-                label: "Education level",
-                selection: educationLevel.isEmpty ? "Select" : educationLevel,
-                options: educationLevelOptions,
-                onSelect: { educationLevel = $0 }
-            )
-
-            // Lifestyle Card
-            HStack(spacing: 16) {
-                ZStack {
-                    Circle()
-                        .fill(Color.blue.opacity(0.12))
-                        .frame(width: 56, height: 56)
-
-                    Image(systemName: "leaf.fill")
-                        .font(.system(size: 24))
-                        .foregroundColor(.blue)
-                }
-
-                VStack(alignment: .leading, spacing: 4) {
-                    Text("Lifestyle")
-                        .font(.headline)
-                        .foregroundColor(.primary)
-
-                    Text("Your habits")
-                        .font(.subheadline)
-                        .foregroundColor(.secondary)
-                }
-
-                Spacer()
-            }
-            .padding(16)
-            .background(
-                RoundedRectangle(cornerRadius: 16)
-                    .fill(Color(.systemBackground))
-                    .shadow(color: .black.opacity(0.06), radius: 8, x: 0, y: 2)
-            )
-
-            // Smoking and Drinking - stacked vertically
-            VStack(spacing: 12) {
-                detailsDropdown(
-                    label: "Smoking",
-                    selection: smoking.isEmpty ? "Select" : smoking,
-                    options: smokingOptions,
-                    onSelect: { smoking = $0 }
-                )
-
-                detailsDropdown(
-                    label: "Drinking",
-                    selection: drinking.isEmpty ? "Select" : drinking,
-                    options: drinkingOptions,
-                    onSelect: { drinking = $0 }
-                )
-
-                detailsDropdown(
-                    label: "Exercise",
-                    selection: exercise.isEmpty ? "Select" : exercise,
-                    options: exerciseOptions,
-                    onSelect: { exercise = $0 }
-                )
-
-                detailsDropdown(
-                    label: "Diet",
-                    selection: diet.isEmpty ? "Select" : diet,
-                    options: dietOptions,
-                    onSelect: { diet = $0 }
-                )
-            }
-
-            // More About You Card
+            // Looking For Card
             HStack(spacing: 16) {
                 ZStack {
                     Circle()
                         .fill(Color.orange.opacity(0.12))
                         .frame(width: 56, height: 56)
 
-                    Image(systemName: "sparkles")
+                    Image(systemName: "person.2.fill")
                         .font(.system(size: 24))
                         .foregroundColor(.orange)
                 }
 
                 VStack(alignment: .leading, spacing: 4) {
-                    Text("More About You")
+                    Text("Looking For")
                         .font(.headline)
                         .foregroundColor(.primary)
 
-                    Text("Optional extras")
+                    Text("What type of teammates?")
+                        .font(.subheadline)
+                        .foregroundColor(.secondary)
+                }
+
+                Spacer()
+            }
+            .padding(16)
+            .background(
+                RoundedRectangle(cornerRadius: 16)
+                    .fill(Color(.systemBackground))
+                    .shadow(color: .black.opacity(0.06), radius: 8, x: 0, y: 2)
+            )
+
+            // Looking for types grid
+            LazyVGrid(columns: [GridItem(.adaptive(minimum: 100))], spacing: 10) {
+                ForEach(LookingForType.allCases, id: \.self) { type in
+                    Button {
+                        withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
+                            if lookingForTypes.contains(type) {
+                                lookingForTypes.remove(type)
+                            } else {
+                                lookingForTypes.insert(type)
+                            }
+                        }
+                        HapticManager.shared.impact(.light)
+                    } label: {
+                        HStack(spacing: 6) {
+                            Image(systemName: type.icon)
+                                .font(.caption)
+                            Text(type.rawValue)
+                                .font(.caption)
+                                .fontWeight(.medium)
+                        }
+                        .foregroundColor(lookingForTypes.contains(type) ? .white : .primary)
+                        .padding(.horizontal, 12)
+                        .padding(.vertical, 10)
+                        .background(
+                            Capsule()
+                                .fill(lookingForTypes.contains(type) ?
+                                    AnyShapeStyle(LinearGradient(colors: [.orange, .red.opacity(0.8)], startPoint: .leading, endPoint: .trailing)) :
+                                    AnyShapeStyle(Color(.systemBackground)))
+                        )
+                        .overlay(
+                            Capsule()
+                                .stroke(lookingForTypes.contains(type) ? Color.clear : Color.gray.opacity(0.3), lineWidth: 1)
+                        )
+                    }
+                }
+            }
+
+            // External Profiles Card (Optional)
+            HStack(spacing: 16) {
+                ZStack {
+                    Circle()
+                        .fill(Color.purple.opacity(0.12))
+                        .frame(width: 56, height: 56)
+
+                    Image(systemName: "link")
+                        .font(.system(size: 24))
+                        .foregroundColor(.purple)
+                }
+
+                VStack(alignment: .leading, spacing: 4) {
+                    Text("Gaming Profiles")
+                        .font(.headline)
+                        .foregroundColor(.primary)
+
+                    Text("Optional - Connect with teammates")
                         .font(.subheadline)
                         .foregroundColor(.secondary)
                 }
@@ -1482,18 +1603,40 @@ struct SignUpView: View {
             )
 
             VStack(spacing: 12) {
-                detailsDropdown(
-                    label: "Religion / Spirituality",
-                    selection: religion.isEmpty ? "Select" : religion,
-                    options: religionOptions,
-                    onSelect: { religion = $0 }
+                // Discord
+                HStack {
+                    Image(systemName: "bubble.left.and.bubble.right.fill")
+                        .foregroundColor(.indigo)
+                        .frame(width: 24)
+                    TextField("Discord Tag", text: $discordTag)
+                        .textInputAutocapitalization(.never)
+                }
+                .padding(14)
+                .background(
+                    RoundedRectangle(cornerRadius: 12)
+                        .fill(Color(.systemBackground))
+                )
+                .overlay(
+                    RoundedRectangle(cornerRadius: 12)
+                        .stroke(Color.gray.opacity(0.2), lineWidth: 1)
                 )
 
-                detailsDropdown(
-                    label: "Pets",
-                    selection: pets.isEmpty ? "Select" : pets,
-                    options: petsOptions,
-                    onSelect: { pets = $0 }
+                // Steam
+                HStack {
+                    Image(systemName: "laptopcomputer")
+                        .foregroundColor(.blue)
+                        .frame(width: 24)
+                    TextField("Steam ID", text: $steamId)
+                        .textInputAutocapitalization(.never)
+                }
+                .padding(14)
+                .background(
+                    RoundedRectangle(cornerRadius: 12)
+                        .fill(Color(.systemBackground))
+                )
+                .overlay(
+                    RoundedRectangle(cornerRadius: 12)
+                        .stroke(Color.gray.opacity(0.2), lineWidth: 1)
                 )
 
                 // Languages picker
@@ -1547,7 +1690,7 @@ struct SignUpView: View {
                     }
 
                     VStack(alignment: .leading, spacing: 4) {
-                        Text("Age Preference")
+                        Text("Teammate Age Range")
                             .font(.headline)
                             .foregroundColor(.primary)
 
@@ -1647,7 +1790,7 @@ struct SignUpView: View {
                         .font(.headline)
                         .foregroundColor(.primary)
 
-                    Text("Tap 'Create Account' to get started")
+                    Text("Tap 'Create Account' to start gaming")
                         .font(.subheadline)
                         .foregroundColor(.secondary)
                 }
@@ -1865,9 +2008,9 @@ struct SignUpView: View {
     private func prefillUserData(_ user: User) {
         // Basic info
         name = user.fullName
+        gamerTag = user.gamerTag
         age = String(user.age)
         gender = user.gender
-        lookingFor = user.showMeGender
 
         // Location
         location = user.location
@@ -1879,18 +2022,18 @@ struct SignUpView: View {
         // Interests
         selectedInterests = Set(user.interests)
 
-        // Lifestyle details
-        if let userHeight = user.height {
-            height = formatHeightForDisplay(userHeight)
-        }
-        relationshipGoal = user.relationshipGoal ?? ""
-        educationLevel = user.educationLevel ?? ""
-        smoking = user.smoking ?? ""
-        drinking = user.drinking ?? ""
-        religion = user.religion ?? ""
-        exercise = user.exercise ?? ""
-        diet = user.diet ?? ""
-        pets = user.pets ?? ""
+        // Gaming profile fields
+        platforms = Set(user.platforms.compactMap { GamingPlatform(rawValue: $0) })
+        skillLevel = SkillLevel(rawValue: user.skillLevel) ?? .intermediate
+        playStyle = PlayStyle(rawValue: user.playStyle) ?? .casual
+        voiceChatPreference = VoiceChatPreference(rawValue: user.voiceChatPreference) ?? .noPreference
+        lookingForTypes = Set(user.lookingFor.compactMap { LookingForType(rawValue: $0) })
+        gameGenres = Set(user.gameGenres.compactMap { GameGenre(rawValue: $0) })
+
+        // External gaming profiles
+        discordTag = user.discordTag ?? ""
+        steamId = user.steamId ?? ""
+
         languages = user.languages
         ageRangeMin = user.ageRangeMin ?? 18
         ageRangeMax = user.ageRangeMax ?? 35
@@ -1939,36 +2082,6 @@ struct SignUpView: View {
         }
     }
 
-    /// Convert height in cm to display format (e.g., "5'10\"")
-    private func formatHeightForDisplay(_ cm: Int) -> String {
-        let totalInches = Double(cm) / 2.54
-        let feet = Int(totalInches) / 12
-        let inches = Int(totalInches) % 12
-        return "\(feet)'\(inches)\""
-    }
-
-    /// Parse height string to cm (handles formats like "5'10" or "178cm" or "178")
-    private func parseHeight(_ heightString: String) -> Int? {
-        let trimmed = heightString.trimmingCharacters(in: .whitespaces).lowercased()
-
-        // Try feet/inches format (e.g., "5'10" or "5'10\"")
-        if trimmed.contains("'") {
-            let parts = trimmed.replacingOccurrences(of: "\"", with: "").split(separator: "'")
-            if parts.count >= 1, let feet = Int(parts[0]) {
-                let inches = parts.count > 1 ? Int(parts[1]) ?? 0 : 0
-                return Int(Double(feet * 12 + inches) * 2.54)
-            }
-        }
-
-        // Try cm format (e.g., "178cm" or "178")
-        let numericString = trimmed.replacingOccurrences(of: "cm", with: "")
-        if let cm = Int(numericString) {
-            return cm
-        }
-
-        return nil
-    }
-
     // MARK: - Actions
     func handleNext() {
         if currentStep < 6 {
@@ -2005,9 +2118,9 @@ struct SignUpView: View {
 
             // Update basic info
             user.fullName = InputSanitizer.strict(name)
+            user.gamerTag = gamerTag
             user.age = Int(age) ?? user.age
             user.gender = gender
-            user.showMeGender = lookingFor
 
             // Update location
             user.location = InputSanitizer.standard(location)
@@ -2017,20 +2130,18 @@ struct SignUpView: View {
             user.bio = InputSanitizer.standard(bio)
             user.interests = Array(selectedInterests)
 
-            // Update height if provided
-            if !height.isEmpty {
-                user.height = parseHeight(height)
-            }
+            // Update gaming profile fields
+            user.platforms = platforms.map { $0.rawValue }
+            user.skillLevel = skillLevel.rawValue
+            user.playStyle = playStyle.rawValue
+            user.voiceChatPreference = voiceChatPreference.rawValue
+            user.lookingFor = lookingForTypes.map { $0.rawValue }
+            user.gameGenres = gameGenres.map { $0.rawValue }
 
-            // Update lifestyle details
-            user.relationshipGoal = relationshipGoal.isEmpty ? nil : relationshipGoal
-            user.educationLevel = educationLevel.isEmpty ? nil : educationLevel
-            user.smoking = smoking.isEmpty ? nil : smoking
-            user.drinking = drinking.isEmpty ? nil : drinking
-            user.religion = religion.isEmpty || religion == "Prefer not to say" ? nil : religion
-            user.exercise = exercise.isEmpty || exercise == "Prefer not to say" ? nil : exercise
-            user.diet = diet.isEmpty || diet == "Prefer not to say" ? nil : diet
-            user.pets = pets.isEmpty || pets == "Prefer not to say" ? nil : pets
+            // Update external gaming profiles
+            user.discordTag = discordTag.isEmpty ? nil : discordTag
+            user.steamId = steamId.isEmpty ? nil : steamId
+
             user.languages = languages
             user.ageRangeMin = ageRangeMin
             user.ageRangeMax = ageRangeMax
@@ -2073,7 +2184,7 @@ struct SignUpView: View {
                     fullName: InputSanitizer.strict(name),
                     age: ageInt,
                     gender: gender,
-                    lookingFor: lookingFor,
+                    gamerTag: gamerTag,
                     location: InputSanitizer.standard(location),
                     country: InputSanitizer.basic(country),
                     referralCode: InputSanitizer.referralCode(referralCode),
@@ -2095,36 +2206,26 @@ struct SignUpView: View {
                     "ageRangeMax": ageRangeMax
                 ]
 
-                // Add height if provided
-                if !height.isEmpty, let parsedHeight = parseHeight(height) {
-                    profileData["height"] = parsedHeight
-                    Logger.shared.info("Setting height: \(height) -> \(parsedHeight) cm", category: .authentication)
+                // Add gaming profile fields
+                if !platforms.isEmpty {
+                    profileData["platforms"] = platforms.map { $0.rawValue }
+                }
+                profileData["skillLevel"] = skillLevel.rawValue
+                profileData["playStyle"] = playStyle.rawValue
+                profileData["voiceChatPreference"] = voiceChatPreference.rawValue
+                if !lookingForTypes.isEmpty {
+                    profileData["lookingFor"] = lookingForTypes.map { $0.rawValue }
+                }
+                if !gameGenres.isEmpty {
+                    profileData["gameGenres"] = gameGenres.map { $0.rawValue }
                 }
 
-                // Add optional lifestyle details
-                if !relationshipGoal.isEmpty {
-                    profileData["relationshipGoal"] = relationshipGoal
+                // Add external gaming profiles
+                if !discordTag.isEmpty {
+                    profileData["discordTag"] = discordTag
                 }
-                if !educationLevel.isEmpty {
-                    profileData["educationLevel"] = educationLevel
-                }
-                if !smoking.isEmpty {
-                    profileData["smoking"] = smoking
-                }
-                if !drinking.isEmpty {
-                    profileData["drinking"] = drinking
-                }
-                if !religion.isEmpty && religion != "Prefer not to say" {
-                    profileData["religion"] = religion
-                }
-                if !exercise.isEmpty && exercise != "Prefer not to say" {
-                    profileData["exercise"] = exercise
-                }
-                if !diet.isEmpty && diet != "Prefer not to say" {
-                    profileData["diet"] = diet
-                }
-                if !pets.isEmpty && pets != "Prefer not to say" {
-                    profileData["pets"] = pets
+                if !steamId.isEmpty {
+                    profileData["steamId"] = steamId
                 }
                 if !languages.isEmpty {
                     profileData["languages"] = languages
@@ -2141,32 +2242,21 @@ struct SignUpView: View {
                         user.interests = Array(selectedInterests)
                         user.ageRangeMin = ageRangeMin
                         user.ageRangeMax = ageRangeMax
-                        if !height.isEmpty {
-                            user.height = parseHeight(height)
+
+                        // Update gaming fields
+                        user.platforms = platforms.map { $0.rawValue }
+                        user.skillLevel = skillLevel.rawValue
+                        user.playStyle = playStyle.rawValue
+                        user.voiceChatPreference = voiceChatPreference.rawValue
+                        user.lookingFor = lookingForTypes.map { $0.rawValue }
+                        user.gameGenres = gameGenres.map { $0.rawValue }
+
+                        // External gaming profiles
+                        if !discordTag.isEmpty {
+                            user.discordTag = discordTag
                         }
-                        if !relationshipGoal.isEmpty {
-                            user.relationshipGoal = relationshipGoal
-                        }
-                        if !educationLevel.isEmpty {
-                            user.educationLevel = educationLevel
-                        }
-                        if !smoking.isEmpty {
-                            user.smoking = smoking
-                        }
-                        if !drinking.isEmpty {
-                            user.drinking = drinking
-                        }
-                        if !religion.isEmpty && religion != "Prefer not to say" {
-                            user.religion = religion
-                        }
-                        if !exercise.isEmpty && exercise != "Prefer not to say" {
-                            user.exercise = exercise
-                        }
-                        if !diet.isEmpty && diet != "Prefer not to say" {
-                            user.diet = diet
-                        }
-                        if !pets.isEmpty && pets != "Prefer not to say" {
-                            user.pets = pets
+                        if !steamId.isEmpty {
+                            user.steamId = steamId
                         }
                         if !languages.isEmpty {
                             user.languages = languages
