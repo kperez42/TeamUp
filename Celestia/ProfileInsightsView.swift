@@ -272,11 +272,11 @@ struct ProfileInsightsView: View {
                 )
 
                 achievementBadge(
-                    icon: "heart.fill",
-                    title: "Heartthrob",
-                    subtitle: "50+ likes",
+                    icon: "gamecontroller.fill",
+                    title: "Popular Gamer",
+                    subtitle: "50+ interest",
                     isUnlocked: insights.likesReceived >= 50,
-                    color: .pink
+                    color: .purple
                 )
 
                 achievementBadge(
@@ -402,7 +402,7 @@ struct ProfileInsightsView: View {
                 // Quick stats
                 VStack(alignment: .leading, spacing: 12) {
                     rankingStat(icon: "eye.fill", label: "Views today", value: "\(Int.random(in: 5...20))", color: .blue)
-                    rankingStat(icon: "heart.fill", label: "Likes today", value: "\(Int.random(in: 2...10))", color: .pink)
+                    rankingStat(icon: "gamecontroller.fill", label: "Interest today", value: "\(Int.random(in: 2...10))", color: .purple)
                     rankingStat(icon: "message.fill", label: "Messages", value: "\(Int.random(in: 1...5))", color: .green)
                 }
                 .frame(maxWidth: .infinity)

@@ -393,7 +393,7 @@ struct LikesView: View {
 
                         HStack(spacing: 8) {
                             HStack(spacing: 4) {
-                                Image(systemName: "heart.fill")
+                                Image(systemName: "gamecontroller.fill")
                                     .font(.caption)
                                 Text("\(viewModel.totalLikesReceived)")
                                     .fontWeight(.semibold)
@@ -803,9 +803,9 @@ struct LikesView: View {
         Group {
             if viewModel.mutualLikes.isEmpty {
                 emptyStateView(
-                    icon: "heart.circle.fill",
-                    title: "No Mutual Likes",
-                    message: "When you and someone else both like each other, you'll see them here!"
+                    icon: "gamecontroller.fill",
+                    title: "No Mutual Interest",
+                    message: "When you and someone else are both interested, you'll see them here!"
                 )
             } else {
                 likesGrid(users: filteredMutualLikes, showMessage: true)
@@ -1147,9 +1147,9 @@ struct BlurredLikeCard: View {
 
                     Spacer()
 
-                    // Heart indicator showing they liked you
-                    Image(systemName: "heart.fill")
-                        .foregroundColor(.pink)
+                    // Interest indicator showing they're interested
+                    Image(systemName: "gamecontroller.fill")
+                        .foregroundColor(.purple)
                         .font(.caption)
                 }
 

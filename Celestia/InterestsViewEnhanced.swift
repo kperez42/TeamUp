@@ -190,7 +190,7 @@ struct InterestsViewEnhanced: View {
             Button {
                 acceptSelectedInterests()
             } label: {
-                Label("Accept (\(selectedInterests.count))", systemImage: "heart.fill")
+                Label("Accept (\(selectedInterests.count))", systemImage: "gamecontroller.fill")
                     .font(.subheadline.weight(.semibold))
             }
             .buttonStyle(PrimaryButtonStyle())
@@ -728,7 +728,7 @@ struct InterestCard: View {
                             }
 
                             Button(action: onAccept) {
-                                Image(systemName: "heart.fill")
+                                Image(systemName: "gamecontroller.fill")
                                     .font(.caption)
                                     .foregroundColor(.green)
                                     .frame(maxWidth: .infinity)

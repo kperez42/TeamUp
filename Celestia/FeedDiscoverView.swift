@@ -670,7 +670,7 @@ struct FeedDiscoverView: View {
                     }
 
                     HStack(spacing: 10) {
-                        Image(systemName: "heart.circle")
+                        Image(systemName: "gamecontroller")
                             .foregroundColor(.gray.opacity(0.4))
                         Text("Start connecting")
                             .font(.subheadline)
