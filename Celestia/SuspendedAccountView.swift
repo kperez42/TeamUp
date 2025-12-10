@@ -230,7 +230,7 @@ struct SuspendedAccountView: View {
                             .padding()
                             .background(
                                 LinearGradient(
-                                    colors: [.blue, .purple],
+                                    colors: [.green, .cyan],
                                     startPoint: .leading,
                                     endPoint: .trailing
                                 )

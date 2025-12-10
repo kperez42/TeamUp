@@ -1317,7 +1317,7 @@ struct ProfileView: View {
                                 endPoint: .bottomTrailing
                             )
                         )
-                        .foregroundColor(.pink)
+                        .foregroundColor(.green)
                         .cornerRadius(20)
                         .overlay(
                             RoundedRectangle(cornerRadius: 20)
@@ -1387,7 +1387,7 @@ struct ProfileView: View {
                         icon: "gamecontroller.fill",
                         title: "Popular",
                         subtitle: "\(accurateMatchCount) connections",
-                        colors: [.purple, .indigo]
+                        colors: [.green, .cyan]
                     )
                 }
 
