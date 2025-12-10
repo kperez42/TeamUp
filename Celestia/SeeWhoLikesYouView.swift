@@ -78,11 +78,11 @@ struct SeeWhoLikesYouView: View {
     private var headerView: some View {
         VStack(spacing: 8) {
             HStack(spacing: 12) {
-                Image(systemName: "heart.fill")
+                Image(systemName: "gamecontroller.fill")
                     .font(.title)
                     .foregroundStyle(
                         LinearGradient(
-                            colors: [.pink, .purple],
+                            colors: [.purple, .indigo],
                             startPoint: .topLeading,
                             endPoint: .bottomTrailing
                         )

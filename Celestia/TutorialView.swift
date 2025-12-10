@@ -564,9 +564,9 @@ struct SwipeGestureDemo: View {
                     )
                     .shadow(color: .black.opacity(0.1), radius: 10)
 
-                // Like/Nope indicators
+                // Interest/Pass indicators
                 if offset.width > 20 {
-                    Text("LIKE")
+                    Text("INTERESTED")
                         .font(.title)
                         .fontWeight(.bold)
                         .foregroundColor(.green)

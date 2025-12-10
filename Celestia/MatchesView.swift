@@ -213,7 +213,7 @@ struct MatchesView: View {
                             HStack(spacing: 8) {
                                 // Match count
                                 HStack(spacing: 4) {
-                                    Image(systemName: "heart.fill")
+                                    Image(systemName: "gamecontroller.fill")
                                         .font(.caption)
                                     Text("\(matchService.matches.count)")
                                         .fontWeight(.semibold)
@@ -508,11 +508,11 @@ struct MatchesView: View {
                     )
                     .frame(width: 140, height: 140)
                 
-                Image(systemName: "heart.circle.fill")
+                Image(systemName: "gamecontroller.fill")
                     .font(.system(size: 70))
                     .foregroundStyle(
                         LinearGradient(
-                            colors: [.purple, .blue],
+                            colors: [.purple, .indigo],
                             startPoint: .topLeading,
                             endPoint: .bottomTrailing
                         )

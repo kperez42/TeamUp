@@ -180,21 +180,21 @@ struct ViewPremiumIntent: AppIntent {
 
 @available(iOS 16.0, *)
 struct ShareDateDetailsIntent: AppIntent {
-    static var title: LocalizedStringResource = "Share Date Details"
-    static var description = IntentDescription("Share your date location and time with emergency contacts")
+    static var title: LocalizedStringResource = "Share Meetup Details"
+    static var description = IntentDescription("Share your meetup location and time with emergency contacts")
     static var openAppWhenRun: Bool = true
 
-    @Parameter(title: "Match Name")
+    @Parameter(title: "Gamer Name")
     var matchName: String?
 
     @Parameter(title: "Location")
     var location: String?
 
-    @Parameter(title: "Date Time")
+    @Parameter(title: "Meetup Time")
     var dateTime: Date?
 
     static var parameterSummary: some ParameterSummary {
-        Summary("Share date with \(\.$matchName) at \(\.$location)")
+        Summary("Share meetup with \(\.$matchName) at \(\.$location)")
     }
 
     @MainActor
@@ -208,14 +208,14 @@ struct ShareDateDetailsIntent: AppIntent {
             throw AppShortcutError.notAuthenticated
         }
 
-        // If parameters provided, create share date automatically
+        // If parameters provided, create share meetup automatically
         if let matchName = matchName, let location = location, let dateTime = dateTime {
             // This would integrate with ShareDateView functionality
             return .result(
-                dialog: IntentDialog("Date details shared with your emergency contacts")
+                dialog: IntentDialog("Meetup details shared with your emergency contacts")
             )
         } else {
-            // Open app to share date screen
+            // Open app to share meetup screen
             return .result(
                 dialog: IntentDialog("Opening TeamUp to share your meetup details")
             )
