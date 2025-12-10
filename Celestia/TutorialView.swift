@@ -508,7 +508,7 @@ struct SwipeGestureDemo: View {
 
     var body: some View {
         VStack(spacing: 12) {
-            Text("Try it! Swipe left or right")
+            Text("Try it! Tap the buttons below")
                 .font(.caption)
                 .foregroundColor(.secondary)
 
@@ -526,7 +526,7 @@ struct SwipeGestureDemo: View {
                             Text("Demo Profile")
                                 .font(.headline)
 
-                            Text("Swipe me!")
+                            Text("Check it out!")
                                 .font(.caption)
                                 .foregroundColor(.secondary)
                         }
@@ -597,7 +597,7 @@ struct MessageDemo: View {
                 // Sample message bubble
                 HStack {
                     Spacer()
-                    Text("Hey! Nice to match with you 👋")
+                    Text("Hey! Nice to connect with you 👋")
                         .padding(12)
                         .background(Color.purple.opacity(0.2))
                         .cornerRadius(16)

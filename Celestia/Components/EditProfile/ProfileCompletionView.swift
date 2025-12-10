@@ -32,7 +32,7 @@ struct ProfileCompletionView: View {
                 .scaleEffect(y: 2)
 
             if progress < 1.0 {
-                Text("Complete your profile to get better matches!")
+                Text("Complete your profile to get better connections!")
                     .font(.caption)
                     .foregroundColor(.secondary)
             }

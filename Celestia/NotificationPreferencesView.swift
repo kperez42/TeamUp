@@ -42,7 +42,7 @@ struct NotificationPreferencesView: View {
             }
             Button("Cancel", role: .cancel) {}
         } message: {
-            Text("Please enable notifications in Settings to receive updates about matches and messages.")
+            Text("Please enable notifications in Settings to receive updates about connections and messages.")
         }
     }
 

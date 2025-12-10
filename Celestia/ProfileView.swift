@@ -515,7 +515,7 @@ struct ProfileView: View {
                 VStack(alignment: .leading, spacing: 4) {
                     Text("Profile Completion")
                         .font(.headline)
-                    Text("Complete your profile to get more matches")
+                    Text("Complete your profile to get more connections")
                         .font(.caption)
                         .foregroundColor(.secondary)
                 }

@@ -270,7 +270,7 @@ struct PremiumUpgradeView: View {
                         .opacity(animateHero ? 1 : 0)
                         .offset(y: animateHero ? 0 : 20)
 
-                    Text("Discover more people who match your vibe")
+                    Text("Find more gamers who match your playstyle")
                         .font(.body.weight(.medium))
                         .foregroundColor(.secondary)
                         .multilineTextAlignment(.center)
@@ -670,7 +670,7 @@ struct PremiumUpgradeView: View {
                     .font(.subheadline.weight(.bold))
                     .foregroundColor(.primary)
 
-                Text("Stand out with a verified premium badge on your profile. Members with badges get 2.5x more matches!")
+                Text("Stand out with a verified premium badge on your profile. Members with badges get 2.5x more connections!")
                     .font(.caption)
                     .foregroundColor(.secondary)
                     .lineLimit(3)

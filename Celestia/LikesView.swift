@@ -691,11 +691,11 @@ struct LikesView: View {
             }
 
             VStack(spacing: 8) {
-                Text("\(viewModel.usersWhoLikedMe.count) people liked you!")
+                Text("\(viewModel.usersWhoLikedMe.count) gamers want to team up!")
                     .font(.title2)
                     .fontWeight(.bold)
 
-                Text("Upgrade to Premium to see who they are and match instantly")
+                Text("Upgrade to Premium to see who they are and connect instantly")
                     .font(.subheadline)
                     .foregroundColor(.secondary)
                     .multilineTextAlignment(.center)
@@ -1652,11 +1652,11 @@ struct MatchCelebrationOverlay: View {
 
                 // Text
                 VStack(spacing: 12) {
-                    Text("It's a Match!")
+                    Text("You're Connected!")
                         .font(.system(size: 36, weight: .bold))
                         .foregroundColor(.white)
 
-                    Text("You and \(user.fullName) liked each other")
+                    Text("You and \(user.fullName) want to team up")
                         .font(.subheadline)
                         .foregroundColor(.white.opacity(0.8))
                 }

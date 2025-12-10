@@ -498,7 +498,7 @@ struct BoostProfileSheet: View {
             }
             
             VStack(spacing: 8) {
-                Text("Get More Matches")
+                Text("Get More Connections")
                     .font(.title2)
                     .fontWeight(.bold)
                 

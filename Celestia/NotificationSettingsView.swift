@@ -32,7 +32,7 @@ struct NotificationSettingsView: View {
                                 .fontWeight(.semibold)
                         }
 
-                        Text("Enable notifications to stay updated on matches, messages, and more.")
+                        Text("Enable notifications to stay updated on connections, messages, and more.")
                             .font(.caption)
                             .foregroundColor(.secondary)
 

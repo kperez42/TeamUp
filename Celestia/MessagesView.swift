@@ -427,21 +427,21 @@ struct MessagesView: View {
                     .font(.title2)
                     .fontWeight(.bold)
                 
-                Text("When you match with someone, you'll be able to chat here")
+                Text("When you connect with someone, you'll be able to chat here")
                     .font(.subheadline)
                     .foregroundColor(.secondary)
                     .multilineTextAlignment(.center)
                     .padding(.horizontal, 40)
             }
-            
+
             // CTA Button
             Button {
                 selectedTab = 0
                 HapticManager.shared.impact(.medium)
             } label: {
                 HStack(spacing: 10) {
-                    Image(systemName: "heart.fill")
-                    Text("Start Swiping")
+                    Image(systemName: "gamecontroller.fill")
+                    Text("Find Teammates")
                         .fontWeight(.semibold)
                 }
                 .foregroundColor(.white)
@@ -628,7 +628,7 @@ struct ConversationRow: View {
                         HStack(spacing: 6) {
                             Image(systemName: "sparkles")
                                 .font(.caption)
-                            Text("New match! Say hi 👋")
+                            Text("New teammate! Say hi 👋")
                                 .font(.subheadline)
                                 .fontWeight(.medium)
                         }

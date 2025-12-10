@@ -186,7 +186,7 @@ struct ChatView: View {
                 HapticManager.shared.impact(.light)
             }
         } message: {
-            Text("You won't be able to message each other anymore, and this match will be removed from your list.")
+            Text("You won't be able to message each other anymore, and this connection will be removed from your list.")
         }
         .alert("Block \(otherUser.fullName)?", isPresented: $showingBlockConfirmation) {
             Button("Cancel", role: .cancel) {
@@ -196,7 +196,7 @@ struct ChatView: View {
                 blockUser()
             }
         } message: {
-            Text("They won't be able to see your profile or contact you. This will also remove them from your matches.")
+            Text("They won't be able to see your profile or contact you. This will also remove them from your connections.")
         }
         .detectScreenshots(
             context: ScreenshotDetectionService.ScreenshotContext.chat(
