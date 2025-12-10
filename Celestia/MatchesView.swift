@@ -37,7 +37,7 @@ struct MatchesView: View {
         case recent = "Most Recent"
         case unread = "Unread First"
         case alphabetical = "A-Z"
-        case newMatches = "New Matches"
+        case newMatches = "New Connections"
     }
 
     // PERFORMANCE: Use cached value, update only when dependencies change
@@ -203,7 +203,7 @@ struct MatchesView: View {
             VStack(spacing: 12) {
                 HStack(alignment: .top) {
                     VStack(alignment: .leading, spacing: 4) {
-                        Text("Matches")
+                        Text("Connections")
                             .font(.largeTitle.weight(.bold))
                             .foregroundColor(.white)
                             .dynamicTypeSize(min: .large, max: .accessibility2)
@@ -310,8 +310,8 @@ struct MatchesView: View {
                     searchDebouncer.search(newValue)
                 }
                 .accessibilityElement(
-                    label: "Search matches",
-                    hint: "Type to search your matches by name or location",
+                    label: "Search connections",
+                    hint: "Type to search your connections by name or location",
                     identifier: AccessibilityIdentifier.searchField
                 )
             
@@ -387,8 +387,8 @@ struct MatchesView: View {
                     .background(Color.purple.opacity(0.1))
                     .cornerRadius(20)
                 }
-                .accessibilityLabel("Sort matches by \(sortOption.rawValue)")
-                .accessibilityHint("Choose how to sort your matches")
+                .accessibilityLabel("Sort connections by \(sortOption.rawValue)")
+                .accessibilityHint("Choose how to sort your connections")
             }
             .padding(.horizontal, 20)
             .padding(.vertical, 12)
@@ -520,13 +520,13 @@ struct MatchesView: View {
             }
             
             VStack(spacing: 12) {
-                Text("No Matches Yet")
+                Text("No Connections Yet")
                     .font(.title2)
                     .fontWeight(.bold)
                     .dynamicTypeSize(min: .large, max: .accessibility2)
                     .accessibilityAddTraits(.isHeader)
 
-                Text("Head to the Discover tab to start swiping and finding your perfect teammates!")
+                Text("Head to the Discover tab to start browsing and finding your perfect teammates!")
                     .font(.subheadline)
                     .foregroundColor(.secondary)
                     .multilineTextAlignment(.center)
@@ -540,7 +540,7 @@ struct MatchesView: View {
                 HStack(spacing: 8) {
                     Image(systemName: "sparkles")
                         .font(.body)
-                    Text("Go to Discover Tab")
+                    Text("Find Teammates")
                         .font(.headline)
                 }
                 .frame(maxWidth: .infinity)

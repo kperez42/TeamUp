@@ -23,7 +23,7 @@ Complete guide for integrating Firebase Crashlytics and Performance Monitoring i
 ### 1. Enable Crashlytics
 
 1. Go to [Firebase Console](https://console.firebase.google.com)
-2. Select your Celestia project
+2. Select your TeamUp project
 3. Navigate to **Crashlytics** in the left sidebar
 4. Click **"Enable Crashlytics"**
 5. Follow the setup wizard

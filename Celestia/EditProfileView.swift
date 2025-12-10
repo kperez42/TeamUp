@@ -531,7 +531,7 @@ struct EditProfileView: View {
                     )
                 )
 
-            Text("Add photos to get more matches!")
+            Text("Add photos to get more connections!")
                 .font(.subheadline)
                 .foregroundColor(.secondary)
 
@@ -758,7 +758,7 @@ struct EditProfileView: View {
                     Text("Discovery Photos")
                         .font(.title3)
                         .fontWeight(.bold)
-                    Text("These photos appear on your card in Discover, Likes & Saved")
+                    Text("These photos appear on your card in Discover, Interest & Saved")
                         .font(.caption)
                         .foregroundColor(.secondary)
                 }
@@ -869,7 +869,7 @@ struct EditProfileView: View {
                             .font(.headline)
                             .foregroundColor(.primary)
 
-                        Text("Add up to 6 photos to showcase yourself.\nPhotos help you get more matches!")
+                        Text("Add up to 6 photos to showcase yourself.\nPhotos help you get more connections!")
                             .font(.subheadline)
                             .foregroundColor(.secondary)
                             .multilineTextAlignment(.center)
@@ -1854,14 +1854,14 @@ struct EditProfileView: View {
                 .cornerRadius(12)
             }
 
-            // Relationship Goal
+            // Gaming Goal
             VStack(alignment: .leading, spacing: 8) {
-                Text("Relationship Goal")
+                Text("Gaming Goal")
                     .font(.subheadline)
                     .fontWeight(.semibold)
                     .foregroundColor(.secondary)
 
-                Picker("Relationship Goal", selection: Binding(
+                Picker("Gaming Goal", selection: Binding(
                     get: { relationshipGoal ?? "Prefer not to say" },
                     set: { relationshipGoal = $0 == "Prefer not to say" ? nil : $0 }
                 )) {

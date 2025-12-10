@@ -55,7 +55,7 @@ class OnboardingViewModel: ObservableObject {
 
             var displayName: String {
                 switch self {
-                case .superLikes: return "Super Likes"
+                case .superLikes: return "Priority Requests"
                 case .boosts: return "Profile Boosts"
                 case .premiumTrial: return "Premium Trial"
                 }

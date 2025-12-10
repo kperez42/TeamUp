@@ -533,7 +533,7 @@ struct ProfileInsightsView: View {
                             endPoint: .bottomTrailing
                         )
                     )
-                Text("Swipe Statistics")
+                Text("Activity Statistics")
                     .font(.headline)
             }
 

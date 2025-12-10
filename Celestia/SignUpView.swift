@@ -731,7 +731,7 @@ struct SignUpView: View {
             }
             .padding(.top, 8)
 
-            Text("Your location helps connect you with people nearby and around the world")
+            Text("Your location helps connect you with gamers nearby and around the world")
                 .font(.caption)
                 .foregroundColor(.secondary)
                 .multilineTextAlignment(.center)
@@ -760,7 +760,7 @@ struct SignUpView: View {
                         .font(.headline)
                         .foregroundColor(.primary)
 
-                    Text("Great photos get 10x more matches")
+                    Text("Great photos get 10x more connections")
                         .font(.subheadline)
                         .foregroundColor(.secondary)
                 }

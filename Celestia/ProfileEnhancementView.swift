@@ -302,7 +302,7 @@ struct ProfileEnhancementView: View {
                         Text("Profiles with lifestyle info get")
                             .font(.subheadline)
 
-                        Text("3x more matches!")
+                        Text("3x more connections!")
                             .font(.subheadline)
                             .fontWeight(.bold)
                             .foregroundColor(.green)

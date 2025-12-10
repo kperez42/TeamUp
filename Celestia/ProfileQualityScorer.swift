@@ -253,7 +253,7 @@ class ProfileQualityScorer: ObservableObject {
             tips.append(ProfileQualityTip(
                 category: .completeness,
                 title: "Add Your Location",
-                message: "Help us find matches near you",
+                message: "Help us find gamers near you",
                 impact: .high,
                 isCompleted: false,
                 points: 10,

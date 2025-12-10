@@ -338,14 +338,14 @@ To test the complete flow:
 
 1. **Reset onboarding state**: Delete and reinstall app or clear UserDefaults
 2. **Launch app** and sign up as new user
-3. **Select a dating goal** (e.g., "Long-term relationship")
+3. **Select a gaming goal** (e.g., "Competitive Team")
 4. **Watch for tutorial** (shown based on A/B test)
 5. **Complete onboarding steps** - watch for:
    - Profile quality tips appearing
    - Incentive banner (if in test variant)
    - Step completion tracking
 6. **Complete profile** - should see celebration animation
-7. **Swipe, match, and message** - watch for milestone celebrations
+7. **Browse, match, and message** - watch for milestone celebrations
 
 ## Troubleshooting
 

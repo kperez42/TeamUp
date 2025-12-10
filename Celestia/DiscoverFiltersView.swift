@@ -357,7 +357,7 @@ struct DiscoverFiltersView: View {
     private var interestsSection: some View {
         VStack(alignment: .leading, spacing: 12) {
             HStack {
-                Text("Match users with these interests")
+                Text("Find gamers with these interests")
                     .font(.caption)
                     .foregroundColor(.secondary)
 

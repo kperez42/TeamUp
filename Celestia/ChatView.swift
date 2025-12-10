@@ -167,8 +167,8 @@ struct ChatView: View {
                 }
             }
         }
-        .confirmationDialog("Unmatch with \(otherUser.fullName)?", isPresented: $showingUnmatchConfirmation, titleVisibility: .visible) {
-            Button("Unmatch", role: .destructive) {
+        .confirmationDialog("Disconnect from \(otherUser.fullName)?", isPresented: $showingUnmatchConfirmation, titleVisibility: .visible) {
+            Button("Disconnect", role: .destructive) {
                 HapticManager.shared.notification(.warning)
                 Task {
                     do {
@@ -186,7 +186,7 @@ struct ChatView: View {
                 HapticManager.shared.impact(.light)
             }
         } message: {
-            Text("You won't be able to message each other anymore, and this match will be removed from your list.")
+            Text("You won't be able to message each other anymore, and this connection will be removed from your list.")
         }
         .alert("Block \(otherUser.fullName)?", isPresented: $showingBlockConfirmation) {
             Button("Cancel", role: .cancel) {
@@ -196,7 +196,7 @@ struct ChatView: View {
                 blockUser()
             }
         } message: {
-            Text("They won't be able to see your profile or contact you. This will also remove them from your matches.")
+            Text("They won't be able to see your profile or contact you. This will also remove them from your connections.")
         }
         .detectScreenshots(
             context: ScreenshotDetectionService.ScreenshotContext.chat(
@@ -394,7 +394,7 @@ struct ChatView: View {
                 Button(role: .destructive) {
                     showingUnmatchConfirmation = true
                 } label: {
-                    Label("Unmatch", systemImage: "xmark.circle")
+                    Label("Disconnect", systemImage: "xmark.circle")
                 }
             } label: {
                 Image(systemName: "ellipsis.circle")

@@ -37,15 +37,15 @@ enum NotificationCategory: String, CaseIterable, Codable {
     var defaultTitle: String {
         switch self {
         case .newMatch:
-            return "New Match!"
+            return "New Connection!"
         case .newMessage:
             return "New Message"
         case .profileView:
             return "Profile View"
         case .newLike:
-            return "Someone Likes You!"
+            return "Someone's Interested!"
         case .superLike:
-            return "Super Like!"
+            return "Priority Request!"
         case .dailyDigest:
             return "Your Daily Update"
         case .premiumOffer:
@@ -53,7 +53,7 @@ enum NotificationCategory: String, CaseIterable, Codable {
         case .generalUpdate:
             return "Update"
         case .matchReminder:
-            return "Match Reminder"
+            return "Connection Reminder"
         case .messageReminder:
             return "Message Reminder"
         // Admin notifications
@@ -86,7 +86,7 @@ enum NotificationCategory: String, CaseIterable, Codable {
                 ),
                 UNNotificationAction(
                     identifier: "UNMATCH",
-                    title: "Unmatch",
+                    title: "Disconnect",
                     options: [.destructive, .authenticationRequired]
                 )
             ]
@@ -119,7 +119,7 @@ enum NotificationCategory: String, CaseIterable, Codable {
                 ),
                 UNNotificationAction(
                     identifier: "LIKE_BACK",
-                    title: "Like Back",
+                    title: "Connect",
                     options: [.authenticationRequired]
                 )
             ]
@@ -132,7 +132,7 @@ enum NotificationCategory: String, CaseIterable, Codable {
                 ),
                 UNNotificationAction(
                     identifier: "LIKE_BACK",
-                    title: "Like Back",
+                    title: "Connect",
                     options: [.authenticationRequired]
                 )
             ]
@@ -145,12 +145,12 @@ enum NotificationCategory: String, CaseIterable, Codable {
                 ),
                 UNNotificationAction(
                     identifier: "LIKE_BACK",
-                    title: "Like Back",
+                    title: "Connect",
                     options: [.authenticationRequired]
                 ),
                 UNNotificationAction(
                     identifier: "SUPER_LIKE_BACK",
-                    title: "⭐ Super Like Back",
+                    title: "⭐ Priority Request Back",
                     options: [.authenticationRequired]
                 )
             ]
@@ -455,13 +455,13 @@ enum NotificationPayload {
 
     private static func randomMatchTitle(name: String) -> String {
         let titles = [
-            "It's a match with \(name)!",
-            "You matched with \(name)!",
+            "You're connected with \(name)!",
+            "You connected with \(name)!",
             "\(name) wants to squad up!",
-            "New match: \(name)",
+            "New connection: \(name)",
             "You found a teammate: \(name)!"
         ]
-        return titles.randomElement() ?? "New Match with \(name)!"
+        return titles.randomElement() ?? "New Connection with \(name)!"
     }
 
     private static func randomMatchBody(name: String) -> String {
@@ -499,24 +499,24 @@ enum NotificationPayload {
 
     private static func randomSuperLikeTitle(name: String) -> String {
         let titles = [
-            "\(name) SUPER Liked you!",
+            "\(name) sent a Priority Request!",
             "Someone really wants to team up!",
             "\(name) thinks you'd be a great teammate",
-            "You got a Super Like from \(name)!",
+            "You got a Priority Request from \(name)!",
             "\(name) went all in on you!"
         ]
-        return titles.randomElement() ?? "\(name) Super Liked you!"
+        return titles.randomElement() ?? "\(name) sent a Priority Request!"
     }
 
     private static func randomSuperLikeBody(name: String) -> String {
         let bodies = [
             "They really wanted you to notice. Will you?",
-            "This is rare - \(name) saved their Super Like for you!",
+            "This is rare - \(name) saved their Priority Request for you!",
             "You stood out from everyone else!",
-            "Super Likes mean they're serious about you",
+            "Priority Requests mean they're serious about teaming up",
             "Out of everyone, they picked YOU!"
         ]
-        return bodies.randomElement() ?? "They really like you!"
+        return bodies.randomElement() ?? "They really want to team up!"
     }
 
     private static func randomMatchReminderTitle(name: String) -> String {
@@ -524,7 +524,7 @@ enum NotificationPayload {
             "Don't forget about \(name)!",
             "\(name) is still waiting...",
             "Say something to \(name)!",
-            "Your match with \(name) needs attention",
+            "Your connection with \(name) needs attention",
             "Time to break the ice with \(name)!"
         ]
         return titles.randomElement() ?? "Say hi to \(name)!"
@@ -621,9 +621,9 @@ enum NotificationPayload {
 
     private static func dailyDigestTitle(likes: Int, matches: Int, messages: Int) -> String {
         if matches > 0 {
-            return matches == 1 ? "You got a new match!" : "You got \(matches) new matches!"
+            return matches == 1 ? "You got a new connection!" : "You got \(matches) new connections!"
         } else if likes > 0 {
-            return likes == 1 ? "Someone new likes you!" : "\(likes) people like you!"
+            return likes == 1 ? "Someone's interested in you!" : "\(likes) gamers are interested!"
         } else if messages > 0 {
             return messages == 1 ? "You have an unread message" : "You have \(messages) unread messages"
         } else {
@@ -641,10 +641,10 @@ enum NotificationPayload {
         var parts: [String] = []
 
         if likes > 0 {
-            parts.append("\(likes) new like\(likes == 1 ? "" : "s")")
+            parts.append("\(likes) new interest\(likes == 1 ? "" : "s")")
         }
         if matches > 0 {
-            parts.append("\(matches) new match\(matches == 1 ? "" : "es")")
+            parts.append("\(matches) new connection\(matches == 1 ? "" : "s")")
         }
         if messages > 0 {
             parts.append("\(messages) unread message\(messages == 1 ? "" : "s")")

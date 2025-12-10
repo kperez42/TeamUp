@@ -386,7 +386,7 @@ struct LikesView: View {
             VStack(spacing: 12) {
                 HStack(alignment: .top) {
                     VStack(alignment: .leading, spacing: 4) {
-                        Text("Likes")
+                        Text("Interest")
                             .font(.largeTitle.weight(.bold))
                             .foregroundColor(.white)
                             .dynamicTypeSize(min: .large, max: .accessibility2)
@@ -552,9 +552,9 @@ struct LikesView: View {
         Group {
             if viewModel.usersWhoLikedMe.isEmpty {
                 emptyStateView(
-                    icon: "heart.fill",
-                    title: "No Likes Yet",
-                    message: "When someone likes you, they'll appear here. Keep swiping!"
+                    icon: "gamecontroller.fill",
+                    title: "No Interest Yet",
+                    message: "When someone shows interest in you, they'll appear here. Keep browsing!"
                 )
             } else if isPremium {
                 // Premium users see full profiles with filters applied
@@ -654,7 +654,7 @@ struct LikesView: View {
                 HStack(spacing: 8) {
                     Image(systemName: "plus.circle.fill")
                         .foregroundColor(.pink)
-                    Text("And \(viewModel.usersWhoLikedMe.count - 4) more people liked you!")
+                    Text("And \(viewModel.usersWhoLikedMe.count - 4) more gamers want to team up!")
                         .font(.subheadline)
                         .fontWeight(.medium)
                         .foregroundColor(.secondary)
@@ -691,11 +691,11 @@ struct LikesView: View {
             }
 
             VStack(spacing: 8) {
-                Text("\(viewModel.usersWhoLikedMe.count) people liked you!")
+                Text("\(viewModel.usersWhoLikedMe.count) gamers want to team up!")
                     .font(.title2)
                     .fontWeight(.bold)
 
-                Text("Upgrade to Premium to see who they are and match instantly")
+                Text("Upgrade to Premium to see who they are and connect instantly")
                     .font(.subheadline)
                     .foregroundColor(.secondary)
                     .multilineTextAlignment(.center)
@@ -711,7 +711,7 @@ struct LikesView: View {
                     Image(systemName: "crown.fill")
                         .font(.body)
 
-                    Text("Unlock Who Likes You")
+                    Text("See Who Wants to Team Up")
                         .fontWeight(.semibold)
                 }
                 .foregroundColor(.white)
@@ -743,8 +743,8 @@ struct LikesView: View {
                 .foregroundColor(.primary)
 
             VStack(spacing: 12) {
-                premiumFeatureRow(icon: "eye.fill", title: "See Who Likes You", description: "Connect instantly with gamers who want to team up", color: .pink)
-                premiumFeatureRow(icon: "infinity", title: "Unlimited Likes", description: "No daily limits, like as many as you want", color: .purple)
+                premiumFeatureRow(icon: "eye.fill", title: "See Who's Interested", description: "Connect instantly with gamers who want to team up", color: .pink)
+                premiumFeatureRow(icon: "infinity", title: "Unlimited Interest", description: "No daily limits, show interest as much as you want", color: .purple)
                 premiumFeatureRow(icon: "bolt.fill", title: "Profile Boost", description: "Get 10x more views with monthly boosts", color: .orange)
             }
         }
@@ -787,9 +787,9 @@ struct LikesView: View {
         Group {
             if viewModel.usersILiked.isEmpty {
                 emptyStateView(
-                    icon: "heart",
-                    title: "No Likes Sent",
-                    message: "Start swiping on the Discover page to like profiles!"
+                    icon: "gamecontroller",
+                    title: "No Interest Sent",
+                    message: "Start browsing on the Discover page to show interest!"
                 )
             } else {
                 likesGrid(users: filteredUsersILiked, showLikeBack: false)
@@ -1652,11 +1652,11 @@ struct MatchCelebrationOverlay: View {
 
                 // Text
                 VStack(spacing: 12) {
-                    Text("It's a Match!")
+                    Text("You're Connected!")
                         .font(.system(size: 36, weight: .bold))
                         .foregroundColor(.white)
 
-                    Text("You and \(user.fullName) liked each other")
+                    Text("You and \(user.fullName) want to team up")
                         .font(.subheadline)
                         .foregroundColor(.white.opacity(0.8))
                 }

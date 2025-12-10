@@ -282,9 +282,9 @@ struct AddEmergencyContactView: View {
                 }
 
                 Section {
-                    Toggle("Can receive date updates", isOn: .constant(true))
+                    Toggle("Can receive meetup updates", isOn: .constant(true))
                 } footer: {
-                    Text("This contact will be able to receive your date details and check-in notifications.")
+                    Text("This contact will be able to receive your meetup details and check-in notifications.")
                 }
             }
             .navigationTitle("Add Contact")
@@ -363,7 +363,7 @@ struct EditEmergencyContactView: View {
                             .foregroundColor(.secondary)
                     }
                 } footer: {
-                    Text("Emergency contact information is securely stored and only shared when you explicitly share your date details.")
+                    Text("Emergency contact information is securely stored and only shared when you explicitly share your meetup details.")
                 }
             }
             .navigationTitle("Edit Contact")

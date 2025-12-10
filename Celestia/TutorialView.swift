@@ -325,13 +325,13 @@ class TutorialManager: ObservableObject {
             ),
 
             Tutorial(
-                id: "matching",
-                title: "Make Matches",
-                description: "When someone you liked also likes you back, you'll both be notified and can start chatting!",
-                icon: "heart.fill",
-                accentColor: .red,
+                id: "connecting",
+                title: "Make Connections",
+                description: "When someone you showed interest in is also interested, you'll both be notified and can start chatting!",
+                icon: "gamecontroller.fill",
+                accentColor: .purple,
                 tips: [
-                    "Matches appear in your Matches tab",
+                    "Connections appear in your Connections tab",
                     "Send the first message to break the ice",
                     "Be respectful and genuine"
                 ]
@@ -385,14 +385,14 @@ class TutorialManager: ObservableObject {
         case "super_like":
             return Tutorial(
                 id: "super_like",
-                title: "Super Like ⭐",
-                description: "Stand out from the crowd! Super Likes show you're really interested.",
+                title: "Priority Request ⭐",
+                description: "Stand out from the crowd! Priority Requests show you're really interested in teaming up.",
                 icon: "star.circle.fill",
                 accentColor: .blue,
                 tips: [
-                    "You get 1 free Super Like per day",
+                    "You get 1 free Priority Request per day",
                     "Premium users get 5 per day",
-                    "Use them on profiles you really like!"
+                    "Use them on profiles you really want to team up with!"
                 ]
             )
 
@@ -508,7 +508,7 @@ struct SwipeGestureDemo: View {
 
     var body: some View {
         VStack(spacing: 12) {
-            Text("Try it! Swipe left or right")
+            Text("Try it! Tap the buttons below")
                 .font(.caption)
                 .foregroundColor(.secondary)
 
@@ -526,7 +526,7 @@ struct SwipeGestureDemo: View {
                             Text("Demo Profile")
                                 .font(.headline)
 
-                            Text("Swipe me!")
+                            Text("Check it out!")
                                 .font(.caption)
                                 .foregroundColor(.secondary)
                         }
@@ -597,7 +597,7 @@ struct MessageDemo: View {
                 // Sample message bubble
                 HStack {
                     Spacer()
-                    Text("Hey! Nice to match with you 👋")
+                    Text("Hey! Nice to connect with you 👋")
                         .padding(12)
                         .background(Color.purple.opacity(0.2))
                         .cornerRadius(16)

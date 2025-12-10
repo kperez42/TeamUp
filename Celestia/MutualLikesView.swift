@@ -81,10 +81,10 @@ struct MutualLikesView: View {
                     )
                 )
 
-            Text("\(viewModel.mutualLikes.count) Mutual Likes")
+            Text("\(viewModel.mutualLikes.count) Mutual Connections")
                 .font(.title2.bold())
 
-            Text("You both liked each other!")
+            Text("You both want to team up!")
                 .font(.subheadline)
                 .foregroundColor(.secondary)
                 .multilineTextAlignment(.center)
@@ -101,7 +101,7 @@ struct MutualLikesView: View {
     private var loadingView: some View {
         VStack(spacing: 16) {
             ProgressView()
-            Text("Loading mutual likes...")
+            Text("Loading mutual connections...")
                 .font(.subheadline)
                 .foregroundColor(.secondary)
         }
@@ -116,11 +116,11 @@ struct MutualLikesView: View {
                 .foregroundColor(.gray.opacity(0.5))
 
             VStack(spacing: 8) {
-                Text("No Mutual Likes Yet")
+                Text("No Mutual Connections Yet")
                     .font(.title2)
                     .fontWeight(.bold)
 
-                Text("Keep swiping to find people who like you back!")
+                Text("Keep browsing to find gamers who want to team up!")
                     .font(.subheadline)
                     .foregroundColor(.secondary)
                     .multilineTextAlignment(.center)
@@ -180,7 +180,7 @@ struct MutualLikeCard: View {
                     HStack(spacing: 4) {
                         Image(systemName: "heart.fill")
                             .font(.caption2)
-                        Text("You both liked!")
+                        Text("Ready to team up!")
                             .font(.caption)
                     }
                     .foregroundColor(.pink)

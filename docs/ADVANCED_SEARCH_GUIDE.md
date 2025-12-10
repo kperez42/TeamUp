@@ -975,7 +975,7 @@ AnalyticsManager.shared.logEvent(.filterPresetUsed, parameters: [
 
 4. **Save Presets**
    - "Weekend Nights" - Active, nearby, verified
-   - "Serious Dating" - Long-term goals, verified, complete profiles
+   - "Competitive Gaming" - Ranked players, verified, complete profiles
    - "New People" - New users, active in last week
 
 ### For Developers
