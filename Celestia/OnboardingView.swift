@@ -49,12 +49,10 @@ struct OnboardingView: View {
     @State private var selectedInterests: [String] = []
     @State private var selectedLanguages: [String] = []
 
-    // Step 6: Additional Details (Optional)
-    @State private var height: Int? = nil
-    @State private var relationshipGoal: String = "Prefer not to say"
+    // Step 6: Gaming Preferences (Optional)
+    @State private var gamingGoal: String = "Prefer not to say"
     @State private var ageRangeMin: Int = 18
     @State private var ageRangeMax: Int = 50
-    @State private var maxDistance: Int = 50
 
     // Step 7: Lifestyle (NEW)
     @State private var educationLevel: String = ""
@@ -78,8 +76,7 @@ struct OnboardingView: View {
     let totalSteps = 8
 
     // Step 6 options - Gaming goals
-    let relationshipGoalOptions = ["Prefer not to say", "Casual Gaming", "Regular Squad", "Competitive Team", "New Friends", "Not Sure Yet"]
-    let heightOptions: [Int] = Array(140...220) // cm range
+    let gamingGoalOptions = ["Prefer not to say", "Casual Gaming", "Regular Squad", "Competitive Team", "New Friends", "Not Sure Yet"]
 
     // Step 7 & 8 options (Lifestyle)
     let educationOptions = ["", "High School", "Some College", "Associate's Degree", "Bachelor's Degree", "Master's Degree", "Doctorate", "Trade School", "Other"]
@@ -1372,10 +1369,10 @@ struct OnboardingView: View {
                                 .font(.headline)
                         }
 
-                        ForEach(relationshipGoalOptions.filter { $0 != "Prefer not to say" }, id: \.self) { goal in
+                        ForEach(gamingGoalOptions.filter { $0 != "Prefer not to say" }, id: \.self) { goal in
                             Button {
                                 withAnimation(.spring(response: 0.3)) {
-                                    relationshipGoal = goal
+                                    gamingGoal = goal
                                     HapticManager.shared.selection()
                                 }
                             } label: {
@@ -1385,7 +1382,7 @@ struct OnboardingView: View {
 
                                     Spacer()
 
-                                    if relationshipGoal == goal {
+                                    if gamingGoal == goal {
                                         Image(systemName: "checkmark.circle.fill")
                                             .foregroundColor(.blue)
                                     } else {
@@ -1395,7 +1392,7 @@ struct OnboardingView: View {
                                 }
                                 .padding()
                                 .background(
-                                    relationshipGoal == goal ?
+                                    gamingGoal == goal ?
                                     LinearGradient(
                                         colors: [Color.blue.opacity(0.1), Color.teal.opacity(0.05)],
                                         startPoint: .leading,
@@ -1407,7 +1404,7 @@ struct OnboardingView: View {
                                 .overlay(
                                     RoundedRectangle(cornerRadius: 12)
                                         .stroke(
-                                            relationshipGoal == goal ? Color.teal.opacity(0.5) : Color.gray.opacity(0.2),
+                                            gamingGoal == goal ? Color.teal.opacity(0.5) : Color.gray.opacity(0.2),
                                             lineWidth: 1
                                         )
                                 )
@@ -1416,71 +1413,12 @@ struct OnboardingView: View {
                         }
                     }
 
-                    // Height
-                    VStack(alignment: .leading, spacing: 12) {
-                        HStack(spacing: 8) {
-                            Image(systemName: "ruler")
-                                .foregroundColor(.blue)
-                            Text("Your Height")
-                                .font(.headline)
-
-                            Spacer()
-
-                            if let h = height {
-                                Text("\(h) cm (\(heightToFeetInches(h)))")
-                                    .font(.subheadline)
-                                    .fontWeight(.semibold)
-                                    .foregroundColor(.blue)
-                            }
-                        }
-
-                        HStack(spacing: 12) {
-                            // Height picker
-                            Menu {
-                                ForEach(heightOptions, id: \.self) { h in
-                                    Button("\(h) cm (\(heightToFeetInches(h)))") {
-                                        height = h
-                                        HapticManager.shared.selection()
-                                    }
-                                }
-                            } label: {
-                                HStack {
-                                    Text(height != nil ? "\(height!) cm" : "Select Height")
-                                        .foregroundColor(height != nil ? .primary : .gray)
-                                    Spacer()
-                                    Image(systemName: "chevron.down")
-                                        .font(.caption)
-                                        .foregroundColor(.gray)
-                                }
-                                .padding()
-                                .background(Color.white)
-                                .cornerRadius(12)
-                                .overlay(
-                                    RoundedRectangle(cornerRadius: 12)
-                                        .stroke(Color.blue.opacity(0.3), lineWidth: 1)
-                                )
-                            }
-
-                            // Clear button
-                            if height != nil {
-                                Button {
-                                    height = nil
-                                    HapticManager.shared.impact(.light)
-                                } label: {
-                                    Image(systemName: "xmark.circle.fill")
-                                        .font(.title2)
-                                        .foregroundColor(.gray)
-                                }
-                            }
-                        }
-                    }
-
-                    // Age Range Preference
+                    // Teammate Age Range Preference
                     VStack(alignment: .leading, spacing: 12) {
                         HStack(spacing: 8) {
                             Image(systemName: "person.2.fill")
                                 .foregroundColor(.blue)
-                            Text("Preferred Age Range")
+                            Text("Teammate Age Range")
                                 .font(.headline)
 
                             Spacer()
@@ -1535,51 +1473,6 @@ struct OnboardingView: View {
                         )
                     }
 
-                    // Max Distance Preference
-                    VStack(alignment: .leading, spacing: 12) {
-                        HStack(spacing: 8) {
-                            Image(systemName: "location.circle.fill")
-                                .foregroundColor(.blue)
-                            Text("Maximum Distance")
-                                .font(.headline)
-
-                            Spacer()
-
-                            Text("\(maxDistance) km")
-                                .font(.subheadline)
-                                .fontWeight(.semibold)
-                                .foregroundColor(.blue)
-                        }
-
-                        VStack(alignment: .leading, spacing: 8) {
-                            Slider(
-                                value: Binding(
-                                    get: { Double(maxDistance) },
-                                    set: { maxDistance = Int($0) }
-                                ),
-                                in: 5...200,
-                                step: 5
-                            )
-                            .tint(.blue)
-
-                            HStack {
-                                Text("5 km")
-                                    .font(.caption2)
-                                    .foregroundColor(.secondary)
-                                Spacer()
-                                Text("200 km")
-                                    .font(.caption2)
-                                    .foregroundColor(.secondary)
-                            }
-                        }
-                        .padding()
-                        .background(Color.white)
-                        .cornerRadius(12)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 12)
-                                .stroke(Color.blue.opacity(0.2), lineWidth: 1)
-                        )
-                    }
                 }
 
                 // Benefit card
@@ -1617,14 +1510,6 @@ struct OnboardingView: View {
             .padding(20)
             .padding(.top, 20)
         }
-    }
-
-    // Helper to convert cm to feet/inches
-    private func heightToFeetInches(_ cm: Int) -> String {
-        let totalInches = Double(cm) / 2.54
-        let feet = Int(totalInches / 12)
-        let inches = Int(totalInches.truncatingRemainder(dividingBy: 12))
-        return "\(feet)'\(inches)\""
     }
 
     // MARK: - Step 7: Lifestyle
