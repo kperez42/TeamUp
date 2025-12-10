@@ -1384,10 +1384,10 @@ struct ProfileView: View {
 
                 if accurateMatchCount >= 10 {
                     achievementBadge(
-                        icon: "heart.fill",
+                        icon: "gamecontroller.fill",
                         title: "Popular",
                         subtitle: "\(accurateMatchCount) connections",
-                        colors: [.pink, .purple]
+                        colors: [.purple, .indigo]
                     )
                 }
 
