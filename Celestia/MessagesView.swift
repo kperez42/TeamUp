@@ -191,15 +191,15 @@ struct MessagesView: View {
     
     // MARK: - Header
     
-    // BLUE/PURPLE THEME for Messages page
+    // BLUE/TEAL THEME for Messages page
     private var headerView: some View {
         ZStack {
             // Gradient background
             LinearGradient(
                 colors: [
                     Color.blue.opacity(0.9),
-                    Color.indigo.opacity(0.7),
-                    Color.purple.opacity(0.6)
+                    Color.teal.opacity(0.8),
+                    Color.cyan.opacity(0.7)
                 ],
                 startPoint: .topLeading,
                 endPoint: .bottomTrailing
@@ -302,7 +302,7 @@ struct MessagesView: View {
                                     .fontWeight(.bold)
                                     .foregroundStyle(
                                         LinearGradient(
-                                            colors: [.blue, .indigo],
+                                            colors: [.blue, .teal],
                                             startPoint: .topLeading,
                                             endPoint: .bottomTrailing
                                         )
@@ -405,7 +405,7 @@ struct MessagesView: View {
                 Circle()
                     .fill(
                         LinearGradient(
-                            colors: [Color.blue.opacity(0.2), Color.indigo.opacity(0.1)],
+                            colors: [Color.blue.opacity(0.2), Color.teal.opacity(0.1)],
                             startPoint: .topLeading,
                             endPoint: .bottomTrailing
                         )
@@ -416,7 +416,7 @@ struct MessagesView: View {
                     .font(.system(size: 70))
                     .foregroundStyle(
                         LinearGradient(
-                            colors: [.blue, .indigo],
+                            colors: [.blue, .teal],
                             startPoint: .topLeading,
                             endPoint: .bottomTrailing
                         )
@@ -475,7 +475,7 @@ struct MessagesView: View {
                 Circle()
                     .fill(
                         LinearGradient(
-                            colors: [Color.blue.opacity(0.15), Color.indigo.opacity(0.1)],
+                            colors: [Color.blue.opacity(0.15), Color.teal.opacity(0.1)],
                             startPoint: .topLeading,
                             endPoint: .bottomTrailing
                         )
@@ -486,7 +486,7 @@ struct MessagesView: View {
                     .font(.system(size: 40))
                     .foregroundStyle(
                         LinearGradient(
-                            colors: [.blue, .indigo],
+                            colors: [.blue, .teal],
                             startPoint: .topLeading,
                             endPoint: .bottomTrailing
                         )
@@ -635,7 +635,7 @@ struct ConversationRow: View {
                         }
                         .foregroundStyle(
                             LinearGradient(
-                                colors: [.blue, .indigo],
+                                colors: [.blue, .teal],
                                 startPoint: .leading,
                                 endPoint: .trailing
                             )
@@ -664,7 +664,7 @@ struct ConversationRow: View {
                     LinearGradient(
                         colors: [
                             Color.blue.opacity(0.08),
-                            Color.indigo.opacity(0.05)
+                            Color.teal.opacity(0.05)
                         ],
                         startPoint: .leading,
                         endPoint: .trailing
@@ -685,7 +685,7 @@ struct ConversationRow: View {
                 .stroke(
                     unreadCount > 0 || isNewMatch ?
                     LinearGradient(
-                        colors: [Color.blue.opacity(0.3), Color.indigo.opacity(0.2)],
+                        colors: [Color.blue.opacity(0.3), Color.teal.opacity(0.2)],
                         startPoint: .topLeading,
                         endPoint: .bottomTrailing
                     ) :
@@ -711,7 +711,7 @@ struct ConversationRow: View {
                     LinearGradient(
                         colors: [
                             Color.blue.opacity(0.3),
-                            Color.indigo.opacity(0.2)
+                            Color.teal.opacity(0.2)
                         ],
                         startPoint: .topLeading,
                         endPoint: .bottomTrailing
@@ -726,7 +726,7 @@ struct ConversationRow: View {
             LinearGradient(
                 colors: [
                     Color.blue.opacity(0.7),
-                    Color.indigo.opacity(0.6),
+                    Color.teal.opacity(0.6),
                     Color.blue.opacity(0.5)
                 ],
                 startPoint: .topLeading,
