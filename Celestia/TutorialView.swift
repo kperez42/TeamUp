@@ -340,7 +340,7 @@ class TutorialManager: ObservableObject {
             Tutorial(
                 id: "messaging",
                 title: "Start Conversations",
-                description: "Once matched, send a message to start getting to know each other better.",
+                description: "Once connected, send a message to start getting to know each other better.",
                 icon: "message.fill",
                 accentColor: .blue,
                 tips: [
@@ -354,7 +354,7 @@ class TutorialManager: ObservableObject {
             Tutorial(
                 id: "profile_quality",
                 title: "Complete Your Profile",
-                description: "High-quality profiles get 5x more matches. Add photos, write a bio, and share your interests!",
+                description: "High-quality profiles get 5x more connections. Add photos, write a bio, and share your interests!",
                 icon: "person.crop.circle.fill.badge.checkmark",
                 accentColor: .green,
                 tips: [
