@@ -962,7 +962,7 @@ struct OnboardingView: View {
                                         VStack(spacing: 6) {
                                             Image(systemName: "plus")
                                                 .font(.title2)
-                                                .foregroundColor(.green.opacity(0.4))
+                                                .foregroundColor(.blue.opacity(0.4))
 
                                             Text("Photo \(index + 1)")
                                                 .font(.caption2)
@@ -1611,7 +1611,7 @@ struct OnboardingView: View {
                 .cornerRadius(12)
                 .overlay(
                     RoundedRectangle(cornerRadius: 12)
-                        .stroke(Color.green.opacity(0.3), lineWidth: 1)
+                        .stroke(Color.blue.opacity(0.3), lineWidth: 1)
                 )
             }
             .padding(20)

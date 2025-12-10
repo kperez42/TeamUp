@@ -504,14 +504,14 @@ struct EditProfileView: View {
                     .frame(width: 20, height: 20)
                 Circle()
                     .trim(from: 0, to: uploadProgress)
-                    .stroke(Color.green, style: StrokeStyle(lineWidth: 2, lineCap: .round))
+                    .stroke(Color.blue, style: StrokeStyle(lineWidth: 2, lineCap: .round))
                     .frame(width: 20, height: 20)
                     .rotationEffect(.degrees(-90))
             }
             Text("\(Int(uploadProgress * 100))%")
                 .font(.caption2)
                 .fontWeight(.bold)
-                .foregroundColor(.green)
+                .foregroundColor(.blue)
         }
         .padding(.horizontal, 10)
         .padding(.vertical, 4)
