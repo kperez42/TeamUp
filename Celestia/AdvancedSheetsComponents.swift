@@ -378,14 +378,14 @@ struct FilterToggle: View {
         Toggle(isOn: $isOn) {
             HStack(spacing: 10) {
                 Image(systemName: icon)
-                    .foregroundColor(isOn ? .green : .gray)
+                    .foregroundColor(isOn ? .blue : .gray)
                 Text(title)
             }
         }
         .padding(14)
         .background(Color(.systemGray6))
         .cornerRadius(12)
-        .tint(.green)
+        .tint(.blue)
     }
 }
 

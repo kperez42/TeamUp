@@ -73,7 +73,7 @@ struct CameraView: View {
 
                         if isCapturing {
                             ProgressView()
-                                .tint(.green)
+                                .tint(.blue)
                         }
                     }
                 }
