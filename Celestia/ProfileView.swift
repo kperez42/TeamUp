@@ -175,7 +175,7 @@ struct ProfileView: View {
                                     // Looking For Header Card (matching signup style)
                                     gamingSectionHeader(
                                         icon: "person.2.fill",
-                                        iconColor: .orange,
+                                        iconColor: .teal,
                                         title: "Looking For",
                                         subtitle: "What type of teammates you want"
                                     )
