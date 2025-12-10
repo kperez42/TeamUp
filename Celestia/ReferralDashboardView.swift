@@ -424,7 +424,7 @@ struct ReferralDashboardView: View {
                 number: "#\(referralStats?.referralRank ?? 0)",
                 label: "Rank",
                 icon: "trophy.fill",
-                color: .green
+                color: .teal
             )
         }
     }
