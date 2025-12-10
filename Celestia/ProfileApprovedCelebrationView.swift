@@ -23,9 +23,9 @@ struct ProfileApprovedCelebrationView: View {
             // Background gradient
             LinearGradient(
                 colors: [
-                    Color.purple.opacity(0.3),
+                    Color.green.opacity(0.3),
                     Color.blue.opacity(0.2),
-                    Color.pink.opacity(0.2)
+                    Color.cyan.opacity(0.2)
                 ],
                 startPoint: .topLeading,
                 endPoint: .bottomTrailing

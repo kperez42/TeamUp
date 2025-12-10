@@ -108,20 +108,20 @@ struct WelcomeView: View {
             // Base gradient
             LinearGradient(
                 colors: [
-                    Color.purple.opacity(0.9),
-                    Color.pink.opacity(0.8),
+                    Color.green.opacity(0.9),
+                    Color.cyan.opacity(0.8),
                     Color.blue.opacity(0.7)
                 ],
                 startPoint: animateGradient ? .topLeading : .bottomTrailing,
                 endPoint: animateGradient ? .bottomTrailing : .topLeading
             )
-            
+
             // Overlay gradient
             LinearGradient(
                 colors: [
-                    Color.purple.opacity(0.3),
+                    Color.green.opacity(0.3),
                     Color.clear,
-                    Color.pink.opacity(0.3)
+                    Color.cyan.opacity(0.3)
                 ],
                 startPoint: .topLeading,
                 endPoint: .bottomTrailing
@@ -237,7 +237,7 @@ struct WelcomeView: View {
                         .font(.headline)
                         .fontWeight(.semibold)
                 }
-                .foregroundColor(.purple)
+                .foregroundColor(.green)
                 .frame(maxWidth: .infinity)
                 .frame(height: 56)
                 .background(
@@ -444,7 +444,7 @@ struct WelcomeAwarenessSlidesView: View {
             icon: "star.circle.fill",
             title: "Welcome to TeamUp!",
             description: "Your journey to finding the perfect gaming squad starts here. Let us show you how it works!",
-            color: .purple,
+            color: .green,
             tips: [
                 "Be authentic and genuine in your profile",
                 "Add photos and showcase your gaming setup",
@@ -455,7 +455,7 @@ struct WelcomeAwarenessSlidesView: View {
             icon: "scroll.fill",
             title: "Browse & Discover",
             description: "Scroll through profiles in your feed. Like gamers who match your style, or keep scrolling to discover more!",
-            color: .pink,
+            color: .cyan,
             tips: [
                 "Scroll up and down to browse profiles",
                 "Tap any card to view full profile details",
@@ -466,7 +466,7 @@ struct WelcomeAwarenessSlidesView: View {
             icon: "gamecontroller.fill",
             title: "Interest & Connections",
             description: "Show interest in gamers you want to team up with. When they're interested too, you're connected and can start chatting!",
-            color: .purple,
+            color: .green,
             tips: [
                 "Your connections appear in the Connections tab",
                 "Send a message to start the conversation",
@@ -533,7 +533,7 @@ struct WelcomeAwarenessSlidesView: View {
                     HStack(spacing: 8) {
                         ForEach(0..<slides.count, id: \.self) { index in
                             Circle()
-                                .fill(currentPage >= index ? Color.purple : Color.gray.opacity(0.3))
+                                .fill(currentPage >= index ? Color.green : Color.gray.opacity(0.3))
                                 .frame(width: currentPage == index ? 10 : 8, height: currentPage == index ? 10 : 8)
                                 .scaleEffect(currentPage == index ? 1.2 : 1.0)
                                 .animation(.spring(response: 0.3, dampingFraction: 0.6), value: currentPage)
@@ -549,7 +549,7 @@ struct WelcomeAwarenessSlidesView: View {
                             Text("Skip")
                                 .font(.subheadline)
                                 .fontWeight(.medium)
-                                .foregroundColor(.purple)
+                                .foregroundColor(.green)
                         }
                     }
                 }
@@ -580,7 +580,7 @@ struct WelcomeAwarenessSlidesView: View {
                                 Text("Back")
                                     .font(.headline)
                             }
-                            .foregroundColor(.purple)
+                            .foregroundColor(.green)
                             .frame(maxWidth: .infinity)
                             .padding()
                             .background(Color.white)
@@ -611,7 +611,7 @@ struct WelcomeAwarenessSlidesView: View {
                         .padding()
                         .background(
                             LinearGradient(
-                                colors: [Color.purple, Color.blue],
+                                colors: [Color.green, Color.cyan],
                                 startPoint: .leading,
                                 endPoint: .trailing
                             )
@@ -652,12 +652,12 @@ struct AwarenessSlideView: View {
                     // Icon circle - matching signup page header cards
                     ZStack {
                         Circle()
-                            .fill(Color.purple.opacity(0.12))
+                            .fill(Color.green.opacity(0.12))
                             .frame(width: 80, height: 80)
 
                         Image(systemName: slide.icon)
                             .font(.system(size: 36))
-                            .foregroundColor(.purple)
+                            .foregroundColor(.green)
                     }
 
                     VStack(spacing: 10) {
@@ -686,12 +686,12 @@ struct AwarenessSlideView: View {
                     HStack(spacing: 12) {
                         ZStack {
                             Circle()
-                                .fill(Color.purple.opacity(0.12))
+                                .fill(Color.green.opacity(0.12))
                                 .frame(width: 44, height: 44)
 
                             Image(systemName: "lightbulb.fill")
                                 .font(.system(size: 18))
-                                .foregroundColor(.purple)
+                                .foregroundColor(.green)
                         }
 
                         Text("Quick Tips")
@@ -706,7 +706,7 @@ struct AwarenessSlideView: View {
                             HStack(alignment: .top, spacing: 12) {
                                 Image(systemName: "checkmark.circle.fill")
                                     .font(.body)
-                                    .foregroundColor(.purple)
+                                    .foregroundColor(.green)
 
                                 Text(tip)
                                     .font(.subheadline)

@@ -189,12 +189,12 @@ struct MatchesView: View {
     
     private var headerView: some View {
         ZStack {
-            // Gradient background
+            // Gradient background - Gaming theme
             LinearGradient(
                 colors: [
-                    Color.purple.opacity(0.9),
-                    Color.purple.opacity(0.7),
-                    Color.blue.opacity(0.5)
+                    Color.green.opacity(0.9),
+                    Color.green.opacity(0.7),
+                    Color.cyan.opacity(0.5)
                 ],
                 startPoint: .topLeading,
                 endPoint: .bottomTrailing
@@ -381,10 +381,10 @@ struct MatchesView: View {
                         Image(systemName: "chevron.down")
                             .font(.caption2)
                     }
-                    .foregroundColor(.purple)
+                    .foregroundColor(.green)
                     .padding(.horizontal, 12)
                     .padding(.vertical, 8)
-                    .background(Color.purple.opacity(0.1))
+                    .background(Color.green.opacity(0.1))
                     .cornerRadius(20)
                 }
                 .accessibilityLabel("Sort connections by \(sortOption.rawValue)")
@@ -417,17 +417,17 @@ struct MatchesView: View {
                         .clipShape(Capsule())
                 }
             }
-            .foregroundColor(isActive ? .white : .purple)
+            .foregroundColor(isActive ? .white : .green)
             .padding(.horizontal, 12)
             .padding(.vertical, 8)
             .background(
                 isActive ?
                 LinearGradient(
-                    colors: [Color.purple, Color.blue],
+                    colors: [Color.green, Color.cyan],
                     startPoint: .leading,
                     endPoint: .trailing
                 ) :
-                LinearGradient(colors: [Color.purple.opacity(0.1)], startPoint: .leading, endPoint: .trailing)
+                LinearGradient(colors: [Color.green.opacity(0.1)], startPoint: .leading, endPoint: .trailing)
             )
             .cornerRadius(20)
         }
@@ -501,18 +501,18 @@ struct MatchesView: View {
                 Circle()
                     .fill(
                         LinearGradient(
-                            colors: [Color.purple.opacity(0.2), Color.blue.opacity(0.1)],
+                            colors: [Color.green.opacity(0.2), Color.cyan.opacity(0.1)],
                             startPoint: .topLeading,
                             endPoint: .bottomTrailing
                         )
                     )
                     .frame(width: 140, height: 140)
-                
+
                 Image(systemName: "gamecontroller.fill")
                     .font(.system(size: 70))
                     .foregroundStyle(
                         LinearGradient(
-                            colors: [.purple, .indigo],
+                            colors: [.green, .cyan],
                             startPoint: .topLeading,
                             endPoint: .bottomTrailing
                         )
@@ -548,7 +548,7 @@ struct MatchesView: View {
                 .foregroundColor(.white)
                 .background(
                     LinearGradient(
-                        colors: [.purple, .pink],
+                        colors: [.green, .cyan],
                         startPoint: .leading,
                         endPoint: .trailing
                     )
@@ -646,7 +646,7 @@ struct MatchesView: View {
                 .padding(.vertical, 14)
                 .background(
                     LinearGradient(
-                        colors: [.purple, .pink],
+                        colors: [.green, .cyan],
                         startPoint: .leading,
                         endPoint: .trailing
                     )
@@ -770,7 +770,7 @@ struct MatchProfileCard: View {
                             .padding(.vertical, 6)
                             .background(
                                 LinearGradient(
-                                    colors: [Color.purple, Color.pink],
+                                    colors: [Color.green, Color.cyan],
                                     startPoint: .leading,
                                     endPoint: .trailing
                                 )
@@ -816,7 +816,7 @@ struct MatchProfileCard: View {
                 HStack(spacing: 4) {
                     Image(systemName: "mappin.circle.fill")
                         .font(.system(size: 12))
-                        .foregroundColor(.purple)
+                        .foregroundColor(.green)
                     Text(user.location)
                         .font(.system(size: 13))
                         .foregroundColor(.secondary)
@@ -833,7 +833,7 @@ struct MatchProfileCard: View {
                         .padding(.vertical, 4)
                         .background(
                             LinearGradient(
-                                colors: [Color.purple.opacity(0.8), Color.pink.opacity(0.8)],
+                                colors: [Color.green.opacity(0.8), Color.cyan.opacity(0.8)],
                                 startPoint: .leading,
                                 endPoint: .trailing
                             )
@@ -847,7 +847,7 @@ struct MatchProfileCard: View {
                         .padding(.vertical, 4)
                         .background(
                             LinearGradient(
-                                colors: [Color.purple.opacity(0.8), Color.pink.opacity(0.8)],
+                                colors: [Color.green.opacity(0.8), Color.cyan.opacity(0.8)],
                                 startPoint: .leading,
                                 endPoint: .trailing
                             )
@@ -866,7 +866,7 @@ struct MatchProfileCard: View {
                 .stroke(
                     isNewMatch ?
                     LinearGradient(
-                        colors: [Color.purple.opacity(0.4), Color.pink.opacity(0.4)],
+                        colors: [Color.green.opacity(0.4), Color.cyan.opacity(0.4)],
                         startPoint: .topLeading,
                         endPoint: .bottomTrailing
                     ) :
@@ -885,7 +885,7 @@ struct MatchProfileCard: View {
                         .font(.system(size: 20))
                         .foregroundStyle(
                             LinearGradient(
-                                colors: [.purple, .pink],
+                                colors: [.green, .cyan],
                                 startPoint: .topLeading,
                                 endPoint: .bottomTrailing
                             )
@@ -917,7 +917,7 @@ struct MatchProfileCard: View {
     private var placeholderImage: some View {
         ZStack {
             LinearGradient(
-                colors: [Color.purple.opacity(0.7), Color.blue.opacity(0.5)],
+                colors: [Color.green.opacity(0.7), Color.cyan.opacity(0.5)],
                 startPoint: .topLeading,
                 endPoint: .bottomTrailing
             )

@@ -134,7 +134,7 @@ struct InterestsView: View {
         VStack(spacing: 20) {
             Image(systemName: "gamecontroller")
                 .font(.system(size: 60))
-                .foregroundColor(.purple.opacity(0.5))
+                .foregroundColor(.green.opacity(0.5))
             
             Text("No Interests Yet")
                 .font(.title3)
@@ -176,7 +176,7 @@ struct InterestsView: View {
                     showMatchAnimation = false
                 }
                 .buttonStyle(.borderedProminent)
-                .tint(.purple)
+                .tint(.green)
                 
                 Button("Keep Browsing") {
                     showMatchAnimation = false
@@ -288,7 +288,7 @@ struct BasicInterestCard: View {
                     .scaledToFill()
             } placeholder: {
                 LinearGradient(
-                    colors: [Color.purple.opacity(0.6), Color.pink.opacity(0.5)],
+                    colors: [Color.green.opacity(0.6), Color.cyan.opacity(0.5)],
                     startPoint: .topLeading,
                     endPoint: .bottomTrailing
                 )
@@ -320,7 +320,7 @@ struct BasicInterestCard: View {
                     if let message = interest.message {
                         Text("💬 \(message)")
                             .font(.caption)
-                            .foregroundColor(.purple)
+                            .foregroundColor(.green)
                             .lineLimit(2)
                     }
                 }

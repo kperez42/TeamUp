@@ -60,7 +60,7 @@ struct FilterView: View {
                     .padding()
                     .background(
                         LinearGradient(
-                            colors: [.purple, .pink],
+                            colors: [.green, .cyan],
                             startPoint: .leading,
                             endPoint: .trailing
                         )
@@ -93,11 +93,11 @@ struct FilterView: View {
             HStack(spacing: 12) {
                 ZStack {
                     Circle()
-                        .fill(Color.purple.opacity(0.12))
+                        .fill(Color.green.opacity(0.12))
                         .frame(width: 40, height: 40)
                     Image(systemName: "person.2.fill")
                         .font(.title3)
-                        .foregroundColor(.purple)
+                        .foregroundColor(.green)
                 }
 
                 VStack(alignment: .leading, spacing: 2) {
@@ -119,7 +119,7 @@ struct FilterView: View {
                     .padding(.vertical, 6)
                     .background(
                         LinearGradient(
-                            colors: [.pink, .purple],
+                            colors: [.cyan, .green],
                             startPoint: .leading,
                             endPoint: .trailing
                         )
@@ -191,11 +191,11 @@ struct FilterView: View {
             HStack(spacing: 12) {
                 ZStack {
                     Circle()
-                        .fill(Color.purple.opacity(0.12))
+                        .fill(Color.green.opacity(0.12))
                         .frame(width: 40, height: 40)
                     Image(systemName: "person.2.fill")
                         .font(.title3)
-                        .foregroundColor(.purple)
+                        .foregroundColor(.green)
                 }
 
                 VStack(alignment: .leading, spacing: 2) {
