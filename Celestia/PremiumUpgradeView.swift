@@ -139,7 +139,7 @@ struct PremiumUpgradeView: View {
                             restorePurchases()
                         }
                         .font(.subheadline.weight(.medium))
-                        .foregroundColor(.green)
+                        .foregroundColor(.blue)
                     }
                 }
                 .alert("Welcome to Premium!", isPresented: $showPurchaseSuccess) {
@@ -679,10 +679,10 @@ struct PremiumUpgradeView: View {
                 HStack(spacing: 4) {
                     Image(systemName: "person.2.fill")
                         .font(.caption2)
-                        .foregroundColor(.green)
+                        .foregroundColor(.blue)
                     Text("1,247 members upgraded today")
                         .font(.caption2)
-                        .foregroundColor(.green)
+                        .foregroundColor(.blue)
                 }
             }
         }
