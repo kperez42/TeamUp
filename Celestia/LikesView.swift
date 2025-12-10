@@ -255,7 +255,7 @@ struct LikesView: View {
                                 Spacer()
                                 if selectedSkillFilter == filter {
                                     Image(systemName: "checkmark")
-                                        .foregroundColor(.pink)
+                                        .foregroundColor(.blue)
                                 }
                             }
                         }
@@ -274,7 +274,7 @@ struct LikesView: View {
                                 Spacer()
                                 if selectedSortOption == option {
                                     Image(systemName: "checkmark")
-                                        .foregroundColor(.pink)
+                                        .foregroundColor(.blue)
                                 }
                             }
                         }
@@ -371,14 +371,14 @@ struct LikesView: View {
 
     // MARK: - Header
 
-    // PINK/MAGENTA THEME for Interest page
+    // BLUE/TEAL THEME for Interest page
     private var headerView: some View {
         ZStack {
             LinearGradient(
                 colors: [
-                    Color.pink.opacity(0.9),
-                    Color.pink.opacity(0.7),
-                    Color.purple.opacity(0.5)
+                    Color.blue.opacity(0.9),
+                    Color.teal.opacity(0.8),
+                    Color.cyan.opacity(0.7)
                 ],
                 startPoint: .topLeading,
                 endPoint: .bottomTrailing
@@ -517,7 +517,7 @@ struct LikesView: View {
                                     .padding(.vertical, 2)
                                     .background(
                                         selectedTab == index ?
-                                        Color.pink : Color.gray.opacity(0.5)
+                                        Color.blue : Color.gray.opacity(0.5)
                                     )
                                     .clipShape(Capsule())
                             }
@@ -525,7 +525,7 @@ struct LikesView: View {
                         .foregroundColor(selectedTab == index ? .green : .gray)
 
                         Rectangle()
-                            .fill(selectedTab == index ? Color.pink : Color.clear)
+                            .fill(selectedTab == index ? Color.blue : Color.clear)
                             .frame(height: 3)
                             .cornerRadius(1.5)
                     }
@@ -654,7 +654,7 @@ struct LikesView: View {
             if viewModel.usersWhoLikedMe.count > 4 {
                 HStack(spacing: 8) {
                     Image(systemName: "plus.circle.fill")
-                        .foregroundColor(.pink)
+                        .foregroundColor(.blue)
                     Text("And \(viewModel.usersWhoLikedMe.count - 4) more gamers want to team up!")
                         .font(.subheadline)
                         .fontWeight(.medium)
@@ -672,7 +672,7 @@ struct LikesView: View {
                 Circle()
                     .fill(
                         RadialGradient(
-                            colors: [Color.purple.opacity(0.3), Color.clear],
+                            colors: [Color.teal.opacity(0.3), Color.clear],
                             center: .center,
                             startRadius: 0,
                             endRadius: 60
@@ -684,7 +684,7 @@ struct LikesView: View {
                     .font(.system(size: 44))
                     .foregroundStyle(
                         LinearGradient(
-                            colors: [.pink, .purple],
+                            colors: [.blue, .teal],
                             startPoint: .topLeading,
                             endPoint: .bottomTrailing
                         )
@@ -720,7 +720,7 @@ struct LikesView: View {
                 .padding(.vertical, 16)
                 .background(
                     LinearGradient(
-                        colors: [.pink, .purple],
+                        colors: [.blue, .teal],
                         startPoint: .leading,
                         endPoint: .trailing
                     )
@@ -823,7 +823,7 @@ struct LikesView: View {
                 HStack(spacing: 8) {
                     Image(systemName: "line.3.horizontal.decrease.circle.fill")
                         .font(.caption)
-                        .foregroundColor(.pink)
+                        .foregroundColor(.blue)
                     Text("Filtered: \(users.count) results")
                         .font(.caption)
                         .foregroundColor(.secondary)
@@ -834,7 +834,7 @@ struct LikesView: View {
                         HapticManager.shared.impact(.light)
                     }
                     .font(.caption)
-                    .foregroundColor(.pink)
+                    .foregroundColor(.blue)
                 }
                 .padding(.horizontal, 16)
                 .padding(.top, 8)
@@ -896,7 +896,7 @@ struct LikesView: View {
                 Circle()
                     .fill(
                         LinearGradient(
-                            colors: [Color.purple.opacity(0.2), Color.pink.opacity(0.1)],
+                            colors: [Color.teal.opacity(0.2), Color.blue.opacity(0.1)],
                             startPoint: .topLeading,
                             endPoint: .bottomTrailing
                         )
@@ -907,7 +907,7 @@ struct LikesView: View {
                     .font(.system(size: 70))
                     .foregroundStyle(
                         LinearGradient(
-                            colors: [.pink, .purple],
+                            colors: [.blue, .teal],
                             startPoint: .topLeading,
                             endPoint: .bottomTrailing
                         )
@@ -984,7 +984,7 @@ struct LikeProfileCard: View {
                 HStack(spacing: 4) {
                     Image(systemName: "mappin.circle.fill")
                         .font(.system(size: 12))
-                        .foregroundColor(.pink)
+                        .foregroundColor(.blue)
                     Text(user.location)
                         .font(.system(size: 13))
                         .foregroundColor(.secondary)
@@ -998,7 +998,7 @@ struct LikeProfileCard: View {
                             LikeActionButton(
                                 icon: "gamecontroller.fill",
                                 text: "Connect",
-                                colors: [.pink, .purple]
+                                colors: [.blue, .teal]
                             ) {
                                 onLikeBack?()
                             }
@@ -1008,7 +1008,7 @@ struct LikeProfileCard: View {
                             LikeActionButton(
                                 icon: "message.fill",
                                 text: "Message",
-                                colors: [.pink, .purple]
+                                colors: [.blue, .teal]
                             ) {
                                 onMessage?()
                             }
@@ -1047,7 +1047,7 @@ struct LikeProfileCard: View {
     private var placeholderImage: some View {
         ZStack {
             LinearGradient(
-                colors: [Color.pink.opacity(0.7), Color.purple.opacity(0.6)],
+                colors: [Color.blue.opacity(0.7), Color.teal.opacity(0.6)],
                 startPoint: .topLeading,
                 endPoint: .bottomTrailing
             )
@@ -1150,14 +1150,14 @@ struct BlurredLikeCard: View {
 
                     // Interest indicator showing they're interested
                     Image(systemName: "gamecontroller.fill")
-                        .foregroundColor(.pink)
+                        .foregroundColor(.blue)
                         .font(.caption)
                 }
 
                 HStack(spacing: 4) {
                     Image(systemName: "mappin.circle.fill")
                         .font(.system(size: 12))
-                        .foregroundColor(.pink)
+                        .foregroundColor(.blue)
                     Text(user.location)
                         .font(.system(size: 13))
                         .foregroundColor(.secondary)
@@ -1485,7 +1485,7 @@ struct SwipeableLikeCard: View {
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .background(
                     LinearGradient(
-                        colors: [.pink, .purple],
+                        colors: [.blue, .teal],
                         startPoint: .leading,
                         endPoint: .trailing
                     )
@@ -1541,7 +1541,7 @@ struct SwipeableLikeCard: View {
                 VStack {
                     Image(systemName: "gamecontroller.fill")
                         .font(.system(size: 50))
-                        .foregroundColor(.pink)
+                        .foregroundColor(.blue)
                         .shadow(color: .green.opacity(0.5), radius: 10)
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -1580,7 +1580,7 @@ struct MatchCelebrationOverlay: View {
                     Circle()
                         .fill(
                             RadialGradient(
-                                colors: [Color.purple.opacity(0.4), Color.clear],
+                                colors: [Color.teal.opacity(0.4), Color.clear],
                                 center: .center,
                                 startRadius: 40,
                                 endRadius: 120
@@ -1596,7 +1596,7 @@ struct MatchCelebrationOverlay: View {
                         Circle()
                             .fill(
                                 LinearGradient(
-                                    colors: [.pink, .purple],
+                                    colors: [.blue, .teal],
                                     startPoint: .topLeading,
                                     endPoint: .bottomTrailing
                                 )
@@ -1627,7 +1627,7 @@ struct MatchCelebrationOverlay: View {
                             Circle()
                                 .fill(
                                     LinearGradient(
-                                        colors: [.pink, .purple],
+                                        colors: [.blue, .teal],
                                         startPoint: .topLeading,
                                         endPoint: .bottomTrailing
                                     )
@@ -1645,7 +1645,7 @@ struct MatchCelebrationOverlay: View {
                     // Icon in center
                     Image(systemName: "gamecontroller.fill")
                         .font(.system(size: 30))
-                        .foregroundColor(.pink)
+                        .foregroundColor(.blue)
                         .offset(y: 40)
                         .scaleEffect(heartScale)
                 }
@@ -1678,7 +1678,7 @@ struct MatchCelebrationOverlay: View {
                         .padding(.vertical, 16)
                         .background(
                             LinearGradient(
-                                colors: [.pink, .purple],
+                                colors: [.blue, .teal],
                                 startPoint: .leading,
                                 endPoint: .trailing
                             )

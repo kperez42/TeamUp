@@ -51,10 +51,10 @@ struct FeedDiscoverView: View {
     private let usersPerPage = 10
     private let preloadThreshold = 3 // Load more when 3 items from bottom
 
-    // Helper gradient for buttons - MINT/EMERALD THEME
+    // Helper gradient for buttons - BLUE/TEAL THEME
     private var buttonGradient: LinearGradient {
         LinearGradient(
-            colors: [.mint, .teal],
+            colors: [.blue, .teal],
             startPoint: .leading,
             endPoint: .trailing
         )
@@ -125,7 +125,7 @@ struct FeedDiscoverView: View {
             ZStack(alignment: .topTrailing) {
                 Image(systemName: "slider.horizontal.3")
                     .font(.title3)
-                    .foregroundColor(.mint)
+                    .foregroundColor(.blue)
 
                 if filters.hasActiveFilters {
                     Circle()
@@ -236,7 +236,7 @@ struct FeedDiscoverView: View {
                 if isLoading {
                     HStack(spacing: 12) {
                         ProgressView()
-                            .tint(.mint)
+                            .tint(.blue)
 
                         Text("Finding more people...")
                             .font(.subheadline)
@@ -456,7 +456,7 @@ struct FeedDiscoverView: View {
             VStack(spacing: 8) {
                 HStack(spacing: 8) {
                     Image(systemName: "checkmark.circle.fill")
-                        .foregroundColor(.mint)
+                        .foregroundColor(.blue)
                     Text("Profile created")
                         .font(.subheadline)
                 }
@@ -569,7 +569,7 @@ struct FeedDiscoverView: View {
                     .padding(.vertical, 14)
                     .background(
                         LinearGradient(
-                            colors: [.mint, .teal],
+                            colors: [.blue, .teal],
                             startPoint: .leading,
                             endPoint: .trailing
                         )
@@ -588,10 +588,10 @@ struct FeedDiscoverView: View {
                         Text("Submit for Review")
                     }
                     .fontWeight(.semibold)
-                    .foregroundColor(.mint)
+                    .foregroundColor(.blue)
                     .frame(maxWidth: .infinity)
                     .padding(.vertical, 14)
-                    .background(Color.mint.opacity(0.1))
+                    .background(Color.blue.opacity(0.1))
                     .cornerRadius(12)
                 }
             }
@@ -634,7 +634,7 @@ struct FeedDiscoverView: View {
                     .font(.system(size: 60))
                     .foregroundStyle(
                         LinearGradient(
-                            colors: [.mint, .teal],
+                            colors: [.blue, .teal],
                             startPoint: .topLeading,
                             endPoint: .bottomTrailing
                         )
@@ -654,7 +654,7 @@ struct FeedDiscoverView: View {
                 VStack(spacing: 10) {
                     HStack(spacing: 10) {
                         Image(systemName: "checkmark.circle.fill")
-                            .foregroundColor(.mint)
+                            .foregroundColor(.blue)
                         Text("Account created")
                             .font(.subheadline)
                         Spacer()
@@ -734,7 +734,7 @@ struct FeedDiscoverView: View {
                     .font(.system(size: 70))
                     .foregroundStyle(
                         LinearGradient(
-                            colors: [.mint, .teal],
+                            colors: [.blue, .teal],
                             startPoint: .topLeading,
                             endPoint: .bottomTrailing
                         )
@@ -830,7 +830,7 @@ struct FeedDiscoverView: View {
                 .foregroundColor(.green)
                 .padding(.horizontal, 20)
                 .padding(.vertical, 10)
-                .background(Color.mint.opacity(0.1))
+                .background(Color.blue.opacity(0.1))
                 .cornerRadius(10)
             }
         }
@@ -883,7 +883,7 @@ struct FeedDiscoverView: View {
                     }
                 }
                 .buttonStyle(.borderedProminent)
-                .tint(.mint)
+                .tint(.blue)
                 .controlSize(.large)
 
                 Button("Keep Browsing") {

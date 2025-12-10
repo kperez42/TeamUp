@@ -311,8 +311,8 @@ struct ProfileView: View {
             ZStack {
                 LinearGradient(
                     colors: [
-                        Color.red.opacity(0.9),
-                        Color.pink.opacity(0.7),
+                        Color.blue.opacity(0.9),
+                        Color.teal.opacity(0.8),
                         Color.blue.opacity(0.6)
                     ],
                     startPoint: .topLeading,
@@ -474,7 +474,7 @@ struct ProfileView: View {
                 Circle()
                     .fill(
                         LinearGradient(
-                            colors: [.red, .pink],
+                            colors: [.blue, .teal],
                             startPoint: .topLeading,
                             endPoint: .bottomTrailing
                         )
@@ -493,8 +493,8 @@ struct ProfileView: View {
         ZStack {
             LinearGradient(
                 colors: [
-                    Color.red.opacity(0.8),
-                    Color.pink.opacity(0.7),
+                    Color.blue.opacity(0.8),
+                    Color.teal.opacity(0.7),
                     Color.blue.opacity(0.6)
                 ],
                 startPoint: .topLeading,
@@ -530,7 +530,7 @@ struct ProfileView: View {
                         .trim(from: 0, to: CGFloat(profileCompletion) / 100)
                         .stroke(
                             LinearGradient(
-                                colors: [.red, .pink],
+                                colors: [.blue, .teal],
                                 startPoint: .topLeading,
                                 endPoint: .bottomTrailing
                             ),
@@ -682,7 +682,7 @@ struct ProfileView: View {
             HStack(spacing: 16) {
                 ZStack {
                     Circle()
-                        .fill(Color.red.opacity(0.12))
+                        .fill(Color.blue.opacity(0.12))
                         .frame(width: 60, height: 60)
 
                     Image(systemName: "gift.fill")
@@ -736,7 +736,7 @@ struct ProfileView: View {
             .padding(.vertical, 16)
             .background(
                 LinearGradient(
-                    colors: [Color.red, Color.pink],
+                    colors: [Color.blue, Color.teal],
                     startPoint: .leading,
                     endPoint: .trailing
                 )
@@ -811,7 +811,7 @@ struct ProfileView: View {
                     Circle()
                         .fill(
                             LinearGradient(
-                                colors: [Color.red.opacity(0.15), Color.pink.opacity(0.1)],
+                                colors: [Color.blue.opacity(0.15), Color.teal.opacity(0.1)],
                                 startPoint: .topLeading,
                                 endPoint: .bottomTrailing
                             )
@@ -822,7 +822,7 @@ struct ProfileView: View {
                         .font(.title)
                         .foregroundStyle(
                             LinearGradient(
-                                colors: [.red, .pink],
+                                colors: [.blue, .teal],
                                 startPoint: .topLeading,
                                 endPoint: .bottomTrailing
                             )
@@ -868,7 +868,7 @@ struct ProfileView: View {
                     Circle()
                         .fill(
                             LinearGradient(
-                                colors: [Color.red.opacity(0.15), Color.pink.opacity(0.1)],
+                                colors: [Color.blue.opacity(0.15), Color.teal.opacity(0.1)],
                                 startPoint: .topLeading,
                                 endPoint: .bottomTrailing
                             )
@@ -879,7 +879,7 @@ struct ProfileView: View {
                         .font(.title)
                         .foregroundStyle(
                             LinearGradient(
-                                colors: [.red, .pink],
+                                colors: [.blue, .teal],
                                 startPoint: .topLeading,
                                 endPoint: .bottomTrailing
                             )
@@ -948,7 +948,7 @@ struct ProfileView: View {
                     .font(.title3)
                     .foregroundStyle(
                         LinearGradient(
-                            colors: [.red, .pink],
+                            colors: [.blue, .teal],
                             startPoint: .topLeading,
                             endPoint: .bottomTrailing
                         )
@@ -974,7 +974,7 @@ struct ProfileView: View {
         )
         .overlay(
             RoundedRectangle(cornerRadius: 16)
-                .stroke(Color.red.opacity(0.1), lineWidth: 1)
+                .stroke(Color.blue.opacity(0.1), lineWidth: 1)
         )
         .padding(.horizontal, 20)
     }
@@ -990,7 +990,7 @@ struct ProfileView: View {
                             .font(.caption)
                             .foregroundStyle(
                                 LinearGradient(
-                                    colors: [.red, .pink],
+                                    colors: [.blue, .teal],
                                     startPoint: .topLeading,
                                     endPoint: .bottomTrailing
                                 )
@@ -1001,7 +1001,7 @@ struct ProfileView: View {
                             .fontWeight(.semibold)
                             .foregroundStyle(
                                 LinearGradient(
-                                    colors: [.red, .pink],
+                                    colors: [.blue, .teal],
                                     startPoint: .leading,
                                     endPoint: .trailing
                                 )
@@ -1082,7 +1082,7 @@ struct ProfileView: View {
                         .font(.title3)
                         .foregroundStyle(
                             LinearGradient(
-                                colors: [.red, .pink],
+                                colors: [.blue, .teal],
                                 startPoint: .topLeading,
                                 endPoint: .bottomTrailing
                             )
@@ -1115,7 +1115,7 @@ struct ProfileView: View {
             )
             .overlay(
                 RoundedRectangle(cornerRadius: 16)
-                    .stroke(Color.red.opacity(0.1), lineWidth: 1)
+                    .stroke(Color.blue.opacity(0.1), lineWidth: 1)
             )
             .padding(.horizontal, 20)
         }
@@ -1173,7 +1173,7 @@ struct ProfileView: View {
                 .padding(.vertical, 6)
                 .background(
                     LinearGradient(
-                        colors: [.red, .pink],
+                        colors: [.blue, .teal],
                         startPoint: .leading,
                         endPoint: .trailing
                     )
@@ -1237,7 +1237,7 @@ struct ProfileView: View {
                     .font(.title3)
                     .foregroundStyle(
                         LinearGradient(
-                            colors: [.red, .pink],
+                            colors: [.blue, .teal],
                             startPoint: .topLeading,
                             endPoint: .bottomTrailing
                         )
@@ -1256,7 +1256,7 @@ struct ProfileView: View {
                         .padding(.vertical, 8)
                         .background(
                             LinearGradient(
-                                colors: [Color.red.opacity(0.15), Color.pink.opacity(0.1)],
+                                colors: [Color.blue.opacity(0.15), Color.teal.opacity(0.1)],
                                 startPoint: .topLeading,
                                 endPoint: .bottomTrailing
                             )
@@ -1279,7 +1279,7 @@ struct ProfileView: View {
         )
         .overlay(
             RoundedRectangle(cornerRadius: 16)
-                .stroke(Color.red.opacity(0.1), lineWidth: 1)
+                .stroke(Color.blue.opacity(0.1), lineWidth: 1)
         )
         .padding(.horizontal, 20)
     }
@@ -1312,7 +1312,7 @@ struct ProfileView: View {
                         .padding(.vertical, 8)
                         .background(
                             LinearGradient(
-                                colors: [Color.cyan.opacity(0.15), Color.red.opacity(0.1)],
+                                colors: [Color.cyan.opacity(0.15), Color.blue.opacity(0.1)],
                                 startPoint: .topLeading,
                                 endPoint: .bottomTrailing
                             )
