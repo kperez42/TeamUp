@@ -191,14 +191,15 @@ struct MessagesView: View {
     
     // MARK: - Header
     
+    // BLUE/PURPLE THEME for Messages page
     private var headerView: some View {
         ZStack {
             // Gradient background
             LinearGradient(
                 colors: [
-                    Color.green.opacity(0.9),
-                    Color.cyan.opacity(0.7),
-                    Color.blue.opacity(0.6)
+                    Color.blue.opacity(0.9),
+                    Color.indigo.opacity(0.7),
+                    Color.purple.opacity(0.6)
                 ],
                 startPoint: .topLeading,
                 endPoint: .bottomTrailing
@@ -301,7 +302,7 @@ struct MessagesView: View {
                                     .fontWeight(.bold)
                                     .foregroundStyle(
                                         LinearGradient(
-                                            colors: [.green, .cyan],
+                                            colors: [.blue, .indigo],
                                             startPoint: .topLeading,
                                             endPoint: .bottomTrailing
                                         )
@@ -404,7 +405,7 @@ struct MessagesView: View {
                 Circle()
                     .fill(
                         LinearGradient(
-                            colors: [Color.green.opacity(0.2), Color.cyan.opacity(0.1)],
+                            colors: [Color.blue.opacity(0.2), Color.indigo.opacity(0.1)],
                             startPoint: .topLeading,
                             endPoint: .bottomTrailing
                         )
@@ -415,7 +416,7 @@ struct MessagesView: View {
                     .font(.system(size: 70))
                     .foregroundStyle(
                         LinearGradient(
-                            colors: [.green, .cyan],
+                            colors: [.blue, .indigo],
                             startPoint: .topLeading,
                             endPoint: .bottomTrailing
                         )
@@ -455,7 +456,7 @@ struct MessagesView: View {
                     )
                 )
                 .cornerRadius(25)
-                .shadow(color: .green.opacity(0.4), radius: 15, y: 8)
+                .shadow(color: .blue.opacity(0.4), radius: 15, y: 8)
             }
             .padding(.top, 10)
             
@@ -474,7 +475,7 @@ struct MessagesView: View {
                 Circle()
                     .fill(
                         LinearGradient(
-                            colors: [Color.green.opacity(0.15), Color.cyan.opacity(0.1)],
+                            colors: [Color.blue.opacity(0.15), Color.indigo.opacity(0.1)],
                             startPoint: .topLeading,
                             endPoint: .bottomTrailing
                         )
@@ -485,7 +486,7 @@ struct MessagesView: View {
                     .font(.system(size: 40))
                     .foregroundStyle(
                         LinearGradient(
-                            colors: [.green, .cyan],
+                            colors: [.blue, .indigo],
                             startPoint: .topLeading,
                             endPoint: .bottomTrailing
                         )
@@ -634,7 +635,7 @@ struct ConversationRow: View {
                         }
                         .foregroundStyle(
                             LinearGradient(
-                                colors: [.green, .cyan],
+                                colors: [.blue, .indigo],
                                 startPoint: .leading,
                                 endPoint: .trailing
                             )
@@ -662,8 +663,8 @@ struct ConversationRow: View {
                 if unreadCount > 0 {
                     LinearGradient(
                         colors: [
-                            Color.green.opacity(0.08),
-                            Color.cyan.opacity(0.05)
+                            Color.blue.opacity(0.08),
+                            Color.indigo.opacity(0.05)
                         ],
                         startPoint: .leading,
                         endPoint: .trailing
@@ -675,7 +676,7 @@ struct ConversationRow: View {
         )
         .cornerRadius(20)
         .shadow(
-            color: unreadCount > 0 ? Color.green.opacity(0.15) : Color.black.opacity(0.05),
+            color: unreadCount > 0 ? Color.blue.opacity(0.15) : Color.black.opacity(0.05),
             radius: 8,
             y: 4
         )
@@ -684,7 +685,7 @@ struct ConversationRow: View {
                 .stroke(
                     unreadCount > 0 || isNewMatch ?
                     LinearGradient(
-                        colors: [Color.green.opacity(0.3), Color.cyan.opacity(0.2)],
+                        colors: [Color.blue.opacity(0.3), Color.indigo.opacity(0.2)],
                         startPoint: .topLeading,
                         endPoint: .bottomTrailing
                     ) :
@@ -709,8 +710,8 @@ struct ConversationRow: View {
                 .stroke(
                     LinearGradient(
                         colors: [
-                            Color.green.opacity(0.3),
-                            Color.cyan.opacity(0.2)
+                            Color.blue.opacity(0.3),
+                            Color.indigo.opacity(0.2)
                         ],
                         startPoint: .topLeading,
                         endPoint: .bottomTrailing
@@ -724,8 +725,8 @@ struct ConversationRow: View {
         ZStack {
             LinearGradient(
                 colors: [
-                    Color.green.opacity(0.7),
-                    Color.cyan.opacity(0.6),
+                    Color.blue.opacity(0.7),
+                    Color.indigo.opacity(0.6),
                     Color.blue.opacity(0.5)
                 ],
                 startPoint: .topLeading,
@@ -753,7 +754,7 @@ struct ConversationRow: View {
                 )
             )
             .clipShape(Capsule())
-            .shadow(color: .green.opacity(0.3), radius: 5)
+            .shadow(color: .blue.opacity(0.3), radius: 5)
     }
     
     private func timeAgo(from date: Date) -> String {
