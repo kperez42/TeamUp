@@ -41,12 +41,12 @@
 - ✅ **Network banner** (offline indicator)
 
 ### 5. **Discover Page** - PRODUCTION READY
-- ✅ **Smooth card swiping** (60fps)
-- ✅ **Image preloading** (next 3 cards)
-- ✅ **Like/Save animations** (scale bounce)
-- ✅ **Toast notifications** (tappable, navigation)
-- ✅ **Haptic feedback** (all interactions)
-- ✅ **Error recovery** (graceful fallbacks)
+- **Smooth scrolling feed** (60fps)
+- **Image preloading** (smooth scroll experience)
+- **Like/Save animations** (scale bounce)
+- **Toast notifications** (tappable, navigation)
+- **Haptic feedback** (all interactions)
+- **Error recovery** (graceful fallbacks)
 
 ---
 

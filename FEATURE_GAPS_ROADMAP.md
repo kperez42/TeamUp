@@ -718,7 +718,7 @@ exports.generateIcebreaker = async (targetUser) => {
 
 **Feature**:
 - Browse users in different cities
-- Passport feature (like Tinder)
+- Location passport feature for travel
 - Pre-trip matching
 
 **Premium Feature**: $5-10/month add-on
