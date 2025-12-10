@@ -1,7 +1,7 @@
 /**
- * Celestia Cloud Functions
+ * TeamUp Cloud Functions
  *
- * Admin moderation functions for the Celestia dating app
+ * Admin moderation functions for the TeamUp gaming app
  */
 
 import * as functions from "firebase-functions";

@@ -81,7 +81,7 @@ struct SignUpView: View {
     @State private var ageRangeMin: Int = 18
     @State private var ageRangeMax: Int = 35
 
-    let relationshipGoalOptions = ["Competitive squad", "Casual gaming", "New friends", "Not sure yet"]
+    let relationshipGoalOptions = ["Casual Gaming", "Regular Squad", "Competitive Team", "New Friends", "Not Sure Yet"]
     let educationLevelOptions = ["High school", "Some college", "Bachelor's degree", "Master's degree", "Doctorate", "Trade school", "Prefer not to say"]
     let smokingOptions = ["Never", "Sometimes", "Regularly", "Prefer not to say"]
     let drinkingOptions = ["Never", "Socially", "Regularly", "Prefer not to say"]
@@ -548,18 +548,18 @@ struct SignUpView: View {
             }
             
             VStack(alignment: .leading, spacing: 8) {
-                Text("Looking for")
+                Text("Show Me")
                     .font(.subheadline)
                     .foregroundColor(.secondary)
-                
-                Picker("Looking for", selection: $lookingFor) {
+
+                Picker("Show Me", selection: $lookingFor) {
                     ForEach(lookingForOptions, id: \.self) { option in
                         Text(option).tag(option)
                     }
                 }
                 .pickerStyle(.segmented)
-                .accessibilityLabel("Looking for")
-                .accessibilityHint("Select who you're interested in playing with")
+                .accessibilityLabel("Show Me")
+                .accessibilityHint("Select which gamers to show in your feed")
                 .accessibilityValue(lookingFor)
                 .accessibilityIdentifier(AccessibilityIdentifier.lookingForPicker)
             }
@@ -1343,7 +1343,7 @@ struct SignUpView: View {
                 )
 
                 detailsDropdown(
-                    label: "Looking for",
+                    label: "Gaming Goal",
                     selection: relationshipGoal.isEmpty ? "Select" : relationshipGoal,
                     options: relationshipGoalOptions,
                     onSelect: { relationshipGoal = $0 }

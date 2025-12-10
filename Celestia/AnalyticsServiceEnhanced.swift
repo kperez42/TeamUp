@@ -528,7 +528,7 @@ class AnalyticsServiceEnhanced: ObservableObject {
         // Low engagement
         if engagementScore < 30 {
             recommendations.append("👋 Be more active! Like more profiles to increase your chances")
-            recommendations.append("💬 Send more messages to your matches")
+            recommendations.append("💬 Send more messages to your connections")
         }
 
         // Peak time suggestion

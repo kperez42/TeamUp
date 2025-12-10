@@ -434,7 +434,7 @@ class ActivationMetrics: ObservableObject {
         case .fiveMatches:
             return ActivationMilestone(
                 id: milestone.rawValue,
-                title: "5 Matches! 🔥",
+                title: "5 Connections! 🔥",
                 description: "You're on a roll!",
                 achievedDate: Date(),
                 category: .matching,
@@ -444,8 +444,8 @@ class ActivationMetrics: ObservableObject {
         case .tenMatches:
             return ActivationMilestone(
                 id: milestone.rawValue,
-                title: "10 Matches! 🚀",
-                description: "You're a matching pro!",
+                title: "10 Connections! 🚀",
+                description: "You're a connection pro!",
                 achievedDate: Date(),
                 category: .matching,
                 rewardPoints: 150
@@ -591,7 +591,7 @@ struct ActivationDashboardView: View {
 
                         // Stats Grid
                         LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 12) {
-                            StatCard(title: "Matches", value: "\(metrics.totalMatches)", icon: "heart.fill", color: .red)
+                            StatCard(title: "Connections", value: "\(metrics.totalMatches)", icon: "person.2.fill", color: .purple)
                             StatCard(title: "Messages", value: "\(metrics.totalMessages)", icon: "message.fill", color: .blue)
                             StatCard(title: "Sessions", value: "\(metrics.sessionCount)", icon: "clock.fill", color: .green)
                             StatCard(title: "Profile", value: "\(Int(metrics.profileCompletionPercentage))%", icon: "person.fill", color: .purple)

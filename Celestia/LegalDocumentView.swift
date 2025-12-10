@@ -648,7 +648,7 @@ extension LegalDocumentView {
                         .font(.subheadline)
                     SimpleBulletPoint("Account notifications and security alerts")
                     SimpleBulletPoint("Service updates and policy changes")
-                    SimpleBulletPoint("Match notifications and messages from other users")
+                    SimpleBulletPoint("Connection notifications and messages from other users")
                     SimpleBulletPoint("Marketing communications (which you may opt out of)")
 
                     Text("These electronic communications satisfy any legal requirement that communications be in writing. You may withdraw consent by deleting your account.")

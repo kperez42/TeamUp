@@ -105,8 +105,8 @@ struct EmergencyContactsView: View {
                             onEdit: { updatedContact in
                                 await viewModel.updateContact(updatedContact)
                             },
-                            onToggleDateUpdates: {
-                                await viewModel.toggleDateUpdates(contact)
+                            onToggleMeetupUpdates: {
+                                await viewModel.toggleMeetupUpdates(contact)
                             }
                         )
                     }
@@ -146,7 +146,7 @@ struct EmergencyContactCard: View {
     let contact: EmergencyContact
     let onDelete: () async -> Void
     let onEdit: (EmergencyContact) async -> Void
-    let onToggleDateUpdates: () async -> Void
+    let onToggleMeetupUpdates: () async -> Void
 
     @State private var showDeleteConfirmation = false
     @State private var showEditSheet = false
@@ -214,12 +214,12 @@ struct EmergencyContactCard: View {
 
             Divider()
 
-            // Date Updates Toggle
+            // Meetup Updates Toggle
             Toggle(isOn: Binding(
-                get: { contact.notificationPreferences.receiveScheduledDateAlerts },
+                get: { contact.notificationPreferences.receiveScheduledMeetupAlerts },
                 set: { _ in
                     Task {
-                        await onToggleDateUpdates()
+                        await onToggleMeetupUpdates()
                     }
                 }
             )) {
@@ -436,7 +436,7 @@ class EmergencyContactsViewModel: ObservableObject {
                     "relationship": contact.relationship.rawValue,
                     "addedAt": Timestamp(date: contact.addedAt),
                     "notificationPreferences": [
-                        "receiveScheduledDateAlerts": contact.notificationPreferences.receiveScheduledDateAlerts,
+                        "receiveScheduledMeetupAlerts": contact.notificationPreferences.receiveScheduledMeetupAlerts,
                         "receiveCheckInAlerts": contact.notificationPreferences.receiveCheckInAlerts,
                         "receiveEmergencyAlerts": contact.notificationPreferences.receiveEmergencyAlerts,
                         "receiveMissedCheckInAlerts": contact.notificationPreferences.receiveMissedCheckInAlerts
@@ -476,22 +476,22 @@ class EmergencyContactsViewModel: ObservableObject {
         }
     }
 
-    func toggleDateUpdates(_ contact: EmergencyContact) async {
+    func toggleMeetupUpdates(_ contact: EmergencyContact) async {
         guard let index = contacts.firstIndex(where: { $0.id == contact.id }) else { return }
 
         var updatedContact = contact
-        updatedContact.notificationPreferences.receiveScheduledDateAlerts.toggle()
+        updatedContact.notificationPreferences.receiveScheduledMeetupAlerts.toggle()
 
         do {
             try await db.collection("emergency_contacts")
                 .document(contact.id)
                 .updateData([
-                    "notificationPreferences.receiveScheduledDateAlerts": updatedContact.notificationPreferences.receiveScheduledDateAlerts
+                    "notificationPreferences.receiveScheduledMeetupAlerts": updatedContact.notificationPreferences.receiveScheduledMeetupAlerts
                 ])
 
             contacts[index] = updatedContact
 
-            Logger.shared.info("Updated date updates for \(contact.name)", category: .general)
+            Logger.shared.info("Updated meetup updates for \(contact.name)", category: .general)
         } catch {
             Logger.shared.error("Error updating contact", category: .general, error: error)
         }

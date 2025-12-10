@@ -149,7 +149,7 @@ struct ProfileInsightsView: View {
         case 40...59:
             return "Fair - Check suggestions below to improve your profile 💡"
         default:
-            return "Let's improve your profile to get more matches! 🚀"
+            return "Let's improve your profile to get more connections! 🚀"
         }
     }
 
@@ -634,7 +634,7 @@ struct ProfileInsightsView: View {
             }
 
             VStack(spacing: 12) {
-                engagementRow(title: "Match Rate", value: "\(Int(insights.matchRate * 100))%", color: .green)
+                engagementRow(title: "Connection Rate", value: "\(Int(insights.matchRate * 100))%", color: .green)
                 Divider()
                 engagementRow(title: "Response Rate", value: "\(Int(insights.responseRate * 100))%", color: .blue)
                 Divider()
@@ -1165,7 +1165,7 @@ struct ProfileInsightsView: View {
             suggestions.append(ProfileSuggestion(
                 id: UUID().uuidString,
                 title: "Add More Photos",
-                description: "Profiles with 4+ photos get 3x more matches. Show different sides of your personality!",
+                description: "Profiles with 4+ photos get 3x more connections. Show different sides of your personality!",
                 priority: .high,
                 category: .photos,
                 actionType: .addPhotos
@@ -1187,7 +1187,7 @@ struct ProfileInsightsView: View {
             suggestions.append(ProfileSuggestion(
                 id: UUID().uuidString,
                 title: "Add Profile Prompts",
-                description: "Answer personality prompts to stand out! Profiles with prompts get 2x more matches.",
+                description: "Answer personality prompts to stand out! Profiles with prompts get 2x more connections.",
                 priority: .high,
                 category: .bio,
                 actionType: .improveBio
@@ -1209,7 +1209,7 @@ struct ProfileInsightsView: View {
             suggestions.append(ProfileSuggestion(
                 id: UUID().uuidString,
                 title: "Get Verified",
-                description: "Verified profiles are trusted and get 3x more matches!",
+                description: "Verified profiles are trusted and get 3x more connections!",
                 priority: .high,
                 category: .verification,
                 actionType: .getVerified

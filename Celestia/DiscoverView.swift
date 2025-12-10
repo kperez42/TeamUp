@@ -285,7 +285,7 @@ struct DiscoverView: View {
                     }
                     .accessibilityElement(
                         label: "Super Like",
-                        hint: "Send a super like to stand out and increase your chances of matching",
+                        hint: "Send a super like to stand out and increase your chances of connecting",
                         traits: .isButton,
                         identifier: AccessibilityIdentifier.superLikeButton
                     )
@@ -404,7 +404,7 @@ struct DiscoverView: View {
                 )
 
             VStack(spacing: 12) {
-                Text(viewModel.hasActiveFilters ? "No Matches Found" : "No More Profiles")
+                Text(viewModel.hasActiveFilters ? "No Connections Found" : "No More Profiles")
                     .font(.title2)
                     .fontWeight(.bold)
                     .dynamicTypeSize(min: .large, max: .accessibility2)

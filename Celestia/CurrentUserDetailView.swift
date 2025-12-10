@@ -215,11 +215,11 @@ struct CurrentUserDetailView: View {
                         }
                     }
 
-                    // Looking for section
+                    // Show Me section
                     if !user.lookingFor.isEmpty {
                         ProfileSectionCard(
                             icon: "person.2.fill",
-                            title: "Looking for",
+                            title: "Show Me",
                             iconColors: [.purple, .pink],
                             borderColor: .purple
                         ) {

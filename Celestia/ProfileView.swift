@@ -852,7 +852,7 @@ struct ProfileView: View {
             .shadow(color: .black.opacity(0.06), radius: 12, y: 4)
         }
         .accessibilityLabel("Upgrade to Premium")
-        .accessibilityHint("Unlock unlimited likes, see who likes you, and access all premium features")
+        .accessibilityHint("Unlock unlimited likes, see who's interested, and access all premium features")
         .padding(.horizontal, 20)
     }
 
@@ -1043,7 +1043,7 @@ struct ProfileView: View {
         VStack(spacing: 16) {
             detailRow(icon: "gamecontroller.fill", label: "Play Style", value: user.playStyle)
             Divider()
-            detailRow(icon: "person.2.fill", label: "Looking for", value: user.lookingFor.joined(separator: ", "))
+            detailRow(icon: "person.2.fill", label: "Show Me", value: user.lookingFor.joined(separator: ", "))
 
             // Skill Level
             if !user.skillLevel.isEmpty {

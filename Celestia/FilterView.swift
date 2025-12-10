@@ -199,7 +199,7 @@ struct FilterView: View {
                 }
 
                 VStack(alignment: .leading, spacing: 2) {
-                    Text("Looking For")
+                    Text("Show Me")
                         .font(.subheadline)
                         .fontWeight(.semibold)
                     Text("Select your preference")
@@ -211,7 +211,7 @@ struct FilterView: View {
             }
 
             // Gender picker
-            Picker("Looking for", selection: $lookingFor) {
+            Picker("Show Me", selection: $lookingFor) {
                 ForEach(lookingForOptions, id: \.self) { option in
                     Text(option).tag(option)
                 }

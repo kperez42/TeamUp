@@ -327,7 +327,7 @@ class TutorialManager: ObservableObject {
             Tutorial(
                 id: "connecting",
                 title: "Make Connections",
-                description: "When someone you're interested in is also interested, you'll both be notified and can start chatting!",
+                description: "When you and another gamer both want to team up, you'll both be notified and can start chatting!",
                 icon: "gamecontroller.fill",
                 accentColor: .purple,
                 tips: [
@@ -340,7 +340,7 @@ class TutorialManager: ObservableObject {
             Tutorial(
                 id: "messaging",
                 title: "Start Conversations",
-                description: "Once matched, send a message to start getting to know each other better.",
+                description: "Once connected, send a message to start getting to know each other better.",
                 icon: "message.fill",
                 accentColor: .blue,
                 tips: [
@@ -354,7 +354,7 @@ class TutorialManager: ObservableObject {
             Tutorial(
                 id: "profile_quality",
                 title: "Complete Your Profile",
-                description: "High-quality profiles get 5x more matches. Add photos, write a bio, and share your interests!",
+                description: "High-quality profiles get 5x more connections. Add photos, write a bio, and share your interests!",
                 icon: "person.crop.circle.fill.badge.checkmark",
                 accentColor: .green,
                 tips: [
@@ -386,7 +386,7 @@ class TutorialManager: ObservableObject {
             return Tutorial(
                 id: "super_like",
                 title: "Super Like ⭐",
-                description: "Stand out from the crowd! Super Likes show you're really interested.",
+                description: "Stand out from the crowd! Super Likes show you really want to team up.",
                 icon: "star.circle.fill",
                 accentColor: .blue,
                 tips: [

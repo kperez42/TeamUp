@@ -49,7 +49,7 @@
 "profile.age" = "Age";
 "profile.location" = "Region";
 "profile.gender" = "Gender";
-"profile.looking_for" = "Looking For";
+"profile.looking_for" = "Show Me";
 "profile.male" = "Male";
 "profile.female" = "Female";
 "profile.non_binary" = "Non-Binary";

@@ -343,7 +343,7 @@ struct SearchFilterView: View {
         FilterSection(title: "Gaming Goals", icon: "gamecontroller.fill") {
             VStack(spacing: 16) {
                 MultiSelectMenu(
-                    title: "Looking for",
+                    title: "Gaming Goal",
                     options: RelationshipGoal.allCases,
                     selections: $filter.relationshipGoals,
                     displayName: { $0.displayName }

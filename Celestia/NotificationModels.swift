@@ -556,7 +556,7 @@ enum NotificationPayload {
         let bodies = [
             "Keep the conversation going!",
             "They're probably checking their phone right now...",
-            "A quick reply keeps the spark alive",
+            "A quick reply keeps the connection strong",
             "Don't leave them on read!",
             "Good things happen when you show up"
         ]
@@ -587,10 +587,10 @@ enum NotificationPayload {
             } else {
                 let titles = [
                     "Someone likes you!",
-                    "You have a secret admirer",
-                    "Someone swiped right on you!",
+                    "A gamer wants to team up",
+                    "Someone wants to connect!",
                     "You're being noticed!",
-                    "A new admirer is waiting"
+                    "A new player is interested"
                 ]
                 return titles.randomElement() ?? "Someone likes you!"
             }
@@ -609,13 +609,13 @@ enum NotificationPayload {
             return bodies.randomElement() ?? "Connect with them to start chatting!"
         } else {
             let bodies = [
-                "Upgrade to see who likes you!",
+                "Upgrade to see who's interested!",
                 "Go Premium to reveal who wants to team up",
                 "Find out who's interested in playing with you",
                 "Your next teammate could be waiting!",
                 "See who wants to squad up with you"
             ]
-            return bodies.randomElement() ?? "Upgrade to see who likes you!"
+            return bodies.randomElement() ?? "Upgrade to see who's interested!"
         }
     }
 

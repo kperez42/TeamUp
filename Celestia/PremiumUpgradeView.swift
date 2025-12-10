@@ -956,7 +956,7 @@ struct PremiumUpgradeView: View {
                 successStoryCard(
                     initials: "JM",
                     name: "Jake M.",
-                    story: "Found my squad within 2 weeks! The 'See Who Likes You' feature was a game changer.",
+                    story: "Found my squad within 2 weeks! The 'See Who's Interested' feature was a game changer.",
                     color: .purple
                 )
 

@@ -78,7 +78,7 @@ struct OnboardingView: View {
     let totalSteps = 8
 
     // Step 6 options - Gaming goals
-    let relationshipGoalOptions = ["Prefer not to say", "Casual Gaming", "Regular Squad", "Competitive Team", "Just Friends", "Not Sure Yet"]
+    let relationshipGoalOptions = ["Prefer not to say", "Casual Gaming", "Regular Squad", "Competitive Team", "New Friends", "Not Sure Yet"]
     let heightOptions: [Int] = Array(140...220) // cm range
 
     // Step 7 & 8 options (Lifestyle)
@@ -1145,7 +1145,7 @@ struct OnboardingView: View {
                 }
                 
                 VStack(alignment: .leading, spacing: 12) {
-                    Text("Interested in")
+                    Text("Show Me")
                         .font(.subheadline)
                         .fontWeight(.medium)
                         .foregroundColor(.secondary)
@@ -1805,7 +1805,7 @@ struct OnboardingView: View {
                 // Completion stats
                 VStack(spacing: 16) {
                     HStack(spacing: 16) {
-                        statBadge(icon: "chart.line.uptrend.xyaxis", value: "3x", label: "More Matches", color: .green)
+                        statBadge(icon: "chart.line.uptrend.xyaxis", value: "3x", label: "More Teammates", color: .green)
                         statBadge(icon: "gamecontroller.fill", value: "85%", label: "Better Team Fit", color: .pink)
                     }
 

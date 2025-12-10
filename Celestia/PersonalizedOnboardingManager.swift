@@ -186,7 +186,7 @@ class PersonalizedOnboardingManager: ObservableObject {
                     tips: [
                         "Add your main games and current ranks",
                         "Share your peak ranks and achievements",
-                        "Be honest about your skill level for better matches"
+                        "Be honest about your skill level for better connections"
                     ]
                 ),
                 OnboardingPathStep(
@@ -305,7 +305,7 @@ class PersonalizedOnboardingManager: ObservableObject {
                     description: "Find local gaming groups",
                     importance: .critical,
                     tips: [
-                        "Add your city for local matches",
+                        "Add your city for local connections",
                         "Specify if you host game nights",
                         "Mention preferred venues (home, FLGS, cafes)"
                     ]

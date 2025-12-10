@@ -168,11 +168,11 @@ export default function Dashboard() {
             </Typography>
             <Box sx={{ mt: 2 }}>
               <MetricRow
-                label="Total Matches"
+                label="Total Connections"
                 value={stats.engagement.totalMatches.toLocaleString()}
               />
               <MetricRow
-                label="Match Rate"
+                label="Connection Rate"
                 value={`${stats.engagement.matchRate} per user`}
               />
               <MetricRow
@@ -180,7 +180,7 @@ export default function Dashboard() {
                 value={stats.engagement.messagesLast24h.toLocaleString()}
               />
               <MetricRow
-                label="Avg Messages/Match"
+                label="Avg Messages/Connection"
                 value={stats.engagement.averageMessagesPerMatch}
               />
             </Box>
