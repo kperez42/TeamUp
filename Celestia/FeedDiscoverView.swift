@@ -54,7 +54,7 @@ struct FeedDiscoverView: View {
     // Helper gradient for buttons
     private var buttonGradient: LinearGradient {
         LinearGradient(
-            colors: [.purple, .pink],
+            colors: [.green, .cyan],
             startPoint: .leading,
             endPoint: .trailing
         )
@@ -125,7 +125,7 @@ struct FeedDiscoverView: View {
             ZStack(alignment: .topTrailing) {
                 Image(systemName: "slider.horizontal.3")
                     .font(.title3)
-                    .foregroundColor(.purple)
+                    .foregroundColor(.green)
 
                 if filters.hasActiveFilters {
                     Circle()
@@ -236,7 +236,7 @@ struct FeedDiscoverView: View {
                 if isLoading {
                     HStack(spacing: 12) {
                         ProgressView()
-                            .tint(.purple)
+                            .tint(.green)
 
                         Text("Finding more people...")
                             .font(.subheadline)
@@ -569,7 +569,7 @@ struct FeedDiscoverView: View {
                     .padding(.vertical, 14)
                     .background(
                         LinearGradient(
-                            colors: [.purple, .pink],
+                            colors: [.green, .cyan],
                             startPoint: .leading,
                             endPoint: .trailing
                         )
@@ -588,10 +588,10 @@ struct FeedDiscoverView: View {
                         Text("Submit for Review")
                     }
                     .fontWeight(.semibold)
-                    .foregroundColor(.purple)
+                    .foregroundColor(.green)
                     .frame(maxWidth: .infinity)
                     .padding(.vertical, 14)
-                    .background(Color.purple.opacity(0.1))
+                    .background(Color.green.opacity(0.1))
                     .cornerRadius(12)
                 }
             }
@@ -634,7 +634,7 @@ struct FeedDiscoverView: View {
                     .font(.system(size: 60))
                     .foregroundStyle(
                         LinearGradient(
-                            colors: [.purple, .pink],
+                            colors: [.green, .cyan],
                             startPoint: .topLeading,
                             endPoint: .bottomTrailing
                         )
@@ -734,7 +734,7 @@ struct FeedDiscoverView: View {
                     .font(.system(size: 70))
                     .foregroundStyle(
                         LinearGradient(
-                            colors: [.purple, .pink],
+                            colors: [.green, .cyan],
                             startPoint: .topLeading,
                             endPoint: .bottomTrailing
                         )
@@ -827,10 +827,10 @@ struct FeedDiscoverView: View {
                     Image(systemName: "arrow.clockwise")
                     Text("Refresh")
                 }
-                .foregroundColor(.purple)
+                .foregroundColor(.green)
                 .padding(.horizontal, 20)
                 .padding(.vertical, 10)
-                .background(Color.purple.opacity(0.1))
+                .background(Color.green.opacity(0.1))
                 .cornerRadius(10)
             }
         }
@@ -883,7 +883,7 @@ struct FeedDiscoverView: View {
                     }
                 }
                 .buttonStyle(.borderedProminent)
-                .tint(.purple)
+                .tint(.green)
                 .controlSize(.large)
 
                 Button("Keep Browsing") {
@@ -1142,7 +1142,7 @@ struct FeedDiscoverView: View {
                         showToast(
                             message: "Interested in \(truncatedName)!",
                             icon: "gamecontroller.fill",
-                            color: .purple
+                            color: .green
                         )
                     }
                 }

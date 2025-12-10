@@ -1088,7 +1088,7 @@ struct SignUpView: View {
                             Circle()
                                 .fill(
                                     index < photoImages.count
-                                        ? LinearGradient(colors: [.purple, .pink], startPoint: .topLeading, endPoint: .bottomTrailing)
+                                        ? LinearGradient(colors: [.green, .cyan], startPoint: .topLeading, endPoint: .bottomTrailing)
                                         : LinearGradient(colors: [Color.gray.opacity(0.2), Color.gray.opacity(0.2)], startPoint: .topLeading, endPoint: .bottomTrailing)
                                 )
                                 .frame(width: 8, height: 8)
@@ -1139,16 +1139,16 @@ struct SignUpView: View {
                             } label: {
                                 Text(prompt)
                                     .font(.caption)
-                                    .foregroundColor(.purple)
+                                    .foregroundColor(.green)
                                     .padding(.horizontal, 12)
                                     .padding(.vertical, 8)
                                     .background(
                                         Capsule()
-                                            .fill(Color.purple.opacity(0.1))
+                                            .fill(Color.green.opacity(0.1))
                                     )
                                     .overlay(
                                         Capsule()
-                                            .stroke(Color.purple.opacity(0.3), lineWidth: 1)
+                                            .stroke(Color.green.opacity(0.3), lineWidth: 1)
                                     )
                             }
                         }

@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-/// Central design system for Celestia app
+/// Central design system for TeamUp gaming app
 /// Provides consistent spacing, colors, typography, and component styles
 enum DesignSystem {
 
@@ -232,11 +232,25 @@ enum DesignSystem {
         static let warning = Color.orange
         static let info = Color.blue
 
-        // Gradients
+        // Gradients - Gaming themed (green/cyan for gamer aesthetic)
         static let primaryGradient = LinearGradient(
-            colors: [Color.pink, Color.purple],
+            colors: [Color.green, Color.cyan],
             startPoint: .topLeading,
             endPoint: .bottomTrailing
+        )
+
+        // Secondary gradient for accent elements
+        static let accentGradient = LinearGradient(
+            colors: [Color.cyan, Color.blue],
+            startPoint: .leading,
+            endPoint: .trailing
+        )
+
+        // Dark gaming gradient for backgrounds
+        static let gamingGradient = LinearGradient(
+            colors: [Color(red: 0.1, green: 0.15, blue: 0.2), Color(red: 0.15, green: 0.1, blue: 0.25)],
+            startPoint: .top,
+            endPoint: .bottom
         )
 
         static let cardGradient = LinearGradient(

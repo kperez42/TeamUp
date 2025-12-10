@@ -1041,7 +1041,7 @@ struct OnboardingView: View {
                         RoundedRectangle(cornerRadius: 4)
                             .fill(
                                 index < photoImages.count ?
-                                LinearGradient(colors: [.orange, .pink], startPoint: .leading, endPoint: .trailing) :
+                                LinearGradient(colors: [.green, .cyan], startPoint: .leading, endPoint: .trailing) :
                                 LinearGradient(colors: [Color.gray.opacity(0.3)], startPoint: .leading, endPoint: .trailing)
                             )
                             .frame(width: index < photoImages.count ? 24 : 16, height: 6)
@@ -1088,7 +1088,7 @@ struct OnboardingView: View {
         }
     }
 
-    private func photoTipRow(icon: String, text: String, color: Color = .purple) -> some View {
+    private func photoTipRow(icon: String, text: String, color: Color = .green) -> some View {
         HStack(alignment: .center, spacing: 12) {
             ZStack {
                 Circle()
