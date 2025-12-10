@@ -245,7 +245,7 @@ struct EditProfileView: View {
                     } label: {
                         if isLoading {
                             ProgressView()
-                                .tint(.green)
+                                .tint(.blue)
                         } else {
                             HStack(spacing: 4) {
                                 Text("Save")
@@ -321,7 +321,7 @@ struct EditProfileView: View {
         VStack(spacing: 0) {
             // Header
             HStack {
-                SectionHeader(icon: "camera.fill", title: "Your Photos", color: .green)
+                SectionHeader(icon: "camera.fill", title: "Your Photos", color: .blue)
                 Spacer()
             }
             .padding(.horizontal, 20)
@@ -442,7 +442,7 @@ struct EditProfileView: View {
                         Text("\(photos.count)/6")
                             .font(.caption)
                             .fontWeight(.semibold)
-                            .foregroundColor(.green)
+                            .foregroundColor(.blue)
                             .padding(.horizontal, 10)
                             .padding(.vertical, 4)
                             .background(Color.blue.opacity(0.1))
@@ -504,14 +504,14 @@ struct EditProfileView: View {
                     .frame(width: 20, height: 20)
                 Circle()
                     .trim(from: 0, to: uploadProgress)
-                    .stroke(Color.green, style: StrokeStyle(lineWidth: 2, lineCap: .round))
+                    .stroke(Color.blue, style: StrokeStyle(lineWidth: 2, lineCap: .round))
                     .frame(width: 20, height: 20)
                     .rotationEffect(.degrees(-90))
             }
             Text("\(Int(uploadProgress * 100))%")
                 .font(.caption2)
                 .fontWeight(.bold)
-                .foregroundColor(.green)
+                .foregroundColor(.blue)
         }
         .padding(.horizontal, 10)
         .padding(.vertical, 4)
@@ -802,7 +802,7 @@ struct EditProfileView: View {
                             // Percentage text
                             Text("\(Int(uploadProgress * 100))%")
                                 .font(.system(size: 11, weight: .bold))
-                                .foregroundColor(.green)
+                                .foregroundColor(.blue)
                         }
 
                         VStack(alignment: .leading, spacing: 3) {
@@ -811,11 +811,11 @@ struct EditProfileView: View {
                                 Text("Uploading")
                                     .font(.caption)
                                     .fontWeight(.bold)
-                                    .foregroundColor(.green)
+                                    .foregroundColor(.blue)
 
                                 ForEach(0..<3, id: \.self) { index in
                                     Circle()
-                                        .fill(Color.green)
+                                        .fill(Color.blue)
                                         .frame(width: 3, height: 3)
                                         .opacity(uploadProgress * 3 > Double(index) ? 1.0 : 0.3)
                                         .animation(.easeInOut(duration: 0.6).repeatForever(autoreverses: true).delay(Double(index) * 0.2), value: uploadProgress)
@@ -937,7 +937,7 @@ struct EditProfileView: View {
                                     VStack(spacing: 8) {
                                         Image(systemName: "plus.circle.fill")
                                             .font(.title)
-                                            .foregroundColor(.green)
+                                            .foregroundColor(.blue)
                                         Text("Add Photo")
                                             .font(.caption)
                                             .foregroundColor(.secondary)
@@ -1034,7 +1034,7 @@ struct EditProfileView: View {
 
     private var basicInfoSection: some View {
         VStack(spacing: 20) {
-            SectionHeader(icon: "person.fill", title: "Basic Information", color: .green)
+            SectionHeader(icon: "person.fill", title: "Basic Information", color: .blue)
 
             // Full Name (Required)
             VStack(alignment: .leading, spacing: 8) {
@@ -1220,7 +1220,7 @@ struct EditProfileView: View {
 
     private var preferencesSection: some View {
         VStack(spacing: 20) {
-            SectionHeader(icon: "gamecontroller.fill", title: "Gaming Preferences", color: .green)
+            SectionHeader(icon: "gamecontroller.fill", title: "Gaming Preferences", color: .blue)
 
             VStack(alignment: .leading, spacing: 8) {
                 Text("Show Me")
@@ -1246,7 +1246,7 @@ struct EditProfileView: View {
                             .frame(width: 40, height: 40)
                         Image(systemName: "person.2.fill")
                             .font(.title3)
-                            .foregroundColor(.green)
+                            .foregroundColor(.blue)
                     }
 
                     VStack(alignment: .leading, spacing: 2) {
@@ -1501,7 +1501,7 @@ struct EditProfileView: View {
         VStack(spacing: 0) {
             // Header
             HStack {
-                SectionHeader(icon: "leaf.fill", title: "Lifestyle", color: .green)
+                SectionHeader(icon: "leaf.fill", title: "Lifestyle", color: .teal)
                 Spacer()
             }
             .padding(.horizontal, 20)
@@ -1650,7 +1650,7 @@ struct EditProfileView: View {
         VStack(spacing: 0) {
             // Header
             HStack {
-                SectionHeader(icon: "sparkles", title: "Express Yourself", color: .green)
+                SectionHeader(icon: "sparkles", title: "Express Yourself", color: .blue)
                 Spacer()
             }
             .padding(.horizontal, 20)
@@ -1664,7 +1664,7 @@ struct EditProfileView: View {
                         HStack(spacing: 6) {
                             Image(systemName: "globe")
                                 .font(.subheadline)
-                                .foregroundColor(.green)
+                                .foregroundColor(.teal)
                             Text("Languages")
                                 .font(.subheadline)
                                 .fontWeight(.semibold)
@@ -1708,7 +1708,7 @@ struct EditProfileView: View {
                             ForEach(languages, id: \.self) { language in
                                 TagChip(
                                     text: language,
-                                    color: .green,
+                                    color: .blue,
                                     onRemove: { languages.removeAll { $0 == language } }
                                 )
                             }
@@ -2014,7 +2014,7 @@ struct EditProfileView: View {
     private var languagesSection: some View {
         VStack(spacing: 15) {
             HStack {
-                SectionHeader(icon: "globe", title: "Languages", color: .green)
+                SectionHeader(icon: "globe", title: "Languages", color: .teal)
                 
                 Spacer()
                 
@@ -2048,7 +2048,7 @@ struct EditProfileView: View {
                     ForEach(languages, id: \.self) { language in
                         TagChip(
                             text: language,
-                            color: .green,
+                            color: .blue,
                             onRemove: { languages.removeAll { $0 == language } }
                         )
                     }
@@ -2118,7 +2118,7 @@ struct EditProfileView: View {
     private var promptsSection: some View {
         VStack(spacing: 15) {
             HStack {
-                SectionHeader(icon: "quote.bubble.fill", title: "Profile Prompts", color: .green)
+                SectionHeader(icon: "quote.bubble.fill", title: "Profile Prompts", color: .teal)
 
                 Spacer()
 

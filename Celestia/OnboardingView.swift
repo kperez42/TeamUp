@@ -807,10 +807,10 @@ struct OnboardingView: View {
                     }
 
                     VStack(alignment: .leading, spacing: 10) {
-                        photoTipRow(icon: "gamecontroller.fill", text: "Gaming setup photos work great!", color: .green)
+                        photoTipRow(icon: "gamecontroller.fill", text: "Gaming setup photos work great!", color: .blue)
                         photoTipRow(icon: "person.crop.circle", text: "Show your face or use your favorite avatar", color: .orange)
-                        photoTipRow(icon: "desktopcomputer", text: "Battlestation pics are always appreciated", color: .blue)
-                        photoTipRow(icon: "sparkles", text: "Be yourself - authenticity builds trust", color: .green)
+                        photoTipRow(icon: "desktopcomputer", text: "Battlestation pics are always appreciated", color: .teal)
+                        photoTipRow(icon: "sparkles", text: "Be yourself - authenticity builds trust", color: .blue)
                     }
                 }
                 .padding(16)
@@ -962,7 +962,7 @@ struct OnboardingView: View {
                                         VStack(spacing: 6) {
                                             Image(systemName: "plus")
                                                 .font(.title2)
-                                                .foregroundColor(.green.opacity(0.4))
+                                                .foregroundColor(.blue.opacity(0.4))
 
                                             Text("Photo \(index + 1)")
                                                 .font(.caption2)
@@ -1088,7 +1088,7 @@ struct OnboardingView: View {
         }
     }
 
-    private func photoTipRow(icon: String, text: String, color: Color = .green) -> some View {
+    private func photoTipRow(icon: String, text: String, color: Color = .blue) -> some View {
         HStack(alignment: .center, spacing: 12) {
             ZStack {
                 Circle()
@@ -1252,7 +1252,7 @@ struct OnboardingView: View {
                                 Text(interest)
                                     .font(.subheadline)
                                     .fontWeight(.medium)
-                                    .foregroundColor(selectedInterests.contains(interest) ? .white : .green)
+                                    .foregroundColor(selectedInterests.contains(interest) ? .white : .blue)
                                     .padding(.horizontal, 14)
                                     .padding(.vertical, 8)
                                     .background(
@@ -1611,7 +1611,7 @@ struct OnboardingView: View {
                 .cornerRadius(12)
                 .overlay(
                     RoundedRectangle(cornerRadius: 12)
-                        .stroke(Color.green.opacity(0.3), lineWidth: 1)
+                        .stroke(Color.blue.opacity(0.3), lineWidth: 1)
                 )
             }
             .padding(20)
@@ -1689,7 +1689,7 @@ struct OnboardingView: View {
                     lifestyleOptionSelector(
                         title: "Religion / Spirituality",
                         icon: "sparkles",
-                        color: .green,
+                        color: .blue,
                         options: religionOptions,
                         selection: $religion
                     )
@@ -1796,7 +1796,7 @@ struct OnboardingView: View {
                     lifestyleOptionSelector(
                         title: "Diet",
                         icon: "fork.knife",
-                        color: .green,
+                        color: .teal,
                         options: dietOptions,
                         selection: $diet
                     )
@@ -1959,7 +1959,7 @@ struct OnboardingView: View {
                     LinearGradient(colors: [Color.gray.opacity(0.5)], startPoint: .leading, endPoint: .trailing)
                 )
                 .cornerRadius(16)
-                .shadow(color: canProceed ? .green.opacity(0.3) : .clear, radius: 10, y: 5)
+                .shadow(color: canProceed ? .blue.opacity(0.3) : .clear, radius: 10, y: 5)
             }
             .disabled(!canProceed || isLoading)
             .accessibilityLabel(currentStep < totalSteps - 1 ? "Continue" : "Complete onboarding")

@@ -444,7 +444,7 @@ struct WelcomeAwarenessSlidesView: View {
             icon: "star.circle.fill",
             title: "Welcome to TeamUp!",
             description: "Your journey to finding the perfect gaming squad starts here. Let us show you how it works!",
-            color: .green,
+            color: .blue,
             tips: [
                 "Be authentic and genuine in your profile",
                 "Add photos and showcase your gaming setup",
@@ -466,7 +466,7 @@ struct WelcomeAwarenessSlidesView: View {
             icon: "gamecontroller.fill",
             title: "Interest & Connections",
             description: "Show interest in gamers you want to team up with. When they're interested too, you're connected and can start chatting!",
-            color: .green,
+            color: .teal,
             tips: [
                 "Your connections appear in the Connections tab",
                 "Send a message to start the conversation",
@@ -488,7 +488,7 @@ struct WelcomeAwarenessSlidesView: View {
             icon: "person.crop.circle.fill.badge.checkmark",
             title: "Complete Your Profile",
             description: "High-quality profiles get 5x more connections. Add photos, list your games, and share your playstyle!",
-            color: .green,
+            color: .blue,
             tips: [
                 "Add photos of yourself or your gaming setup",
                 "List your favorite games and platforms",

@@ -207,7 +207,7 @@ struct VerificationFlowView: View {
             .background(Color(.secondarySystemBackground))
             .overlay(
                 RoundedRectangle(cornerRadius: 12)
-                    .stroke(isRecommended && !isCompleted ? Color.green.opacity(0.5) : Color.clear, lineWidth: 2)
+                    .stroke(isRecommended && !isCompleted ? Color.blue.opacity(0.5) : Color.clear, lineWidth: 2)
             )
             .cornerRadius(12)
         }

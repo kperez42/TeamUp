@@ -176,7 +176,7 @@ struct SearchProfileCard: View {
                             .foregroundColor(.secondary)
                             .padding(.horizontal, 6)
                             .padding(.vertical, 2)
-                            .background(Color.green.opacity(0.1))
+                            .background(Color.blue.opacity(0.1))
                             .cornerRadius(4)
                     }
 

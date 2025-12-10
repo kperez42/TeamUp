@@ -287,7 +287,7 @@ struct ProfileEnhancementView: View {
                     optionSelector(
                         title: "Diet",
                         icon: "fork.knife",
-                        color: .green,
+                        color: .teal,
                         options: dietOptions,
                         selection: $diet
                     )
