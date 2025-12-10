@@ -442,7 +442,7 @@ struct EditProfileView: View {
                         Text("\(photos.count)/6")
                             .font(.caption)
                             .fontWeight(.semibold)
-                            .foregroundColor(.green)
+                            .foregroundColor(.blue)
                             .padding(.horizontal, 10)
                             .padding(.vertical, 4)
                             .background(Color.blue.opacity(0.1))
@@ -802,7 +802,7 @@ struct EditProfileView: View {
                             // Percentage text
                             Text("\(Int(uploadProgress * 100))%")
                                 .font(.system(size: 11, weight: .bold))
-                                .foregroundColor(.green)
+                                .foregroundColor(.blue)
                         }
 
                         VStack(alignment: .leading, spacing: 3) {
@@ -811,11 +811,11 @@ struct EditProfileView: View {
                                 Text("Uploading")
                                     .font(.caption)
                                     .fontWeight(.bold)
-                                    .foregroundColor(.green)
+                                    .foregroundColor(.blue)
 
                                 ForEach(0..<3, id: \.self) { index in
                                     Circle()
-                                        .fill(Color.green)
+                                        .fill(Color.blue)
                                         .frame(width: 3, height: 3)
                                         .opacity(uploadProgress * 3 > Double(index) ? 1.0 : 0.3)
                                         .animation(.easeInOut(duration: 0.6).repeatForever(autoreverses: true).delay(Double(index) * 0.2), value: uploadProgress)
@@ -937,7 +937,7 @@ struct EditProfileView: View {
                                     VStack(spacing: 8) {
                                         Image(systemName: "plus.circle.fill")
                                             .font(.title)
-                                            .foregroundColor(.green)
+                                            .foregroundColor(.blue)
                                         Text("Add Photo")
                                             .font(.caption)
                                             .foregroundColor(.secondary)
@@ -1246,7 +1246,7 @@ struct EditProfileView: View {
                             .frame(width: 40, height: 40)
                         Image(systemName: "person.2.fill")
                             .font(.title3)
-                            .foregroundColor(.green)
+                            .foregroundColor(.blue)
                     }
 
                     VStack(alignment: .leading, spacing: 2) {
@@ -1664,7 +1664,7 @@ struct EditProfileView: View {
                         HStack(spacing: 6) {
                             Image(systemName: "globe")
                                 .font(.subheadline)
-                                .foregroundColor(.green)
+                                .foregroundColor(.teal)
                             Text("Languages")
                                 .font(.subheadline)
                                 .fontWeight(.semibold)

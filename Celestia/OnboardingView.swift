@@ -1088,7 +1088,7 @@ struct OnboardingView: View {
         }
     }
 
-    private func photoTipRow(icon: String, text: String, color: Color = .green) -> some View {
+    private func photoTipRow(icon: String, text: String, color: Color = .blue) -> some View {
         HStack(alignment: .center, spacing: 12) {
             ZStack {
                 Circle()
@@ -1252,7 +1252,7 @@ struct OnboardingView: View {
                                 Text(interest)
                                     .font(.subheadline)
                                     .fontWeight(.medium)
-                                    .foregroundColor(selectedInterests.contains(interest) ? .white : .green)
+                                    .foregroundColor(selectedInterests.contains(interest) ? .white : .blue)
                                     .padding(.horizontal, 14)
                                     .padding(.vertical, 8)
                                     .background(
