@@ -3,7 +3,7 @@
 ## Prerequisites
 
 - Firebase CLI installed: `npm install -g firebase-tools`
-- Firebase account with access to `celestia-dating-app` project
+- Firebase account with access to `teamup-gaming-app` project
 - Cloudinary credentials ready
 
 ## Step 1: Authenticate with Firebase
@@ -112,14 +112,14 @@ Expected output:
 
 ✔ Deploy complete!
 
-Project Console: https://console.firebase.google.com/project/celestia-dating-app/overview
+Project Console: https://console.firebase.google.com/project/teamup-gaming-app/overview
 ```
 
 ## Step 7: Verify Deployment
 
 Check the Firebase Console:
 
-1. Go to: https://console.firebase.google.com/project/celestia-dating-app/functions
+1. Go to: https://console.firebase.google.com/project/teamup-gaming-app/functions
 2. Verify all 4 functions are deployed:
    - `optimizePhoto`
    - `getOptimizedImageURL`
@@ -162,7 +162,7 @@ firebase functions:log --follow
 
 ### Check Firebase Console
 
-Navigate to: https://console.firebase.google.com/project/celestia-dating-app/functions
+Navigate to: https://console.firebase.google.com/project/teamup-gaming-app/functions
 
 Monitor:
 - Request count
@@ -184,7 +184,7 @@ firebase login
 
 **Solution:** Ensure your Google account has "Owner" or "Editor" role in the Firebase project.
 
-Check permissions at: https://console.firebase.google.com/project/celestia-dating-app/settings/iam
+Check permissions at: https://console.firebase.google.com/project/teamup-gaming-app/settings/iam
 
 ### Error: "Configuration not found"
 
@@ -286,7 +286,7 @@ firebase login:ci
 ## Cost Monitoring
 
 After deployment, monitor costs at:
-https://console.firebase.google.com/project/celestia-dating-app/usage
+https://console.firebase.google.com/project/teamup-gaming-app/usage
 
 **Expected costs:**
 - Functions: Free tier covers up to 2M invocations/month
@@ -317,7 +317,7 @@ firebase deploy --only functions
 
 ---
 
-**Project:** celestia-dating-app
+**Project:** teamup-gaming-app
 **Functions:** 4 new endpoints (optimizePhoto, getOptimizedImageURL, migrateImageToCDN, deleteOptimizedImage)
 **Region:** us-central1 (default)
 **Runtime:** Node.js 18
