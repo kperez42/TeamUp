@@ -758,7 +758,7 @@ struct EditProfileView: View {
                     Text("Discovery Photos")
                         .font(.title3)
                         .fontWeight(.bold)
-                    Text("These photos appear on your card in Discover, Likes & Saved")
+                    Text("These photos appear on your card in Discover, Interest & Saved")
                         .font(.caption)
                         .foregroundColor(.secondary)
                 }

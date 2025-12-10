@@ -325,13 +325,13 @@ class TutorialManager: ObservableObject {
             ),
 
             Tutorial(
-                id: "matching",
-                title: "Make Matches",
-                description: "When someone you liked also likes you back, you'll both be notified and can start chatting!",
-                icon: "heart.fill",
-                accentColor: .red,
+                id: "connecting",
+                title: "Make Connections",
+                description: "When someone you showed interest in is also interested, you'll both be notified and can start chatting!",
+                icon: "gamecontroller.fill",
+                accentColor: .purple,
                 tips: [
-                    "Matches appear in your Matches tab",
+                    "Connections appear in your Connections tab",
                     "Send the first message to break the ice",
                     "Be respectful and genuine"
                 ]

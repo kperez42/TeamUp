@@ -743,8 +743,8 @@ struct LikesView: View {
                 .foregroundColor(.primary)
 
             VStack(spacing: 12) {
-                premiumFeatureRow(icon: "eye.fill", title: "See Who Likes You", description: "Connect instantly with gamers who want to team up", color: .pink)
-                premiumFeatureRow(icon: "infinity", title: "Unlimited Likes", description: "No daily limits, like as many as you want", color: .purple)
+                premiumFeatureRow(icon: "eye.fill", title: "See Who's Interested", description: "Connect instantly with gamers who want to team up", color: .pink)
+                premiumFeatureRow(icon: "infinity", title: "Unlimited Interest", description: "No daily limits, show interest as much as you want", color: .purple)
                 premiumFeatureRow(icon: "bolt.fill", title: "Profile Boost", description: "Get 10x more views with monthly boosts", color: .orange)
             }
         }

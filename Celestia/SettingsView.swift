@@ -153,7 +153,7 @@ struct SettingsView: View {
                                 .foregroundColor(.pink)
                             VStack(alignment: .leading, spacing: 2) {
                                 HStack(spacing: 6) {
-                                    Text("See Who Likes You")
+                                    Text("See Who's Interested")
                                         .foregroundColor(.primary)
                                     if !(authService.currentUser?.isPremium ?? false) {
                                         Image(systemName: "crown.fill")

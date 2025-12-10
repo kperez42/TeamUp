@@ -865,8 +865,8 @@ struct PremiumUpgradeView: View {
 
                 VStack(spacing: 0) {
                     comparisonRow(feature: "Send Messages", free: "10/day", premium: "Unlimited", icon: "message.fill")
-                    comparisonRow(feature: "Daily Likes", free: "10/day", premium: "Unlimited", icon: "heart.fill")
-                    comparisonRow(feature: "See Who Likes You", free: "Hidden", premium: "Full Access", icon: "eye.fill")
+                    comparisonRow(feature: "Daily Interest", free: "10/day", premium: "Unlimited", icon: "gamecontroller.fill")
+                    comparisonRow(feature: "See Who's Interested", free: "Hidden", premium: "Full Access", icon: "eye.fill")
                     comparisonRow(feature: "Advanced Filters", free: "Basic", premium: "All Filters", icon: "slider.horizontal.3")
                     comparisonRow(feature: "Read Receipts", free: "No", premium: "Yes", icon: "checkmark.message.fill")
                     comparisonRow(feature: "Priority in Feed", free: "Standard", premium: "Top Priority", icon: "arrow.up.circle.fill")
@@ -1085,8 +1085,8 @@ struct PremiumUpgradeView: View {
                 )
 
                 FAQItem(
-                    question: "Do I keep my matches if I cancel?",
-                    answer: "Absolutely! All your matches and conversations are yours to keep. You just won't have access to premium features."
+                    question: "Do I keep my connections if I cancel?",
+                    answer: "Absolutely! All your connections and conversations are yours to keep. You just won't have access to premium features."
                 )
 
                 FAQItem(

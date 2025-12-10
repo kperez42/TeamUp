@@ -760,7 +760,7 @@ struct SignUpView: View {
                         .font(.headline)
                         .foregroundColor(.primary)
 
-                    Text("Great photos get 10x more matches")
+                    Text("Great photos get 10x more connections")
                         .font(.subheadline)
                         .foregroundColor(.secondary)
                 }

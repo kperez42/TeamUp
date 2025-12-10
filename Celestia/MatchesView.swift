@@ -37,7 +37,7 @@ struct MatchesView: View {
         case recent = "Most Recent"
         case unread = "Unread First"
         case alphabetical = "A-Z"
-        case newMatches = "New Matches"
+        case newMatches = "New Connections"
     }
 
     // PERFORMANCE: Use cached value, update only when dependencies change
@@ -310,8 +310,8 @@ struct MatchesView: View {
                     searchDebouncer.search(newValue)
                 }
                 .accessibilityElement(
-                    label: "Search matches",
-                    hint: "Type to search your matches by name or location",
+                    label: "Search connections",
+                    hint: "Type to search your connections by name or location",
                     identifier: AccessibilityIdentifier.searchField
                 )
             
@@ -387,8 +387,8 @@ struct MatchesView: View {
                     .background(Color.purple.opacity(0.1))
                     .cornerRadius(20)
                 }
-                .accessibilityLabel("Sort matches by \(sortOption.rawValue)")
-                .accessibilityHint("Choose how to sort your matches")
+                .accessibilityLabel("Sort connections by \(sortOption.rawValue)")
+                .accessibilityHint("Choose how to sort your connections")
             }
             .padding(.horizontal, 20)
             .padding(.vertical, 12)

@@ -42,7 +42,7 @@ struct ImprovedUserCard: View {
         .accessibilityElement(children: .combine)
         .accessibilityLabel("\(user.gamerTag.isEmpty ? user.fullName : user.gamerTag), \(user.skillLevel)")
         .accessibilityValue(buildAccessibilityValue())
-        .accessibilityHint("Swipe right to send request, left to pass, or tap for details")
+        .accessibilityHint("Use buttons to show interest or pass, or tap for details")
         .accessibilityIdentifier(AccessibilityIdentifier.userCard)
         .accessibilityActions([
             AccessibilityCustomAction(name: "Send Request") {

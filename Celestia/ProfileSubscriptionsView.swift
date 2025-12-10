@@ -52,7 +52,7 @@ struct ProfileSubscriptionsView: View {
         ),
         FeatureCardItem(
             icon: "eye.fill",
-            title: "See Who Likes You",
+            title: "See Who's Interested",
             description: "Know who wants to team up before you decide. Connect with confidence!",
             color: .pink,
             gradient: [Color.pink, Color.red.opacity(0.8)],
@@ -307,8 +307,8 @@ struct ProfileSubscriptionsView: View {
             // Plan details
             VStack(spacing: 12) {
                 planDetailRow(icon: "calendar", label: "Status", value: authService.currentUser?.isPremium == true ? "Active" : "Free Tier")
-                planDetailRow(icon: "heart.fill", label: "Daily Likes", value: authService.currentUser?.isPremium == true ? "Unlimited" : "Limited")
-                planDetailRow(icon: "eye.fill", label: "See Who Likes You", value: authService.currentUser?.isPremium == true ? "Yes" : "No")
+                planDetailRow(icon: "gamecontroller.fill", label: "Daily Interest", value: authService.currentUser?.isPremium == true ? "Unlimited" : "Limited")
+                planDetailRow(icon: "eye.fill", label: "See Who's Interested", value: authService.currentUser?.isPremium == true ? "Yes" : "No")
             }
         }
         .padding(20)
@@ -365,7 +365,7 @@ struct ProfileSubscriptionsView: View {
                         .font(.headline)
                         .foregroundColor(.primary)
 
-                    Text("Get unlimited likes & exclusive features")
+                    Text("Get unlimited connections & exclusive features")
                         .font(.caption)
                         .foregroundColor(.secondary)
                 }
