@@ -1,5 +1,5 @@
 //
-//  DateCheckInManager.swift
+//  MeetupCheckInManager.swift
 //  TeamUp
 //
 //  Manages meetup check-in and safety features for in-person gaming sessions
@@ -12,17 +12,17 @@ import CoreLocation
 // MARK: - Meetup Check-In Manager
 
 @MainActor
-class DateCheckInManager: ObservableObject {
+class MeetupCheckInManager: ObservableObject {
 
     // MARK: - Singleton
 
-    static let shared = DateCheckInManager()
+    static let shared = MeetupCheckInManager()
 
     // MARK: - Published Properties
 
-    @Published var activeCheckIns: [DateCheckIn] = []
-    @Published var scheduledCheckIns: [DateCheckIn] = []
-    @Published var pastCheckIns: [DateCheckIn] = []
+    @Published var activeCheckIns: [MeetupCheckIn] = []
+    @Published var scheduledCheckIns: [MeetupCheckIn] = []
+    @Published var pastCheckIns: [MeetupCheckIn] = []
     @Published var hasActiveCheckIn: Bool = false
 
     // MARK: - Properties
@@ -34,7 +34,7 @@ class DateCheckInManager: ObservableObject {
 
     private init() {
         loadCheckIns()
-        Logger.shared.info("DateCheckInManager initialized", category: .general)
+        Logger.shared.info("MeetupCheckInManager initialized", category: .general)
     }
 
     // MARK: - Check-In Management
@@ -47,9 +47,9 @@ class DateCheckInManager: ObservableObject {
         scheduledTime: Date,
         checkInTime: Date,
         emergencyContacts: [EmergencyContact]
-    ) async throws -> DateCheckIn {
+    ) async throws -> MeetupCheckIn {
 
-        Logger.shared.info("Scheduling check-in for match: \(matchName)", category: .general)
+        Logger.shared.info("Scheduling check-in for teammate: \(matchName)", category: .general)
 
         // Validate times
         guard scheduledTime > Date() else {
@@ -61,7 +61,7 @@ class DateCheckInManager: ObservableObject {
         }
 
         // Create check-in
-        let checkIn = DateCheckIn(
+        let checkIn = MeetupCheckIn(
             id: UUID().uuidString,
             matchId: matchId,
             matchName: matchName,
@@ -292,9 +292,9 @@ class DateCheckInManager: ObservableObject {
     }
 }
 
-// MARK: - Date Check-In Model
+// MARK: - Meetup Check-In Model
 
-struct DateCheckIn: Identifiable, Codable {
+struct MeetupCheckIn: Identifiable, Codable {
     let id: String
     let matchId: String
     let matchName: String
