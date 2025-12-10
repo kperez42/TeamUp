@@ -108,11 +108,102 @@ struct CurrentUserProfileCard: View {
                         .font(.caption)
                         .foregroundColor(.teal)
 
-                    Text("\(user.playStyle) • \(user.platforms.prefix(2).joined(separator: ", "))")
+                    Text("\(user.playStyle) • \(user.platforms.prefix(3).joined(separator: ", "))")
                         .font(.subheadline)
                         .foregroundColor(.secondary)
 
                     Spacer()
+                }
+
+                // Voice Chat
+                if !user.voiceChatPreference.isEmpty {
+                    HStack(spacing: 4) {
+                        Image(systemName: "mic.fill")
+                            .font(.caption)
+                            .foregroundColor(.green)
+
+                        Text("Voice Chat: \(user.voiceChatPreference)")
+                            .font(.subheadline)
+                            .foregroundColor(.secondary)
+
+                        Spacer()
+                    }
+                }
+
+                // Bio preview
+                if !user.bio.isEmpty {
+                    HStack(spacing: 4) {
+                        Image(systemName: "text.quote")
+                            .font(.caption)
+                            .foregroundColor(.indigo)
+
+                        Text(user.bio)
+                            .font(.subheadline)
+                            .foregroundColor(.secondary)
+                            .lineLimit(2)
+
+                        Spacer()
+                    }
+                }
+
+                // Looking For chips
+                if !user.lookingFor.isEmpty {
+                    VStack(alignment: .leading, spacing: 6) {
+                        HStack(spacing: 4) {
+                            Image(systemName: "person.2.fill")
+                                .font(.caption)
+                                .foregroundColor(.blue)
+
+                            Text("Looking For:")
+                                .font(.caption)
+                                .foregroundColor(.secondary)
+                        }
+
+                        ScrollView(.horizontal, showsIndicators: false) {
+                            HStack(spacing: 6) {
+                                ForEach(user.lookingFor.prefix(4), id: \.self) { type in
+                                    Text(type)
+                                        .font(.caption)
+                                        .fontWeight(.medium)
+                                        .foregroundColor(.blue)
+                                        .padding(.horizontal, 10)
+                                        .padding(.vertical, 5)
+                                        .background(Color.blue.opacity(0.1))
+                                        .cornerRadius(12)
+                                }
+                            }
+                        }
+                    }
+                }
+
+                // Game Genres chips
+                if !user.gameGenres.isEmpty {
+                    VStack(alignment: .leading, spacing: 6) {
+                        HStack(spacing: 4) {
+                            Image(systemName: "folder.fill")
+                                .font(.caption)
+                                .foregroundColor(.cyan)
+
+                            Text("Genres:")
+                                .font(.caption)
+                                .foregroundColor(.secondary)
+                        }
+
+                        ScrollView(.horizontal, showsIndicators: false) {
+                            HStack(spacing: 6) {
+                                ForEach(user.gameGenres.prefix(4), id: \.self) { genre in
+                                    Text(genre)
+                                        .font(.caption)
+                                        .fontWeight(.medium)
+                                        .foregroundColor(.cyan)
+                                        .padding(.horizontal, 10)
+                                        .padding(.vertical, 5)
+                                        .background(Color.cyan.opacity(0.1))
+                                        .cornerRadius(12)
+                                }
+                            }
+                        }
+                    }
                 }
 
                 // Photo count if available
