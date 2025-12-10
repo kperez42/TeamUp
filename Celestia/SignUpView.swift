@@ -1551,7 +1551,7 @@ struct SignUpView: View {
                             .font(.headline)
                             .foregroundColor(.primary)
 
-                        Text("Who would you like to meet?")
+                        Text("Who would you like to team up with?")
                             .font(.subheadline)
                             .foregroundColor(.secondary)
                     }

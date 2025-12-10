@@ -995,9 +995,9 @@ struct LikeProfileCard: View {
                     HStack(spacing: 8) {
                         if showLikeBack {
                             LikeActionButton(
-                                icon: "heart.fill",
-                                text: "Like",
-                                colors: [.pink, .red]
+                                icon: "gamecontroller.fill",
+                                text: "Connect",
+                                colors: [.purple, .indigo]
                             ) {
                                 onLikeBack?()
                             }
@@ -1470,10 +1470,10 @@ struct SwipeableLikeCard: View {
                 HStack {
                     Spacer()
                     VStack(spacing: 4) {
-                        Image(systemName: "heart.fill")
+                        Image(systemName: "gamecontroller.fill")
                             .font(.title)
                             .foregroundColor(.white)
-                        Text("Like")
+                        Text("Connect")
                             .font(.caption)
                             .fontWeight(.semibold)
                             .foregroundColor(.white)

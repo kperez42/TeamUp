@@ -553,17 +553,17 @@ struct ProfileInsightsView: View {
                 )
             }
 
-            // Like rate progress bar
+            // Interest rate progress bar
             VStack(alignment: .leading, spacing: 8) {
                 HStack {
-                    Text("Like Rate")
+                    Text("Interest Rate")
                         .font(.subheadline)
                         .foregroundColor(.secondary)
                     Spacer()
                     Text("\(Int(insights.likeRate * 100))%")
                         .font(.subheadline)
                         .fontWeight(.bold)
-                        .foregroundColor(.pink)
+                        .foregroundColor(.purple)
                 }
 
                 GeometryReader { geometry in
@@ -929,16 +929,16 @@ struct ProfileInsightsView: View {
                 }
 
                 VStack(alignment: .leading, spacing: 4) {
-                    Text("Likes")
+                    Text("Interest")
                         .font(.caption)
                         .foregroundColor(.secondary)
                     Text("\(photo.likes)")
                         .font(.headline)
-                        .foregroundColor(.pink)
+                        .foregroundColor(.purple)
                 }
 
                 VStack(alignment: .leading, spacing: 4) {
-                    Text("Like Rate")
+                    Text("Interest Rate")
                         .font(.caption)
                         .foregroundColor(.secondary)
                     Text("\(Int(photo.swipeRightRate * 100))%")
