@@ -18,7 +18,7 @@ final class SwipeMatchMessageFlowTests: XCTestCase {
         app.launchArguments = ["--uitesting", "--authenticated"]
         app.launchEnvironment = [
             "UITEST_DISABLE_ANIMATIONS": "1",
-            "UITEST_USER_EMAIL": "test@celestia.app"
+            "UITEST_USER_EMAIL": "test@teamup.gg"
         ]
         app.launch()
     }

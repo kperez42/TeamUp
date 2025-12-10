@@ -471,7 +471,7 @@ struct SafetyTip: Identifiable {
                 SafetyTip(
                     icon: "network",
                     title: "Online Resources",
-                    description: "Visit these websites for more information on staying safe while dating online.",
+                    description: "Visit these websites for more information on staying safe while meeting people online.",
                     priority: .helpful,
                     actionItems: [
                         "love is respect.org",

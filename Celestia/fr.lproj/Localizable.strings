@@ -1,5 +1,5 @@
 /*
- * Celestia Localization - French
+ * TeamUp Localization - French
  * Language: Français (fr)
  */
 
@@ -122,8 +122,8 @@
 
 // MARK: - Onboarding
 
-"onboarding.welcome" = "Bienvenue sur Celestia";
-"onboarding.find_your_match" = "Trouvez votre match parfait";
+"onboarding.welcome" = "Bienvenue sur TeamUp";
+"onboarding.find_your_match" = "Trouvez votre équipe de jeu parfaite";
 "onboarding.get_started" = "Commencer";
 
 // MARK: - Referrals

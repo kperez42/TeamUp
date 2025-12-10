@@ -354,7 +354,7 @@ struct ReferralManagerTests {
         #expect(message.contains(code), "Message should contain code")
         #expect(message.contains("3 days"), "Should mention bonus days")
         #expect(message.contains("Premium"), "Should mention premium")
-        #expect(message.contains("Celestia"), "Should mention app name")
+        #expect(message.contains("TeamUp"), "Should mention app name")
     }
 
     @Test("Referral URL format")

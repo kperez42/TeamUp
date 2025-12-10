@@ -304,7 +304,7 @@ struct ReviewPromptButton: View {
             HStack {
                 Image(systemName: "star.fill")
                     .foregroundColor(.yellow)
-                Text("Rate Celestia")
+                Text("Rate TeamUp")
                     .font(.body)
                 Spacer()
                 Image(systemName: "chevron.right")
