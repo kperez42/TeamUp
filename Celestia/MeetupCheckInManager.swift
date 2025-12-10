@@ -203,7 +203,7 @@ class MeetupCheckInManager: ObservableObject {
 
     // MARK: - Monitoring
 
-    private func startMonitoring(checkIn: DateCheckIn) {
+    private func startMonitoring(checkIn: MeetupCheckIn) {
         // Set up timer to check if user checks in on time
         let timer = Timer.scheduledTimer(withTimeInterval: 60, repeats: true) { [weak self] _ in
             Task { @MainActor [weak self] in
@@ -219,7 +219,7 @@ class MeetupCheckInManager: ObservableObject {
         checkInTimers.removeValue(forKey: checkInId)
     }
 
-    private func checkCheckInStatus(checkIn: DateCheckIn) async {
+    private func checkCheckInStatus(checkIn: MeetupCheckIn) async {
         // Check if check-in time has passed
         guard Date() > checkIn.checkInTime else { return }
 
@@ -243,21 +243,21 @@ class MeetupCheckInManager: ObservableObject {
 
     // MARK: - Notifications
 
-    private func scheduleCheckInNotifications(for checkIn: DateCheckIn) async throws {
+    private func scheduleCheckInNotifications(for checkIn: MeetupCheckIn) async throws {
         // Schedule reminder before date
         // Schedule check-in reminder
         // In production, use UNUserNotificationCenter
         Logger.shared.debug("Scheduled notifications for check-in: \(checkIn.id)", category: .general)
     }
 
-    private func notifyEmergencyContacts(checkIn: DateCheckIn, message: String) async {
+    private func notifyEmergencyContacts(checkIn: MeetupCheckIn, message: String) async {
         for contact in checkIn.emergencyContacts {
             // In production, send SMS or call emergency contacts
             Logger.shared.info("Notifying emergency contact: \(contact.name)", category: .general)
         }
     }
 
-    private func sendEmergencyAlerts(checkIn: DateCheckIn) async {
+    private func sendEmergencyAlerts(checkIn: MeetupCheckIn) async {
         // Send emergency SMS/calls to all contacts
         // Include location, match info, and emergency details
         for contact in checkIn.emergencyContacts {

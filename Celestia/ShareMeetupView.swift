@@ -761,7 +761,7 @@ struct MatchPickerRow: View {
 
 #Preview {
     NavigationStack {
-        ShareDateView()
+        ShareMeetupView()
             .environmentObject(AuthService.shared)
     }
 }
