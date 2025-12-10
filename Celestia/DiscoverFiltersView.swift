@@ -518,7 +518,7 @@ struct DiscoverFiltersView: View {
     private var relationshipGoalsSection: some View {
         VStack(alignment: .leading, spacing: 12) {
             HStack {
-                Text("Looking For")
+                Text("Show Me")
                     .font(.subheadline)
                     .fontWeight(.medium)
 

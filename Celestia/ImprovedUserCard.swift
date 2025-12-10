@@ -272,10 +272,10 @@ struct ImprovedUserCard: View {
                     InfoChip(icon: voiceChatIcon, text: user.voiceChatPreference)
                         .accessibilityLabel("Voice chat: \(user.voiceChatPreference)")
 
-                    // Looking For (first one)
+                    // Show Me (first one)
                     if let firstLookingFor = user.lookingFor.first {
                         InfoChip(icon: "person.2.fill", text: firstLookingFor)
-                            .accessibilityLabel("Looking for: \(firstLookingFor)")
+                            .accessibilityLabel("Show Me: \(firstLookingFor)")
                     }
 
                     // Region if available
