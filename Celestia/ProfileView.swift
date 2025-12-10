@@ -1496,18 +1496,7 @@ struct ProfileView: View {
             }
 
             VStack(spacing: 12) {
-                HStack {
-                    Text("Search radius")
-                        .font(.subheadline)
-                        .foregroundColor(.secondary)
-                    Spacer()
-                    Text("\(user.maxDistance) km")
-                        .font(.subheadline)
-                        .fontWeight(.semibold)
-                }
-
                 if let ageMin = user.ageRangeMin, let ageMax = user.ageRangeMax {
-                    Divider()
                     HStack {
                         Text("Teammate age range")
                             .font(.subheadline)

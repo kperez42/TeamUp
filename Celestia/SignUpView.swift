@@ -1785,7 +1785,7 @@ struct SignUpView: View {
                     .foregroundColor(.secondary)
 
                 Picker("Min Age", selection: $ageRangeMin) {
-                    ForEach(18..<99, id: \.self) { age in
+                    ForEach(18..<66, id: \.self) { age in
                         Text("\(age)").tag(age)
                     }
                 }
@@ -1809,7 +1809,7 @@ struct SignUpView: View {
                     .foregroundColor(.secondary)
 
                 Picker("Max Age", selection: $ageRangeMax) {
-                    ForEach(19..<100, id: \.self) { age in
+                    ForEach(19..<66, id: \.self) { age in
                         Text("\(age)").tag(age)
                     }
                 }
