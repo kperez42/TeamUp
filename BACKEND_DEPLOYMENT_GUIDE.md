@@ -72,7 +72,7 @@ firebase init
 firebase use <your-project-id>
 
 # Example:
-firebase use celestia-dating-app
+firebase use teamup-gaming-app
 ```
 
 ---

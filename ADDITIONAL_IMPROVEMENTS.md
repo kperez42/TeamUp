@@ -1,6 +1,6 @@
 # Additional Improvements Guide
 
-Comprehensive improvements beyond performance and critical fixes to make Celestia a world-class dating app.
+Comprehensive improvements beyond performance and critical fixes to make TeamUp a world-class gaming social app.
 
 ---
 

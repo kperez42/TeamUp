@@ -1,11 +1,11 @@
 # Onboarding Flow Optimization & User Activation Integration Guide
 
-This guide explains how to integrate the new onboarding optimization system into your Celestia dating app.
+This guide explains how to integrate the new onboarding optimization system into your TeamUp gaming social app.
 
 ## Overview
 
 The onboarding optimization system includes:
-- ✅ **Interactive tutorials** for swiping, matching, and messaging
+- ✅ **Interactive tutorials** for browsing, connecting, and messaging
 - ✅ **Profile quality scoring** with real-time tips
 - ✅ **Completion incentives** (free super likes, boosts, or premium trial)
 - ✅ **A/B testing framework** for onboarding variants

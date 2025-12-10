@@ -318,7 +318,7 @@ func searchUsers(prefix: String) async throws -> [User] {
 
 ---
 
-**Recommendation:** Use **Algolia** for production. The cost is minimal and search quality is critical for dating apps.
+**Recommendation:** Use **Algolia** for production. The cost is minimal and search quality is critical for gaming social apps.
 
 **Estimated Effort:**
 - Algolia: 2-3 days

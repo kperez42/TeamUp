@@ -1,13 +1,13 @@
 # Push Notifications Implementation Report
 
 **Date**: November 18, 2025
-**Project**: Celestia Dating App
+**Project**: TeamUp Gaming Social App
 **Time to Complete**: 45 minutes
 **Expected Impact**: 5x engagement boost
 
 ## 🎯 Implementation Overview
 
-Implemented **automatic push notifications** for Celestia using Firebase Cloud Messaging (FCM). The system now sends real-time notifications to users when they receive matches, messages, and likes - dramatically increasing engagement and user retention.
+Implemented **automatic push notifications** for TeamUp using Firebase Cloud Messaging (FCM). The system now sends real-time notifications to users when they receive connections, messages, and likes - dramatically increasing engagement and user retention.
 
 ## 📊 Features Implemented
 
