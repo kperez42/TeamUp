@@ -134,7 +134,7 @@ struct VerificationFlowView: View {
         isRecommended: Bool = false,
         action: @escaping () -> Void
     ) -> some View {
-        let accentColor: Color = isRecommended ? .green : .cyan
+        let accentColor: Color = isRecommended ? .blue : .teal
 
         return Button(action: action) {
             VStack(spacing: 0) {
@@ -148,7 +148,7 @@ struct VerificationFlowView: View {
                             .foregroundColor(.white)
                             .padding(.horizontal, 8)
                             .padding(.vertical, 4)
-                            .background(Color.green)
+                            .background(Color.blue)
                             .cornerRadius(4)
                     }
                     .padding(.bottom, 8)

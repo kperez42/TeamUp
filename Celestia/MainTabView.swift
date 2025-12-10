@@ -464,7 +464,7 @@ struct AnimatedTabIndicator: View {
             let tabWidth = geometry.size.width / CGFloat(totalTabs)
 
             RoundedRectangle(cornerRadius: 2)
-                .fill(Color.green)
+                .fill(Color.blue)
                 .frame(width: tabWidth * 0.5, height: 3)
                 .offset(x: tabWidth * CGFloat(selectedTab) + tabWidth * 0.25)
         }
