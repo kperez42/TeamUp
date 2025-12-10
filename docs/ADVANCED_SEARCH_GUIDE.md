@@ -255,12 +255,12 @@ enum DietPreference {
 ```swift
 filter.relationshipGoals = [.longTerm, .marriage]
 
-enum RelationshipGoal {
-    case longTerm      // Long-term relationship
-    case shortTerm     // Short-term relationship
-    case marriage      // Looking for marriage
-    case friendship    // Just friends
-    case casual        // Casual dating
+enum GamerGoal {
+    case competitive   // Competitive team play
+    case casual        // Casual gaming
+    case streaming     // Streaming/content creation
+    case friendship    // Gaming friends
+    case esports       // Esports team
     case figureItOut   // Still figuring it out
 }
 ```

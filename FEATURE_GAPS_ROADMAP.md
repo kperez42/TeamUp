@@ -167,7 +167,7 @@ StreakBanner()       // Daily reminder
 ```
 
 **Effort**: 3 weeks
-**ROI**: Very High (retention critical for dating apps)
+**ROI**: Very High (retention critical for gaming social apps)
 **Priority**: P0
 
 ---

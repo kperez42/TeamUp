@@ -397,11 +397,11 @@
 
 ---
 
-### 🟢 Dating Advice Blog (2-3 hours)
+### 🟢 Gaming Tips Blog (2-3 hours)
 **Impact**: SEO traffic, brand authority
 - In-app blog/articles
-- Dating tips, success stories
-- Expert advice from relationship coaches
+- Gaming tips, team success stories
+- Expert advice from pro gamers and coaches
 - Push notifications for new content
 
 **Technical**:

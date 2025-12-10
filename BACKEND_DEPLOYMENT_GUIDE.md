@@ -301,7 +301,7 @@ firebase projects:list
 # ┌──────────────────────┬────────────────────┬──────────────┐
 # │ Project Display Name │ Project ID         │ Resource ID  │
 # ├──────────────────────┼────────────────────┼──────────────┤
-# │ Celestia Dating      │ celestia-prod-a1b2 │ ...          │
+# │ TeamUp Gaming        │ teamup-prod-a1b2   │ ...          │
 # └──────────────────────┴────────────────────┴──────────────┘
 ```
 

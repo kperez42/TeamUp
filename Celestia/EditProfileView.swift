@@ -192,7 +192,7 @@ struct EditProfileView: View {
                         // Bio - self expression
                         aboutMeSection
 
-                        // SECTION 4: Dating Preferences
+                        // SECTION 4: Gaming Preferences
                         // Looking For, Age Range - what they want
                         preferencesSection
 

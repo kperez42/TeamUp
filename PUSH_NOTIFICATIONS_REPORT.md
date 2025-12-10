@@ -168,12 +168,12 @@ exports.sendDailyReminders = functions.pubsub
 
 ### Industry Benchmarks
 
-Dating app engagement after push notification implementation:
-- Tinder: 7x increase in daily messages
-- Bumble: 4x increase in match response rate
-- Hinge: 3x increase in user retention
+Gaming social app engagement after push notification implementation:
+- Discord: 7x increase in daily messages
+- GameTree: 4x increase in match response rate
+- GamerLink: 3x increase in user retention
 
-Celestia's implementation follows best practices from these leaders.
+TeamUp's implementation follows best practices from these leaders.
 
 ## 🛠️ Implementation Details
 
