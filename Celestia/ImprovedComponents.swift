@@ -325,7 +325,7 @@ struct ImprovedUserDetailSheet: View {
             detailRow(icon: "flame.fill", label: "Play Style", value: user.playStyle)
             detailRow(icon: "mic.fill", label: "Voice Chat", value: user.voiceChatPreference)
             if !user.lookingFor.isEmpty {
-                detailRow(icon: "person.2.fill", label: "Looking for", value: user.lookingFor.joined(separator: ", "))
+                detailRow(icon: "person.2.fill", label: "Show Me", value: user.lookingFor.joined(separator: ", "))
             }
         }
         .padding(20)

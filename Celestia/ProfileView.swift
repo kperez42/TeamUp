@@ -1043,7 +1043,7 @@ struct ProfileView: View {
         VStack(spacing: 16) {
             detailRow(icon: "gamecontroller.fill", label: "Play Style", value: user.playStyle)
             Divider()
-            detailRow(icon: "person.2.fill", label: "Looking for", value: user.lookingFor.joined(separator: ", "))
+            detailRow(icon: "person.2.fill", label: "Show Me", value: user.lookingFor.joined(separator: ", "))
 
             // Skill Level
             if !user.skillLevel.isEmpty {

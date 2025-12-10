@@ -1343,7 +1343,7 @@ struct SignUpView: View {
                 )
 
                 detailsDropdown(
-                    label: "Looking for",
+                    label: "Gaming Goal",
                     selection: relationshipGoal.isEmpty ? "Select" : relationshipGoal,
                     options: relationshipGoalOptions,
                     onSelect: { relationshipGoal = $0 }

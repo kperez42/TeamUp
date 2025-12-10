@@ -783,7 +783,7 @@ struct AdminPendingUserDetailView: View {
                     DetailRowView(icon: "sparkles", label: "Religion", value: religion)
                 }
                 if let goal = user.relationshipGoal, goal != "Prefer not to say", !goal.isEmpty {
-                    DetailRowView(icon: "heart.circle", label: "Looking for", value: goal)
+                    DetailRowView(icon: "gamecontroller.fill", label: "Gaming Goal", value: goal)
                 }
             }
         }
@@ -833,11 +833,11 @@ struct AdminPendingUserDetailView: View {
         .cornerRadius(12)
     }
 
-    // MARK: - Looking For Section
+    // MARK: - Show Me Section
 
     private var lookingForSection: some View {
         VStack(alignment: .leading, spacing: 8) {
-            Label("Interested In", systemImage: "heart.text.square")
+            Label("Show Me", systemImage: "person.2.fill")
                 .font(.headline)
                 .foregroundColor(.orange)
 
