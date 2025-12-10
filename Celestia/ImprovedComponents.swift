@@ -226,7 +226,7 @@ struct ImprovedUserDetailSheet: View {
                     .foregroundColor(.gray)
                     .padding(.horizontal, 8)
                     .padding(.vertical, 4)
-                    .background(Color.green.opacity(0.1))
+                    .background(Color.blue.opacity(0.1))
                     .cornerRadius(8)
 
                 if user.isVerified {
@@ -246,7 +246,7 @@ struct ImprovedUserDetailSheet: View {
 
             HStack(spacing: 6) {
                 Image(systemName: "mappin.circle.fill")
-                    .foregroundColor(.green)
+                    .foregroundColor(.blue)
                 Text("\(user.location), \(user.country)")
                     .foregroundColor(.gray)
             }
@@ -261,7 +261,7 @@ struct ImprovedUserDetailSheet: View {
         VStack(alignment: .leading, spacing: 12) {
             HStack {
                 Image(systemName: "text.alignleft")
-                    .foregroundColor(.green)
+                    .foregroundColor(.blue)
                 Text("About")
                     .font(.headline)
             }
@@ -338,7 +338,7 @@ struct ImprovedUserDetailSheet: View {
         HStack {
             HStack(spacing: 10) {
                 Image(systemName: icon)
-                    .foregroundColor(.green)
+                    .foregroundColor(.blue)
                     .frame(width: 24)
                 
                 Text(label)
@@ -360,7 +360,7 @@ struct ImprovedUserDetailSheet: View {
         VStack(alignment: .leading, spacing: 12) {
             HStack {
                 Image(systemName: "gamecontroller.fill")
-                    .foregroundColor(.green)
+                    .foregroundColor(.blue)
                 Text("Platforms")
                     .font(.headline)
             }
@@ -384,7 +384,7 @@ struct ImprovedUserDetailSheet: View {
         VStack(alignment: .leading, spacing: 12) {
             HStack {
                 Image(systemName: "star.fill")
-                    .foregroundColor(.green)
+                    .foregroundColor(.blue)
                 Text("Favorite Games")
                     .font(.headline)
             }
@@ -441,7 +441,7 @@ struct ImprovedUserDetailSheet: View {
                 .frame(height: 56)
                 .background(
                     LinearGradient(
-                        colors: [Color.green, Color.cyan],
+                        colors: [Color.blue, Color.teal],
                         startPoint: .leading,
                         endPoint: .trailing
                     )

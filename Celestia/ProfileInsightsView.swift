@@ -97,7 +97,7 @@ struct ProfileInsightsView: View {
                     .trim(from: 0, to: CGFloat(insights.profileScore) / 100)
                     .stroke(
                         LinearGradient(
-                            colors: [.green, .cyan, .blue],
+                            colors: [.blue, .teal, .blue],
                             startPoint: .topLeading,
                             endPoint: .bottomTrailing
                         ),
@@ -111,7 +111,7 @@ struct ProfileInsightsView: View {
                         .font(.system(size: 56, weight: .bold))
                         .foregroundStyle(
                             LinearGradient(
-                                colors: [.green, .cyan],
+                                colors: [.blue, .teal],
                                 startPoint: .topLeading,
                                 endPoint: .bottomTrailing
                             )
@@ -175,14 +175,14 @@ struct ProfileInsightsView: View {
                                 .font(.subheadline)
                                 .fontWeight(selectedTab == index ? .bold : .medium)
                         }
-                        .foregroundColor(selectedTab == index ? .green : .gray)
+                        .foregroundColor(selectedTab == index ? .blue : .gray)
 
                         // Indicator line
                         Rectangle()
                             .fill(
                                 selectedTab == index ?
                                 LinearGradient(
-                                    colors: [.green, .cyan],
+                                    colors: [.blue, .teal],
                                     startPoint: .leading,
                                     endPoint: .trailing
                                 ) :
@@ -353,7 +353,7 @@ struct ProfileInsightsView: View {
                     .font(.title3)
                     .foregroundStyle(
                         LinearGradient(
-                            colors: [.green, .cyan],
+                            colors: [.blue, .teal],
                             startPoint: .topLeading,
                             endPoint: .bottomTrailing
                         )
@@ -374,7 +374,7 @@ struct ProfileInsightsView: View {
                             .font(.system(size: 36, weight: .bold))
                             .foregroundStyle(
                                 LinearGradient(
-                                    colors: [.green, .cyan],
+                                    colors: [.blue, .teal],
                                     startPoint: .leading,
                                     endPoint: .trailing
                                 )
@@ -528,7 +528,7 @@ struct ProfileInsightsView: View {
                     .font(.title3)
                     .foregroundStyle(
                         LinearGradient(
-                            colors: [.green, .cyan],
+                            colors: [.blue, .teal],
                             startPoint: .topLeading,
                             endPoint: .bottomTrailing
                         )
@@ -775,7 +775,7 @@ struct ProfileInsightsView: View {
                         .scaledToFill()
                 },
                 placeholder: {
-                    Color.green.opacity(0.3)
+                    Color.blue.opacity(0.3)
                 }
             )
             .frame(width: 60, height: 60)
@@ -841,7 +841,7 @@ struct ProfileInsightsView: View {
                 .font(.system(size: 64))
                 .foregroundStyle(
                     LinearGradient(
-                        colors: [.green, .cyan],
+                        colors: [.blue, .teal],
                         startPoint: .topLeading,
                         endPoint: .bottomTrailing
                     )

@@ -204,7 +204,7 @@ struct ProfileFeedCard: View {
 
             Image(systemName: "mappin.circle.fill")
                 .font(.caption)
-                .foregroundColor(.green)
+                .foregroundColor(.blue)
 
             Text("\(user.location), \(user.country)")
                 .font(.subheadline)
@@ -219,7 +219,7 @@ struct ProfileFeedCard: View {
         HStack(spacing: 4) {
             Image(systemName: "gamecontroller.fill")
                 .font(.caption)
-                .foregroundColor(.green)
+                .foregroundColor(.blue)
 
             Text("\(user.playStyle) • \(user.platforms.prefix(2).joined(separator: ", "))")
                 .font(.subheadline)
@@ -237,12 +237,12 @@ struct ProfileFeedCard: View {
 
             if isActive {
                 Circle()
-                    .fill(Color.green)
+                    .fill(Color.blue)
                     .frame(width: 8, height: 8)
 
                 Text(user.isOnline ? "Online" : "Active now")
                     .font(.caption)
-                    .foregroundColor(.green)
+                    .foregroundColor(.blue)
                     .fontWeight(.medium)
             } else {
                 Image(systemName: "clock.fill")
@@ -263,7 +263,7 @@ struct ProfileFeedCard: View {
             // Interest button (toggle)
             ActionButton(
                 icon: isLiked ? "gamecontroller.fill" : "gamecontroller",
-                color: .green,
+                color: .blue,
                 label: isLiked ? "Interested" : "Interest",
                 isProcessing: isProcessingLike,
                 action: {
@@ -338,7 +338,7 @@ struct ProfileFeedCard: View {
             // View photos button
             ActionButton(
                 icon: "camera.fill",
-                color: .cyan,
+                color: .teal,
                 label: "Photos",
                 isProcessing: false,
                 action: {
@@ -619,13 +619,13 @@ struct CardFullScreenPhotoViewer: View {
                             .padding(.vertical, 14)
                             .background(
                                 LinearGradient(
-                                    colors: [.green, .cyan],
+                                    colors: [.blue, .teal],
                                     startPoint: .leading,
                                     endPoint: .trailing
                                 )
                             )
                             .cornerRadius(25)
-                            .shadow(color: .green.opacity(0.4), radius: 10, y: 4)
+                            .shadow(color: .blue.opacity(0.4), radius: 10, y: 4)
                         }
                     }
                     .padding(.bottom, 50)

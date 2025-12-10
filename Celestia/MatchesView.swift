@@ -192,9 +192,9 @@ struct MatchesView: View {
             // Gradient background - Gaming theme
             LinearGradient(
                 colors: [
-                    Color.green.opacity(0.9),
-                    Color.green.opacity(0.7),
-                    Color.cyan.opacity(0.5)
+                    Color.blue.opacity(0.9),
+                    Color.blue.opacity(0.7),
+                    Color.teal.opacity(0.5)
                 ],
                 startPoint: .topLeading,
                 endPoint: .bottomTrailing
@@ -381,7 +381,7 @@ struct MatchesView: View {
                         Image(systemName: "chevron.down")
                             .font(.caption2)
                     }
-                    .foregroundColor(.green)
+                    .foregroundColor(.blue)
                     .padding(.horizontal, 12)
                     .padding(.vertical, 8)
                     .background(Color.green.opacity(0.1))
@@ -512,7 +512,7 @@ struct MatchesView: View {
                     .font(.system(size: 70))
                     .foregroundStyle(
                         LinearGradient(
-                            colors: [.green, .cyan],
+                            colors: [.blue, .teal],
                             startPoint: .topLeading,
                             endPoint: .bottomTrailing
                         )
@@ -548,7 +548,7 @@ struct MatchesView: View {
                 .foregroundColor(.white)
                 .background(
                     LinearGradient(
-                        colors: [.green, .cyan],
+                        colors: [.blue, .teal],
                         startPoint: .leading,
                         endPoint: .trailing
                     )
@@ -646,7 +646,7 @@ struct MatchesView: View {
                 .padding(.vertical, 14)
                 .background(
                     LinearGradient(
-                        colors: [.green, .cyan],
+                        colors: [.blue, .teal],
                         startPoint: .leading,
                         endPoint: .trailing
                     )
@@ -816,7 +816,7 @@ struct MatchProfileCard: View {
                 HStack(spacing: 4) {
                     Image(systemName: "mappin.circle.fill")
                         .font(.system(size: 12))
-                        .foregroundColor(.green)
+                        .foregroundColor(.blue)
                     Text(user.location)
                         .font(.system(size: 13))
                         .foregroundColor(.secondary)
@@ -885,7 +885,7 @@ struct MatchProfileCard: View {
                         .font(.system(size: 20))
                         .foregroundStyle(
                             LinearGradient(
-                                colors: [.green, .cyan],
+                                colors: [.blue, .teal],
                                 startPoint: .topLeading,
                                 endPoint: .bottomTrailing
                             )

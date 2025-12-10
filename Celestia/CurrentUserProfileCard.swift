@@ -45,7 +45,7 @@ struct CurrentUserProfileCard: View {
                 .padding(.vertical, 6)
                 .background(
                     LinearGradient(
-                        colors: [.green, .cyan],
+                        colors: [.blue, .teal],
                         startPoint: .leading,
                         endPoint: .trailing
                     )
@@ -134,7 +134,7 @@ struct CurrentUserProfileCard: View {
                         .font(.subheadline)
                         .foregroundStyle(
                             LinearGradient(
-                                colors: [.green, .cyan],
+                                colors: [.blue, .teal],
                                 startPoint: .leading,
                                 endPoint: .trailing
                             )
@@ -145,7 +145,7 @@ struct CurrentUserProfileCard: View {
                         .fontWeight(.medium)
                         .foregroundStyle(
                             LinearGradient(
-                                colors: [.green, .cyan],
+                                colors: [.blue, .teal],
                                 startPoint: .leading,
                                 endPoint: .trailing
                             )
@@ -155,7 +155,7 @@ struct CurrentUserProfileCard: View {
                         .font(.caption)
                         .foregroundStyle(
                             LinearGradient(
-                                colors: [.green, .cyan],
+                                colors: [.blue, .teal],
                                 startPoint: .leading,
                                 endPoint: .trailing
                             )
@@ -175,7 +175,7 @@ struct CurrentUserProfileCard: View {
             RoundedRectangle(cornerRadius: 16)
                 .stroke(
                     LinearGradient(
-                        colors: [.green.opacity(0.3), .cyan.opacity(0.3)],
+                        colors: [.blue.opacity(0.3), .teal.opacity(0.3)],
                         startPoint: .topLeading,
                         endPoint: .bottomTrailing
                     ),

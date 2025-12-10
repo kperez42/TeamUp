@@ -363,7 +363,7 @@ struct MatchCelebrationView: View {
                                 .font(.system(size: 40))
                                 .foregroundStyle(
                                     LinearGradient(
-                                        colors: [.green, .cyan],
+                                        colors: [.blue, .teal],
                                         startPoint: .topLeading,
                                         endPoint: .bottomTrailing
                                     )

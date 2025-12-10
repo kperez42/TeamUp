@@ -232,16 +232,16 @@ enum DesignSystem {
         static let warning = Color.orange
         static let info = Color.blue
 
-        // Gradients - Gaming themed (green/cyan for gamer aesthetic)
+        // Gradients - Gaming themed (blue/teal for gamer aesthetic)
         static let primaryGradient = LinearGradient(
-            colors: [Color.green, Color.cyan],
+            colors: [Color.blue, Color.teal],
             startPoint: .topLeading,
             endPoint: .bottomTrailing
         )
 
         // Secondary gradient for accent elements
         static let accentGradient = LinearGradient(
-            colors: [Color.cyan, Color.blue],
+            colors: [Color.teal, Color.blue],
             startPoint: .leading,
             endPoint: .trailing
         )

@@ -79,7 +79,7 @@ enum AppConstants {
 
         static func accentGradient() -> LinearGradient {
             LinearGradient(
-                colors: [Color.green, Color.cyan],
+                colors: [Color.blue, Color.teal],
                 startPoint: .leading,
                 endPoint: .trailing
             )

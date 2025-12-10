@@ -170,7 +170,7 @@ struct UserDetailView: View {
                         .font(.system(size: 32, weight: .bold))
                         .foregroundStyle(
                             LinearGradient(
-                                colors: [.green, .cyan],
+                                colors: [.blue, .teal],
                                 startPoint: .leading,
                                 endPoint: .trailing
                             )
@@ -219,7 +219,7 @@ struct UserDetailView: View {
                 }
                 .padding(.horizontal, 12)
                 .padding(.vertical, 6)
-                .background(Color.green.opacity(0.15))
+                .background(Color.blue.opacity(0.15))
                 .cornerRadius(20)
             }
             .font(.subheadline)
@@ -394,7 +394,7 @@ struct UserDetailView: View {
                                         .font(.caption)
                                         .padding(.horizontal, 10)
                                         .padding(.vertical, 4)
-                                        .background(Color.cyan.opacity(0.15))
+                                        .background(Color.teal.opacity(0.15))
                                         .foregroundColor(.cyan)
                                         .cornerRadius(12)
                                 }
@@ -615,7 +615,7 @@ struct UserDetailView: View {
                         Color.white
                     } else {
                         LinearGradient(
-                            colors: [Color.green, Color.cyan],
+                            colors: [Color.blue, Color.teal],
                             startPoint: .topLeading,
                             endPoint: .bottomTrailing
                         )
@@ -821,7 +821,7 @@ struct GameCard: View {
                 .font(.title2)
                 .foregroundColor(.green)
                 .frame(width: 40, height: 40)
-                .background(Color.green.opacity(0.15))
+                .background(Color.blue.opacity(0.15))
                 .cornerRadius(10)
 
             VStack(alignment: .leading, spacing: 2) {
@@ -1005,7 +1005,7 @@ struct PromptCard: View {
         .frame(maxWidth: .infinity, alignment: .leading)
         .background(
             LinearGradient(
-                colors: [Color.green.opacity(0.05), Color.cyan.opacity(0.03)],
+                colors: [Color.blue.opacity(0.05), Color.teal.opacity(0.03)],
                 startPoint: .topLeading,
                 endPoint: .bottomTrailing
             )

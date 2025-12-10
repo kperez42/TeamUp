@@ -156,7 +156,7 @@ struct DiscoverFiltersView: View {
                             .padding(.vertical, 8)
                             .background(
                                 LinearGradient(
-                                    colors: [.green, .cyan],
+                                    colors: [.blue, .teal],
                                     startPoint: .leading,
                                     endPoint: .trailing
                                 )
@@ -198,7 +198,7 @@ struct DiscoverFiltersView: View {
         }
         .padding(.horizontal, 20)
         .padding(.vertical, 12)
-        .background(Color.green.opacity(0.08))
+        .background(Color.blue.opacity(0.08))
     }
 
     // MARK: - Filter Section Container
@@ -225,7 +225,7 @@ struct DiscoverFiltersView: View {
                         .font(.title3)
                         .foregroundStyle(
                             LinearGradient(
-                                colors: [.green, .cyan],
+                                colors: [.blue, .teal],
                                 startPoint: .topLeading,
                                 endPoint: .bottomTrailing
                             )
@@ -248,7 +248,7 @@ struct DiscoverFiltersView: View {
                             .padding(.vertical, 4)
                             .background(
                                 LinearGradient(
-                                    colors: [.green, .cyan],
+                                    colors: [.blue, .teal],
                                     startPoint: .leading,
                                     endPoint: .trailing
                                 )
@@ -295,7 +295,7 @@ struct DiscoverFiltersView: View {
                     .foregroundColor(.green)
                     .padding(.horizontal, 12)
                     .padding(.vertical, 6)
-                    .background(Color.green.opacity(0.1))
+                    .background(Color.blue.opacity(0.1))
                     .cornerRadius(8)
             }
 

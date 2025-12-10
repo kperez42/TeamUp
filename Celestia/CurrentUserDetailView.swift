@@ -58,7 +58,7 @@ struct CurrentUserDetailView: View {
                     .padding(.vertical, 6)
                     .background(
                         LinearGradient(
-                            colors: [.green, .cyan],
+                            colors: [.blue, .teal],
                             startPoint: .leading,
                             endPoint: .trailing
                         )
@@ -76,7 +76,7 @@ struct CurrentUserDetailView: View {
                                 .font(.system(size: 32, weight: .bold))
                                 .foregroundStyle(
                                     LinearGradient(
-                                        colors: [.green, .cyan],
+                                        colors: [.blue, .teal],
                                         startPoint: .leading,
                                         endPoint: .trailing
                                     )
@@ -225,7 +225,7 @@ struct CurrentUserDetailView: View {
                         ) {
                             FlowLayout2(spacing: 10) {
                                 ForEach(user.lookingFor, id: \.self) { goal in
-                                    ProfileTagView(text: goal, colors: [.green, .cyan], textColor: .green)
+                                    ProfileTagView(text: goal, colors: [.blue, .teal], textColor: .green)
                                 }
                             }
                         }
@@ -272,7 +272,7 @@ struct CurrentUserDetailView: View {
                     .frame(width: 120, height: 60)
                     .background(
                         LinearGradient(
-                            colors: [Color.green, Color.cyan],
+                            colors: [Color.blue, Color.teal],
                             startPoint: .topLeading,
                             endPoint: .bottomTrailing
                         )

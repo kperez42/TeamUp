@@ -134,7 +134,7 @@ struct SignUpView: View {
                             HStack(spacing: 8) {
                                 ForEach(0..<7, id: \.self) { step in
                                     Circle()
-                                        .fill(currentStep >= step ? Color.green : Color.gray.opacity(0.3))
+                                        .fill(currentStep >= step ? Color.blue : Color.gray.opacity(0.3))
                                         .frame(width: 10, height: 10)
                                         .scaleEffect(currentStep == step ? 1.2 : 1.0)
                                         .accessibleAnimation(.spring(response: 0.3, dampingFraction: 0.6), value: currentStep)
@@ -149,7 +149,7 @@ struct SignUpView: View {
                         VStack(spacing: 10) {
                             Image(systemName: "star.circle.fill")
                                 .font(.system(size: 50))
-                                .foregroundColor(.green)
+                                .foregroundColor(.blue)
 
                             Text(stepTitle)
                                 .font(.title2.bold())
@@ -244,7 +244,7 @@ struct SignUpView: View {
                                     Text(isEditingProfile && currentStep == 1 ? "Cancel" : "Back")
                                         .font(.headline)
                                 }
-                                .foregroundColor(.green)
+                                .foregroundColor(.blue)
                                 .frame(maxWidth: .infinity)
                                 .padding()
                                 .background(Color.white)
@@ -286,7 +286,7 @@ struct SignUpView: View {
                             .padding()
                             .background(
                                 LinearGradient(
-                                    colors: [Color.green, Color.cyan],
+                                    colors: [Color.blue, Color.teal],
                                     startPoint: .leading,
                                     endPoint: .trailing
                                 )
@@ -390,7 +390,7 @@ struct SignUpView: View {
                             Spacer()
                             if languages.contains(language) {
                                 Image(systemName: "checkmark.circle.fill")
-                                    .foregroundColor(.green)
+                                    .foregroundColor(.blue)
                             }
                         }
                     }
@@ -477,10 +477,10 @@ struct SignUpView: View {
                 } else {
                     HStack(spacing: 6) {
                         Image(systemName: "checkmark.circle.fill")
-                            .foregroundColor(.green)
+                            .foregroundColor(.blue)
                         Text("Passwords match")
                             .font(.caption)
-                            .foregroundColor(.green)
+                            .foregroundColor(.blue)
                     }
                 }
             }
@@ -660,7 +660,7 @@ struct SignUpView: View {
             VStack(alignment: .leading, spacing: 8) {
                 HStack(spacing: 6) {
                     Image(systemName: "gift.fill")
-                        .foregroundColor(.green)
+                        .foregroundColor(.blue)
                         .font(.caption)
                     Text("Referral Code (Optional)")
                         .font(.subheadline)
@@ -695,7 +695,7 @@ struct SignUpView: View {
                         .stroke(
                             referralCodeValid == true ? Color.green :
                             referralCodeValid == false ? Color.red :
-                            Color.green.opacity(0.3),
+            Color.blue.opacity(0.3),
                             lineWidth: 2
                         )
                 )
@@ -704,10 +704,10 @@ struct SignUpView: View {
                     HStack(spacing: 6) {
                         Image(systemName: "checkmark.circle.fill")
                             .font(.caption)
-                            .foregroundColor(.green)
+                            .foregroundColor(.blue)
                         Text("Valid code! You'll get 3 days of Premium free!")
                             .font(.caption)
-                            .foregroundColor(.green)
+                            .foregroundColor(.blue)
                     }
                 } else if referralCodeValid == false {
                     HStack(spacing: 6) {
@@ -722,10 +722,10 @@ struct SignUpView: View {
                     HStack(spacing: 4) {
                         Image(systemName: "sparkles")
                             .font(.caption2)
-                            .foregroundColor(.green)
+                            .foregroundColor(.blue)
                         Text("Get 3 days of Premium free with a code!")
                             .font(.caption)
-                            .foregroundColor(.green)
+                            .foregroundColor(.blue)
                     }
                 }
             }
@@ -752,7 +752,7 @@ struct SignUpView: View {
 
                     Image(systemName: "camera.fill")
                         .font(.system(size: 24))
-                        .foregroundColor(.green)
+                        .foregroundColor(.blue)
                 }
 
                 VStack(alignment: .leading, spacing: 4) {
@@ -870,7 +870,7 @@ struct SignUpView: View {
                     RoundedRectangle(cornerRadius: 20)
                         .fill(
                             LinearGradient(
-                                colors: [Color.green.opacity(0.08), Color.cyan.opacity(0.05), Color.orange.opacity(0.03)],
+                                colors: [Color.blue.opacity(0.08), Color.teal.opacity(0.05), Color.orange.opacity(0.03)],
                                 startPoint: .topLeading,
                                 endPoint: .bottomTrailing
                             )
@@ -887,7 +887,7 @@ struct SignUpView: View {
                                         .font(.system(size: 36))
                                         .foregroundStyle(
                                             LinearGradient(
-                                                colors: [.green, .cyan],
+                                                colors: [.blue, .teal],
                                                 startPoint: .topLeading,
                                                 endPoint: .bottomTrailing
                                             )
@@ -909,7 +909,7 @@ struct SignUpView: View {
                             RoundedRectangle(cornerRadius: 20)
                                 .stroke(
                                     LinearGradient(
-                                        colors: [.green.opacity(0.4), .cyan.opacity(0.3), .orange.opacity(0.2)],
+                                        colors: [.blue.opacity(0.4), .teal.opacity(0.3), .orange.opacity(0.2)],
                                         startPoint: .topLeading,
                                         endPoint: .bottomTrailing
                                     ),
@@ -930,12 +930,12 @@ struct SignUpView: View {
                 HStack(spacing: 16) {
                     ZStack {
                         Circle()
-                            .fill(Color.cyan.opacity(0.12))
+                            .fill(Color.teal.opacity(0.12))
                             .frame(width: 56, height: 56)
 
                         Image(systemName: "photo.stack.fill")
                             .font(.system(size: 24))
-                            .foregroundColor(.green)
+                            .foregroundColor(.blue)
                     }
 
                     VStack(alignment: .leading, spacing: 4) {
@@ -1004,7 +1004,7 @@ struct SignUpView: View {
                                             .font(.title2)
                                             .foregroundStyle(
                                                 LinearGradient(
-                                                    colors: [.green.opacity(0.4), .cyan.opacity(0.3)],
+                                                    colors: [.blue.opacity(0.4), .teal.opacity(0.3)],
                                                     startPoint: .topLeading,
                                                     endPoint: .bottomTrailing
                                                 )
@@ -1015,7 +1015,7 @@ struct SignUpView: View {
                                     RoundedRectangle(cornerRadius: 14)
                                         .stroke(
                                             LinearGradient(
-                                                colors: [.green.opacity(0.2), .cyan.opacity(0.15)],
+                                                colors: [.blue.opacity(0.2), .teal.opacity(0.15)],
                                                 startPoint: .topLeading,
                                                 endPoint: .bottomTrailing
                                             ),
@@ -1045,7 +1045,7 @@ struct SignUpView: View {
                     .padding(.vertical, 16)
                     .background(
                         LinearGradient(
-                            colors: [Color.green, Color.cyan, Color.blue.opacity(0.8)],
+                            colors: [Color.blue, Color.teal, Color.blue.opacity(0.8)],
                             startPoint: .leading,
                             endPoint: .trailing
                         )
@@ -1088,7 +1088,7 @@ struct SignUpView: View {
                             Circle()
                                 .fill(
                                     index < photoImages.count
-                                        ? LinearGradient(colors: [.green, .cyan], startPoint: .topLeading, endPoint: .bottomTrailing)
+                                        ? LinearGradient(colors: [.blue, .teal], startPoint: .topLeading, endPoint: .bottomTrailing)
                                         : LinearGradient(colors: [Color.gray.opacity(0.2), Color.gray.opacity(0.2)], startPoint: .topLeading, endPoint: .bottomTrailing)
                                 )
                                 .frame(width: 8, height: 8)
@@ -1139,7 +1139,7 @@ struct SignUpView: View {
                             } label: {
                                 Text(prompt)
                                     .font(.caption)
-                                    .foregroundColor(.green)
+                                    .foregroundColor(.blue)
                                     .padding(.horizontal, 12)
                                     .padding(.vertical, 8)
                                     .background(
@@ -1199,7 +1199,7 @@ struct SignUpView: View {
                         .frame(width: 44, height: 44)
                     Image(systemName: "lightbulb.fill")
                         .font(.system(size: 18))
-                        .foregroundColor(.green)
+                        .foregroundColor(.blue)
                 }
 
                 VStack(alignment: .leading, spacing: 8) {
@@ -1244,7 +1244,7 @@ struct SignUpView: View {
                 if selectedInterests.count < 3 {
                     Text("Pick at least 3 interests to continue")
                         .font(.caption)
-                        .foregroundColor(.green)
+                        .foregroundColor(.blue)
                 }
             }
 
@@ -1272,7 +1272,7 @@ struct SignUpView: View {
             if selectedInterests.count >= 3 {
                 HStack {
                     Image(systemName: "checkmark.circle.fill")
-                        .foregroundColor(.green)
+                        .foregroundColor(.blue)
                     Text("Great choices! You can select more if you'd like.")
                         .font(.caption)
                         .foregroundColor(.secondary)
@@ -1311,7 +1311,7 @@ struct SignUpView: View {
 
                     Image(systemName: "person.fill")
                         .font(.system(size: 24))
-                        .foregroundColor(.green)
+                        .foregroundColor(.blue)
                 }
 
                 VStack(alignment: .leading, spacing: 4) {
@@ -1397,7 +1397,7 @@ struct SignUpView: View {
 
                     Image(systemName: "leaf.fill")
                         .font(.system(size: 24))
-                        .foregroundColor(.green)
+                        .foregroundColor(.blue)
                 }
 
                 VStack(alignment: .leading, spacing: 4) {
@@ -1543,7 +1543,7 @@ struct SignUpView: View {
 
                         Image(systemName: "person.2.fill")
                             .font(.system(size: 24))
-                            .foregroundColor(.green)
+                            .foregroundColor(.blue)
                     }
 
                     VStack(alignment: .leading, spacing: 4) {
@@ -1566,7 +1566,7 @@ struct SignUpView: View {
                         .padding(.vertical, 5)
                         .background(
                             LinearGradient(
-                                colors: [.green, .cyan],
+                                colors: [.blue, .teal],
                                 startPoint: .leading,
                                 endPoint: .trailing
                             )
@@ -1639,7 +1639,7 @@ struct SignUpView: View {
 
                     Image(systemName: "checkmark.circle.fill")
                         .font(.system(size: 24))
-                        .foregroundColor(.green)
+                        .foregroundColor(.blue)
                 }
 
                 VStack(alignment: .leading, spacing: 4) {

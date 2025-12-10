@@ -199,7 +199,7 @@ struct MessagesView: View {
                 colors: [
                     Color.blue.opacity(0.9),
                     Color.teal.opacity(0.8),
-                    Color.cyan.opacity(0.7)
+                    Color.teal.opacity(0.7)
                 ],
                 startPoint: .topLeading,
                 endPoint: .bottomTrailing
@@ -450,7 +450,7 @@ struct MessagesView: View {
                 .padding(.vertical, 14)
                 .background(
                     LinearGradient(
-                        colors: [Color.green, Color.cyan],
+                        colors: [Color.blue, Color.teal],
                         startPoint: .leading,
                         endPoint: .trailing
                     )

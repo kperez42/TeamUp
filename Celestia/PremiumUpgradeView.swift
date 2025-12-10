@@ -194,8 +194,8 @@ struct PremiumUpgradeView: View {
             // Soft gradient background for hero
             LinearGradient(
                 colors: [
-                    Color.green.opacity(0.15),
-                    Color.cyan.opacity(0.1),
+                    Color.blue.opacity(0.15),
+                    Color.teal.opacity(0.1),
                     Color.clear
                 ],
                 startPoint: .top,
@@ -262,7 +262,7 @@ struct PremiumUpgradeView: View {
                         .font(.system(size: 38, weight: .bold, design: .rounded))
                         .foregroundStyle(
                             LinearGradient(
-                                colors: [.green, .cyan],
+                                colors: [.blue, .teal],
                                 startPoint: .leading,
                                 endPoint: .trailing
                             )
@@ -331,10 +331,10 @@ struct PremiumUpgradeView: View {
 
     private func previewCardColors(for index: Int) -> [Color] {
         switch index {
-        case 0: return [.green, .cyan.opacity(0.7)]
-        case 1: return [.cyan, .green.opacity(0.7)]
+        case 0: return [.blue, .teal.opacity(0.7)]
+        case 1: return [.teal, .blue.opacity(0.7)]
         case 2: return [.orange, .orange.opacity(0.7)]
-        default: return [.cyan, .cyan.opacity(0.7)]
+        default: return [.teal, .teal.opacity(0.7)]
         }
     }
 
@@ -370,7 +370,7 @@ struct PremiumUpgradeView: View {
                     .font(.title3)
                     .foregroundStyle(
                         LinearGradient(
-                            colors: [.green, .cyan],
+                            colors: [.blue, .teal],
                             startPoint: .topLeading,
                             endPoint: .bottomTrailing
                         )
@@ -404,7 +404,7 @@ struct PremiumUpgradeView: View {
             RoundedRectangle(cornerRadius: 16)
                 .stroke(
                     LinearGradient(
-                        colors: [.green.opacity(0.3), .cyan.opacity(0.2)],
+                        colors: [.blue.opacity(0.3), .teal.opacity(0.2)],
                         startPoint: .topLeading,
                         endPoint: .bottomTrailing
                     ),
@@ -605,7 +605,7 @@ struct PremiumUpgradeView: View {
                 .padding(.vertical, 14)
                 .background(
                     LinearGradient(
-                        colors: [.cyan, .green],
+                        colors: [.teal, .blue],
                         startPoint: .leading,
                         endPoint: .trailing
                     )
@@ -621,11 +621,11 @@ struct PremiumUpgradeView: View {
 
     private func blurredAvatarColors(for index: Int) -> [Color] {
         let colorSets: [[Color]] = [
-            [.green, .cyan],
-            [.blue, .cyan],
+            [.blue, .teal],
+            [.blue, .teal],
             [.orange, .yellow],
-            [.green, .mint],
-            [.cyan, .blue]
+            [.blue, .mint],
+            [.teal, .blue]
         ]
         return colorSets[index % colorSets.count]
     }
@@ -639,7 +639,7 @@ struct PremiumUpgradeView: View {
                 Circle()
                     .fill(
                         LinearGradient(
-                            colors: [.green.opacity(0.2), .cyan.opacity(0.15)],
+                            colors: [.blue.opacity(0.2), .teal.opacity(0.15)],
                             startPoint: .topLeading,
                             endPoint: .bottomTrailing
                         )
@@ -651,7 +651,7 @@ struct PremiumUpgradeView: View {
                     Circle()
                         .fill(
                             LinearGradient(
-                                colors: [.green, .cyan],
+                                colors: [.blue, .teal],
                                 startPoint: .topLeading,
                                 endPoint: .bottomTrailing
                             )
@@ -689,7 +689,7 @@ struct PremiumUpgradeView: View {
         .padding(18)
         .background(
             LinearGradient(
-                colors: [Color.green.opacity(0.08), Color.cyan.opacity(0.05)],
+                colors: [Color.blue.opacity(0.08), Color.teal.opacity(0.05)],
                 startPoint: .leading,
                 endPoint: .trailing
             )
@@ -700,14 +700,14 @@ struct PremiumUpgradeView: View {
             RoundedRectangle(cornerRadius: 16)
                 .stroke(
                     LinearGradient(
-                        colors: [.green.opacity(0.3), .cyan.opacity(0.2)],
+                        colors: [.blue.opacity(0.3), .teal.opacity(0.2)],
                         startPoint: .topLeading,
                         endPoint: .bottomTrailing
                     ),
                     lineWidth: 1
                 )
         )
-        .shadow(color: .green.opacity(0.1), radius: 10, y: 5)
+        .shadow(color: .blue.opacity(0.1), radius: 10, y: 5)
     }
 
     // MARK: - Live Feature Showcase
@@ -1127,7 +1127,7 @@ struct PremiumUpgradeView: View {
                 .padding(.vertical, 16)
                 .background(
                     LinearGradient(
-                        colors: [Color.green, Color.cyan],
+                        colors: [Color.blue, Color.teal],
                         startPoint: .leading,
                         endPoint: .trailing
                     )
@@ -1182,7 +1182,7 @@ struct PremiumUpgradeView: View {
                         .trim(from: 0, to: 0.7)
                         .stroke(
                             LinearGradient(
-                                colors: [.green, .cyan],
+                                colors: [.blue, .teal],
                                 startPoint: .leading,
                                 endPoint: .trailing
                             ),
@@ -1334,7 +1334,7 @@ struct PremiumPlanCard: View {
                         Circle()
                             .fill(
                                 LinearGradient(
-                                    colors: [.green, .cyan],
+                                    colors: [.blue, .teal],
                                     startPoint: .topLeading,
                                     endPoint: .bottomTrailing
                                 )
@@ -1411,7 +1411,7 @@ struct PremiumPlanCard: View {
                 RoundedRectangle(cornerRadius: 16)
                     .fill(isSelected ?
                         LinearGradient(
-                            colors: [Color.green.opacity(0.08), Color.cyan.opacity(0.05)],
+                            colors: [Color.blue.opacity(0.08), Color.teal.opacity(0.05)],
                             startPoint: .topLeading,
                             endPoint: .bottomTrailing
                         ) :
@@ -1427,7 +1427,7 @@ struct PremiumPlanCard: View {
                     .stroke(
                         isSelected ?
                         LinearGradient(
-                            colors: [Color.green, Color.cyan],
+                            colors: [Color.blue, Color.teal],
                             startPoint: .topLeading,
                             endPoint: .bottomTrailing
                         ) :
@@ -1439,7 +1439,7 @@ struct PremiumPlanCard: View {
                         lineWidth: isSelected ? 2 : 1
                     )
             )
-            .shadow(color: isSelected ? .green.opacity(0.15) : .black.opacity(0.04), radius: isSelected ? 12 : 6, y: isSelected ? 6 : 3)
+            .shadow(color: isSelected ? .blue.opacity(0.15) : .black.opacity(0.04), radius: isSelected ? 12 : 6, y: isSelected ? 6 : 3)
         }
     }
 }

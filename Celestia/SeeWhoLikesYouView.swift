@@ -82,7 +82,7 @@ struct SeeWhoLikesYouView: View {
                     .font(.title)
                     .foregroundStyle(
                         LinearGradient(
-                            colors: [.green, .cyan],
+                            colors: [.blue, .teal],
                             startPoint: .topLeading,
                             endPoint: .bottomTrailing
                         )
@@ -131,7 +131,7 @@ struct SeeWhoLikesYouView: View {
             .padding()
             .background(
                 LinearGradient(
-                    colors: [Color.green.opacity(0.1), Color.cyan.opacity(0.1)],
+                    colors: [Color.blue.opacity(0.1), Color.teal.opacity(0.1)],
                     startPoint: .leading,
                     endPoint: .trailing
                 )
@@ -237,7 +237,7 @@ struct LikeCardView: View {
                         // Placeholder when no image
                         ZStack {
                             LinearGradient(
-                                colors: [Color.green.opacity(0.7), Color.cyan.opacity(0.5)],
+                                colors: [Color.blue.opacity(0.7), Color.teal.opacity(0.5)],
                                 startPoint: .topLeading,
                                 endPoint: .bottomTrailing
                             )

@@ -280,7 +280,7 @@ struct ChatView: View {
             } label: {
                 Image(systemName: "chevron.left")
                     .font(.body.weight(.semibold))
-                    .foregroundColor(.green)
+                    .foregroundColor(.blue)
                     .frame(width: 44, height: 44)
             }
             .accessibilityElement(
@@ -303,7 +303,7 @@ struct ChatView: View {
                     Circle()
                         .fill(
                             LinearGradient(
-                                colors: [Color.green.opacity(0.7), Color.cyan.opacity(0.6)],
+                                colors: [Color.blue.opacity(0.7), Color.teal.opacity(0.6)],
                                 startPoint: .topLeading,
                                 endPoint: .bottomTrailing
                             )
@@ -337,7 +337,7 @@ struct ChatView: View {
                         .font(.caption)
                         .foregroundStyle(
                             LinearGradient(
-                                colors: [.green, .cyan],
+                                colors: [.blue, .teal],
                                 startPoint: .leading,
                                 endPoint: .trailing
                             )
@@ -350,7 +350,7 @@ struct ChatView: View {
                     if isActive {
                         HStack(spacing: 4) {
                             Circle()
-                                .fill(Color.green)
+                                .fill(Color.blue)
                                 .frame(width: 6, height: 6)
                             Text(otherUserData.isOnline ? "Online" : "Active now")
                                 .font(.caption)
@@ -482,7 +482,7 @@ struct ChatView: View {
                                     }
                                 }
                                 .buttonStyle(.borderedProminent)
-                                .tint(.green)
+                                .tint(.blue)
                             }
                             .frame(maxWidth: .infinity, maxHeight: .infinity)
                             .padding(.top, 100)
@@ -546,7 +546,7 @@ struct ChatView: View {
                                         .padding(.vertical, 10)
                                         .background(
                                             LinearGradient(
-                                                colors: [Color.green.opacity(0.7), Color.cyan.opacity(0.7)],
+                                                colors: [Color.blue.opacity(0.7), Color.teal.opacity(0.7)],
                                                 startPoint: .topLeading,
                                                 endPoint: .bottomTrailing
                                             )
@@ -636,7 +636,7 @@ struct ChatView: View {
                     .font(.system(size: 40))
                     .foregroundStyle(
                         LinearGradient(
-                            colors: [.green, .cyan],
+                            colors: [.blue, .teal],
                             startPoint: .topLeading,
                             endPoint: .bottomTrailing
                         )
@@ -663,7 +663,7 @@ struct ChatView: View {
                         HStack(spacing: 12) {
                             Image(systemName: starter.icon)
                                 .font(.title3)
-                                .foregroundColor(.green)
+                                .foregroundColor(.blue)
                                 .frame(width: 32)
 
                             Text(starter.text)
@@ -676,7 +676,7 @@ struct ChatView: View {
 
                             Image(systemName: "arrow.right.circle")
                                 .font(.title3)
-                                .foregroundColor(.green.opacity(0.5))
+                                .foregroundColor(.blue.opacity(0.5))
                         }
                         .padding(16)
                         .background(Color(.systemBackground))
@@ -801,7 +801,7 @@ struct ChatView: View {
                         .padding(.horizontal, 12)
                         .padding(.vertical, 6)
                         .background(
-                            LinearGradient(colors: [.green, .cyan], startPoint: .leading, endPoint: .trailing)
+                            LinearGradient(colors: [.blue, .teal], startPoint: .leading, endPoint: .trailing)
                         )
                         .cornerRadius(12)
                 }
@@ -818,7 +818,7 @@ struct ChatView: View {
     private func replyPreviewBar(message: Message) -> some View {
         HStack(spacing: 12) {
             Rectangle()
-                .fill(Color.green)
+                .fill(Color.blue)
                 .frame(width: 3)
                 .cornerRadius(2)
 
@@ -826,7 +826,7 @@ struct ChatView: View {
                 Text("Replying to \(message.senderId == authService.currentUser?.effectiveId ? "yourself" : otherUser.fullName)")
                     .font(.caption)
                     .fontWeight(.semibold)
-                    .foregroundColor(.green)
+                    .foregroundColor(.blue)
 
                 if let imageURL = message.imageURL, !imageURL.isEmpty {
                     HStack(spacing: 4) {
@@ -955,7 +955,7 @@ struct ChatView: View {
                 PhotosPicker(selection: $selectedImageItem, matching: .images) {
                     Image(systemName: "photo.fill")
                         .font(.title3)
-                        .foregroundColor(.green)
+                        .foregroundColor(.blue)
                 }
                 .accessibilityLabel("Attach photo")
                 .accessibilityHint("Select a photo to send")

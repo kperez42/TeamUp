@@ -290,13 +290,13 @@ struct AdvancedFiltersSheet: View {
             .padding(.vertical, 16)
             .background(
                 LinearGradient(
-                    colors: [Color.green, Color.cyan],
+                    colors: [Color.blue, Color.teal],
                     startPoint: .leading,
                     endPoint: .trailing
                 )
             )
             .cornerRadius(16)
-            .shadow(color: .green.opacity(0.4), radius: 10, y: 5)
+            .shadow(color: .blue.opacity(0.4), radius: 10, y: 5)
         }
         .padding(.top, 10)
     }
@@ -355,7 +355,7 @@ struct FilterOptionButton: View {
                     isSelected ?
                     AnyShapeStyle(
                         LinearGradient(
-                            colors: [Color.green, Color.cyan],
+                            colors: [Color.blue, Color.teal],
                             startPoint: .leading,
                             endPoint: .trailing
                         )
@@ -572,7 +572,7 @@ struct BoostProfileSheet: View {
                     .padding(16)
                     .background(
                         selectedDuration == duration ?
-                        Color.green.opacity(0.1) :
+                        Color.blue.opacity(0.1) :
                         Color(.systemGray6)
                     )
                     .cornerRadius(12)

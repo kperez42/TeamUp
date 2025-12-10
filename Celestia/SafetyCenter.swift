@@ -41,7 +41,7 @@ struct SafetyCenterView: View {
         VStack(spacing: 12) {
             Image(systemName: "shield.checkered")
                 .font(.system(size: 60))
-                .foregroundColor(.green)
+                .foregroundColor(.blue)
 
             Text("Your Safety Matters")
                 .font(.title2.bold())
@@ -101,7 +101,7 @@ struct SafetySectionHeader: View {
         HStack(spacing: 8) {
             Image(systemName: icon)
                 .font(.title3)
-                .foregroundColor(.green)
+                .foregroundColor(.blue)
 
             Text(title)
                 .font(.title3.bold())
@@ -151,7 +151,7 @@ struct SafetyOptionRow: View {
             if isCompleted {
                 Image(systemName: "checkmark.circle.fill")
                     .font(.title3)
-                    .foregroundColor(.green)
+                    .foregroundColor(.blue)
             } else if let badge = badge, badge > 0 {
                 Text("\(badge)")
                     .font(.caption.bold())

@@ -598,12 +598,12 @@ struct InterestFilterChip: View {
             .background(
                 isSelected ?
                 LinearGradient(
-                    colors: [.green, .cyan],
+                    colors: [.blue, .teal],
                     startPoint: .leading,
                     endPoint: .trailing
                 ) :
                 LinearGradient(
-                    colors: [Color.green.opacity(0.1), Color.green.opacity(0.1)],
+                    colors: [Color.blue.opacity(0.1), Color.blue.opacity(0.1)],
                     startPoint: .leading,
                     endPoint: .trailing
                 )
@@ -644,7 +644,7 @@ struct InterestCard: View {
                         },
                         placeholder: {
                             LinearGradient(
-                                colors: [Color.green.opacity(0.6), Color.cyan.opacity(0.5)],
+                                colors: [Color.blue.opacity(0.6), Color.teal.opacity(0.5)],
                                 startPoint: .topLeading,
                                 endPoint: .bottomTrailing
                             )
