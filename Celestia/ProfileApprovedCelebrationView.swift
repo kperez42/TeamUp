@@ -23,7 +23,7 @@ struct ProfileApprovedCelebrationView: View {
             // Background gradient
             LinearGradient(
                 colors: [
-                    Color.green.opacity(0.3),
+                    Color.blue.opacity(0.3),
                     Color.blue.opacity(0.2),
                     Color.teal.opacity(0.2)
                 ],
@@ -48,7 +48,7 @@ struct ProfileApprovedCelebrationView: View {
                         Circle()
                             .stroke(
                                 LinearGradient(
-                                    colors: [.green.opacity(0.3), .blue.opacity(0.2)],
+                                    colors: [.blue.opacity(0.3), .teal.opacity(0.2)],
                                     startPoint: .topLeading,
                                     endPoint: .bottomTrailing
                                 ),
@@ -159,7 +159,7 @@ struct ProfileApprovedCelebrationView: View {
                         )
                     )
                     .cornerRadius(16)
-                    .shadow(color: .green.opacity(0.4), radius: 10, y: 5)
+                    .shadow(color: .blue.opacity(0.4), radius: 10, y: 5)
                 }
                 .padding(.horizontal, 24)
                 .opacity(appearAnimation ? 1.0 : 0)
