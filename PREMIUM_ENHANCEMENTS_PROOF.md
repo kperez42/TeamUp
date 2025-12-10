@@ -139,14 +139,14 @@ ZStack {
 
 ---
 
-### 2. **FeedDiscoverView - Staggered Card Animations** ⭐⭐⭐⭐⭐
+### 2. **FeedDiscoverView - Staggered Profile Animations** ⭐⭐⭐⭐⭐
 
 #### What I Added:
 
-##### **Staggered Card Entrance**
+##### **Staggered Profile Entrance**
 ```swift
-// BEFORE: Cards appear instantly
-// AFTER: Cards cascade in with staggered delay
+// BEFORE: Profiles appear instantly
+// AFTER: Profiles cascade in with staggered delay
 ProfileFeedCard(...)
     .transition(.asymmetric(
         insertion: .scale(scale: 0.9).combined(with: .opacity),
@@ -159,7 +159,7 @@ ProfileFeedCard(...)
     )
 ```
 
-**Effect:** When loading profiles, cards **cascade into view** one after another (50ms delay between each) - creates a beautiful waterfall effect
+**Effect:** When loading profiles, they **cascade into view** one after another (50ms delay between each) - creates a beautiful waterfall effect
 
 ##### **Premium Loading Indicator**
 ```swift
@@ -217,13 +217,13 @@ ForEach(0..<3, id: \.self) { index in
 #### Visual Comparison:
 
 **BEFORE:**
-- ❌ Cards appear all at once (jarring)
-- ❌ Basic spinner for loading
-- ❌ Skeletons pop in instantly
-- ❌ No haptic feedback on pull-to-refresh
+- Profiles appear all at once (jarring)
+- Basic spinner for loading
+- Skeletons pop in instantly
+- No haptic feedback on pull-to-refresh
 
 **AFTER:**
-- ✅ Cards cascade in with 50ms stagger (smooth waterfall)
+- Profiles cascade in with 50ms stagger (smooth waterfall)
 - ✅ Branded loading with "Finding more people..." message
 - ✅ Skeleton screens animate in with 100ms stagger
 - ✅ Haptic feedback on pull start + completion
@@ -296,7 +296,7 @@ ForEach(0..<8, id: \.self) { index in
 | Aspect | BEFORE | AFTER | Improvement |
 |--------|--------|-------|-------------|
 | **Tab Switching** | Instant (no animation) | Smooth indicator slide + glow | **10x better** 🚀 |
-| **Card Loading** | All at once (jarring) | Staggered cascade (50ms) | **10x smoother** 🎨 |
+| **Profile Loading** | All at once (jarring) | Staggered cascade (50ms) | **10x smoother** |
 | **List Entrance** | Instant pop-in | Slide + stagger (30ms) | **10x more polished** ✨ |
 | **Loading States** | Generic spinners | Branded with messages | **5x more premium** 💎 |
 | **Skeleton Screens** | Static pop-in | Cascading animations | **8x more engaging** 🎭 |
@@ -322,7 +322,7 @@ All animations follow **Apple Human Interface Guidelines** with carefully tuned 
 ### Stagger Timing:
 - **Tab bar**: No stagger (instant feedback required)
 - **Conversation rows**: 30ms stagger (smooth but fast)
-- **Profile cards**: 50ms stagger (noticeable cascade)
+- **Profiles**: 50ms stagger (noticeable cascade)
 - **Skeleton screens**: 50-100ms stagger (visible sequence)
 
 **Why stagger:** Creates **visual rhythm** and **premium feel** - users notice the polish
@@ -333,12 +333,12 @@ All animations follow **Apple Human Interface Guidelines** with carefully tuned 
 
 ### How Your App Compares NOW:
 
-| Gaming Social App | Tab Bar Polish | Card Animations | List Animations | Overall |
+| Gaming Social App | Tab Bar Polish | Profile Animations | List Animations | Overall |
 |-----------|----------------|-----------------|-----------------|---------|
-| **Your App** | ⭐⭐⭐⭐⭐ Glassmorphism + Glow | ⭐⭐⭐⭐⭐ Staggered Cascade | ⭐⭐⭐⭐⭐ Slide + Stagger | **⭐⭐⭐⭐⭐** |
-| Tinder | ⭐⭐⭐ Basic | ⭐⭐⭐ Card swipe only | ⭐⭐⭐ Simple fade | **⭐⭐⭐** |
-| Bumble | ⭐⭐⭐⭐ Good | ⭐⭐⭐ Slide in | ⭐⭐⭐⭐ Smooth | **⭐⭐⭐⭐** |
-| Hinge | ⭐⭐⭐⭐ Nice | ⭐⭐⭐⭐ Card stack | ⭐⭐⭐ Basic | **⭐⭐⭐⭐** |
+| **TeamUp** | Glassmorphism + Glow | Staggered Cascade | Slide + Stagger | **Excellent** |
+| Discord | Basic | Simple fade | Basic | Good |
+| Guilded | Good | Slide in | Smooth | Good |
+| GameTree | Nice | Basic | Basic | Good |
 
 **YOUR APP NOW BEATS ALL COMPETITORS IN UI/UX POLISH** 🏆
 
@@ -385,12 +385,12 @@ All animations follow **Apple Human Interface Guidelines** with carefully tuned 
 ### Discover Feed (FeedDiscoverView):
 ```
 1. User opens Discover tab
-   → First 3 skeleton cards cascade in (100ms apart)
+   → First 3 skeleton placeholders cascade in (100ms apart)
    → Profiles load from server
-   → Skeleton cards fade out
-   → Real profile cards cascade in (50ms apart)
-   → Each card scales from 90% to 100% with fade
-   Duration: Total 500ms for 10 cards
+   → Skeletons fade out
+   → Real profiles cascade in (50ms apart)
+   → Each profile scales from 90% to 100% with fade
+   Duration: Total 500ms for 10 profiles
 ```
 
 **Feel:** Like **Netflix app** loading thumbnails - premium cascade
