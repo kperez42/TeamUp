@@ -331,10 +331,10 @@ struct PremiumUpgradeView: View {
 
     private func previewCardColors(for index: Int) -> [Color] {
         switch index {
-        case 0: return [.blue, .teal.opacity(0.7)]
-        case 1: return [.teal, .blue.opacity(0.7)]
-        case 2: return [.orange, .orange.opacity(0.7)]
-        default: return [.teal, .teal.opacity(0.7)]
+        case 0: return [.blue, .indigo]
+        case 1: return [.teal, .cyan]
+        case 2: return [.orange, .yellow]
+        default: return [.purple, .pink]
         }
     }
 
@@ -621,11 +621,11 @@ struct PremiumUpgradeView: View {
 
     private func blurredAvatarColors(for index: Int) -> [Color] {
         let colorSets: [[Color]] = [
-            [.blue, .teal],
-            [.blue, .teal],
+            [.blue, .indigo],
+            [.purple, .pink],
             [.orange, .yellow],
-            [.blue, .mint],
-            [.teal, .blue]
+            [.teal, .cyan],
+            [.green, .mint]
         ]
         return colorSets[index % colorSets.count]
     }
@@ -805,13 +805,13 @@ struct PremiumUpgradeView: View {
                 .fill(Color.gray.opacity(0.15))
                 .frame(width: 1, height: 45)
 
-            impactStat(value: "10x", label: "More Views", icon: "eye.fill", color: .blue)
+            impactStat(value: "10x", label: "More Views", icon: "eye.fill", color: .purple)
 
             Rectangle()
                 .fill(Color.gray.opacity(0.15))
                 .frame(width: 1, height: 45)
 
-            impactStat(value: "85%", label: "Success Rate", icon: "checkmark.seal.fill", color: .blue)
+            impactStat(value: "85%", label: "Success Rate", icon: "checkmark.seal.fill", color: .green)
         }
         .padding(.vertical, 20)
         .background(Color.white)
