@@ -1337,7 +1337,7 @@ struct OnboardingView: View {
                 }
 
                 VStack(spacing: 8) {
-                    Text("Find Better Teammates")
+                    Text("Get Better Matches")
                         .font(.title)
                         .fontWeight(.bold)
 
@@ -1589,11 +1589,11 @@ struct OnboardingView: View {
                         .foregroundColor(.green)
 
                     VStack(alignment: .leading, spacing: 4) {
-                        Text("40% More Connections")
+                        Text("40% More Matches")
                             .font(.subheadline)
                             .fontWeight(.semibold)
 
-                        Text("Users with complete profiles get significantly more connections")
+                        Text("Users with complete profiles get significantly more matches")
                             .font(.caption)
                             .foregroundColor(.secondary)
                     }
@@ -1654,7 +1654,7 @@ struct OnboardingView: View {
                         .font(.title)
                         .fontWeight(.bold)
 
-                    Text("Help us find compatible teammates")
+                    Text("Help us find compatible matches")
                         .font(.subheadline)
                         .foregroundColor(.secondary)
                         .multilineTextAlignment(.center)
@@ -1720,11 +1720,11 @@ struct OnboardingView: View {
                         .foregroundColor(.yellow)
 
                     VStack(alignment: .leading, spacing: 4) {
-                        Text("Playstyle Matching")
+                        Text("Lifestyle Matching")
                             .font(.subheadline)
                             .fontWeight(.semibold)
 
-                        Text("Users with similar playstyles are 60% more likely to connect")
+                        Text("Users with similar lifestyles are 60% more likely to connect")
                             .font(.caption)
                             .foregroundColor(.secondary)
                     }

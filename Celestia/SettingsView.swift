@@ -149,8 +149,8 @@ struct SettingsView: View {
                         showSeeWhoLikesYou = true
                     } label: {
                         HStack {
-                            Image(systemName: "heart.fill")
-                                .foregroundColor(.pink)
+                            Image(systemName: "gamecontroller.fill")
+                                .foregroundColor(.purple)
                             VStack(alignment: .leading, spacing: 2) {
                                 HStack(spacing: 6) {
                                     Text("See Who's Interested")

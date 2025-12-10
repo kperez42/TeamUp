@@ -17,22 +17,22 @@ struct TeamUpAppShortcuts: AppShortcutsProvider {
         AppShortcut(
             intent: ViewMatchesIntent(),
             phrases: [
-                "View my \(.applicationName) matches",
-                "Show my matches in \(.applicationName)",
-                "Check matches on \(.applicationName)"
+                "View my \(.applicationName) connections",
+                "Show my connections in \(.applicationName)",
+                "Check connections on \(.applicationName)"
             ],
-            shortTitle: "View Matches",
+            shortTitle: "View Connections",
             systemImageName: "gamecontroller.fill"
         )
 
         AppShortcut(
             intent: StartSwipingIntent(),
             phrases: [
-                "Start swiping on \(.applicationName)",
+                "Start browsing on \(.applicationName)",
                 "Discover gamers on \(.applicationName)",
                 "Show me profiles on \(.applicationName)"
             ],
-            shortTitle: "Start Swiping",
+            shortTitle: "Start Browsing",
             systemImageName: "person.2.circle.fill"
         )
 
@@ -97,8 +97,8 @@ struct TeamUpAppShortcuts: AppShortcutsProvider {
 
 @available(iOS 16.0, *)
 struct ViewMatchesIntent: AppIntent {
-    static var title: LocalizedStringResource = "View Matches"
-    static var description = IntentDescription("View your current matches in TeamUp")
+    static var title: LocalizedStringResource = "View Connections"
+    static var description = IntentDescription("View your current connections in TeamUp")
     static var openAppWhenRun: Bool = true
 
     @MainActor
@@ -118,7 +118,7 @@ struct ViewMatchesIntent: AppIntent {
 
 @available(iOS 16.0, *)
 struct StartSwipingIntent: AppIntent {
-    static var title: LocalizedStringResource = "Start Swiping"
+    static var title: LocalizedStringResource = "Start Browsing"
     static var description = IntentDescription("Start discovering new gamers on TeamUp")
     static var openAppWhenRun: Bool = true
 

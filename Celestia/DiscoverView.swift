@@ -280,20 +280,20 @@ struct DiscoverView: View {
                     ) {
                         Task {
                             await viewModel.handleSuperLike()
-                            VoiceOverAnnouncement.announce("Priority request sent!")
+                            VoiceOverAnnouncement.announce("Super like sent!")
                         }
                     }
                     .accessibilityElement(
-                        label: "Priority Request",
-                        hint: "Send a priority request to stand out and increase your chances of connecting",
+                        label: "Super Like",
+                        hint: "Send a super like to stand out and increase your chances of matching",
                         traits: .isButton,
                         identifier: AccessibilityIdentifier.superLikeButton
                     )
                     .disabled(viewModel.isProcessingAction)
 
-                    // Like button
+                    // Interest button
                     SwipeActionButton(
-                        icon: "heart.fill",
+                        icon: "gamecontroller.fill",
                         iconSize: .title,
                         iconWeight: .bold,
                         size: 68,
@@ -303,7 +303,7 @@ struct DiscoverView: View {
                     ) {
                         Task {
                             await viewModel.handleLike()
-                            VoiceOverAnnouncement.announce("Liked! Next profile.")
+                            VoiceOverAnnouncement.announce("Interest sent! Next profile.")
                         }
                     }
                     .accessibilityElement(
@@ -404,7 +404,7 @@ struct DiscoverView: View {
                 )
 
             VStack(spacing: 12) {
-                Text(viewModel.hasActiveFilters ? "No Results Found" : "No More Profiles")
+                Text(viewModel.hasActiveFilters ? "No Matches Found" : "No More Profiles")
                     .font(.title2)
                     .fontWeight(.bold)
                     .dynamicTypeSize(min: .large, max: .accessibility2)
@@ -490,7 +490,7 @@ struct DiscoverView: View {
                     .font(.system(size: 80))
                     .foregroundColor(.yellow)
 
-                Text("You're Connected! 🎮")
+                Text("It's a Match! 🎉")
                     .font(.largeTitle)
                     .fontWeight(.bold)
                     .foregroundColor(.white)
@@ -547,9 +547,9 @@ struct DiscoverView: View {
                 }
             }
             .overlay(alignment: .topTrailing) {
-                // Like indicator
+                // Interest indicator
                 if cardIndex == 0 && viewModel.dragOffset.width > 50 {
-                    swipeIndicator(icon: "heart.fill", color: .green, text: "LIKE")
+                    swipeIndicator(icon: "gamecontroller.fill", color: .green, text: "INTERESTED")
                         .opacity(min(1.0, Double(viewModel.dragOffset.width) / 100.0))
                 }
             }
@@ -566,13 +566,13 @@ struct DiscoverView: View {
             .contentShape(Rectangle()) // Define tappable area
             .accessibilityElement(
                 label: cardIndex == 0 ? "\(user.fullName), \(user.age) years old, from \(user.location)" : "",
-                hint: cardIndex == 0 ? "Tap the buttons to show interest or pass, or tap the card for full profile. Use the action buttons below for more options" : "",
+                hint: cardIndex == 0 ? "Tap to show interest or pass, or tap the card for full profile. Use the action buttons below for more options" : "",
                 traits: cardIndex == 0 ? .isButton : [],
                 identifier: cardIndex == 0 ? AccessibilityIdentifier.userCard : nil,
                 isHidden: cardIndex != 0
             )
             .accessibilityActions(cardIndex == 0 ? [
-                AccessibilityCustomAction(name: "Like") {
+                AccessibilityCustomAction(name: "Show Interest") {
                     Task { await viewModel.handleLike() }
                 },
                 AccessibilityCustomAction(name: "Pass") {

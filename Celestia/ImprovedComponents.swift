@@ -432,8 +432,8 @@ struct ImprovedUserDetailSheet: View {
                 onSendInterest()
             } label: {
                 HStack(spacing: 8) {
-                    Image(systemName: "heart.fill")
-                    Text("Like")
+                    Image(systemName: "gamecontroller.fill")
+                    Text("Interested")
                         .fontWeight(.semibold)
                 }
                 .foregroundColor(.white)
@@ -441,7 +441,7 @@ struct ImprovedUserDetailSheet: View {
                 .frame(height: 56)
                 .background(
                     LinearGradient(
-                        colors: [Color.pink, Color.purple],
+                        colors: [Color.purple, Color.indigo],
                         startPoint: .leading,
                         endPoint: .trailing
                     )

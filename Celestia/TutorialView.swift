@@ -313,12 +313,12 @@ class TutorialManager: ObservableObject {
             Tutorial(
                 id: "scrolling",
                 title: "Discover & Scroll",
-                description: "Scroll through profiles one by one. Tap the heart to like or tap the profile card for more details!",
+                description: "Scroll through profiles one by one. Tap to show interest or tap the profile card for more details!",
                 icon: "arrow.up.arrow.down",
-                accentColor: .pink,
+                accentColor: .purple,
                 tips: [
                     "Scroll up and down to browse profiles",
-                    "Tap the heart button to like someone",
+                    "Tap the button to show interest in someone",
                     "Tap the star to save profiles for later"
                 ],
                 interactiveDemo: AnyView(ScrollBrowseDemo())
@@ -327,7 +327,7 @@ class TutorialManager: ObservableObject {
             Tutorial(
                 id: "connecting",
                 title: "Make Connections",
-                description: "When someone you showed interest in is also interested, you'll both be notified and can start chatting!",
+                description: "When someone you're interested in is also interested, you'll both be notified and can start chatting!",
                 icon: "gamecontroller.fill",
                 accentColor: .purple,
                 tips: [
@@ -385,14 +385,14 @@ class TutorialManager: ObservableObject {
         case "super_like":
             return Tutorial(
                 id: "super_like",
-                title: "Priority Request ⭐",
-                description: "Stand out from the crowd! Priority Requests show you're really interested in teaming up.",
+                title: "Super Like ⭐",
+                description: "Stand out from the crowd! Super Likes show you're really interested.",
                 icon: "star.circle.fill",
                 accentColor: .blue,
                 tips: [
-                    "You get 1 free Priority Request per day",
+                    "You get 1 free Super Like per day",
                     "Premium users get 5 per day",
-                    "Use them on profiles you really want to team up with!"
+                    "Use them on profiles you really like!"
                 ]
             )
 
@@ -508,7 +508,7 @@ struct SwipeGestureDemo: View {
 
     var body: some View {
         VStack(spacing: 12) {
-            Text("Try it! Tap the buttons below")
+            Text("Try it! Swipe left or right")
                 .font(.caption)
                 .foregroundColor(.secondary)
 
@@ -526,7 +526,7 @@ struct SwipeGestureDemo: View {
                             Text("Demo Profile")
                                 .font(.headline)
 
-                            Text("Check it out!")
+                            Text("Swipe me!")
                                 .font(.caption)
                                 .foregroundColor(.secondary)
                         }
@@ -597,7 +597,7 @@ struct MessageDemo: View {
                 // Sample message bubble
                 HStack {
                     Spacer()
-                    Text("Hey! Nice to connect with you 👋")
+                    Text("Hey! Nice to match with you 👋")
                         .padding(12)
                         .background(Color.purple.opacity(0.2))
                         .cornerRadius(16)

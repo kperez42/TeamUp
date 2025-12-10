@@ -653,9 +653,9 @@ enum NotificationPayload {
         if parts.isEmpty {
             let bodies = [
                 "New gamers are waiting to be discovered!",
-                "Swipe now - your perfect teammate could be next!",
+                "Browse now - your perfect teammate could be next!",
                 "Don't miss out on today's squad connections",
-                "The more you swipe, the more you team up!"
+                "The more you browse, the more you team up!"
             ]
             return bodies.randomElement() ?? "Open the app to see what's new!"
         }

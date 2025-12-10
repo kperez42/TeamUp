@@ -93,7 +93,7 @@ struct SeeWhoLikesYouView: View {
                     .foregroundColor(.primary)
             }
 
-            Text(viewModel.usersWhoLiked.count == 1 ? "gamer wants to team up" : "gamers want to team up")
+            Text(viewModel.usersWhoLiked.count == 1 ? "person likes you" : "people like you")
                 .font(.title3)
                 .foregroundColor(.secondary)
         }
@@ -118,7 +118,7 @@ struct SeeWhoLikesYouView: View {
                         .font(.headline)
                         .foregroundColor(.primary)
 
-                    Text("See who wants to team up without limits")
+                    Text("See who's interested without limits")
                         .font(.subheadline)
                         .foregroundColor(.secondary)
                 }
@@ -188,7 +188,7 @@ struct SeeWhoLikesYouView: View {
 
     private var emptyStateView: some View {
         VStack(spacing: 24) {
-            Image(systemName: "heart.slash")
+            Image(systemName: "gamecontroller")
                 .font(.system(size: 80))
                 .foregroundColor(.gray.opacity(0.5))
 

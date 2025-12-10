@@ -556,7 +556,7 @@ struct MatchesView: View {
                 .cornerRadius(16)
                 .contentShape(RoundedRectangle(cornerRadius: 16))
 
-                Text("Tap the first tab to start swiping")
+                Text("Tap the first tab to start browsing")
                     .font(.caption)
                     .foregroundColor(.secondary)
             }
