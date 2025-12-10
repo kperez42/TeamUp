@@ -174,7 +174,7 @@ struct ImprovedUserCard: View {
             if offset.width > 20 {
                 SwipeLabel(
                     text: "CONNECT",
-                    color: .green,
+                    color: .blue,
                     rotation: -15
                 )
                 .opacity(min(Double(offset.width / swipeThreshold), 1.0))

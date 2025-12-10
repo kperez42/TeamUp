@@ -1708,7 +1708,7 @@ struct EditProfileView: View {
                             ForEach(languages, id: \.self) { language in
                                 TagChip(
                                     text: language,
-                                    color: .green,
+                                    color: .blue,
                                     onRemove: { languages.removeAll { $0 == language } }
                                 )
                             }
@@ -2048,7 +2048,7 @@ struct EditProfileView: View {
                     ForEach(languages, id: \.self) { language in
                         TagChip(
                             text: language,
-                            color: .green,
+                            color: .blue,
                             onRemove: { languages.removeAll { $0 == language } }
                         )
                     }
@@ -2118,7 +2118,7 @@ struct EditProfileView: View {
     private var promptsSection: some View {
         VStack(spacing: 15) {
             HStack {
-                SectionHeader(icon: "quote.bubble.fill", title: "Profile Prompts", color: .green)
+                SectionHeader(icon: "quote.bubble.fill", title: "Profile Prompts", color: .teal)
 
                 Spacer()
 

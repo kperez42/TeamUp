@@ -1689,7 +1689,7 @@ struct OnboardingView: View {
                     lifestyleOptionSelector(
                         title: "Religion / Spirituality",
                         icon: "sparkles",
-                        color: .green,
+                        color: .blue,
                         options: religionOptions,
                         selection: $religion
                     )
@@ -1796,7 +1796,7 @@ struct OnboardingView: View {
                     lifestyleOptionSelector(
                         title: "Diet",
                         icon: "fork.knife",
-                        color: .green,
+                        color: .teal,
                         options: dietOptions,
                         selection: $diet
                     )
