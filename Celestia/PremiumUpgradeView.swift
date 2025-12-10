@@ -331,8 +331,8 @@ struct PremiumUpgradeView: View {
 
     private func previewCardColors(for index: Int) -> [Color] {
         switch index {
-        case 0: return [.purple, .green.opacity(0.7)]
-        case 1: return [.pink, .cyan.opacity(0.7)]
+        case 0: return [.green, .cyan.opacity(0.7)]
+        case 1: return [.cyan, .green.opacity(0.7)]
         case 2: return [.orange, .orange.opacity(0.7)]
         default: return [.cyan, .cyan.opacity(0.7)]
         }
@@ -621,11 +621,11 @@ struct PremiumUpgradeView: View {
 
     private func blurredAvatarColors(for index: Int) -> [Color] {
         let colorSets: [[Color]] = [
-            [.pink, .purple],
+            [.green, .cyan],
             [.blue, .cyan],
             [.orange, .yellow],
             [.green, .mint],
-            [.purple, .indigo]
+            [.cyan, .blue]
         ]
         return colorSets[index % colorSets.count]
     }

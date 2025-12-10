@@ -935,7 +935,7 @@ struct SignUpView: View {
 
                         Image(systemName: "photo.stack.fill")
                             .font(.system(size: 24))
-                            .foregroundColor(.pink)
+                            .foregroundColor(.green)
                     }
 
                     VStack(alignment: .leading, spacing: 4) {
@@ -1045,7 +1045,7 @@ struct SignUpView: View {
                     .padding(.vertical, 16)
                     .background(
                         LinearGradient(
-                            colors: [Color.purple, Color.pink, Color.orange.opacity(0.8)],
+                            colors: [Color.green, Color.cyan, Color.blue.opacity(0.8)],
                             startPoint: .leading,
                             endPoint: .trailing
                         )
@@ -1238,7 +1238,7 @@ struct SignUpView: View {
                     Spacer()
                     Text("\(selectedInterests.count) selected")
                         .font(.caption)
-                        .foregroundColor(selectedInterests.count >= 3 ? .purple : .green.opacity(0.6))
+                        .foregroundColor(selectedInterests.count >= 3 ? .green : .green.opacity(0.6))
                 }
 
                 if selectedInterests.count < 3 {
@@ -1566,7 +1566,7 @@ struct SignUpView: View {
                         .padding(.vertical, 5)
                         .background(
                             LinearGradient(
-                                colors: [.pink, .purple],
+                                colors: [.green, .cyan],
                                 startPoint: .leading,
                                 endPoint: .trailing
                             )
@@ -1809,7 +1809,7 @@ struct SignUpView: View {
         } else if photoImages.count < 4 {
             return .green
         } else {
-            return .purple
+            return .cyan
         }
     }
 
