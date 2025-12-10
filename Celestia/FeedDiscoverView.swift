@@ -46,7 +46,7 @@ struct FeedDiscoverView: View {
     @State private var showActionToast = false
     @State private var toastMessage = ""
     @State private var toastIcon = ""
-    @State private var toastColor: Color = .green
+    @State private var toastColor: Color = .blue
 
     private let usersPerPage = 10
     private let preloadThreshold = 3 // Load more when 3 items from bottom
@@ -809,7 +809,7 @@ struct FeedDiscoverView: View {
         VStack(spacing: 12) {
             Image(systemName: "checkmark.circle.fill")
                 .font(.system(size: 40))
-                .foregroundColor(.green)
+                .foregroundColor(.blue)
 
             Text("You've seen everyone!")
                 .font(.headline)
@@ -1142,7 +1142,7 @@ struct FeedDiscoverView: View {
                         showToast(
                             message: "Interested in \(truncatedName)!",
                             icon: "gamecontroller.fill",
-                            color: .green
+                            color: .blue
                         )
                     }
                 }

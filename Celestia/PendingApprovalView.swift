@@ -304,7 +304,7 @@ struct PendingApprovalView: View {
                     icon: "shield.checkered",
                     title: "Community Guidelines",
                     description: "Content follows our safety policies",
-                    color: .green
+                    color: .teal
                 )
             }
         }
