@@ -998,7 +998,7 @@ struct ChatView: View {
                     ZStack {
                         if isSending {
                             ProgressView()
-                                .progressViewStyle(CircularProgressViewStyle(tint: .green))
+                                .progressViewStyle(CircularProgressViewStyle(tint: .blue))
                         } else {
                             Image(systemName: (messageText.isEmpty && selectedImage == nil) ? "arrow.up.circle" : "arrow.up.circle.fill")
                                 .font(.largeTitle)

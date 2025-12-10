@@ -1312,7 +1312,7 @@ struct ProfileView: View {
                         .padding(.vertical, 8)
                         .background(
                             LinearGradient(
-                                colors: [Color.cyan.opacity(0.15), Color.blue.opacity(0.1)],
+                                colors: [Color.teal.opacity(0.15), Color.blue.opacity(0.1)],
                                 startPoint: .topLeading,
                                 endPoint: .bottomTrailing
                             )
@@ -1321,7 +1321,7 @@ struct ProfileView: View {
                         .cornerRadius(20)
                         .overlay(
                             RoundedRectangle(cornerRadius: 20)
-                                .stroke(Color.cyan.opacity(0.2), lineWidth: 1)
+                                .stroke(Color.teal.opacity(0.2), lineWidth: 1)
                         )
                 }
             }
@@ -1396,7 +1396,7 @@ struct ProfileView: View {
                         icon: "checkmark.seal.fill",
                         title: "Verified",
                         subtitle: "Trusted",
-                        colors: [.blue, .cyan]
+                        colors: [.blue, .teal]
                     )
                 }
             }

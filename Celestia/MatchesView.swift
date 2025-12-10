@@ -384,7 +384,7 @@ struct MatchesView: View {
                     .foregroundColor(.blue)
                     .padding(.horizontal, 12)
                     .padding(.vertical, 8)
-                    .background(Color.green.opacity(0.1))
+                    .background(Color.blue.opacity(0.1))
                     .cornerRadius(20)
                 }
                 .accessibilityLabel("Sort connections by \(sortOption.rawValue)")
@@ -417,17 +417,17 @@ struct MatchesView: View {
                         .clipShape(Capsule())
                 }
             }
-            .foregroundColor(isActive ? .white : .green)
+            .foregroundColor(isActive ? .white : .blue)
             .padding(.horizontal, 12)
             .padding(.vertical, 8)
             .background(
                 isActive ?
                 LinearGradient(
-                    colors: [Color.green, Color.cyan],
+                    colors: [Color.blue, Color.teal],
                     startPoint: .leading,
                     endPoint: .trailing
                 ) :
-                LinearGradient(colors: [Color.green.opacity(0.1)], startPoint: .leading, endPoint: .trailing)
+                LinearGradient(colors: [Color.blue.opacity(0.1)], startPoint: .leading, endPoint: .trailing)
             )
             .cornerRadius(20)
         }
@@ -501,7 +501,7 @@ struct MatchesView: View {
                 Circle()
                     .fill(
                         LinearGradient(
-                            colors: [Color.green.opacity(0.2), Color.cyan.opacity(0.1)],
+                            colors: [Color.blue.opacity(0.2), Color.teal.opacity(0.1)],
                             startPoint: .topLeading,
                             endPoint: .bottomTrailing
                         )
@@ -770,7 +770,7 @@ struct MatchProfileCard: View {
                             .padding(.vertical, 6)
                             .background(
                                 LinearGradient(
-                                    colors: [Color.green, Color.cyan],
+                                    colors: [Color.blue, Color.teal],
                                     startPoint: .leading,
                                     endPoint: .trailing
                                 )
@@ -833,7 +833,7 @@ struct MatchProfileCard: View {
                         .padding(.vertical, 4)
                         .background(
                             LinearGradient(
-                                colors: [Color.green.opacity(0.8), Color.cyan.opacity(0.8)],
+                                colors: [Color.blue.opacity(0.8), Color.teal.opacity(0.8)],
                                 startPoint: .leading,
                                 endPoint: .trailing
                             )
@@ -847,7 +847,7 @@ struct MatchProfileCard: View {
                         .padding(.vertical, 4)
                         .background(
                             LinearGradient(
-                                colors: [Color.green.opacity(0.8), Color.cyan.opacity(0.8)],
+                                colors: [Color.blue.opacity(0.8), Color.teal.opacity(0.8)],
                                 startPoint: .leading,
                                 endPoint: .trailing
                             )
@@ -866,7 +866,7 @@ struct MatchProfileCard: View {
                 .stroke(
                     isNewMatch ?
                     LinearGradient(
-                        colors: [Color.green.opacity(0.4), Color.cyan.opacity(0.4)],
+                        colors: [Color.blue.opacity(0.4), Color.teal.opacity(0.4)],
                         startPoint: .topLeading,
                         endPoint: .bottomTrailing
                     ) :
@@ -917,7 +917,7 @@ struct MatchProfileCard: View {
     private var placeholderImage: some View {
         ZStack {
             LinearGradient(
-                colors: [Color.green.opacity(0.7), Color.cyan.opacity(0.5)],
+                colors: [Color.blue.opacity(0.7), Color.teal.opacity(0.5)],
                 startPoint: .topLeading,
                 endPoint: .bottomTrailing
             )

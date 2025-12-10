@@ -306,7 +306,7 @@ extension View {
 
 struct Confetti: View {
     @State private var animate = false
-    let colors: [Color] = [.red, .blue, .green, .yellow, .orange, .pink, .purple]
+    let colors: [Color] = [.red, .blue, .blue, .yellow, .orange, .pink, .purple]
 
     var body: some View {
         ZStack {
@@ -417,7 +417,7 @@ struct LoadingDots: View {
         HStack(spacing: 8) {
             ForEach(0..<3) { index in
                 Circle()
-                    .fill(Color.green)
+                    .fill(Color.blue)
                     .frame(width: 12, height: 12)
                     .scaleEffect(animating ? 1.0 : 0.5)
                     .opacity(animating ? 1.0 : 0.3)
@@ -640,6 +640,6 @@ extension View {
 }
 
 #Preview("Animated Gradient") {
-    AnimatedGradient(colors: [.green, .cyan, .blue])
+    AnimatedGradient(colors: [.blue, .teal, .blue])
         .ignoresSafeArea()
 }

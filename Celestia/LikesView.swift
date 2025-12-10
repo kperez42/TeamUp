@@ -378,7 +378,7 @@ struct LikesView: View {
                 colors: [
                     Color.blue.opacity(0.9),
                     Color.teal.opacity(0.8),
-                    Color.cyan.opacity(0.7)
+                    Color.teal.opacity(0.7)
                 ],
                 startPoint: .topLeading,
                 endPoint: .bottomTrailing
@@ -522,7 +522,7 @@ struct LikesView: View {
                                     .clipShape(Capsule())
                             }
                         }
-                        .foregroundColor(selectedTab == index ? .green : .gray)
+                        .foregroundColor(selectedTab == index ? .blue : .gray)
 
                         Rectangle()
                             .fill(selectedTab == index ? Color.blue : Color.clear)
@@ -726,7 +726,7 @@ struct LikesView: View {
                     )
                 )
                 .cornerRadius(14)
-                .shadow(color: .cyan.opacity(0.4), radius: 10, y: 5)
+                .shadow(color: .teal.opacity(0.4), radius: 10, y: 5)
             }
         }
         .padding(24)
@@ -744,8 +744,8 @@ struct LikesView: View {
                 .foregroundColor(.primary)
 
             VStack(spacing: 12) {
-                premiumFeatureRow(icon: "eye.fill", title: "See Who's Interested", description: "Connect instantly with gamers who want to team up", color: .cyan)
-                premiumFeatureRow(icon: "infinity", title: "Unlimited Interest", description: "No daily limits, show interest as much as you want", color: .green)
+                premiumFeatureRow(icon: "eye.fill", title: "See Who's Interested", description: "Connect instantly with gamers who want to team up", color: .teal)
+                premiumFeatureRow(icon: "infinity", title: "Unlimited Interest", description: "No daily limits, show interest as much as you want", color: .blue)
                 premiumFeatureRow(icon: "bolt.fill", title: "Profile Boost", description: "Get 10x more views with monthly boosts", color: .orange)
             }
         }
@@ -1108,7 +1108,7 @@ struct BlurredLikeCard: View {
                         .frame(height: imageHeight)
                 } else {
                     LinearGradient(
-                        colors: [.green.opacity(0.7), .cyan.opacity(0.6)],
+                        colors: [.blue.opacity(0.7), .teal.opacity(0.6)],
                         startPoint: .topLeading,
                         endPoint: .bottomTrailing
                     )

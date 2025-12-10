@@ -212,7 +212,7 @@ struct PremiumUpgradeView: View {
                         Circle()
                             .fill(
                                 RadialGradient(
-                                    colors: [.green.opacity(0.15), .clear],
+                                    colors: [.blue.opacity(0.15), .clear],
                                     center: .center,
                                     startRadius: 20,
                                     endRadius: CGFloat(60 + i * 20)
@@ -233,7 +233,7 @@ struct PremiumUpgradeView: View {
                     Circle()
                         .fill(
                             LinearGradient(
-                                colors: [Color.green.opacity(0.2), Color.cyan.opacity(0.15)],
+                                colors: [Color.blue.opacity(0.2), Color.teal.opacity(0.15)],
                                 startPoint: .topLeading,
                                 endPoint: .bottomTrailing
                             )
@@ -363,7 +363,7 @@ struct PremiumUpgradeView: View {
             // Icon
             ZStack {
                 Circle()
-                    .fill(Color.green.opacity(0.15))
+                    .fill(Color.blue.opacity(0.15))
                     .frame(width: 44, height: 44)
 
                 Image(systemName: "gamecontroller")
@@ -393,7 +393,7 @@ struct PremiumUpgradeView: View {
         .padding(16)
         .background(
             LinearGradient(
-                colors: [Color.green.opacity(0.1), Color.cyan.opacity(0.06)],
+                colors: [Color.blue.opacity(0.1), Color.teal.opacity(0.06)],
                 startPoint: .leading,
                 endPoint: .trailing
             )
@@ -411,7 +411,7 @@ struct PremiumUpgradeView: View {
                     lineWidth: 1.5
                 )
         )
-        .shadow(color: .green.opacity(0.15), radius: 10, y: 5)
+        .shadow(color: .blue.opacity(0.15), radius: 10, y: 5)
     }
 
     // MARK: - Limited Time Banner
@@ -526,7 +526,7 @@ struct PremiumUpgradeView: View {
                             .foregroundColor(.white)
                             .padding(.horizontal, 8)
                             .padding(.vertical, 4)
-                            .background(Color.cyan)
+                            .background(Color.teal)
                             .clipShape(Capsule())
                     }
 
@@ -616,7 +616,7 @@ struct PremiumUpgradeView: View {
         .padding(20)
         .background(Color.white)
         .cornerRadius(20)
-        .shadow(color: .cyan.opacity(0.15), radius: 15, y: 8)
+        .shadow(color: .teal.opacity(0.15), radius: 15, y: 8)
     }
 
     private func blurredAvatarColors(for index: Int) -> [Color] {
@@ -662,7 +662,7 @@ struct PremiumUpgradeView: View {
                         .font(.title2)
                         .foregroundColor(.white)
                 }
-                .shadow(color: .green.opacity(0.4), radius: 8, y: 4)
+                .shadow(color: .blue.opacity(0.4), radius: 8, y: 4)
             }
 
             VStack(alignment: .leading, spacing: 6) {
@@ -728,7 +728,7 @@ struct PremiumUpgradeView: View {
                         .frame(width: 8, height: 8)
                         .overlay(
                             Circle()
-                                .stroke(.green.opacity(0.5), lineWidth: 2)
+                                .stroke(.blue.opacity(0.5), lineWidth: 2)
                                 .scaleEffect(pulseGlow ? 1.5 : 1)
                                 .opacity(pulseGlow ? 0 : 0.5)
                         )
@@ -746,9 +746,9 @@ struct PremiumUpgradeView: View {
 
     private var showcaseCard: some View {
         let showcases = [
-            ("23 gamers are interested in you", "gamecontroller.fill", Color.cyan, "See who they are with Premium"),
-            ("You're missing 15+ profiles", "eye.slash.fill", Color.green, "Get unlimited browsing"),
-            ("Unlimited interest available", "gamecontroller.fill", Color.green, "Show interest in as many profiles as you want"),
+            ("23 gamers are interested in you", "gamecontroller.fill", Color.teal, "See who they are with Premium"),
+            ("You're missing 15+ profiles", "eye.slash.fill", Color.blue, "Get unlimited browsing"),
+            ("Unlimited interest available", "gamecontroller.fill", Color.blue, "Show interest in as many profiles as you want"),
             ("Send unlimited messages", "message.circle.fill", Color.blue, "Connect with any gamer you want")
         ]
 
@@ -796,19 +796,19 @@ struct PremiumUpgradeView: View {
 
     private var impactStats: some View {
         HStack(spacing: 0) {
-            impactStat(value: "3x", label: "More Connections", icon: "gamecontroller.fill", color: .green)
+            impactStat(value: "3x", label: "More Connections", icon: "gamecontroller.fill", color: .blue)
 
             Rectangle()
                 .fill(Color.gray.opacity(0.15))
                 .frame(width: 1, height: 45)
 
-            impactStat(value: "10x", label: "More Views", icon: "eye.fill", color: .green)
+            impactStat(value: "10x", label: "More Views", icon: "eye.fill", color: .blue)
 
             Rectangle()
                 .fill(Color.gray.opacity(0.15))
                 .frame(width: 1, height: 45)
 
-            impactStat(value: "85%", label: "Success Rate", icon: "checkmark.seal.fill", color: .green)
+            impactStat(value: "85%", label: "Success Rate", icon: "checkmark.seal.fill", color: .blue)
         }
         .padding(.vertical, 20)
         .background(Color.white)
@@ -957,14 +957,14 @@ struct PremiumUpgradeView: View {
                     initials: "JM",
                     name: "Jake M.",
                     story: "Found my squad within 2 weeks! The 'See Who's Interested' feature was a game changer.",
-                    color: .green
+                    color: .blue
                 )
 
                 successStoryCard(
                     initials: "SE",
                     name: "Sarah E.",
                     story: "So many more quality teammates since upgrading. Unlimited likes means I never miss a connection.",
-                    color: .cyan
+                    color: .teal
                 )
 
                 successStoryCard(
@@ -1030,13 +1030,13 @@ struct PremiumUpgradeView: View {
         HStack(spacing: 16) {
             ZStack {
                 Circle()
-                    .fill(Color.green.opacity(0.12))
+                    .fill(Color.blue.opacity(0.12))
                     .frame(width: 50, height: 50)
                 Image(systemName: "checkmark.shield.fill")
                     .font(.title2)
                     .foregroundStyle(
                         LinearGradient(
-                            colors: [.green, .mint],
+                            colors: [.blue, .mint],
                             startPoint: .top,
                             endPoint: .bottom
                         )
@@ -1056,7 +1056,7 @@ struct PremiumUpgradeView: View {
         .padding(18)
         .background(
             LinearGradient(
-                colors: [Color.green.opacity(0.08), Color.mint.opacity(0.04)],
+                colors: [Color.blue.opacity(0.08), Color.mint.opacity(0.04)],
                 startPoint: .leading,
                 endPoint: .trailing
             )
@@ -1065,9 +1065,9 @@ struct PremiumUpgradeView: View {
         .cornerRadius(16)
         .overlay(
             RoundedRectangle(cornerRadius: 16)
-                .stroke(Color.green.opacity(0.2), lineWidth: 1)
+                .stroke(Color.blue.opacity(0.2), lineWidth: 1)
         )
-        .shadow(color: .green.opacity(0.08), radius: 8, y: 4)
+        .shadow(color: .blue.opacity(0.08), radius: 8, y: 4)
     }
 
     // MARK: - FAQ Section
@@ -1133,7 +1133,7 @@ struct PremiumUpgradeView: View {
                     )
                 )
                 .cornerRadius(16)
-                .shadow(color: .green.opacity(0.3), radius: 12, y: 6)
+                .shadow(color: .blue.opacity(0.3), radius: 12, y: 6)
             }
             .disabled(isProcessing)
 
@@ -1327,7 +1327,7 @@ struct PremiumPlanCard: View {
                 // Selection indicator
                 ZStack {
                     Circle()
-                        .stroke(isSelected ? Color.green : Color.gray.opacity(0.3), lineWidth: 2)
+                        .stroke(isSelected ? Color.blue : Color.gray.opacity(0.3), lineWidth: 2)
                         .frame(width: 24, height: 24)
 
                     if isSelected {
@@ -1360,7 +1360,7 @@ struct PremiumPlanCard: View {
                                 .padding(.vertical, 2)
                                 .background(
                                     LinearGradient(
-                                        colors: [.green, .mint],
+                                        colors: [.blue, .mint],
                                         startPoint: .leading,
                                         endPoint: .trailing
                                     )

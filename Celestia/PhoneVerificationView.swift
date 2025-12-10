@@ -220,7 +220,7 @@ struct PhoneVerificationView: View {
                 .padding()
                 .background(
                     LinearGradient(
-                        colors: codeInput.count != 6 ? [.gray, .gray] : [.green, .blue],
+                        colors: codeInput.count != 6 ? [.gray, .gray] : [.blue, .teal],
                         startPoint: .leading,
                         endPoint: .trailing
                     )
@@ -262,7 +262,7 @@ struct PhoneVerificationView: View {
                     .font(.system(size: 60))
                     .foregroundStyle(
                         LinearGradient(
-                            colors: [.green, .blue],
+                            colors: [.blue, .teal],
                             startPoint: .topLeading,
                             endPoint: .bottomTrailing
                         )
@@ -297,7 +297,7 @@ struct PhoneVerificationView: View {
                 .padding()
                 .background(
                     LinearGradient(
-                        colors: [.green, .blue],
+                        colors: [.blue, .teal],
                         startPoint: .leading,
                         endPoint: .trailing
                     )

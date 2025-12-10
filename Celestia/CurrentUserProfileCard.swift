@@ -84,7 +84,7 @@ struct CurrentUserProfileCard: View {
 
                     Image(systemName: "mappin.circle.fill")
                         .font(.caption)
-                        .foregroundColor(.green)
+                        .foregroundColor(.blue)
 
                     Text("\(user.location), \(user.country)")
                         .font(.subheadline)
@@ -98,7 +98,7 @@ struct CurrentUserProfileCard: View {
                 HStack(spacing: 4) {
                     Image(systemName: "gamecontroller.fill")
                         .font(.caption)
-                        .foregroundColor(.cyan)
+                        .foregroundColor(.teal)
 
                     Text("\(user.playStyle) • \(user.platforms.prefix(2).joined(separator: ", "))")
                         .font(.subheadline)
@@ -112,7 +112,7 @@ struct CurrentUserProfileCard: View {
                     HStack(spacing: 4) {
                         Image(systemName: "photo.stack.fill")
                             .font(.caption)
-                            .foregroundColor(.green)
+                            .foregroundColor(.blue)
 
                         Text("\(user.photos.count) photo\(user.photos.count == 1 ? "" : "s")")
                             .font(.subheadline)

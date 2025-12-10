@@ -274,7 +274,7 @@ struct DiscoverView: View {
                         iconSize: .title2,
                         iconWeight: .semibold,
                         size: 60,
-                        colors: [Color.blue, Color.cyan],
+                        colors: [Color.blue, Color.teal],
                         shadowColor: .blue.opacity(0.4),
                         isProcessing: viewModel.isProcessingAction
                     ) {
@@ -298,7 +298,7 @@ struct DiscoverView: View {
                         iconWeight: .bold,
                         size: 68,
                         colors: [Color.blue.opacity(0.9), Color.blue],
-                        shadowColor: .green.opacity(0.4),
+                        shadowColor: .blue.opacity(0.4),
                         isProcessing: viewModel.isProcessingAction
                     ) {
                         Task {
@@ -549,7 +549,7 @@ struct DiscoverView: View {
             .overlay(alignment: .topTrailing) {
                 // Interest indicator
                 if cardIndex == 0 && viewModel.dragOffset.width > 50 {
-                    swipeIndicator(icon: "gamecontroller.fill", color: .green, text: "INTERESTED")
+                    swipeIndicator(icon: "gamecontroller.fill", color: .blue, text: "INTERESTED")
                         .opacity(min(1.0, Double(viewModel.dragOffset.width) / 100.0))
                 }
             }

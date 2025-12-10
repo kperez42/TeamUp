@@ -268,7 +268,7 @@ struct ProfileInsightsView: View {
                     title: "Shutterbug",
                     subtitle: "6 photos",
                     isUnlocked: (authService.currentUser?.photos.count ?? 0) >= 6,
-                    color: .green
+                    color: .blue
                 )
 
                 achievementBadge(
@@ -276,7 +276,7 @@ struct ProfileInsightsView: View {
                     title: "Popular Gamer",
                     subtitle: "50+ interest",
                     isUnlocked: insights.likesReceived >= 50,
-                    color: .green
+                    color: .blue
                 )
 
                 achievementBadge(
@@ -292,7 +292,7 @@ struct ProfileInsightsView: View {
                     title: "Verified",
                     subtitle: "ID check",
                     isUnlocked: authService.currentUser?.isVerified ?? false,
-                    color: .cyan
+                    color: .teal
                 )
 
                 achievementBadge(
@@ -308,7 +308,7 @@ struct ProfileInsightsView: View {
                     title: "Active",
                     subtitle: "7+ days",
                     isUnlocked: insights.daysActive >= 7,
-                    color: .green
+                    color: .blue
                 )
             }
         }
@@ -392,7 +392,7 @@ struct ProfileInsightsView: View {
                 .padding()
                 .background(
                     LinearGradient(
-                        colors: [.green.opacity(0.1), .cyan.opacity(0.05)],
+                        colors: [.blue.opacity(0.1), .teal.opacity(0.05)],
                         startPoint: .topLeading,
                         endPoint: .bottomTrailing
                     )
@@ -402,8 +402,8 @@ struct ProfileInsightsView: View {
                 // Quick stats
                 VStack(alignment: .leading, spacing: 12) {
                     rankingStat(icon: "eye.fill", label: "Views today", value: "\(Int.random(in: 5...20))", color: .blue)
-                    rankingStat(icon: "gamecontroller.fill", label: "Interest today", value: "\(Int.random(in: 2...10))", color: .green)
-                    rankingStat(icon: "message.fill", label: "Messages", value: "\(Int.random(in: 1...5))", color: .green)
+                    rankingStat(icon: "gamecontroller.fill", label: "Interest today", value: "\(Int.random(in: 2...10))", color: .blue)
+                    rankingStat(icon: "message.fill", label: "Messages", value: "\(Int.random(in: 1...5))", color: .blue)
                 }
                 .frame(maxWidth: .infinity)
             }
@@ -448,7 +448,7 @@ struct ProfileInsightsView: View {
                     .font(.title3)
                     .foregroundStyle(
                         LinearGradient(
-                            colors: [.blue, .cyan],
+                            colors: [.blue, .teal],
                             startPoint: .topLeading,
                             endPoint: .bottomTrailing
                         )
@@ -491,7 +491,7 @@ struct ProfileInsightsView: View {
                         .foregroundColor(.green)
                         .padding(.horizontal, 8)
                         .padding(.vertical, 4)
-                        .background(Color.green.opacity(0.15))
+                        .background(Color.blue.opacity(0.15))
                         .cornerRadius(8)
                     } else if insights.viewsThisWeek < insights.viewsLastWeek {
                         HStack(spacing: 4) {
@@ -541,7 +541,7 @@ struct ProfileInsightsView: View {
                 statBox(
                     title: "Interests",
                     value: "\(insights.likesReceived)",
-                    color: .green,
+                    color: .blue,
                     icon: "gamecontroller.fill"
                 )
 
@@ -576,7 +576,7 @@ struct ProfileInsightsView: View {
                         Rectangle()
                             .fill(
                                 LinearGradient(
-                                    colors: [.cyan, .green],
+                                    colors: [.teal, .blue],
                                     startPoint: .leading,
                                     endPoint: .trailing
                                 )
@@ -624,7 +624,7 @@ struct ProfileInsightsView: View {
                     .font(.title3)
                     .foregroundStyle(
                         LinearGradient(
-                            colors: [.green, .mint],
+                            colors: [.blue, .mint],
                             startPoint: .topLeading,
                             endPoint: .bottomTrailing
                         )
@@ -634,7 +634,7 @@ struct ProfileInsightsView: View {
             }
 
             VStack(spacing: 12) {
-                engagementRow(title: "Connection Rate", value: "\(Int(insights.matchRate * 100))%", color: .green)
+                engagementRow(title: "Connection Rate", value: "\(Int(insights.matchRate * 100))%", color: .blue)
                 Divider()
                 engagementRow(title: "Response Rate", value: "\(Int(insights.responseRate * 100))%", color: .blue)
                 Divider()
@@ -782,7 +782,7 @@ struct ProfileInsightsView: View {
             .clipShape(Circle())
             .overlay(
                 Circle()
-                    .stroke(Color.green.opacity(0.3), lineWidth: 2)
+                    .stroke(Color.blue.opacity(0.3), lineWidth: 2)
             )
 
             VStack(alignment: .leading, spacing: 6) {
@@ -1013,7 +1013,7 @@ struct ProfileInsightsView: View {
                 .font(.system(size: 64))
                 .foregroundStyle(
                     LinearGradient(
-                        colors: [.green, .mint],
+                        colors: [.blue, .mint],
                         startPoint: .topLeading,
                         endPoint: .bottomTrailing
                     )

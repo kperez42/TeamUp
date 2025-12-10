@@ -199,8 +199,8 @@ struct ImprovedUserDetailSheet: View {
         ZStack {
             LinearGradient(
                 colors: [
-                    Color.green.opacity(0.7),
-                    Color.cyan.opacity(0.6),
+                    Color.blue.opacity(0.7),
+                    Color.teal.opacity(0.6),
                     Color.blue.opacity(0.5)
                 ],
                 startPoint: .topLeading,
@@ -282,12 +282,12 @@ struct ImprovedUserDetailSheet: View {
 
     private var statsSection: some View {
         HStack(spacing: 0) {
-            statItem(icon: "gamecontroller.fill", value: "\(user.favoriteGames.count)", label: "Games", color: .cyan)
+            statItem(icon: "gamecontroller.fill", value: "\(user.favoriteGames.count)", label: "Games", color: .teal)
 
             Divider()
                 .frame(height: 40)
 
-            statItem(icon: "person.2.fill", value: "\(user.gamingStats.teamCount)", label: "Teams", color: .green)
+            statItem(icon: "person.2.fill", value: "\(user.gamingStats.teamCount)", label: "Teams", color: .blue)
 
             Divider()
                 .frame(height: 40)
@@ -367,7 +367,7 @@ struct ImprovedUserDetailSheet: View {
 
             FlowLayout(spacing: 8) {
                 ForEach(user.platforms, id: \.self) { platform in
-                    TagView(text: platform, color: .green)
+                    TagView(text: platform, color: .blue)
                 }
             }
         }
@@ -447,7 +447,7 @@ struct ImprovedUserDetailSheet: View {
                     )
                 )
                 .cornerRadius(16)
-                .shadow(color: .green.opacity(0.4), radius: 10, y: 5)
+                .shadow(color: .blue.opacity(0.4), radius: 10, y: 5)
             }
         }
         .padding(.horizontal, 24)

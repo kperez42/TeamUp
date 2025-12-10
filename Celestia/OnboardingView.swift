@@ -118,7 +118,7 @@ struct OnboardingView: View {
                     colors: [
                         Color.blue.opacity(0.1),
                         Color.teal.opacity(0.05),
-                        Color.cyan.opacity(0.08)
+                        Color.teal.opacity(0.08)
                     ],
                     startPoint: .topLeading,
                     endPoint: .bottomTrailing
@@ -678,7 +678,7 @@ struct OnboardingView: View {
                         .font(.system(size: 50))
                         .foregroundStyle(
                             LinearGradient(
-                                colors: [.blue, .cyan],
+                                colors: [.blue, .teal],
                                 startPoint: .topLeading,
                                 endPoint: .bottomTrailing
                             )
@@ -724,7 +724,7 @@ struct OnboardingView: View {
                                 .trim(from: 0, to: CGFloat(photoImages.count) / 6.0)
                                 .stroke(
                                     LinearGradient(
-                                        colors: [.blue, .cyan],
+                                        colors: [.blue, .teal],
                                         startPoint: .topLeading,
                                         endPoint: .bottomTrailing
                                     ),
@@ -776,7 +776,7 @@ struct OnboardingView: View {
                     RoundedRectangle(cornerRadius: 16)
                         .stroke(
                             LinearGradient(
-                                colors: [.orange.opacity(0.3), .cyan.opacity(0.2)],
+                                colors: [.orange.opacity(0.3), .teal.opacity(0.2)],
                                 startPoint: .topLeading,
                                 endPoint: .bottomTrailing
                             ),
@@ -920,7 +920,7 @@ struct OnboardingView: View {
                                 RoundedRectangle(cornerRadius: 20)
                                     .stroke(
                                         LinearGradient(
-                                            colors: [.green.opacity(0.5), .cyan.opacity(0.3)],
+                                            colors: [.blue.opacity(0.5), .teal.opacity(0.3)],
                                             startPoint: .topLeading,
                                             endPoint: .bottomTrailing
                                         ),
@@ -1018,7 +1018,7 @@ struct OnboardingView: View {
                     .padding(.vertical, 16)
                     .background(
                         LinearGradient(
-                            colors: photoImages.count >= 6 ? [Color.gray, Color.gray.opacity(0.8)] : [Color.green, Color.cyan],
+                            colors: photoImages.count >= 6 ? [Color.gray, Color.gray.opacity(0.8)] : [Color.blue, Color.teal],
                             startPoint: .leading,
                             endPoint: .trailing
                         )
@@ -1297,7 +1297,7 @@ struct OnboardingView: View {
                                     .background(
                                         selectedLanguages.contains(language) ?
                                         LinearGradient(
-                                            colors: [Color.blue, Color.cyan],
+                                            colors: [Color.blue, Color.teal],
                                             startPoint: .leading,
                                             endPoint: .trailing
                                         ) :
@@ -1329,7 +1329,7 @@ struct OnboardingView: View {
                         .font(.system(size: 50))
                         .foregroundStyle(
                             LinearGradient(
-                                colors: [.green, .mint],
+                                colors: [.blue, .teal],
                                 startPoint: .topLeading,
                                 endPoint: .bottomTrailing
                             )
@@ -1407,7 +1407,7 @@ struct OnboardingView: View {
                                 .overlay(
                                     RoundedRectangle(cornerRadius: 12)
                                         .stroke(
-                                            relationshipGoal == goal ? Color.cyan.opacity(0.5) : Color.gray.opacity(0.2),
+                                            relationshipGoal == goal ? Color.teal.opacity(0.5) : Color.gray.opacity(0.2),
                                             lineWidth: 1
                                         )
                                 )
@@ -1707,7 +1707,7 @@ struct OnboardingView: View {
                     lifestyleOptionSelector(
                         title: "Drinking",
                         icon: "wineglass.fill",
-                        color: .cyan,
+                        color: .teal,
                         options: drinkingOptions,
                         selection: $drinking
                     )
@@ -1805,8 +1805,8 @@ struct OnboardingView: View {
                 // Completion stats
                 VStack(spacing: 16) {
                     HStack(spacing: 16) {
-                        statBadge(icon: "chart.line.uptrend.xyaxis", value: "3x", label: "More Teammates", color: .green)
-                        statBadge(icon: "gamecontroller.fill", value: "85%", label: "Better Team Fit", color: .cyan)
+                        statBadge(icon: "chart.line.uptrend.xyaxis", value: "3x", label: "More Teammates", color: .blue)
+                        statBadge(icon: "gamecontroller.fill", value: "85%", label: "Better Team Fit", color: .teal)
                     }
 
                     Text("Complete profiles get significantly more attention!")
@@ -2245,7 +2245,7 @@ struct CompletionCelebrationView: View {
                     Circle()
                         .fill(
                             LinearGradient(
-                                colors: [.green.opacity(0.2), .cyan.opacity(0.1)],
+                                colors: [.blue.opacity(0.2), .teal.opacity(0.1)],
                                 startPoint: .topLeading,
                                 endPoint: .bottomTrailing
                             )

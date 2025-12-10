@@ -456,7 +456,7 @@ struct SignUpView: View {
                     .cornerRadius(10)
                     .overlay(
                         RoundedRectangle(cornerRadius: 10)
-                            .stroke(passwordsMatch ? Color.green : (!password.isEmpty && !confirmPassword.isEmpty && password != confirmPassword ? Color.red : Color.clear), lineWidth: 2)
+                            .stroke(passwordsMatch ? Color.blue : (!password.isEmpty && !confirmPassword.isEmpty && password != confirmPassword ? Color.red : Color.clear), lineWidth: 2)
                     )
                     .accessibilityLabel("Confirm password")
                     .accessibilityHint("Re-enter your password to confirm")
@@ -693,7 +693,7 @@ struct SignUpView: View {
                 .overlay(
                     RoundedRectangle(cornerRadius: 10)
                         .stroke(
-                            referralCodeValid == true ? Color.green :
+                            referralCodeValid == true ? Color.blue :
                             referralCodeValid == false ? Color.red :
             Color.blue.opacity(0.3),
                             lineWidth: 2
@@ -747,7 +747,7 @@ struct SignUpView: View {
                 // Camera icon
                 ZStack {
                     Circle()
-                        .fill(Color.green.opacity(0.12))
+                        .fill(Color.blue.opacity(0.12))
                         .frame(width: 56, height: 56)
 
                     Image(systemName: "camera.fill")
@@ -777,8 +777,8 @@ struct SignUpView: View {
             // Quick tips in a horizontal scroll
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 12) {
-                    photoTipChip(icon: "face.smiling.fill", text: "Clear face shot", color: .green)
-                    photoTipChip(icon: "gamecontroller.fill", text: "Show personality", color: .green)
+                    photoTipChip(icon: "face.smiling.fill", text: "Clear face shot", color: .blue)
+                    photoTipChip(icon: "gamecontroller.fill", text: "Show personality", color: .blue)
                     photoTipChip(icon: "sun.max.fill", text: "Good lighting", color: .orange)
                 }
                 .padding(.horizontal, 4)
@@ -798,7 +798,7 @@ struct SignUpView: View {
                     .clipShape(RoundedRectangle(cornerRadius: 16))
                     .overlay(
                         RoundedRectangle(cornerRadius: 16)
-                            .stroke(Color.green.opacity(0.3), lineWidth: 2)
+                            .stroke(Color.blue.opacity(0.3), lineWidth: 2)
                     )
                     .overlay(
                         VStack {
@@ -816,7 +816,7 @@ struct SignUpView: View {
                                 .padding(.vertical, 6)
                                 .background(
                                     Capsule()
-                                        .fill(Color.green)
+                                        .fill(Color.blue)
                                 )
 
                                 Spacer()
@@ -880,7 +880,7 @@ struct SignUpView: View {
                             VStack(spacing: 16) {
                                 ZStack {
                                     Circle()
-                                        .fill(Color.green.opacity(0.1))
+                                        .fill(Color.blue.opacity(0.1))
                                         .frame(width: 70, height: 70)
 
                                     Image(systemName: "person.crop.circle.badge.plus")
@@ -972,7 +972,7 @@ struct SignUpView: View {
                                 .clipShape(RoundedRectangle(cornerRadius: 12))
                                 .overlay(
                                     RoundedRectangle(cornerRadius: 12)
-                                        .stroke(Color.green.opacity(0.2), lineWidth: 1)
+                                        .stroke(Color.blue.opacity(0.2), lineWidth: 1)
                                 )
                                 .contentShape(Rectangle())
                                 .onTapGesture {
@@ -1051,7 +1051,7 @@ struct SignUpView: View {
                         )
                     )
                     .cornerRadius(16)
-                    .shadow(color: .green.opacity(0.3), radius: 8, x: 0, y: 4)
+                    .shadow(color: .blue.opacity(0.3), radius: 8, x: 0, y: 4)
                 }
                 .disabled(photoImages.count >= 6 || isLoadingPhotos)
                 .onChange(of: selectedPhotos) { _, newValue in
@@ -1144,11 +1144,11 @@ struct SignUpView: View {
                                     .padding(.vertical, 8)
                                     .background(
                                         Capsule()
-                                            .fill(Color.green.opacity(0.1))
+                                            .fill(Color.blue.opacity(0.1))
                                     )
                                     .overlay(
                                         Capsule()
-                                            .stroke(Color.green.opacity(0.3), lineWidth: 1)
+                                            .stroke(Color.blue.opacity(0.3), lineWidth: 1)
                                     )
                             }
                         }
@@ -1176,7 +1176,7 @@ struct SignUpView: View {
                     .cornerRadius(12)
                     .overlay(
                         RoundedRectangle(cornerRadius: 12)
-                            .stroke(bio.count >= 20 ? Color.green.opacity(0.5) : Color.gray.opacity(0.2), lineWidth: 1)
+                            .stroke(bio.count >= 20 ? Color.blue.opacity(0.5) : Color.gray.opacity(0.2), lineWidth: 1)
                     )
                     .onChange(of: bio) { _, newValue in
                         if newValue.count > 500 {
@@ -1195,7 +1195,7 @@ struct SignUpView: View {
             HStack(alignment: .top, spacing: 14) {
                 ZStack {
                     Circle()
-                        .fill(Color.green.opacity(0.12))
+                        .fill(Color.blue.opacity(0.12))
                         .frame(width: 44, height: 44)
                     Image(systemName: "lightbulb.fill")
                         .font(.system(size: 18))
@@ -1238,7 +1238,7 @@ struct SignUpView: View {
                     Spacer()
                     Text("\(selectedInterests.count) selected")
                         .font(.caption)
-                        .foregroundColor(selectedInterests.count >= 3 ? .green : .green.opacity(0.6))
+                        .foregroundColor(selectedInterests.count >= 3 ? .green : .blue.opacity(0.6))
                 }
 
                 if selectedInterests.count < 3 {
@@ -1280,7 +1280,7 @@ struct SignUpView: View {
                 .padding()
                 .background(
                     RoundedRectangle(cornerRadius: 12)
-                        .fill(Color.green.opacity(0.1))
+                        .fill(Color.blue.opacity(0.1))
                 )
             }
         }
@@ -1306,7 +1306,7 @@ struct SignUpView: View {
             HStack(spacing: 16) {
                 ZStack {
                     Circle()
-                        .fill(Color.green.opacity(0.12))
+                        .fill(Color.blue.opacity(0.12))
                         .frame(width: 56, height: 56)
 
                     Image(systemName: "person.fill")
@@ -1392,7 +1392,7 @@ struct SignUpView: View {
             HStack(spacing: 16) {
                 ZStack {
                     Circle()
-                        .fill(Color.green.opacity(0.12))
+                        .fill(Color.blue.opacity(0.12))
                         .frame(width: 56, height: 56)
 
                     Image(systemName: "leaf.fill")
@@ -1538,7 +1538,7 @@ struct SignUpView: View {
                 HStack(spacing: 16) {
                     ZStack {
                         Circle()
-                            .fill(Color.green.opacity(0.12))
+                            .fill(Color.blue.opacity(0.12))
                             .frame(width: 56, height: 56)
 
                         Image(systemName: "person.2.fill")
@@ -1634,7 +1634,7 @@ struct SignUpView: View {
             HStack(spacing: 16) {
                 ZStack {
                     Circle()
-                        .fill(Color.green.opacity(0.12))
+                        .fill(Color.blue.opacity(0.12))
                         .frame(width: 56, height: 56)
 
                     Image(systemName: "checkmark.circle.fill")

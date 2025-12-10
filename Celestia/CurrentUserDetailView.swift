@@ -96,7 +96,7 @@ struct CurrentUserDetailView: View {
                         // Location
                         HStack(spacing: 6) {
                             Image(systemName: "mappin.circle.fill")
-                                .foregroundColor(.green)
+                                .foregroundColor(.blue)
                             Text("\(user.location), \(user.country)")
                                 .foregroundColor(.secondary)
                         }
@@ -105,7 +105,7 @@ struct CurrentUserDetailView: View {
                         // Photo count
                         HStack(spacing: 6) {
                             Image(systemName: "photo.stack.fill")
-                                .foregroundColor(.green)
+                                .foregroundColor(.blue)
                             Text("\(validPhotos.count) photo\(validPhotos.count == 1 ? "" : "s")")
                                 .foregroundColor(.secondary)
                         }
@@ -117,8 +117,8 @@ struct CurrentUserDetailView: View {
                         ProfileSectionCard(
                             icon: "quote.bubble.fill",
                             title: "About",
-                            iconColors: [.green, .cyan],
-                            borderColor: .green
+                            iconColors: [.blue, .teal],
+                            borderColor: .blue
                         ) {
                             Text(user.bio)
                                 .font(.body)
@@ -132,12 +132,12 @@ struct CurrentUserDetailView: View {
                         ProfileSectionCard(
                             icon: "gamecontroller.fill",
                             title: "Platforms",
-                            iconColors: [.blue, .cyan],
+                            iconColors: [.blue, .teal],
                             borderColor: .blue
                         ) {
                             FlowLayout2(spacing: 10) {
                                 ForEach(user.platforms, id: \.self) { platform in
-                                    ProfileTagView(text: platform, colors: [.blue, .cyan], textColor: .blue)
+                                    ProfileTagView(text: platform, colors: [.blue, .teal], textColor: .blue)
                                 }
                             }
                         }
@@ -148,12 +148,12 @@ struct CurrentUserDetailView: View {
                         ProfileSectionCard(
                             icon: "sparkles",
                             title: "Favorite Games",
-                            iconColors: [.orange, .cyan],
+                            iconColors: [.orange, .teal],
                             borderColor: .orange
                         ) {
                             FlowLayout2(spacing: 10) {
                                 ForEach(user.favoriteGames, id: \.id) { game in
-                                    ProfileTagView(text: game.title, colors: [.orange, .cyan], textColor: .orange)
+                                    ProfileTagView(text: game.title, colors: [.orange, .teal], textColor: .orange)
                                 }
                             }
                         }
@@ -164,8 +164,8 @@ struct CurrentUserDetailView: View {
                         ProfileSectionCard(
                             icon: "quote.bubble.fill",
                             title: "Get to Know Me",
-                            iconColors: [.green, .cyan],
-                            borderColor: .green
+                            iconColors: [.blue, .teal],
+                            borderColor: .blue
                         ) {
                             VStack(spacing: 12) {
                                 ForEach(user.prompts) { prompt in
@@ -197,8 +197,8 @@ struct CurrentUserDetailView: View {
                         ProfileSectionCard(
                             icon: "clock.fill",
                             title: "Gaming Schedule",
-                            iconColors: [.green, .mint],
-                            borderColor: .green
+                            iconColors: [.blue, .mint],
+                            borderColor: .blue
                         ) {
                             VStack(spacing: 12) {
                                 DetailRow(icon: "globe.americas", label: "Timezone", value: user.gamingSchedule.timezone)
@@ -220,12 +220,12 @@ struct CurrentUserDetailView: View {
                         ProfileSectionCard(
                             icon: "person.2.fill",
                             title: "Show Me",
-                            iconColors: [.green, .cyan],
-                            borderColor: .green
+                            iconColors: [.blue, .teal],
+                            borderColor: .blue
                         ) {
                             FlowLayout2(spacing: 10) {
                                 ForEach(user.lookingFor, id: \.self) { goal in
-                                    ProfileTagView(text: goal, colors: [.blue, .teal], textColor: .green)
+                                    ProfileTagView(text: goal, colors: [.blue, .teal], textColor: .blue)
                                 }
                             }
                         }
@@ -278,7 +278,7 @@ struct CurrentUserDetailView: View {
                         )
                     )
                     .clipShape(Capsule())
-                    .shadow(color: Color.green.opacity(0.4), radius: 10)
+                    .shadow(color: Color.blue.opacity(0.4), radius: 10)
                 }
                 .accessibilityLabel("Edit Profile")
             }

@@ -78,8 +78,8 @@ struct ProfileSubscriptionsView: View {
             icon: "sparkles",
             title: "Priority Connections",
             description: "Get connected with compatible gamers first. Our algorithm works harder for you!",
-            color: .green,
-            gradient: [Color.green, Color.mint],
+            color: .blue,
+            gradient: [Color.blue, Color.teal],
             benefit: "Quality over quantity"
         )
     ]

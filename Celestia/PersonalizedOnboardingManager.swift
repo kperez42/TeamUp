@@ -554,7 +554,7 @@ struct OnboardingGoalSelectionView: View {
                         )
                     )
                     .cornerRadius(16)
-                    .shadow(color: .green.opacity(0.3), radius: 10, y: 5)
+                    .shadow(color: .blue.opacity(0.3), radius: 10, y: 5)
                 }
                 .padding(.horizontal, 24)
                 .padding(.bottom, 32)

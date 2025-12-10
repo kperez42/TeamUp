@@ -97,7 +97,7 @@ struct FilterView: View {
                         .frame(width: 40, height: 40)
                     Image(systemName: "person.2.fill")
                         .font(.title3)
-                        .foregroundColor(.green)
+                        .foregroundColor(.blue)
                 }
 
                 VStack(alignment: .leading, spacing: 2) {
@@ -195,7 +195,7 @@ struct FilterView: View {
                         .frame(width: 40, height: 40)
                     Image(systemName: "person.2.fill")
                         .font(.title3)
-                        .foregroundColor(.green)
+                        .foregroundColor(.blue)
                 }
 
                 VStack(alignment: .leading, spacing: 2) {

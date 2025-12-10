@@ -748,7 +748,7 @@ struct ConversationRow: View {
             .padding(.horizontal, 6)
             .background(
                 LinearGradient(
-                    colors: [Color.green, Color.cyan],
+                    colors: [Color.blue, Color.teal],
                     startPoint: .topLeading,
                     endPoint: .bottomTrailing
                 )

@@ -203,7 +203,7 @@ struct ProfileEnhancementView: View {
                     Image(systemName: "leaf.fill")
                         .font(.system(size: 36))
                         .foregroundStyle(
-                            LinearGradient(colors: [.green, .mint], startPoint: .topLeading, endPoint: .bottomTrailing)
+                            LinearGradient(colors: [.blue, .teal], startPoint: .topLeading, endPoint: .bottomTrailing)
                         )
                 }
 

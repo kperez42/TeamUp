@@ -227,7 +227,7 @@ enum DesignSystem {
         static let secondary = Color.gray
 
         // Semantic colors
-        static let success = Color.green
+        static let success = Color.blue
         static let error = Color.red
         static let warning = Color.orange
         static let info = Color.blue

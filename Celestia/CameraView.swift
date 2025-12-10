@@ -87,14 +87,14 @@ struct CameraView: View {
             Circle()
                 .stroke(
                     LinearGradient(
-                        colors: [.green.opacity(0.6), .cyan.opacity(0.6)],
+                        colors: [.blue.opacity(0.6), .teal.opacity(0.6)],
                         startPoint: .topLeading,
                         endPoint: .bottomTrailing
                     ),
                     lineWidth: 3
                 )
                 .frame(width: 280, height: 280)
-                .shadow(color: .green.opacity(0.3), radius: 8)
+                .shadow(color: .blue.opacity(0.3), radius: 8)
         }
         .background(Color.black)
         .onAppear {
