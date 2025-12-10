@@ -161,9 +161,9 @@ struct PendingOperationRow: View {
         case .sendMessage:
             return "Send message"
         case .likeUser:
-            return "Like profile"
+            return "Show interest in profile"
         case .superLikeUser:
-            return "Super like profile"
+            return "Priority request profile"
         case .updateProfile:
             return "Update profile"
         case .uploadPhoto:

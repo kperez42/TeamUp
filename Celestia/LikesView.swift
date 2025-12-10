@@ -552,9 +552,9 @@ struct LikesView: View {
         Group {
             if viewModel.usersWhoLikedMe.isEmpty {
                 emptyStateView(
-                    icon: "heart.fill",
-                    title: "No Likes Yet",
-                    message: "When someone likes you, they'll appear here. Keep swiping!"
+                    icon: "gamecontroller.fill",
+                    title: "No Interest Yet",
+                    message: "When someone shows interest in you, they'll appear here. Keep browsing!"
                 )
             } else if isPremium {
                 // Premium users see full profiles with filters applied
@@ -787,9 +787,9 @@ struct LikesView: View {
         Group {
             if viewModel.usersILiked.isEmpty {
                 emptyStateView(
-                    icon: "heart",
-                    title: "No Likes Sent",
-                    message: "Start swiping on the Discover page to like profiles!"
+                    icon: "gamecontroller",
+                    title: "No Interest Sent",
+                    message: "Start browsing on the Discover page to show interest!"
                 )
             } else {
                 likesGrid(users: filteredUsersILiked, showLikeBack: false)

@@ -385,14 +385,14 @@ class TutorialManager: ObservableObject {
         case "super_like":
             return Tutorial(
                 id: "super_like",
-                title: "Super Like ⭐",
-                description: "Stand out from the crowd! Super Likes show you're really interested.",
+                title: "Priority Request ⭐",
+                description: "Stand out from the crowd! Priority Requests show you're really interested in teaming up.",
                 icon: "star.circle.fill",
                 accentColor: .blue,
                 tips: [
-                    "You get 1 free Super Like per day",
+                    "You get 1 free Priority Request per day",
                     "Premium users get 5 per day",
-                    "Use them on profiles you really like!"
+                    "Use them on profiles you really want to team up with!"
                 ]
             )
 

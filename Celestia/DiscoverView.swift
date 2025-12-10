@@ -280,7 +280,7 @@ struct DiscoverView: View {
                     ) {
                         Task {
                             await viewModel.handleSuperLike()
-                            VoiceOverAnnouncement.announce("Super like sent!")
+                            VoiceOverAnnouncement.announce("Priority request sent!")
                         }
                     }
                     .accessibilityElement(
@@ -578,7 +578,7 @@ struct DiscoverView: View {
                 AccessibilityCustomAction(name: "Pass") {
                     Task { await viewModel.handlePass() }
                 },
-                AccessibilityCustomAction(name: "Super Like") {
+                AccessibilityCustomAction(name: "Priority Request") {
                     Task { await viewModel.handleSuperLike() }
                 },
                 AccessibilityCustomAction(name: "View Profile") {

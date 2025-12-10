@@ -44,8 +44,8 @@ struct ProfileSubscriptionsView: View {
     private let featureCards: [FeatureCardItem] = [
         FeatureCardItem(
             icon: "infinity",
-            title: "Unlimited Likes",
-            description: "Like as many profiles as you want without daily limits. Never miss a potential match!",
+            title: "Unlimited Interest",
+            description: "Show interest in as many profiles as you want without daily limits. Never miss a potential teammate!",
             color: .purple,
             gradient: [Color.purple, Color.indigo],
             benefit: "No restrictions on finding teammates"
@@ -60,8 +60,8 @@ struct ProfileSubscriptionsView: View {
         ),
         FeatureCardItem(
             icon: "star.fill",
-            title: "Super Likes",
-            description: "Stand out from the crowd and show you're really interested. Get 3x more connections!",
+            title: "Priority Requests",
+            description: "Stand out from the crowd and show you're really interested in teaming up. Get 3x more connections!",
             color: .cyan,
             gradient: [Color.cyan, Color.teal],
             benefit: "Make a lasting impression"
@@ -69,7 +69,7 @@ struct ProfileSubscriptionsView: View {
         FeatureCardItem(
             icon: "bolt.fill",
             title: "Profile Boost",
-            description: "Be seen by 10x more people for 30 minutes. Get more matches faster!",
+            description: "Be seen by 10x more gamers for 30 minutes. Get more connections faster!",
             color: .orange,
             gradient: [Color.orange, Color.yellow],
             benefit: "Supercharge your visibility"
@@ -449,9 +449,9 @@ struct ProfileSubscriptionsView: View {
 
             VStack(spacing: 12) {
                 benefitRow(icon: "flame.fill", text: "Daily profile discovery", included: true)
-                benefitRow(icon: "heart.fill", text: "Unlimited likes", included: authService.currentUser?.isPremium == true)
-                benefitRow(icon: "eye.fill", text: "See who likes you", included: authService.currentUser?.isPremium == true)
-                benefitRow(icon: "star.fill", text: "Super likes", included: authService.currentUser?.isPremium == true)
+                benefitRow(icon: "gamecontroller.fill", text: "Unlimited interest", included: authService.currentUser?.isPremium == true)
+                benefitRow(icon: "eye.fill", text: "See who's interested", included: authService.currentUser?.isPremium == true)
+                benefitRow(icon: "star.fill", text: "Priority requests", included: authService.currentUser?.isPremium == true)
                 benefitRow(icon: "bolt.fill", text: "Profile boost", included: authService.currentUser?.isPremium == true)
             }
         }
