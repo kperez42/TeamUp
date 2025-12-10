@@ -852,7 +852,7 @@ struct ProfileView: View {
             .shadow(color: .black.opacity(0.06), radius: 12, y: 4)
         }
         .accessibilityLabel("Upgrade to Premium")
-        .accessibilityHint("Unlock unlimited likes, see who likes you, and access all premium features")
+        .accessibilityHint("Unlock unlimited likes, see who's interested, and access all premium features")
         .padding(.horizontal, 20)
     }
 
