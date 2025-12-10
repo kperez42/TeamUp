@@ -13,7 +13,7 @@ Find Your Perfect Teammates
 TeamUp is the modern gaming social app designed to help you find teammates and make meaningful connections with fellow gamers. Whether you're looking for a ranked duo, a casual squad, or gaming friends to hang out with, TeamUp uses smart matching to connect you with players who share your favorite games and play style.
 
 **DISCOVER YOUR SQUAD**
-Swipe through profiles of gamers near you. Like someone's vibe? Swipe right. Not the right fit? Swipe left. When you both like each other, you connect! Start chatting instantly and get ready to queue up together.
+Scroll through profiles of gamers near you. See someone you'd like to team up with? Like their profile! When you both like each other, you connect! Start chatting instantly and get ready to queue up together.
 
 **SMART CONVERSATION STARTERS**
 Not sure how to break the ice? TeamUp suggests personalized conversation starters based on shared games and interests, helping you make that perfect first impression.
@@ -64,7 +64,7 @@ Find gaming friends with TeamUp. Smart matching, verified profiles, and conversa
 
 Welcome to TeamUp! We're excited to launch with these features:
 
-- Smart swipe-based teammate matching
+- Browse and discover teammates in a scrolling feed
 - Personalized conversation starters
 - Real-time messaging with read receipts
 - Photo verification for authentic profiles

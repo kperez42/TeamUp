@@ -32,7 +32,7 @@ The TeamUp app implements the following WCAG 2.1 Level AA standards:
 ```swift
 .accessibilityElement(
     label: "\(user.fullName), \(user.age) years old, from \(user.location)",
-    hint: "Swipe right to like, left to pass, or tap for full profile",
+    hint: "Double tap to view profile, use actions menu to like or pass",
     traits: .isButton,
     identifier: AccessibilityIdentifier.userCard
 )

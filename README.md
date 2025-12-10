@@ -1,6 +1,6 @@
 # TeamUp
 
-A modern iOS gaming social app built with SwiftUI and Firebase, featuring swipe-based teammate discovery, real-time messaging, and premium subscriptions.
+A modern iOS gaming social app built with SwiftUI and Firebase, featuring a scrolling feed to discover teammates, real-time messaging, and premium subscriptions.
 
 ## Table of Contents
 
@@ -18,16 +18,16 @@ A modern iOS gaming social app built with SwiftUI and Firebase, featuring swipe-
 ## Features
 
 ### Core Gaming Social Features
-- **Gamer Discovery** - Swipe-based teammate matching system with advanced filters (age, game preferences, skill level, play style)
+- **Gamer Discovery** - Scrolling feed to browse and discover teammates with advanced filters (age, game preferences, skill level, play style)
 - **Profile System** - Multi-photo profiles with bio, favorite games, gaming platforms, and play style prompts
-- **Teammate Matching** - Mutual likes create instant teammate connections
+- **Teammate Connections** - Like profiles to connect with other gamers
 - **Real-time Messaging** - Live chat with connection tracking, unread counts, and typing indicators
 - **Interests/Likes** - Send likes to gamers with optional messages
 
 ### Advanced Features
 - **Photo Verification** - Face detection using Apple's Vision framework
 - **Referral System** - Users earn 7 days of premium for each successful referral
-- **Profile Insights** - Analytics on profile views, swipe stats, connection rates, and photo performance
+- **Profile Insights** - Analytics on profile views, engagement stats, connection rates, and photo performance
 - **Content Moderation** - Automatic profanity filtering, spam detection, and personal info blocking
 - **Safety Center** - Safety tips, reporting, blocking, and screenshot detection
 - **Profile Prompts** - 100+ gaming personality questions for engaging profiles
@@ -35,11 +35,10 @@ A modern iOS gaming social app built with SwiftUI and Firebase, featuring swipe-
 - **Email Verification** - Required for full app access
 
 ### Premium Features
-- Unlimited swipes (free users: 50/day limit)
+- Unlimited likes (free users: 50/day limit)
 - See who liked you
 - Profile boosting (10x visibility)
 - 5 super likes per day
-- Rewind swipes
 - Priority support
 - Advanced analytics
 

@@ -52,16 +52,16 @@ The TeamUp gaming social app has **strong core functionality** with most critica
   - Pagination support for user browsing
 - **Outstanding Issues:** None
 
-#### Discovery/Swipe System
+#### Discovery/Browse System
 **Files:** `DiscoverView.swift`, `DiscoverViewModel.swift`, `SwipeService.swift`, `FirestoreSwipeRepository.swift`
 - **Status:** FULLY IMPLEMENTED
 - **Details:**
   - Card-stack UI for browsing users
   - Real-time user fetching from Firestore
-  - Like/Pass functionality with swipe tracking
+  - Like/Pass functionality with engagement tracking
   - Mutual like detection (creates match)
   - Super likes (premium feature)
-  - Backend rate limiting for swipes
+  - Backend rate limiting for likes
   - Client-side rate limiting fallback
   - Filtering by age range, gender preference, location
   - Image preloading for next 2 cards
@@ -136,7 +136,7 @@ The TeamUp gaming social app has **strong core functionality** with most critica
   - Receipt validation (server-side)
   - Auto-renewal tracking
   - Expiration date management
-  - Premium features: Unlimited swipes, Super likes, Boosts, Rewinds
+  - Premium features: Unlimited likes, Super likes, Boosts
   - Subscription status synchronization
   - User defaults caching
   - Analytics for purchase events
@@ -192,7 +192,7 @@ The TeamUp gaming social app has **strong core functionality** with most critica
   - Daily like limits for free users (50)
   - Message rate limiting (100/hour)
   - Super like limits (1/day)
-  - Premium user unlimited swipes
+  - Premium user unlimited likes
   - Report rate limiting
   - Photo upload limits (6/hour max)
   - Account creation limits (3/day by IP)
@@ -534,7 +534,7 @@ But these COULD have enhanced data integration:
 | User Authentication | ✅ 100% | Yes | Yes | Complete implementation |
 | Profile Management | ✅ 100% | Yes | Yes | Edit, view, search all working |
 | Discovery/Browsing | ✅ 100% | Yes | Yes | Real-time, filtered, paginated |
-| Swiping System | ✅ 100% | Yes | Yes | Like/pass with mutual detection |
+| Like/Pass System | 100% | Yes | Yes | Like/pass with mutual detection |
 | Matching | ✅ 100% | Yes | Yes | Real-time match creation |
 | Messaging | ✅ 100% | Yes | Yes | Full chat with pagination |
 | Notifications | ✅ 100% | Yes | Yes | Local and push (FCM) |
