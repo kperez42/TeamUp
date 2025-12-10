@@ -634,7 +634,7 @@ struct ProfileInsightsView: View {
             }
 
             VStack(spacing: 12) {
-                engagementRow(title: "Match Rate", value: "\(Int(insights.matchRate * 100))%", color: .green)
+                engagementRow(title: "Connection Rate", value: "\(Int(insights.matchRate * 100))%", color: .green)
                 Divider()
                 engagementRow(title: "Response Rate", value: "\(Int(insights.responseRate * 100))%", color: .blue)
                 Divider()

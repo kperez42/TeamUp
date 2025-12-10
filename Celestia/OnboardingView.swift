@@ -1805,7 +1805,7 @@ struct OnboardingView: View {
                 // Completion stats
                 VStack(spacing: 16) {
                     HStack(spacing: 16) {
-                        statBadge(icon: "chart.line.uptrend.xyaxis", value: "3x", label: "More Matches", color: .green)
+                        statBadge(icon: "chart.line.uptrend.xyaxis", value: "3x", label: "More Teammates", color: .green)
                         statBadge(icon: "gamecontroller.fill", value: "85%", label: "Better Team Fit", color: .pink)
                     }
 

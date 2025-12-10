@@ -443,9 +443,9 @@ struct AdminUserInvestigationView: View {
             HStack(spacing: 12) {
                 EnhancedActivityStatBox(
                     value: "\(matchesCount)",
-                    label: "Matches",
-                    icon: "heart.fill",
-                    gradientColors: [.pink, .red]
+                    label: "Connections",
+                    icon: "person.2.fill",
+                    gradientColors: [.purple, .pink]
                 )
                 EnhancedActivityStatBox(
                     value: "\(messagesCount)",

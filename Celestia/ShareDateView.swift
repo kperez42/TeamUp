@@ -95,7 +95,7 @@ struct ShareDateView: View {
                                 .font(.caption)
                                 .foregroundColor(.secondary)
 
-                            Text(selectedMatch?.fullName ?? "Select match")
+                            Text(selectedMatch?.fullName ?? "Select teammate")
                                 .font(.body)
                                 .foregroundColor(.primary)
                         }
@@ -569,7 +569,7 @@ struct MatchPickerView: View {
                     matchList
                 }
             }
-            .navigationTitle("Select Match")
+            .navigationTitle("Select Teammate")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {

@@ -1,5 +1,5 @@
 //
-//  SafeDatingTipsView.swift
+//  SafeMeetupTipsView.swift
 //  TeamUp
 //
 //  Safety tips and resources for meeting gamers
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct SafeDatingTipsView: View {
+struct SafeMeetupTipsView: View {
     @State private var selectedCategory: TipCategory = .beforeMeeting
 
     var body: some View {
@@ -486,6 +486,6 @@ struct SafetyTip: Identifiable {
 
 #Preview {
     NavigationStack {
-        SafeDatingTipsView()
+        SafeMeetupTipsView()
     }
 }
