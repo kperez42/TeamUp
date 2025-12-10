@@ -1,6 +1,6 @@
 {
   "name": "celestia-functions",
-  "description": "Cloud Functions for Celestia dating app",
+  "description": "Cloud Functions for TeamUp gaming app",
   "scripts": {
     "build": "tsc",
     "build:watch": "tsc --watch",

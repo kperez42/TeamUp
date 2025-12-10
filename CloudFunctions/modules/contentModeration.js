@@ -72,7 +72,7 @@ async function moderateWithVisionAPI(photoUrl) {
       reason = `Flagged for: ${violations.join(', ')}`;
     }
 
-    // Check for faces (dating app should have clear face photos)
+    // Check for faces (gaming app should have clear face photos)
     const [faceResult] = await client.faceDetection(photoUrl);
     const faces = faceResult.faceAnnotations || [];
 

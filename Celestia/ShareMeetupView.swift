@@ -619,7 +619,7 @@ struct MatchPickerView: View {
                         // Track analytics
                         AnalyticsManager.shared.logEvent(.matchSelected, parameters: [
                             "match_id": match.id ?? "",
-                            "source": "share_date"
+                            "source": "share_meetup"
                         ])
                     }
                 }
