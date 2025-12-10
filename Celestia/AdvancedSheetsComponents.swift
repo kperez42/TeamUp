@@ -225,7 +225,7 @@ struct AdvancedFiltersSheet: View {
                         
                         if sortBy == option {
                             Image(systemName: "checkmark.circle.fill")
-                                .foregroundColor(.green)
+                                .foregroundColor(.blue)
                         }
                     }
                     .padding(14)
@@ -348,7 +348,7 @@ struct FilterOptionButton: View {
             Text(title)
                 .font(.subheadline)
                 .fontWeight(.medium)
-                .foregroundColor(isSelected ? .white : .green)
+                .foregroundColor(isSelected ? .white : .blue)
                 .frame(maxWidth: .infinity)
                 .padding(.vertical, 14)
                 .background(
@@ -579,7 +579,7 @@ struct BoostProfileSheet: View {
                     .overlay(
                         RoundedRectangle(cornerRadius: 12)
                             .stroke(
-                                selectedDuration == duration ? Color.green : Color.clear,
+                                selectedDuration == duration ? Color.blue : Color.clear,
                                 lineWidth: 2
                             )
                     )
