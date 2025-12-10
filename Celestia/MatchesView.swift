@@ -203,7 +203,7 @@ struct MatchesView: View {
             VStack(spacing: 12) {
                 HStack(alignment: .top) {
                     VStack(alignment: .leading, spacing: 4) {
-                        Text("Matches")
+                        Text("Connections")
                             .font(.largeTitle.weight(.bold))
                             .foregroundColor(.white)
                             .dynamicTypeSize(min: .large, max: .accessibility2)

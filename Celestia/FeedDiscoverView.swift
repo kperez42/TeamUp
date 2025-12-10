@@ -672,7 +672,7 @@ struct FeedDiscoverView: View {
                     HStack(spacing: 10) {
                         Image(systemName: "heart.circle")
                             .foregroundColor(.gray.opacity(0.4))
-                        Text("Start matching")
+                        Text("Start connecting")
                             .font(.subheadline)
                             .foregroundColor(.gray)
                         Spacer()

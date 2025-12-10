@@ -167,8 +167,8 @@ struct ChatView: View {
                 }
             }
         }
-        .confirmationDialog("Unmatch with \(otherUser.fullName)?", isPresented: $showingUnmatchConfirmation, titleVisibility: .visible) {
-            Button("Unmatch", role: .destructive) {
+        .confirmationDialog("Disconnect from \(otherUser.fullName)?", isPresented: $showingUnmatchConfirmation, titleVisibility: .visible) {
+            Button("Disconnect", role: .destructive) {
                 HapticManager.shared.notification(.warning)
                 Task {
                     do {
@@ -394,7 +394,7 @@ struct ChatView: View {
                 Button(role: .destructive) {
                     showingUnmatchConfirmation = true
                 } label: {
-                    Label("Unmatch", systemImage: "xmark.circle")
+                    Label("Disconnect", systemImage: "xmark.circle")
                 }
             } label: {
                 Image(systemName: "ellipsis.circle")

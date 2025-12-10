@@ -593,10 +593,10 @@ struct MatchPickerView: View {
                 .foregroundColor(.gray.opacity(0.5))
 
             VStack(spacing: 12) {
-                Text("No Matches Yet")
+                Text("No Connections Yet")
                     .font(.title2.bold())
 
-                Text("You don't have any matches to share your meetup with yet. Start swiping to find matches!")
+                Text("You don't have any connections to share your meetup with yet. Start browsing to find teammates!")
                     .font(.body)
                     .foregroundColor(.secondary)
                     .multilineTextAlignment(.center)

@@ -210,13 +210,13 @@ struct LikeActivity: Identifiable {
         var description: String {
             switch self {
             case .received(let isSuperLike):
-                return isSuperLike ? "Super liked you" : "Liked you"
+                return isSuperLike ? "Wants to team up!" : "Interested in you"
             case .sent(let isSuperLike):
-                return isSuperLike ? "You super liked" : "You liked"
+                return isSuperLike ? "You sent priority" : "You showed interest"
             case .mutual:
-                return "Mutual like!"
+                return "Mutual interest!"
             case .matched:
-                return "It's a match!"
+                return "You're connected!"
             }
         }
     }

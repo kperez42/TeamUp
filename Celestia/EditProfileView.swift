@@ -1854,14 +1854,14 @@ struct EditProfileView: View {
                 .cornerRadius(12)
             }
 
-            // Relationship Goal
+            // Gaming Goal
             VStack(alignment: .leading, spacing: 8) {
-                Text("Relationship Goal")
+                Text("Gaming Goal")
                     .font(.subheadline)
                     .fontWeight(.semibold)
                     .foregroundColor(.secondary)
 
-                Picker("Relationship Goal", selection: Binding(
+                Picker("Gaming Goal", selection: Binding(
                     get: { relationshipGoal ?? "Prefer not to say" },
                     set: { relationshipGoal = $0 == "Prefer not to say" ? nil : $0 }
                 )) {
