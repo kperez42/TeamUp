@@ -232,7 +232,7 @@ struct SavedProfilesView: View {
                 colors: [
                     Color.blue.opacity(0.9),
                     Color.teal.opacity(0.8),
-                    Color.cyan.opacity(0.7)
+                    Color.teal.opacity(0.6)
                 ],
                 startPoint: .topLeading,
                 endPoint: .bottomTrailing

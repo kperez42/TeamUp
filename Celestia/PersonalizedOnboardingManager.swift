@@ -83,13 +83,13 @@ class PersonalizedOnboardingManager: ObservableObject {
         var color: Color {
             switch self {
             case .findRankedTeammates: return .orange
-            case .casualCoOp: return .green
+            case .casualCoOp: return .teal
             case .competitiveTeam: return .red
             case .boardGameGroup: return .purple
             case .dndGroup: return .indigo
             case .streamingPartner: return .pink
             case .esportsTeam: return .yellow
-            case .gamingCommunity: return .cyan
+            case .gamingCommunity: return .blue
             }
         }
     }

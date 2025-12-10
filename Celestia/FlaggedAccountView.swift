@@ -152,7 +152,7 @@ struct FlaggedAccountView: View {
                             )
                             BulletPoint(
                                 icon: "bell.fill",
-                                color: .cyan,
+                                color: .teal,
                                 text: "You'll be notified when the review is complete"
                             )
                             BulletPoint(
@@ -183,7 +183,7 @@ struct FlaggedAccountView: View {
                         HStack {
                             ZStack {
                                 Circle()
-                                    .fill(Color.green.opacity(0.15))
+                                    .fill(Color.blue.opacity(0.15))
                                     .frame(width: 36, height: 36)
                                 Image(systemName: "lightbulb.fill")
                                     .font(.system(size: 18))
@@ -203,11 +203,11 @@ struct FlaggedAccountView: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .background(
                         RoundedRectangle(cornerRadius: 16)
-                            .fill(Color.green.opacity(0.08))
+                            .fill(Color.blue.opacity(0.08))
                     )
                     .overlay(
                         RoundedRectangle(cornerRadius: 16)
-                            .strokeBorder(Color.green.opacity(0.2), lineWidth: 1)
+                            .strokeBorder(Color.blue.opacity(0.2), lineWidth: 1)
                     )
                     .padding(.horizontal)
                     .opacity(appearAnimation ? 1 : 0)

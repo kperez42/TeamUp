@@ -20,10 +20,10 @@ struct AdminModerationDashboard: View {
     private let tabs: [(name: String, icon: String, color: Color)] = [
         ("New", "person.badge.plus", .blue),
         ("Reports", "exclamationmark.triangle.fill", .orange),
-        ("Appeals", "envelope.open.fill", .cyan),
+        ("Appeals", "envelope.open.fill", .teal),
         ("Suspicious", "eye.trianglebadge.exclamationmark", .red),
         ("ID Review", "person.text.rectangle", .purple),
-        ("Stats", "chart.bar.fill", .green)
+        ("Stats", "chart.bar.fill", .blue)
     ]
 
     var body: some View {
@@ -252,7 +252,7 @@ struct AdminModerationDashboard: View {
                     value: viewModel.appeals.count,
                     label: "Appeals",
                     icon: "envelope.open.fill",
-                    color: .cyan
+                    color: .teal
                 )
                 AdminQuickStatCard(
                     value: viewModel.suspiciousProfiles.count,
@@ -393,7 +393,7 @@ struct AdminModerationDashboard: View {
                     icon: "checkmark.seal.fill",
                     title: "No Pending Appeals",
                     message: "All user appeals have been reviewed",
-                    color: .cyan,
+                    color: .teal,
                     onRefresh: { Task { await viewModel.refresh() } }
                 )
             } else {
@@ -404,7 +404,7 @@ struct AdminModerationDashboard: View {
                             title: "User Appeals",
                             count: viewModel.appeals.count,
                             icon: "envelope.open.fill",
-                            color: .cyan
+                            color: .teal
                         )
 
                         ForEach(viewModel.appeals) { appeal in

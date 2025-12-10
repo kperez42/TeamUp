@@ -110,7 +110,7 @@ struct WelcomeView: View {
                 colors: [
                     Color.blue.opacity(0.9),
                     Color.teal.opacity(0.8),
-                    Color.cyan.opacity(0.7)
+                    Color.teal.opacity(0.6)
                 ],
                 startPoint: animateGradient ? .topLeading : .bottomTrailing,
                 endPoint: animateGradient ? .bottomTrailing : .topLeading
@@ -455,7 +455,7 @@ struct WelcomeAwarenessSlidesView: View {
             icon: "scroll.fill",
             title: "Browse & Discover",
             description: "Scroll through profiles in your feed. Like gamers who match your style, or keep scrolling to discover more!",
-            color: .cyan,
+            color: .teal,
             tips: [
                 "Scroll up and down to browse profiles",
                 "Tap any card to view full profile details",

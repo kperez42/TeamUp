@@ -1807,9 +1807,9 @@ struct SignUpView: View {
         if photoImages.count < 2 {
             return .orange
         } else if photoImages.count < 4 {
-            return .green
+            return .blue
         } else {
-            return .cyan
+            return .teal
         }
     }
 
