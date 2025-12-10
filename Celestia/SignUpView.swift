@@ -1726,7 +1726,7 @@ struct SignUpView: View {
         HStack(alignment: .top, spacing: 8) {
             Image(systemName: icon)
                 .font(.caption)
-                .foregroundColor(.green)
+                .foregroundColor(.blue)
                 .frame(width: 16)
             Text(text)
                 .font(.caption)
@@ -1807,9 +1807,9 @@ struct SignUpView: View {
         if photoImages.count < 2 {
             return .orange
         } else if photoImages.count < 4 {
-            return .green
+            return .blue
         } else {
-            return .cyan
+            return .teal
         }
     }
 

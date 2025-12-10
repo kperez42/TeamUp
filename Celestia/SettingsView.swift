@@ -120,7 +120,7 @@ struct SettingsView: View {
                     } label: {
                         HStack {
                             Image(systemName: "gift.fill")
-                                .foregroundColor(.green)
+                                .foregroundColor(.blue)
                             VStack(alignment: .leading, spacing: 2) {
                                 Text("Invite Friends")
                                     .foregroundColor(.primary)
@@ -136,7 +136,7 @@ struct SettingsView: View {
                                     .foregroundColor(.white)
                                     .padding(.horizontal, 8)
                                     .padding(.vertical, 4)
-                                    .background(Color.green)
+                                    .background(Color.blue)
                                     .cornerRadius(10)
                             }
                             Image(systemName: "chevron.right")
@@ -150,7 +150,7 @@ struct SettingsView: View {
                     } label: {
                         HStack {
                             Image(systemName: "gamecontroller.fill")
-                                .foregroundColor(.green)
+                                .foregroundColor(.blue)
                             VStack(alignment: .leading, spacing: 2) {
                                 HStack(spacing: 6) {
                                     Text("See Who's Interested")
@@ -260,7 +260,7 @@ struct SettingsView: View {
                     } label: {
                         HStack {
                             Image(systemName: "doc.text")
-                                .foregroundColor(.green)
+                                .foregroundColor(.blue)
                             Text("Terms of Service")
                                 .foregroundColor(.primary)
                             Spacer()
@@ -275,7 +275,7 @@ struct SettingsView: View {
                     } label: {
                         HStack {
                             Image(systemName: "person.3.fill")
-                                .foregroundColor(.green)
+                                .foregroundColor(.blue)
                             Text("Community Guidelines")
                                 .foregroundColor(.primary)
                             Spacer()

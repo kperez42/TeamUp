@@ -225,7 +225,7 @@ struct PeriodButton: View {
                 if period.savingsPercentage > 0 {
                     Text("Save \(period.savingsPercentage)%")
                         .font(.caption)
-                        .foregroundColor(.green)
+                        .foregroundColor(.blue)
                 }
             }
             .frame(maxWidth: .infinity)

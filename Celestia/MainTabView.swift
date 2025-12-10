@@ -215,7 +215,7 @@ struct MainTabView: View {
                     title: "Interest",
                     isSelected: selectedTab == 1,
                     badgeCount: newMatchesCount,
-                    color: .green
+                    color: .teal
                 ) {
                     selectedTab = 1
                 }
@@ -248,7 +248,7 @@ struct MainTabView: View {
                     title: "Profile",
                     isSelected: selectedTab == 4,
                     badgeCount: 0,
-                    color: .green
+                    color: .blue
                 ) {
                     selectedTab = 4
                 }

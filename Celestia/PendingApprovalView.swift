@@ -231,7 +231,7 @@ struct PendingApprovalView: View {
                     title: "Submitted",
                     isCompleted: true,
                     isActive: false,
-                    color: .green,
+                    color: .teal,
                     isAnimated: stepAnimations[0]
                 )
 
@@ -304,7 +304,7 @@ struct PendingApprovalView: View {
                     icon: "shield.checkered",
                     title: "Community Guidelines",
                     description: "Content follows our safety policies",
-                    color: .green
+                    color: .teal
                 )
             }
         }

@@ -62,8 +62,8 @@ struct ProfileSubscriptionsView: View {
             icon: "star.fill",
             title: "Priority Requests",
             description: "Stand out from the crowd and show you're really interested in teaming up. Get 3x more connections!",
-            color: .cyan,
-            gradient: [Color.cyan, Color.teal],
+            color: .teal,
+            gradient: [Color.teal, Color.blue],
             benefit: "Make a lasting impression"
         ),
         FeatureCardItem(

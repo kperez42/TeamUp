@@ -172,7 +172,7 @@ struct ProfileEnhancementView: View {
                     optionSelector(
                         title: "Religion / Spirituality",
                         icon: "sparkles",
-                        color: .cyan,
+                        color: .teal,
                         options: religionOptions,
                         selection: $religion
                     )
@@ -225,7 +225,7 @@ struct ProfileEnhancementView: View {
                     optionSelector(
                         title: "Drinking",
                         icon: "wineglass.fill",
-                        color: .cyan,
+                        color: .teal,
                         options: drinkingOptions,
                         selection: $drinking
                     )

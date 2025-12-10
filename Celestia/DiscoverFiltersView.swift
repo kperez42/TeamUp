@@ -348,7 +348,7 @@ struct DiscoverFiltersView: View {
 
             Toggle("", isOn: $filters.showVerifiedOnly)
                 .labelsHidden()
-                .tint(.green)
+                .tint(.blue)
         }
     }
 

@@ -34,12 +34,12 @@ enum LegalDocumentType: String, CaseIterable {
     var iconColor: Color {
         switch self {
         case .privacyPolicy: return .blue
-        case .termsOfService: return .green
-        case .communityGuidelines: return .green
+        case .termsOfService: return .teal
+        case .communityGuidelines: return .teal
         case .safetyTips: return .orange
         case .cookiePolicy: return .gray
         case .eula: return .indigo
-        case .accessibility: return .teal
+        case .accessibility: return .blue
         }
     }
 

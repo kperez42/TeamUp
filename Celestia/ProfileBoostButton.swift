@@ -220,7 +220,7 @@ struct BoostConfirmationSheet: View {
                 VStack(alignment: .leading, spacing: 16) {
                     BenefitRow(icon: "eye.fill", text: "Get 10x more profile views", color: .blue)
                     BenefitRow(icon: "gamecontroller.fill", text: "Receive more interest and connections", color: .teal)
-                    BenefitRow(icon: "clock.fill", text: "Boost lasts for 30 minutes", color: .cyan)
+                    BenefitRow(icon: "clock.fill", text: "Boost lasts for 30 minutes", color: .teal)
                 }
                 .padding()
                 .background(Color(.systemGray6))

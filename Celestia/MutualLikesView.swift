@@ -183,7 +183,7 @@ struct MutualLikeCard: View {
                         Text("Ready to team up!")
                             .font(.caption)
                     }
-                    .foregroundColor(.green)
+                    .foregroundColor(.blue)
                 }
                 .padding(12)
             }

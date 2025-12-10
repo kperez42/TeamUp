@@ -439,7 +439,7 @@ struct UserDetailView: View {
                         ExternalProfileRow(icon: "gamecontroller.fill", platform: "Steam", username: steam, color: .blue)
                     }
                     if let twitch = user.twitchUsername {
-                        ExternalProfileRow(icon: "video.fill", platform: "Twitch", username: twitch, color: .green)
+                        ExternalProfileRow(icon: "video.fill", platform: "Twitch", username: twitch, color: .purple)
                     }
                     if let riot = user.riotId {
                         ExternalProfileRow(icon: "r.circle.fill", platform: "Riot", username: riot, color: .red)

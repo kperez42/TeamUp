@@ -143,7 +143,7 @@ struct SafetyTipCard: View {
                     }
                 }
                 .padding(12)
-                .background(Color.green.opacity(0.05))
+                .background(Color.blue.opacity(0.05))
                 .cornerRadius(8)
             }
         }

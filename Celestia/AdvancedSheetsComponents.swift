@@ -70,7 +70,7 @@ struct AdvancedFiltersSheet: View {
                     Button("Reset") {
                         resetFilters()
                     }
-                    .foregroundColor(.green)
+                    .foregroundColor(.blue)
                 }
             }
         }
@@ -111,21 +111,21 @@ struct AdvancedFiltersSheet: View {
                 Text("\(Int(ageRange.lowerBound))")
                     .font(.title3)
                     .fontWeight(.bold)
-                    .foregroundColor(.green)
+                    .foregroundColor(.blue)
                     .frame(width: 50)
-                
+
                 Spacer()
-                
+
                 Text("to")
                     .font(.caption)
                     .foregroundColor(.gray)
-                
+
                 Spacer()
-                
+
                 Text("\(Int(ageRange.upperBound))")
                     .font(.title3)
                     .fontWeight(.bold)
-                    .foregroundColor(.green)
+                    .foregroundColor(.blue)
                     .frame(width: 50)
             }
             
@@ -225,7 +225,7 @@ struct AdvancedFiltersSheet: View {
                         
                         if sortBy == option {
                             Image(systemName: "checkmark.circle.fill")
-                                .foregroundColor(.green)
+                                .foregroundColor(.blue)
                         }
                     }
                     .padding(14)
@@ -306,7 +306,7 @@ struct AdvancedFiltersSheet: View {
     private func sectionHeader(icon: String, title: String) -> some View {
         HStack(spacing: 10) {
             Image(systemName: icon)
-                .foregroundColor(.green)
+                .foregroundColor(.blue)
             Text(title)
                 .font(.headline)
         }
@@ -348,7 +348,7 @@ struct FilterOptionButton: View {
             Text(title)
                 .font(.subheadline)
                 .fontWeight(.medium)
-                .foregroundColor(isSelected ? .white : .green)
+                .foregroundColor(isSelected ? .white : .blue)
                 .frame(maxWidth: .infinity)
                 .padding(.vertical, 14)
                 .background(
@@ -378,14 +378,14 @@ struct FilterToggle: View {
         Toggle(isOn: $isOn) {
             HStack(spacing: 10) {
                 Image(systemName: icon)
-                    .foregroundColor(isOn ? .green : .gray)
+                    .foregroundColor(isOn ? .blue : .gray)
                 Text(title)
             }
         }
         .padding(14)
         .background(Color(.systemGray6))
         .cornerRadius(12)
-        .tint(.green)
+        .tint(.blue)
     }
 }
 
@@ -531,7 +531,7 @@ struct BoostProfileSheet: View {
         VStack(alignment: .leading, spacing: 12) {
             HStack {
                 Image(systemName: "clock.fill")
-                    .foregroundColor(.green)
+                    .foregroundColor(.blue)
                 Text("Choose Duration")
                     .font(.headline)
             }
@@ -558,11 +558,11 @@ struct BoostProfileSheet: View {
                             Text(duration.price)
                                 .font(.title3)
                                 .fontWeight(.bold)
-                                .foregroundColor(.green)
-                            
+                                .foregroundColor(.blue)
+
                             if selectedDuration == duration {
                                 Image(systemName: "checkmark.circle.fill")
-                                    .foregroundColor(.green)
+                                    .foregroundColor(.blue)
                             } else {
                                 Image(systemName: "circle")
                                     .foregroundColor(.gray)
@@ -579,7 +579,7 @@ struct BoostProfileSheet: View {
                     .overlay(
                         RoundedRectangle(cornerRadius: 12)
                             .stroke(
-                                selectedDuration == duration ? Color.green : Color.clear,
+                                selectedDuration == duration ? Color.blue : Color.clear,
                                 lineWidth: 2
                             )
                     )

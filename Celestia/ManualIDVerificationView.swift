@@ -257,7 +257,7 @@ struct ManualIDVerificationView: View {
                 // Step number
                 ZStack {
                     Circle()
-                        .fill(viewModel.selectedIDType != nil ? Color.green : Color.purple)
+                        .fill(viewModel.selectedIDType != nil ? Color.blue : Color.purple)
                         .frame(width: 28, height: 28)
 
                     if viewModel.selectedIDType != nil {
@@ -283,7 +283,7 @@ struct ManualIDVerificationView: View {
 
                 Image(systemName: "doc.text.fill")
                     .font(.title2)
-                    .foregroundColor(viewModel.selectedIDType != nil ? .green : .purple)
+                    .foregroundColor(viewModel.selectedIDType != nil ? .blue : .purple)
             }
             .padding()
 
@@ -337,17 +337,17 @@ struct ManualIDVerificationView: View {
         HStack(spacing: 8) {
             // Step 1 - ID Type
             RoundedRectangle(cornerRadius: 4)
-                .fill(viewModel.selectedIDType != nil ? Color.green : Color.gray.opacity(0.3))
+                .fill(viewModel.selectedIDType != nil ? Color.blue : Color.gray.opacity(0.3))
                 .frame(height: 4)
 
             // Step 2 - ID Photo
             RoundedRectangle(cornerRadius: 4)
-                .fill(viewModel.idImage != nil ? Color.green : Color.gray.opacity(0.3))
+                .fill(viewModel.idImage != nil ? Color.blue : Color.gray.opacity(0.3))
                 .frame(height: 4)
 
             // Step 3 - Selfie
             RoundedRectangle(cornerRadius: 4)
-                .fill(viewModel.selfieImage != nil ? Color.green : Color.gray.opacity(0.3))
+                .fill(viewModel.selfieImage != nil ? Color.blue : Color.gray.opacity(0.3))
                 .frame(height: 4)
         }
         .padding(.horizontal, 20)
@@ -387,7 +387,7 @@ struct ManualIDVerificationView: View {
                 // Step number
                 ZStack {
                     Circle()
-                        .fill(image != nil ? Color.green : (isActive ? Color.purple : Color.gray.opacity(0.3)))
+                        .fill(image != nil ? Color.blue : (isActive ? Color.purple : Color.gray.opacity(0.3)))
                         .frame(width: 28, height: 28)
 
                     if image != nil {
@@ -413,7 +413,7 @@ struct ManualIDVerificationView: View {
 
                 Image(systemName: icon)
                     .font(.title2)
-                    .foregroundColor(image != nil ? .green : .purple)
+                    .foregroundColor(image != nil ? .blue : .purple)
             }
             .padding()
 
@@ -505,7 +505,7 @@ struct ManualIDVerificationView: View {
         HStack(spacing: 12) {
             Image(systemName: "trash.circle.fill")
                 .font(.title2)
-                .foregroundColor(.green)
+                .foregroundColor(.blue)
 
             VStack(alignment: .leading, spacing: 4) {
                 Text("Photos Auto-Deleted")
@@ -518,7 +518,7 @@ struct ManualIDVerificationView: View {
             }
         }
         .padding()
-        .background(Color.green.opacity(0.1))
+        .background(Color.blue.opacity(0.1))
         .cornerRadius(12)
     }
 
@@ -596,7 +596,13 @@ struct ManualIDVerificationView: View {
             .foregroundColor(.white)
             .frame(maxWidth: .infinity)
             .padding(.vertical, 16)
-            .background(Color.green)
+            .background(
+                LinearGradient(
+                    colors: [.blue, .teal],
+                    startPoint: .leading,
+                    endPoint: .trailing
+                )
+            )
             .cornerRadius(14)
             .padding(.horizontal, 20)
             .padding(.bottom, 40)

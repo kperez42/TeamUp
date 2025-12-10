@@ -162,7 +162,7 @@ struct DiscoverView: View {
                         if viewModel.hasActiveFilters {
                             Image(systemName: "line.3.horizontal.decrease.circle.fill")
                                 .font(.caption)
-                                .foregroundColor(.green)
+                                .foregroundColor(.blue)
                         }
                     }
                 }
@@ -178,7 +178,7 @@ struct DiscoverView: View {
             } label: {
                 Image(systemName: "shuffle")
                     .font(.title3)
-                    .foregroundColor(.green)
+                    .foregroundColor(.blue)
                     .frame(width: 44, height: 44)
             }
             .accessibilityElement(
@@ -197,7 +197,7 @@ struct DiscoverView: View {
                 ZStack(alignment: .topTrailing) {
                     Image(systemName: viewModel.hasActiveFilters ? "line.3.horizontal.decrease.circle.fill" : "line.3.horizontal.decrease.circle")
                         .font(.title2)
-                        .foregroundColor(.green)
+                        .foregroundColor(.blue)
 
                     if viewModel.hasActiveFilters {
                         Circle()
@@ -464,7 +464,7 @@ struct DiscoverView: View {
                     }
                     .frame(maxWidth: .infinity)
                     .padding(.vertical, 16)
-                    .foregroundColor(.green)
+                    .foregroundColor(.blue)
                     .background(Color(.systemGray6))
                     .cornerRadius(16)
                     .contentShape(RoundedRectangle(cornerRadius: 16))

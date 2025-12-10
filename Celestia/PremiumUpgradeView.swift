@@ -856,7 +856,7 @@ struct PremiumUpgradeView: View {
                         .frame(width: 60)
                     Text("Premium")
                         .font(.caption.weight(.semibold))
-                        .foregroundColor(.green)
+                        .foregroundColor(.blue)
                         .frame(width: 70)
                 }
                 .padding(.horizontal, 16)
@@ -884,7 +884,7 @@ struct PremiumUpgradeView: View {
         HStack(spacing: 8) {
             Image(systemName: icon)
                 .font(.caption)
-                .foregroundColor(.green)
+                .foregroundColor(.blue)
                 .frame(width: 20)
 
             Text(feature)
@@ -901,7 +901,7 @@ struct PremiumUpgradeView: View {
 
             Text(premium)
                 .font(.caption2.weight(.semibold))
-                .foregroundColor(.green)
+                .foregroundColor(.blue)
                 .frame(width: 70, alignment: .trailing)
         }
         .padding(.vertical, 10)

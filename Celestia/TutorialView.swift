@@ -569,7 +569,7 @@ struct SwipeGestureDemo: View {
                     Text("INTERESTED")
                         .font(.title)
                         .fontWeight(.bold)
-                        .foregroundColor(.green)
+                        .foregroundColor(.blue)
                         .opacity(Double(offset.width / 100))
                 } else if offset.width < -20 {
                     Text("NOPE")

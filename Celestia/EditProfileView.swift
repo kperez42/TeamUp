@@ -1524,7 +1524,7 @@ struct EditProfileView: View {
                         label: "Drinking",
                         value: $drinking,
                         options: drinkingOptions,
-                        color: .green
+                        color: .teal
                     )
                 }
 
@@ -1543,7 +1543,7 @@ struct EditProfileView: View {
                         label: "Diet",
                         value: $diet,
                         options: dietOptions,
-                        color: .green
+                        color: .teal
                     )
                 }
 
@@ -1683,7 +1683,7 @@ struct EditProfileView: View {
                                     .font(.caption)
                                     .fontWeight(.semibold)
                             }
-                            .foregroundColor(.green)
+                            .foregroundColor(.blue)
                         }
                     }
 
@@ -2154,7 +2154,7 @@ struct EditProfileView: View {
                             Text(prompt.question)
                                 .font(.caption)
                                 .fontWeight(.semibold)
-                                .foregroundColor(.green)
+                                .foregroundColor(.teal)
 
                             Text(prompt.answer)
                                 .font(.subheadline)
@@ -2931,7 +2931,7 @@ struct LanguageTagButton: View {
                     }
                 }
             )
-            .foregroundColor(isSelected ? .green : .primary)
+            .foregroundColor(isSelected ? .blue : .primary)
             .cornerRadius(25)
             .overlay(
                 RoundedRectangle(cornerRadius: 25)
@@ -3115,7 +3115,7 @@ struct UploadingPhotoPlaceholder: View {
                     Text("Uploading...")
                         .font(.caption)
                         .fontWeight(.medium)
-                        .foregroundColor(.green)
+                        .foregroundColor(.blue)
                 }
             }
             .overlay(
