@@ -25,7 +25,7 @@ struct DiscoverView: View {
             ZStack {
                 // Background
                 LinearGradient(
-                    colors: [Color.green.opacity(0.1), Color.cyan.opacity(0.05)],
+                    colors: [Color.blue.opacity(0.1), Color.teal.opacity(0.05)],
                     startPoint: .topLeading,
                     endPoint: .bottomTrailing
                 )
@@ -274,7 +274,7 @@ struct DiscoverView: View {
                         iconSize: .title2,
                         iconWeight: .semibold,
                         size: 60,
-                        colors: [Color.blue, Color.cyan],
+                        colors: [Color.blue, Color.teal],
                         shadowColor: .blue.opacity(0.4),
                         isProcessing: viewModel.isProcessingAction
                     ) {
@@ -297,8 +297,8 @@ struct DiscoverView: View {
                         iconSize: .title,
                         iconWeight: .bold,
                         size: 68,
-                        colors: [Color.green.opacity(0.9), Color.green],
-                        shadowColor: .green.opacity(0.4),
+                        colors: [Color.blue.opacity(0.9), Color.blue],
+                        shadowColor: .blue.opacity(0.4),
                         isProcessing: viewModel.isProcessingAction
                     ) {
                         Task {
@@ -372,7 +372,7 @@ struct DiscoverView: View {
                 .foregroundColor(.white)
                 .background(
                     LinearGradient(
-                        colors: [.green, .cyan],
+                        colors: [.blue, .teal],
                         startPoint: .leading,
                         endPoint: .trailing
                     )
@@ -397,7 +397,7 @@ struct DiscoverView: View {
                 .font(.system(size: 80))
                 .foregroundStyle(
                     LinearGradient(
-                        colors: [.green.opacity(0.6), .cyan.opacity(0.4)],
+                        colors: [.blue.opacity(0.6), .teal.opacity(0.4)],
                         startPoint: .topLeading,
                         endPoint: .bottomTrailing
                     )
@@ -438,7 +438,7 @@ struct DiscoverView: View {
                         .foregroundColor(.white)
                         .background(
                             LinearGradient(
-                                colors: [.green, .cyan],
+                                colors: [.blue, .teal],
                                 startPoint: .leading,
                                 endPoint: .trailing
                             )
@@ -549,7 +549,7 @@ struct DiscoverView: View {
             .overlay(alignment: .topTrailing) {
                 // Interest indicator
                 if cardIndex == 0 && viewModel.dragOffset.width > 50 {
-                    swipeIndicator(icon: "gamecontroller.fill", color: .green, text: "INTERESTED")
+                    swipeIndicator(icon: "gamecontroller.fill", color: .blue, text: "INTERESTED")
                         .opacity(min(1.0, Double(viewModel.dragOffset.width) / 100.0))
                 }
             }

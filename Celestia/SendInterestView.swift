@@ -38,7 +38,7 @@ struct SendInterestView: View {
                         Circle()
                             .fill(
                                 LinearGradient(
-                                    colors: [.green.opacity(0.6), .cyan.opacity(0.6)],
+                                    colors: [.blue.opacity(0.6), .teal.opacity(0.6)],
                                     startPoint: .topLeading,
                                     endPoint: .bottomTrailing
                                 )
@@ -108,7 +108,7 @@ struct SendInterestView: View {
                             .frame(height: 55)
                             .background(
                                 LinearGradient(
-                                    colors: [.green, .cyan],
+                                    colors: [.blue, .teal],
                                     startPoint: .leading,
                                     endPoint: .trailing
                                 )
@@ -122,7 +122,7 @@ struct SendInterestView: View {
                             .frame(height: 55)
                             .background(
                                 LinearGradient(
-                                    colors: [.green, .cyan],
+                                    colors: [.blue, .teal],
                                     startPoint: .leading,
                                     endPoint: .trailing
                                 )

@@ -245,7 +245,7 @@ struct SearchProfileCard: View {
         Rectangle()
             .fill(
                 LinearGradient(
-                    colors: [.green.opacity(0.6), .cyan.opacity(0.6)],
+                    colors: [.blue.opacity(0.6), .teal.opacity(0.6)],
                     startPoint: .topLeading,
                     endPoint: .bottomTrailing
                 )

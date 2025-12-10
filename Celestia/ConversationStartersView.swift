@@ -143,7 +143,7 @@ struct StarterCard: View {
     private var gradientColor: Color {
         switch starter.category {
         case .sharedGame:
-            return .green
+            return .blue
         case .sharedPlatform:
             return .indigo
         case .sharedGenre:
@@ -151,9 +151,9 @@ struct StarterCard: View {
         case .location:
             return .blue
         case .bio:
-            return .cyan
+            return .teal
         case .generic:
-            return .green
+            return .blue
         }
     }
 }
@@ -195,7 +195,7 @@ struct CompactConversationStartersView: View {
         .padding(16)
         .background(
             LinearGradient(
-                colors: [Color.green.opacity(0.05), Color.cyan.opacity(0.03)],
+                colors: [Color.blue.opacity(0.05), Color.teal.opacity(0.03)],
                 startPoint: .topLeading,
                 endPoint: .bottomTrailing
             )
@@ -230,13 +230,13 @@ struct CompactStarterButton: View {
                     .font(.body)
                     .foregroundStyle(
                         LinearGradient(
-                            colors: [.green, .cyan],
+                            colors: [.blue, .teal],
                             startPoint: .topLeading,
                             endPoint: .bottomTrailing
                         )
                     )
                     .frame(width: 32, height: 32)
-                    .background(Color.green.opacity(0.1))
+                    .background(Color.blue.opacity(0.1))
                     .cornerRadius(8)
 
                 Text(starter.text)
@@ -251,7 +251,7 @@ struct CompactStarterButton: View {
                     .font(.title3)
                     .foregroundStyle(
                         LinearGradient(
-                            colors: [.green, .cyan],
+                            colors: [.blue, .teal],
                             startPoint: .topLeading,
                             endPoint: .bottomTrailing
                         )

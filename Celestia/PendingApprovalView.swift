@@ -550,7 +550,7 @@ private struct ProgressConnector: View {
                 Rectangle()
                     .fill(
                         LinearGradient(
-                            colors: [.green, .blue],
+                            colors: [.blue, .teal],
                             startPoint: .leading,
                             endPoint: .trailing
                         )

@@ -19,7 +19,7 @@ struct NotificationSettingsView: View {
                 if pushManager.hasNotificationPermission {
                     HStack {
                         Image(systemName: "checkmark.circle.fill")
-                            .foregroundColor(.green)
+                            .foregroundColor(.blue)
                         Text("Notifications Enabled")
                             .foregroundColor(.secondary)
                     }
@@ -49,7 +49,7 @@ struct NotificationSettingsView: View {
                                 .padding(.vertical, 12)
                                 .background(
                                     LinearGradient(
-                                        colors: [.green, .cyan],
+                                        colors: [.blue, .teal],
                                         startPoint: .leading,
                                         endPoint: .trailing
                                     )
@@ -96,7 +96,7 @@ struct NotificationSettingsView: View {
                         Image(systemName: "speaker.wave.2.fill")
                             .foregroundStyle(
                                 LinearGradient(
-                                    colors: [.green, .cyan],
+                                    colors: [.blue, .teal],
                                     startPoint: .topLeading,
                                     endPoint: .bottomTrailing
                                 )
@@ -116,7 +116,7 @@ struct NotificationSettingsView: View {
                         Image(systemName: "app.badge.fill")
                             .foregroundStyle(
                                 LinearGradient(
-                                    colors: [.green, .cyan],
+                                    colors: [.blue, .teal],
                                     startPoint: .topLeading,
                                     endPoint: .bottomTrailing
                                 )
@@ -139,7 +139,7 @@ struct NotificationSettingsView: View {
                         Image(systemName: "moon.fill")
                             .foregroundStyle(
                                 LinearGradient(
-                                    colors: [.green, .cyan],
+                                    colors: [.blue, .teal],
                                     startPoint: .topLeading,
                                     endPoint: .bottomTrailing
                                 )
@@ -184,7 +184,7 @@ struct NotificationSettingsView: View {
                         Image(systemName: "clock.fill")
                             .foregroundStyle(
                                 LinearGradient(
-                                    colors: [.green, .cyan],
+                                    colors: [.blue, .teal],
                                     startPoint: .topLeading,
                                     endPoint: .bottomTrailing
                                 )
@@ -267,7 +267,7 @@ struct NotificationToggle: View {
                 Image(systemName: icon)
                     .foregroundStyle(
                         LinearGradient(
-                            colors: [.green, .cyan],
+                            colors: [.blue, .teal],
                             startPoint: .topLeading,
                             endPoint: .bottomTrailing
                         )
@@ -345,13 +345,13 @@ struct NotificationHistoryRow: View {
                 .font(.title2)
                 .foregroundStyle(
                     LinearGradient(
-                        colors: [.green, .cyan],
+                        colors: [.blue, .teal],
                         startPoint: .topLeading,
                         endPoint: .bottomTrailing
                     )
                 )
                 .frame(width: 40, height: 40)
-                .background(Color.green.opacity(0.1))
+                .background(Color.blue.opacity(0.1))
                 .cornerRadius(10)
 
             // Content

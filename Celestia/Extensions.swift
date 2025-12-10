@@ -262,10 +262,10 @@ extension LinearGradient {
         )
     }
 
-    /// Secondary gradient (teal to cyan)
+    /// Secondary gradient (teal to teal)
     static var brandSecondary: LinearGradient {
         LinearGradient(
-            colors: [.teal, .cyan],
+            colors: [.teal, .teal],
             startPoint: .leading,
             endPoint: .trailing
         )

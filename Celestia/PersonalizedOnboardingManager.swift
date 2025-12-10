@@ -548,13 +548,13 @@ struct OnboardingGoalSelectionView: View {
                     .padding(.vertical, 16)
                     .background(
                         LinearGradient(
-                            colors: [.green, .cyan],
+                            colors: [.blue, .teal],
                             startPoint: .leading,
                             endPoint: .trailing
                         )
                     )
                     .cornerRadius(16)
-                    .shadow(color: .green.opacity(0.3), radius: 10, y: 5)
+                    .shadow(color: .blue.opacity(0.3), radius: 10, y: 5)
                 }
                 .padding(.horizontal, 24)
                 .padding(.bottom, 32)
@@ -563,7 +563,7 @@ struct OnboardingGoalSelectionView: View {
         }
         .background(
             LinearGradient(
-                colors: [Color.green.opacity(0.05), Color.cyan.opacity(0.03)],
+                colors: [Color.blue.opacity(0.05), Color.teal.opacity(0.03)],
                 startPoint: .topLeading,
                 endPoint: .bottomTrailing
             )

@@ -28,7 +28,7 @@ struct EmailVerificationView: View {
                 .font(.system(size: 80))
                 .foregroundStyle(
                     LinearGradient(
-                        colors: [.green, .cyan],
+                        colors: [.blue, .teal],
                         startPoint: .topLeading,
                         endPoint: .bottomTrailing
                     )
@@ -62,7 +62,7 @@ struct EmailVerificationView: View {
                     .font(.system(size: 24))
                     .foregroundStyle(
                         LinearGradient(
-                            colors: [.green, .cyan],
+                            colors: [.blue, .teal],
                             startPoint: .topLeading,
                             endPoint: .bottomTrailing
                         )
@@ -83,12 +83,12 @@ struct EmailVerificationView: View {
             .padding(16)
             .background(
                 RoundedRectangle(cornerRadius: 12)
-                    .fill(Color.green.opacity(0.08))
+                    .fill(Color.blue.opacity(0.08))
                     .overlay(
                         RoundedRectangle(cornerRadius: 12)
                             .stroke(
                                 LinearGradient(
-                                    colors: [.green.opacity(0.3), .cyan.opacity(0.3)],
+                                    colors: [.blue.opacity(0.3), .teal.opacity(0.3)],
                                     startPoint: .topLeading,
                                     endPoint: .bottomTrailing
                                 ),
@@ -141,7 +141,7 @@ struct EmailVerificationView: View {
                     .frame(height: 50)
                     .background(
                         LinearGradient(
-                            colors: [.green, .cyan],
+                            colors: [.blue, .teal],
                             startPoint: .leading,
                             endPoint: .trailing
                         )
@@ -166,7 +166,7 @@ struct EmailVerificationView: View {
                     .foregroundColor(.green)
                     .frame(maxWidth: .infinity)
                     .frame(height: 50)
-                    .background(Color.green.opacity(0.1))
+                    .background(Color.blue.opacity(0.1))
                     .cornerRadius(12)
                 }
                 .disabled(isSending)

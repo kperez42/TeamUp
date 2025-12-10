@@ -451,7 +451,7 @@ struct AdminUserInvestigationView: View {
                     value: "\(messagesCount)",
                     label: "Messages",
                     icon: "message.fill",
-                    gradientColors: [.blue, .cyan]
+                    gradientColors: [.blue, .teal]
                 )
                 EnhancedActivityStatBox(
                     value: "\(reportsCount)",

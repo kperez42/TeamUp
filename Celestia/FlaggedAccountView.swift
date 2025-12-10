@@ -187,7 +187,7 @@ struct FlaggedAccountView: View {
                                     .frame(width: 36, height: 36)
                                 Image(systemName: "lightbulb.fill")
                                     .font(.system(size: 18))
-                                    .foregroundColor(.green)
+                                    .foregroundColor(.blue)
                             }
 
                             Text("In the Meantime")
@@ -235,7 +235,7 @@ struct FlaggedAccountView: View {
                             .padding(.vertical, 16)
                             .background(
                                 LinearGradient(
-                                    colors: [.green, .cyan],
+                                    colors: [.blue, .teal],
                                     startPoint: .leading,
                                     endPoint: .trailing
                                 )

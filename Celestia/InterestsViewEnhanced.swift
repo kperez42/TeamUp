@@ -267,7 +267,7 @@ struct InterestsViewEnhanced: View {
         VStack(spacing: 20) {
             Image(systemName: "gamecontroller")
                 .font(.system(size: 60))
-                .foregroundColor(.green.opacity(0.5))
+                .foregroundColor(.blue.opacity(0.5))
 
             Text(interestService.receivedInterests.isEmpty ? "No Interests Yet" : "No Results")
                 .font(.title3)
@@ -320,7 +320,7 @@ struct InterestsViewEnhanced: View {
                     showMatchAnimation = false
                 }
                 .buttonStyle(.borderedProminent)
-                .tint(.green)
+                .tint(.blue)
 
                 Button("Keep Browsing") {
                     showMatchAnimation = false
@@ -356,7 +356,7 @@ struct InterestsViewEnhanced: View {
                 } label: {
                     Text("UNDO")
                         .font(.subheadline.weight(.bold))
-                        .foregroundColor(.green)
+                        .foregroundColor(.blue)
                 }
             }
             .padding()
@@ -592,18 +592,18 @@ struct InterestFilterChip: View {
                 Text(title)
                     .font(.subheadline.weight(.medium))
             }
-            .foregroundColor(isSelected ? .white : .green)
+            .foregroundColor(isSelected ? .white : .blue)
             .padding(.horizontal, 16)
             .padding(.vertical, 8)
             .background(
                 isSelected ?
                 LinearGradient(
-                    colors: [.green, .cyan],
+                    colors: [.blue, .teal],
                     startPoint: .leading,
                     endPoint: .trailing
                 ) :
                 LinearGradient(
-                    colors: [Color.green.opacity(0.1), Color.green.opacity(0.1)],
+                    colors: [Color.blue.opacity(0.1), Color.blue.opacity(0.1)],
                     startPoint: .leading,
                     endPoint: .trailing
                 )
@@ -644,7 +644,7 @@ struct InterestCard: View {
                         },
                         placeholder: {
                             LinearGradient(
-                                colors: [Color.green.opacity(0.6), Color.cyan.opacity(0.5)],
+                                colors: [Color.blue.opacity(0.6), Color.teal.opacity(0.5)],
                                 startPoint: .topLeading,
                                 endPoint: .bottomTrailing
                             )
@@ -676,7 +676,7 @@ struct InterestCard: View {
                     if isSelectionMode {
                         Image(systemName: isSelected ? "checkmark.circle.fill" : "circle")
                             .font(.title2)
-                            .foregroundColor(isSelected ? .green : .white)
+                            .foregroundColor(isSelected ? .blue : .white)
                             .padding(8)
                             .background(Circle().fill(Color.white.opacity(isSelected ? 0 : 0.3)))
                     }
@@ -709,7 +709,7 @@ struct InterestCard: View {
                         if let message = interest.message {
                             Text("💬 \(message)")
                                 .font(.caption)
-                                .foregroundColor(.green)
+                                .foregroundColor(.blue)
                                 .lineLimit(2)
                         }
                     }
@@ -747,7 +747,7 @@ struct InterestCard: View {
             .overlay {
                 if isSelected {
                     RoundedRectangle(cornerRadius: 16)
-                        .stroke(Color.green, lineWidth: 3)
+                        .stroke(Color.blue, lineWidth: 3)
                 }
             }
         }

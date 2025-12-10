@@ -25,7 +25,7 @@ struct ProfileApprovedCelebrationView: View {
                 colors: [
                     Color.green.opacity(0.3),
                     Color.blue.opacity(0.2),
-                    Color.cyan.opacity(0.2)
+                    Color.teal.opacity(0.2)
                 ],
                 startPoint: .topLeading,
                 endPoint: .bottomTrailing
@@ -69,13 +69,13 @@ struct ProfileApprovedCelebrationView: View {
                     Circle()
                         .fill(
                             LinearGradient(
-                                colors: [.green, .green.opacity(0.8)],
+                                colors: [.blue, .teal],
                                 startPoint: .topLeading,
                                 endPoint: .bottomTrailing
                             )
                         )
                         .frame(width: 120, height: 120)
-                        .shadow(color: .green.opacity(0.5), radius: 20, y: 5)
+                        .shadow(color: .blue.opacity(0.5), radius: 20, y: 5)
 
                     // Checkmark
                     Image(systemName: "checkmark")
@@ -153,7 +153,7 @@ struct ProfileApprovedCelebrationView: View {
                     .padding(.vertical, 18)
                     .background(
                         LinearGradient(
-                            colors: [.green, .blue],
+                            colors: [.blue, .teal],
                             startPoint: .leading,
                             endPoint: .trailing
                         )

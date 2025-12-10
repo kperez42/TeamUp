@@ -170,7 +170,7 @@ struct UserDetailView: View {
                         .font(.system(size: 32, weight: .bold))
                         .foregroundStyle(
                             LinearGradient(
-                                colors: [.green, .cyan],
+                                colors: [.blue, .teal],
                                 startPoint: .leading,
                                 endPoint: .trailing
                             )
@@ -188,7 +188,7 @@ struct UserDetailView: View {
                 if user.isVerified {
                     Image(systemName: "checkmark.seal.fill")
                         .font(.title3)
-                        .foregroundColor(.cyan)
+                        .foregroundColor(.teal)
                 }
 
                 if user.isPremium {
@@ -213,13 +213,13 @@ struct UserDetailView: View {
 
                 HStack(spacing: 4) {
                     Image(systemName: "gamecontroller.fill")
-                        .foregroundColor(.green)
+                        .foregroundColor(.blue)
                     Text(user.playStyle)
                         .fontWeight(.medium)
                 }
                 .padding(.horizontal, 12)
                 .padding(.vertical, 6)
-                .background(Color.green.opacity(0.15))
+                .background(Color.blue.opacity(0.15))
                 .cornerRadius(20)
             }
             .font(.subheadline)
@@ -230,7 +230,7 @@ struct UserDetailView: View {
                     if !user.location.isEmpty {
                         HStack(spacing: 6) {
                             Image(systemName: "mappin.circle.fill")
-                                .foregroundColor(.green)
+                                .foregroundColor(.blue)
                             Text("\(user.location), \(user.country)")
                                 .foregroundColor(.secondary)
                         }
@@ -239,7 +239,7 @@ struct UserDetailView: View {
                     if let region = user.region {
                         HStack(spacing: 6) {
                             Image(systemName: "globe")
-                                .foregroundColor(.cyan)
+                                .foregroundColor(.teal)
                             Text(region)
                                 .foregroundColor(.secondary)
                         }
@@ -283,8 +283,8 @@ struct UserDetailView: View {
             ProfileSectionCard(
                 icon: "quote.bubble.fill",
                 title: "About",
-                iconColors: [.green, .cyan],
-                borderColor: .green
+                iconColors: [.blue, .teal],
+                borderColor: .blue
             ) {
                 Text(user.bio)
                     .font(.body)
@@ -302,8 +302,8 @@ struct UserDetailView: View {
             ProfileSectionCard(
                 icon: "gamecontroller.fill",
                 title: "Games",
-                iconColors: [.green, .cyan],
-                borderColor: .green
+                iconColors: [.blue, .teal],
+                borderColor: .blue
             ) {
                 VStack(spacing: 12) {
                     ForEach(user.favoriteGames) { game in
@@ -322,7 +322,7 @@ struct UserDetailView: View {
             ProfileSectionCard(
                 icon: "display",
                 title: "Platforms",
-                iconColors: [.blue, .cyan],
+                iconColors: [.blue, .teal],
                 borderColor: .blue
             ) {
                 FlowLayout2(spacing: 10) {
@@ -379,8 +379,8 @@ struct UserDetailView: View {
             ProfileSectionCard(
                 icon: "calendar.badge.clock",
                 title: "Gaming Schedule",
-                iconColors: [.cyan, .blue],
-                borderColor: .cyan
+                iconColors: [.teal, .blue],
+                borderColor: .teal
             ) {
                 VStack(alignment: .leading, spacing: 12) {
                     if !schedule.preferredDays.isEmpty {
@@ -394,8 +394,8 @@ struct UserDetailView: View {
                                         .font(.caption)
                                         .padding(.horizontal, 10)
                                         .padding(.vertical, 4)
-                                        .background(Color.cyan.opacity(0.15))
-                                        .foregroundColor(.cyan)
+                                        .background(Color.teal.opacity(0.15))
+                                        .foregroundColor(.teal)
                                         .cornerRadius(12)
                                 }
                             }
@@ -466,8 +466,8 @@ struct UserDetailView: View {
             ProfileSectionCard(
                 icon: "text.bubble.fill",
                 title: "Get to Know Me",
-                iconColors: [.green, .cyan],
-                borderColor: .green
+                iconColors: [.blue, .teal],
+                borderColor: .blue
             ) {
                 VStack(spacing: 12) {
                     ForEach(user.prompts) { prompt in
@@ -486,12 +486,12 @@ struct UserDetailView: View {
             ProfileSectionCard(
                 icon: "person.2.fill",
                 title: "Show Me",
-                iconColors: [.cyan, .green],
-                borderColor: .cyan
+                iconColors: [.teal, .blue],
+                borderColor: .teal
             ) {
                 FlowLayout2(spacing: 10) {
                     ForEach(user.lookingFor, id: \.self) { type in
-                        ProfileTagView(text: type, colors: [.cyan, .green], textColor: .cyan)
+                        ProfileTagView(text: type, colors: [.teal, .blue], textColor: .teal)
                     }
                 }
             }
@@ -615,7 +615,7 @@ struct UserDetailView: View {
                         Color.white
                     } else {
                         LinearGradient(
-                            colors: [Color.green, Color.cyan],
+                            colors: [Color.blue, Color.teal],
                             startPoint: .topLeading,
                             endPoint: .bottomTrailing
                         )
@@ -819,9 +819,9 @@ struct GameCard: View {
         HStack(spacing: 12) {
             Image(systemName: "gamecontroller.fill")
                 .font(.title2)
-                .foregroundColor(.green)
+                .foregroundColor(.blue)
                 .frame(width: 40, height: 40)
-                .background(Color.green.opacity(0.15))
+                .background(Color.blue.opacity(0.15))
                 .cornerRadius(10)
 
             VStack(alignment: .leading, spacing: 2) {
@@ -994,7 +994,7 @@ struct PromptCard: View {
             Text(prompt.question)
                 .font(.subheadline)
                 .fontWeight(.semibold)
-                .foregroundColor(.green)
+                .foregroundColor(.blue)
 
             Text(prompt.answer)
                 .font(.body)
@@ -1005,7 +1005,7 @@ struct PromptCard: View {
         .frame(maxWidth: .infinity, alignment: .leading)
         .background(
             LinearGradient(
-                colors: [Color.green.opacity(0.05), Color.cyan.opacity(0.03)],
+                colors: [Color.blue.opacity(0.05), Color.teal.opacity(0.03)],
                 startPoint: .topLeading,
                 endPoint: .bottomTrailing
             )

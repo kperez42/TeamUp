@@ -52,7 +52,7 @@ struct PrivacySettingsView: View {
                 Circle()
                     .fill(
                         LinearGradient(
-                            colors: [.green.opacity(0.2), .cyan.opacity(0.1)],
+                            colors: [.blue.opacity(0.2), .teal.opacity(0.1)],
                             startPoint: .topLeading,
                             endPoint: .bottomTrailing
                         )
@@ -63,7 +63,7 @@ struct PrivacySettingsView: View {
                     .font(.system(size: 40))
                     .foregroundStyle(
                         LinearGradient(
-                            colors: [.green, .cyan],
+                            colors: [.blue, .teal],
                             startPoint: .topLeading,
                             endPoint: .bottomTrailing
                         )
@@ -88,7 +88,7 @@ struct PrivacySettingsView: View {
         VStack(alignment: .leading, spacing: 16) {
             HStack(spacing: 12) {
                 Image(systemName: "eye.fill")
-                    .foregroundColor(.green)
+                    .foregroundColor(.blue)
 
                 Text("Profile Visibility")
                     .font(.headline)
@@ -196,7 +196,7 @@ struct PrivacyToggleCard: View {
         Toggle(isOn: $isOn) {
             HStack(spacing: 12) {
                 Image(systemName: icon)
-                    .foregroundColor(.green)
+                    .foregroundColor(.blue)
                     .frame(width: 30)
 
                 VStack(alignment: .leading, spacing: 2) {
@@ -210,7 +210,7 @@ struct PrivacyToggleCard: View {
                 }
             }
         }
-        .tint(.green)
+        .tint(.blue)
         .padding()
         .background(Color(.systemBackground))
         .cornerRadius(12)

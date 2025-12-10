@@ -199,8 +199,8 @@ struct ImprovedUserDetailSheet: View {
         ZStack {
             LinearGradient(
                 colors: [
-                    Color.green.opacity(0.7),
-                    Color.cyan.opacity(0.6),
+                    Color.blue.opacity(0.7),
+                    Color.teal.opacity(0.6),
                     Color.blue.opacity(0.5)
                 ],
                 startPoint: .topLeading,
@@ -226,7 +226,7 @@ struct ImprovedUserDetailSheet: View {
                     .foregroundColor(.gray)
                     .padding(.horizontal, 8)
                     .padding(.vertical, 4)
-                    .background(Color.green.opacity(0.1))
+                    .background(Color.blue.opacity(0.1))
                     .cornerRadius(8)
 
                 if user.isVerified {
@@ -246,7 +246,7 @@ struct ImprovedUserDetailSheet: View {
 
             HStack(spacing: 6) {
                 Image(systemName: "mappin.circle.fill")
-                    .foregroundColor(.green)
+                    .foregroundColor(.blue)
                 Text("\(user.location), \(user.country)")
                     .foregroundColor(.gray)
             }
@@ -261,7 +261,7 @@ struct ImprovedUserDetailSheet: View {
         VStack(alignment: .leading, spacing: 12) {
             HStack {
                 Image(systemName: "text.alignleft")
-                    .foregroundColor(.green)
+                    .foregroundColor(.blue)
                 Text("About")
                     .font(.headline)
             }
@@ -282,12 +282,12 @@ struct ImprovedUserDetailSheet: View {
 
     private var statsSection: some View {
         HStack(spacing: 0) {
-            statItem(icon: "gamecontroller.fill", value: "\(user.favoriteGames.count)", label: "Games", color: .cyan)
+            statItem(icon: "gamecontroller.fill", value: "\(user.favoriteGames.count)", label: "Games", color: .teal)
 
             Divider()
                 .frame(height: 40)
 
-            statItem(icon: "person.2.fill", value: "\(user.gamingStats.teamCount)", label: "Teams", color: .green)
+            statItem(icon: "person.2.fill", value: "\(user.gamingStats.teamCount)", label: "Teams", color: .blue)
 
             Divider()
                 .frame(height: 40)
@@ -338,7 +338,7 @@ struct ImprovedUserDetailSheet: View {
         HStack {
             HStack(spacing: 10) {
                 Image(systemName: icon)
-                    .foregroundColor(.green)
+                    .foregroundColor(.blue)
                     .frame(width: 24)
                 
                 Text(label)
@@ -360,14 +360,14 @@ struct ImprovedUserDetailSheet: View {
         VStack(alignment: .leading, spacing: 12) {
             HStack {
                 Image(systemName: "gamecontroller.fill")
-                    .foregroundColor(.green)
+                    .foregroundColor(.blue)
                 Text("Platforms")
                     .font(.headline)
             }
 
             FlowLayout(spacing: 8) {
                 ForEach(user.platforms, id: \.self) { platform in
-                    TagView(text: platform, color: .green)
+                    TagView(text: platform, color: .blue)
                 }
             }
         }
@@ -384,7 +384,7 @@ struct ImprovedUserDetailSheet: View {
         VStack(alignment: .leading, spacing: 12) {
             HStack {
                 Image(systemName: "star.fill")
-                    .foregroundColor(.green)
+                    .foregroundColor(.blue)
                 Text("Favorite Games")
                     .font(.headline)
             }
@@ -441,13 +441,13 @@ struct ImprovedUserDetailSheet: View {
                 .frame(height: 56)
                 .background(
                     LinearGradient(
-                        colors: [Color.green, Color.cyan],
+                        colors: [Color.blue, Color.teal],
                         startPoint: .leading,
                         endPoint: .trailing
                     )
                 )
                 .cornerRadius(16)
-                .shadow(color: .green.opacity(0.4), radius: 10, y: 5)
+                .shadow(color: .blue.opacity(0.4), radius: 10, y: 5)
             }
         }
         .padding(.horizontal, 24)

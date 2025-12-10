@@ -59,15 +59,15 @@ enum AppConstants {
 
     // MARK: - Colors (Gaming Theme)
     enum Colors {
-        static let primary = Color.green           // Gaming green
-        static let secondary = Color.cyan          // Accent cyan
-        static let accent = Color.cyan             // Neon accent
+        static let primary = Color.blue            // Gaming blue
+        static let secondary = Color.teal          // Accent teal
+        static let accent = Color.teal             // Neon accent
         static let success = Color.green
         static let warning = Color.orange
         static let error = Color.red
 
-        static let gradientStart = Color.green
-        static let gradientEnd = Color.cyan
+        static let gradientStart = Color.blue
+        static let gradientEnd = Color.teal
 
         static func primaryGradient() -> LinearGradient {
             LinearGradient(
@@ -79,7 +79,7 @@ enum AppConstants {
 
         static func accentGradient() -> LinearGradient {
             LinearGradient(
-                colors: [Color.green, Color.cyan],
+                colors: [Color.blue, Color.teal],
                 startPoint: .leading,
                 endPoint: .trailing
             )
