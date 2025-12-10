@@ -1524,7 +1524,7 @@ struct EditProfileView: View {
                         label: "Drinking",
                         value: $drinking,
                         options: drinkingOptions,
-                        color: .green
+                        color: .teal
                     )
                 }
 
@@ -1543,7 +1543,7 @@ struct EditProfileView: View {
                         label: "Diet",
                         value: $diet,
                         options: dietOptions,
-                        color: .green
+                        color: .teal
                     )
                 }
 
@@ -2931,7 +2931,7 @@ struct LanguageTagButton: View {
                     }
                 }
             )
-            .foregroundColor(isSelected ? .green : .primary)
+            .foregroundColor(isSelected ? .blue : .primary)
             .cornerRadius(25)
             .overlay(
                 RoundedRectangle(cornerRadius: 25)
