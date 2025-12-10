@@ -110,7 +110,7 @@ struct ProfileRejectionFeedbackView: View {
                             number: 3,
                             title: "Request Re-Review",
                             subtitle: "We'll check your profile again",
-                            color: .green,
+                            color: .teal,
                             isLast: true
                         )
                     }
@@ -264,7 +264,7 @@ struct ProfileRejectionFeedbackView: View {
                             HStack(spacing: 10) {
                                 if isUpdating {
                                     ProgressView()
-                                        .tint(.green)
+                                        .tint(.blue)
                                 } else {
                                     Image(systemName: "arrow.clockwise.circle.fill")
                                         .font(.title3)
@@ -273,13 +273,13 @@ struct ProfileRejectionFeedbackView: View {
                                 }
                             }
                             .font(.headline)
-                            .foregroundColor(.green)
+                            .foregroundColor(.blue)
                             .frame(maxWidth: .infinity)
                             .padding(.vertical, 16)
-                            .background(Color.green.opacity(0.12))
+                            .background(Color.blue.opacity(0.12))
                             .overlay(
                                 RoundedRectangle(cornerRadius: 16)
-                                    .strokeBorder(Color.green.opacity(0.3), lineWidth: 1.5)
+                                    .strokeBorder(Color.blue.opacity(0.3), lineWidth: 1.5)
                             )
                             .cornerRadius(16)
                         }
@@ -435,7 +435,7 @@ struct ProfileRejectionFeedbackView: View {
                 ),
                 IssueItem(
                     icon: "checkmark.shield.fill",
-                    color: .green,
+                    color: .teal,
                     title: "Authentic Content",
                     description: "Make sure all information is accurate and genuine"
                 )

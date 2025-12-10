@@ -271,10 +271,10 @@ extension LinearGradient {
         )
     }
 
-    /// Success gradient (green shades)
+    /// Success gradient (blue/teal shades)
     static var success: LinearGradient {
         LinearGradient(
-            colors: [Color.green.opacity(0.9), Color.green],
+            colors: [Color.blue.opacity(0.9), Color.teal],
             startPoint: .topLeading,
             endPoint: .bottomTrailing
         )
