@@ -285,7 +285,7 @@ struct DiscoverView: View {
                     }
                     .accessibilityElement(
                         label: "Super Like",
-                        hint: "Send a super like to stand out and increase your chances of matching",
+                        hint: "Send a super like to stand out and increase your chances of connecting",
                         traits: .isButton,
                         identifier: AccessibilityIdentifier.superLikeButton
                     )

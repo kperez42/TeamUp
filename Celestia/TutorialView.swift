@@ -386,7 +386,7 @@ class TutorialManager: ObservableObject {
             return Tutorial(
                 id: "super_like",
                 title: "Super Like ⭐",
-                description: "Stand out from the crowd! Super Likes show you're really interested.",
+                description: "Stand out from the crowd! Super Likes show you really want to team up.",
                 icon: "star.circle.fill",
                 accentColor: .blue,
                 tips: [
