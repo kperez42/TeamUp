@@ -1,8 +1,8 @@
-# Celestia Accessibility Implementation Guide
+# TeamUp Accessibility Implementation Guide
 
 ## Overview
 
-This document describes the comprehensive accessibility implementation for the Celestia dating app, ensuring WCAG 2.1 Level AA compliance and providing an excellent experience for all users, including those using assistive technologies.
+This document describes the comprehensive accessibility implementation for the TeamUp gaming social app, ensuring WCAG 2.1 Level AA compliance and providing an excellent experience for all users, including those using assistive technologies.
 
 ## Accessibility Standards
 
@@ -393,7 +393,7 @@ withAnimation(animation) {
 
 1. **Voice Control Support**
    - Voice commands for common actions
-   - Custom vocabulary for dating-specific terms
+   - Custom vocabulary for gaming-specific terms
 
 2. **Switch Control Support**
    - Support for external switches
@@ -416,13 +416,13 @@ withAnimation(animation) {
 
 For accessibility-related issues or suggestions:
 - File an issue on GitHub
-- Email: accessibility@celestia.app
+- Email: accessibility@teamup.app
 - Include detailed steps to reproduce
 - Specify which assistive technology you're using
 
 ## Conclusion
 
-The TeamUp app now provides comprehensive accessibility support, ensuring that all users can enjoy a premium dating experience regardless of their abilities. By following WCAG 2.1 Level AA guidelines and implementing best practices for VoiceOver, Dynamic Type, and Reduce Motion, we've created an inclusive platform that welcomes everyone.
+The TeamUp app now provides comprehensive accessibility support, ensuring that all users can enjoy a premium gaming social experience regardless of their abilities. By following WCAG 2.1 Level AA guidelines and implementing best practices for VoiceOver, Dynamic Type, and Reduce Motion, we've created an inclusive platform that welcomes everyone.
 
 ---
 

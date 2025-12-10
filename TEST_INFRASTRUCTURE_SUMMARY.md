@@ -1,8 +1,8 @@
-# Celestia iOS Test Infrastructure - Complete Overview
+# TeamUp iOS Test Infrastructure - Complete Overview
 
 ## EXECUTIVE SUMMARY
 
-Your Celestia dating app has a **comprehensive test infrastructure** with:
+Your TeamUp gaming social app has a **comprehensive test infrastructure** with:
 
 - **25 test files** organized by functionality
 - **200+ unit tests** covering critical paths
