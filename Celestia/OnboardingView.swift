@@ -1959,7 +1959,7 @@ struct OnboardingView: View {
                     LinearGradient(colors: [Color.gray.opacity(0.5)], startPoint: .leading, endPoint: .trailing)
                 )
                 .cornerRadius(16)
-                .shadow(color: canProceed ? .green.opacity(0.3) : .clear, radius: 10, y: 5)
+                .shadow(color: canProceed ? .blue.opacity(0.3) : .clear, radius: 10, y: 5)
             }
             .disabled(!canProceed || isLoading)
             .accessibilityLabel(currentStep < totalSteps - 1 ? "Continue" : "Complete onboarding")

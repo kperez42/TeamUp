@@ -1542,7 +1542,7 @@ struct SwipeableLikeCard: View {
                     Image(systemName: "gamecontroller.fill")
                         .font(.system(size: 50))
                         .foregroundColor(.blue)
-                        .shadow(color: .green.opacity(0.5), radius: 10)
+                        .shadow(color: .blue.opacity(0.5), radius: 10)
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .background(Color.black.opacity(0.3))
