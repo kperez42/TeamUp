@@ -310,7 +310,7 @@ struct MatchQualityTab: View {
         ScrollView(showsIndicators: false) {
             VStack(spacing: 20) {
                 // Match selector (placeholder)
-                Text("Select a match to analyze")
+                Text("Select a connection to analyze")
                     .font(.subheadline)
                     .foregroundColor(.secondary)
                     .padding()
@@ -421,7 +421,7 @@ struct TimeToMatchCard: View {
                     .font(.title3)
                     .foregroundColor(.green)
 
-                Text("Time to Match")
+                Text("Time to Connect")
                     .font(.headline)
                     .fontWeight(.semibold)
             }

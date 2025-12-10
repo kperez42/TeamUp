@@ -78,7 +78,7 @@ struct OnboardingView: View {
     let totalSteps = 8
 
     // Step 6 options - Gaming goals
-    let relationshipGoalOptions = ["Prefer not to say", "Casual Gaming", "Regular Squad", "Competitive Team", "Just Friends", "Not Sure Yet"]
+    let relationshipGoalOptions = ["Prefer not to say", "Casual Gaming", "Regular Squad", "Competitive Team", "New Friends", "Not Sure Yet"]
     let heightOptions: [Int] = Array(140...220) // cm range
 
     // Step 7 & 8 options (Lifestyle)

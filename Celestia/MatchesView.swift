@@ -143,14 +143,14 @@ struct MatchesView: View {
             .task {
                 await loadMatches()
                 updateFilteredMatches()
-                VoiceOverAnnouncement.screenChanged(to: "Matches view. \(matchService.matches.count) matches available.")
+                VoiceOverAnnouncement.screenChanged(to: "Connections view. \(matchService.matches.count) connections available.")
             }
             .refreshable {
                 HapticManager.shared.impact(.light)
                 await loadMatches()
                 updateFilteredMatches()
                 HapticManager.shared.notification(.success)
-                VoiceOverAnnouncement.announce("Matches refreshed. \(matchService.matches.count) matches available.")
+                VoiceOverAnnouncement.announce("Connections refreshed. \(matchService.matches.count) connections available.")
             }
             // PERFORMANCE: Update cached matches only when dependencies change
             .onChange(of: matchService.matches.count) { _, _ in
@@ -431,7 +431,7 @@ struct MatchesView: View {
             )
             .cornerRadius(20)
         }
-        .accessibilityLabel("\(title) filter, \(count) matches")
+        .accessibilityLabel("\(title) filter, \(count) connections")
         .accessibilityHint(isActive ? "Active. Tap to deactivate" : "Tap to activate")
     }
     
@@ -698,7 +698,7 @@ struct MatchesView: View {
         } catch {
             Logger.shared.error("Error loading matches", category: .matching, error: error)
             await MainActor.run {
-                errorMessage = "Failed to load matches. Please check your connection and try again."
+                errorMessage = "Failed to load connections. Please check your internet and try again."
             }
         }
     }

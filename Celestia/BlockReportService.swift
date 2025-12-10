@@ -296,7 +296,7 @@ class BlockReportService: ObservableObject, ListenerLifecycleAware {
 enum UnmatchReason: String, CaseIterable {
     case notInterested = "Not interested anymore"
     case noResponse = "No response to messages"
-    case foundSomeone = "Found someone else"
+    case foundTeam = "Found other teammates"
     case notRealPerson = "Doesn't seem like a real person"
     case inappropriate = "Inappropriate behavior"
     case other = "Other reason"
@@ -305,7 +305,7 @@ enum UnmatchReason: String, CaseIterable {
         switch self {
         case .notInterested: return "hand.raised.fill"
         case .noResponse: return "message.fill"
-        case .foundSomeone: return "heart.fill"
+        case .foundTeam: return "person.2.fill"
         case .notRealPerson: return "person.fill.questionmark"
         case .inappropriate: return "exclamationmark.triangle.fill"
         case .other: return "ellipsis.circle.fill"

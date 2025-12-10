@@ -487,7 +487,7 @@ struct WelcomeAwarenessSlidesView: View {
         AwarenessSlide(
             icon: "person.crop.circle.fill.badge.checkmark",
             title: "Complete Your Profile",
-            description: "High-quality profiles get 5x more matches. Add photos, list your games, and share your playstyle!",
+            description: "High-quality profiles get 5x more connections. Add photos, list your games, and share your playstyle!",
             color: .green,
             tips: [
                 "Add photos of yourself or your gaming setup",
