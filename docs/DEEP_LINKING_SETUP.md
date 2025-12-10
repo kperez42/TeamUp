@@ -1,6 +1,6 @@
 # Deep Linking & Universal Links Setup Guide
 
-This guide covers the complete setup for Deep Linking and Universal Links in Celestia.
+This guide covers the complete setup for Deep Linking and Universal Links in TeamUp.
 
 ## 📋 Table of Contents
 
@@ -16,16 +16,16 @@ This guide covers the complete setup for Deep Linking and Universal Links in Cel
 
 ## Overview
 
-Celestia supports two types of deep linking:
+TeamUp supports two types of deep linking:
 
 ### Universal Links (Recommended)
-- Format: `https://celestia.app/...`
+- Format: `https://teamup.app/...`
 - Works seamlessly from web browsers and other apps
 - Opens app directly without browser redirect
 - Better user experience and SEO
 
 ### URL Scheme (Fallback)
-- Format: `celestia://...`
+- Format: `teamup://...`
 - Works when Universal Links are not configured
 - Useful for testing and development
 
@@ -39,8 +39,8 @@ Upload the `apple-app-site-association` file to your web server:
 
 **File Location:**
 ```
-https://celestia.app/.well-known/apple-app-site-association
-https://celestia.app/apple-app-site-association
+https://teamup.app/.well-known/apple-app-site-association
+https://teamup.app/apple-app-site-association
 ```
 
 **Important Requirements:**
@@ -56,7 +56,7 @@ https://celestia.app/apple-app-site-association
     "apps": [],
     "details": [
       {
-        "appID": "YOUR_TEAM_ID.com.celestia.app",
+        "appID": "YOUR_TEAM_ID.com.teamup.app",
         "paths": ["/join/*", "/profile/*", ...]
       }
     ]
@@ -73,8 +73,8 @@ The entitlements file (`Celestia.entitlements`) has been updated with:
 ```xml
 <key>com.apple.developer.associated-domains</key>
 <array>
-    <string>applinks:celestia.app</string>
-    <string>applinks:www.celestia.app</string>
+    <string>applinks:teamup.app</string>
+    <string>applinks:www.teamup.app</string>
 </array>
 ```
 
@@ -83,13 +83,13 @@ The entitlements file (`Celestia.entitlements`) has been updated with:
 2. Go to "Signing & Capabilities"
 3. Verify "Associated Domains" capability is enabled
 4. Verify domains are listed:
-   - `applinks:celestia.app`
-   - `applinks:www.celestia.app`
+   - `applinks:teamup.app`
+   - `applinks:www.teamup.app`
 
 ### 3. Apple Developer Portal
 
 1. Go to [developer.apple.com](https://developer.apple.com)
-2. Select your App ID (com.celestia.app)
+2. Select your App ID (com.teamup.app)
 3. Enable "Associated Domains" capability
 4. Save and regenerate provisioning profiles
 
@@ -108,10 +108,10 @@ Add the following to your `Info.plist`:
         <key>CFBundleTypeRole</key>
         <string>Editor</string>
         <key>CFBundleURLName</key>
-        <string>com.celestia.app</string>
+        <string>com.teamup.app</string>
         <key>CFBundleURLSchemes</key>
         <array>
-            <string>celestia</string>
+            <string>teamup</string>
         </array>
     </dict>
 </array>
@@ -125,16 +125,16 @@ Add the following to your `Info.plist`:
 
 | Route | URL | Purpose |
 |-------|-----|---------|
-| Home | `https://celestia.app/` | App home screen |
-| Referral | `https://celestia.app/join/CODE` | Referral signup |
-| Profile | `https://celestia.app/profile/USER_ID` | View user profile |
-| Match | `https://celestia.app/match/MATCH_ID` | View match details |
-| Message | `https://celestia.app/message/MATCH_ID` | Open conversation |
-| Email Verify | `https://celestia.app/verify-email?token=TOKEN` | Verify email |
-| Reset Password | `https://celestia.app/reset-password?token=TOKEN` | Reset password |
-| Upgrade | `https://celestia.app/upgrade` | Premium upgrade |
-| Settings | `https://celestia.app/settings` | App settings |
-| Notifications | `https://celestia.app/notifications` | Notifications |
+| Home | `https://teamup.app/` | App home screen |
+| Referral | `https://teamup.app/join/CODE` | Referral signup |
+| Profile | `https://teamup.app/profile/USER_ID` | View user profile |
+| Match | `https://teamup.app/match/MATCH_ID` | View match details |
+| Message | `https://teamup.app/message/MATCH_ID` | Open conversation |
+| Email Verify | `https://teamup.app/verify-email?token=TOKEN` | Verify email |
+| Reset Password | `https://teamup.app/reset-password?token=TOKEN` | Reset password |
+| Upgrade | `https://teamup.app/upgrade` | Premium upgrade |
+| Settings | `https://teamup.app/settings` | App settings |
+| Notifications | `https://teamup.app/notifications` | Notifications |
 
 ### URL Scheme (Fallback)
 
@@ -261,7 +261,7 @@ extension AuthService {
     func verifyEmail(withToken token: String) async throws {
         // Call your backend API to verify the token
         // Example:
-        let url = URL(string: "https://api.celestia.app/verify-email")!
+        let url = URL(string: "https://api.teamup.app/verify-email")!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -291,20 +291,20 @@ extension AuthService {
 
 #### Method 1: Safari (iOS Simulator/Device)
 1. Open Notes app
-2. Type: `https://celestia.app/join/TESTCODE`
+2. Type: `https://teamup.app/join/TESTCODE`
 3. Long press the link
 4. Tap "Open in Celestia"
 
 #### Method 2: Command Line (Simulator)
 ```bash
-xcrun simctl openurl booted "https://celestia.app/join/TESTCODE"
+xcrun simctl openurl booted "https://teamup.app/join/TESTCODE"
 ```
 
 #### Method 3: Terminal (Device)
 ```bash
 # Open URL on connected device
 xcrun devicectl device process launch --device <DEVICE_ID> \
-  --url "https://celestia.app/join/TESTCODE"
+  --url "https://teamup.app/join/TESTCODE"
 ```
 
 ### Test URL Scheme
@@ -325,7 +325,7 @@ xcrun devicectl device process launch --device <DEVICE_ID> \
 Test if your `apple-app-site-association` file is accessible:
 
 ```bash
-curl -v https://celestia.app/.well-known/apple-app-site-association
+curl -v https://teamup.app/.well-known/apple-app-site-association
 ```
 
 Should return:
@@ -339,7 +339,7 @@ Apple caches the association file on their CDN. Check if Apple can access it:
 
 ```bash
 # This may take up to 24 hours after first upload
-curl https://app-site-association.cdn-apple.com/a/v1/celestia.app
+curl https://app-site-association.cdn-apple.com/a/v1/teamup.app
 ```
 
 ---
@@ -351,19 +351,19 @@ Use the `DeepLinkRouter` helper methods:
 ```swift
 // Generate referral link
 if let url = DeepLinkRouter.shared.generateReferralLink(code: "ABC123") {
-    // Share: https://celestia.app/join/ABC123
+    // Share: https://teamup.app/join/ABC123
     shareURL(url)
 }
 
 // Generate profile link
 if let url = DeepLinkRouter.shared.generateProfileLink(userId: user.id) {
-    // Share: https://celestia.app/profile/USER_ID
+    // Share: https://teamup.app/profile/USER_ID
     shareURL(url)
 }
 
 // Generate email verification link (server-side)
 if let url = DeepLinkRouter.shared.generateEmailVerificationLink(token: token) {
-    // Send via email: https://celestia.app/verify-email?token=TOKEN
+    // Send via email: https://teamup.app/verify-email?token=TOKEN
     sendEmail(verificationURL: url)
 }
 ```
@@ -401,7 +401,7 @@ DeepLinkRouter.shared.processPendingDeepLink()
 
 **1. Verify Server Configuration**
 ```bash
-curl -v https://celestia.app/.well-known/apple-app-site-association
+curl -v https://teamup.app/.well-known/apple-app-site-association
 ```
 
 **2. Check File Format**
@@ -501,8 +501,8 @@ Before launching Universal Links:
 
 - [ ] `apple-app-site-association` uploaded to server
 - [ ] File accessible at both:
-  - `https://celestia.app/.well-known/apple-app-site-association`
-  - `https://celestia.app/apple-app-site-association`
+  - `https://teamup.app/.well-known/apple-app-site-association`
+  - `https://teamup.app/apple-app-site-association`
 - [ ] Team ID updated in association file
 - [ ] HTTPS enabled (no mixed content)
 - [ ] Associated Domains capability enabled in Xcode

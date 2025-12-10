@@ -2,7 +2,7 @@
 
 ## Overview
 
-This document provides critical security configuration steps for the Celestia iOS app's Firebase integration. While Firebase API keys in `GoogleService-Info.plist` are unavoidable for iOS apps, proper configuration of Google Cloud restrictions and Firestore security rules is essential to prevent unauthorized access.
+This document provides critical security configuration steps for the TeamUp iOS app's Firebase integration. While Firebase API keys in `GoogleService-Info.plist` are unavoidable for iOS apps, proper configuration of Google Cloud restrictions and Firestore security rules is essential to prevent unauthorized access.
 
 ---
 
@@ -27,7 +27,7 @@ This document provides critical security configuration steps for the Celestia iO
 #### Step 1: Configure API Key Restrictions in Google Cloud Console
 
 1. Go to [Google Cloud Console](https://console.cloud.google.com/)
-2. Select your project: `celestia-40ce6`
+2. Select your project: `teamup-gaming`
 3. Navigate to **APIs & Services** → **Credentials**
 4. Find your API key: `AIzaSyDGzRIpwziNjeOcA84plhYqjv1GIUjoIIE`
 
@@ -36,7 +36,7 @@ This document provides critical security configuration steps for the Celestia iO
 **iOS Apps:**
 - Click on the API key
 - Under "Application restrictions", select **iOS apps**
-- Add your bundle identifier: `com.celestia.app` (or your actual bundle ID)
+- Add your bundle identifier: `com.teamup.app` (or your actual bundle ID)
 - Save changes
 
 This ensures the API key only works from your iOS app.
@@ -338,7 +338,7 @@ Set up monitoring to detect unusual API usage patterns.
 1. **Get your server's SSL certificate public key hash:**
 
 ```bash
-openssl s_client -connect api.celestia.app:443 | openssl x509 -pubkey -noout | openssl pkey -pubin -outform der | openssl dgst -sha256 -binary | openssl enc -base64
+openssl s_client -connect api.teamup.app:443 | openssl x509 -pubkey -noout | openssl pkey -pubin -outform der | openssl dgst -sha256 -binary | openssl enc -base64
 ```
 
 2. **Add the hash to NetworkManager.swift:**
@@ -381,7 +381,7 @@ Schedule quarterly security reviews:
 
 Implement automated backups:
 ```bash
-firebase firestore:export gs://celestia-backups/$(date +%Y%m%d)
+firebase firestore:export gs://teamup-backups/$(date +%Y%m%d)
 ```
 
 Schedule daily backups via Cloud Scheduler.

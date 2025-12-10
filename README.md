@@ -1,6 +1,6 @@
-# Celestia
+# TeamUp
 
-A modern iOS dating application built with SwiftUI and Firebase, featuring swipe-based matching, real-time messaging, and premium subscriptions.
+A modern iOS gaming social app built with SwiftUI and Firebase, featuring a scrolling feed to discover teammates, real-time messaging, and premium subscriptions.
 
 ## Table of Contents
 
@@ -17,29 +17,28 @@ A modern iOS dating application built with SwiftUI and Firebase, featuring swipe
 
 ## Features
 
-### Core Dating Features
-- **User Discovery** - Swipe-based matching system with advanced filters (age, gender, location, distance)
-- **Profile System** - Multi-photo profiles with bio, interests, languages, and personality prompts
-- **Matching System** - Mutual likes create instant matches
-- **Real-time Messaging** - Live chat with match tracking, unread counts, and typing indicators
-- **Interests/Likes** - Send likes to users with optional messages
+### Core Gaming Social Features
+- **Gamer Discovery** - Scrolling feed to browse and discover teammates with advanced filters (age, game preferences, skill level, play style)
+- **Profile System** - Multi-photo profiles with bio, favorite games, gaming platforms, and play style prompts
+- **Teammate Connections** - Like profiles to connect with other gamers
+- **Real-time Messaging** - Live chat with connection tracking, unread counts, and typing indicators
+- **Interests/Likes** - Send likes to gamers with optional messages
 
 ### Advanced Features
 - **Photo Verification** - Face detection using Apple's Vision framework
 - **Referral System** - Users earn 7 days of premium for each successful referral
-- **Profile Insights** - Analytics on profile views, swipe stats, match rates, and photo performance
+- **Profile Insights** - Analytics on profile views, engagement stats, connection rates, and photo performance
 - **Content Moderation** - Automatic profanity filtering, spam detection, and personal info blocking
 - **Safety Center** - Safety tips, reporting, blocking, and screenshot detection
-- **Profile Prompts** - 100+ personality questions for engaging profiles
-- **Conversation Starters** - Pre-built icebreaker messages
+- **Profile Prompts** - 100+ gaming personality questions for engaging profiles
+- **Conversation Starters** - Pre-built icebreaker messages for gamers
 - **Email Verification** - Required for full app access
 
 ### Premium Features
-- Unlimited swipes (free users: 50/day limit)
+- Unlimited likes (free users: 50/day limit)
 - See who liked you
 - Profile boosting (10x visibility)
 - 5 super likes per day
-- Rewind swipes
 - Priority support
 - Advanced analytics
 
@@ -57,8 +56,8 @@ A modern iOS dating application built with SwiftUI and Firebase, featuring swipe
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/Celestia.git
-cd Celestia
+git clone https://github.com/yourusername/TeamUp.git
+cd TeamUp
 ```
 
 ### 2. Install Dependencies
@@ -67,11 +66,11 @@ If using CocoaPods:
 
 ```bash
 pod install
-open Celestia.xcworkspace
+open TeamUp.xcworkspace
 ```
 
 If using Swift Package Manager (SPM):
-- Open `Celestia.xcodeproj` in Xcode
+- Open `TeamUp.xcodeproj` in Xcode
 - Dependencies should auto-resolve
 
 ### 3. Configure Firebase
@@ -81,7 +80,7 @@ See [Firebase Configuration](#firebase-configuration) section below for detailed
 ### 4. Configure Signing
 
 - Open the project in Xcode
-- Select the Celestia target
+- Select the TeamUp target
 - Go to "Signing & Capabilities"
 - Select your development team
 - Xcode will automatically create provisioning profiles
@@ -103,8 +102,8 @@ See [Firebase Configuration](#firebase-configuration) section below for detailed
 
 #### 1. Add Configuration File
 
-- Place `GoogleService-Info.plist` in the root of the Celestia Xcode project
-- Make sure it's added to the Celestia target
+- Place `GoogleService-Info.plist` in the root of the TeamUp Xcode project
+- Make sure it's added to the TeamUp target
 
 #### 2. Enable Firebase Services
 
@@ -136,15 +135,15 @@ The app uses these Firestore collections:
 ```
 users/
   - {userId}/
-    - email, fullName, age, gender, location, etc.
+    - email, fullName, age, gamingPlatforms, favoriteGames, skillLevel, etc.
 
-matches/
-  - {matchId}/
+connections/
+  - {connectionId}/
     - user1Id, user2Id, timestamp, lastMessage, etc.
 
 messages/
   - {messageId}/
-    - matchId, senderId, text, timestamp, etc.
+    - connectionId, senderId, text, timestamp, etc.
 
 likes/
   - {likeId}/
@@ -179,7 +178,7 @@ Email verification is required for all users. See the comprehensive guide: [FIRE
 
 ## Architecture
 
-Celestia follows the **MVVM (Model-View-ViewModel)** architecture pattern with a service layer for business logic.
+TeamUp follows the **MVVM (Model-View-ViewModel)** architecture pattern with a service layer for business logic.
 
 ### Architecture Diagram
 
@@ -188,7 +187,7 @@ Celestia follows the **MVVM (Model-View-ViewModel)** architecture pattern with a
 │           Views (SwiftUI)                │
 │  - SignInView, SignUpView               │
 │  - MainTabView, DiscoverView            │
-│  - ProfileView, MatchesView             │
+│  - ProfileView, ConnectionsView         │
 │  - MessagesView, PremiumUpgradeView     │
 └─────────────────┬───────────────────────┘
                   │
@@ -203,9 +202,9 @@ Celestia follows the **MVVM (Model-View-ViewModel)** architecture pattern with a
 │         Services (Business Logic)        │
 │  - AuthService                           │
 │  - UserService                           │
-│  - MatchService                          │
+│  - ConnectionService                     │
 │  - MessageService                        │
-│  - SwipeService                          │
+│  - DiscoveryService (likes/passes)       │
 │  - ReferralManager                       │
 │  - StoreManager                          │
 │  - NotificationService                   │
@@ -231,17 +230,17 @@ Celestia follows the **MVVM (Model-View-ViewModel)** architecture pattern with a
 - Password reset
 - Input validation and sanitization
 
-**MatchService** (`MatchService.swift`)
-- Match creation and management
-- Real-time match listeners
+**ConnectionService** (`ConnectionService.swift`)
+- Teammate connection creation and management
+- Real-time connection listeners
 - Unread count tracking
-- Match deletion/unmatch
+- Connection deletion/disconnect
 
-**SwipeService** (`SwipeService.swift`)
-- Like/pass recording
-- Mutual match detection
+**DiscoveryService** (`SwipeService.swift`)
+- Like/pass recording from scrolling feed
+- Mutual connection detection
 - Super likes
-- Swipe history tracking
+- Like history tracking
 
 **ReferralManager** (`ReferralManager.swift`)
 - Referral code generation
@@ -265,17 +264,17 @@ Celestia follows the **MVVM (Model-View-ViewModel)** architecture pattern with a
 **NotificationService** (`NotificationService.swift`)
 - Push notification management
 - FCM token handling
-- New match/message notifications
+- New connection/message notifications
 
 #### Models
 
 **User** (`User.swift:220`)
 - Comprehensive user profile model
 - Supports Firestore encoding/decoding
-- Contains preferences, stats, and referral info
+- Contains gaming preferences, stats, and referral info
 
-**Match** (`Match.swift`)
-- Represents a match between two users
+**Connection** (`Connection.swift`)
+- Represents a connection between two gamers
 - Tracks last message and unread counts
 
 **Message** (`Message.swift`)
@@ -311,7 +310,7 @@ Celestia follows the **MVVM (Model-View-ViewModel)** architecture pattern with a
 
 ## Testing
 
-Celestia includes comprehensive unit tests for core services.
+TeamUp includes comprehensive unit tests for core services.
 
 ### Running Tests
 
@@ -320,7 +319,7 @@ Celestia includes comprehensive unit tests for core services.
 Command + U in Xcode
 
 # Or via command line
-xcodebuild test -workspace Celestia.xcworkspace -scheme Celestia -destination 'platform=iOS Simulator,name=iPhone 15'
+xcodebuild test -workspace TeamUp.xcworkspace -scheme TeamUp -destination 'platform=iOS Simulator,name=iPhone 15'
 ```
 
 ### Test Coverage
@@ -328,19 +327,19 @@ xcodebuild test -workspace Celestia.xcworkspace -scheme Celestia -destination 'p
 The following services have comprehensive unit tests:
 
 - **AuthServiceTests** - Authentication flows, validation, error handling
-- **MatchServiceTests** - Match creation, sorting, unread counts
+- **ConnectionServiceTests** - Connection creation, sorting, unread counts
 - **ContentModeratorTests** - Profanity, spam, personal info detection
-- **SwipeServiceTests** - Like/pass logic, mutual matching
+- **DiscoveryServiceTests** - Like/pass logic, mutual matching
 - **ReferralManagerTests** - Code generation, rewards calculation
 
 ### Test Files
 
 ```
-CelestiaTests/
+TeamUpTests/
 ├── AuthServiceTests.swift          (56 tests)
-├── MatchServiceTests.swift         (32 tests)
+├── ConnectionServiceTests.swift    (32 tests)
 ├── ContentModeratorTests.swift     (45 tests)
-├── SwipeServiceTests.swift         (38 tests)
+├── SwipeServiceTests.swift         (38 tests) # Discovery/likes logic
 └── ReferralManagerTests.swift      (41 tests)
 ```
 
@@ -350,7 +349,7 @@ Use Swift Testing framework:
 
 ```swift
 import Testing
-@testable import Celestia
+@testable import TeamUp
 
 @Suite("My Feature Tests")
 struct MyFeatureTests {
@@ -368,16 +367,15 @@ struct MyFeatureTests {
 | Feature | Free | Monthly | 6 Months | Annual |
 |---------|------|---------|----------|--------|
 | **Price** | $0 | $19.99/mo | $14.99/mo | $9.99/mo |
-| **Swipes/Day** | 50 | Unlimited | Unlimited | Unlimited |
-| **See Likes** | ❌ | ✅ | ✅ | ✅ |
+| **Likes/Day** | 50 | Unlimited | Unlimited | Unlimited |
+| **See Likes** | No | Yes | Yes | Yes |
 | **Super Likes** | 1/day | 5/day | 5/day | 5/day |
-| **Profile Boost** | ❌ | ✅ | ✅ | ✅ |
-| **Rewind** | ❌ | ✅ | ✅ | ✅ |
-| **Priority Support** | ❌ | ✅ | ✅ | ✅ |
+| **Profile Boost** | No | Yes | Yes | Yes |
+| **Priority Support** | No | Yes | Yes | Yes |
 
 ### StoreKit 2 Implementation
 
-Celestia uses StoreKit 2 for in-app purchases with:
+TeamUp uses StoreKit 2 for in-app purchases with:
 
 - **Transaction Verification** - Automatic verification of purchases
 - **Subscription Status** - Real-time subscription state tracking
@@ -396,13 +394,13 @@ Celestia uses StoreKit 2 for in-app purchases with:
 ## Project Structure
 
 ```
-Celestia/
-├── CelestiaApp.swift                 # App entry point
+TeamUp/
+├── TeamUpApp.swift                   # App entry point
 ├── ContentView.swift                 # Root view with auth routing
 │
 ├── Models/                          # Data models
 │   ├── User.swift                   # User profile model
-│   ├── Match.swift                  # Match model
+│   ├── Connection.swift             # Connection model
 │   ├── Message.swift                # Message model
 │   ├── Referral.swift               # Referral system models
 │   └── ProfilePrompt.swift          # Profile prompts
@@ -410,9 +408,9 @@ Celestia/
 ├── Services/                        # Business logic layer
 │   ├── AuthService.swift            # Authentication
 │   ├── UserService.swift            # User management
-│   ├── MatchService.swift           # Match operations
+│   ├── ConnectionService.swift      # Connection operations
 │   ├── MessageService.swift         # Messaging
-│   ├── SwipeService.swift           # Like/pass logic
+│   ├── SwipeService.swift           # Discovery feed likes/passes
 │   ├── ReferralManager.swift        # Referral system
 │   ├── StoreManager.swift           # In-app purchases
 │   ├── NotificationService.swift    # Push notifications
@@ -430,7 +428,7 @@ Celestia/
 │   ├── Main/
 │   │   ├── MainTabView.swift
 │   │   ├── DiscoverView.swift
-│   │   ├── MatchesView.swift
+│   │   ├── ConnectionsView.swift
 │   │   ├── MessagesView.swift
 │   │   └── ProfileView.swift
 │   │
@@ -456,11 +454,11 @@ Celestia/
 │   ├── GoogleService-Info.plist
 │   └── Info.plist
 │
-├── CelestiaTests/                   # Unit tests
+├── TeamUpTests/                     # Unit tests
 │   ├── AuthServiceTests.swift
-│   ├── MatchServiceTests.swift
+│   ├── ConnectionServiceTests.swift
 │   ├── ContentModeratorTests.swift
-│   ├── SwipeServiceTests.swift
+│   ├── SwipeServiceTests.swift       # Discovery/likes tests
 │   └── ReferralManagerTests.swift
 │
 └── Documentation/                   # Documentation
@@ -502,8 +500,8 @@ Celestia/
 do {
     try await someOperation()
 } catch {
-    print("❌ Operation failed: \(error.localizedDescription)")
-    throw CelestiaError.from(error)
+    print("Operation failed: \(error.localizedDescription)")
+    throw TeamUpError.from(error)
 }
 
 // Bad
@@ -514,11 +512,11 @@ try! riskyOperation()  // Avoid force try
 
 ```swift
 // Use consistent logging format
-print("✅ Success message")  // Green check for success
-print("❌ Error message")    // Red X for errors
-print("⚠️ Warning message")  // Warning symbol
-print("🔵 Info message")     // Blue circle for info
-print("ℹ️ Debug message")    // Info symbol for debug
+print("Success message")  // Success
+print("Error message")    // Errors
+print("Warning message")  // Warning
+print("Info message")     // Info
+print("Debug message")    // Debug
 ```
 
 ## Environment Variables
@@ -571,7 +569,7 @@ enum Features {
 - Verify image size is under limits
 - Check network connection
 
-**4. Matches Not Appearing**
+**4. Connections Not Appearing**
 - Verify Firestore OR queries are supported (requires Firebase iOS SDK 10.0+)
 - Check user filters and preferences
 - Ensure both users meet each other's criteria
@@ -639,7 +637,7 @@ refactor: Extract StoreManager to separate file
 
 ### Reporting Security Issues
 
-Please email security concerns to: support@celestia.app
+Please email security concerns to: support@teamup.app
 
 **Do not** open public issues for security vulnerabilities.
 
@@ -673,12 +671,12 @@ Please email security concerns to: support@celestia.app
 ### Planned Features
 
 - [ ] Voice messages in chat
-- [ ] Video calling with matches
+- [ ] Video calling with teammates
 - [ ] Stories feature
-- [ ] Group chats
+- [ ] Group chats for gaming squads
 - [ ] Advanced AI matching algorithm
 - [ ] Video profile support
-- [ ] In-app date planning tools
+- [ ] In-app gaming session scheduling tools
 
 ### Known Issues
 
@@ -696,13 +694,13 @@ Please email security concerns to: support@celestia.app
 
 ### Contact
 
-- **Email**: support@celestia.app
-- **Website**: https://celestia.app
-- **Twitter**: @celestiaapp
+- **Email**: support@teamup.app
+- **Website**: https://teamup.app
+- **Twitter**: @teamupapp
 
 ## License
 
-Copyright © 2025 Celestia. All rights reserved.
+Copyright 2025 TeamUp. All rights reserved.
 
 ## Acknowledgments
 
@@ -712,6 +710,6 @@ Copyright © 2025 Celestia. All rights reserved.
 
 ---
 
-**Built with ❤️ using SwiftUI and Firebase**
+**Built with SwiftUI and Firebase**
 
-*Last Updated: January 2025*
+*Last Updated: December 2025*

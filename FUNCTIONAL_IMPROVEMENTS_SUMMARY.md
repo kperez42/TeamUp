@@ -559,7 +559,7 @@ let status = try await functions.httpsCallable("getPhoneVerificationStatus").cal
 **After**: 95% working, 5% placeholder (ID/social verification only)
 
 **Production Readiness:** ✅ READY TO DEPLOY
-All core dating features + safety features are fully functional with real Firebase backends.
+All core gaming social features + safety features are fully functional with real Firebase backends.
 
 ---
 

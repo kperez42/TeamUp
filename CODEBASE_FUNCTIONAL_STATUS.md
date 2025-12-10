@@ -1,13 +1,13 @@
-# Celestia Dating App - Functional Status Report
+# TeamUp Gaming Social App - Functional Status Report
 
-**Generated:** November 19, 2025  
+**Generated:** November 19, 2025
 **Scope:** Complete codebase analysis to identify working features vs mockups
 
 ---
 
 ## EXECUTIVE SUMMARY
 
-The Celestia dating app has **strong core functionality** with most critical user flows implemented and connected to Firebase. However, there are several **placeholder/incomplete features** primarily in the safety features category. The app uses a combination of **real Firebase integration** for core features and **mock data** for development/preview purposes.
+The TeamUp gaming social app has **strong core functionality** with most critical user flows implemented and connected to Firebase. However, there are several **placeholder/incomplete features** primarily in the safety features category. The app uses a combination of **real Firebase integration** for core features and **mock data** for development/preview purposes.
 
 ---
 
@@ -52,19 +52,19 @@ The Celestia dating app has **strong core functionality** with most critical use
   - Pagination support for user browsing
 - **Outstanding Issues:** None
 
-#### Discovery/Swipe System
+#### Discovery/Browse System
 **Files:** `DiscoverView.swift`, `DiscoverViewModel.swift`, `SwipeService.swift`, `FirestoreSwipeRepository.swift`
 - **Status:** FULLY IMPLEMENTED
 - **Details:**
-  - Card-stack UI for browsing users
+  - Scrolling feed UI for browsing users
   - Real-time user fetching from Firestore
-  - Like/Pass functionality with swipe tracking
+  - Like/Pass functionality with engagement tracking
   - Mutual like detection (creates match)
   - Super likes (premium feature)
-  - Backend rate limiting for swipes
+  - Backend rate limiting for likes
   - Client-side rate limiting fallback
   - Filtering by age range, gender preference, location
-  - Image preloading for next 2 cards
+  - Image preloading for smooth scrolling
   - Performance monitoring for connection quality
 - **Firebase Integration:** ✓ Complete
 - **Real Data:** ✓ Uses actual Firestore user data
@@ -136,7 +136,7 @@ The Celestia dating app has **strong core functionality** with most critical use
   - Receipt validation (server-side)
   - Auto-renewal tracking
   - Expiration date management
-  - Premium features: Unlimited swipes, Super likes, Boosts, Rewinds
+  - Premium features: Unlimited likes, Super likes, Boosts
   - Subscription status synchronization
   - User defaults caching
   - Analytics for purchase events
@@ -192,7 +192,7 @@ The Celestia dating app has **strong core functionality** with most critical use
   - Daily like limits for free users (50)
   - Message rate limiting (100/hour)
   - Super like limits (1/day)
-  - Premium user unlimited swipes
+  - Premium user unlimited likes
   - Report rate limiting
   - Photo upload limits (6/hour max)
   - Account creation limits (3/day by IP)
@@ -207,7 +207,7 @@ The Celestia dating app has **strong core functionality** with most critical use
 - **Details:**
   - Server-side content validation for messages
   - Image moderation via Google Cloud Vision API
-  - Face detection in photos (dating app requirement)
+  - Face detection in photos (profile verification requirement)
   - Safe search detection
   - Text content validation
   - Message deferred validation queue (if service unavailable)
@@ -518,7 +518,7 @@ But these COULD have enhanced data integration:
 2. **ContentModerator.swift** - Architecture exists
    - Model interface exists but actual ML model missing
    - Vision API integration exists
-   - Could add: Custom ML model for dating-specific content
+   - Could add: Custom ML model for gaming-specific content
 
 3. **PhotoVerification.swift** - Architecture exists
    - UI and data model complete
@@ -534,7 +534,7 @@ But these COULD have enhanced data integration:
 | User Authentication | ✅ 100% | Yes | Yes | Complete implementation |
 | Profile Management | ✅ 100% | Yes | Yes | Edit, view, search all working |
 | Discovery/Browsing | ✅ 100% | Yes | Yes | Real-time, filtered, paginated |
-| Swiping System | ✅ 100% | Yes | Yes | Like/pass with mutual detection |
+| Like/Pass System | 100% | Yes | Yes | Like/pass with mutual detection |
 | Matching | ✅ 100% | Yes | Yes | Real-time match creation |
 | Messaging | ✅ 100% | Yes | Yes | Full chat with pagination |
 | Notifications | ✅ 100% | Yes | Yes | Local and push (FCM) |
@@ -598,7 +598,7 @@ But these COULD have enhanced data integration:
 
 ## CONCLUSION
 
-**Celestia is 85-90% functionally complete** for core dating app features. All critical user flows (discovery, matching, messaging) work with real Firebase data. The primary gaps are in **safety verification features** (ID, phone, social verification) which are placeholder screens.
+**TeamUp is 85-90% functionally complete** for core gaming social app features. All critical user flows (discovery, connecting, messaging) work with real Firebase data. The primary gaps are in **safety verification features** (ID, phone, social verification) which are placeholder screens.
 
 ### Recommended Next Steps:
 

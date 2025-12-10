@@ -1,7 +1,7 @@
-# Celestia App - Executive Summary of Code Quality Analysis
+# TeamUp App - Executive Summary of Code Quality Analysis
 
-**Analysis Date:** November 16, 2025  
-**Project:** Celestia (SwiftUI/iOS Dating App)  
+**Analysis Date:** November 16, 2025
+**Project:** TeamUp (SwiftUI/iOS Gaming Social App)
 **Codebase Size:** ~69,665 lines of Swift code across 200+ files
 
 ---

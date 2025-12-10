@@ -1,41 +1,41 @@
-# Celestia - Detailed Feature & File Inventory
+# TeamUp - Detailed Feature & File Inventory
 
 ## ABSOLUTE FILE PATHS & STATUS
 
 ### 1. AUTHENTICATION
 ```
-/home/user/Celestia/Celestia/AuthService.swift          ✅ WORKING
-/home/user/Celestia/Celestia/SignInView.swift           ✅ WORKING
-/home/user/Celestia/Celestia/SignUpView.swift           ✅ WORKING
-/home/user/Celestia/Celestia/EmailVerificationView.swift ✅ WORKING
+/home/user/TeamUp/Celestia/AuthService.swift          WORKING
+/home/user/TeamUp/Celestia/SignInView.swift           WORKING
+/home/user/TeamUp/Celestia/SignUpView.swift           WORKING
+/home/user/TeamUp/Celestia/EmailVerificationView.swift WORKING
 ```
-**Real Firebase Integration:** ✓ Complete
+**Real Firebase Integration:** Complete
 **Data Model:** `User.swift`
 
 ---
 
 ### 2. USER PROFILES
 ```
-/home/user/Celestia/Celestia/User.swift                 ✅ WORKING (40+ fields)
-/home/user/Celestia/Celestia/UserService.swift          ✅ WORKING
-/home/user/Celestia/Celestia/Repositories/FirestoreUserRepository.swift ✅ WORKING
-/home/user/Celestia/Celestia/ProfileView.swift          ✅ WORKING
-/home/user/Celestia/Celestia/ProfileEditView.swift      ✅ WORKING
-/home/user/Celestia/Celestia/Components/EditProfile/EditProfileViewModel.swift ✅ WORKING
+/home/user/TeamUp/Celestia/User.swift                 WORKING (40+ fields)
+/home/user/TeamUp/Celestia/UserService.swift          WORKING
+/home/user/TeamUp/Celestia/Repositories/FirestoreUserRepository.swift WORKING
+/home/user/TeamUp/Celestia/ProfileView.swift          WORKING
+/home/user/TeamUp/Celestia/ProfileEditView.swift      WORKING
+/home/user/TeamUp/Celestia/Components/EditProfile/EditProfileViewModel.swift WORKING
 ```
 **Firebase Collection:** `users/{userId}`
 **Features:** Create, edit, search, view with caching
 
 ---
 
-### 3. DISCOVERY & SWIPING
+### 3. DISCOVERY & BROWSING
 ```
-/home/user/Celestia/Celestia/DiscoverView.swift         ✅ WORKING
-/home/user/Celestia/Celestia/DiscoverViewModel.swift    ✅ WORKING
-/home/user/Celestia/Celestia/DiscoveryFilters.swift     ✅ WORKING
-/home/user/Celestia/Celestia/SwipeService.swift         ✅ WORKING
-/home/user/Celestia/Celestia/Repositories/FirestoreSwipeRepository.swift ✅ WORKING
-/home/user/Celestia/Celestia/FeedDiscoverView.swift     ✅ WORKING (uses TestData in DEBUG)
+/home/user/TeamUp/Celestia/DiscoverView.swift         ✅ WORKING
+/home/user/TeamUp/Celestia/DiscoverViewModel.swift    ✅ WORKING
+/home/user/TeamUp/Celestia/DiscoveryFilters.swift     ✅ WORKING
+/home/user/TeamUp/Celestia/SwipeService.swift         ✅ WORKING
+/home/user/TeamUp/Celestia/Repositories/FirestoreSwipeRepository.swift ✅ WORKING
+/home/user/TeamUp/Celestia/FeedDiscoverView.swift     ✅ WORKING (uses TestData in DEBUG)
 ```
 **Firebase Collection:** `swipes/{swipeId}`
 **Real Data Source:** Firestore users collection with live filtering
@@ -46,11 +46,11 @@
 
 ### 4. MATCHING
 ```
-/home/user/Celestia/Celestia/Match.swift                ✅ WORKING
-/home/user/Celestia/Celestia/MatchService.swift         ✅ WORKING
-/home/user/Celestia/Celestia/Repositories/FirestoreMatchRepository.swift ✅ WORKING
-/home/user/Celestia/Celestia/MatchesView.swift          ✅ WORKING (uses TestData in DEBUG)
-/home/user/Celestia/Celestia/MutualLikesView.swift      ✅ WORKING
+/home/user/TeamUp/Celestia/Match.swift                ✅ WORKING
+/home/user/TeamUp/Celestia/MatchService.swift         ✅ WORKING
+/home/user/TeamUp/Celestia/Repositories/FirestoreMatchRepository.swift ✅ WORKING
+/home/user/TeamUp/Celestia/MatchesView.swift          ✅ WORKING (uses TestData in DEBUG)
+/home/user/TeamUp/Celestia/MutualLikesView.swift      ✅ WORKING
 ```
 **Firebase Collection:** `matches/{matchId}`
 **Real-Time Updates:** Snapshot listeners with OR filter optimization
@@ -60,14 +60,14 @@
 
 ### 5. MESSAGING
 ```
-/home/user/Celestia/Celestia/Message.swift              ✅ WORKING
-/home/user/Celestia/Celestia/MessageService.swift       ✅ WORKING
-/home/user/Celestia/Celestia/Repositories/FirestoreMessageRepository.swift ✅ WORKING
-/home/user/Celestia/Celestia/ChatView.swift             ✅ WORKING
-/home/user/Celestia/Celestia/ChatDetailView.swift       ✅ WORKING
-/home/user/Celestia/Celestia/ChatViewModel.swift        ✅ WORKING
-/home/user/Celestia/Celestia/MessagesView.swift         ✅ WORKING (uses TestData in DEBUG)
-/home/user/Celestia/Celestia/MessageBubbleView.swift    ✅ WORKING
+/home/user/TeamUp/Celestia/Message.swift              ✅ WORKING
+/home/user/TeamUp/Celestia/MessageService.swift       ✅ WORKING
+/home/user/TeamUp/Celestia/Repositories/FirestoreMessageRepository.swift ✅ WORKING
+/home/user/TeamUp/Celestia/ChatView.swift             ✅ WORKING
+/home/user/TeamUp/Celestia/ChatDetailView.swift       ✅ WORKING
+/home/user/TeamUp/Celestia/ChatViewModel.swift        ✅ WORKING
+/home/user/TeamUp/Celestia/MessagesView.swift         ✅ WORKING (uses TestData in DEBUG)
+/home/user/TeamUp/Celestia/MessageBubbleView.swift    ✅ WORKING
 ```
 **Firebase Collection:** `messages/{messageId}`
 **Features:** Real-time chat, pagination, read/delivered tracking, image messages
@@ -78,12 +78,12 @@
 
 ### 6. NOTIFICATIONS
 ```
-/home/user/Celestia/Celestia/NotificationService.swift  ✅ WORKING
-/home/user/Celestia/Celestia/PushNotificationManager.swift ✅ WORKING
-/home/user/Celestia/Celestia/BadgeManager.swift         ✅ WORKING
-/home/user/Celestia/Celestia/NotificationModels.swift   ✅ WORKING
-/home/user/Celestia/Celestia/NotificationPreferencesView.swift ✅ WORKING
-/home/user/Celestia/Celestia/NotificationSettingsView.swift ✅ WORKING
+/home/user/TeamUp/Celestia/NotificationService.swift  ✅ WORKING
+/home/user/TeamUp/Celestia/PushNotificationManager.swift ✅ WORKING
+/home/user/TeamUp/Celestia/BadgeManager.swift         ✅ WORKING
+/home/user/TeamUp/Celestia/NotificationModels.swift   ✅ WORKING
+/home/user/TeamUp/Celestia/NotificationPreferencesView.swift ✅ WORKING
+/home/user/TeamUp/Celestia/NotificationSettingsView.swift ✅ WORKING
 ```
 **Firebase Integration:** Cloud Messaging (FCM)
 **Features:** Local + push notifications, badge counts, deep linking
@@ -92,11 +92,11 @@
 
 ### 7. PREMIUM & PAYMENTS
 ```
-/home/user/Celestia/Celestia/SubscriptionManager.swift  ✅ WORKING
-/home/user/Celestia/Celestia/StoreManager.swift         ✅ WORKING
-/home/user/Celestia/Celestia/StoreModels.swift          ✅ WORKING
-/home/user/Celestia/Celestia/PremiumUpgradeView.swift   ✅ WORKING
-/home/user/Celestia/Celestia/PaywallView.swift          ✅ WORKING
+/home/user/TeamUp/Celestia/SubscriptionManager.swift  ✅ WORKING
+/home/user/TeamUp/Celestia/StoreManager.swift         ✅ WORKING
+/home/user/TeamUp/Celestia/StoreModels.swift          ✅ WORKING
+/home/user/TeamUp/Celestia/PremiumUpgradeView.swift   ✅ WORKING
+/home/user/TeamUp/Celestia/PaywallView.swift          ✅ WORKING
 ```
 **Integration:** StoreKit 2
 **Tiers:** Basic, Plus, Premium
@@ -106,14 +106,14 @@
 
 ### 8. PHOTOS & IMAGES
 ```
-/home/user/Celestia/Celestia/PhotoUploadService.swift   ✅ WORKING
-/home/user/Celestia/Celestia/ImageUploadService.swift   ✅ WORKING (impl in separate file)
-/home/user/Celestia/Celestia/ImageOptimizer.swift       ✅ WORKING
-/home/user/Celestia/Celestia/ImageCache.swift           ✅ WORKING
-/home/user/Celestia/Celestia/OptimizedImageLoader.swift ✅ WORKING
-/home/user/Celestia/Celestia/ImageMigrationService.swift ✅ WORKING
-/home/user/Celestia/Celestia/ImagePerformanceMonitor.swift ✅ WORKING
-/home/user/Celestia/Celestia/ImagePerformanceDashboard.swift ✅ WORKING
+/home/user/TeamUp/Celestia/PhotoUploadService.swift   ✅ WORKING
+/home/user/TeamUp/Celestia/ImageUploadService.swift   ✅ WORKING (impl in separate file)
+/home/user/TeamUp/Celestia/ImageOptimizer.swift       ✅ WORKING
+/home/user/TeamUp/Celestia/ImageCache.swift           ✅ WORKING
+/home/user/TeamUp/Celestia/OptimizedImageLoader.swift ✅ WORKING
+/home/user/TeamUp/Celestia/ImageMigrationService.swift ✅ WORKING
+/home/user/TeamUp/Celestia/ImagePerformanceMonitor.swift ✅ WORKING
+/home/user/TeamUp/Celestia/ImagePerformanceDashboard.swift ✅ WORKING
 ```
 **Storage:** Cloud Storage with CDN option
 **Features:** Upload, optimize, cache, migrate to CDN
@@ -123,24 +123,24 @@
 
 ### 9. RATE LIMITING
 ```
-/home/user/Celestia/Celestia/RateLimiter.swift          ✅ WORKING
-/home/user/Celestia/Celestia/BackendAPIService.swift    ✅ WORKING
+/home/user/TeamUp/Celestia/RateLimiter.swift          ✅ WORKING
+/home/user/TeamUp/Celestia/BackendAPIService.swift    ✅ WORKING
 /home/user/Celestia/CloudFunctions/modules/rateLimiting.js ✅ WORKING
 ```
 **Backend Implementation:** Cloud Functions
 **Features:**
-- Free users: 50 swipes/day
+- Free users: 50 likes/day
 - Messages: 100/hour
 - Super likes: 1/day
-- Premium: Unlimited swipes
+- Premium: Unlimited likes
 - Photo uploads: 6/hour
 
 ---
 
 ### 10. CONTENT MODERATION
 ```
-/home/user/Celestia/Celestia/ContentModerator.swift     ✅ WORKING (interface)
-/home/user/Celestia/Celestia/BackendAPIService.swift    ✅ WORKING
+/home/user/TeamUp/Celestia/ContentModerator.swift     ✅ WORKING (interface)
+/home/user/TeamUp/Celestia/BackendAPIService.swift    ✅ WORKING
 /home/user/Celestia/CloudFunctions/modules/contentModeration.js ✅ WORKING
 ```
 **Features:**
@@ -154,11 +154,11 @@
 
 ### 11. OFFLINE SUPPORT
 ```
-/home/user/Celestia/Celestia/OfflineManager.swift       ✅ WORKING
-/home/user/Celestia/Celestia/OfflineOperationQueue.swift ✅ WORKING
-/home/user/Celestia/Celestia/PendingMessageQueue.swift  ✅ WORKING
-/home/user/Celestia/Celestia/OfflineIndicator.swift     ✅ WORKING
-/home/user/Celestia/Celestia/NetworkStatusBanner.swift  ✅ WORKING
+/home/user/TeamUp/Celestia/OfflineManager.swift       ✅ WORKING
+/home/user/TeamUp/Celestia/OfflineOperationQueue.swift ✅ WORKING
+/home/user/TeamUp/Celestia/PendingMessageQueue.swift  ✅ WORKING
+/home/user/TeamUp/Celestia/OfflineIndicator.swift     ✅ WORKING
+/home/user/TeamUp/Celestia/NetworkStatusBanner.swift  ✅ WORKING
 ```
 **Features:** Message queuing, auto-sync, offline indicator
 
@@ -166,12 +166,12 @@
 
 ### 12. SECURITY & VALIDATION
 ```
-/home/user/Celestia/Celestia/SecurityManager.swift      ✅ WORKING
-/home/user/Celestia/Celestia/InputSanitizer.swift       ✅ WORKING
-/home/user/Celestia/Celestia/ValidationHelper.swift     ✅ WORKING
-/home/user/Celestia/Celestia/KeychainManager.swift      ✅ WORKING
-/home/user/Celestia/Celestia/ClipboardSecurityManager.swift ✅ WORKING
-/home/user/Celestia/Celestia/BiometricAuthManager.swift ✅ WORKING
+/home/user/TeamUp/Celestia/SecurityManager.swift      ✅ WORKING
+/home/user/TeamUp/Celestia/InputSanitizer.swift       ✅ WORKING
+/home/user/TeamUp/Celestia/ValidationHelper.swift     ✅ WORKING
+/home/user/TeamUp/Celestia/KeychainManager.swift      ✅ WORKING
+/home/user/TeamUp/Celestia/ClipboardSecurityManager.swift ✅ WORKING
+/home/user/TeamUp/Celestia/BiometricAuthManager.swift ✅ WORKING
 ```
 **Features:** Input validation, keychain storage, biometric auth
 
@@ -179,12 +179,12 @@
 
 ### 13. ANALYTICS & MONITORING
 ```
-/home/user/Celestia/Celestia/AnalyticsManager.swift     ✅ WORKING
-/home/user/Celestia/Celestia/AnalyticsServiceEnhanced.swift ✅ WORKING
-/home/user/Celestia/Celestia/PerformanceMonitor.swift   ✅ WORKING
-/home/user/Celestia/Celestia/ScreenPerformanceTracker.swift ✅ WORKING
-/home/user/Celestia/Celestia/FirestorePerformanceTracker.swift ✅ WORKING
-/home/user/Celestia/Celestia/AnalyticsDashboardView.swift ✅ PARTIAL (has "coming soon")
+/home/user/TeamUp/Celestia/AnalyticsManager.swift     ✅ WORKING
+/home/user/TeamUp/Celestia/AnalyticsServiceEnhanced.swift ✅ WORKING
+/home/user/TeamUp/Celestia/PerformanceMonitor.swift   ✅ WORKING
+/home/user/TeamUp/Celestia/ScreenPerformanceTracker.swift ✅ WORKING
+/home/user/TeamUp/Celestia/FirestorePerformanceTracker.swift ✅ WORKING
+/home/user/TeamUp/Celestia/AnalyticsDashboardView.swift ✅ PARTIAL (has "coming soon")
 ```
 **Firebase Integration:** Analytics
 **Features:** Event tracking, performance metrics, network monitoring
@@ -193,9 +193,9 @@
 
 ### 14. REFERRAL SYSTEM
 ```
-/home/user/Celestia/Celestia/Referral.swift             ✅ WORKING
-/home/user/Celestia/Celestia/ReferralManager.swift      ✅ WORKING
-/home/user/Celestia/Celestia/ReferralDashboardView.swift ✅ WORKING
+/home/user/TeamUp/Celestia/Referral.swift             ✅ WORKING
+/home/user/TeamUp/Celestia/ReferralManager.swift      ✅ WORKING
+/home/user/TeamUp/Celestia/ReferralDashboardView.swift ✅ WORKING
 ```
 **Features:** Referral code generation, bonus tracking, signup integration
 
@@ -205,7 +205,7 @@
 
 #### Verification Placeholders:
 ```
-/home/user/Celestia/Celestia/SafetyPlaceholderViews.swift ❌ PLACEHOLDER
+/home/user/TeamUp/Celestia/SafetyPlaceholderViews.swift ❌ PLACEHOLDER
   - IDVerificationView (line 12) - "Coming soon"
   - PhoneVerificationView (line 35) - "Coming soon"
   - SocialMediaVerificationView (line 58) - "Coming soon"
@@ -215,18 +215,18 @@
 
 #### Partial Implementation:
 ```
-/home/user/Celestia/Celestia/PhotoVerification.swift    ⚠️ 40% COMPLETE
-/home/user/Celestia/Celestia/PhotoVerificationView.swift ⚠️ UI only
-/home/user/Celestia/Celestia/ReportUserView.swift       ⚠️ PARTIAL (form exists)
-/home/user/Celestia/Celestia/ReportingManager.swift     ⚠️ PARTIAL
-/home/user/Celestia/Celestia/FakeProfileDetector.swift  ⚠️ 50% (scoring exists, not integrated)
+/home/user/TeamUp/Celestia/PhotoVerification.swift    ⚠️ 40% COMPLETE
+/home/user/TeamUp/Celestia/PhotoVerificationView.swift ⚠️ UI only
+/home/user/TeamUp/Celestia/ReportUserView.swift       ⚠️ PARTIAL (form exists)
+/home/user/TeamUp/Celestia/ReportingManager.swift     ⚠️ PARTIAL
+/home/user/TeamUp/Celestia/FakeProfileDetector.swift  ⚠️ 50% (scoring exists, not integrated)
 ```
 
 ---
 
 ### 16. TEST DATA
 ```
-/home/user/Celestia/Celestia/TestData.swift             ✅ DEBUG ONLY
+/home/user/TeamUp/Celestia/TestData.swift             ✅ DEBUG ONLY
 ```
 **Usage:**
 - 5 test users (Sarah, Mike, Emma, Alex, Jessica)
@@ -374,7 +374,7 @@ swipes/{swipeId}/
 
 ## CONCLUSION
 
-**86 Swift files** + **6 Cloud Function modules** = **Comprehensive dating app framework**
+**86 Swift files** + **6 Cloud Function modules** = **Comprehensive gaming social app framework**
 
 - ✅ All core features fully working with real Firebase data
 - ✅ Production-ready authentication, matching, messaging

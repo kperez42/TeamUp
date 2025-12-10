@@ -1,8 +1,8 @@
-# Celestia Security & Fraud Prevention Documentation
+# TeamUp Security & Fraud Prevention Documentation
 
 ## Overview
 
-This document outlines the comprehensive security and fraud prevention measures implemented in Celestia's payment system. These systems protect against revenue theft, refund abuse, jailbroken devices, and fraudulent transactions.
+This document outlines the comprehensive security and fraud prevention measures implemented in TeamUp's payment system. These systems protect against revenue theft, refund abuse, jailbroken devices, and fraudulent transactions.
 
 **Estimated Monthly Savings:** $1,000 - $5,000 in fraud prevention
 

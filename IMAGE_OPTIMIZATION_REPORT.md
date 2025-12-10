@@ -9,7 +9,7 @@
 
 ## Executive Summary
 
-Implemented comprehensive image optimization pipeline featuring WebP conversion, responsive image generation, CDN integration, and progressive loading. This results in **50% faster load times** and **40% bandwidth savings** across the Celestia dating app.
+Implemented comprehensive image optimization pipeline featuring WebP conversion, responsive image generation, CDN integration, and progressive loading. This results in **50% faster load times** and **40% bandwidth savings** across the TeamUp gaming social app.
 
 ### Impact
 - **50% faster** image load times
@@ -228,7 +228,7 @@ Delete image from CDN
 
 ### 3. iOS: Optimized Image Loader
 
-**File**: `Celestia/OptimizedImageLoader.swift`
+**File**: `TeamUp/OptimizedImageLoader.swift`
 **Lines**: 400+
 
 **Key Components**:
@@ -339,7 +339,7 @@ Responsive Variants:
    ```
 
 2. **Get API Credentials**
-   - Cloud Name: `celestia-dating`
+   - Cloud Name: `teamup-gaming`
    - API Key: `your-api-key`
    - API Secret: `your-api-secret`
 
@@ -349,12 +349,12 @@ Responsive Variants:
 
    # Set environment variables
    firebase functions:config:set \
-     cloudinary.cloud_name="celestia-dating" \
+     cloudinary.cloud_name="teamup-gaming" \
      cloudinary.api_key="your-api-key" \
      cloudinary.api_secret="your-api-secret"
 
    # Or use .env file
-   echo "CLOUDINARY_CLOUD_NAME=celestia-dating" >> .env
+   echo "CLOUDINARY_CLOUD_NAME=teamup-gaming" >> .env
    echo "CLOUDINARY_API_KEY=your-api-key" >> .env
    echo "CLOUDINARY_API_SECRET=your-api-secret" >> .env
    ```
@@ -464,7 +464,7 @@ for photoURL in existingPhotoURLs {
 
 ```bash
 # Test image optimization
-curl -X POST https://us-central1-celestia.cloudfunctions.net/optimizePhoto \
+curl -X POST https://us-central1-teamup.cloudfunctions.net/optimizePhoto \
   -H "Authorization: Bearer $ID_TOKEN" \
   -H "Content-Type: application/json" \
   -d '{
@@ -474,7 +474,7 @@ curl -X POST https://us-central1-celestia.cloudfunctions.net/optimizePhoto \
 
 # Measure load time
 time curl -o /dev/null -s -w "%{time_total}\n" \
-  "https://res.cloudinary.com/celestia-dating/image/upload/..."
+  "https://res.cloudinary.com/teamup-gaming/image/upload/..."
 ```
 
 ### Expected Results

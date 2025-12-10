@@ -1,6 +1,6 @@
 # Firebase Crashlytics & Performance Monitoring Setup
 
-Complete guide for integrating Firebase Crashlytics and Performance Monitoring into Celestia.
+Complete guide for integrating Firebase Crashlytics and Performance Monitoring into TeamUp.
 
 ## Table of Contents
 

@@ -1,9 +1,9 @@
-# Celestia App - Comprehensive Code Review Index
+# TeamUp App - Comprehensive Code Review Index
 
-**Date Generated:** November 16, 2025  
-**Review Scope:** SwiftUI/iOS codebase (~69,665 lines, 200+ files)  
-**Reviewer:** AI Code Review Agent  
-**Project Type:** Dating App (SwiftUI)
+**Date Generated:** November 16, 2025
+**Review Scope:** SwiftUI/iOS codebase (~69,665 lines, 200+ files)
+**Reviewer:** AI Code Review Agent
+**Project Type:** Gaming Social App (SwiftUI)
 
 ---
 

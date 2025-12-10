@@ -255,12 +255,12 @@ enum DietPreference {
 ```swift
 filter.relationshipGoals = [.longTerm, .marriage]
 
-enum RelationshipGoal {
-    case longTerm      // Long-term relationship
-    case shortTerm     // Short-term relationship
-    case marriage      // Looking for marriage
-    case friendship    // Just friends
-    case casual        // Casual dating
+enum GamerGoal {
+    case competitive   // Competitive team play
+    case casual        // Casual gaming
+    case streaming     // Streaming/content creation
+    case friendship    // Gaming friends
+    case esports       // Esports team
     case figureItOut   // Still figuring it out
 }
 ```
@@ -1277,4 +1277,4 @@ This system is production-ready and can significantly improve match quality and 
 
 **Version:** 1.0.0
 **Last Updated:** 2024
-**License:** Proprietary - Celestia Dating App
+**License:** Proprietary - TeamUp Gaming Social App

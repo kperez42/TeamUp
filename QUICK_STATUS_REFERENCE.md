@@ -1,4 +1,4 @@
-# Celestia App - Quick Status Reference
+# TeamUp App - Quick Status Reference
 
 ## Status Overview
 - **Overall Completion:** 85-90% for core features
@@ -14,7 +14,7 @@
 - ✅ **Authentication** - Sign up, sign in, email verification, password reset
 - ✅ **Profiles** - Create, edit, search, view
 - ✅ **Discovery** - Browse users with filters, real Firestore data
-- ✅ **Swiping** - Like/pass with mutual match detection
+- ✅ **Browsing** - Like/pass with mutual match detection
 - ✅ **Matching** - Real-time match creation and sync
 - ✅ **Messaging** - Real-time chat with pagination
 - ✅ **Notifications** - Local + push (FCM)

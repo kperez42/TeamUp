@@ -9,7 +9,7 @@
 
 ## Executive Summary
 
-The Celestia iOS app currently has **76 singleton classes** creating untestable global state and tight coupling. This document provides a comprehensive roadmap to refactor the architecture towards proper dependency injection, enabling:
+The TeamUp iOS app currently has **76 singleton classes** creating untestable global state and tight coupling. This document provides a comprehensive roadmap to refactor the architecture towards proper dependency injection, enabling:
 
 - ✅ Unit testing (currently 0% coverage → target 80%)
 - ✅ Reduced coupling

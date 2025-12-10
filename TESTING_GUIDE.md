@@ -1,6 +1,6 @@
-# Celestia Testing Guide
+# TeamUp Testing Guide
 
-Comprehensive guide for testing the Celestia dating app, including unit tests, integration tests, performance benchmarks, and CI/CD setup.
+Comprehensive guide for testing the TeamUp gaming social app, including unit tests, integration tests, performance benchmarks, and CI/CD setup.
 
 ## 📋 Table of Contents
 
@@ -18,12 +18,12 @@ Comprehensive guide for testing the Celestia dating app, including unit tests, i
 ## 📁 Test Structure
 
 ```
-CelestiaTests/
+TeamUpTests/
 ├── Unit Tests (200+ tests)
 │   ├── AuthServiceTests.swift          # Authentication flows
 │   ├── MatchServiceTests.swift         # Match creation & management
 │   ├── MessageServiceTests.swift       # Messaging functionality
-│   ├── SwipeServiceTests.swift         # Swipe logic
+│   ├── SwipeServiceTests.swift         # Discovery like/pass logic
 │   ├── UserServiceTests.swift          # User management
 │   ├── ContentModeratorTests.swift     # Content moderation
 │   ├── ReferralManagerTests.swift      # Referral system
@@ -53,8 +53,8 @@ CelestiaTests/
 
 # Command line
 xcodebuild test \
-  -workspace Celestia.xcworkspace \
-  -scheme Celestia \
+  -workspace TeamUp.xcworkspace \
+  -scheme TeamUp \
   -destination 'platform=iOS Simulator,name=iPhone 15' \
   -resultBundlePath TestResults
 ```
@@ -63,15 +63,15 @@ xcodebuild test \
 ```bash
 # Run only integration tests
 xcodebuild test \
-  -workspace Celestia.xcworkspace \
-  -scheme Celestia \
-  -only-testing:CelestiaTests/EndToEndFlowTests
+  -workspace TeamUp.xcworkspace \
+  -scheme TeamUp \
+  -only-testing:TeamUpTests/EndToEndFlowTests
 
 # Run only performance benchmarks
 xcodebuild test \
-  -workspace Celestia.xcworkspace \
-  -scheme Celestia \
-  -only-testing:CelestiaTests/PerformanceBenchmarkTests
+  -workspace TeamUp.xcworkspace \
+  -scheme TeamUp \
+  -only-testing:TeamUpTests/PerformanceBenchmarkTests
 ```
 
 ### Run Tests with Firebase Emulator
@@ -80,7 +80,7 @@ xcodebuild test \
 firebase emulators:start --only auth,firestore,storage
 
 # In another terminal, run tests
-xcodebuild test -workspace Celestia.xcworkspace -scheme Celestia
+xcodebuild test -workspace TeamUp.xcworkspace -scheme TeamUp
 ```
 
 ---
@@ -94,7 +94,7 @@ Test individual components in isolation.
 - ✅ Authentication flows (56+ tests)
 - ✅ Match creation and management (32+ tests)
 - ✅ Message sending and receiving
-- ✅ Swipe logic (38+ tests)
+- ✅ Like/pass discovery logic (38+ tests)
 - ✅ Content moderation (45+ tests)
 - ✅ Referral system (41+ tests)
 - ✅ In-app purchases
@@ -103,7 +103,7 @@ Test individual components in isolation.
 
 **Run Command:**
 ```bash
-xcodebuild test -only-testing:CelestiaTests/AuthServiceTests
+xcodebuild test -only-testing:TeamUpTests/AuthServiceTests
 ```
 
 ### 2. **Integration Tests (NEW)**
@@ -113,7 +113,7 @@ Test complete workflows with real Firebase Emulator.
 - Complete user journey (signup → match → message)
 - Signup with email verification
 - Signup with referral code
-- Discovery and swiping flow
+- Discovery feed and like/pass flow
 - Messaging with pagination
 - Unmatch flow
 - Profile update flow
@@ -125,7 +125,7 @@ Test complete workflows with real Firebase Emulator.
 firebase emulators:start --only auth,firestore,storage
 
 # In another terminal
-xcodebuild test -only-testing:CelestiaTests/EndToEndFlowTests
+xcodebuild test -only-testing:TeamUpTests/EndToEndFlowTests
 ```
 
 ### 3. **Network Failure Tests**
@@ -141,7 +141,7 @@ Simulate and handle network issues.
 
 **Run Command:**
 ```bash
-xcodebuild test -only-testing:CelestiaTests/NetworkFailureTests
+xcodebuild test -only-testing:TeamUpTests/NetworkFailureTests
 ```
 
 ### 4. **Race Condition Tests**
@@ -149,7 +149,7 @@ Verify concurrent operation safety.
 
 **Test Cases:**
 - Concurrent message sending
-- Simultaneous swipes creating match
+- Simultaneous likes creating connection
 - Prevent duplicate matches
 - Concurrent batch operations
 - Real-time listener races
@@ -157,7 +157,7 @@ Verify concurrent operation safety.
 
 **Run Command:**
 ```bash
-xcodebuild test -only-testing:CelestiaTests/RaceConditionTests
+xcodebuild test -only-testing:TeamUpTests/RaceConditionTests
 ```
 
 ### 5. **Performance Benchmarks**
@@ -173,7 +173,7 @@ Measure and track performance metrics.
 
 **Run Command:**
 ```bash
-xcodebuild test -only-testing:CelestiaTests/PerformanceBenchmarkTests
+xcodebuild test -only-testing:TeamUpTests/PerformanceBenchmarkTests
 ```
 
 ---
@@ -242,7 +242,7 @@ Access at: http://localhost:4000
 
 ```swift
 import Testing
-@testable import Celestia
+@testable import TeamUp
 
 @Suite("My Integration Test")
 struct MyIntegrationTest {
@@ -304,7 +304,7 @@ let duration = await testBase.measureTime(operation: "Load messages") {
 ### Running Benchmarks
 ```bash
 # Run all performance tests
-xcodebuild test -only-testing:CelestiaTests/PerformanceBenchmarkTests
+xcodebuild test -only-testing:TeamUpTests/PerformanceBenchmarkTests
 
 # View performance report
 # Reports are logged to console during test run
@@ -386,19 +386,19 @@ jobs:
     - name: Run Unit Tests
       run: |
         xcodebuild test \
-          -workspace Celestia.xcworkspace \
-          -scheme Celestia \
+          -workspace TeamUp.xcworkspace \
+          -scheme TeamUp \
           -destination 'platform=iOS Simulator,name=iPhone 15' \
           -resultBundlePath TestResults \
-          -only-testing:CelestiaTests
+          -only-testing:TeamUpTests
 
     - name: Run Integration Tests
       run: |
         xcodebuild test \
-          -workspace Celestia.xcworkspace \
-          -scheme Celestia \
+          -workspace TeamUp.xcworkspace \
+          -scheme TeamUp \
           -destination 'platform=iOS Simulator,name=iPhone 15' \
-          -only-testing:CelestiaTests/EndToEndFlowTests
+          -only-testing:TeamUpTests/EndToEndFlowTests
 
     - name: Upload Test Results
       uses: actions/upload-artifact@v3
@@ -415,7 +415,7 @@ jobs:
 - name: Run Performance Benchmarks
   run: |
     xcodebuild test \
-      -only-testing:CelestiaTests/PerformanceBenchmarkTests \
+      -only-testing:TeamUpTests/PerformanceBenchmarkTests \
       | tee benchmark-results.txt
 
 - name: Check Performance Regression

@@ -2,7 +2,7 @@
 
 ## Overview
 
-This document outlines the comprehensive accessibility improvements made to the Celestia iOS app to achieve WCAG 2.1 Level AA compliance and support users with disabilities.
+This document outlines the comprehensive accessibility improvements made to the TeamUp iOS app to achieve WCAG 2.1 Level AA compliance and support users with disabilities.
 
 ## Impact
 
@@ -329,7 +329,7 @@ Based on user flow importance:
 2. **Discovery Views** (DiscoverView, UserCardStack, ImprovedUserCard)
    - Already has some accessibility (7/10)
    - Extend to all user cards
-   - Add swipe action announcements
+   - Add like/pass action announcements
 
 3. **Messaging Views** (ChatView, MessagesView, MessageBubbleView)
    - Add labels to message bubbles

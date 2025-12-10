@@ -1,4 +1,4 @@
-# Backend API Requirements for Celestia
+# Backend API Requirements for TeamUp
 
 **CRITICAL**: This document outlines required backend APIs for security-critical operations. Implementing these endpoints prevents fraud and abuse that cannot be prevented with client-side validation alone.
 
@@ -19,7 +19,7 @@
 
 ## Overview
 
-The Celestia iOS app requires a backend API for server-side validation of critical operations. Without these endpoints, the app is vulnerable to:
+The TeamUp iOS app requires a backend API for server-side validation of critical operations. Without these endpoints, the app is vulnerable to:
 
 - **Purchase Fraud** - Users can bypass StoreKit validation
 - **Content Abuse** - Client-side moderation can be bypassed
@@ -32,7 +32,7 @@ Configure your backend API base URL in `Constants.swift`:
 
 ```swift
 enum API {
-    static let baseURL = "https://api.celestia.app"  // Your backend URL
+    static let baseURL = "https://api.teamup.app"  // Your backend URL
 }
 ```
 

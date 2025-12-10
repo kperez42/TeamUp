@@ -1,4 +1,4 @@
-# Celestia App - Comprehensive Codebase Analysis
+# TeamUp App - Comprehensive Codebase Analysis
 ## UI/UX Consistency, Code Quality, and Performance Issues
 
 ---

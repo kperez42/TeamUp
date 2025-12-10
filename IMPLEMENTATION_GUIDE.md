@@ -1,7 +1,7 @@
-# Celestia - Implementation Guide
+# TeamUp - Implementation Guide
 ## Backend API & Offline Support
 
-This guide covers the newly implemented backend API and offline support features for the Celestia dating app.
+This guide covers the newly implemented backend API and offline support features for the TeamUp gaming social app.
 
 ---
 
@@ -90,7 +90,7 @@ func validatePurchase(receipt: String, productId: String) async throws {
   - Adult content
   - Violence
   - Racy content
-  - Presence of faces (for dating profile validation)
+  - Presence of faces (for profile validation)
 
 - **Text moderation:** Detects:
   - Profanity and hate speech
@@ -627,6 +627,6 @@ You now have:
 - ✅ **Optimistic UI** for instant feedback
 - ✅ **Conflict resolution** for data consistency
 
-Your dating app is now **production-ready** with enterprise-grade backend infrastructure and offline capabilities!
+Your gaming social app is now **production-ready** with enterprise-grade backend infrastructure and offline capabilities!
 
 🎉 **Happy coding!**

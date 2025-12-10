@@ -1,4 +1,4 @@
-# 🔒 PRODUCTION SECURITY AUDIT REPORT - CELESTIA APP
+# 🔒 PRODUCTION SECURITY AUDIT REPORT - TEAMUP APP
 
 **Date:** November 16, 2025
 **Status:** ✅ **PRODUCTION READY - APP STORE QUALITY**
@@ -457,7 +457,7 @@ Logger.shared.auth("Current user session: \(Auth.auth().currentUser != nil ? "au
    - Action: Add your server's SSL certificate public key hashes
    - How to get hash:
      ```bash
-     openssl s_client -connect api.celestia.app:443 | \
+     openssl s_client -connect api.teamup.app:443 | \
      openssl x509 -pubkey -noout | \
      openssl pkey -pubin -outform der | \
      openssl dgst -sha256 -binary | \

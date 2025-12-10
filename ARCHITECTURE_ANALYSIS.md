@@ -1,8 +1,8 @@
-# CELESTIA CODEBASE ARCHITECTURAL ANALYSIS
+# TEAMUP CODEBASE ARCHITECTURAL ANALYSIS
 
 ## EXECUTIVE SUMMARY
 
-The Celestia iOS app uses **MVVM architecture with SwiftUI** and **Firebase Firestore backend**. While the codebase demonstrates solid foundations with good separation of concerns in many areas, there are significant architectural inconsistencies, excessive reliance on singletons, and missing abstraction layers that hamper testability and maintainability.
+The TeamUp iOS app uses **MVVM architecture with SwiftUI** and **Firebase Firestore backend**. While the codebase demonstrates solid foundations with good separation of concerns in many areas, there are significant architectural inconsistencies, excessive reliance on singletons, and missing abstraction layers that hamper testability and maintainability.
 
 ---
 

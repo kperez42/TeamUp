@@ -1,11 +1,11 @@
 # Onboarding Flow Optimization & User Activation Integration Guide
 
-This guide explains how to integrate the new onboarding optimization system into your Celestia dating app.
+This guide explains how to integrate the new onboarding optimization system into your TeamUp gaming social app.
 
 ## Overview
 
 The onboarding optimization system includes:
-- ✅ **Interactive tutorials** for swiping, matching, and messaging
+- ✅ **Interactive tutorials** for browsing, connecting, and messaging
 - ✅ **Profile quality scoring** with real-time tips
 - ✅ **Completion incentives** (free super likes, boosts, or premium trial)
 - ✅ **A/B testing framework** for onboarding variants
@@ -261,13 +261,13 @@ Users see celebration overlays when achieving milestones.
 
 ## Personalized Onboarding Paths
 
-Users can select their dating goal, which customizes their onboarding:
+Users can select their gaming goal, which customizes their onboarding:
 
-1. **Long-term Relationship** - Emphasizes profile depth, verification, values
-2. **Casual Dating** - Focuses on fun photos, interests, location
-3. **New Friends** - Highlights social activities, group features
-4. **Professional Networking** - Professional profile, verification, industry tags
-5. **Open to See What Happens** - Balanced approach, exploration-focused
+1. **Competitive Team** - Emphasizes skill level, rank, competitive play
+2. **Casual Gaming** - Focuses on fun games, flexible schedules
+3. **New Gaming Friends** - Highlights social activities, group features
+4. **Streaming/Content** - Content creator profile, streaming platforms, collaboration
+5. **Open to All** - Balanced approach, exploration-focused
 
 The system automatically:
 - Prioritizes relevant onboarding steps
@@ -279,7 +279,7 @@ The system automatically:
 
 The system tracks these analytics events:
 
-- `onboarding_goal_selected` - User selects dating goal
+- `onboarding_goal_selected` - User selects gaming goal
 - `onboarding_step_completed` - Each step completion
 - `onboarding_completed` - Full onboarding done
 - `onboarding_abandoned` - User abandons onboarding

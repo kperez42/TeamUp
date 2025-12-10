@@ -14,16 +14,16 @@ You need to add the following key to your `Info.plist` file in Xcode:
 
 **Via Xcode UI:**
 1. Open your Xcode project
-2. Select the Celestia target
+2. Select the TeamUp target
 3. Go to the "Info" tab
 4. Click the `+` button to add a new entry
 5. Add: `Privacy - Camera Usage Description` (NSCameraUsageDescription)
-6. Set the value to: "Celestia needs camera access to verify your identity and help you create an authentic profile."
+6. Set the value to: "TeamUp needs camera access to verify your identity and help you create an authentic profile."
 
 **Via Info.plist Source Code:**
 ```xml
 <key>NSCameraUsageDescription</key>
-<string>Celestia needs camera access to verify your identity and help you create an authentic profile.</string>
+<string>TeamUp needs camera access to verify your identity and help you create an authentic profile.</string>
 ```
 
 ## Code Fixes Applied

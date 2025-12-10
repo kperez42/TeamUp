@@ -1,103 +1,103 @@
-# Celestia - App Store Submission Text
+# TeamUp - App Store Submission Text
 
 ## App Name
-Celestia: Dating & Connections
+TeamUp: Gaming Friends & LFG
 
 ## Subtitle (30 characters max)
-Meet Your Perfect Match
+Find Your Perfect Teammates
 
 ---
 
 ## Description (4000 characters max)
 
-Celestia is the modern dating app designed to help you make meaningful connections. Whether you're looking for love, friendship, or something in between, Celestia uses smart matching to connect you with people who share your interests and values.
+TeamUp is the modern gaming social app designed to help you find teammates and make meaningful connections with fellow gamers. Whether you're looking for a ranked duo, a casual squad, or gaming friends to hang out with, TeamUp uses smart matching to connect you with players who share your favorite games and play style.
 
-**DISCOVER YOUR MATCH**
-Swipe through profiles of people near you. Like someone? Swipe right. Not feeling it? Swipe left. When you both like each other, it's a match! Start chatting instantly and see where the conversation takes you.
+**DISCOVER YOUR SQUAD**
+Scroll through profiles of gamers near you. See someone you'd like to team up with? Like their profile! When you both like each other, you connect! Start chatting instantly and get ready to queue up together.
 
 **SMART CONVERSATION STARTERS**
-Not sure how to break the ice? Celestia suggests personalized conversation starters based on shared interests, helping you make that perfect first impression.
+Not sure how to break the ice? TeamUp suggests personalized conversation starters based on shared games and interests, helping you make that perfect first impression.
 
 **VERIFIED PROFILES**
-Feel confident knowing you're talking to real people. Our verification system helps ensure authentic connections and a safer dating experience.
+Feel confident knowing you're talking to real gamers. Our verification system helps ensure authentic connections and a safer gaming community.
 
 **PREMIUM FEATURES**
-Upgrade to Celestia Premium for an enhanced experience:
-• See who liked you before you match
-• Unlimited likes
-• Super Likes to stand out
-• Profile Boosts to get more visibility
-• Advanced filters to find exactly who you're looking for
-• Ad-free experience
+Upgrade to TeamUp Premium for an enhanced experience:
+- See who liked you before you connect
+- Unlimited likes
+- Super Likes to stand out
+- Profile Boosts to get more visibility
+- Advanced filters to find exactly who you're looking for
+- Ad-free experience
 
 **SAFETY FIRST**
-Your safety is our priority. Celestia includes:
-• Photo verification
-• Block and report features
-• In-app safety tips
-• Message filtering
+Your safety is our priority. TeamUp includes:
+- Photo verification
+- Block and report features
+- In-app safety tips
+- Message filtering
 
 **DESIGNED FOR YOU**
-• Beautiful, intuitive interface
-• Dark mode support
-• Dynamic Type for accessibility
-• Available in multiple languages
+- Beautiful, intuitive interface
+- Dark mode support
+- Dynamic Type for accessibility
+- Available in multiple languages
 
-Ready to find your connection? Download Celestia and start swiping today!
+Ready to find your squad? Download TeamUp and start connecting today!
 
 ---
 
 ## Keywords (100 characters max, comma-separated)
 
-dating,match,love,singles,relationships,meet,chat,swipe,connections,romance,date,friends,social
+gaming,teammates,lfg,squad,friends,gamers,multiplayer,chat,connect,esports,coop,party,social,play
 
 ---
 
 ## Promotional Text (170 characters max)
 *Can be updated without app review*
 
-Find meaningful connections with Celestia. Smart matching, verified profiles, and conversation starters to help you meet your perfect match.
+Find gaming friends with TeamUp. Smart matching, verified profiles, and conversation starters to help you connect with your perfect teammates.
 
 ---
 
 ## What's New (Version 1.0)
 
-Welcome to Celestia! We're excited to launch with these features:
+Welcome to TeamUp! We're excited to launch with these features:
 
-• Smart swipe-based matching
-• Personalized conversation starters
-• Real-time messaging with read receipts
-• Photo verification for authentic profiles
-• Premium subscriptions with exclusive features
-• Block and report for your safety
-• Beautiful, accessible design
-• Support for multiple languages
+- Browse and discover teammates in a scrolling feed
+- Personalized conversation starters
+- Real-time messaging with read receipts
+- Photo verification for authentic profiles
+- Premium subscriptions with exclusive features
+- Block and report for your safety
+- Beautiful, accessible design
+- Support for multiple languages
 
-Start making meaningful connections today!
+Start finding your squad today!
 
 ---
 
 ## Support URL Text (for your support page)
 
-### Celestia Support
+### TeamUp Support
 
 **Getting Started**
-Download Celestia, create your profile with your best photos and a compelling bio, set your preferences, and start discovering people near you.
+Download TeamUp, create your profile with your best gaming photos and bio, set your game preferences, and start discovering gamers near you.
 
-**How Matching Works**
-When you and another person both like each other, you'll match! You can then start a conversation and get to know each other.
+**How Connecting Works**
+When you and another gamer both like each other, you'll connect! You can then start a conversation and plan your next gaming session.
 
 **Premium Subscription**
-Celestia offers optional Premium subscriptions with additional features. Subscriptions auto-renew unless cancelled at least 24 hours before the end of the current period.
+TeamUp offers optional Premium subscriptions with additional features. Subscriptions auto-renew unless cancelled at least 24 hours before the end of the current period.
 
 **Safety Tips**
 - Never share personal financial information
-- Meet in public places for first dates
-- Tell a friend where you're going
+- Use voice chat in-game before sharing personal info
+- Report any suspicious behavior
 - Trust your instincts
 
 **Contact Us**
-For support inquiries, please email: support@celestiaapp.com
+For support inquiries, please email: support@teamup.app
 
 ---
 
@@ -121,33 +121,33 @@ For support inquiries, please email: support@celestiaapp.com
 
 ## App Review Notes
 
-Thank you for reviewing Celestia!
+Thank you for reviewing TeamUp!
 
 **Demo Account:**
-Email: demo@celestiaapp.com
-Password: CelestiaDemo2025!
+Email: demo@teamup.app
+Password: TeamUpDemo2025!
 
 **Testing Notes:**
-- The app requires location permission to show nearby users
-- Push notifications are used for matches and messages
+- The app requires location permission to show nearby gamers
+- Push notifications are used for connections and messages
 - In-app purchases are for Premium subscription features
 - Photos are moderated for community safety
 
 **Subscription Information:**
-- Celestia Premium Monthly: $19.99/month
-- Celestia Premium 6-Month: $59.99 ($9.99/month)
-- Celestia Premium Annual: $99.99/year ($8.33/month)
+- TeamUp Premium Monthly: $19.99/month
+- TeamUp Premium 6-Month: $59.99 ($9.99/month)
+- TeamUp Premium Annual: $99.99/year ($8.33/month)
 
 All subscriptions auto-renew unless cancelled.
 
 ---
 
 ## Copyright
-2025 Celestia App LLC
+2025 TeamUp App LLC
 
 ## Age Rating
-17+ (Frequent/Intense Mature/Suggestive Themes)
+12+ (Infrequent/Mild Mature Themes)
 
 ## Category
 Primary: Social Networking
-Secondary: Lifestyle
+Secondary: Games

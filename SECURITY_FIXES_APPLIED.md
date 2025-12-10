@@ -8,7 +8,7 @@
 
 ## Summary
 
-This document summarizes the critical security fixes that have been applied to the Celestia iOS app to address 5 critical security vulnerabilities identified in the comprehensive code review.
+This document summarizes the critical security fixes that have been applied to the TeamUp iOS app to address 5 critical security vulnerabilities identified in the comprehensive code review.
 
 ---
 

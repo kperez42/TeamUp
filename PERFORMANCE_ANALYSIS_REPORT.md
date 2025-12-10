@@ -1,4 +1,4 @@
-# CELESTIA iOS APP - COMPREHENSIVE PERFORMANCE OPTIMIZATION REPORT
+# TEAMUP iOS APP - COMPREHENSIVE PERFORMANCE OPTIMIZATION REPORT
 **Analysis Date: November 15, 2025**
 **Status: 12 Major Performance Issues Identified**
 
@@ -6,7 +6,7 @@
 
 ## EXECUTIVE SUMMARY
 
-The Celestia iOS app has solid foundational performance practices (caching, debouncing, image optimization) but contains several critical N+1 query problems, suboptimal view update patterns, and missing pagination optimizations that could cause noticeable lag and increased server costs.
+The TeamUp iOS app has solid foundational performance practices (caching, debouncing, image optimization) but contains several critical N+1 query problems, suboptimal view update patterns, and missing pagination optimizations that could cause noticeable lag and increased server costs.
 
 ### Key Metrics:
 - **Critical Issues:** 3

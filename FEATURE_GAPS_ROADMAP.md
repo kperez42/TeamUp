@@ -1,4 +1,4 @@
-# Celestia Feature Gaps & Product Roadmap
+# TeamUp Feature Gaps & Product Roadmap
 
 **Analysis Date**: 2025-01-17
 **Production Readiness**: 75-80% ✅
@@ -15,7 +15,7 @@
 
 **Problem**:
 - Backend API client fully implemented
-- Points to `https://api.celestia.app` (not deployed)
+- Points to `https://api.teamup.app` (not deployed)
 - All server-side validation bypassed
 - Purchase fraud risk
 
@@ -167,7 +167,7 @@ StreakBanner()       // Daily reminder
 ```
 
 **Effort**: 3 weeks
-**ROI**: Very High (retention critical for dating apps)
+**ROI**: Very High (retention critical for gaming social apps)
 **Priority**: P0
 
 ---
@@ -718,7 +718,7 @@ exports.generateIcebreaker = async (targetUser) => {
 
 **Feature**:
 - Browse users in different cities
-- Passport feature (like Tinder)
+- Location passport feature for travel
 - Pre-trip matching
 
 **Premium Feature**: $5-10/month add-on
