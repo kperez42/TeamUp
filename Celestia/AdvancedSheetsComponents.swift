@@ -70,7 +70,7 @@ struct AdvancedFiltersSheet: View {
                     Button("Reset") {
                         resetFilters()
                     }
-                    .foregroundColor(.green)
+                    .foregroundColor(.blue)
                 }
             }
         }
@@ -111,21 +111,21 @@ struct AdvancedFiltersSheet: View {
                 Text("\(Int(ageRange.lowerBound))")
                     .font(.title3)
                     .fontWeight(.bold)
-                    .foregroundColor(.green)
+                    .foregroundColor(.blue)
                     .frame(width: 50)
-                
+
                 Spacer()
-                
+
                 Text("to")
                     .font(.caption)
                     .foregroundColor(.gray)
-                
+
                 Spacer()
-                
+
                 Text("\(Int(ageRange.upperBound))")
                     .font(.title3)
                     .fontWeight(.bold)
-                    .foregroundColor(.green)
+                    .foregroundColor(.blue)
                     .frame(width: 50)
             }
             
