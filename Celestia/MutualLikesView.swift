@@ -75,7 +75,7 @@ struct MutualLikesView: View {
                 .font(.system(size: 50))
                 .foregroundStyle(
                     LinearGradient(
-                        colors: [.purple, .indigo],
+                        colors: [.green, .cyan],
                         startPoint: .topLeading,
                         endPoint: .bottomTrailing
                     )
@@ -149,7 +149,7 @@ struct MutualLikeCard: View {
                     CachedCardImage(url: url)
                 } else {
                     LinearGradient(
-                        colors: [.purple.opacity(0.6), .pink.opacity(0.5)],
+                        colors: [.green.opacity(0.6), .cyan.opacity(0.5)],
                         startPoint: .topLeading,
                         endPoint: .bottomTrailing
                     )
@@ -183,7 +183,7 @@ struct MutualLikeCard: View {
                         Text("Ready to team up!")
                             .font(.caption)
                     }
-                    .foregroundColor(.purple)
+                    .foregroundColor(.green)
                 }
                 .padding(12)
             }
