@@ -144,7 +144,7 @@ struct PendingOperationRow: View {
         case .sendMessage:
             return "message.fill"
         case .likeUser:
-            return "heart.fill"
+            return "gamecontroller.fill"
         case .superLikeUser:
             return "star.fill"
         case .updateProfile:

@@ -191,16 +191,16 @@ struct LikeActivity: Identifiable {
 
         var icon: String {
             switch self {
-            case .received: return "heart.fill"
+            case .received: return "gamecontroller.fill"
             case .sent: return "paperplane.fill"
-            case .mutual: return "heart.circle.fill"
+            case .mutual: return "gamecontroller.fill"
             case .matched: return "sparkles"
             }
         }
 
         var color: Color {
             switch self {
-            case .received: return .pink
+            case .received: return .purple
             case .sent: return .purple
             case .mutual: return .orange
             case .matched: return .green

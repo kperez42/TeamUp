@@ -470,9 +470,9 @@ struct ScrollBrowseDemo: View {
                                     isLiked[index].toggle()
                                 }
                             } label: {
-                                Image(systemName: isLiked[index] ? "heart.fill" : "heart")
+                                Image(systemName: isLiked[index] ? "gamecontroller.fill" : "gamecontroller")
                                     .font(.title3)
-                                    .foregroundColor(isLiked[index] ? .pink : .gray)
+                                    .foregroundColor(isLiked[index] ? .purple : .gray)
                                     .scaleEffect(isLiked[index] ? 1.2 : 1.0)
                             }
                         }
@@ -508,7 +508,7 @@ struct SwipeGestureDemo: View {
 
     var body: some View {
         VStack(spacing: 12) {
-            Text("Try it! Swipe left or right")
+            Text("Try it! Use the buttons below")
                 .font(.caption)
                 .foregroundColor(.secondary)
 
@@ -526,7 +526,7 @@ struct SwipeGestureDemo: View {
                             Text("Demo Profile")
                                 .font(.headline)
 
-                            Text("Swipe me!")
+                            Text("Tap to browse!")
                                 .font(.caption)
                                 .foregroundColor(.secondary)
                         }
@@ -564,9 +564,9 @@ struct SwipeGestureDemo: View {
                     )
                     .shadow(color: .black.opacity(0.1), radius: 10)
 
-                // Like/Nope indicators
+                // Interest/Pass indicators
                 if offset.width > 20 {
-                    Text("LIKE")
+                    Text("INTERESTED")
                         .font(.title)
                         .fontWeight(.bold)
                         .foregroundColor(.green)

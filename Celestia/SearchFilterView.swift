@@ -267,7 +267,7 @@ struct SearchFilterView: View {
     // MARK: - Lifestyle Section
 
     private var lifestyleSection: some View {
-        FilterSection(title: "Lifestyle", icon: "heart.fill") {
+        FilterSection(title: "Lifestyle", icon: "person.fill") {
             VStack(spacing: 16) {
                 // Smoking
                 Picker("Smoking", selection: $filter.smoking) {

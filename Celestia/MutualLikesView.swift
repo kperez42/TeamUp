@@ -71,11 +71,11 @@ struct MutualLikesView: View {
 
     private var headerCard: some View {
         VStack(spacing: 8) {
-            Image(systemName: "heart.circle.fill")
+            Image(systemName: "gamecontroller.fill")
                 .font(.system(size: 50))
                 .foregroundStyle(
                     LinearGradient(
-                        colors: [.pink, .purple],
+                        colors: [.purple, .indigo],
                         startPoint: .topLeading,
                         endPoint: .bottomTrailing
                     )
@@ -111,7 +111,7 @@ struct MutualLikesView: View {
 
     private var emptyStateView: some View {
         VStack(spacing: 24) {
-            Image(systemName: "heart.slash.circle")
+            Image(systemName: "gamecontroller")
                 .font(.system(size: 80))
                 .foregroundColor(.gray.opacity(0.5))
 
@@ -178,12 +178,12 @@ struct MutualLikeCard: View {
 
                     // Mutual indicator
                     HStack(spacing: 4) {
-                        Image(systemName: "heart.fill")
+                        Image(systemName: "gamecontroller.fill")
                             .font(.caption2)
                         Text("Ready to team up!")
                             .font(.caption)
                     }
-                    .foregroundColor(.pink)
+                    .foregroundColor(.purple)
                 }
                 .padding(12)
             }

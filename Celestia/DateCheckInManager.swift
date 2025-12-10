@@ -230,7 +230,7 @@ class DateCheckInManager: ObservableObject {
             // Send warning notification
             await notifyEmergencyContacts(
                 checkIn: checkIn,
-                message: "⚠️ Check-in overdue for date with \(checkIn.matchName)"
+                message: "⚠️ Check-in overdue for meetup with \(checkIn.matchName)"
             )
 
             // Trigger emergency after grace period

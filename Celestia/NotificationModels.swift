@@ -488,8 +488,8 @@ enum NotificationPayload {
 
     private static func randomProfileViewBody(name: String) -> String {
         let bodies = [
-            "Like them back before they move on!",
-            "See if you're a match - tap to view",
+            "Show interest before they move on!",
+            "See if you'd make a great team - tap to view",
             "Could this be your next teammate? Check out their profile",
             "They made the first move. Your turn!",
             "Don't miss your chance - see their profile now"
@@ -532,13 +532,13 @@ enum NotificationPayload {
 
     private static func randomMatchReminderBody(name: String) -> String {
         let bodies = [
-            "Matches fade fast - send a message now!",
+            "Connections fade fast - send a message now!",
             "The longer you wait, the harder it gets",
             "A simple 'hey' could lead to something great",
             "Don't let this connection slip away",
-            "They swiped right on you for a reason!"
+            "They showed interest in you for a reason!"
         ]
-        return bodies.randomElement() ?? "Don't let this match expire"
+        return bodies.randomElement() ?? "Don't let this connection expire"
     }
 
     private static func randomMessageReminderTitle(name: String) -> String {
@@ -600,13 +600,13 @@ enum NotificationPayload {
     private static func randomNewLikeBody(name: String?, count: Int) -> String {
         if name != nil {
             let bodies = [
-                "Like them back to start chatting!",
-                "Will you match with them?",
+                "Connect with them to start chatting!",
+                "Will you team up with them?",
                 "Open the app to see their profile",
-                "Tap to see if you're a match!",
+                "Tap to see if you'd make a great team!",
                 "Don't keep them waiting!"
             ]
-            return bodies.randomElement() ?? "Like them back to start chatting!"
+            return bodies.randomElement() ?? "Connect with them to start chatting!"
         } else {
             let bodies = [
                 "Upgrade to see who likes you!",

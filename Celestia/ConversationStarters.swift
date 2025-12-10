@@ -112,7 +112,7 @@ class ConversationStarters {
             ),
             ConversationStarter(
                 text: "What's your all-time favorite game?",
-                icon: "heart.fill",
+                icon: "gamecontroller",
                 category: .generic
             ),
             ConversationStarter(

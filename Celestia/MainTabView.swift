@@ -211,11 +211,11 @@ struct MainTabView: View {
 
                 // Interest
                 TabBarButton(
-                    icon: "heart.fill",
+                    icon: "gamecontroller.fill",
                     title: "Interest",
                     isSelected: selectedTab == 1,
                     badgeCount: newMatchesCount,
-                    color: .pink
+                    color: .purple
                 ) {
                     selectedTab = 1
                 }

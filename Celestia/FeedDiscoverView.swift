@@ -670,7 +670,7 @@ struct FeedDiscoverView: View {
                     }
 
                     HStack(spacing: 10) {
-                        Image(systemName: "heart.circle")
+                        Image(systemName: "gamecontroller")
                             .foregroundColor(.gray.opacity(0.4))
                         Text("Start connecting")
                             .font(.subheadline)
@@ -1140,9 +1140,9 @@ struct FeedDiscoverView: View {
                     await MainActor.run {
                         let truncatedName = user.fullName.count > 20 ? String(user.fullName.prefix(20)) + "..." : user.fullName
                         showToast(
-                            message: "You like \(truncatedName)!",
-                            icon: "heart.fill",
-                            color: .pink
+                            message: "Interested in \(truncatedName)!",
+                            icon: "gamecontroller.fill",
+                            color: .purple
                         )
                     }
                 }
@@ -1245,8 +1245,8 @@ struct FeedDiscoverView: View {
                 await MainActor.run {
                     let truncatedName = user.fullName.count > 20 ? String(user.fullName.prefix(20)) + "..." : user.fullName
                     showToast(
-                        message: "Unliked \(truncatedName)",
-                        icon: "heart.slash",
+                        message: "Removed interest in \(truncatedName)",
+                        icon: "gamecontroller",
                         color: .gray
                     )
                     // BUGFIX: Call completion with success

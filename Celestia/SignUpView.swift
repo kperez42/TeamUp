@@ -778,7 +778,7 @@ struct SignUpView: View {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 12) {
                     photoTipChip(icon: "face.smiling.fill", text: "Clear face shot", color: .purple)
-                    photoTipChip(icon: "heart.fill", text: "Show personality", color: .pink)
+                    photoTipChip(icon: "gamecontroller.fill", text: "Show personality", color: .purple)
                     photoTipChip(icon: "sun.max.fill", text: "Good lighting", color: .orange)
                 }
                 .padding(.horizontal, 4)
@@ -1538,12 +1538,12 @@ struct SignUpView: View {
                 HStack(spacing: 16) {
                     ZStack {
                         Circle()
-                            .fill(Color.pink.opacity(0.12))
+                            .fill(Color.purple.opacity(0.12))
                             .frame(width: 56, height: 56)
 
-                        Image(systemName: "heart.circle.fill")
+                        Image(systemName: "person.2.fill")
                             .font(.system(size: 24))
-                            .foregroundColor(.pink)
+                            .foregroundColor(.purple)
                     }
 
                     VStack(alignment: .leading, spacing: 4) {
@@ -1551,7 +1551,7 @@ struct SignUpView: View {
                             .font(.headline)
                             .foregroundColor(.primary)
 
-                        Text("Who would you like to meet?")
+                        Text("Who would you like to team up with?")
                             .font(.subheadline)
                             .foregroundColor(.secondary)
                     }

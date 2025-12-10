@@ -355,15 +355,15 @@ struct MatchCelebrationView: View {
             }
 
             VStack(spacing: 30) {
-                // Animated hearts
+                // Animated icons
                 HStack(spacing: 20) {
                     if showHearts {
                         ForEach(0..<3, id: \.self) { i in
-                            Image(systemName: "heart.fill")
+                            Image(systemName: "gamecontroller.fill")
                                 .font(.system(size: 40))
                                 .foregroundStyle(
                                     LinearGradient(
-                                        colors: [.pink, .red],
+                                        colors: [.purple, .indigo],
                                         startPoint: .topLeading,
                                         endPoint: .bottomTrailing
                                     )

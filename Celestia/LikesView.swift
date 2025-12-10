@@ -393,7 +393,7 @@ struct LikesView: View {
 
                         HStack(spacing: 8) {
                             HStack(spacing: 4) {
-                                Image(systemName: "heart.fill")
+                                Image(systemName: "gamecontroller.fill")
                                     .font(.caption)
                                 Text("\(viewModel.totalLikesReceived)")
                                     .fontWeight(.semibold)
@@ -416,7 +416,7 @@ struct LikesView: View {
                                     .frame(width: 4, height: 4)
 
                                 HStack(spacing: 4) {
-                                    Image(systemName: "heart.circle.fill")
+                                    Image(systemName: "gamecontroller.fill")
                                         .font(.caption)
                                     Text("\(viewModel.mutualLikes.count) mutual")
                                         .fontWeight(.semibold)
@@ -803,9 +803,9 @@ struct LikesView: View {
         Group {
             if viewModel.mutualLikes.isEmpty {
                 emptyStateView(
-                    icon: "heart.circle.fill",
-                    title: "No Mutual Likes",
-                    message: "When you and someone else both like each other, you'll see them here!"
+                    icon: "gamecontroller.fill",
+                    title: "No Mutual Interest",
+                    message: "When you and someone else are both interested, you'll see them here!"
                 )
             } else {
                 likesGrid(users: filteredMutualLikes, showMessage: true)
@@ -995,9 +995,9 @@ struct LikeProfileCard: View {
                     HStack(spacing: 8) {
                         if showLikeBack {
                             LikeActionButton(
-                                icon: "heart.fill",
-                                text: "Like",
-                                colors: [.pink, .red]
+                                icon: "gamecontroller.fill",
+                                text: "Connect",
+                                colors: [.purple, .indigo]
                             ) {
                                 onLikeBack?()
                             }
@@ -1147,9 +1147,9 @@ struct BlurredLikeCard: View {
 
                     Spacer()
 
-                    // Heart indicator showing they liked you
-                    Image(systemName: "heart.fill")
-                        .foregroundColor(.pink)
+                    // Interest indicator showing they're interested
+                    Image(systemName: "gamecontroller.fill")
+                        .foregroundColor(.purple)
                         .font(.caption)
                 }
 
@@ -1470,10 +1470,10 @@ struct SwipeableLikeCard: View {
                 HStack {
                     Spacer()
                     VStack(spacing: 4) {
-                        Image(systemName: "heart.fill")
+                        Image(systemName: "gamecontroller.fill")
                             .font(.title)
                             .foregroundColor(.white)
-                        Text("Like")
+                        Text("Connect")
                             .font(.caption)
                             .fontWeight(.semibold)
                             .foregroundColor(.white)
@@ -1538,10 +1538,10 @@ struct SwipeableLikeCard: View {
             // Like overlay on card
             if showLikeOverlay && showLikeBack {
                 VStack {
-                    Image(systemName: "heart.fill")
+                    Image(systemName: "gamecontroller.fill")
                         .font(.system(size: 50))
-                        .foregroundColor(.pink)
-                        .shadow(color: .pink.opacity(0.5), radius: 10)
+                        .foregroundColor(.purple)
+                        .shadow(color: .purple.opacity(0.5), radius: 10)
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .background(Color.black.opacity(0.3))
@@ -1641,10 +1641,10 @@ struct MatchCelebrationOverlay: View {
                         }
                     }
 
-                    // Heart in center
-                    Image(systemName: "heart.fill")
+                    // Icon in center
+                    Image(systemName: "gamecontroller.fill")
                         .font(.system(size: 30))
-                        .foregroundColor(.pink)
+                        .foregroundColor(.purple)
                         .offset(y: 40)
                         .scaleEffect(heartScale)
                 }
