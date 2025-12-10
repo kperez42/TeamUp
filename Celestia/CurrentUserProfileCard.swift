@@ -59,10 +59,18 @@ struct CurrentUserProfileCard: View {
             VStack(alignment: .leading, spacing: 8) {
                 // Name and Verification
                 HStack(spacing: 8) {
-                    Text(user.fullName)
-                        .font(.title2)
-                        .fontWeight(.bold)
-                        .foregroundColor(.primary)
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text(user.fullName)
+                            .font(.title2)
+                            .fontWeight(.bold)
+                            .foregroundColor(.primary)
+
+                        if !user.gamerTag.isEmpty {
+                            Text("@\(user.gamerTag)")
+                                .font(.subheadline)
+                                .foregroundColor(.blue)
+                        }
+                    }
 
                     if user.isVerified {
                         Image(systemName: "checkmark.seal.fill")
@@ -140,7 +148,7 @@ struct CurrentUserProfileCard: View {
                             )
                         )
 
-                    Text("Tap to view and edit your profile")
+                    Text("Tap to view and edit your gaming profile")
                         .font(.subheadline)
                         .fontWeight(.medium)
                         .foregroundStyle(

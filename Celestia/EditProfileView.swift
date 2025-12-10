@@ -203,7 +203,11 @@ struct EditProfileView: View {
                         // Weekly hours, Gaming Goal
                         gamingScheduleSection
 
-                        // SECTION 7: External Profiles
+                        // SECTION 7: Game Genres
+                        // FPS, MOBA, RPG, etc.
+                        gameGenresSection
+
+                        // SECTION 8: External Profiles
                         // Discord, Steam, PSN, Xbox, etc.
                         externalProfilesSection
 
@@ -324,7 +328,7 @@ struct EditProfileView: View {
         VStack(spacing: 0) {
             // Header
             HStack {
-                SectionHeader(icon: "camera.fill", title: "Your Photos", color: .blue)
+                SectionHeader(icon: "camera.fill", title: "Your Photos", color: .blue, subtitle: "Show off your gaming setup")
                 Spacer()
             }
             .padding(.horizontal, 20)
@@ -465,7 +469,7 @@ struct EditProfileView: View {
             }
             .padding(.bottom, 20)
         }
-        .background(Color.white)
+        .background(Color(.systemBackground))
         .cornerRadius(16)
         .shadow(color: .black.opacity(0.05), radius: 10, y: 4)
         .onChange(of: selectedPhotoItems) { oldItems, newItems in
@@ -534,7 +538,7 @@ struct EditProfileView: View {
                     )
                 )
 
-            Text("Add photos to get more connections!")
+            Text("Add photos to find more teammates!")
                 .font(.subheadline)
                 .foregroundColor(.secondary)
 
@@ -872,7 +876,7 @@ struct EditProfileView: View {
                             .font(.headline)
                             .foregroundColor(.primary)
 
-                        Text("Add up to 6 photos to showcase yourself.\nPhotos help you get more connections!")
+                        Text("Add up to 6 photos to showcase your gaming setup.\nPhotos help you find more teammates!")
                             .font(.subheadline)
                             .foregroundColor(.secondary)
                             .multilineTextAlignment(.center)
@@ -956,7 +960,7 @@ struct EditProfileView: View {
             }
         }
         .padding()
-        .background(Color.white)
+        .background(Color(.systemBackground))
         .cornerRadius(16)
         .shadow(color: .black.opacity(0.05), radius: 10, y: 4)
         .onChange(of: selectedPhotoItems) { oldItems, newItems in
@@ -1028,7 +1032,7 @@ struct EditProfileView: View {
             }
         }
         .padding(20)
-        .background(Color.white)
+        .background(Color(.systemBackground))
         .cornerRadius(16)
         .shadow(color: .black.opacity(0.05), radius: 8)
     }
@@ -1037,7 +1041,7 @@ struct EditProfileView: View {
 
     private var basicInfoSection: some View {
         VStack(spacing: 20) {
-            SectionHeader(icon: "person.fill", title: "Basic Information", color: .blue)
+            SectionHeader(icon: "person.fill", title: "Basic Information", color: .blue, subtitle: "Your identity and location")
 
             // Full Name (Required)
             VStack(alignment: .leading, spacing: 8) {
@@ -1185,16 +1189,16 @@ struct EditProfileView: View {
             }
         }
         .padding(20)
-        .background(Color.white)
+        .background(Color(.systemBackground))
         .cornerRadius(16)
         .shadow(color: .black.opacity(0.05), radius: 8)
     }
-    
+
     // MARK: - About Me Section
     
     private var aboutMeSection: some View {
         VStack(spacing: 15) {
-            SectionHeader(icon: "quote.bubble.fill", title: "About Me", color: .blue)
+            SectionHeader(icon: "quote.bubble.fill", title: "About Me", color: .teal, subtitle: "Tell teammates about yourself")
             
             VStack(alignment: .leading, spacing: 8) {
                 HStack {
@@ -1234,7 +1238,7 @@ struct EditProfileView: View {
             }
         }
         .padding(20)
-        .background(Color.white)
+        .background(Color(.systemBackground))
         .cornerRadius(16)
         .shadow(color: .black.opacity(0.05), radius: 8)
     }
@@ -1243,7 +1247,7 @@ struct EditProfileView: View {
 
     private var gamingSetupSection: some View {
         VStack(spacing: 20) {
-            SectionHeader(icon: "gamecontroller.fill", title: "Gaming Setup", color: .blue)
+            SectionHeader(icon: "gamecontroller.fill", title: "Gaming Setup", color: .blue, subtitle: "Your platforms and play style")
 
             // Platforms
             VStack(alignment: .leading, spacing: 12) {
@@ -1285,10 +1289,14 @@ struct EditProfileView: View {
 
             // Skill Level
             VStack(alignment: .leading, spacing: 12) {
-                Text("Skill Level")
-                    .font(.subheadline)
-                    .fontWeight(.semibold)
-                    .foregroundColor(.secondary)
+                HStack {
+                    Image(systemName: "star.fill")
+                        .foregroundColor(.yellow)
+                    Text("Skill Level")
+                        .font(.subheadline)
+                        .fontWeight(.semibold)
+                        .foregroundColor(.secondary)
+                }
 
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: 10) {
@@ -1297,18 +1305,22 @@ struct EditProfileView: View {
                                 skillLevel = level
                                 HapticManager.shared.impact(.light)
                             } label: {
-                                Text(level.rawValue)
-                                    .font(.subheadline)
-                                    .fontWeight(.medium)
-                                    .padding(.horizontal, 16)
-                                    .padding(.vertical, 10)
-                                    .background(
-                                        skillLevel == level ?
-                                        LinearGradient(colors: [.blue, .teal], startPoint: .leading, endPoint: .trailing) :
-                                        LinearGradient(colors: [Color(.systemGray6), Color(.systemGray6)], startPoint: .leading, endPoint: .trailing)
-                                    )
-                                    .foregroundColor(skillLevel == level ? .white : .primary)
-                                    .cornerRadius(10)
+                                HStack(spacing: 6) {
+                                    Image(systemName: level.icon)
+                                        .font(.caption)
+                                    Text(level.rawValue)
+                                        .font(.subheadline)
+                                        .fontWeight(.medium)
+                                }
+                                .padding(.horizontal, 14)
+                                .padding(.vertical, 10)
+                                .background(
+                                    skillLevel == level ?
+                                    LinearGradient(colors: [.yellow.opacity(0.8), .orange], startPoint: .leading, endPoint: .trailing) :
+                                    LinearGradient(colors: [Color(.systemGray6), Color(.systemGray6)], startPoint: .leading, endPoint: .trailing)
+                                )
+                                .foregroundColor(skillLevel == level ? .white : .primary)
+                                .cornerRadius(12)
                             }
                         }
                     }
@@ -1350,7 +1362,7 @@ struct EditProfileView: View {
             }
         }
         .padding(20)
-        .background(Color.white)
+        .background(Color(.systemBackground))
         .cornerRadius(16)
         .shadow(color: .black.opacity(0.05), radius: 8)
     }
@@ -1359,7 +1371,7 @@ struct EditProfileView: View {
 
     private var gamingPreferencesSection: some View {
         VStack(spacing: 20) {
-            SectionHeader(icon: "person.2.fill", title: "Looking For", color: .teal)
+            SectionHeader(icon: "person.2.fill", title: "Looking For", color: .orange, subtitle: "What type of teammates you want")
 
             // Looking For Types
             VStack(alignment: .leading, spacing: 12) {
@@ -1378,19 +1390,23 @@ struct EditProfileView: View {
                             }
                             HapticManager.shared.impact(.light)
                         } label: {
-                            Text(type.rawValue)
-                                .font(.caption)
-                                .fontWeight(.medium)
-                                .padding(.horizontal, 12)
-                                .padding(.vertical, 10)
-                                .frame(maxWidth: .infinity)
-                                .background(
-                                    lookingForTypes.contains(type) ?
-                                    LinearGradient(colors: [.teal, .blue], startPoint: .leading, endPoint: .trailing) :
-                                    LinearGradient(colors: [Color(.systemGray6), Color(.systemGray6)], startPoint: .leading, endPoint: .trailing)
-                                )
-                                .foregroundColor(lookingForTypes.contains(type) ? .white : .primary)
-                                .cornerRadius(10)
+                            HStack(spacing: 6) {
+                                Image(systemName: type.icon)
+                                    .font(.caption)
+                                Text(type.rawValue)
+                                    .font(.caption)
+                                    .fontWeight(.medium)
+                            }
+                            .padding(.horizontal, 12)
+                            .padding(.vertical, 10)
+                            .frame(maxWidth: .infinity)
+                            .background(
+                                lookingForTypes.contains(type) ?
+                                LinearGradient(colors: [.orange, .red.opacity(0.8)], startPoint: .leading, endPoint: .trailing) :
+                                LinearGradient(colors: [Color(.systemGray6), Color(.systemGray6)], startPoint: .leading, endPoint: .trailing)
+                            )
+                            .foregroundColor(lookingForTypes.contains(type) ? .white : .primary)
+                            .cornerRadius(12)
                         }
                     }
                 }
@@ -1414,18 +1430,22 @@ struct EditProfileView: View {
                                 voiceChatPreference = pref
                                 HapticManager.shared.impact(.light)
                             } label: {
-                                Text(pref.rawValue)
-                                    .font(.caption)
-                                    .fontWeight(.medium)
-                                    .padding(.horizontal, 14)
-                                    .padding(.vertical, 10)
-                                    .background(
-                                        voiceChatPreference == pref ?
-                                        LinearGradient(colors: [.blue, .teal], startPoint: .leading, endPoint: .trailing) :
-                                        LinearGradient(colors: [Color(.systemGray6), Color(.systemGray6)], startPoint: .leading, endPoint: .trailing)
-                                    )
-                                    .foregroundColor(voiceChatPreference == pref ? .white : .primary)
-                                    .cornerRadius(10)
+                                HStack(spacing: 6) {
+                                    Image(systemName: pref.icon)
+                                        .font(.caption)
+                                    Text(pref.rawValue)
+                                        .font(.caption)
+                                        .fontWeight(.medium)
+                                }
+                                .padding(.horizontal, 14)
+                                .padding(.vertical, 10)
+                                .background(
+                                    voiceChatPreference == pref ?
+                                    LinearGradient(colors: [.blue, .teal], startPoint: .leading, endPoint: .trailing) :
+                                    LinearGradient(colors: [Color(.systemGray6), Color(.systemGray6)], startPoint: .leading, endPoint: .trailing)
+                                )
+                                .foregroundColor(voiceChatPreference == pref ? .white : .primary)
+                                .cornerRadius(12)
                             }
                         }
                     }
@@ -1489,7 +1509,7 @@ struct EditProfileView: View {
             .cornerRadius(12)
         }
         .padding(20)
-        .background(Color.white)
+        .background(Color(.systemBackground))
         .cornerRadius(16)
         .shadow(color: .black.opacity(0.05), radius: 8)
     }
@@ -1498,7 +1518,7 @@ struct EditProfileView: View {
 
     private var gamingScheduleSection: some View {
         VStack(spacing: 20) {
-            SectionHeader(icon: "clock.fill", title: "Gaming Schedule", color: .teal)
+            SectionHeader(icon: "clock.fill", title: "Gaming Schedule", color: .green, subtitle: "When you're available to play")
 
             // Weekly Hours
             VStack(alignment: .leading, spacing: 12) {
@@ -1576,52 +1596,95 @@ struct EditProfileView: View {
                 }
             }
 
-            // Game Genres
-            VStack(alignment: .leading, spacing: 12) {
-                Text("Favorite Genres")
-                    .font(.subheadline)
-                    .fontWeight(.semibold)
-                    .foregroundColor(.secondary)
+        }
+        .padding(20)
+        .background(Color(.systemBackground))
+        .cornerRadius(16)
+        .shadow(color: .black.opacity(0.05), radius: 8)
+    }
 
-                LazyVGrid(columns: [GridItem(.adaptive(minimum: 90))], spacing: 8) {
-                    ForEach(GameGenre.allCases) { genre in
-                        Button {
-                            if gameGenres.contains(genre) {
-                                gameGenres.remove(genre)
-                            } else {
-                                gameGenres.insert(genre)
-                            }
-                            HapticManager.shared.impact(.light)
-                        } label: {
-                            Text(genre.rawValue)
-                                .font(.caption2)
-                                .fontWeight(.medium)
-                                .padding(.horizontal, 8)
-                                .padding(.vertical, 6)
-                                .frame(maxWidth: .infinity)
-                                .background(
-                                    gameGenres.contains(genre) ?
-                                    LinearGradient(colors: [.blue, .teal], startPoint: .leading, endPoint: .trailing) :
-                                    LinearGradient(colors: [Color(.systemGray6), Color(.systemGray6)], startPoint: .leading, endPoint: .trailing)
-                                )
-                                .foregroundColor(gameGenres.contains(genre) ? .white : .primary)
-                                .cornerRadius(8)
+    // MARK: - Game Genres Section
+
+    private var gameGenresSection: some View {
+        VStack(spacing: 20) {
+            SectionHeader(icon: "folder.fill", title: "Game Genres", color: .cyan, subtitle: "What types of games you play")
+
+            LazyVGrid(columns: [GridItem(.adaptive(minimum: 100))], spacing: 10) {
+                ForEach(GameGenre.allCases) { genre in
+                    Button {
+                        if gameGenres.contains(genre) {
+                            gameGenres.remove(genre)
+                        } else {
+                            gameGenres.insert(genre)
                         }
+                        HapticManager.shared.impact(.light)
+                    } label: {
+                        HStack(spacing: 4) {
+                            Image(systemName: genreIcon(for: genre))
+                                .font(.caption2)
+                            Text(genre.rawValue)
+                                .font(.caption)
+                                .fontWeight(.medium)
+                        }
+                        .padding(.horizontal, 10)
+                        .padding(.vertical, 8)
+                        .frame(maxWidth: .infinity)
+                        .background(
+                            gameGenres.contains(genre) ?
+                            LinearGradient(colors: [.cyan, .blue], startPoint: .leading, endPoint: .trailing) :
+                            LinearGradient(colors: [Color(.systemGray6), Color(.systemGray6)], startPoint: .leading, endPoint: .trailing)
+                        )
+                        .foregroundColor(gameGenres.contains(genre) ? .white : .primary)
+                        .cornerRadius(12)
                     }
+                }
+            }
+
+            if !gameGenres.isEmpty {
+                HStack {
+                    Text("\(gameGenres.count) genre\(gameGenres.count == 1 ? "" : "s") selected")
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+                    Spacer()
                 }
             }
         }
         .padding(20)
-        .background(Color.white)
+        .background(Color(.systemBackground))
         .cornerRadius(16)
         .shadow(color: .black.opacity(0.05), radius: 8)
+    }
+
+    private func genreIcon(for genre: GameGenre) -> String {
+        switch genre {
+        case .fps: return "scope"
+        case .moba: return "person.3.fill"
+        case .battleRoyale: return "crown.fill"
+        case .rpg: return "sparkles"
+        case .mmorpg: return "globe"
+        case .sports: return "sportscourt.fill"
+        case .racing: return "car.fill"
+        case .fighting: return "figure.boxing"
+        case .strategy: return "brain.head.profile"
+        case .simulation: return "gearshape.fill"
+        case .survival: return "leaf.fill"
+        case .horror: return "moon.fill"
+        case .puzzle: return "puzzlepiece.fill"
+        case .platformer: return "figure.walk"
+        case .sandbox: return "cube.fill"
+        case .cardGame: return "suit.spade.fill"
+        case .boardGame: return "dice.fill"
+        case .indie: return "star.fill"
+        case .coOp: return "person.2.fill"
+        case .party: return "party.popper.fill"
+        }
     }
 
     // MARK: - External Profiles Section
 
     private var externalProfilesSection: some View {
         VStack(spacing: 20) {
-            SectionHeader(icon: "link.circle.fill", title: "Gaming Profiles", color: .blue)
+            SectionHeader(icon: "link.circle.fill", title: "Gaming Profiles", color: .purple, subtitle: "Connect your gaming accounts")
 
             Text("Connect your gaming accounts so teammates can find you")
                 .font(.caption)
@@ -1703,7 +1766,7 @@ struct EditProfileView: View {
             }
         }
         .padding(20)
-        .background(Color.white)
+        .background(Color(.systemBackground))
         .cornerRadius(16)
         .shadow(color: .black.opacity(0.05), radius: 8)
     }
@@ -1747,7 +1810,7 @@ struct EditProfileView: View {
         VStack(spacing: 0) {
             // Header
             HStack {
-                SectionHeader(icon: "sparkles", title: "Express Yourself", color: .blue)
+                SectionHeader(icon: "sparkles", title: "Express Yourself", color: .pink, subtitle: "Languages and interests")
                 Spacer()
             }
             .padding(.horizontal, 20)
@@ -1881,7 +1944,7 @@ struct EditProfileView: View {
             }
             .padding(.bottom, 20)
         }
-        .background(Color.white)
+        .background(Color(.systemBackground))
         .cornerRadius(16)
         .shadow(color: .black.opacity(0.05), radius: 8)
     }
@@ -1933,7 +1996,7 @@ struct EditProfileView: View {
             }
         }
         .padding(20)
-        .background(Color.white)
+        .background(Color(.systemBackground))
         .cornerRadius(16)
         .shadow(color: .black.opacity(0.05), radius: 8)
     }
@@ -1985,7 +2048,7 @@ struct EditProfileView: View {
             }
         }
         .padding(20)
-        .background(Color.white)
+        .background(Color(.systemBackground))
         .cornerRadius(16)
         .shadow(color: .black.opacity(0.05), radius: 8)
     }
@@ -1995,7 +2058,7 @@ struct EditProfileView: View {
     private var promptsSection: some View {
         VStack(spacing: 15) {
             HStack {
-                SectionHeader(icon: "quote.bubble.fill", title: "Profile Prompts", color: .teal)
+                SectionHeader(icon: "text.bubble.fill", title: "Profile Prompts", color: .indigo, subtitle: "Fun conversation starters")
 
                 Spacer()
 
@@ -2057,7 +2120,7 @@ struct EditProfileView: View {
             }
         }
         .padding(20)
-        .background(Color.white)
+        .background(Color(.systemBackground))
         .cornerRadius(16)
         .shadow(color: .black.opacity(0.05), radius: 8)
     }
@@ -2624,16 +2687,33 @@ struct SectionHeader: View {
     let icon: String
     let title: String
     let color: Color
-    
+    var subtitle: String? = nil
+
     var body: some View {
-        HStack(spacing: 10) {
-            Image(systemName: icon)
-                .font(.title3)
-                .foregroundColor(color)
-            
-            Text(title)
-                .font(.headline)
-            
+        HStack(spacing: 14) {
+            // Circular icon background (matches signup flow style)
+            ZStack {
+                Circle()
+                    .fill(color.opacity(0.12))
+                    .frame(width: 48, height: 48)
+
+                Image(systemName: icon)
+                    .font(.system(size: 20))
+                    .foregroundColor(color)
+            }
+
+            VStack(alignment: .leading, spacing: 2) {
+                Text(title)
+                    .font(.headline)
+                    .foregroundColor(.primary)
+
+                if let subtitle = subtitle {
+                    Text(subtitle)
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+                }
+            }
+
             Spacer()
         }
     }

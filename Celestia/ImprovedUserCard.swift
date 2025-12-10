@@ -1,8 +1,9 @@
 //
 //  ImprovedUserCard.swift
-//  GamerLink
+//  TeamUp
 //
 //  Enhanced gamer profile card with depth, shadows, and smooth gestures
+//  For finding gaming teammates and friends
 //  ACCESSIBILITY: Full VoiceOver support, Dynamic Type, Reduce Motion, and WCAG 2.1 AA compliant
 //
 
@@ -42,16 +43,16 @@ struct ImprovedUserCard: View {
         .accessibilityElement(children: .combine)
         .accessibilityLabel("\(user.gamerTag.isEmpty ? user.fullName : user.gamerTag), \(user.skillLevel)")
         .accessibilityValue(buildAccessibilityValue())
-        .accessibilityHint("Use buttons to show interest or pass, or tap for details")
+        .accessibilityHint("Swipe right to team up, swipe left to pass, or tap for gaming profile")
         .accessibilityIdentifier(AccessibilityIdentifier.userCard)
         .accessibilityActions([
-            AccessibilityCustomAction(name: "Send Request") {
+            AccessibilityCustomAction(name: "Send Team Up Request") {
                 onSwipe(.right)
             },
             AccessibilityCustomAction(name: "Pass") {
                 onSwipe(.left)
             },
-            AccessibilityCustomAction(name: "View Full Profile") {
+            AccessibilityCustomAction(name: "View Gaming Profile") {
                 onTap()
             }
         ])
@@ -83,7 +84,7 @@ struct ImprovedUserCard: View {
                         }
 
                         // Announce action to VoiceOver
-                        VoiceOverAnnouncement.announce(direction == .right ? "Request sent" : "Passed")
+                        VoiceOverAnnouncement.announce(direction == .right ? "Team up request sent" : "Passed")
 
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
                             onSwipe(direction)
@@ -170,10 +171,11 @@ struct ImprovedUserCard: View {
 
     private var swipeIndicators: some View {
         ZStack {
-            // CONNECT indicator (right swipe)
+            // TEAM UP indicator (right swipe)
             if offset.width > 20 {
                 SwipeLabel(
-                    text: "CONNECT",
+                    text: "TEAM UP",
+                    icon: "gamecontroller.fill",
                     color: .blue,
                     rotation: -15
                 )
@@ -185,6 +187,7 @@ struct ImprovedUserCard: View {
             if offset.width < -20 {
                 SwipeLabel(
                     text: "PASS",
+                    icon: "xmark",
                     color: .red,
                     rotation: 15
                 )
@@ -305,18 +308,24 @@ struct ImprovedUserCard: View {
             HStack {
                 Spacer()
                 HStack(spacing: 6) {
-                    Text("Tap to view full profile")
+                    Image(systemName: "person.crop.circle")
+                        .font(.caption)
+                        .accessibilityHidden(true)
+                    Text("Tap to view gaming profile")
                         .font(.caption)
                         .fontWeight(.medium)
                         .dynamicTypeSize(min: .xSmall, max: .large)
-                    Image(systemName: "arrow.up.circle.fill")
-                        .font(.caption)
-                        .accessibilityHidden(true)
                 }
-                .foregroundColor(.white.opacity(0.8))
-                .padding(.horizontal, 12)
-                .padding(.vertical, 6)
-                .background(Color.white.opacity(0.2))
+                .foregroundColor(.white.opacity(0.9))
+                .padding(.horizontal, 14)
+                .padding(.vertical, 8)
+                .background(
+                    LinearGradient(
+                        colors: [Color.blue.opacity(0.4), Color.teal.opacity(0.3)],
+                        startPoint: .leading,
+                        endPoint: .trailing
+                    )
+                )
                 .cornerRadius(20)
                 Spacer()
             }
@@ -449,25 +458,33 @@ struct InfoChip: View {
 
 struct SwipeLabel: View {
     let text: String
+    var icon: String? = nil
     let color: Color
     let rotation: Double
     @Environment(\.accessibilityReduceMotion) var reduceMotion
     @Environment(\.dynamicTypeSize) var dynamicTypeSize
 
     var body: some View {
-        Text(text)
-            .font(.system(size: 48, weight: .heavy))
-            .foregroundColor(color)
-            .padding(20)
-            .background(Color.white.opacity(0.95))
-            .cornerRadius(12)
-            .overlay(
-                RoundedRectangle(cornerRadius: 12)
-                    .stroke(color, lineWidth: 5)
-            )
-            .rotationEffect(.degrees(reduceMotion ? 0 : rotation))
-            .shadow(color: color.opacity(0.5), radius: 10)
-            .accessibilityHidden(true) // Visual indicator only, redundant with VoiceOver announcements
+        VStack(spacing: 8) {
+            if let iconName = icon {
+                Image(systemName: iconName)
+                    .font(.system(size: 36, weight: .bold))
+                    .foregroundColor(color)
+            }
+            Text(text)
+                .font(.system(size: 36, weight: .heavy))
+                .foregroundColor(color)
+        }
+        .padding(20)
+        .background(Color.white.opacity(0.95))
+        .cornerRadius(16)
+        .overlay(
+            RoundedRectangle(cornerRadius: 16)
+                .stroke(color, lineWidth: 4)
+        )
+        .rotationEffect(.degrees(reduceMotion ? 0 : rotation))
+        .shadow(color: color.opacity(0.5), radius: 10)
+        .accessibilityHidden(true) // Visual indicator only, redundant with VoiceOver announcements
     }
 }
 

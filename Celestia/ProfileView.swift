@@ -124,42 +124,68 @@ struct ProfileView: View {
                                 }
                                 .padding(.top, 8)
 
-                                // ===== PROFILE DETAILS SECTION =====
+                                // ===== GAMING PROFILE SECTION =====
                                 VStack(spacing: 16) {
                                     sectionDivider()
-                                    sectionHeader(title: "Profile Details", icon: "info.circle.fill")
+
+                                    // Gaming Setup Header Card (matching signup style)
+                                    gamingSectionHeader(
+                                        icon: "gamecontroller.fill",
+                                        iconColor: .blue,
+                                        title: "Gaming Profile",
+                                        subtitle: "Your gaming setup and preferences"
+                                    )
 
                                     // Details grid
                                     detailsCard(user: user)
 
-                                    // Lifestyle card
+                                    // Gaming preferences card
                                     lifestyleCard(user: user)
                                 }
                                 .padding(.top, 8)
 
-                                // ===== INTERESTS & LANGUAGES SECTION =====
+                                // ===== PLATFORMS & GAMES SECTION =====
                                 VStack(spacing: 16) {
                                     sectionDivider()
-                                    sectionHeader(title: "Interests", icon: "sparkles")
+
+                                    // Platforms Header Card (matching signup style)
+                                    gamingSectionHeader(
+                                        icon: "desktopcomputer",
+                                        iconColor: .teal,
+                                        title: "Platforms & Games",
+                                        subtitle: "Where and what you play"
+                                    )
 
                                     // Platforms
                                     if !user.platforms.isEmpty {
-                                        languagesCard(languages: user.platforms)
+                                        platformsCard(platforms: user.platforms)
                                     }
 
                                     // Favorite Games
                                     if !user.favoriteGames.isEmpty {
-                                        interestsCard(interests: user.favoriteGames.map { $0.title })
+                                        gamesCard(games: user.favoriteGames.map { $0.title })
                                     }
                                 }
                                 .padding(.top, 8)
 
-                                // ===== PREFERENCES & ACTIVITY SECTION =====
+                                // ===== LOOKING FOR & ACTIVITY SECTION =====
                                 VStack(spacing: 16) {
                                     sectionDivider()
-                                    sectionHeader(title: "Preferences", icon: "slider.horizontal.3")
 
-                                    // Preferences
+                                    // Looking For Header Card (matching signup style)
+                                    gamingSectionHeader(
+                                        icon: "person.2.fill",
+                                        iconColor: .orange,
+                                        title: "Looking For",
+                                        subtitle: "What type of teammates you want"
+                                    )
+
+                                    // Looking For Types
+                                    if !user.lookingFor.isEmpty {
+                                        lookingForCard(types: user.lookingFor)
+                                    }
+
+                                    // Discovery Preferences
                                     preferencesCard(user: user)
 
                                     // Activity & Achievements
@@ -834,7 +860,7 @@ struct ProfileView: View {
                         .font(.headline)
                         .foregroundColor(.primary)
 
-                    Text("Unlimited interest & see who's interested")
+                    Text("Unlimited requests & see who wants to team up")
                         .font(.caption)
                         .foregroundColor(.secondary)
                         .lineLimit(1)
@@ -939,6 +965,40 @@ struct ProfileView: View {
         .padding(.vertical, 4)
     }
 
+    // Gaming Section Header Card (matches signup flow style)
+    private func gamingSectionHeader(icon: String, iconColor: Color, title: String, subtitle: String) -> some View {
+        HStack(spacing: 16) {
+            ZStack {
+                Circle()
+                    .fill(iconColor.opacity(0.12))
+                    .frame(width: 56, height: 56)
+
+                Image(systemName: icon)
+                    .font(.system(size: 24))
+                    .foregroundColor(iconColor)
+            }
+
+            VStack(alignment: .leading, spacing: 4) {
+                Text(title)
+                    .font(.headline)
+                    .foregroundColor(.primary)
+
+                Text(subtitle)
+                    .font(.subheadline)
+                    .foregroundColor(.secondary)
+            }
+
+            Spacer()
+        }
+        .padding(16)
+        .background(
+            RoundedRectangle(cornerRadius: 16)
+                .fill(Color(.systemBackground))
+                .shadow(color: .black.opacity(0.06), radius: 8, x: 0, y: 2)
+        )
+        .padding(.horizontal, 20)
+    }
+
     // MARK: - About Section
 
     private func aboutSection(bio: String) -> some View {
@@ -1041,9 +1101,8 @@ struct ProfileView: View {
 
     private func detailsCard(user: User) -> some View {
         VStack(spacing: 16) {
-            detailRow(icon: "gamecontroller.fill", label: "Play Style", value: user.playStyle)
-            Divider()
-            detailRow(icon: "person.2.fill", label: "Show Me", value: user.lookingFor.joined(separator: ", "))
+            // Play Style
+            detailRow(icon: "flame.fill", label: "Play Style", value: user.playStyle)
 
             // Skill Level
             if !user.skillLevel.isEmpty {
@@ -1057,11 +1116,17 @@ struct ProfileView: View {
                 detailRow(icon: "mic.fill", label: "Voice Chat", value: user.voiceChatPreference)
             }
 
+            // GamerTag if available
+            if !user.gamerTag.isEmpty {
+                Divider()
+                detailRow(icon: "at", label: "GamerTag", value: user.gamerTag)
+            }
+
             Divider()
             detailRow(icon: "calendar", label: "Member since", value: formatDate(user.timestamp))
         }
         .padding(20)
-        .background(Color.white)
+        .background(Color(.systemBackground))
         .cornerRadius(16)
         .shadow(color: .black.opacity(0.05), radius: 10, y: 5)
         .padding(.horizontal, 20)
@@ -1132,15 +1197,15 @@ struct ProfileView: View {
     private func detailRow(icon: String, label: String, value: String) -> some View {
         HStack(spacing: 12) {
             Image(systemName: icon)
-                .foregroundColor(.red)
+                .foregroundColor(.blue)
                 .frame(width: 24)
-            
+
             Text(label)
                 .font(.subheadline)
                 .foregroundColor(.secondary)
-            
+
             Spacer()
-            
+
             Text(value)
                 .font(.subheadline)
                 .fontWeight(.semibold)
@@ -1228,12 +1293,12 @@ struct ProfileView: View {
         }
     }
     
-    // MARK: - Languages Card
+    // MARK: - Platforms Card
 
-    private func languagesCard(languages: [String]) -> some View {
+    private func platformsCard(platforms: [String]) -> some View {
         VStack(alignment: .leading, spacing: 12) {
             HStack(spacing: 8) {
-                Image(systemName: "globe")
+                Image(systemName: "desktopcomputer")
                     .font(.title3)
                     .foregroundStyle(
                         LinearGradient(
@@ -1243,30 +1308,34 @@ struct ProfileView: View {
                         )
                     )
 
-                Text("Languages")
+                Text("Platforms")
                     .font(.title3.weight(.semibold))
                     .foregroundColor(.primary)
             }
 
             FlowLayout3(spacing: 10) {
-                ForEach(languages, id: \.self) { language in
-                    Text(language)
-                        .font(.subheadline.weight(.medium))
-                        .padding(.horizontal, 16)
-                        .padding(.vertical, 8)
-                        .background(
-                            LinearGradient(
-                                colors: [Color.blue.opacity(0.15), Color.teal.opacity(0.1)],
-                                startPoint: .topLeading,
-                                endPoint: .bottomTrailing
-                            )
+                ForEach(platforms, id: \.self) { platform in
+                    HStack(spacing: 6) {
+                        Image(systemName: platformIcon(for: platform))
+                            .font(.caption)
+                        Text(platform)
+                            .font(.subheadline.weight(.medium))
+                    }
+                    .padding(.horizontal, 16)
+                    .padding(.vertical, 8)
+                    .background(
+                        LinearGradient(
+                            colors: [Color.blue.opacity(0.15), Color.teal.opacity(0.1)],
+                            startPoint: .topLeading,
+                            endPoint: .bottomTrailing
                         )
-                        .foregroundColor(.red)
-                        .cornerRadius(20)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 20)
-                                .stroke(Color.blue.opacity(0.2), lineWidth: 1)
-                        )
+                    )
+                    .foregroundColor(.blue)
+                    .cornerRadius(20)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 20)
+                            .stroke(Color.blue.opacity(0.2), lineWidth: 1)
+                    )
                 }
             }
         }
@@ -1284,12 +1353,25 @@ struct ProfileView: View {
         .padding(.horizontal, 20)
     }
 
-    // MARK: - Interests Card
+    private func platformIcon(for platform: String) -> String {
+        switch platform.lowercased() {
+        case "pc": return "desktopcomputer"
+        case "playstation": return "gamecontroller"
+        case "xbox": return "gamecontroller.fill"
+        case "nintendo switch": return "gamecontroller"
+        case "mobile": return "iphone"
+        case "vr": return "visionpro"
+        case "tabletop": return "dice"
+        default: return "gamecontroller"
+        }
+    }
 
-    private func interestsCard(interests: [String]) -> some View {
+    // MARK: - Games Card
+
+    private func gamesCard(games: [String]) -> some View {
         VStack(alignment: .leading, spacing: 12) {
             HStack(spacing: 8) {
-                Image(systemName: "sparkles")
+                Image(systemName: "gamecontroller.fill")
                     .font(.title3)
                     .foregroundStyle(
                         LinearGradient(
@@ -1299,30 +1381,34 @@ struct ProfileView: View {
                         )
                     )
 
-                Text("Interests")
+                Text("Favorite Games")
                     .font(.title3.weight(.semibold))
                     .foregroundColor(.primary)
             }
 
             FlowLayout3(spacing: 10) {
-                ForEach(interests, id: \.self) { interest in
-                    Text(interest)
-                        .font(.subheadline.weight(.medium))
-                        .padding(.horizontal, 16)
-                        .padding(.vertical, 8)
-                        .background(
-                            LinearGradient(
-                                colors: [Color.teal.opacity(0.15), Color.blue.opacity(0.1)],
-                                startPoint: .topLeading,
-                                endPoint: .bottomTrailing
-                            )
+                ForEach(games, id: \.self) { game in
+                    HStack(spacing: 6) {
+                        Image(systemName: "star.fill")
+                            .font(.caption2)
+                        Text(game)
+                            .font(.subheadline.weight(.medium))
+                    }
+                    .padding(.horizontal, 16)
+                    .padding(.vertical, 8)
+                    .background(
+                        LinearGradient(
+                            colors: [Color.teal.opacity(0.15), Color.blue.opacity(0.1)],
+                            startPoint: .topLeading,
+                            endPoint: .bottomTrailing
                         )
-                        .foregroundColor(.red)
-                        .cornerRadius(20)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 20)
-                                .stroke(Color.teal.opacity(0.2), lineWidth: 1)
-                        )
+                    )
+                    .foregroundColor(.teal)
+                    .cornerRadius(20)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 20)
+                            .stroke(Color.teal.opacity(0.2), lineWidth: 1)
+                    )
                 }
             }
         }
@@ -1340,20 +1426,78 @@ struct ProfileView: View {
         .padding(.horizontal, 20)
     }
 
+    // MARK: - Looking For Card
+
+    private func lookingForCard(types: [String]) -> some View {
+        VStack(alignment: .leading, spacing: 12) {
+            FlowLayout3(spacing: 10) {
+                ForEach(types, id: \.self) { type in
+                    HStack(spacing: 6) {
+                        Image(systemName: lookingForIcon(for: type))
+                            .font(.caption)
+                        Text(type)
+                            .font(.subheadline.weight(.medium))
+                    }
+                    .padding(.horizontal, 16)
+                    .padding(.vertical, 8)
+                    .background(
+                        LinearGradient(
+                            colors: [Color.orange.opacity(0.15), Color.red.opacity(0.1)],
+                            startPoint: .topLeading,
+                            endPoint: .bottomTrailing
+                        )
+                    )
+                    .foregroundColor(.orange)
+                    .cornerRadius(20)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 20)
+                            .stroke(Color.orange.opacity(0.2), lineWidth: 1)
+                    )
+                }
+            }
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding(16)
+        .background(
+            RoundedRectangle(cornerRadius: 16)
+                .fill(Color(.systemBackground))
+                .shadow(color: .black.opacity(0.05), radius: 8, y: 2)
+        )
+        .overlay(
+            RoundedRectangle(cornerRadius: 16)
+                .stroke(Color.orange.opacity(0.1), lineWidth: 1)
+        )
+        .padding(.horizontal, 20)
+    }
+
+    private func lookingForIcon(for type: String) -> String {
+        switch type.lowercased() {
+        case "ranked teammates": return "trophy.fill"
+        case "casual co-op": return "person.2.fill"
+        case "board game group": return "dice"
+        case "competitive team": return "flag.fill"
+        case "streaming partners": return "video.fill"
+        case "any gamers": return "gamecontroller.fill"
+        case "tournament team": return "medal.fill"
+        case "content creation": return "camera.fill"
+        default: return "person.2.fill"
+        }
+    }
+
     // MARK: - Preferences Card
-    
+
     private func preferencesCard(user: User) -> some View {
         VStack(alignment: .leading, spacing: 12) {
             HStack(spacing: 8) {
                 Image(systemName: "slider.horizontal.3")
-                    .foregroundColor(.red)
-                Text("Discovery Preferences")
+                    .foregroundColor(.blue)
+                Text("Teammate Preferences")
                     .font(.headline)
             }
 
             VStack(spacing: 12) {
                 HStack {
-                    Text("Max distance")
+                    Text("Search radius")
                         .font(.subheadline)
                         .foregroundColor(.secondary)
                     Spacer()
@@ -1361,10 +1505,23 @@ struct ProfileView: View {
                         .font(.subheadline)
                         .fontWeight(.semibold)
                 }
+
+                if let ageMin = user.ageRangeMin, let ageMax = user.ageRangeMax {
+                    Divider()
+                    HStack {
+                        Text("Teammate age range")
+                            .font(.subheadline)
+                            .foregroundColor(.secondary)
+                        Spacer()
+                        Text("\(ageMin) - \(ageMax)")
+                            .font(.subheadline)
+                            .fontWeight(.semibold)
+                    }
+                }
             }
         }
         .padding(20)
-        .background(Color.white)
+        .background(Color(.systemBackground))
         .cornerRadius(16)
         .shadow(color: .black.opacity(0.05), radius: 10, y: 5)
         .padding(.horizontal, 20)

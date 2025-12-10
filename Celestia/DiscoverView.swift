@@ -154,7 +154,7 @@ struct DiscoverView: View {
 
                 if !viewModel.users.isEmpty {
                     HStack(spacing: 4) {
-                        Text("\(viewModel.remainingCount) people")
+                        Text("\(viewModel.remainingCount) gamers")
                             .font(.subheadline)
                             .foregroundColor(.secondary)
                             .dynamicTypeSize(min: .xSmall, max: .accessibility1)
