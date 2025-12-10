@@ -109,7 +109,7 @@ struct ImagePerformanceDashboard: View {
                 value: "\(monitor.totalImageLoads)",
                 unit: "images",
                 icon: "photo.stack",
-                color: .green,
+                color: .blue,
                 trend: .stable
             )
 

@@ -342,7 +342,7 @@ struct BannedAccountView: View {
             ),
             GuidelineItem(
                 icon: "person.fill.checkmark",
-                color: .green,
+                color: .teal,
                 title: "Be Authentic",
                 description: "Use real photos and genuine information about yourself."
             ),
