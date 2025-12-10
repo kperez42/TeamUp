@@ -803,7 +803,7 @@ extension LegalDocumentView {
                     SimpleBulletPoint("Catfishing or identity fraud")
                     SimpleBulletPoint("Soliciting money or promoting businesses")
                     SimpleBulletPoint("Attempting to meet minors")
-                    SimpleBulletPoint("Using the platform while in a committed relationship (without partner's knowledge)")
+                    SimpleBulletPoint("Creating fake accounts or misrepresenting yourself")
                     SimpleBulletPoint("Mass messaging or spamming users")
                     SimpleBulletPoint("Sharing others' private information")
                 }
@@ -913,7 +913,7 @@ extension LegalDocumentView {
                     SimpleBulletPoint("Has inconsistent stories or information")
                     SimpleBulletPoint("Pressures you to move off the app quickly")
                     SimpleBulletPoint("Asks for explicit photos")
-                    SimpleBulletPoint("Claims to be in love very quickly")
+                    SimpleBulletPoint("Claims to want to be best friends immediately")
                     SimpleBulletPoint("Makes you feel uncomfortable or unsafe")
                     SimpleBulletPoint("Claims to be in the military overseas needing money")
                 }
@@ -955,7 +955,7 @@ extension LegalDocumentView {
                 VStack(alignment: .leading, spacing: 12) {
                     ResourceLink(title: "National Domestic Violence Hotline", number: "1-800-799-7233")
                     ResourceLink(title: "RAINN Sexual Assault Hotline", number: "1-800-656-4673")
-                    ResourceLink(title: "FTC Romance Scam Reporting", website: "reportfraud.ftc.gov")
+                    ResourceLink(title: "FTC Scam Reporting", website: "reportfraud.ftc.gov")
                 }
             }
 

@@ -3,7 +3,7 @@
 //  TeamUp
 //
 //  Automated scammer detection analyzing chat messages for scam patterns
-//  Detects romance scams, financial scams, catfishing, and malicious behavior
+//  Detects manipulation scams, financial scams, catfishing, and malicious behavior
 //
 
 import Foundation
@@ -433,7 +433,7 @@ enum ScamType: String, Codable {
         case .financialScam:
             return "Financial Scam"
         case .romanceScam:
-            return "Romance Scam"
+            return "Manipulation Scam"
         case .phishing:
             return "Phishing/Malware"
         case .catfishing:
@@ -448,7 +448,7 @@ enum ScamType: String, Codable {
         case .financialScam:
             return "User is requesting money or financial information"
         case .romanceScam:
-            return "User is building rapid emotional connection for manipulation"
+            return "User is building rapid trust for manipulation"
         case .phishing:
             return "User is attempting to steal information via links or requests"
         case .catfishing:
@@ -479,7 +479,7 @@ enum ScamIndicator: Equatable, Codable {
         case .financialRequest:
             return "Requesting money or financial assistance"
         case .romanceScamLanguage:
-            return "Using manipulative romantic language"
+            return "Using manipulative language"
         case .urgencyTactics:
             return "Creating false sense of urgency"
         case .suspiciousRequest:
@@ -495,7 +495,7 @@ enum ScamIndicator: Equatable, Codable {
         case .escalationPattern:
             return "Increasingly suspicious behavior over time"
         case .rapidRelationshipBuilding:
-            return "Building emotional connection too quickly"
+            return "Building trust too quickly"
         case .avoidanceBehavior:
             return "Avoiding video calls or verification"
         }

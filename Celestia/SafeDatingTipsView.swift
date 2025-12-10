@@ -474,7 +474,7 @@ struct SafetyTip: Identifiable {
                     description: "Visit these websites for more information on staying safe while meeting people online.",
                     priority: .helpful,
                     actionItems: [
-                        "love is respect.org",
+                        "staysafeonline.org (National Cybersecurity Alliance)",
                         "cybercivilrights.org",
                         "ncvc.org (National Center for Victims of Crime)"
                     ]
