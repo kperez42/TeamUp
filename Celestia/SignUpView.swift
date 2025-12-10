@@ -1285,7 +1285,18 @@ struct SignUpView: View {
 
     var step7LifestyleContent: some View {
         VStack(spacing: 20) {
-            // Gaming Platforms Card
+            step7GamingPlatformsSection
+            step7PlayStyleSection
+            step7VoiceChatSection
+            step7LookingForSection
+            step7GamingProfilesSection
+            step7AgePreferenceSection
+            step7CompletionSection
+        }
+    }
+
+    private var step7GamingPlatformsSection: some View {
+        Group {
             HStack(spacing: 16) {
                 ZStack {
                     Circle()
@@ -1316,44 +1327,51 @@ struct SignUpView: View {
                     .shadow(color: .black.opacity(0.06), radius: 8, x: 0, y: 2)
             )
 
-            // Platform selection grid
             LazyVGrid(columns: [GridItem(.adaptive(minimum: 100))], spacing: 10) {
                 ForEach(GamingPlatform.allCases, id: \.self) { platform in
-                    Button {
-                        withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
-                            if platforms.contains(platform) {
-                                platforms.remove(platform)
-                            } else {
-                                platforms.insert(platform)
-                            }
-                        }
-                        HapticManager.shared.impact(.light)
-                    } label: {
-                        HStack(spacing: 6) {
-                            Image(systemName: platform.icon)
-                                .font(.caption)
-                            Text(platform.rawValue)
-                                .font(.caption)
-                                .fontWeight(.medium)
-                        }
-                        .foregroundColor(platforms.contains(platform) ? .white : .primary)
-                        .padding(.horizontal, 12)
-                        .padding(.vertical, 10)
-                        .background(
-                            Capsule()
-                                .fill(platforms.contains(platform) ?
-                                    AnyShapeStyle(LinearGradient(colors: [.blue, .teal], startPoint: .leading, endPoint: .trailing)) :
-                                    AnyShapeStyle(Color(.systemBackground)))
-                        )
-                        .overlay(
-                            Capsule()
-                                .stroke(platforms.contains(platform) ? Color.clear : Color.gray.opacity(0.3), lineWidth: 1)
-                        )
-                    }
+                    platformButton(for: platform)
                 }
             }
+        }
+    }
 
-            // Play Style Card
+    private func platformButton(for platform: GamingPlatform) -> some View {
+        Button {
+            withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
+                if platforms.contains(platform) {
+                    platforms.remove(platform)
+                } else {
+                    platforms.insert(platform)
+                }
+            }
+            HapticManager.shared.impact(.light)
+        } label: {
+            let isSelected = platforms.contains(platform)
+            HStack(spacing: 6) {
+                Image(systemName: platform.icon)
+                    .font(.caption)
+                Text(platform.rawValue)
+                    .font(.caption)
+                    .fontWeight(.medium)
+            }
+            .foregroundColor(isSelected ? .white : .primary)
+            .padding(.horizontal, 12)
+            .padding(.vertical, 10)
+            .background(
+                Capsule()
+                    .fill(isSelected ?
+                        AnyShapeStyle(LinearGradient(colors: [.blue, .teal], startPoint: .leading, endPoint: .trailing)) :
+                        AnyShapeStyle(Color(.systemBackground)))
+            )
+            .overlay(
+                Capsule()
+                    .stroke(isSelected ? Color.clear : Color.gray.opacity(0.3), lineWidth: 1)
+            )
+        }
+    }
+
+    private var step7PlayStyleSection: some View {
+        Group {
             HStack(spacing: 16) {
                 ZStack {
                     Circle()
@@ -1384,126 +1402,146 @@ struct SignUpView: View {
                     .shadow(color: .black.opacity(0.06), radius: 8, x: 0, y: 2)
             )
 
-            // Play style and skill level
             VStack(spacing: 12) {
-                // Play Style selector
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: 10) {
                         ForEach(PlayStyle.allCases, id: \.self) { style in
-                            Button {
-                                withAnimation { playStyle = style }
-                                HapticManager.shared.impact(.light)
-                            } label: {
-                                VStack(spacing: 6) {
-                                    Image(systemName: style.icon)
-                                        .font(.title2)
-                                    Text(style.rawValue)
-                                        .font(.caption)
-                                        .fontWeight(.medium)
-                                }
-                                .foregroundColor(playStyle == style ? .white : .primary)
-                                .frame(width: 80, height: 70)
-                                .background(
-                                    RoundedRectangle(cornerRadius: 12)
-                                        .fill(playStyle == style ?
-                                            AnyShapeStyle(LinearGradient(colors: [.blue, .teal], startPoint: .topLeading, endPoint: .bottomTrailing)) :
-                                            AnyShapeStyle(Color(.systemBackground)))
-                                )
-                                .overlay(
-                                    RoundedRectangle(cornerRadius: 12)
-                                        .stroke(playStyle == style ? Color.clear : Color.gray.opacity(0.2), lineWidth: 1)
-                                )
-                            }
+                            playStyleButton(for: style)
                         }
                     }
                     .padding(.horizontal, 4)
                 }
 
-                // Skill Level selector
-                VStack(alignment: .leading, spacing: 8) {
-                    Text("Skill Level")
-                        .font(.subheadline)
-                        .foregroundColor(.secondary)
-
-                    ScrollView(.horizontal, showsIndicators: false) {
-                        HStack(spacing: 10) {
-                            ForEach(SkillLevel.allCases, id: \.self) { level in
-                                Button {
-                                    withAnimation { skillLevel = level }
-                                    HapticManager.shared.impact(.light)
-                                } label: {
-                                    Text(level.rawValue)
-                                        .font(.subheadline)
-                                        .fontWeight(.medium)
-                                        .foregroundColor(skillLevel == level ? .white : .primary)
-                                        .padding(.horizontal, 16)
-                                        .padding(.vertical, 10)
-                                        .background(
-                                            Capsule()
-                                                .fill(skillLevel == level ?
-                                                    AnyShapeStyle(LinearGradient(colors: [.blue, .teal], startPoint: .leading, endPoint: .trailing)) :
-                                                    AnyShapeStyle(Color(.systemBackground)))
-                                        )
-                                        .overlay(
-                                            Capsule()
-                                                .stroke(skillLevel == level ? Color.clear : Color.gray.opacity(0.2), lineWidth: 1)
-                                        )
-                                }
-                            }
-                        }
-                        .padding(.horizontal, 4)
-                    }
-                }
+                skillLevelSelector
             }
+        }
+    }
 
-            // Voice Chat Preference
-            VStack(alignment: .leading, spacing: 12) {
-                HStack(spacing: 6) {
-                    Image(systemName: "mic.fill")
-                        .foregroundColor(.blue)
-                        .font(.caption)
-                    Text("Voice Chat Preference")
-                        .font(.subheadline)
-                        .foregroundColor(.secondary)
-                }
-
-                ScrollView(.horizontal, showsIndicators: false) {
-                    HStack(spacing: 10) {
-                        ForEach(VoiceChatPreference.allCases, id: \.self) { pref in
-                            Button {
-                                withAnimation { voiceChatPreference = pref }
-                                HapticManager.shared.impact(.light)
-                            } label: {
-                                Text(pref.rawValue)
-                                    .font(.caption)
-                                    .fontWeight(.medium)
-                                    .foregroundColor(voiceChatPreference == pref ? .white : .primary)
-                                    .padding(.horizontal, 14)
-                                    .padding(.vertical, 8)
-                                    .background(
-                                        Capsule()
-                                            .fill(voiceChatPreference == pref ?
-                                                AnyShapeStyle(LinearGradient(colors: [.blue, .teal], startPoint: .leading, endPoint: .trailing)) :
-                                                AnyShapeStyle(Color(.systemBackground)))
-                                    )
-                                    .overlay(
-                                        Capsule()
-                                            .stroke(voiceChatPreference == pref ? Color.clear : Color.gray.opacity(0.2), lineWidth: 1)
-                                    )
-                            }
-                        }
-                    }
-                    .padding(.horizontal, 4)
-                }
+    private func playStyleButton(for style: PlayStyle) -> some View {
+        Button {
+            withAnimation { playStyle = style }
+            HapticManager.shared.impact(.light)
+        } label: {
+            let isSelected = playStyle == style
+            VStack(spacing: 6) {
+                Image(systemName: style.icon)
+                    .font(.title2)
+                Text(style.rawValue)
+                    .font(.caption)
+                    .fontWeight(.medium)
             }
-            .padding(16)
+            .foregroundColor(isSelected ? .white : .primary)
+            .frame(width: 80, height: 70)
             .background(
-                RoundedRectangle(cornerRadius: 16)
-                    .fill(Color(.systemBackground))
-                    .shadow(color: .black.opacity(0.06), radius: 8, x: 0, y: 2)
+                RoundedRectangle(cornerRadius: 12)
+                    .fill(isSelected ?
+                        AnyShapeStyle(LinearGradient(colors: [.blue, .teal], startPoint: .topLeading, endPoint: .bottomTrailing)) :
+                        AnyShapeStyle(Color(.systemBackground)))
             )
+            .overlay(
+                RoundedRectangle(cornerRadius: 12)
+                    .stroke(isSelected ? Color.clear : Color.gray.opacity(0.2), lineWidth: 1)
+            )
+        }
+    }
 
-            // Looking For Card
+    private var skillLevelSelector: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            Text("Skill Level")
+                .font(.subheadline)
+                .foregroundColor(.secondary)
+
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(spacing: 10) {
+                    ForEach(SkillLevel.allCases, id: \.self) { level in
+                        skillLevelButton(for: level)
+                    }
+                }
+                .padding(.horizontal, 4)
+            }
+        }
+    }
+
+    private func skillLevelButton(for level: SkillLevel) -> some View {
+        Button {
+            withAnimation { skillLevel = level }
+            HapticManager.shared.impact(.light)
+        } label: {
+            let isSelected = skillLevel == level
+            Text(level.rawValue)
+                .font(.subheadline)
+                .fontWeight(.medium)
+                .foregroundColor(isSelected ? .white : .primary)
+                .padding(.horizontal, 16)
+                .padding(.vertical, 10)
+                .background(
+                    Capsule()
+                        .fill(isSelected ?
+                            AnyShapeStyle(LinearGradient(colors: [.blue, .teal], startPoint: .leading, endPoint: .trailing)) :
+                            AnyShapeStyle(Color(.systemBackground)))
+                )
+                .overlay(
+                    Capsule()
+                        .stroke(isSelected ? Color.clear : Color.gray.opacity(0.2), lineWidth: 1)
+                )
+        }
+    }
+
+    private var step7VoiceChatSection: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            HStack(spacing: 6) {
+                Image(systemName: "mic.fill")
+                    .foregroundColor(.blue)
+                    .font(.caption)
+                Text("Voice Chat Preference")
+                    .font(.subheadline)
+                    .foregroundColor(.secondary)
+            }
+
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(spacing: 10) {
+                    ForEach(VoiceChatPreference.allCases, id: \.self) { pref in
+                        voiceChatButton(for: pref)
+                    }
+                }
+                .padding(.horizontal, 4)
+            }
+        }
+        .padding(16)
+        .background(
+            RoundedRectangle(cornerRadius: 16)
+                .fill(Color(.systemBackground))
+                .shadow(color: .black.opacity(0.06), radius: 8, x: 0, y: 2)
+        )
+    }
+
+    private func voiceChatButton(for pref: VoiceChatPreference) -> some View {
+        Button {
+            withAnimation { voiceChatPreference = pref }
+            HapticManager.shared.impact(.light)
+        } label: {
+            let isSelected = voiceChatPreference == pref
+            Text(pref.rawValue)
+                .font(.caption)
+                .fontWeight(.medium)
+                .foregroundColor(isSelected ? .white : .primary)
+                .padding(.horizontal, 14)
+                .padding(.vertical, 8)
+                .background(
+                    Capsule()
+                        .fill(isSelected ?
+                            AnyShapeStyle(LinearGradient(colors: [.blue, .teal], startPoint: .leading, endPoint: .trailing)) :
+                            AnyShapeStyle(Color(.systemBackground)))
+                )
+                .overlay(
+                    Capsule()
+                        .stroke(isSelected ? Color.clear : Color.gray.opacity(0.2), lineWidth: 1)
+                )
+        }
+    }
+
+    private var step7LookingForSection: some View {
+        Group {
             HStack(spacing: 16) {
                 ZStack {
                     Circle()
@@ -1534,44 +1572,51 @@ struct SignUpView: View {
                     .shadow(color: .black.opacity(0.06), radius: 8, x: 0, y: 2)
             )
 
-            // Looking for types grid
             LazyVGrid(columns: [GridItem(.adaptive(minimum: 100))], spacing: 10) {
                 ForEach(LookingForType.allCases, id: \.self) { type in
-                    Button {
-                        withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
-                            if lookingForTypes.contains(type) {
-                                lookingForTypes.remove(type)
-                            } else {
-                                lookingForTypes.insert(type)
-                            }
-                        }
-                        HapticManager.shared.impact(.light)
-                    } label: {
-                        HStack(spacing: 6) {
-                            Image(systemName: type.icon)
-                                .font(.caption)
-                            Text(type.rawValue)
-                                .font(.caption)
-                                .fontWeight(.medium)
-                        }
-                        .foregroundColor(lookingForTypes.contains(type) ? .white : .primary)
-                        .padding(.horizontal, 12)
-                        .padding(.vertical, 10)
-                        .background(
-                            Capsule()
-                                .fill(lookingForTypes.contains(type) ?
-                                    AnyShapeStyle(LinearGradient(colors: [.orange, .red.opacity(0.8)], startPoint: .leading, endPoint: .trailing)) :
-                                    AnyShapeStyle(Color(.systemBackground)))
-                        )
-                        .overlay(
-                            Capsule()
-                                .stroke(lookingForTypes.contains(type) ? Color.clear : Color.gray.opacity(0.3), lineWidth: 1)
-                        )
-                    }
+                    lookingForButton(for: type)
                 }
             }
+        }
+    }
 
-            // External Profiles Card (Optional)
+    private func lookingForButton(for type: LookingForType) -> some View {
+        Button {
+            withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
+                if lookingForTypes.contains(type) {
+                    lookingForTypes.remove(type)
+                } else {
+                    lookingForTypes.insert(type)
+                }
+            }
+            HapticManager.shared.impact(.light)
+        } label: {
+            let isSelected = lookingForTypes.contains(type)
+            HStack(spacing: 6) {
+                Image(systemName: type.icon)
+                    .font(.caption)
+                Text(type.rawValue)
+                    .font(.caption)
+                    .fontWeight(.medium)
+            }
+            .foregroundColor(isSelected ? .white : .primary)
+            .padding(.horizontal, 12)
+            .padding(.vertical, 10)
+            .background(
+                Capsule()
+                    .fill(isSelected ?
+                        AnyShapeStyle(LinearGradient(colors: [.orange, .red.opacity(0.8)], startPoint: .leading, endPoint: .trailing)) :
+                        AnyShapeStyle(Color(.systemBackground)))
+            )
+            .overlay(
+                Capsule()
+                    .stroke(isSelected ? Color.clear : Color.gray.opacity(0.3), lineWidth: 1)
+            )
+        }
+    }
+
+    private var step7GamingProfilesSection: some View {
+        Group {
             HStack(spacing: 16) {
                 ZStack {
                     Circle()
@@ -1602,208 +1647,214 @@ struct SignUpView: View {
                     .shadow(color: .black.opacity(0.06), radius: 8, x: 0, y: 2)
             )
 
-            VStack(spacing: 12) {
-                // Discord
-                HStack {
-                    Image(systemName: "bubble.left.and.bubble.right.fill")
-                        .foregroundColor(.indigo)
-                        .frame(width: 24)
-                    TextField("Discord Tag", text: $discordTag)
-                        .textInputAutocapitalization(.never)
-                }
-                .padding(14)
-                .background(
-                    RoundedRectangle(cornerRadius: 12)
-                        .fill(Color(.systemBackground))
-                )
-                .overlay(
-                    RoundedRectangle(cornerRadius: 12)
-                        .stroke(Color.gray.opacity(0.2), lineWidth: 1)
-                )
+            gamingProfileInputs
+        }
+    }
 
-                // Steam
-                HStack {
-                    Image(systemName: "laptopcomputer")
-                        .foregroundColor(.blue)
-                        .frame(width: 24)
-                    TextField("Steam ID", text: $steamId)
-                        .textInputAutocapitalization(.never)
-                }
-                .padding(14)
-                .background(
-                    RoundedRectangle(cornerRadius: 12)
-                        .fill(Color(.systemBackground))
-                )
-                .overlay(
-                    RoundedRectangle(cornerRadius: 12)
-                        .stroke(Color.gray.opacity(0.2), lineWidth: 1)
-                )
-
-                // Languages picker
-                Button {
-                    showLanguagePicker = true
-                    HapticManager.shared.impact(.light)
-                } label: {
-                    HStack {
-                        Text("Languages")
-                            .font(.subheadline)
-                            .foregroundColor(.secondary)
-
-                        Spacer()
-
-                        if languages.isEmpty {
-                            Text("Select")
-                                .font(.subheadline)
-                                .foregroundColor(.gray)
-                        } else {
-                            Text(languages.prefix(2).joined(separator: ", ") + (languages.count > 2 ? " +\(languages.count - 2)" : ""))
-                                .font(.subheadline)
-                                .foregroundColor(.primary)
-                                .lineLimit(1)
-                        }
-
-                        Image(systemName: "chevron.down")
-                            .font(.caption)
-                            .foregroundColor(.gray)
-                    }
-                    .padding(14)
-                    .background(
-                        RoundedRectangle(cornerRadius: 12)
-                            .fill(Color(.systemBackground))
-                            .shadow(color: .black.opacity(0.06), radius: 8, x: 0, y: 2)
-                    )
-                }
+    private var gamingProfileInputs: some View {
+        VStack(spacing: 12) {
+            HStack {
+                Image(systemName: "bubble.left.and.bubble.right.fill")
+                    .foregroundColor(.indigo)
+                    .frame(width: 24)
+                TextField("Discord Tag", text: $discordTag)
+                    .textInputAutocapitalization(.never)
             }
-
-            // Age Preference Card
-            VStack(spacing: 16) {
-                // Header with icon
-                HStack(spacing: 16) {
-                    ZStack {
-                        Circle()
-                            .fill(Color.blue.opacity(0.12))
-                            .frame(width: 56, height: 56)
-
-                        Image(systemName: "person.2.fill")
-                            .font(.system(size: 24))
-                            .foregroundColor(.blue)
-                    }
-
-                    VStack(alignment: .leading, spacing: 4) {
-                        Text("Teammate Age Range")
-                            .font(.headline)
-                            .foregroundColor(.primary)
-
-                        Text("Who would you like to team up with?")
-                            .font(.subheadline)
-                            .foregroundColor(.secondary)
-                    }
-
-                    Spacer()
-
-                    // Age range badge
-                    Text("\(ageRangeMin) - \(ageRangeMax)")
-                        .font(.subheadline.weight(.bold))
-                        .foregroundColor(.white)
-                        .padding(.horizontal, 10)
-                        .padding(.vertical, 5)
-                        .background(
-                            LinearGradient(
-                                colors: [.blue, .teal],
-                                startPoint: .leading,
-                                endPoint: .trailing
-                            )
-                        )
-                        .cornerRadius(12)
-                }
-
-                // Age pickers
-                HStack(spacing: 16) {
-                    // Min age
-                    VStack(spacing: 6) {
-                        Text("From")
-                            .font(.caption)
-                            .foregroundColor(.secondary)
-
-                        Picker("Min Age", selection: $ageRangeMin) {
-                            ForEach(18..<99, id: \.self) { age in
-                                Text("\(age)").tag(age)
-                            }
-                        }
-                        .pickerStyle(.wheel)
-                        .frame(width: 70, height: 90)
-                        .clipped()
-                        .onChange(of: ageRangeMin) { _, newValue in
-                            if newValue >= ageRangeMax {
-                                ageRangeMax = newValue + 1
-                            }
-                        }
-                    }
-
-                    Text("to")
-                        .font(.subheadline)
-                        .foregroundColor(.secondary)
-
-                    // Max age
-                    VStack(spacing: 6) {
-                        Text("To")
-                            .font(.caption)
-                            .foregroundColor(.secondary)
-
-                        Picker("Max Age", selection: $ageRangeMax) {
-                            ForEach(19..<100, id: \.self) { age in
-                                Text("\(age)").tag(age)
-                            }
-                        }
-                        .pickerStyle(.wheel)
-                        .frame(width: 70, height: 90)
-                        .clipped()
-                        .onChange(of: ageRangeMax) { _, newValue in
-                            if newValue <= ageRangeMin {
-                                ageRangeMin = newValue - 1
-                            }
-                        }
-                    }
-                }
-            }
-            .padding(16)
+            .padding(14)
             .background(
-                RoundedRectangle(cornerRadius: 16)
+                RoundedRectangle(cornerRadius: 12)
+                    .fill(Color(.systemBackground))
+            )
+            .overlay(
+                RoundedRectangle(cornerRadius: 12)
+                    .stroke(Color.gray.opacity(0.2), lineWidth: 1)
+            )
+
+            HStack {
+                Image(systemName: "laptopcomputer")
+                    .foregroundColor(.blue)
+                    .frame(width: 24)
+                TextField("Steam ID", text: $steamId)
+                    .textInputAutocapitalization(.never)
+            }
+            .padding(14)
+            .background(
+                RoundedRectangle(cornerRadius: 12)
+                    .fill(Color(.systemBackground))
+            )
+            .overlay(
+                RoundedRectangle(cornerRadius: 12)
+                    .stroke(Color.gray.opacity(0.2), lineWidth: 1)
+            )
+
+            languagePickerButton
+        }
+    }
+
+    private var languagePickerButton: some View {
+        Button {
+            showLanguagePicker = true
+            HapticManager.shared.impact(.light)
+        } label: {
+            HStack {
+                Text("Languages")
+                    .font(.subheadline)
+                    .foregroundColor(.secondary)
+
+                Spacer()
+
+                if languages.isEmpty {
+                    Text("Select")
+                        .font(.subheadline)
+                        .foregroundColor(.gray)
+                } else {
+                    Text(languages.prefix(2).joined(separator: ", ") + (languages.count > 2 ? " +\(languages.count - 2)" : ""))
+                        .font(.subheadline)
+                        .foregroundColor(.primary)
+                        .lineLimit(1)
+                }
+
+                Image(systemName: "chevron.down")
+                    .font(.caption)
+                    .foregroundColor(.gray)
+            }
+            .padding(14)
+            .background(
+                RoundedRectangle(cornerRadius: 12)
                     .fill(Color(.systemBackground))
                     .shadow(color: .black.opacity(0.06), radius: 8, x: 0, y: 2)
             )
+        }
+    }
 
-            // Completion card - matching style
+    private var step7AgePreferenceSection: some View {
+        VStack(spacing: 16) {
             HStack(spacing: 16) {
                 ZStack {
                     Circle()
                         .fill(Color.blue.opacity(0.12))
                         .frame(width: 56, height: 56)
 
-                    Image(systemName: "checkmark.circle.fill")
+                    Image(systemName: "person.2.fill")
                         .font(.system(size: 24))
                         .foregroundColor(.blue)
                 }
 
                 VStack(alignment: .leading, spacing: 4) {
-                    Text("You're all set!")
+                    Text("Teammate Age Range")
                         .font(.headline)
                         .foregroundColor(.primary)
 
-                    Text("Tap 'Create Account' to start gaming")
+                    Text("Who would you like to team up with?")
                         .font(.subheadline)
                         .foregroundColor(.secondary)
                 }
 
                 Spacer()
+
+                Text("\(ageRangeMin) - \(ageRangeMax)")
+                    .font(.subheadline.weight(.bold))
+                    .foregroundColor(.white)
+                    .padding(.horizontal, 10)
+                    .padding(.vertical, 5)
+                    .background(
+                        LinearGradient(
+                            colors: [.blue, .teal],
+                            startPoint: .leading,
+                            endPoint: .trailing
+                        )
+                    )
+                    .cornerRadius(12)
             }
-            .padding(16)
-            .background(
-                RoundedRectangle(cornerRadius: 16)
-                    .fill(Color(.systemBackground))
-                    .shadow(color: .black.opacity(0.06), radius: 8, x: 0, y: 2)
-            )
+
+            agePickerRow
         }
+        .padding(16)
+        .background(
+            RoundedRectangle(cornerRadius: 16)
+                .fill(Color(.systemBackground))
+                .shadow(color: .black.opacity(0.06), radius: 8, x: 0, y: 2)
+        )
+    }
+
+    private var agePickerRow: some View {
+        HStack(spacing: 16) {
+            VStack(spacing: 6) {
+                Text("From")
+                    .font(.caption)
+                    .foregroundColor(.secondary)
+
+                Picker("Min Age", selection: $ageRangeMin) {
+                    ForEach(18..<99, id: \.self) { age in
+                        Text("\(age)").tag(age)
+                    }
+                }
+                .pickerStyle(.wheel)
+                .frame(width: 70, height: 90)
+                .clipped()
+                .onChange(of: ageRangeMin) { _, newValue in
+                    if newValue >= ageRangeMax {
+                        ageRangeMax = newValue + 1
+                    }
+                }
+            }
+
+            Text("to")
+                .font(.subheadline)
+                .foregroundColor(.secondary)
+
+            VStack(spacing: 6) {
+                Text("To")
+                    .font(.caption)
+                    .foregroundColor(.secondary)
+
+                Picker("Max Age", selection: $ageRangeMax) {
+                    ForEach(19..<100, id: \.self) { age in
+                        Text("\(age)").tag(age)
+                    }
+                }
+                .pickerStyle(.wheel)
+                .frame(width: 70, height: 90)
+                .clipped()
+                .onChange(of: ageRangeMax) { _, newValue in
+                    if newValue <= ageRangeMin {
+                        ageRangeMin = newValue - 1
+                    }
+                }
+            }
+        }
+    }
+
+    private var step7CompletionSection: some View {
+        HStack(spacing: 16) {
+            ZStack {
+                Circle()
+                    .fill(Color.blue.opacity(0.12))
+                    .frame(width: 56, height: 56)
+
+                Image(systemName: "checkmark.circle.fill")
+                    .font(.system(size: 24))
+                    .foregroundColor(.blue)
+            }
+
+            VStack(alignment: .leading, spacing: 4) {
+                Text("You're all set!")
+                    .font(.headline)
+                    .foregroundColor(.primary)
+
+                Text("Tap 'Create Account' to start gaming")
+                    .font(.subheadline)
+                    .foregroundColor(.secondary)
+            }
+
+            Spacer()
+        }
+        .padding(16)
+        .background(
+            RoundedRectangle(cornerRadius: 16)
+                .fill(Color(.systemBackground))
+                .shadow(color: .black.opacity(0.06), radius: 8, x: 0, y: 2)
+        )
     }
 
     // Reusable dropdown for details page
