@@ -179,7 +179,7 @@ struct CurrentUserDetailView: View {
                     ProfileSectionCard(
                         icon: "person.text.rectangle",
                         title: "Gaming Details",
-                        iconColors: [.blue, .green],
+                        iconColors: [.blue, .teal],
                         borderColor: .indigo
                     ) {
                         VStack(spacing: 12) {

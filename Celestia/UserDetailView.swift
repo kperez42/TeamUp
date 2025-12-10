@@ -428,7 +428,7 @@ struct UserDetailView: View {
             ProfileSectionCard(
                 icon: "link",
                 title: "Gaming Profiles",
-                iconColors: [.blue, .green],
+                iconColors: [.blue, .teal],
                 borderColor: .indigo
             ) {
                 VStack(spacing: 12) {

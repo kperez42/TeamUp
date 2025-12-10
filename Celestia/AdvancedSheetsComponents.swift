@@ -146,15 +146,15 @@ struct AdvancedFiltersSheet: View {
                     in: 18...99,
                     step: 1
                 )
-                .accentColor(.green)
+                .accentColor(.blue)
             }
-            
+
             // Max age slider
             VStack(alignment: .leading, spacing: 8) {
                 Text("Maximum age")
                     .font(.caption)
                     .foregroundColor(.gray)
-                
+
                 Slider(
                     value: Binding(
                         get: { Double(ageRange.upperBound) },
@@ -166,7 +166,7 @@ struct AdvancedFiltersSheet: View {
                     in: 18...99,
                     step: 1
                 )
-                .accentColor(.green)
+                .accentColor(.blue)
             }
         }
         .padding(16)

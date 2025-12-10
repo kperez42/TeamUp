@@ -245,7 +245,7 @@ struct EditProfileView: View {
                     } label: {
                         if isLoading {
                             ProgressView()
-                                .tint(.green)
+                                .tint(.blue)
                         } else {
                             HStack(spacing: 4) {
                                 Text("Save")
