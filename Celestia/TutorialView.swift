@@ -327,7 +327,7 @@ class TutorialManager: ObservableObject {
             Tutorial(
                 id: "connecting",
                 title: "Make Connections",
-                description: "When someone you're interested in is also interested, you'll both be notified and can start chatting!",
+                description: "When you and another gamer both want to team up, you'll both be notified and can start chatting!",
                 icon: "gamecontroller.fill",
                 accentColor: .purple,
                 tips: [

@@ -1145,7 +1145,7 @@ struct OnboardingView: View {
                 }
                 
                 VStack(alignment: .leading, spacing: 12) {
-                    Text("Interested in")
+                    Text("Show Me")
                         .font(.subheadline)
                         .fontWeight(.medium)
                         .foregroundColor(.secondary)

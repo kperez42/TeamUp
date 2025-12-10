@@ -211,7 +211,7 @@ struct FilterView: View {
             }
 
             // Gender picker
-            Picker("Looking for", selection: $lookingFor) {
+            Picker("Show Me", selection: $lookingFor) {
                 ForEach(lookingForOptions, id: \.self) { option in
                     Text(option).tag(option)
                 }

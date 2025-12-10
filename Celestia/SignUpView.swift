@@ -548,18 +548,18 @@ struct SignUpView: View {
             }
             
             VStack(alignment: .leading, spacing: 8) {
-                Text("Looking for")
+                Text("Show Me")
                     .font(.subheadline)
                     .foregroundColor(.secondary)
-                
-                Picker("Looking for", selection: $lookingFor) {
+
+                Picker("Show Me", selection: $lookingFor) {
                     ForEach(lookingForOptions, id: \.self) { option in
                         Text(option).tag(option)
                     }
                 }
                 .pickerStyle(.segmented)
-                .accessibilityLabel("Looking for")
-                .accessibilityHint("Select who you're interested in playing with")
+                .accessibilityLabel("Show Me")
+                .accessibilityHint("Select which gamers to show in your feed")
                 .accessibilityValue(lookingFor)
                 .accessibilityIdentifier(AccessibilityIdentifier.lookingForPicker)
             }

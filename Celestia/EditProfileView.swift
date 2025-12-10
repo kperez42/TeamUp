@@ -1223,12 +1223,12 @@ struct EditProfileView: View {
             SectionHeader(icon: "gamecontroller.fill", title: "Gaming Preferences", color: .purple)
 
             VStack(alignment: .leading, spacing: 8) {
-                Text("Looking for")
+                Text("Show Me")
                     .font(.subheadline)
                     .fontWeight(.semibold)
                     .foregroundColor(.secondary)
 
-                Picker("Looking for", selection: $lookingFor) {
+                Picker("Show Me", selection: $lookingFor) {
                     ForEach(lookingForOptions, id: \.self) { option in
                         Text(option).tag(option)
                     }
