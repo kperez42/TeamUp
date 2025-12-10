@@ -164,7 +164,7 @@ struct EditProfileView: View {
 
         // Initialize preference fields
         _ageRangeMin = State(initialValue: user?.ageRangeMin ?? 18)
-        _ageRangeMax = State(initialValue: user?.ageRangeMax ?? 99)
+        _ageRangeMax = State(initialValue: user?.ageRangeMax ?? 65)
         _maxDistance = State(initialValue: user?.maxDistance ?? 50)
     }
     
@@ -1479,7 +1479,7 @@ struct EditProfileView: View {
                             .font(.caption)
                             .foregroundColor(.secondary)
                         Picker("Min Age", selection: $ageRangeMin) {
-                            ForEach(18..<99, id: \.self) { age in
+                            ForEach(18..<66, id: \.self) { age in
                                 Text("\(age)").tag(age)
                             }
                         }
@@ -1496,7 +1496,7 @@ struct EditProfileView: View {
                             .font(.caption)
                             .foregroundColor(.secondary)
                         Picker("Max Age", selection: $ageRangeMax) {
-                            ForEach(19..<100, id: \.self) { age in
+                            ForEach(19..<66, id: \.self) { age in
                                 Text("\(age)").tag(age)
                             }
                         }

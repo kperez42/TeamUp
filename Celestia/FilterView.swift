@@ -13,7 +13,7 @@ struct FilterView: View {
     @StateObject private var userService = UserService.shared
 
     @State private var ageRangeMin: Int = 18
-    @State private var ageRangeMax: Int = 99
+    @State private var ageRangeMax: Int = 65
     @State private var lookingFor = "Everyone"
     @State private var isLoading = false
     @State private var showSaveConfirmation = false
@@ -136,7 +136,7 @@ struct FilterView: View {
                         .foregroundColor(.secondary)
 
                     Picker("Min Age", selection: $ageRangeMin) {
-                        ForEach(18..<99, id: \.self) { age in
+                        ForEach(18..<66, id: \.self) { age in
                             Text("\(age)").tag(age)
                         }
                     }
@@ -162,7 +162,7 @@ struct FilterView: View {
                         .foregroundColor(.secondary)
 
                     Picker("Max Age", selection: $ageRangeMax) {
-                        ForEach(19..<100, id: \.self) { age in
+                        ForEach(19..<66, id: \.self) { age in
                             Text("\(age)").tag(age)
                         }
                     }
@@ -272,7 +272,7 @@ struct FilterView: View {
 
         lookingFor = currentUser.showMeGender
         ageRangeMin = currentUser.ageRangeMin ?? 18
-        ageRangeMax = currentUser.ageRangeMax ?? 99
+        ageRangeMax = currentUser.ageRangeMax ?? 65
     }
 
     private func resetFilters() {
