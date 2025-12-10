@@ -160,7 +160,7 @@ struct InterestsView: View {
                     .font(.system(size: 80))
                     .foregroundColor(.yellow)
                 
-                Text("It's a Match! 🎉")
+                Text("You've Teamed Up! 🎉")
                     .font(.largeTitle)
                     .fontWeight(.bold)
                     .foregroundColor(.white)

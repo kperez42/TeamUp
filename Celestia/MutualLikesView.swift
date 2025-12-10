@@ -2,7 +2,7 @@
 //  MutualLikesView.swift
 //  TeamUp
 //
-//  Shows people you both liked (mutual likes that haven't matched yet)
+//  Shows gamers with mutual interest (both want to team up)
 //
 
 import SwiftUI
@@ -27,7 +27,7 @@ struct MutualLikesView: View {
                     mutualLikesGrid
                 }
             }
-            .navigationTitle("Mutual Likes")
+            .navigationTitle("Ready to Play")
             .navigationBarTitleDisplayMode(.large)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {

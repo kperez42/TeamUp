@@ -597,7 +597,7 @@ struct MessageDemo: View {
                 // Sample message bubble
                 HStack {
                     Spacer()
-                    Text("Hey! Nice to match with you 👋")
+                    Text("Hey! Nice to team up with you 👋")
                         .padding(12)
                         .background(Color.purple.opacity(0.2))
                         .cornerRadius(16)

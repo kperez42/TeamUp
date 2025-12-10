@@ -256,7 +256,7 @@ enum ContactRelationship: String, Codable, CaseIterable, Hashable {
         case .friend:
             return "person.2.fill"
         case .partner:
-            return "heart.fill"
+            return "person.crop.circle.fill"
         case .roommate:
             return "house.fill"
         case .coworker:

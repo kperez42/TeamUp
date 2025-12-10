@@ -59,19 +59,19 @@
 "swipe.like" = "Me Gusta";
 "swipe.dislike" = "Pasar";
 "swipe.super_like" = "Super Me Gusta";
-"swipe.its_a_match" = "¡Es un Match!";
+"swipe.its_a_match" = "¡Son un Equipo!";
 "swipe.send_message" = "Enviar Mensaje";
-"swipe.keep_swiping" = "Seguir Deslizando";
+"swipe.keep_swiping" = "Seguir Descubriendo";
 "swipe.no_more_profiles" = "No hay más perfiles disponibles";
 
-// MARK: - Matches
+// MARK: - Connections
 
-"matches.matches" = "Matches";
-"matches.new_match" = "¡Nuevo Match!";
-"matches.no_matches" = "Aún no tienes matches";
-"matches.unmatch" = "Deshacer Match";
-"matches.unmatch_confirm" = "¿Estás seguro que quieres deshacer este match?";
-"matches.matched_with" = "Hiciste match con %@";
+"matches.matches" = "Conexiones";
+"matches.new_match" = "¡Nuevo Compañero!";
+"matches.no_matches" = "Aún no tienes conexiones";
+"matches.unmatch" = "Deshacer Conexión";
+"matches.unmatch_confirm" = "¿Estás seguro que quieres deshacer esta conexión?";
+"matches.matched_with" = "Conectado con %@";
 
 // MARK: - Messages
 
@@ -93,7 +93,7 @@
 "premium.restore_purchases" = "Restaurar Compras";
 "premium.features" = "Características Premium";
 "premium.unlimited_likes" = "Me Gusta Ilimitados";
-"premium.see_who_likes_you" = "Ver Quién te Dio Me Gusta";
+"premium.see_who_likes_you" = "Ver quién quiere jugar contigo";
 "premium.rewind" = "Rebobinar Último Deslizamiento";
 "premium.boost_profile" = "Impulsar tu Perfil";
 

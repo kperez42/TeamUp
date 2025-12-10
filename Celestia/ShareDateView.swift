@@ -2,7 +2,7 @@
 //  ShareDateView.swift
 //  TeamUp
 //
-//  Share date details with trusted contacts for safety
+//  Share meetup details with trusted contacts for safety
 //
 
 import SwiftUI
@@ -38,7 +38,7 @@ struct ShareDateView: View {
             .padding()
         }
         .background(Color(.systemGroupedBackground))
-        .navigationTitle("Share Your Date")
+        .navigationTitle("Share Your Meetup")
         .navigationBarTitleDisplayMode(.inline)
         .task {
             await viewModel.loadEmergencyContacts()
@@ -130,7 +130,7 @@ struct ShareDateView: View {
                         .font(.caption)
                         .foregroundColor(.secondary)
 
-                    TextField("Restaurant name or address", text: $location)
+                    TextField("Gaming cafe or meetup location", text: $location)
                         .textFieldStyle(.plain)
                         .padding()
                         .background(Color.white)
@@ -187,7 +187,7 @@ struct ShareDateView: View {
                         .font(.headline)
                         .foregroundColor(.secondary)
 
-                    Text("Add trusted contacts who can check on you during your meetup.")
+                    Text("Add trusted contacts who can check on you during your gaming meetup.")
                         .font(.caption)
                         .foregroundColor(.secondary)
                         .multilineTextAlignment(.center)
@@ -528,14 +528,14 @@ class ShareDateViewModel: ObservableObject {
         // For development/testing, notification is logged and saved to database
 
         let message = """
-        Safety Alert from Celestia:
-        \(AuthService.shared.currentUser?.fullName ?? "A user") has shared their date details with you.
+        Safety Alert from TeamUp:
+        \(AuthService.shared.currentUser?.fullName ?? "A user") has shared their meetup details with you.
 
-        Date: \(dateFormatter.string(from: dateTime))
-        Meeting: \(match.fullName)
+        Meetup: \(dateFormatter.string(from: dateTime))
+        Gaming with: \(match.fullName)
         Location: \(location)
 
-        This is an automated safety notification.
+        This is an automated safety notification from TeamUp.
         """
 
         Logger.shared.info("""

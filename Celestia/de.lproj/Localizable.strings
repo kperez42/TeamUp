@@ -59,19 +59,19 @@
 "swipe.like" = "Gefällt mir";
 "swipe.dislike" = "Überspringen";
 "swipe.super_like" = "Super Like";
-"swipe.its_a_match" = "Es ist ein Match!";
+"swipe.its_a_match" = "Ihr seid ein Team!";
 "swipe.send_message" = "Nachricht senden";
-"swipe.keep_swiping" = "Weiter swipen";
+"swipe.keep_swiping" = "Weiter entdecken";
 "swipe.no_more_profiles" = "Keine weiteren Profile verfügbar";
 
-// MARK: - Matches
+// MARK: - Connections
 
-"matches.matches" = "Matches";
-"matches.new_match" = "Neues Match!";
-"matches.no_matches" = "Noch keine Matches";
-"matches.unmatch" = "Match aufheben";
-"matches.unmatch_confirm" = "Möchten Sie dieses Match wirklich aufheben?";
-"matches.matched_with" = "Match mit %@";
+"matches.matches" = "Verbindungen";
+"matches.new_match" = "Neues Teammitglied!";
+"matches.no_matches" = "Noch keine Verbindungen";
+"matches.unmatch" = "Verbindung aufheben";
+"matches.unmatch_confirm" = "Möchten Sie diese Verbindung wirklich aufheben?";
+"matches.matched_with" = "Verbunden mit %@";
 
 // MARK: - Messages
 
@@ -93,7 +93,7 @@
 "premium.restore_purchases" = "Käufe wiederherstellen";
 "premium.features" = "Premium-Funktionen";
 "premium.unlimited_likes" = "Unbegrenzte Likes";
-"premium.see_who_likes_you" = "Sehen Sie, wer Sie mag";
+"premium.see_who_likes_you" = "Sehen Sie, wer mit Ihnen spielen möchte";
 "premium.rewind" = "Letzten Swipe rückgängig machen";
 "premium.boost_profile" = "Profil boosten";
 

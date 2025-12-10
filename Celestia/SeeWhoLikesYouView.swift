@@ -2,7 +2,7 @@
 //  SeeWhoLikesYouView.swift
 //  TeamUp
 //
-//  Premium feature: See who has liked you
+//  Premium feature: See who wants to team up with you
 //
 
 import SwiftUI
@@ -45,7 +45,7 @@ struct SeeWhoLikesYouView: View {
                     .padding()
                 }
             }
-            .navigationTitle("Likes")
+            .navigationTitle("Interest")
             .navigationBarTitleDisplayMode(.large)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
@@ -93,7 +93,7 @@ struct SeeWhoLikesYouView: View {
                     .foregroundColor(.primary)
             }
 
-            Text(viewModel.usersWhoLiked.count == 1 ? "person likes you" : "people like you")
+            Text(viewModel.usersWhoLiked.count == 1 ? "gamer wants to team up" : "gamers want to team up")
                 .font(.title3)
                 .foregroundColor(.secondary)
         }

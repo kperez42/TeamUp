@@ -2,7 +2,7 @@
 //  LikesView.swift
 //  TeamUp
 //
-//  Likes view with three tabs: Liked Me, My Likes, Mutual Likes
+//  Interest view with three tabs: Want to Team Up, My Interests, Ready to Play
 //
 
 import SwiftUI
@@ -72,7 +72,7 @@ struct LikesView: View {
         case nameAZ = "Name A-Z"
     }
 
-    private let tabs = ["Liked Me", "My Likes", "Mutual Likes"]
+    private let tabs = ["Want to Team Up", "My Interests", "Ready to Play"]
 
     // Check if user has premium access
     private var isPremium: Bool {

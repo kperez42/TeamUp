@@ -51,7 +51,7 @@ struct SendInterestView: View {
                             }
                     }
                     
-                    Text("Send interest to \(user.fullName)?")
+                    Text("Team up with \(user.fullName)?")
                         .font(.title3)
                         .fontWeight(.semibold)
                         .multilineTextAlignment(.center)
@@ -115,7 +115,7 @@ struct SendInterestView: View {
                             )
                             .cornerRadius(15)
                     } else {
-                        Text("Send Interest")
+                        Text("Send Squad Request")
                             .font(.headline)
                             .foregroundColor(.white)
                             .frame(maxWidth: .infinity)
@@ -134,7 +134,7 @@ struct SendInterestView: View {
                 .padding(.horizontal)
                 .padding(.bottom, 30)
             }
-            .navigationTitle("Send Interest")
+            .navigationTitle("Squad Request")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
