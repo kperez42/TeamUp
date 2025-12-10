@@ -41,7 +41,7 @@ struct SocialMediaVerificationView: View {
         VStack(spacing: 20) {
             Image(systemName: "at")
                 .font(.system(size: 60))
-                .foregroundColor(.pink)
+                .foregroundColor(.purple)
 
             Text("Social Media Verification")
                 .font(.title.bold())
