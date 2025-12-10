@@ -175,7 +175,7 @@ Potential additions for future versions:
 2. **Distance filtering** uses city comparison, not actual GPS distance
    - Can be enhanced with geohashing or spatial queries
 3. **Notification delivery** depends on user having notifications enabled
-   - Check Settings → Notifications → Celestia
+   - Check Settings → Notifications → TeamUp
 
 ## 💡 Tips for Users
 

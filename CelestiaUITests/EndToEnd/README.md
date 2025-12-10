@@ -1,6 +1,6 @@
-# Celestia End-to-End Tests
+# TeamUp End-to-End Tests
 
-Comprehensive end-to-end testing suite for the Celestia iOS app using XCUITest framework.
+Comprehensive end-to-end testing suite for the TeamUp iOS app using XCUITest framework.
 
 ## Overview
 

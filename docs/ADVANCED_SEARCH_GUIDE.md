@@ -1277,4 +1277,4 @@ This system is production-ready and can significantly improve match quality and 
 
 **Version:** 1.0.0
 **Last Updated:** 2024
-**License:** Proprietary - Celestia Dating App
+**License:** Proprietary - TeamUp Gaming Social App

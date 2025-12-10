@@ -9,7 +9,7 @@
 
 ## Executive Summary
 
-Implemented comprehensive end-to-end (E2E) testing suite for the Celestia iOS app using XCUITest framework. The test suite covers critical user journeys, payment flows, and safety features, providing ~85% coverage of core app functionality.
+Implemented comprehensive end-to-end (E2E) testing suite for the TeamUp iOS app using XCUITest framework. The test suite covers critical user journeys, payment flows, and safety features, providing ~85% coverage of core app functionality.
 
 ### Impact
 - **26 E2E tests** across 3 test suites

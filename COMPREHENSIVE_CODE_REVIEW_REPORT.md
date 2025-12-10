@@ -886,7 +886,7 @@ if let match = try? await MatchService.shared.fetchMatch(...)  // ❌ Silent fai
 
 ## CONCLUSION
 
-The Celestia iOS app has a **solid foundation** with good error handling, security features (XSS protection), and modern SwiftUI patterns. However, it suffers from **significant architectural debt** (76 singletons), **security vulnerabilities** (unencrypted sensitive data), **performance issues** (N+1 queries), and **code quality concerns** (1,500+ line view files).
+The TeamUp iOS app has a **solid foundation** with good error handling, security features (XSS protection), and modern SwiftUI patterns. However, it suffers from **significant architectural debt** (76 singletons), **security vulnerabilities** (unencrypted sensitive data), **performance issues** (N+1 queries), and **code quality concerns** (1,500+ line view files).
 
 ### Recommended Path Forward:
 

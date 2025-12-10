@@ -121,4 +121,4 @@ Total: 4 files, ~1,650 lines
 
 **Version:** 1.0.0
 **Last Updated:** 2024
-**License:** Proprietary - Celestia Dating App
+**License:** Proprietary - TeamUp Gaming Social App

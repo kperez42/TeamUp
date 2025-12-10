@@ -1,6 +1,6 @@
-# Celestia Cloud Functions
+# TeamUp Cloud Functions
 
-Backend API for the Celestia dating app, providing server-side validation, moderation, and admin features.
+Backend API for the TeamUp gaming social app, providing server-side validation, moderation, and admin features.
 
 ## Features
 
@@ -47,7 +47,7 @@ Backend API for the Celestia dating app, providing server-side validation, moder
 2. **Set up Firebase config:**
    ```bash
    firebase login
-   firebase use celestia-dating-app
+   firebase use teamup-gaming-app
    ```
 
 3. **Set environment variables:**
@@ -313,4 +313,4 @@ firebase functions:shell
 
 ## License
 
-Proprietary - Celestia Dating App
+Proprietary - TeamUp Gaming Social App

@@ -1,6 +1,6 @@
 # Architecture Improvements & Technical Debt
 
-This document outlines completed improvements and remaining recommendations for the Celestia iOS app.
+This document outlines completed improvements and remaining recommendations for the TeamUp iOS app.
 
 ## ✅ Completed Improvements
 

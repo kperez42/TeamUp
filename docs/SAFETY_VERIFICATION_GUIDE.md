@@ -1259,4 +1259,4 @@ This system is production-ready and can be deployed to provide immediate safety 
 
 **Version:** 1.0.0
 **Last Updated:** 2024
-**License:** Proprietary - Celestia Dating App
+**License:** Proprietary - TeamUp Gaming Social App

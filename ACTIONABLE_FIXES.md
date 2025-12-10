@@ -1,4 +1,4 @@
-# Celestia App - Actionable Fixes & Code Examples
+# TeamUp App - Actionable Fixes & Code Examples
 
 ---
 

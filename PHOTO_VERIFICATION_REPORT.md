@@ -270,12 +270,12 @@ verification_selfies/
 
 ### Industry Benchmarks
 
-Dating apps with photo verification:
-- **Tinder**: 90% reduction in fake profiles
-- **Bumble**: 80% reduction in catfishing
-- **Hinge**: 3x increase in user trust
+Gaming social apps with photo verification:
+- **Discord**: 90% reduction in fake profiles with ID verification
+- **GameTree**: 80% reduction in catfishing
+- **GamerLink**: 3x increase in user trust
 
-Celestia's implementation matches industry leaders.
+TeamUp's implementation matches industry leaders.
 
 ### Verification Adoption
 
