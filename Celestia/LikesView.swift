@@ -386,7 +386,7 @@ struct LikesView: View {
             VStack(spacing: 12) {
                 HStack(alignment: .top) {
                     VStack(alignment: .leading, spacing: 4) {
-                        Text("Likes")
+                        Text("Interest")
                             .font(.largeTitle.weight(.bold))
                             .foregroundColor(.white)
                             .dynamicTypeSize(min: .large, max: .accessibility2)
@@ -654,7 +654,7 @@ struct LikesView: View {
                 HStack(spacing: 8) {
                     Image(systemName: "plus.circle.fill")
                         .foregroundColor(.pink)
-                    Text("And \(viewModel.usersWhoLikedMe.count - 4) more people liked you!")
+                    Text("And \(viewModel.usersWhoLikedMe.count - 4) more gamers want to team up!")
                         .font(.subheadline)
                         .fontWeight(.medium)
                         .foregroundColor(.secondary)
@@ -711,7 +711,7 @@ struct LikesView: View {
                     Image(systemName: "crown.fill")
                         .font(.body)
 
-                    Text("Unlock Who Likes You")
+                    Text("See Who Wants to Team Up")
                         .fontWeight(.semibold)
                 }
                 .foregroundColor(.white)

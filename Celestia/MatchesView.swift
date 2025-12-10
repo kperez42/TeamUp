@@ -520,13 +520,13 @@ struct MatchesView: View {
             }
             
             VStack(spacing: 12) {
-                Text("No Matches Yet")
+                Text("No Connections Yet")
                     .font(.title2)
                     .fontWeight(.bold)
                     .dynamicTypeSize(min: .large, max: .accessibility2)
                     .accessibilityAddTraits(.isHeader)
 
-                Text("Head to the Discover tab to start swiping and finding your perfect teammates!")
+                Text("Head to the Discover tab to start browsing and finding your perfect teammates!")
                     .font(.subheadline)
                     .foregroundColor(.secondary)
                     .multilineTextAlignment(.center)
@@ -540,7 +540,7 @@ struct MatchesView: View {
                 HStack(spacing: 8) {
                     Image(systemName: "sparkles")
                         .font(.body)
-                    Text("Go to Discover Tab")
+                    Text("Find Teammates")
                         .font(.headline)
                 }
                 .frame(maxWidth: .infinity)

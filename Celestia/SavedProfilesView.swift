@@ -567,7 +567,7 @@ struct SavedProfilesView: View {
                 HStack(spacing: 8) {
                     Image(systemName: "sparkles")
                         .font(.body.weight(.semibold))
-                    Text("Start Discovering")
+                    Text("Find Teammates")
                         .font(.headline)
                 }
                 .frame(maxWidth: .infinity)

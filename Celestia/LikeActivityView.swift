@@ -103,7 +103,7 @@ struct LikeActivityView: View {
                     .font(.title2)
                     .fontWeight(.bold)
 
-                Text("Your like activity will appear here")
+                Text("Your activity will appear here")
                     .font(.subheadline)
                     .foregroundColor(.secondary)
                     .multilineTextAlignment(.center)
