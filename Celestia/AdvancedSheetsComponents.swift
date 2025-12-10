@@ -77,10 +77,10 @@ struct AdvancedFiltersSheet: View {
     }
     
     // MARK: - Gender Section
-    
+
     private var genderSection: some View {
         VStack(alignment: .leading, spacing: 12) {
-            sectionHeader(icon: "person.2.fill", title: "Show Me")
+            sectionHeader(icon: "person.2.fill", title: "Teammate Gender")
             
             LazyVGrid(columns: [
                 GridItem(.flexible()),

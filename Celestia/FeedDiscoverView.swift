@@ -918,15 +918,14 @@ struct FeedDiscoverView: View {
                 return nil
             }()
 
-            let lookingForValue = authService.currentUser?.showMeGender
-            let lookingForLog = lookingForValue ?? "nil"
+            // Gaming app: Don't filter by gender, match by gaming preferences instead
             let ageRangeLog = ageRange.map { "\($0.lowerBound)...\($0.upperBound)" } ?? "nil"
-            Logger.shared.info("FeedDiscoverView: Loading users with filters - lookingFor: \(lookingForLog), ageRange: \(ageRangeLog)", category: .database)
+            Logger.shared.info("FeedDiscoverView: Loading users with filters - ageRange: \(ageRangeLog)", category: .database)
 
             // Fetch users from Firestore using UserService
             try await UserService.shared.fetchUsers(
                 excludingUserId: currentUserId,
-                lookingFor: lookingForValue,
+                lookingFor: nil,  // Gaming app: No gender-based filtering
                 platforms: nil,
                 country: nil,
                 ageRange: ageRange ?? 18...99,
@@ -944,7 +943,7 @@ struct FeedDiscoverView: View {
 
                 try await UserService.shared.fetchUsers(
                     excludingUserId: currentUserId,
-                    lookingFor: lookingForValue,
+                    lookingFor: nil,  // Gaming app: No gender-based filtering
                     platforms: nil,
                     country: nil,
                     ageRange: expandedMin...expandedMax,
@@ -958,7 +957,7 @@ struct FeedDiscoverView: View {
                     // Last resort: try without any age filter
                     try await UserService.shared.fetchUsers(
                         excludingUserId: currentUserId,
-                        lookingFor: lookingForValue,
+                        lookingFor: nil,  // Gaming app: No gender-based filtering
                         platforms: nil,
                         country: nil,
                         ageRange: nil,

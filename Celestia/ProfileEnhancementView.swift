@@ -2,8 +2,8 @@
 //  ProfileEnhancementView.swift
 //  TeamUp
 //
-//  Additional profile information collection view
-//  Shown after sign-up to help users get better matches
+//  Additional gaming profile information collection view
+//  Shown after sign-up to help users get better squad matches
 //
 
 import SwiftUI
@@ -18,25 +18,15 @@ struct ProfileEnhancementView: View {
     @State private var showError = false
     @State private var errorMessage = ""
 
-    // Lifestyle fields
-    @State private var educationLevel: String = ""
-    @State private var religion: String = ""
-    @State private var smoking: String = ""
-    @State private var drinking: String = ""
-    @State private var pets: String = ""
-    @State private var exercise: String = ""
-    @State private var diet: String = ""
+    // Gaming fields
+    @State private var platforms: Set<GamingPlatform> = []
+    @State private var gameGenres: Set<GameGenre> = []
+    @State private var voiceChatPreference: VoiceChatPreference = .noPreference
+    @State private var weeklyHours: Int = 10
+    @State private var discordTag: String = ""
+    @State private var steamId: String = ""
 
     let totalSteps = 3
-
-    // Options
-    let educationOptions = ["", "High School", "Some College", "Associate's Degree", "Bachelor's Degree", "Master's Degree", "Doctorate", "Trade School", "Other"]
-    let religionOptions = ["", "Christian", "Catholic", "Jewish", "Muslim", "Hindu", "Buddhist", "Spiritual", "Agnostic", "Atheist", "Other", "Prefer not to say"]
-    let smokingOptions = ["", "Never", "Sometimes", "Regularly", "Trying to quit", "Prefer not to say"]
-    let drinkingOptions = ["", "Never", "Socially", "Occasionally", "Regularly", "Prefer not to say"]
-    let petsOptions = ["", "Dog", "Cat", "Both", "Other pets", "No pets", "Want pets", "Allergic"]
-    let exerciseOptions = ["", "Daily", "Often (3-4x/week)", "Sometimes (1-2x/week)", "Rarely", "Never"]
-    let dietOptions = ["", "Omnivore", "Vegetarian", "Vegan", "Pescatarian", "Keto", "Halal", "Kosher", "Other"]
 
     var body: some View {
         NavigationStack {
@@ -59,9 +49,9 @@ struct ProfileEnhancementView: View {
 
                     // Content
                     TabView(selection: $currentStep) {
-                        lifestyleStep1.tag(0)
-                        lifestyleStep2.tag(1)
-                        lifestyleStep3.tag(2)
+                        gamingStep1.tag(0)
+                        gamingStep2.tag(1)
+                        gamingStep3.tag(2)
                     }
                     .tabViewStyle(.page(indexDisplayMode: .never))
                     .animation(.easeInOut, value: currentStep)
@@ -91,7 +81,22 @@ struct ProfileEnhancementView: View {
             } message: {
                 Text(errorMessage)
             }
+            .onAppear {
+                loadExistingData()
+            }
         }
+    }
+
+    // MARK: - Load Existing Data
+
+    private func loadExistingData() {
+        guard let user = authService.currentUser else { return }
+        platforms = Set(user.platforms.compactMap { GamingPlatform(rawValue: $0) })
+        gameGenres = Set(user.gameGenres.compactMap { GameGenre(rawValue: $0) })
+        voiceChatPreference = VoiceChatPreference(rawValue: user.voiceChatPreference) ?? .noPreference
+        weeklyHours = user.gamingStats.weeklyHours ?? 10
+        discordTag = user.discordTag ?? ""
+        steamId = user.steamId ?? ""
     }
 
     // MARK: - Progress Header
@@ -129,16 +134,16 @@ struct ProfileEnhancementView: View {
 
     private var stepTitle: String {
         switch currentStep {
-        case 0: return "Education & Beliefs"
-        case 1: return "Lifestyle Habits"
-        case 2: return "More About You"
+        case 0: return "Gaming Platforms"
+        case 1: return "Game Preferences"
+        case 2: return "Connect & Play"
         default: return ""
         }
     }
 
-    // MARK: - Step 1: Education & Religion
+    // MARK: - Step 1: Platforms
 
-    private var lifestyleStep1: some View {
+    private var gamingStep1: some View {
         ScrollView(showsIndicators: false) {
             VStack(spacing: 24) {
                 // Icon
@@ -147,103 +152,63 @@ struct ProfileEnhancementView: View {
                         .fill(Color.blue.opacity(0.15))
                         .frame(width: 80, height: 80)
 
-                    Image(systemName: "graduationcap.fill")
+                    Image(systemName: "gamecontroller.fill")
                         .font(.system(size: 36))
                         .foregroundStyle(
                             LinearGradient(colors: [.blue, .teal], startPoint: .topLeading, endPoint: .bottomTrailing)
                         )
                 }
 
-                Text("Your Background")
+                Text("Where Do You Play?")
                     .font(.title2)
                     .fontWeight(.bold)
 
-                VStack(spacing: 20) {
-                    // Education
-                    optionSelector(
-                        title: "Education Level",
-                        icon: "book.fill",
-                        color: .blue,
-                        options: educationOptions,
-                        selection: $educationLevel
-                    )
+                Text("Select all platforms you game on")
+                    .font(.subheadline)
+                    .foregroundColor(.secondary)
 
-                    // Religion
-                    optionSelector(
-                        title: "Religion / Spirituality",
-                        icon: "sparkles",
-                        color: .teal,
-                        options: religionOptions,
-                        selection: $religion
-                    )
-                }
-
-                infoCard(
-                    icon: "lightbulb.fill",
-                    text: "Sharing your background helps find compatible teammates",
-                    color: .yellow
-                )
-            }
-            .padding(20)
-            .padding(.top, 10)
-        }
-    }
-
-    // MARK: - Step 2: Habits
-
-    private var lifestyleStep2: some View {
-        ScrollView(showsIndicators: false) {
-            VStack(spacing: 24) {
-                // Icon
-                ZStack {
-                    Circle()
-                        .fill(Color.blue.opacity(0.15))
-                        .frame(width: 80, height: 80)
-
-                    Image(systemName: "leaf.fill")
-                        .font(.system(size: 36))
-                        .foregroundStyle(
-                            LinearGradient(colors: [.blue, .teal], startPoint: .topLeading, endPoint: .bottomTrailing)
-                        )
-                }
-
-                Text("Your Lifestyle")
-                    .font(.title2)
-                    .fontWeight(.bold)
-
-                VStack(spacing: 20) {
-                    // Smoking
-                    optionSelector(
-                        title: "Smoking",
-                        icon: "smoke.fill",
-                        color: .gray,
-                        options: smokingOptions,
-                        selection: $smoking
-                    )
-
-                    // Drinking
-                    optionSelector(
-                        title: "Drinking",
-                        icon: "wineglass.fill",
-                        color: .teal,
-                        options: drinkingOptions,
-                        selection: $drinking
-                    )
-
-                    // Exercise
-                    optionSelector(
-                        title: "Exercise",
-                        icon: "figure.run",
-                        color: .orange,
-                        options: exerciseOptions,
-                        selection: $exercise
-                    )
+                // Platform selection grid
+                LazyVGrid(columns: [GridItem(.adaptive(minimum: 100))], spacing: 12) {
+                    ForEach(GamingPlatform.allCases, id: \.self) { platform in
+                        Button {
+                            withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
+                                if platforms.contains(platform) {
+                                    platforms.remove(platform)
+                                } else {
+                                    platforms.insert(platform)
+                                }
+                            }
+                            HapticManager.shared.impact(.light)
+                        } label: {
+                            VStack(spacing: 8) {
+                                Image(systemName: platform.icon)
+                                    .font(.title2)
+                                Text(platform.rawValue)
+                                    .font(.caption)
+                                    .fontWeight(.medium)
+                            }
+                            .foregroundColor(platforms.contains(platform) ? .white : .primary)
+                            .frame(maxWidth: .infinity)
+                            .padding(.vertical, 16)
+                            .background(
+                                RoundedRectangle(cornerRadius: 12)
+                                    .fill(platforms.contains(platform) ?
+                                        AnyShapeStyle(LinearGradient(colors: [.blue, .teal], startPoint: .topLeading, endPoint: .bottomTrailing)) :
+                                        AnyShapeStyle(Color.white))
+                            )
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 12)
+                                    .stroke(platforms.contains(platform) ? Color.clear : Color.gray.opacity(0.2), lineWidth: 1)
+                            )
+                            .shadow(color: platforms.contains(platform) ? .blue.opacity(0.3) : .clear, radius: 5, y: 2)
+                        }
+                    }
                 }
 
                 infoCard(
                     icon: "person.3.fill",
-                    text: "Lifestyle compatibility helps you find the right squad",
-                    color: .green
+                    text: "We'll match you with gamers on the same platforms",
+                    color: .blue
                 )
             }
             .padding(20)
@@ -251,47 +216,216 @@ struct ProfileEnhancementView: View {
         }
     }
 
-    // MARK: - Step 3: More Details
+    // MARK: - Step 2: Game Preferences
 
-    private var lifestyleStep3: some View {
+    private var gamingStep2: some View {
         ScrollView(showsIndicators: false) {
             VStack(spacing: 24) {
                 // Icon
                 ZStack {
                     Circle()
-                        .fill(Color.orange.opacity(0.15))
+                        .fill(Color.teal.opacity(0.15))
                         .frame(width: 80, height: 80)
 
-                    Image(systemName: "star.fill")
+                    Image(systemName: "flame.fill")
                         .font(.system(size: 36))
                         .foregroundStyle(
-                            LinearGradient(colors: [.orange, .yellow], startPoint: .topLeading, endPoint: .bottomTrailing)
+                            LinearGradient(colors: [.orange, .red], startPoint: .topLeading, endPoint: .bottomTrailing)
                         )
                 }
 
-                Text("Final Touches")
+                Text("What Do You Play?")
                     .font(.title2)
                     .fontWeight(.bold)
 
-                VStack(spacing: 20) {
-                    // Pets
-                    optionSelector(
-                        title: "Pets",
-                        icon: "pawprint.fill",
-                        color: .brown,
-                        options: petsOptions,
-                        selection: $pets
+                // Game Genres
+                VStack(alignment: .leading, spacing: 12) {
+                    Text("Favorite Genres")
+                        .font(.headline)
+
+                    LazyVGrid(columns: [GridItem(.adaptive(minimum: 90))], spacing: 10) {
+                        ForEach(GameGenre.allCases, id: \.self) { genre in
+                            Button {
+                                withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
+                                    if gameGenres.contains(genre) {
+                                        gameGenres.remove(genre)
+                                    } else {
+                                        gameGenres.insert(genre)
+                                    }
+                                }
+                                HapticManager.shared.impact(.light)
+                            } label: {
+                                Text(genre.rawValue)
+                                    .font(.caption)
+                                    .fontWeight(.medium)
+                                    .foregroundColor(gameGenres.contains(genre) ? .white : .primary)
+                                    .padding(.horizontal, 14)
+                                    .padding(.vertical, 10)
+                                    .background(
+                                        Capsule()
+                                            .fill(gameGenres.contains(genre) ?
+                                                AnyShapeStyle(LinearGradient(colors: [.blue, .teal], startPoint: .leading, endPoint: .trailing)) :
+                                                AnyShapeStyle(Color.white))
+                                    )
+                                    .overlay(
+                                        Capsule()
+                                            .stroke(gameGenres.contains(genre) ? Color.clear : Color.gray.opacity(0.2), lineWidth: 1)
+                                    )
+                            }
+                        }
+                    }
+                }
+
+                // Weekly Hours
+                VStack(alignment: .leading, spacing: 12) {
+                    HStack {
+                        Image(systemName: "clock.fill")
+                            .foregroundColor(.blue)
+                        Text("Weekly Gaming Hours")
+                            .font(.headline)
+                        Spacer()
+                        Text("\(weeklyHours)h")
+                            .font(.headline)
+                            .foregroundColor(.blue)
+                    }
+
+                    Slider(value: Binding(
+                        get: { Double(weeklyHours) },
+                        set: { weeklyHours = Int($0) }
+                    ), in: 1...50, step: 1)
+                    .tint(.blue)
+
+                    HStack {
+                        Text("1h")
+                            .font(.caption)
+                            .foregroundColor(.secondary)
+                        Spacer()
+                        Text("50h+")
+                            .font(.caption)
+                            .foregroundColor(.secondary)
+                    }
+                }
+                .padding()
+                .background(Color.white)
+                .cornerRadius(12)
+
+                infoCard(
+                    icon: "sparkles",
+                    text: "Find teammates who play what you love",
+                    color: .orange
+                )
+            }
+            .padding(20)
+            .padding(.top, 10)
+        }
+    }
+
+    // MARK: - Step 3: Connect & Play
+
+    private var gamingStep3: some View {
+        ScrollView(showsIndicators: false) {
+            VStack(spacing: 24) {
+                // Icon
+                ZStack {
+                    Circle()
+                        .fill(Color.purple.opacity(0.15))
+                        .frame(width: 80, height: 80)
+
+                    Image(systemName: "link")
+                        .font(.system(size: 36))
+                        .foregroundStyle(
+                            LinearGradient(colors: [.purple, .indigo], startPoint: .topLeading, endPoint: .bottomTrailing)
+                        )
+                }
+
+                Text("Connect With Teammates")
+                    .font(.title2)
+                    .fontWeight(.bold)
+
+                // Voice Chat Preference
+                VStack(alignment: .leading, spacing: 12) {
+                    HStack {
+                        Image(systemName: "mic.fill")
+                            .foregroundColor(.blue)
+                        Text("Voice Chat Preference")
+                            .font(.headline)
+                    }
+
+                    LazyVGrid(columns: [GridItem(.adaptive(minimum: 120))], spacing: 10) {
+                        ForEach(VoiceChatPreference.allCases, id: \.self) { pref in
+                            Button {
+                                withAnimation { voiceChatPreference = pref }
+                                HapticManager.shared.impact(.light)
+                            } label: {
+                                Text(pref.rawValue)
+                                    .font(.caption)
+                                    .fontWeight(.medium)
+                                    .foregroundColor(voiceChatPreference == pref ? .white : .primary)
+                                    .padding(.horizontal, 16)
+                                    .padding(.vertical, 10)
+                                    .frame(maxWidth: .infinity)
+                                    .background(
+                                        RoundedRectangle(cornerRadius: 10)
+                                            .fill(voiceChatPreference == pref ?
+                                                AnyShapeStyle(LinearGradient(colors: [.blue, .teal], startPoint: .leading, endPoint: .trailing)) :
+                                                AnyShapeStyle(Color.white))
+                                    )
+                                    .overlay(
+                                        RoundedRectangle(cornerRadius: 10)
+                                            .stroke(voiceChatPreference == pref ? Color.clear : Color.gray.opacity(0.2), lineWidth: 1)
+                                    )
+                            }
+                        }
+                    }
+                }
+                .padding()
+                .background(Color(.systemBackground))
+                .cornerRadius(12)
+
+                // External Profiles
+                VStack(alignment: .leading, spacing: 16) {
+                    HStack {
+                        Image(systemName: "link.badge.plus")
+                            .foregroundColor(.purple)
+                        Text("Gaming Profiles (Optional)")
+                            .font(.headline)
+                    }
+
+                    // Discord
+                    HStack {
+                        Image(systemName: "bubble.left.and.bubble.right.fill")
+                            .foregroundColor(.indigo)
+                            .frame(width: 24)
+                        TextField("Discord Tag", text: $discordTag)
+                            .textInputAutocapitalization(.never)
+                    }
+                    .padding(14)
+                    .background(Color.white)
+                    .cornerRadius(12)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 12)
+                            .stroke(Color.indigo.opacity(0.3), lineWidth: 1)
                     )
 
-                    // Diet
-                    optionSelector(
-                        title: "Diet",
-                        icon: "fork.knife",
-                        color: .teal,
-                        options: dietOptions,
-                        selection: $diet
+                    // Steam
+                    HStack {
+                        Image(systemName: "laptopcomputer")
+                            .foregroundColor(.blue)
+                            .frame(width: 24)
+                        TextField("Steam ID", text: $steamId)
+                            .textInputAutocapitalization(.never)
+                    }
+                    .padding(14)
+                    .background(Color.white)
+                    .cornerRadius(12)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 12)
+                            .stroke(Color.blue.opacity(0.3), lineWidth: 1)
                     )
                 }
+                .padding()
+                .background(Color(.systemBackground))
+                .cornerRadius(12)
 
                 // Completion stats
                 VStack(spacing: 12) {
@@ -299,10 +433,10 @@ struct ProfileEnhancementView: View {
                         Image(systemName: "chart.line.uptrend.xyaxis")
                             .foregroundColor(.blue)
 
-                        Text("Profiles with lifestyle info get")
+                        Text("Complete profiles get")
                             .font(.subheadline)
 
-                        Text("3x more connections!")
+                        Text("3x more squad invites!")
                             .font(.subheadline)
                             .fontWeight(.bold)
                             .foregroundColor(.blue)
@@ -318,44 +452,6 @@ struct ProfileEnhancementView: View {
     }
 
     // MARK: - Helper Views
-
-    private func optionSelector(title: String, icon: String, color: Color, options: [String], selection: Binding<String>) -> some View {
-        VStack(alignment: .leading, spacing: 12) {
-            HStack(spacing: 8) {
-                Image(systemName: icon)
-                    .foregroundColor(color)
-                Text(title)
-                    .font(.headline)
-            }
-
-            Menu {
-                ForEach(options, id: \.self) { option in
-                    Button(option.isEmpty ? "Select..." : option) {
-                        selection.wrappedValue = option
-                        HapticManager.shared.selection()
-                    }
-                }
-            } label: {
-                HStack {
-                    Text(selection.wrappedValue.isEmpty ? "Select \(title.lowercased())..." : selection.wrappedValue)
-                        .foregroundColor(selection.wrappedValue.isEmpty ? .gray : .primary)
-
-                    Spacer()
-
-                    Image(systemName: "chevron.down")
-                        .font(.caption)
-                        .foregroundColor(.gray)
-                }
-                .padding()
-                .background(Color.white)
-                .cornerRadius(12)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 12)
-                        .stroke(color.opacity(0.3), lineWidth: 1)
-                )
-            }
-        }
-    }
 
     private func infoCard(icon: String, text: String, color: Color) -> some View {
         HStack(spacing: 12) {
@@ -452,9 +548,13 @@ struct ProfileEnhancementView: View {
             do {
                 guard var user = authService.currentUser else { return }
 
-                // Update user with new lifestyle info
-                // Note: Gaming app - lifestyle fields stored separately if needed
-                // These fields would need to be added to User model if required
+                // Update gaming profile fields
+                user.platforms = platforms.map { $0.rawValue }
+                user.gameGenres = gameGenres.map { $0.rawValue }
+                user.voiceChatPreference = voiceChatPreference.rawValue
+                user.gamingStats.weeklyHours = weeklyHours
+                user.discordTag = discordTag.isEmpty ? nil : discordTag
+                user.steamId = steamId.isEmpty ? nil : steamId
 
                 try await authService.updateUser(user)
 
@@ -488,14 +588,14 @@ struct ProfilePromptsOnboardingView: View {
     let availablePrompts = [
         "A perfect gaming session would be...",
         "I'm looking for teammates who...",
-        "My ideal weekend looks like...",
+        "My best gaming memory is...",
         "Two truths and a lie...",
-        "The way to win me over is...",
-        "I geek out on...",
-        "My most spontaneous moment...",
-        "I'm convinced that...",
         "My gaming hot take is...",
-        "My simple pleasures are..."
+        "I geek out on...",
+        "My most clutch moment was...",
+        "I'm convinced that...",
+        "The game that changed my life...",
+        "My gaming guilty pleasure is..."
     ]
 
     var body: some View {
@@ -579,7 +679,7 @@ struct ProfilePromptsOnboardingView: View {
                         Image(systemName: "sparkles")
                             .foregroundColor(.yellow)
 
-                        Text("Profiles with prompts get 40% more conversations!")
+                        Text("Profiles with prompts get 40% more squad invites!")
                             .font(.subheadline)
                             .foregroundColor(.secondary)
 
@@ -713,7 +813,7 @@ struct ProfileCompletionCard: View {
         guard let user = authService.currentUser else { return 0 }
 
         var completed = 0
-        var total = 10
+        let total = 10
 
         // Required fields (always complete after sign-up)
         if !user.fullName.isEmpty { completed += 1 }
@@ -774,8 +874,8 @@ struct ProfileCompletionCard: View {
                         showEnhancement = true
                     } label: {
                         HStack {
-                            Image(systemName: "person.fill.badge.plus")
-                            Text("Add Details")
+                            Image(systemName: "gamecontroller.fill")
+                            Text("Gaming Setup")
                                 .fontWeight(.medium)
                         }
                         .font(.subheadline)
