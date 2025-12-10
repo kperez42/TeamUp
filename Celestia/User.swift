@@ -192,6 +192,31 @@ enum GameGenre: String, Codable, CaseIterable, Identifiable {
     case party = "Party Games"
 
     var id: String { rawValue }
+
+    var icon: String {
+        switch self {
+        case .fps: return "scope"
+        case .moba: return "person.3.fill"
+        case .battleRoyale: return "flame.fill"
+        case .rpg: return "wand.and.stars"
+        case .mmorpg: return "globe"
+        case .sports: return "sportscourt.fill"
+        case .racing: return "car.fill"
+        case .fighting: return "figure.martial.arts"
+        case .strategy: return "puzzlepiece.fill"
+        case .simulation: return "slider.horizontal.3"
+        case .survival: return "tent.fill"
+        case .horror: return "eye.fill"
+        case .puzzle: return "puzzlepiece.extension.fill"
+        case .platformer: return "figure.run"
+        case .sandbox: return "cube.fill"
+        case .cardGame: return "suit.spade.fill"
+        case .boardGame: return "dice.fill"
+        case .indie: return "star.fill"
+        case .coOp: return "person.2.fill"
+        case .party: return "party.popper.fill"
+        }
+    }
 }
 
 // MARK: - Game Model
