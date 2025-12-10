@@ -1726,7 +1726,7 @@ struct SignUpView: View {
         HStack(alignment: .top, spacing: 8) {
             Image(systemName: icon)
                 .font(.caption)
-                .foregroundColor(.green)
+                .foregroundColor(.blue)
                 .frame(width: 16)
             Text(text)
                 .font(.caption)
