@@ -1317,7 +1317,7 @@ struct EditProfileView: View {
                                 .padding(.vertical, 10)
                                 .background(
                                     skillLevel == level ?
-                                    LinearGradient(colors: [.yellow.opacity(0.8), .orange], startPoint: .leading, endPoint: .trailing) :
+                                    LinearGradient(colors: [.blue, .teal], startPoint: .leading, endPoint: .trailing) :
                                     LinearGradient(colors: [Color(.systemGray6), Color(.systemGray6)], startPoint: .leading, endPoint: .trailing)
                                 )
                                 .foregroundColor(skillLevel == level ? .white : .primary)
@@ -1373,7 +1373,7 @@ struct EditProfileView: View {
 
     private var gamingPreferencesSection: some View {
         VStack(spacing: 20) {
-            SectionHeader(icon: "person.2.fill", title: "Looking For", color: .orange, subtitle: "What type of teammates you want")
+            SectionHeader(icon: "person.2.fill", title: "Looking For", color: .teal, subtitle: "What type of teammates you want")
 
             // Looking For Types - 2 column fixed grid for cleaner layout
             VStack(alignment: .leading, spacing: 12) {
@@ -1405,7 +1405,7 @@ struct EditProfileView: View {
                             .frame(maxWidth: .infinity)
                             .background(
                                 lookingForTypes.contains(type) ?
-                                LinearGradient(colors: [.orange, .red.opacity(0.8)], startPoint: .leading, endPoint: .trailing) :
+                                LinearGradient(colors: [.blue, .teal], startPoint: .leading, endPoint: .trailing) :
                                 LinearGradient(colors: [Color(.systemGray6), Color(.systemGray6)], startPoint: .leading, endPoint: .trailing)
                             )
                             .foregroundColor(lookingForTypes.contains(type) ? .white : .primary)
@@ -1520,7 +1520,7 @@ struct EditProfileView: View {
 
     private var gamingScheduleSection: some View {
         VStack(spacing: 20) {
-            SectionHeader(icon: "clock.fill", title: "Gaming Schedule", color: .green, subtitle: "When you're available to play")
+            SectionHeader(icon: "clock.fill", title: "Gaming Schedule", color: .blue, subtitle: "When you're available to play")
 
             // Weekly Hours
             VStack(alignment: .leading, spacing: 12) {
