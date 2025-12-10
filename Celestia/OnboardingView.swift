@@ -1018,7 +1018,7 @@ struct OnboardingView: View {
                     .padding(.vertical, 16)
                     .background(
                         LinearGradient(
-                            colors: photoImages.count >= 6 ? [Color.gray, Color.gray.opacity(0.8)] : [Color.orange, Color.pink],
+                            colors: photoImages.count >= 6 ? [Color.gray, Color.gray.opacity(0.8)] : [Color.green, Color.cyan],
                             startPoint: .leading,
                             endPoint: .trailing
                         )
@@ -1252,7 +1252,7 @@ struct OnboardingView: View {
                                 Text(interest)
                                     .font(.subheadline)
                                     .fontWeight(.medium)
-                                    .foregroundColor(selectedInterests.contains(interest) ? .white : .purple)
+                                    .foregroundColor(selectedInterests.contains(interest) ? .white : .green)
                                     .padding(.horizontal, 14)
                                     .padding(.vertical, 8)
                                     .background(
@@ -1387,7 +1387,7 @@ struct OnboardingView: View {
 
                                     if relationshipGoal == goal {
                                         Image(systemName: "checkmark.circle.fill")
-                                            .foregroundColor(.pink)
+                                            .foregroundColor(.green)
                                     } else {
                                         Image(systemName: "circle")
                                             .foregroundColor(.gray.opacity(0.3))
@@ -1506,7 +1506,7 @@ struct OnboardingView: View {
                                     in: 18...Double(ageRangeMax - 1),
                                     step: 1
                                 )
-                                .tint(.purple)
+                                .tint(.green)
                             }
 
                             // Max Age
@@ -1523,7 +1523,7 @@ struct OnboardingView: View {
                                     in: Double(ageRangeMin + 1)...99,
                                     step: 1
                                 )
-                                .tint(.purple)
+                                .tint(.green)
                             }
                         }
                         .padding()
@@ -1707,7 +1707,7 @@ struct OnboardingView: View {
                     lifestyleOptionSelector(
                         title: "Drinking",
                         icon: "wineglass.fill",
-                        color: .pink,
+                        color: .cyan,
                         options: drinkingOptions,
                         selection: $drinking
                     )
@@ -1806,7 +1806,7 @@ struct OnboardingView: View {
                 VStack(spacing: 16) {
                     HStack(spacing: 16) {
                         statBadge(icon: "chart.line.uptrend.xyaxis", value: "3x", label: "More Teammates", color: .green)
-                        statBadge(icon: "gamecontroller.fill", value: "85%", label: "Better Team Fit", color: .pink)
+                        statBadge(icon: "gamecontroller.fill", value: "85%", label: "Better Team Fit", color: .cyan)
                     }
 
                     Text("Complete profiles get significantly more attention!")
@@ -1913,7 +1913,7 @@ struct OnboardingView: View {
                     .cornerRadius(16)
                     .overlay(
                         RoundedRectangle(cornerRadius: 16)
-                            .stroke(Color.purple, lineWidth: 2)
+                            .stroke(Color.green, lineWidth: 2)
                     )
                 }
                 .accessibilityLabel("Back")
