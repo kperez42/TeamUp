@@ -92,7 +92,7 @@ struct CurrentUserProfileCard: View {
 
                     Image(systemName: "mappin.circle.fill")
                         .font(.caption)
-                        .foregroundColor(.blue)
+                        .foregroundColor(.orange)
 
                     Text("\(user.location), \(user.country)")
                         .font(.subheadline)
@@ -120,7 +120,7 @@ struct CurrentUserProfileCard: View {
                     HStack(spacing: 4) {
                         Image(systemName: "photo.stack.fill")
                             .font(.caption)
-                            .foregroundColor(.blue)
+                            .foregroundColor(.purple)
 
                         Text("\(user.photos.count) photo\(user.photos.count == 1 ? "" : "s")")
                             .font(.subheadline)
