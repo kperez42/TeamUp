@@ -1,7 +1,7 @@
 # Firebase Email Verification Setup Guide
 
 ## Overview
-This guide will help you configure Firebase to send email verification emails to users when they sign up for Celestia.
+This guide will help you configure Firebase to send email verification emails to users when they sign up for TeamUp.
 
 ## Current Status
 ✅ **Code is configured** - The app is already calling Firebase's email verification API

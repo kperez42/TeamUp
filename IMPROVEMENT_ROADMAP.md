@@ -1,4 +1,4 @@
-# Celestia App Improvement Roadmap
+# TeamUp App Improvement Roadmap
 
 **Last Updated**: 2025-11-18
 **Status**: Planning

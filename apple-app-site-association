@@ -3,7 +3,7 @@
     "apps": [],
     "details": [
       {
-        "appID": "TEAM_ID.com.celestia.app",
+        "appID": "TEAM_ID.com.teamup.app",
         "paths": [
           "/join/*",
           "/profile/*",
@@ -20,7 +20,7 @@
   },
   "webcredentials": {
     "apps": [
-      "TEAM_ID.com.celestia.app"
+      "TEAM_ID.com.teamup.app"
     ]
   }
 }

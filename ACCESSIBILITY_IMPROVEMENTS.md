@@ -2,7 +2,7 @@
 
 ## Overview
 
-This document outlines the comprehensive accessibility improvements made to the Celestia iOS app to achieve WCAG 2.1 Level AA compliance and support users with disabilities.
+This document outlines the comprehensive accessibility improvements made to the TeamUp iOS app to achieve WCAG 2.1 Level AA compliance and support users with disabilities.
 
 ## Impact
 
