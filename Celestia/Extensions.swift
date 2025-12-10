@@ -235,10 +235,10 @@ extension Color {
 // MARK: - LinearGradient Extensions
 
 extension LinearGradient {
-    /// Primary brand gradient (green to cyan - gaming theme)
+    /// Primary brand gradient (purple to indigo - SignIn theme)
     static var brandPrimary: LinearGradient {
         LinearGradient(
-            colors: [.green, .cyan],
+            colors: [.purple, .indigo],
             startPoint: .leading,
             endPoint: .trailing
         )
@@ -247,7 +247,7 @@ extension LinearGradient {
     /// Primary brand gradient (vertical orientation)
     static var brandPrimaryVertical: LinearGradient {
         LinearGradient(
-            colors: [.green, .cyan],
+            colors: [.purple, .indigo],
             startPoint: .top,
             endPoint: .bottom
         )
@@ -256,16 +256,16 @@ extension LinearGradient {
     /// Primary brand gradient (diagonal)
     static var brandPrimaryDiagonal: LinearGradient {
         LinearGradient(
-            colors: [.green, .cyan],
+            colors: [.purple, .indigo],
             startPoint: .topLeading,
             endPoint: .bottomTrailing
         )
     }
 
-    /// Secondary gradient (cyan to blue)
+    /// Secondary gradient (indigo to blue)
     static var brandSecondary: LinearGradient {
         LinearGradient(
-            colors: [.cyan, .blue],
+            colors: [.indigo, .blue],
             startPoint: .leading,
             endPoint: .trailing
         )
