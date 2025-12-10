@@ -1289,6 +1289,7 @@ struct SignUpView: View {
             step7PlayStyleSection
             step7VoiceChatSection
             step7LookingForSection
+            step7GameGenresSection
             step7GamingProfilesSection
             step7AgePreferenceSection
             step7CompletionSection
@@ -1606,6 +1607,83 @@ struct SignUpView: View {
                 Capsule()
                     .fill(isSelected ?
                         AnyShapeStyle(LinearGradient(colors: [.orange, .red.opacity(0.8)], startPoint: .leading, endPoint: .trailing)) :
+                        AnyShapeStyle(Color(.systemBackground)))
+            )
+            .overlay(
+                Capsule()
+                    .stroke(isSelected ? Color.clear : Color.gray.opacity(0.3), lineWidth: 1)
+            )
+        }
+    }
+
+    private var step7GameGenresSection: some View {
+        Group {
+            HStack(spacing: 16) {
+                ZStack {
+                    Circle()
+                        .fill(Color.cyan.opacity(0.12))
+                        .frame(width: 56, height: 56)
+
+                    Image(systemName: "folder.fill")
+                        .font(.system(size: 24))
+                        .foregroundColor(.cyan)
+                }
+
+                VStack(alignment: .leading, spacing: 4) {
+                    Text("Game Genres")
+                        .font(.headline)
+                        .foregroundColor(.primary)
+
+                    Text("What types of games do you play?")
+                        .font(.subheadline)
+                        .foregroundColor(.secondary)
+                }
+
+                Spacer()
+            }
+            .padding(16)
+            .background(
+                RoundedRectangle(cornerRadius: 16)
+                    .fill(Color(.systemBackground))
+                    .shadow(color: .black.opacity(0.06), radius: 8, x: 0, y: 2)
+            )
+
+            LazyVGrid(columns: [GridItem(.adaptive(minimum: 100))], spacing: 10) {
+                ForEach(GameGenre.allCases, id: \.self) { genre in
+                    gameGenreButton(for: genre)
+                }
+            }
+        }
+    }
+
+    private func gameGenreButton(for genre: GameGenre) -> some View {
+        Button {
+            withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
+                if gameGenres.contains(genre) {
+                    gameGenres.remove(genre)
+                } else {
+                    gameGenres.insert(genre)
+                }
+            }
+            HapticManager.shared.impact(.light)
+        } label: {
+            let isSelected = gameGenres.contains(genre)
+            HStack(spacing: 6) {
+                Image(systemName: genre.icon)
+                    .font(.caption)
+                Text(genre.rawValue)
+                    .font(.caption)
+                    .fontWeight(.medium)
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.8)
+            }
+            .foregroundColor(isSelected ? .white : .primary)
+            .padding(.horizontal, 12)
+            .padding(.vertical, 10)
+            .background(
+                Capsule()
+                    .fill(isSelected ?
+                        AnyShapeStyle(LinearGradient(colors: [.cyan, .teal], startPoint: .leading, endPoint: .trailing)) :
                         AnyShapeStyle(Color(.systemBackground)))
             )
             .overlay(
