@@ -275,7 +275,7 @@ struct SettingsView: View {
                     } label: {
                         HStack {
                             Image(systemName: "person.3.fill")
-                                .foregroundColor(.green)
+                                .foregroundColor(.blue)
                             Text("Community Guidelines")
                                 .foregroundColor(.primary)
                             Spacer()

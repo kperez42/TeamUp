@@ -558,11 +558,11 @@ struct BoostProfileSheet: View {
                             Text(duration.price)
                                 .font(.title3)
                                 .fontWeight(.bold)
-                                .foregroundColor(.green)
-                            
+                                .foregroundColor(.blue)
+
                             if selectedDuration == duration {
                                 Image(systemName: "checkmark.circle.fill")
-                                    .foregroundColor(.green)
+                                    .foregroundColor(.blue)
                             } else {
                                 Image(systemName: "circle")
                                     .foregroundColor(.gray)
