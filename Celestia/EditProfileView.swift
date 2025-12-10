@@ -1249,14 +1249,14 @@ struct EditProfileView: View {
         VStack(spacing: 20) {
             SectionHeader(icon: "gamecontroller.fill", title: "Gaming Setup", color: .blue, subtitle: "Your platforms and play style")
 
-            // Platforms
+            // Platforms - 2 column fixed grid for consistent sizing
             VStack(alignment: .leading, spacing: 12) {
                 Text("Platforms")
                     .font(.subheadline)
                     .fontWeight(.semibold)
                     .foregroundColor(.secondary)
 
-                LazyVGrid(columns: [GridItem(.adaptive(minimum: 100))], spacing: 10) {
+                LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 10) {
                     ForEach(GamingPlatform.allCases) { platform in
                         Button {
                             if platforms.contains(platform) {
@@ -1268,12 +1268,14 @@ struct EditProfileView: View {
                         } label: {
                             HStack(spacing: 6) {
                                 Image(systemName: platform.icon)
-                                    .font(.caption)
+                                    .font(.system(size: 14))
                                 Text(platform.rawValue)
-                                    .font(.caption)
+                                    .font(.system(size: 13, weight: .medium))
+                                    .lineLimit(1)
+                                    .minimumScaleFactor(0.8)
                             }
                             .padding(.horizontal, 12)
-                            .padding(.vertical, 10)
+                            .padding(.vertical, 12)
                             .frame(maxWidth: .infinity)
                             .background(
                                 platforms.contains(platform) ?
@@ -1281,13 +1283,13 @@ struct EditProfileView: View {
                                 LinearGradient(colors: [Color(.systemGray6), Color(.systemGray6)], startPoint: .leading, endPoint: .trailing)
                             )
                             .foregroundColor(platforms.contains(platform) ? .white : .primary)
-                            .cornerRadius(10)
+                            .cornerRadius(12)
                         }
                     }
                 }
             }
 
-            // Skill Level
+            // Skill Level - horizontal scroll for clean single-line display
             VStack(alignment: .leading, spacing: 12) {
                 HStack {
                     Image(systemName: "star.fill")
@@ -1307,12 +1309,11 @@ struct EditProfileView: View {
                             } label: {
                                 HStack(spacing: 6) {
                                     Image(systemName: level.icon)
-                                        .font(.caption)
+                                        .font(.system(size: 13))
                                     Text(level.rawValue)
-                                        .font(.subheadline)
-                                        .fontWeight(.medium)
+                                        .font(.system(size: 14, weight: .medium))
                                 }
-                                .padding(.horizontal, 14)
+                                .padding(.horizontal, 16)
                                 .padding(.vertical, 10)
                                 .background(
                                     skillLevel == level ?
@@ -1327,35 +1328,36 @@ struct EditProfileView: View {
                 }
             }
 
-            // Play Style
+            // Play Style - horizontal scroll for consistent no-wrap display
             VStack(alignment: .leading, spacing: 12) {
                 Text("Play Style")
                     .font(.subheadline)
                     .fontWeight(.semibold)
                     .foregroundColor(.secondary)
 
-                LazyVGrid(columns: [GridItem(.adaptive(minimum: 90))], spacing: 10) {
-                    ForEach(PlayStyle.allCases) { style in
-                        Button {
-                            playStyle = style
-                            HapticManager.shared.impact(.light)
-                        } label: {
-                            HStack(spacing: 4) {
-                                Image(systemName: style.icon)
-                                    .font(.caption)
-                                Text(style.rawValue)
-                                    .font(.caption)
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack(spacing: 10) {
+                        ForEach(PlayStyle.allCases) { style in
+                            Button {
+                                playStyle = style
+                                HapticManager.shared.impact(.light)
+                            } label: {
+                                HStack(spacing: 5) {
+                                    Image(systemName: style.icon)
+                                        .font(.system(size: 13))
+                                    Text(style.rawValue)
+                                        .font(.system(size: 14, weight: .medium))
+                                }
+                                .padding(.horizontal, 14)
+                                .padding(.vertical, 10)
+                                .background(
+                                    playStyle == style ?
+                                    LinearGradient(colors: [.teal, .blue], startPoint: .leading, endPoint: .trailing) :
+                                    LinearGradient(colors: [Color(.systemGray6), Color(.systemGray6)], startPoint: .leading, endPoint: .trailing)
+                                )
+                                .foregroundColor(playStyle == style ? .white : .primary)
+                                .cornerRadius(12)
                             }
-                            .padding(.horizontal, 10)
-                            .padding(.vertical, 8)
-                            .frame(maxWidth: .infinity)
-                            .background(
-                                playStyle == style ?
-                                LinearGradient(colors: [.teal, .blue], startPoint: .leading, endPoint: .trailing) :
-                                LinearGradient(colors: [Color(.systemGray6), Color(.systemGray6)], startPoint: .leading, endPoint: .trailing)
-                            )
-                            .foregroundColor(playStyle == style ? .white : .primary)
-                            .cornerRadius(10)
                         }
                     }
                 }
@@ -1373,14 +1375,14 @@ struct EditProfileView: View {
         VStack(spacing: 20) {
             SectionHeader(icon: "person.2.fill", title: "Looking For", color: .orange, subtitle: "What type of teammates you want")
 
-            // Looking For Types
+            // Looking For Types - 2 column fixed grid for cleaner layout
             VStack(alignment: .leading, spacing: 12) {
                 Text("What type of teammates?")
                     .font(.subheadline)
                     .fontWeight(.semibold)
                     .foregroundColor(.secondary)
 
-                LazyVGrid(columns: [GridItem(.adaptive(minimum: 140))], spacing: 10) {
+                LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 10) {
                     ForEach(LookingForType.allCases) { type in
                         Button {
                             if lookingForTypes.contains(type) {
@@ -1390,15 +1392,16 @@ struct EditProfileView: View {
                             }
                             HapticManager.shared.impact(.light)
                         } label: {
-                            HStack(spacing: 6) {
+                            HStack(spacing: 5) {
                                 Image(systemName: type.icon)
-                                    .font(.caption)
+                                    .font(.system(size: 12))
                                 Text(type.rawValue)
-                                    .font(.caption)
-                                    .fontWeight(.medium)
+                                    .font(.system(size: 12, weight: .medium))
+                                    .lineLimit(1)
+                                    .minimumScaleFactor(0.8)
                             }
-                            .padding(.horizontal, 12)
-                            .padding(.vertical, 10)
+                            .padding(.horizontal, 10)
+                            .padding(.vertical, 12)
                             .frame(maxWidth: .infinity)
                             .background(
                                 lookingForTypes.contains(type) ?
@@ -1412,7 +1415,7 @@ struct EditProfileView: View {
                 }
             }
 
-            // Voice Chat Preference
+            // Voice Chat Preference - horizontal scroll for clean display
             VStack(alignment: .leading, spacing: 12) {
                 HStack {
                     Image(systemName: "mic.fill")
@@ -1432,12 +1435,11 @@ struct EditProfileView: View {
                             } label: {
                                 HStack(spacing: 6) {
                                     Image(systemName: pref.icon)
-                                        .font(.caption)
+                                        .font(.system(size: 13))
                                     Text(pref.rawValue)
-                                        .font(.caption)
-                                        .fontWeight(.medium)
+                                        .font(.system(size: 13, weight: .medium))
                                 }
-                                .padding(.horizontal, 14)
+                                .padding(.horizontal, 16)
                                 .padding(.vertical, 10)
                                 .background(
                                     voiceChatPreference == pref ?
@@ -1548,9 +1550,8 @@ struct EditProfileView: View {
                                 HapticManager.shared.impact(.light)
                             } label: {
                                 Text("\(hours)+")
-                                    .font(.subheadline)
-                                    .fontWeight(.medium)
-                                    .padding(.horizontal, 16)
+                                    .font(.system(size: 14, weight: .medium))
+                                    .padding(.horizontal, 18)
                                     .padding(.vertical, 10)
                                     .background(
                                         weeklyHours == hours ?
@@ -1558,31 +1559,32 @@ struct EditProfileView: View {
                                         LinearGradient(colors: [Color(.systemGray6), Color(.systemGray6)], startPoint: .leading, endPoint: .trailing)
                                     )
                                     .foregroundColor(weeklyHours == hours ? .white : .primary)
-                                    .cornerRadius(10)
+                                    .cornerRadius(12)
                             }
                         }
                     }
                 }
             }
 
-            // Gaming Goal
+            // Gaming Goal - 2 column fixed grid for consistent layout
             VStack(alignment: .leading, spacing: 12) {
                 Text("Gaming Goal")
                     .font(.subheadline)
                     .fontWeight(.semibold)
                     .foregroundColor(.secondary)
 
-                LazyVGrid(columns: [GridItem(.adaptive(minimum: 130))], spacing: 10) {
+                LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 10) {
                     ForEach(gamingGoalOptions, id: \.self) { goal in
                         Button {
                             gamingGoal = goal
                             HapticManager.shared.impact(.light)
                         } label: {
                             Text(goal)
-                                .font(.caption)
-                                .fontWeight(.medium)
-                                .padding(.horizontal, 12)
-                                .padding(.vertical, 10)
+                                .font(.system(size: 13, weight: .medium))
+                                .lineLimit(1)
+                                .minimumScaleFactor(0.8)
+                                .padding(.horizontal, 10)
+                                .padding(.vertical, 12)
                                 .frame(maxWidth: .infinity)
                                 .background(
                                     gamingGoal == goal ?
@@ -1590,7 +1592,7 @@ struct EditProfileView: View {
                                     LinearGradient(colors: [Color(.systemGray6), Color(.systemGray6)], startPoint: .leading, endPoint: .trailing)
                                 )
                                 .foregroundColor(gamingGoal == goal ? .white : .primary)
-                                .cornerRadius(10)
+                                .cornerRadius(12)
                         }
                     }
                 }
@@ -1609,7 +1611,8 @@ struct EditProfileView: View {
         VStack(spacing: 20) {
             SectionHeader(icon: "folder.fill", title: "Game Genres", color: .cyan, subtitle: "What types of games you play")
 
-            LazyVGrid(columns: [GridItem(.adaptive(minimum: 100))], spacing: 10) {
+            // 3 column fixed grid for compact, consistent layout
+            LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())], spacing: 10) {
                 ForEach(GameGenre.allCases) { genre in
                     Button {
                         if gameGenres.contains(genre) {
@@ -1621,13 +1624,14 @@ struct EditProfileView: View {
                     } label: {
                         HStack(spacing: 4) {
                             Image(systemName: genreIcon(for: genre))
-                                .font(.caption2)
+                                .font(.system(size: 11))
                             Text(genre.rawValue)
-                                .font(.caption)
-                                .fontWeight(.medium)
+                                .font(.system(size: 11, weight: .medium))
+                                .lineLimit(1)
+                                .minimumScaleFactor(0.7)
                         }
-                        .padding(.horizontal, 10)
-                        .padding(.vertical, 8)
+                        .padding(.horizontal, 8)
+                        .padding(.vertical, 10)
                         .frame(maxWidth: .infinity)
                         .background(
                             gameGenres.contains(genre) ?
@@ -1635,7 +1639,7 @@ struct EditProfileView: View {
                             LinearGradient(colors: [Color(.systemGray6), Color(.systemGray6)], startPoint: .leading, endPoint: .trailing)
                         )
                         .foregroundColor(gameGenres.contains(genre) ? .white : .primary)
-                        .cornerRadius(12)
+                        .cornerRadius(10)
                     }
                 }
             }
