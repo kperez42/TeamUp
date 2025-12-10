@@ -306,7 +306,7 @@ struct AdvancedFiltersSheet: View {
     private func sectionHeader(icon: String, title: String) -> some View {
         HStack(spacing: 10) {
             Image(systemName: icon)
-                .foregroundColor(.green)
+                .foregroundColor(.blue)
             Text(title)
                 .font(.headline)
         }
@@ -531,7 +531,7 @@ struct BoostProfileSheet: View {
         VStack(alignment: .leading, spacing: 12) {
             HStack {
                 Image(systemName: "clock.fill")
-                    .foregroundColor(.green)
+                    .foregroundColor(.blue)
                 Text("Choose Duration")
                     .font(.headline)
             }

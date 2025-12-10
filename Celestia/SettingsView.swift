@@ -120,7 +120,7 @@ struct SettingsView: View {
                     } label: {
                         HStack {
                             Image(systemName: "gift.fill")
-                                .foregroundColor(.green)
+                                .foregroundColor(.blue)
                             VStack(alignment: .leading, spacing: 2) {
                                 Text("Invite Friends")
                                     .foregroundColor(.primary)
@@ -150,7 +150,7 @@ struct SettingsView: View {
                     } label: {
                         HStack {
                             Image(systemName: "gamecontroller.fill")
-                                .foregroundColor(.green)
+                                .foregroundColor(.blue)
                             VStack(alignment: .leading, spacing: 2) {
                                 HStack(spacing: 6) {
                                     Text("See Who's Interested")
@@ -260,7 +260,7 @@ struct SettingsView: View {
                     } label: {
                         HStack {
                             Image(systemName: "doc.text")
-                                .foregroundColor(.green)
+                                .foregroundColor(.blue)
                             Text("Terms of Service")
                                 .foregroundColor(.primary)
                             Spacer()
