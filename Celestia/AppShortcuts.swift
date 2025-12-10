@@ -59,7 +59,7 @@ struct TeamUpAppShortcuts: AppShortcutsProvider {
         )
 
         AppShortcut(
-            intent: ShareDateDetailsIntent(),
+            intent: ShareMeetupDetailsIntent(),
             phrases: [
                 "Share my meetup on \(.applicationName)",
                 "Share meetup details in \(.applicationName)",
@@ -176,16 +176,16 @@ struct ViewPremiumIntent: AppIntent {
     }
 }
 
-// MARK: - Share Date Details Intent
+// MARK: - Share Meetup Details Intent
 
 @available(iOS 16.0, *)
-struct ShareDateDetailsIntent: AppIntent {
+struct ShareMeetupDetailsIntent: AppIntent {
     static var title: LocalizedStringResource = "Share Meetup Details"
     static var description = IntentDescription("Share your meetup location and time with emergency contacts")
     static var openAppWhenRun: Bool = true
 
     @Parameter(title: "Gamer Name")
-    var matchName: String?
+    var gamerName: String?
 
     @Parameter(title: "Location")
     var location: String?
@@ -194,14 +194,14 @@ struct ShareDateDetailsIntent: AppIntent {
     var dateTime: Date?
 
     static var parameterSummary: some ParameterSummary {
-        Summary("Share meetup with \(\.$matchName) at \(\.$location)")
+        Summary("Share meetup with \(\.$gamerName) at \(\.$location)")
     }
 
     @MainActor
     func perform() async throws -> some IntentResult & ProvidesDialog {
         // Track analytics
         AnalyticsManager.shared.logEvent(.appShortcutUsed, parameters: [
-            "shortcut": "share_date_details"
+            "shortcut": "share_meetup_details"
         ])
 
         guard let currentUser = AuthService.shared.currentUser else {
@@ -209,7 +209,7 @@ struct ShareDateDetailsIntent: AppIntent {
         }
 
         // If parameters provided, create share meetup automatically
-        if let matchName = matchName, let location = location, let dateTime = dateTime {
+        if let gamerName = gamerName, let location = location, let dateTime = dateTime {
             // This would integrate with ShareMeetupView functionality
             return .result(
                 dialog: IntentDialog("Meetup details shared with your emergency contacts")
@@ -362,7 +362,7 @@ class AppShortcutDeepLinkHandler {
         case discover
         case messages
         case premium
-        case shareDate
+        case shareMeetup
         case emergencyContacts
         case checkIn
     }
