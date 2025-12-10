@@ -1397,7 +1397,7 @@ struct OnboardingView: View {
                                 .background(
                                     relationshipGoal == goal ?
                                     LinearGradient(
-                                        colors: [Color.yellow.opacity(0.1), Color.green.opacity(0.05)],
+                                        colors: [Color.blue.opacity(0.1), Color.teal.opacity(0.05)],
                                         startPoint: .leading,
                                         endPoint: .trailing
                                     ) :
@@ -1642,7 +1642,7 @@ struct OnboardingView: View {
                         .font(.system(size: 50))
                         .foregroundStyle(
                             LinearGradient(
-                                colors: [.teal, .green],
+                                colors: [.blue, .teal],
                                 startPoint: .topLeading,
                                 endPoint: .bottomTrailing
                             )

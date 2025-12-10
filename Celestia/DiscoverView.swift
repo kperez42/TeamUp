@@ -517,7 +517,7 @@ struct DiscoverView: View {
                     viewModel.dismissMatchAnimation()
                 }
                 .buttonStyle(.borderedProminent)
-                .tint(.green)
+                .tint(.blue)
                 .controlSize(.large)
 
                 Button("Keep Browsing") {

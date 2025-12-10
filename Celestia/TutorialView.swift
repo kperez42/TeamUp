@@ -356,7 +356,7 @@ class TutorialManager: ObservableObject {
                 title: "Complete Your Profile",
                 description: "High-quality profiles get 5x more connections. Add photos, write a bio, and share your interests!",
                 icon: "person.crop.circle.fill.badge.checkmark",
-                accentColor: .green,
+                accentColor: .blue,
                 tips: [
                     "Add 4-6 clear photos",
                     "Write a bio that shows your personality",

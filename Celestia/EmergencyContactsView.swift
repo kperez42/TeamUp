@@ -76,7 +76,7 @@ struct EmergencyContactsView: View {
                     .padding(.vertical, 16)
                     .background(
                         LinearGradient(
-                            colors: [.blue, .green],
+                            colors: [.blue, .teal],
                             startPoint: .leading,
                             endPoint: .trailing
                         )
@@ -159,7 +159,7 @@ struct EmergencyContactCard: View {
                     Circle()
                         .fill(
                             LinearGradient(
-                                colors: [.blue.opacity(0.6), .green.opacity(0.6)],
+                                colors: [.blue.opacity(0.6), .teal.opacity(0.6)],
                                 startPoint: .topLeading,
                                 endPoint: .bottomTrailing
                             )
@@ -182,10 +182,10 @@ struct EmergencyContactCard: View {
 
                     Text(contact.relationship.displayName)
                         .font(.caption)
-                        .foregroundColor(.green)
+                        .foregroundColor(.blue)
                         .padding(.horizontal, 8)
                         .padding(.vertical, 2)
-                        .background(Color.green.opacity(0.1))
+                        .background(Color.blue.opacity(0.1))
                         .cornerRadius(4)
                 }
 
