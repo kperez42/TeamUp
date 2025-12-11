@@ -188,7 +188,7 @@ struct UserDetailView: View {
                 if user.isVerified {
                     Image(systemName: "checkmark.seal.fill")
                         .font(.title3)
-                        .foregroundColor(.teal)
+                        .foregroundColor(.green)
                 }
 
                 if user.isPremium {

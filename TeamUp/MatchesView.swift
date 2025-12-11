@@ -809,7 +809,7 @@ struct MatchProfileCard: View {
                     if user.isVerified {
                         Image(systemName: "checkmark.seal.fill")
                             .font(.system(size: 14))
-                            .foregroundColor(.blue)
+                            .foregroundColor(.green)
                     }
                 }
 

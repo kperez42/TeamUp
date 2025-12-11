@@ -182,7 +182,7 @@ struct SearchProfileCard: View {
 
                     if user.isVerified {
                         Image(systemName: "checkmark.seal.fill")
-                            .foregroundColor(.blue)
+                            .foregroundColor(.green)
                     }
 
                     Spacer()

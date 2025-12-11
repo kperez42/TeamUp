@@ -604,7 +604,7 @@ struct ConversationRow: View {
                         if user.isVerified {
                             Image(systemName: "checkmark.seal.fill")
                                 .font(.caption)
-                                .foregroundColor(.blue)
+                                .foregroundColor(.green)
                         }
                         
                         if user.isPremium {

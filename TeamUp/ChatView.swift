@@ -328,7 +328,7 @@ struct ChatView: View {
                     if otherUserData.isVerified {
                         Image(systemName: "checkmark.seal.fill")
                             .font(.system(size: 12))
-                            .foregroundColor(.blue)
+                            .foregroundColor(.green)
                     }
                 }
 

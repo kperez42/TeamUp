@@ -393,7 +393,7 @@ struct ProfileView: View {
                         if user.isVerified {
                             Image(systemName: "checkmark.seal.fill")
                                 .font(.title3)
-                                .foregroundColor(.blue)
+                                .foregroundColor(.green)
                         }
 
                         if user.isPremium {
@@ -803,7 +803,7 @@ struct ProfileView: View {
                         .font(.headline)
                         .foregroundColor(.primary)
 
-                    Text("Stand out with the blue checkmark")
+                    Text("Stand out with a verified checkmark")
                         .font(.caption)
                         .foregroundColor(.secondary)
                         .lineLimit(1)

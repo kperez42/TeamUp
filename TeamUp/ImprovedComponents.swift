@@ -232,7 +232,7 @@ struct ImprovedUserDetailSheet: View {
                 if user.isVerified {
                     Image(systemName: "checkmark.seal.fill")
                         .font(.title2)
-                        .foregroundColor(.blue)
+                        .foregroundColor(.green)
                 }
 
                 if user.isPremium {
