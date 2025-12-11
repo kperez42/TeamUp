@@ -211,7 +211,7 @@ struct ImprovedUserCard: View {
                 if user.isVerified {
                     Image(systemName: "checkmark.seal.fill")
                         .font(.title3)
-                        .foregroundColor(.blue)
+                        .foregroundColor(.green)
                         .accessibilityLabel("Verified")
                 }
 

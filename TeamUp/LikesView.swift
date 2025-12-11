@@ -955,7 +955,7 @@ struct LikeProfileCard: View {
                 if user.isVerified {
                     Image(systemName: "checkmark.seal.fill")
                         .font(.system(size: 20))
-                        .foregroundColor(.blue)
+                        .foregroundColor(.green)
                         .background(Circle().fill(.white).padding(-2))
                         .padding(8)
                 }
@@ -1124,7 +1124,7 @@ struct BlurredLikeCard: View {
                 if user.isVerified {
                     Image(systemName: "checkmark.seal.fill")
                         .font(.system(size: 20))
-                        .foregroundColor(.blue)
+                        .foregroundColor(.green)
                         .background(Circle().fill(.white).padding(-2))
                         .padding(8)
                 }

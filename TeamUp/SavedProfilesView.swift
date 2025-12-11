@@ -901,7 +901,7 @@ struct SavedProfileCard: View {
                         if savedProfile.user.isVerified {
                             Image(systemName: "checkmark.seal.fill")
                                 .font(.system(size: 16))
-                                .foregroundColor(.blue)
+                                .foregroundColor(.green)
                         }
                     }
 
@@ -1061,7 +1061,7 @@ struct EnhancedSavedProfileCard: View {
                     if savedProfile.user.isVerified {
                         Image(systemName: "checkmark.seal.fill")
                             .font(.system(size: 20))
-                            .foregroundColor(.blue)
+                            .foregroundColor(.green)
                             .background(Circle().fill(.white).padding(-2))
                             .padding(8)
                     }
@@ -1307,7 +1307,7 @@ struct SavedYouCard: View {
                         if profile.user.isVerified {
                             Image(systemName: "checkmark.seal.fill")
                                 .font(.system(size: 16))
-                                .foregroundColor(.blue)
+                                .foregroundColor(.green)
                         }
                     }
 
@@ -1385,7 +1385,7 @@ struct ViewedProfileCard: View {
                         if profile.user.isVerified {
                             Image(systemName: "checkmark.seal.fill")
                                 .font(.system(size: 16))
-                                .foregroundColor(.blue)
+                                .foregroundColor(.green)
                         }
                     }
 
