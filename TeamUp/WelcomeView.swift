@@ -152,40 +152,145 @@ struct WelcomeView: View {
     }
     
     // MARK: - Logo Section
-    
+
     private var logoSection: some View {
-        VStack(spacing: 20) {
-            // Animated star icon
+        VStack(spacing: 24) {
+            // Modern TeamUp Logo - Gaming Squad Design
             ZStack {
+                // Outer glow ring
                 Circle()
-                    .fill(Color.white.opacity(0.2))
-                    .frame(width: 140, height: 140)
-                    .blur(radius: 20)
-                
-                Image(systemName: "star.circle.fill")
-                    .font(.system(size: 100))
-                    .foregroundStyle(
-                        LinearGradient(
-                            colors: [.white, .yellow.opacity(0.9)],
-                            startPoint: .topLeading,
-                            endPoint: .bottomTrailing
+                    .fill(
+                        RadialGradient(
+                            colors: [
+                                Color.white.opacity(0.3),
+                                Color.white.opacity(0.1),
+                                Color.clear
+                            ],
+                            center: .center,
+                            startRadius: 50,
+                            endRadius: 90
                         )
                     )
-                    .shadow(color: .white.opacity(0.5), radius: 20)
+                    .frame(width: 180, height: 180)
+
+                // Main logo container - frosted glass effect
+                ZStack {
+                    // Background circle with gradient
+                    Circle()
+                        .fill(
+                            LinearGradient(
+                                colors: [
+                                    Color.white.opacity(0.25),
+                                    Color.white.opacity(0.1)
+                                ],
+                                startPoint: .topLeading,
+                                endPoint: .bottomTrailing
+                            )
+                        )
+                        .frame(width: 130, height: 130)
+                        .overlay(
+                            Circle()
+                                .stroke(
+                                    LinearGradient(
+                                        colors: [
+                                            Color.white.opacity(0.6),
+                                            Color.white.opacity(0.2)
+                                        ],
+                                        startPoint: .topLeading,
+                                        endPoint: .bottomTrailing
+                                    ),
+                                    lineWidth: 2
+                                )
+                        )
+                        .shadow(color: .black.opacity(0.2), radius: 20, y: 10)
+
+                    // Team members arranged in a triangle formation
+                    ZStack {
+                        // Top person (leader)
+                        Image(systemName: "person.fill")
+                            .font(.system(size: 28, weight: .semibold))
+                            .foregroundStyle(
+                                LinearGradient(
+                                    colors: [.white, .white.opacity(0.9)],
+                                    startPoint: .top,
+                                    endPoint: .bottom
+                                )
+                            )
+                            .offset(y: -28)
+
+                        // Bottom left person
+                        Image(systemName: "person.fill")
+                            .font(.system(size: 24, weight: .semibold))
+                            .foregroundStyle(
+                                LinearGradient(
+                                    colors: [.white.opacity(0.9), .white.opacity(0.7)],
+                                    startPoint: .top,
+                                    endPoint: .bottom
+                                )
+                            )
+                            .offset(x: -26, y: 18)
+
+                        // Bottom right person
+                        Image(systemName: "person.fill")
+                            .font(.system(size: 24, weight: .semibold))
+                            .foregroundStyle(
+                                LinearGradient(
+                                    colors: [.white.opacity(0.9), .white.opacity(0.7)],
+                                    startPoint: .top,
+                                    endPoint: .bottom
+                                )
+                            )
+                            .offset(x: 26, y: 18)
+
+                        // Center game controller
+                        Image(systemName: "gamecontroller.fill")
+                            .font(.system(size: 22, weight: .medium))
+                            .foregroundStyle(
+                                LinearGradient(
+                                    colors: [.yellow, .orange],
+                                    startPoint: .topLeading,
+                                    endPoint: .bottomTrailing
+                                )
+                            )
+                            .shadow(color: .orange.opacity(0.5), radius: 8)
+                            .offset(y: 4)
+                    }
+                }
+
+                // Decorative connection lines (subtle)
+                Circle()
+                    .strokeBorder(
+                        LinearGradient(
+                            colors: [
+                                Color.white.opacity(0.3),
+                                Color.white.opacity(0.1),
+                                Color.white.opacity(0.3)
+                            ],
+                            startPoint: .topLeading,
+                            endPoint: .bottomTrailing
+                        ),
+                        lineWidth: 1
+                    )
+                    .frame(width: 150, height: 150)
             }
-            
-            VStack(spacing: 8) {
+
+            VStack(spacing: 10) {
                 Text("TeamUp")
-                    .font(.system(size: 52, weight: .bold, design: .rounded))
-                    .foregroundColor(.white)
-                    .shadow(color: .black.opacity(0.2), radius: 5)
+                    .font(.system(size: 48, weight: .bold, design: .rounded))
+                    .foregroundStyle(
+                        LinearGradient(
+                            colors: [.white, .white.opacity(0.9)],
+                            startPoint: .top,
+                            endPoint: .bottom
+                        )
+                    )
+                    .shadow(color: .black.opacity(0.3), radius: 8, y: 4)
 
                 Text("Find gaming buddies and build your squad")
-                    .font(.headline)
-                    .foregroundColor(.white.opacity(0.95))
+                    .font(.system(size: 16, weight: .medium))
+                    .foregroundColor(.white.opacity(0.9))
                     .multilineTextAlignment(.center)
                     .padding(.horizontal, 40)
-                    .shadow(color: .black.opacity(0.1), radius: 3)
             }
         }
     }
