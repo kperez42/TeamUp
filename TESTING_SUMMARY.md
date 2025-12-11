@@ -191,7 +191,7 @@ for chunk in snapshot.documents.chunked(into: 500) {
 
 ### TLS/SSL Error Handling ✅
 
-**Problem**: Backend API (`api.celestia.app`) has TLS certificate issue (error -1200)
+**Problem**: Backend API (`api.teamup.app`) has TLS certificate issue (error -1200)
 
 **Solution Implemented**:
 ```swift
@@ -301,13 +301,13 @@ func listenToMessages(matchId: String) {
    firebase deploy --only firestore:indexes
    ```
    Or click these links in Firebase Console:
-   - [Messages Index](https://console.firebase.google.com/v1/r/project/celestia-40ce6/firestore/indexes?create_composite=Ck9wcm9qZWN0cy9jZWxlc3RpYS00MGNlNi9kYXRhYmFzZXMvKGRlZmF1bHQpL2NvbGxlY3Rpb25Hcm91cHMvbWVzc2FnZXMvaW5kZXhlcy9fEAEaCwoHbWF0Y2hJZBABGg0KCXRpbWVzdGFtcBABGgwKCF9fbmFtZV9fEAE)
-   - [Saved Profiles Index](https://console.firebase.google.com/v1/r/project/celestia-40ce6/firestore/indexes?create_composite=ClVwcm9qZWN0cy9jZWxlc3RpYS00MGNlNi9kYXRhYmFzZXMvKGRlZmF1bHQpL2NvbGxlY3Rpb25Hcm91cHMvc2F2ZWRfcHJvZmlsZXMvaW5kZXhlcy9fEAEaDwoLc2F2ZWRVc2VySWQQARoLCgdzYXZlZEF0EAIaDAoIX19uYW1lX18QAg)
+   - [Messages Index](https://console.firebase.google.com/v1/r/project/teamup-40ce6/firestore/indexes?create_composite=Ck9wcm9qZWN0cy9jZWxlc3RpYS00MGNlNi9kYXRhYmFzZXMvKGRlZmF1bHQpL2NvbGxlY3Rpb25Hcm91cHMvbWVzc2FnZXMvaW5kZXhlcy9fEAEaCwoHbWF0Y2hJZBABGg0KCXRpbWVzdGFtcBABGgwKCF9fbmFtZV9fEAE)
+   - [Saved Profiles Index](https://console.firebase.google.com/v1/r/project/teamup-40ce6/firestore/indexes?create_composite=ClVwcm9qZWN0cy9jZWxlc3RpYS00MGNlNi9kYXRhYmFzZXMvKGRlZmF1bHQpL2NvbGxlY3Rpb25Hcm91cHMvc2F2ZWRfcHJvZmlsZXMvaW5kZXhlcy9fEAEaDwoLc2F2ZWRVc2VySWQQARoLCgdzYXZlZEF0EAIaDAoIX19uYW1lX18QAg)
 
 2. **Fix Backend TLS Certificate** ⚠️
-   - Server: `api.celestia.app`
+   - Server: `api.teamup.app`
    - Error: `TLSV1_ALERT_INTERNAL_ERROR`
-   - Test: `openssl s_client -connect api.celestia.app:443`
+   - Test: `openssl s_client -connect api.teamup.app:443`
    - Until fixed: client-side fallbacks are active
 
 ### Optional Monitoring
@@ -348,7 +348,7 @@ All core functionality has been thoroughly tested and verified:
 
 ### Only Remaining Issue
 
-The **backend TLS certificate** on `api.celestia.app` needs to be fixed. Until then, the app gracefully falls back to client-side validation and rate limiting, so users won't experience any issues.
+The **backend TLS certificate** on `api.teamup.app` needs to be fixed. Until then, the app gracefully falls back to client-side validation and rate limiting, so users won't experience any issues.
 
 ---
 

@@ -473,7 +473,7 @@ async function sendProfileStatusNotification(userId, statusData) {
  */
 async function sendAdminNotification(notificationData) {
   // Admin email whitelist - must match the one in index.js
-  const adminEmails = ['perezkevin640@gmail.com', 'admin@celestia.app'];
+  const adminEmails = ['perezkevin640@gmail.com', 'admin@teamup.app'];
 
   try {
     // Get all admin users

@@ -140,14 +140,14 @@ Add the following to your `Info.plist`:
 
 | Route | URL | Purpose |
 |-------|-----|---------|
-| Home | `celestia://home` | App home screen |
-| Referral | `celestia://join?code=CODE` | Referral signup |
-| Profile | `celestia://profile?id=USER_ID` | View user profile |
-| Match | `celestia://match?id=MATCH_ID` | View match details |
-| Message | `celestia://message?id=MATCH_ID` | Open conversation |
-| Upgrade | `celestia://upgrade` | Premium upgrade |
-| Settings | `celestia://settings` | App settings |
-| Notifications | `celestia://notifications` | Notifications |
+| Home | `teamup://home` | App home screen |
+| Referral | `teamup://join?code=CODE` | Referral signup |
+| Profile | `teamup://profile?id=USER_ID` | View user profile |
+| Match | `teamup://match?id=MATCH_ID` | View match details |
+| Message | `teamup://message?id=MATCH_ID` | Open conversation |
+| Upgrade | `teamup://upgrade` | Premium upgrade |
+| Settings | `teamup://settings` | App settings |
+| Notifications | `teamup://notifications` | Notifications |
 
 ---
 
@@ -311,13 +311,13 @@ xcrun devicectl device process launch --device <DEVICE_ID> \
 
 #### Simulator
 ```bash
-xcrun simctl openurl booted "celestia://join?code=TESTCODE"
+xcrun simctl openurl booted "teamup://join?code=TESTCODE"
 ```
 
 #### Device
 ```bash
 xcrun devicectl device process launch --device <DEVICE_ID> \
-  --url "celestia://join?code=TESTCODE"
+  --url "teamup://join?code=TESTCODE"
 ```
 
 ### Verify Server Configuration
@@ -427,11 +427,11 @@ Apple's CDN can take up to 24 hours to update. Be patient!
 ### URL Scheme Not Working
 
 **1. Verify Info.plist**
-Check that `CFBundleURLSchemes` contains `celestia`
+Check that `CFBundleURLSchemes` contains `teamup`
 
 **2. Test with Command Line**
 ```bash
-xcrun simctl openurl booted "celestia://home"
+xcrun simctl openurl booted "teamup://home"
 ```
 
 **3. Check Logs**
@@ -449,7 +449,7 @@ This usually means:
 
 **Fix:**
 - Long press the link and select "Open in TeamUp"
-- Or use URL scheme as fallback: `celestia://...`
+- Or use URL scheme as fallback: `teamup://...`
 
 ### Referral Code Not Applied
 

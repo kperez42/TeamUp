@@ -164,10 +164,10 @@ class ImageUploadService {
             FirebaseErrorMapper.logError(error, context: "Image Upload")
 
             // Map Firebase error to TeamUpError
-            let celestiaError = FirebaseErrorMapper.mapError(error)
+            let teamupError = FirebaseErrorMapper.mapError(error)
 
             // Convert mapped error to appropriate image upload error
-            switch celestiaError {
+            switch teamupError {
             case .storageQuotaExceeded:
                 throw TeamUpError.imageTooBig
             case .unauthorized, .permissionDenied:

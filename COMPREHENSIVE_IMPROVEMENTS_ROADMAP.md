@@ -183,11 +183,11 @@ exports.validateReceipt = functions
 
 **Create:** `Admin/public/.well-known/security.txt`
 ```text
-Contact: mailto:security@celestia-app.com
+Contact: mailto:security@teamup-app.com
 Expires: 2026-12-31T23:59:59.000Z
 Preferred-Languages: en
-Canonical: https://admin.celestia-app.com/.well-known/security.txt
-Policy: https://celestia-app.com/security-policy
+Canonical: https://admin.teamup-app.com/.well-known/security.txt
+Policy: https://teamup-app.com/security-policy
 ```
 
 **Impact:** Facilitates responsible disclosure
@@ -587,7 +587,7 @@ npm install --save-dev vitest @testing-library/react @testing-library/jest-dom
 **Problem:** Can't test changes before production
 
 **Setup:**
-1. Create `celestia-staging` Firebase project
+1. Create `teamup-staging` Firebase project
 2. Update CI/CD to deploy to staging first
 3. Add approval gate for production
 

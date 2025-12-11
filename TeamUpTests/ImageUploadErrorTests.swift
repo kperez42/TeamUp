@@ -849,9 +849,9 @@ struct ImageUploadErrorTests {
                 userInfo: nil
             )
 
-            let celestiaError = TeamUpError.from(nsError)
+            let teamupError = TeamUpError.from(nsError)
 
-            #expect(celestiaError == .noInternetConnection)
+            #expect(teamupError == .noInternetConnection)
         }
 
         @Test("Error from timeout NSError works")
@@ -863,9 +863,9 @@ struct ImageUploadErrorTests {
                 userInfo: nil
             )
 
-            let celestiaError = TeamUpError.from(nsError)
+            let teamupError = TeamUpError.from(nsError)
 
-            #expect(celestiaError == .requestTimeout)
+            #expect(teamupError == .requestTimeout)
         }
 
         @Test("Error from generic NSError returns unknown")
@@ -877,9 +877,9 @@ struct ImageUploadErrorTests {
                 userInfo: [NSLocalizedDescriptionKey: "Unknown error occurred"]
             )
 
-            let celestiaError = TeamUpError.from(nsError)
+            let teamupError = TeamUpError.from(nsError)
 
-            if case .unknown(let message) = celestiaError {
+            if case .unknown(let message) = teamupError {
                 #expect(message.contains("Unknown error occurred"))
             } else {
                 Issue.record("Expected unknown error type")

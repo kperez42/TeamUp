@@ -3,7 +3,7 @@
 ## Step-by-Step Troubleshooting
 
 ### 1. Check Firebase Index Status
-Go to: https://console.firebase.google.com/project/celestia-40ce6/firestore/indexes
+Go to: https://console.firebase.google.com/project/teamup-40ce6/firestore/indexes
 
 **Expected:**
 - You should see an index for `users` collection that's either:

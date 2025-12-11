@@ -58,8 +58,8 @@ cp TeamUp/GoogleService-Info.plist TeamUp/GoogleService-Info.plist.template
 **Actions Required**:
 ```bash
 # 1. Get your API server's certificate hash
-# Replace api.celestia.app with your actual domain
-openssl s_client -servername api.celestia.app -connect api.celestia.app:443 \
+# Replace api.teamup.app with your actual domain
+openssl s_client -servername api.teamup.app -connect api.teamup.app:443 \
   | openssl x509 -pubkey -noout \
   | openssl pkey -pubin -outform der \
   | openssl dgst -sha256 -binary \
@@ -137,12 +137,12 @@ firebase deploy --only storage
 **Actions Required**:
 ```swift
 // Create Config/Debug.xcconfig
-API_URL = https:/$()/api-dev.celestia.app
+API_URL = https:/$()/api-dev.teamup.app
 FIREBASE_ENABLED = YES
 ANALYTICS_ENABLED = NO
 
 // Create Config/Release.xcconfig
-API_URL = https:/$()/api.celestia.app
+API_URL = https:/$()/api.teamup.app
 FIREBASE_ENABLED = YES
 ANALYTICS_ENABLED = YES
 

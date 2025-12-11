@@ -1220,18 +1220,18 @@ Solution:
 
 ### Documentation
 - API Reference: `/docs/api/safety`
-- Video Tutorials: https://docs.celestia.com/safety
-- FAQ: https://help.celestia.com/safety-faq
+- Video Tutorials: https://docs.teamup.com/safety
+- FAQ: https://help.teamup.com/safety-faq
 
 ### Contact
-- Safety Team: safety@celestia.com
+- Safety Team: safety@teamup.com
 - Emergency: Call 911 (US) or local emergency services
-- Support: support@celestia.com
+- Support: support@teamup.com
 
 ### Community
-- Safety Forum: https://community.celestia.com/safety
-- Bug Reports: https://github.com/celestia/ios/issues
-- Feature Requests: https://feedback.celestia.com
+- Safety Forum: https://community.teamup.com/safety
+- Bug Reports: https://github.com/teamup/ios/issues
+- Feature Requests: https://feedback.teamup.com
 
 ---
 

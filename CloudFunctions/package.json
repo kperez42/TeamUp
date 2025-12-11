@@ -1,5 +1,5 @@
 {
-  "name": "celestia-cloud-functions",
+  "name": "teamup-cloud-functions",
   "version": "1.0.0",
   "description": "Backend API for TeamUp gaming app",
   "main": "index.js",

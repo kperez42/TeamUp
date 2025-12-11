@@ -14,22 +14,22 @@ struct ProductIdentifiers {
 
     // MARK: - Subscriptions (Auto-Renewable)
 
-    static let subscriptionBasicMonthly = "com.celestia.subscription.basic.monthly"
-    static let subscriptionBasicYearly = "com.celestia.subscription.basic.yearly"
+    static let subscriptionBasicMonthly = "com.teamup.subscription.basic.monthly"
+    static let subscriptionBasicYearly = "com.teamup.subscription.basic.yearly"
 
-    static let subscriptionPlusMonthly = "com.celestia.subscription.plus.monthly"
-    static let subscriptionPlusYearly = "com.celestia.subscription.plus.yearly"
+    static let subscriptionPlusMonthly = "com.teamup.subscription.plus.monthly"
+    static let subscriptionPlusYearly = "com.teamup.subscription.plus.yearly"
 
-    static let subscriptionPremiumMonthly = "com.celestia.subscription.premium.monthly"
-    static let subscriptionPremiumYearly = "com.celestia.subscription.premium.yearly"
+    static let subscriptionPremiumMonthly = "com.teamup.subscription.premium.monthly"
+    static let subscriptionPremiumYearly = "com.teamup.subscription.premium.yearly"
 
     // MARK: - Consumables
 
-    static let boost1Hour = "com.celestia.consumable.boost.1hour"
-    static let boost3Hours = "com.celestia.consumable.boost.3hours"
-    static let boost24Hours = "com.celestia.consumable.boost.24hours"
+    static let boost1Hour = "com.teamup.consumable.boost.1hour"
+    static let boost3Hours = "com.teamup.consumable.boost.3hours"
+    static let boost24Hours = "com.teamup.consumable.boost.24hours"
 
-    static let spotlightWeekend = "com.celestia.consumable.spotlight.weekend"
+    static let spotlightWeekend = "com.teamup.consumable.spotlight.weekend"
 
     // MARK: - All Products
 

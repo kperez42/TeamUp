@@ -12,7 +12,7 @@ admin.initializeApp();
 const db = admin.firestore();
 
 // Admin email whitelist - only these users can access moderation functions
-const ADMIN_EMAILS = ["perezkevin640@gmail.com", "admin@celestia.app"];
+const ADMIN_EMAILS = ["perezkevin640@gmail.com", "admin@teamup.app"];
 
 /**
  * Verify that the caller is an admin

@@ -916,8 +916,8 @@ This comprehensive review has generated the following detailed documents:
 4. **PERFORMANCE_ANALYSIS_REPORT.md** - Performance optimization guide
 5. **PERFORMANCE_QUICK_FIX_GUIDE.md** - Quick performance fixes
 6. **PERFORMANCE_CODE_EXAMPLES.md** - Code examples for fixes
-7. **CELESTIA_CODE_QUALITY_REPORT.md** - Code quality analysis
-8. **CELESTIA_REFACTORING_GUIDE.md** - Refactoring roadmap
+7. **TEAMUP_CODE_QUALITY_REPORT.md** - Code quality analysis
+8. **TEAMUP_REFACTORING_GUIDE.md** - Refactoring roadmap
 9. **CONCURRENCY_SAFETY_REPORT.md** - Concurrency issues
 10. **CONCURRENCY_ISSUES_SUMMARY.md** - Quick concurrency reference
 

@@ -234,7 +234,7 @@ struct AuthServiceTests {
     @Test("Email verification flow requirements")
     func testEmailVerificationRequirements() async throws {
         // Test that verification URL is properly configured
-        let verificationURL = "https://celestia-40ce6.firebaseapp.com"
+        let verificationURL = "https://teamup-40ce6.firebaseapp.com"
         #expect(verificationURL.hasPrefix("https://"),
                "Verification URL should use HTTPS")
         #expect(verificationURL.contains("firebaseapp"),

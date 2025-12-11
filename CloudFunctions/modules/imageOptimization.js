@@ -21,7 +21,7 @@ const functions = require('firebase-functions');
 
 // Initialize Cloudinary (configure via environment variables)
 cloudinary.config({
-  cloud_name: process.env.CLOUDINARY_CLOUD_NAME || functions.config().cloudinary?.cloud_name || 'celestia-dating',
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME || functions.config().cloudinary?.cloud_name || 'teamup-dating',
   api_key: process.env.CLOUDINARY_API_KEY || functions.config().cloudinary?.api_key,
   api_secret: process.env.CLOUDINARY_API_SECRET || functions.config().cloudinary?.api_secret,
   secure: true

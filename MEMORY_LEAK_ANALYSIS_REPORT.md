@@ -1,4 +1,4 @@
-# CELESTIA iOS APP - MEMORY LEAK & RETAIN CYCLE ANALYSIS REPORT
+# TEAMUP iOS APP - MEMORY LEAK & RETAIN CYCLE ANALYSIS REPORT
 
 ## Executive Summary
 Found **4 critical memory leaks** involving NotificationCenter observers that are never removed, and **1 high-severity observation** regarding unbounded cache growth. Overall memory management is generally good with proper use of `[weak self]` in most places.

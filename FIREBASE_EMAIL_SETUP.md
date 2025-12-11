@@ -13,7 +13,7 @@ This guide will help you configure Firebase to send email verification emails to
 
 ### 1. Access Firebase Console
 1. Go to [Firebase Console](https://console.firebase.google.com)
-2. Select your project: **celestia-40ce6**
+2. Select your project: **teamup-40ce6**
 3. You should see your project dashboard
 
 ### 2. Navigate to Authentication Settings
@@ -25,7 +25,7 @@ This guide will help you configure Firebase to send email verification emails to
 1. Find **"Email address verification"** in the template list
 2. Click the **pencil/edit icon** on the right
 3. Review the template:
-   - **From name**: Firebase should use "noreply@celestia-40ce6.firebaseapp.com" by default
+   - **From name**: Firebase should use "noreply@teamup-40ce6.firebaseapp.com" by default
    - **Subject**: "Verify your email for %APP_NAME%"
    - **Body**: Contains a link for users to verify their email
 4. (Optional) Customize the template text to match your brand
@@ -36,7 +36,7 @@ This guide will help you configure Firebase to send email verification emails to
 2. Scroll to **"Authorized domains"**
 3. Make sure these domains are listed:
    - `localhost` (for local testing)
-   - `celestia-40ce6.firebaseapp.com` (your Firebase app domain)
+   - `teamup-40ce6.firebaseapp.com` (your Firebase app domain)
 4. If missing, click **"Add domain"** to add them
 
 ### 5. Check Email Enumeration Protection
@@ -63,7 +63,7 @@ This guide will help you configure Firebase to send email verification emails to
 
 **Check Spam Folder**
 - Firebase emails often end up in spam
-- Look for sender: `noreply@celestia-40ce6.firebaseapp.com`
+- Look for sender: `noreply@teamup-40ce6.firebaseapp.com`
 
 **Check Firebase Console Logs**
 1. Go to Firebase Console > Authentication > Users
@@ -170,7 +170,7 @@ If you need to bypass email verification for testing:
 ```swift
 let actionCodeSettings = ActionCodeSettings()
 actionCodeSettings.handleCodeInApp = false
-actionCodeSettings.url = URL(string: "https://celestia-40ce6.firebaseapp.com")
+actionCodeSettings.url = URL(string: "https://teamup-40ce6.firebaseapp.com")
 ```
 
 This tells Firebase:

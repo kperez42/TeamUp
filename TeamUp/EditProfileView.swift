@@ -2294,8 +2294,8 @@ struct EditProfileView: View {
                         case .uploadTimeout:
                             errorMessage = "Upload timed out. Please check your connection and try again."
                         }
-                    } else if let celestiaError = error as? TeamUpError {
-                        switch celestiaError {
+                    } else if let teamupError = error as? TeamUpError {
+                        switch teamupError {
                         case .networkError:
                             errorMessage = "Network error. Please check your connection and try again."
                         case .imageUploadFailed:

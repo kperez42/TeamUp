@@ -240,8 +240,8 @@ struct EmailVerificationView: View {
             } catch {
                 await MainActor.run {
                     isSending = false
-                    if let celestiaError = error as? TeamUpError {
-                        errorMessage = celestiaError.errorDescription
+                    if let teamupError = error as? TeamUpError {
+                        errorMessage = teamupError.errorDescription
                     } else {
                         errorMessage = "Failed to send verification email. Please try again."
                     }

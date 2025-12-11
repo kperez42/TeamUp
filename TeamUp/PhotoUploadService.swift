@@ -126,8 +126,8 @@ class PhotoUploadService {
             Logger.shared.error("❌ Photo upload FAILED - Error: \(error.localizedDescription)", category: .networking, error: error)
 
             // Provide more context about the failure
-            if let celestiaError = error as? TeamUpError {
-                Logger.shared.error("❌ TeamUpError type: \(celestiaError)", category: .networking)
+            if let teamupError = error as? TeamUpError {
+                Logger.shared.error("❌ TeamUpError type: \(teamupError)", category: .networking)
             }
             if let nsError = error as NSError? {
                 Logger.shared.error("❌ NSError domain: \(nsError.domain), code: \(nsError.code)", category: .networking)

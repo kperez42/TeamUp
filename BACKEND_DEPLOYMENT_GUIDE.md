@@ -206,7 +206,7 @@ curl -X POST http://localhost:5001/<project-id>/us-central1/validateReceipt \
 # Expected response:
 # {
 #   "valid": true,
-#   "productId": "celestia_premium_monthly",
+#   "productId": "teamup_premium_monthly",
 #   "expirationDate": "2025-02-17T..."
 # }
 ```
@@ -282,7 +282,7 @@ firebase deploy --only functions:validateReceipt,functions:moderateContent
 
 **Before**:
 ```swift
-static let baseURL = "https://api.celestia.app"  // NOT DEPLOYED
+static let baseURL = "https://api.teamup.app"  // NOT DEPLOYED
 ```
 
 **After**:
@@ -290,7 +290,7 @@ static let baseURL = "https://api.celestia.app"  // NOT DEPLOYED
 static let baseURL = "https://us-central1-<your-project-id>.cloudfunctions.net/api"
 
 // Example:
-// static let baseURL = "https://us-central1-celestia-prod-abc123.cloudfunctions.net/api"
+// static let baseURL = "https://us-central1-teamup-prod-abc123.cloudfunctions.net/api"
 ```
 
 **Find your project ID**:

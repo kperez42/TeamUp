@@ -406,9 +406,9 @@ struct LanguageSettingsView: View {
 ```xml
 <key>NSUserActivityTypes</key>
 <array>
-    <string>com.celestia.discover</string>
-    <string>com.celestia.matches</string>
-    <string>com.celestia.messages</string>
+    <string>com.teamup.discover</string>
+    <string>com.teamup.matches</string>
+    <string>com.teamup.messages</string>
 </array>
 ```
 

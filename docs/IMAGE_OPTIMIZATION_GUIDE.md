@@ -132,7 +132,7 @@ let exact = optimizer.resize(
 // Configure CDN
 CDNManager.shared.configure(
     provider: .cloudFront,
-    baseURL: "https://cdn.celestia.app"
+    baseURL: "https://cdn.teamup.app"
 )
 ```
 
@@ -147,7 +147,7 @@ if let url = cdnManager.url(
     size: .medium,
     format: .jpeg
 ) {
-    // https://cdn.celestia.app/images/user123/photo1.jpg?w=750&q=80&f=jpg
+    // https://cdn.teamup.app/images/user123/photo1.jpg?w=750&q=80&f=jpg
 }
 
 // Get all resolution URLs
@@ -161,7 +161,7 @@ let urls = cdnManager.urls(for: "user123/photo1.jpg")
    ```bash
    # Point to your S3 bucket or origin
    aws cloudfront create-distribution \
-     --origin-domain-name celestia-images.s3.amazonaws.com
+     --origin-domain-name teamup-images.s3.amazonaws.com
    ```
 
 2. **Configure Lambda@Edge** (for on-the-fly resizing)

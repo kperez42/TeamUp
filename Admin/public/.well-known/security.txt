@@ -1,16 +1,16 @@
-Contact: mailto:security@celestia-app.com
+Contact: mailto:security@teamup-app.com
 Contact: https://github.com/kperez42/TeamUp/security
 Expires: 2026-12-31T23:59:59.000Z
 Preferred-Languages: en
-Canonical: https://admin.celestia-app.com/.well-known/security.txt
-Policy: https://celestia-app.com/security-policy
-Acknowledgments: https://celestia-app.com/security-hall-of-fame
+Canonical: https://admin.teamup-app.com/.well-known/security.txt
+Policy: https://teamup-app.com/security-policy
+Acknowledgments: https://teamup-app.com/security-hall-of-fame
 
 # Security Vulnerability Reporting
 
 If you discover a security vulnerability in TeamUp, please report it responsibly:
 
-1. Email: security@celestia-app.com
+1. Email: security@teamup-app.com
 2. GitHub: https://github.com/kperez42/TeamUp/security/advisories/new
 3. Do NOT create public GitHub issues for security vulnerabilities
 
@@ -19,7 +19,7 @@ We take security seriously and will respond to all legitimate reports within 48 
 # Encryption
 
 If you need to send sensitive information, please use our PGP key available at:
-https://celestia-app.com/pgp-key.asc
+https://teamup-app.com/pgp-key.asc
 
 # Scope
 

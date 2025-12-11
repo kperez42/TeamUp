@@ -25,7 +25,7 @@ Implemented **automatic push notifications** for TeamUp using Firebase Cloud Mes
   sound: "match_sound.wav",
   category: "MATCH",
   image: "Matched user's photo",
-  deepLink: "celestia://match/{matchId}"
+  deepLink: "teamup://match/{matchId}"
 }
 ```
 
@@ -54,7 +54,7 @@ exports.onMatchCreated = functions.firestore
   category: "MESSAGE",
   image: "Sender's photo",
   badge: unreadCount,
-  deepLink: "celestia://chat/{matchId}"
+  deepLink: "teamup://chat/{matchId}"
 }
 ```
 
@@ -82,7 +82,7 @@ exports.onMessageCreated = functions.firestore
   sound: "super_like_sound.wav" or "default",
   category: "LIKE",
   image: "Liker's photo",
-  deepLink: "celestia://profile/{userId}"
+  deepLink: "teamup://profile/{userId}"
 }
 ```
 
