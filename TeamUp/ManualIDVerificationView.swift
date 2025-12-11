@@ -257,7 +257,7 @@ struct ManualIDVerificationView: View {
                 // Step number
                 ZStack {
                     Circle()
-                        .fill(viewModel.selectedIDType != nil ? Color.blue : Color.purple)
+                        .fill(viewModel.selectedIDType != nil ? Color.blue : Color.blue.opacity(0.7))
                         .frame(width: 28, height: 28)
 
                     if viewModel.selectedIDType != nil {
@@ -283,7 +283,7 @@ struct ManualIDVerificationView: View {
 
                 Image(systemName: "doc.text.fill")
                     .font(.title2)
-                    .foregroundColor(viewModel.selectedIDType != nil ? .blue : .purple)
+                    .foregroundColor(.blue)
             }
             .padding()
 
@@ -297,7 +297,7 @@ struct ManualIDVerificationView: View {
                         HStack(spacing: 12) {
                             Image(systemName: idType.icon)
                                 .font(.body)
-                                .foregroundColor(viewModel.selectedIDType == idType ? .white : .purple)
+                                .foregroundColor(viewModel.selectedIDType == idType ? .white : .blue)
                                 .frame(width: 24)
 
                             Text(idType.rawValue)
@@ -317,8 +317,8 @@ struct ManualIDVerificationView: View {
                         .background(
                             RoundedRectangle(cornerRadius: 10)
                                 .fill(viewModel.selectedIDType == idType ?
-                                      LinearGradient(colors: [.purple, .pink], startPoint: .leading, endPoint: .trailing) :
-                                      LinearGradient(colors: [Color.purple.opacity(0.08), Color.purple.opacity(0.08)], startPoint: .leading, endPoint: .trailing))
+                                      LinearGradient(colors: [.blue, .teal], startPoint: .leading, endPoint: .trailing) :
+                                      LinearGradient(colors: [Color.blue.opacity(0.08), Color.blue.opacity(0.08)], startPoint: .leading, endPoint: .trailing))
                         )
                     }
                 }
@@ -387,7 +387,7 @@ struct ManualIDVerificationView: View {
                 // Step number
                 ZStack {
                     Circle()
-                        .fill(image != nil ? Color.blue : (isActive ? Color.purple : Color.gray.opacity(0.3)))
+                        .fill(image != nil ? Color.blue : (isActive ? Color.blue.opacity(0.7) : Color.gray.opacity(0.3)))
                         .frame(width: 28, height: 28)
 
                     if image != nil {
@@ -413,7 +413,7 @@ struct ManualIDVerificationView: View {
 
                 Image(systemName: icon)
                     .font(.title2)
-                    .foregroundColor(image != nil ? .blue : .purple)
+                    .foregroundColor(.blue)
             }
             .padding()
 
@@ -468,15 +468,15 @@ struct ManualIDVerificationView: View {
                     VStack(spacing: 12) {
                         Image(systemName: "camera.fill")
                             .font(.system(size: 32))
-                            .foregroundColor(.purple)
+                            .foregroundColor(.blue)
 
                         Text("Tap to add photo")
                             .font(.subheadline)
-                            .foregroundColor(.purple)
+                            .foregroundColor(.blue)
                     }
                     .frame(maxWidth: .infinity)
                     .frame(height: 140)
-                    .background(Color.purple.opacity(0.08))
+                    .background(Color.blue.opacity(0.08))
                 }
             } else {
                 // Inactive state
@@ -549,13 +549,13 @@ struct ManualIDVerificationView: View {
             .padding(.vertical, 16)
             .background(
                 LinearGradient(
-                    colors: [.purple, .pink],
+                    colors: [.blue, .teal],
                     startPoint: .leading,
                     endPoint: .trailing
                 )
             )
             .cornerRadius(14)
-            .shadow(color: .purple.opacity(0.3), radius: 8, y: 4)
+            .shadow(color: .blue.opacity(0.3), radius: 8, y: 4)
         }
         .disabled(viewModel.isSubmitting)
         .scaleEffect(viewModel.isSubmitting ? 0.98 : 1.0)
@@ -717,7 +717,7 @@ struct ManualIDVerificationView: View {
                     .padding(.vertical, 16)
                     .background(
                         LinearGradient(
-                            colors: [.purple, .pink],
+                            colors: [.blue, .teal],
                             startPoint: .leading,
                             endPoint: .trailing
                         )
@@ -839,7 +839,17 @@ class ManualIDVerificationViewModel: ObservableObject {
                 return  // Don't check pending if already rejected
             }
 
-            // Check for pending verification
+            // Check for pending verification - first check user document
+            if data["idVerificationPending"] as? Bool == true {
+                pendingVerification = true
+                if let timestamp = data["idVerificationSubmittedAt"] as? Timestamp {
+                    submittedAt = timestamp.dateValue()
+                }
+                isCheckingStatus = false
+                return
+            }
+
+            // Also check pendingVerifications collection as backup
             let verificationDoc = try await db.collection("pendingVerifications").document(userId).getDocument()
             if verificationDoc.exists {
                 let verificationData = verificationDoc.data() ?? [:]
@@ -868,14 +878,16 @@ class ManualIDVerificationViewModel: ObservableObject {
         idPhotoItem = nil
         selfiePhotoItem = nil
 
-        // Clear rejection flags from user document
+        // Clear rejection and pending flags from user document
         guard let userId = Auth.auth().currentUser?.uid else { return }
         Task {
             do {
                 try await db.collection("users").document(userId).updateData([
                     "idVerificationRejected": FieldValue.delete(),
                     "idVerificationRejectedAt": FieldValue.delete(),
-                    "idVerificationRejectionReason": FieldValue.delete()
+                    "idVerificationRejectionReason": FieldValue.delete(),
+                    "idVerificationPending": FieldValue.delete(),
+                    "idVerificationSubmittedAt": FieldValue.delete()
                 ])
                 Logger.shared.info("Cleared rejection status for retry", category: .general)
             } catch {
@@ -980,12 +992,22 @@ class ManualIDVerificationViewModel: ObservableObject {
                 "contentChecked": true
             ])
 
-            isSubmitting = false
-            showingSuccess = true
-            pendingVerification = true
-            HapticManager.shared.notification(.success)
+            // Also update user document to mark verification as pending
+            try await db.collection("users").document(userId).updateData([
+                "idVerificationPending": true,
+                "idVerificationSubmittedAt": FieldValue.serverTimestamp()
+            ])
 
             Logger.shared.info("ID verification submitted for review - ID Type: \(idType.rawValue)", category: .general)
+
+            // Update local state BEFORE showing alert
+            pendingVerification = true
+            submittedAt = Date()
+            isSubmitting = false
+            HapticManager.shared.notification(.success)
+
+            // Show success alert
+            showingSuccess = true
 
         } catch {
             isSubmitting = false
