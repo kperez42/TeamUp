@@ -663,7 +663,13 @@ struct ChatView: View {
                         HStack(spacing: 12) {
                             Image(systemName: starter.icon)
                                 .font(.title3)
-                                .foregroundColor(.blue)
+                                .foregroundStyle(
+                                    LinearGradient(
+                                        colors: [.blue, .teal],
+                                        startPoint: .topLeading,
+                                        endPoint: .bottomTrailing
+                                    )
+                                )
                                 .frame(width: 32)
 
                             Text(starter.text)
@@ -676,7 +682,13 @@ struct ChatView: View {
 
                             Image(systemName: "arrow.right.circle")
                                 .font(.title3)
-                                .foregroundColor(.blue.opacity(0.5))
+                                .foregroundStyle(
+                                    LinearGradient(
+                                        colors: [.blue, .teal],
+                                        startPoint: .topLeading,
+                                        endPoint: .bottomTrailing
+                                    )
+                                )
                         }
                         .padding(16)
                         .background(Color(.systemBackground))
