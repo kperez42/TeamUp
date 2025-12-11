@@ -44,7 +44,7 @@ enum LegalDocumentType: String, CaseIterable {
     }
 
     var lastUpdated: String {
-        "November 29, 2025"
+        "December 11, 2025"
     }
 }
 
@@ -1498,7 +1498,7 @@ extension LegalDocumentView {
             }
 
             LegalSection(title: "Legal Information") {
-                Text("This statement was last updated on November 29, 2025. TeamUp strives to comply with applicable accessibility laws and regulations. If you believe you have experienced discrimination based on disability in accessing our services, you may file a complaint with the appropriate regulatory authority in your jurisdiction.")
+                Text("This statement was last updated on December 11, 2025. TeamUp strives to comply with applicable accessibility laws and regulations. If you believe you have experienced discrimination based on disability in accessing our services, you may file a complaint with the appropriate regulatory authority in your jurisdiction.")
                     .font(.caption)
             }
         }
