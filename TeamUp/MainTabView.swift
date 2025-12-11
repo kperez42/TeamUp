@@ -63,7 +63,7 @@ struct MainTabView: View {
                         .allowsHitTesting(selectedTab == 2)
 
                     // Saved
-                    SavedProfilesView()
+                    SavedProfilesView(mainSelectedTab: $selectedTab)
                         .opacity(selectedTab == 3 ? 1 : 0)
                         .allowsHitTesting(selectedTab == 3)
 

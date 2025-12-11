@@ -12,6 +12,7 @@ struct SavedProfilesView: View {
     @EnvironmentObject var authService: AuthService
     @ObservedObject private var viewModel = SavedProfilesViewModel.shared
     @Environment(\.dismiss) var dismiss
+    @Binding var mainSelectedTab: Int
     @State private var selectedUser: User?
     @State private var showUserDetail = false
     @State private var showClearAllConfirmation = false
@@ -562,7 +563,7 @@ struct SavedProfilesView: View {
 
             // CTA button to go back to discovering
             Button {
-                dismiss()
+                mainSelectedTab = 0
                 HapticManager.shared.impact(.light)
             } label: {
                 HStack(spacing: 8) {
@@ -1996,6 +1997,6 @@ class SavedProfilesViewModel: ObservableObject {
 }
 
 #Preview {
-    SavedProfilesView()
+    SavedProfilesView(mainSelectedTab: .constant(0))
         .environmentObject(AuthService.shared)
 }
