@@ -114,67 +114,6 @@ struct CurrentUserProfileCard: View {
 
                     Spacer()
                 }
-
-                // Bio preview
-                if !user.bio.isEmpty {
-                    HStack(spacing: 4) {
-                        Image(systemName: "text.quote")
-                            .font(.caption)
-                            .foregroundColor(.indigo)
-
-                        Text(user.bio)
-                            .font(.subheadline)
-                            .foregroundColor(.secondary)
-                            .lineLimit(2)
-
-                        Spacer()
-                    }
-                }
-
-                // Game Genres chips
-                if !user.gameGenres.isEmpty {
-                    VStack(alignment: .leading, spacing: 6) {
-                        HStack(spacing: 4) {
-                            Image(systemName: "folder.fill")
-                                .font(.caption)
-                                .foregroundColor(.cyan)
-
-                            Text("Genres:")
-                                .font(.caption)
-                                .foregroundColor(.secondary)
-                        }
-
-                        ScrollView(.horizontal, showsIndicators: false) {
-                            HStack(spacing: 6) {
-                                ForEach(user.gameGenres.prefix(4), id: \.self) { genre in
-                                    Text(genre)
-                                        .font(.caption)
-                                        .fontWeight(.medium)
-                                        .foregroundColor(.cyan)
-                                        .padding(.horizontal, 10)
-                                        .padding(.vertical, 5)
-                                        .background(Color.cyan.opacity(0.1))
-                                        .cornerRadius(12)
-                                }
-                            }
-                        }
-                    }
-                }
-
-                // Photo count if available
-                if !user.photos.isEmpty {
-                    HStack(spacing: 4) {
-                        Image(systemName: "photo.stack.fill")
-                            .font(.caption)
-                            .foregroundColor(.purple)
-
-                        Text("\(user.photos.count) photo\(user.photos.count == 1 ? "" : "s")")
-                            .font(.subheadline)
-                            .foregroundColor(.secondary)
-
-                        Spacer()
-                    }
-                }
             }
             .padding(.horizontal, 16)
             .padding(.vertical, 12)
