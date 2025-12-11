@@ -1152,18 +1152,75 @@ struct CachedCardImage: View {
                 }
 
                 if image == nil && loadError == nil {
-                    // Static placeholder - no loading animation for cleaner look
-                    LinearGradient(
-                        colors: [Color.blue.opacity(0.2), Color.teal.opacity(0.1)],
-                        startPoint: .topLeading,
-                        endPoint: .bottomTrailing
-                    )
+                    // Modern placeholder with gaming squad theme
+                    ZStack {
+                        // Base gradient background
+                        LinearGradient(
+                            colors: [
+                                Color.blue.opacity(0.25),
+                                Color.teal.opacity(0.15),
+                                Color.blue.opacity(0.2)
+                            ],
+                            startPoint: .topLeading,
+                            endPoint: .bottomTrailing
+                        )
+
+                        // Subtle radial glow in center
+                        RadialGradient(
+                            colors: [
+                                Color.white.opacity(0.15),
+                                Color.clear
+                            ],
+                            center: .center,
+                            startRadius: 0,
+                            endRadius: min(displayWidth, displayHeight) * 0.5
+                        )
+
+                        // Team/Squad icon design
+                        VStack(spacing: 8) {
+                            ZStack {
+                                // Glow circle behind icons
+                                Circle()
+                                    .fill(Color.white.opacity(0.1))
+                                    .frame(width: min(displayWidth, displayHeight) * 0.45, height: min(displayWidth, displayHeight) * 0.45)
+                                    .blur(radius: 15)
+
+                                // Three people in triangle formation (team/squad)
+                                ZStack {
+                                    // Top person
+                                    Image(systemName: "person.fill")
+                                        .font(.system(size: min(displayWidth, displayHeight) * 0.12, weight: .medium))
+                                        .foregroundColor(.white.opacity(0.6))
+                                        .offset(y: -min(displayWidth, displayHeight) * 0.08)
+
+                                    // Bottom left person
+                                    Image(systemName: "person.fill")
+                                        .font(.system(size: min(displayWidth, displayHeight) * 0.1, weight: .medium))
+                                        .foregroundColor(.white.opacity(0.45))
+                                        .offset(x: -min(displayWidth, displayHeight) * 0.08, y: min(displayWidth, displayHeight) * 0.05)
+
+                                    // Bottom right person
+                                    Image(systemName: "person.fill")
+                                        .font(.system(size: min(displayWidth, displayHeight) * 0.1, weight: .medium))
+                                        .foregroundColor(.white.opacity(0.45))
+                                        .offset(x: min(displayWidth, displayHeight) * 0.08, y: min(displayWidth, displayHeight) * 0.05)
+
+                                    // Game controller in center
+                                    Image(systemName: "gamecontroller.fill")
+                                        .font(.system(size: min(displayWidth, displayHeight) * 0.07, weight: .medium))
+                                        .foregroundStyle(
+                                            LinearGradient(
+                                                colors: [.yellow.opacity(0.7), .orange.opacity(0.5)],
+                                                startPoint: .topLeading,
+                                                endPoint: .bottomTrailing
+                                            )
+                                        )
+                                        .offset(y: min(displayWidth, displayHeight) * 0.01)
+                                }
+                            }
+                        }
+                    }
                     .frame(width: displayWidth, height: displayHeight)
-                    .overlay(
-                        Image(systemName: "person.fill")
-                            .font(.system(size: min(displayWidth, displayHeight) * 0.3))
-                            .foregroundColor(.white.opacity(0.4))
-                    )
                     .onAppear {
                         // Only load if we haven't checked cache yet or need to fetch
                         if !hasCheckedCache {
@@ -1345,41 +1402,71 @@ struct HighQualityCardImage: View {
                         }
                     }
                 } else {
-                    // Beautiful placeholder with gradient and subtle icon
+                    // Modern placeholder with gaming squad theme
                     ZStack {
+                        // Base gradient background
                         LinearGradient(
                             colors: [
-                                Color.blue.opacity(0.15),
-                                Color.teal.opacity(0.1),
-                                Color.blue.opacity(0.08)
+                                Color.blue.opacity(0.25),
+                                Color.teal.opacity(0.15),
+                                Color.blue.opacity(0.2)
                             ],
                             startPoint: .topLeading,
                             endPoint: .bottomTrailing
                         )
 
-                        // Subtle pattern overlay
-                        Circle()
-                            .fill(
-                                RadialGradient(
-                                    colors: [Color.white.opacity(0.1), Color.clear],
-                                    center: .center,
-                                    startRadius: 0,
-                                    endRadius: 150
-                                )
-                            )
-                            .frame(width: 200, height: 200)
-                            .blur(radius: 30)
+                        // Subtle radial glow
+                        RadialGradient(
+                            colors: [
+                                Color.white.opacity(0.15),
+                                Color.clear
+                            ],
+                            center: .center,
+                            startRadius: 0,
+                            endRadius: 150
+                        )
 
-                        // Person icon
-                        Image(systemName: "person.fill")
-                            .font(.system(size: 60, weight: .light))
-                            .foregroundStyle(
-                                LinearGradient(
-                                    colors: [Color.white.opacity(0.5), Color.white.opacity(0.3)],
-                                    startPoint: .top,
-                                    endPoint: .bottom
-                                )
-                            )
+                        // Team/Squad icon design
+                        ZStack {
+                            // Glow circle behind icons
+                            Circle()
+                                .fill(Color.white.opacity(0.1))
+                                .frame(width: 120, height: 120)
+                                .blur(radius: 15)
+
+                            // Three people in triangle formation
+                            ZStack {
+                                // Top person
+                                Image(systemName: "person.fill")
+                                    .font(.system(size: 36, weight: .medium))
+                                    .foregroundColor(.white.opacity(0.6))
+                                    .offset(y: -28)
+
+                                // Bottom left person
+                                Image(systemName: "person.fill")
+                                    .font(.system(size: 30, weight: .medium))
+                                    .foregroundColor(.white.opacity(0.45))
+                                    .offset(x: -28, y: 18)
+
+                                // Bottom right person
+                                Image(systemName: "person.fill")
+                                    .font(.system(size: 30, weight: .medium))
+                                    .foregroundColor(.white.opacity(0.45))
+                                    .offset(x: 28, y: 18)
+
+                                // Game controller in center
+                                Image(systemName: "gamecontroller.fill")
+                                    .font(.system(size: 22, weight: .medium))
+                                    .foregroundStyle(
+                                        LinearGradient(
+                                            colors: [.yellow.opacity(0.7), .orange.opacity(0.5)],
+                                            startPoint: .topLeading,
+                                            endPoint: .bottomTrailing
+                                        )
+                                    )
+                                    .offset(y: 4)
+                            }
+                        }
                     }
                     .onAppear {
                         if !hasCheckedCache {
