@@ -19,7 +19,7 @@ Before testing, ensure:
 ### Option A: Deploy to Production (Recommended)
 
 ```bash
-cd /home/user/Celestia/CloudFunctions
+cd /home/user/TeamUp/CloudFunctions
 
 # Set Firebase environment (if not done yet)
 firebase functions:config:set \
@@ -46,7 +46,7 @@ Functions:
 ### Option B: Test Locally with Emulator
 
 ```bash
-cd /home/user/Celestia/CloudFunctions
+cd /home/user/TeamUp/CloudFunctions
 
 # Start emulator
 firebase emulators:start --only functions
@@ -432,7 +432,7 @@ Your image optimization is working correctly if:
 **Solution**:
 ```bash
 # Check .env file exists
-cat /home/user/Celestia/CloudFunctions/.env
+cat /home/user/TeamUp/CloudFunctions/.env
 
 # Verify credentials are correct
 node test-cloudinary.js

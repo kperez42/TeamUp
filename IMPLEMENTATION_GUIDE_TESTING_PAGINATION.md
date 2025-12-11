@@ -404,7 +404,7 @@ After implementing all tests:
 
 ### Test 1: Complete User Journey (1 hour)
 
-Create `CelestiaUITests/CriticalUserJourneyTests.swift`:
+Create `TeamUpUITests/CriticalUserJourneyTests.swift`:
 
 ```swift
 import XCTest
@@ -492,7 +492,7 @@ final class CriticalUserJourneyTests: XCTestCase {
 
 ### Test 2: Payment Flow (1 hour)
 
-Create `CelestiaUITests/PaymentFlowTests.swift`:
+Create `TeamUpUITests/PaymentFlowTests.swift`:
 
 ```swift
 import XCTest
@@ -562,7 +562,7 @@ final class PaymentFlowTests: XCTestCase {
 
 ### Test 3: Safety Features (1 hour)
 
-Create `CelestiaUITests/SafetyFeaturesTests.swift`:
+Create `TeamUpUITests/SafetyFeaturesTests.swift`:
 
 ```swift
 import XCTest

@@ -319,7 +319,7 @@ let users = await Firestore.firestore().trackedQuery(
 - **Bumble**: Average API response < 500ms
 - **Hinge**: 99% of queries < 1s
 
-Celestia targets: **Match or exceed all benchmarks**
+TeamUp targets: **Match or exceed all benchmarks**
 
 ## 🚀 Deployment
 
@@ -345,8 +345,8 @@ firebase deploy --only functions
 
 ```bash
 # Build with new performance tracking
-cd Celestia
-xcodebuild -scheme Celestia -configuration Release
+cd TeamUp
+xcodebuild -scheme TeamUp -configuration Release
 
 # Or use Xcode
 # Product → Archive → Distribute App

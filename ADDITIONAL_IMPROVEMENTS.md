@@ -239,7 +239,7 @@ struct ContentView: View {
         Task {
             do {
                 let success = try await BiometricAuthManager.shared.authenticate(
-                    reason: "Unlock Celestia to view your matches"
+                    reason: "Unlock TeamUp to view your matches"
                 )
                 await MainActor.run {
                     isUnlocked = success
@@ -406,9 +406,9 @@ struct LanguageSettingsView: View {
 ```xml
 <key>NSUserActivityTypes</key>
 <array>
-    <string>com.celestia.discover</string>
-    <string>com.celestia.matches</string>
-    <string>com.celestia.messages</string>
+    <string>com.teamup.discover</string>
+    <string>com.teamup.matches</string>
+    <string>com.teamup.messages</string>
 </array>
 ```
 
@@ -436,7 +436,7 @@ struct ViewMatchesIntent: AppIntent {
 }
 
 // Register shortcuts
-struct CelestiaShortcuts: AppShortcutsProvider {
+struct TeamUpShortcuts: AppShortcutsProvider {
     static var appShortcuts: [AppShortcut] {
         AppShortcut(
             intent: OpenDiscoverIntent(),
@@ -818,7 +818,7 @@ struct ErrorView: View {
 #### **Implementation:**
 
 ```swift
-// Add to AppDelegate or CelestiaApp
+// Add to AppDelegate or TeamUpApp
 class ClipboardSecurityManager {
     static let shared = ClipboardSecurityManager()
 

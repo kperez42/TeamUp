@@ -21,8 +21,8 @@ This document summarizes all the features that were converted from placeholder/m
 **After**: Full SMS verification with Firebase Auth
 
 **New Files Created:**
-- `Celestia/PhoneVerificationService.swift` (225 lines)
-- `Celestia/PhoneVerificationView.swift` (420 lines)
+- `TeamUp/PhoneVerificationService.swift` (225 lines)
+- `TeamUp/PhoneVerificationView.swift` (420 lines)
 
 **Features Implemented:**
 - ✅ SMS OTP code sending via Firebase Auth Phone Provider
@@ -67,7 +67,7 @@ This document summarizes all the features that were converted from placeholder/m
 **After**: Automatic filtering in discovery flow
 
 **Files Modified:**
-- `Celestia/DiscoverViewModel.swift` (+95 lines)
+- `TeamUp/DiscoverViewModel.swift` (+95 lines)
 
 **How It Works:**
 1. User discovery loads potential matches from Firestore

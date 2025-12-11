@@ -62,7 +62,7 @@ let data = MyService.shared.getData()  // ❌ Global state, untestable
 
 ### ✅ 1. Fixed ChatViewModel Dependency Injection
 
-**Files:** `Celestia/ChatViewModel.swift`
+**Files:** `TeamUp/ChatViewModel.swift`
 
 **Changes:**
 - Line 67: Uses `matchService` instead of `MatchService.shared`
@@ -90,7 +90,7 @@ if let match = try? await matchService.fetchMatch(...) {
 
 ### ✅ 2. Fixed DiscoverViewModel Dependency Injection
 
-**Files:** `Celestia/DiscoverViewModel.swift`
+**Files:** `TeamUp/DiscoverViewModel.swift`
 
 **Changes:**
 - Updated initializer to inject 3 services (was only injecting 1)
@@ -136,7 +136,7 @@ func likeUser() {
 
 ### ✅ 3. Created Dependency Injection Container
 
-**Files:** `Celestia/DependencyContainer.swift` (new)
+**Files:** `TeamUp/DependencyContainer.swift` (new)
 
 **Purpose:** Centralized service management and dependency resolution
 
@@ -808,8 +808,8 @@ class MyService: MyServiceProtocol {
 
 - **Code Review Report:** `COMPREHENSIVE_CODE_REVIEW_REPORT.md`
 - **Security Fixes:** `SECURITY_FIXES_APPLIED.md`
-- **DI Container:** `Celestia/DependencyContainer.swift`
-- **Service Protocols:** `Celestia/ServiceProtocols.swift`
+- **DI Container:** `TeamUp/DependencyContainer.swift`
+- **Service Protocols:** `TeamUp/ServiceProtocols.swift`
 
 ---
 

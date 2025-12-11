@@ -18,8 +18,8 @@ This document outlines completed improvements and remaining recommendations for 
 - Better user experience during registration flow
 
 **Files Modified:**
-- `Celestia/ReferralManager.swift:78-121` - Parallelized 3 sequential queries
-- `Celestia/ReferralManager.swift:293-323` - Parallelized 2 sequential queries
+- `TeamUp/ReferralManager.swift:78-121` - Parallelized 3 sequential queries
+- `TeamUp/ReferralManager.swift:293-323` - Parallelized 2 sequential queries
 
 ---
 
@@ -39,8 +39,8 @@ This document outlines completed improvements and remaining recommendations for 
 - Business logic centralized in service layer
 
 **Files Modified:**
-- `Celestia/UserService.swift:258-356` - Added like/super-like management methods
-- `Celestia/DiscoverViewModel.swift:198-217` - Refactored to use UserService
+- `TeamUp/UserService.swift:258-356` - Added like/super-like management methods
+- `TeamUp/DiscoverViewModel.swift:198-217` - Refactored to use UserService
 
 **Methods Added to UserService:**
 - `checkDailyLikeLimit(userId:)` - Check if user has likes remaining
@@ -70,8 +70,8 @@ This document outlines completed improvements and remaining recommendations for 
 - Type-safe error handling
 
 **Files Modified:**
-- `Celestia/User.swift:300-387` - Added factory methods and error types
-- `Celestia/MatchService.swift:125-135` - Refactored to use factory
+- `TeamUp/User.swift:300-387` - Added factory methods and error types
+- `TeamUp/MatchService.swift:125-135` - Refactored to use factory
 
 ---
 
@@ -94,7 +94,7 @@ Create test files for:
 **Test Structure Example:**
 ```swift
 import Testing
-@testable import Celestia
+@testable import TeamUp
 
 @Suite("DiscoverViewModel Tests")
 @MainActor

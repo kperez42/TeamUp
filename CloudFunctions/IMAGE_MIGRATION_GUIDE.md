@@ -116,7 +116,7 @@ Create `ImageMigrationService.swift`:
 ```swift
 //
 //  ImageMigrationService.swift
-//  Celestia
+//  TeamUp
 //
 //  Service for migrating existing Firebase Storage images to Cloudinary CDN
 //
@@ -327,7 +327,7 @@ Create `AdminMigrationView.swift` for manual control:
 ```swift
 //
 //  AdminMigrationView.swift
-//  Celestia
+//  TeamUp
 //
 //  Admin interface for migrating images to CDN
 //
@@ -518,7 +518,7 @@ struct AdminMigrationView: View {
 ### Example 1: Migrate Single Image
 
 ```swift
-let firebaseUrl = "https://firebasestorage.googleapis.com/v0/b/celestia-app.appspot.com/o/profile-photos%2Fuser123.jpg?alt=media"
+let firebaseUrl = "https://firebasestorage.googleapis.com/v0/b/teamup-app.appspot.com/o/profile-photos%2Fuser123.jpg?alt=media"
 
 do {
     let optimizedPhoto = try await ImageMigrationService.shared.migrateImage(firebaseUrl: firebaseUrl)

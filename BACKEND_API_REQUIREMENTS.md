@@ -84,7 +84,7 @@ async function verifyToken(token) {
 ```json
 {
   "transaction_id": "1000000123456789",
-  "product_id": "com.celestia.subscription.premium.monthly",
+  "product_id": "com.teamup.subscription.premium.monthly",
   "purchase_date": "2025-01-15T10:30:00Z",
   "user_id": "firebase_user_id_123",
   "original_transaction_id": "1000000987654321",
@@ -97,7 +97,7 @@ async function verifyToken(token) {
 {
   "is_valid": true,
   "transaction_id": "1000000123456789",
-  "product_id": "com.celestia.subscription.premium.monthly",
+  "product_id": "com.teamup.subscription.premium.monthly",
   "subscription_tier": "premium",
   "expiration_date": "2025-02-15T10:30:00Z",
   "reason": null
@@ -109,7 +109,7 @@ async function verifyToken(token) {
 {
   "is_valid": false,
   "transaction_id": "1000000123456789",
-  "product_id": "com.celestia.subscription.premium.monthly",
+  "product_id": "com.teamup.subscription.premium.monthly",
   "subscription_tier": null,
   "expiration_date": null,
   "reason": "Receipt verification failed with Apple"
@@ -552,7 +552,7 @@ NODE_ENV=production
 FIREBASE_PROJECT_ID=your-project-id
 REDIS_URL=redis://localhost:6379
 APPLE_SHARED_SECRET=your_apple_shared_secret
-DATABASE_URL=postgresql://user:pass@localhost/celestia
+DATABASE_URL=postgresql://user:pass@localhost/teamup
 PERSPECTIVE_API_KEY=your_perspective_api_key  # Optional
 ```
 
@@ -563,12 +563,12 @@ PERSPECTIVE_API_KEY=your_perspective_api_key  # Optional
 ### Test Receipt Validation
 
 ```bash
-curl -X POST https://api.celestia.app/v1/purchases/validate \
+curl -X POST https://api.teamup.app/v1/purchases/validate \
   -H "Authorization: Bearer <firebase_token>" \
   -H "Content-Type: application/json" \
   -d '{
     "transaction_id": "1000000123456789",
-    "product_id": "com.celestia.subscription.premium.monthly",
+    "product_id": "com.teamup.subscription.premium.monthly",
     "purchase_date": "2025-01-15T10:30:00Z",
     "user_id": "firebase_user_id_123",
     "original_transaction_id": "1000000987654321",
@@ -579,7 +579,7 @@ curl -X POST https://api.celestia.app/v1/purchases/validate \
 ### Test Content Moderation
 
 ```bash
-curl -X POST https://api.celestia.app/v1/moderation/validate \
+curl -X POST https://api.teamup.app/v1/moderation/validate \
   -H "Authorization: Bearer <firebase_token>" \
   -H "Content-Type: application/json" \
   -d '{
@@ -628,9 +628,9 @@ curl -X POST https://api.celestia.app/v1/moderation/validate \
 ## Support
 
 For questions or issues:
-- **Email**: dev@celestia.app
-- **Documentation**: https://docs.celestia.app
-- **GitHub Issues**: https://github.com/celestia/backend/issues
+- **Email**: dev@teamup.app
+- **Documentation**: https://docs.teamup.app
+- **GitHub Issues**: https://github.com/teamup/backend/issues
 
 ---
 

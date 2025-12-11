@@ -56,7 +56,7 @@ deleteFromCloudinary(publicId)           // Cleanup
 - Rate limiting protection
 - Input validation
 
-### 2. iOS Client Integration (Celestia/)
+### 2. iOS Client Integration (TeamUp/)
 
 #### OptimizedImageLoader Service
 **File:** `OptimizedImageLoader.swift` (400+ lines)
@@ -279,7 +279,7 @@ User views profile
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│                     iOS App (Celestia)                       │
+│                     iOS App (TeamUp)                       │
 ├─────────────────────────────────────────────────────────────┤
 │  OptimizedImageLoader                                        │
 │  ├── Smart size selection                                    │
@@ -431,7 +431,7 @@ Transformations: 1000 users × 15 = 15,000/month ✓
 ### Upload Optimized Photo
 
 ```swift
-import Celestia
+import TeamUp
 
 // In your photo upload flow
 func uploadProfilePhoto(_ image: UIImage) async throws {
@@ -543,7 +543,7 @@ CloudFunctions/
 ├── IMAGE_MIGRATION_GUIDE.md              # Migration instructions
 └── PERFORMANCE_MONITORING_GUIDE.md       # Monitoring guide
 
-Celestia/
+TeamUp/
 ├── OptimizedImageLoader.swift            # CDN image loading
 ├── ImageMigrationService.swift           # Migration service
 ├── AdminMigrationView.swift              # Migration UI
@@ -775,13 +775,13 @@ The complete image optimization system has been successfully implemented with:
 - `CloudFunctions/TESTING_GUIDE.md`
 - `CloudFunctions/IMAGE_MIGRATION_GUIDE.md`
 - `CloudFunctions/PERFORMANCE_MONITORING_GUIDE.md`
-- `Celestia/OptimizedImageLoader.swift`
-- `Celestia/ImageMigrationService.swift`
-- `Celestia/AdminMigrationView.swift`
-- `Celestia/ImagePerformanceMonitor.swift`
-- `Celestia/ImagePerformanceDashboard.swift`
-- `Celestia/MainTabView.swift` (compilation fixes)
-- `Celestia/DiscoverView.swift` (compilation fixes)
+- `TeamUp/OptimizedImageLoader.swift`
+- `TeamUp/ImageMigrationService.swift`
+- `TeamUp/AdminMigrationView.swift`
+- `TeamUp/ImagePerformanceMonitor.swift`
+- `TeamUp/ImagePerformanceDashboard.swift`
+- `TeamUp/MainTabView.swift` (compilation fixes)
+- `TeamUp/DiscoverView.swift` (compilation fixes)
 - `IMAGE_OPTIMIZATION_REPORT.md`
 - `IMAGE_OPTIMIZATION_COMPLETE.md`
 

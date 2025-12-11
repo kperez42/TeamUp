@@ -68,7 +68,7 @@ Replace `YOUR_TEAM_ID` with your Apple Developer Team ID (found in Apple Develop
 
 ### 2. Xcode Configuration
 
-The entitlements file (`Celestia.entitlements`) has been updated with:
+The entitlements file (`TeamUp.entitlements`) has been updated with:
 
 ```xml
 <key>com.apple.developer.associated-domains</key>
@@ -79,7 +79,7 @@ The entitlements file (`Celestia.entitlements`) has been updated with:
 ```
 
 **Enable in Xcode:**
-1. Select Celestia target
+1. Select TeamUp target
 2. Go to "Signing & Capabilities"
 3. Verify "Associated Domains" capability is enabled
 4. Verify domains are listed:
@@ -140,14 +140,14 @@ Add the following to your `Info.plist`:
 
 | Route | URL | Purpose |
 |-------|-----|---------|
-| Home | `celestia://home` | App home screen |
-| Referral | `celestia://join?code=CODE` | Referral signup |
-| Profile | `celestia://profile?id=USER_ID` | View user profile |
-| Match | `celestia://match?id=MATCH_ID` | View match details |
-| Message | `celestia://message?id=MATCH_ID` | Open conversation |
-| Upgrade | `celestia://upgrade` | Premium upgrade |
-| Settings | `celestia://settings` | App settings |
-| Notifications | `celestia://notifications` | Notifications |
+| Home | `teamup://home` | App home screen |
+| Referral | `teamup://join?code=CODE` | Referral signup |
+| Profile | `teamup://profile?id=USER_ID` | View user profile |
+| Match | `teamup://match?id=MATCH_ID` | View match details |
+| Message | `teamup://message?id=MATCH_ID` | Open conversation |
+| Upgrade | `teamup://upgrade` | Premium upgrade |
+| Settings | `teamup://settings` | App settings |
+| Notifications | `teamup://notifications` | Notifications |
 
 ---
 
@@ -184,7 +184,7 @@ In your main `App` struct:
 
 ```swift
 @main
-struct CelestiaApp: App {
+struct TeamUpApp: App {
     @StateObject private var router = DeepLinkRouter.shared
 
     var body: some Scene {
@@ -273,7 +273,7 @@ extension AuthService {
 
         guard let httpResponse = response as? HTTPURLResponse,
               (200...299).contains(httpResponse.statusCode) else {
-            throw CelestiaError.emailVerificationFailed
+            throw TeamUpError.emailVerificationFailed
         }
 
         // Reload current user to get updated email verification status
@@ -293,7 +293,7 @@ extension AuthService {
 1. Open Notes app
 2. Type: `https://teamup.app/join/TESTCODE`
 3. Long press the link
-4. Tap "Open in Celestia"
+4. Tap "Open in TeamUp"
 
 #### Method 2: Command Line (Simulator)
 ```bash
@@ -311,13 +311,13 @@ xcrun devicectl device process launch --device <DEVICE_ID> \
 
 #### Simulator
 ```bash
-xcrun simctl openurl booted "celestia://join?code=TESTCODE"
+xcrun simctl openurl booted "teamup://join?code=TESTCODE"
 ```
 
 #### Device
 ```bash
 xcrun devicectl device process launch --device <DEVICE_ID> \
-  --url "celestia://join?code=TESTCODE"
+  --url "teamup://join?code=TESTCODE"
 ```
 
 ### Verify Server Configuration
@@ -427,11 +427,11 @@ Apple's CDN can take up to 24 hours to update. Be patient!
 ### URL Scheme Not Working
 
 **1. Verify Info.plist**
-Check that `CFBundleURLSchemes` contains `celestia`
+Check that `CFBundleURLSchemes` contains `teamup`
 
 **2. Test with Command Line**
 ```bash
-xcrun simctl openurl booted "celestia://home"
+xcrun simctl openurl booted "teamup://home"
 ```
 
 **3. Check Logs**
@@ -448,8 +448,8 @@ This usually means:
 3. Server configuration issue
 
 **Fix:**
-- Long press the link and select "Open in Celestia"
-- Or use URL scheme as fallback: `celestia://...`
+- Long press the link and select "Open in TeamUp"
+- Or use URL scheme as fallback: `teamup://...`
 
 ### Referral Code Not Applied
 

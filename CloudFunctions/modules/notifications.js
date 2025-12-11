@@ -473,7 +473,7 @@ async function sendProfileStatusNotification(userId, statusData) {
  */
 async function sendAdminNotification(notificationData) {
   // Admin email whitelist - must match the one in index.js
-  const adminEmails = ['perezkevin640@gmail.com', 'admin@celestia.app'];
+  const adminEmails = ['perezkevin640@gmail.com', 'admin@teamup.app'];
 
   try {
     // Get all admin users
@@ -749,7 +749,7 @@ async function sendReportResolvedNotification(reporterId, resolutionData) {
   // Customize message based on action taken
   if (action === 'ban' || action === 'banned') {
     title = "✅ Report Action Taken";
-    body = "Thank you for your report. The user has been removed from Celestia.";
+    body = "Thank you for your report. The user has been removed from TeamUp.";
   } else if (action === 'suspend' || action === 'suspended') {
     title = "✅ Report Action Taken";
     body = "Thank you for your report. The user has been suspended.";
@@ -758,7 +758,7 @@ async function sendReportResolvedNotification(reporterId, resolutionData) {
     body = "Thank you for your report. A warning has been issued to the user.";
   } else if (action === 'dismiss' || action === 'dismissed') {
     title = "📋 Report Reviewed";
-    body = "Your report has been reviewed. No violation was found, but we appreciate your help keeping Celestia safe.";
+    body = "Your report has been reviewed. No violation was found, but we appreciate your help keeping TeamUp safe.";
   }
 
   const notification = {

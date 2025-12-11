@@ -1,6 +1,6 @@
 # Performance Optimization Guide
 
-This document provides actionable performance improvements to make Celestia run smoothly and fast.
+This document provides actionable performance improvements to make TeamUp run smoothly and fast.
 
 ## ✅ What's Already Good
 

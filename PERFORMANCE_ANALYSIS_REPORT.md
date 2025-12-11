@@ -25,7 +25,7 @@ The TeamUp iOS app has solid foundational performance practices (caching, deboun
 
 ### Issue #1: Classic N+1 Query Problem in ProfileViewersView
 
-**File:** `/home/user/Celestia/Celestia/ProfileViewersView.swift`
+**File:** `/home/user/TeamUp/TeamUp/ProfileViewersView.swift`
 **Lines:** 336-351
 **Severity:** CRITICAL
 **Estimated Queries Per Call:** 50 (1 list query + 50 individual user queries)
@@ -68,7 +68,7 @@ for chunk in chunked {
 
 ### Issue #2: Heavy Loop Operations Without Batch in ReferralManager
 
-**File:** `/home/user/Celestia/Celestia/ReferralManager.swift`
+**File:** `/home/user/TeamUp/TeamUp/ReferralManager.swift`
 **Lines:** 260-273
 **Severity:** CRITICAL
 **Pattern:** Sequential iteration with minimal optimization
@@ -102,7 +102,7 @@ Cache leaderboard results (already cached in line 276). Consider denormalizing s
 
 ### Issue #3: Nested Document Fetching in LikeActivityView
 
-**File:** `/home/user/Celestia/Celestia/LikeActivityView.swift`
+**File:** `/home/user/TeamUp/TeamUp/LikeActivityView.swift`
 **Lines:** 260-343
 **Severity:** CRITICAL
 **Query Count:** Up to 130 additional queries
@@ -148,7 +148,7 @@ for chunk in chunked {
 
 ### Issue #4: SearchManager Fetches Too Many Results
 
-**File:** `/home/user/Celestia/Celestia/SearchManager.swift`
+**File:** `/home/user/TeamUp/TeamUp/SearchManager.swift`
 **Line:** 103
 **Severity:** HIGH
 **Impact:** Memory, latency
@@ -186,7 +186,7 @@ lastSearchDocument = snapshot.documents.last
 
 ### Issue #5: SavedProfilesView Complex Batch Operations Without Caching
 
-**File:** `/home/user/Celestia/Celestia/SavedProfilesView.swift`
+**File:** `/home/user/TeamUp/TeamUp/SavedProfilesView.swift`
 **Lines:** 470-548
 **Severity:** HIGH
 **Query Pattern:** Inefficient batching, missing caches
@@ -233,7 +233,7 @@ await savedProfileCache.set("saved_profiles_\(currentUserId)", value: profiles)
 
 ### Issue #6: AnalyticsServiceEnhanced Multiple Passes Over Data
 
-**File:** `/home/user/Celestia/Celestia/AnalyticsServiceEnhanced.swift`
+**File:** `/home/user/TeamUp/TeamUp/AnalyticsServiceEnhanced.swift`
 **Lines:** 83-91
 **Severity:** HIGH
 **Pattern:** Triple iteration over same dataset
@@ -280,7 +280,7 @@ for doc in viewsSnapshot.documents {
 
 ### Issue #7: Inefficient View Body Filtering in DiscoverView
 
-**File:** `/home/user/Celestia/Celestia/DiscoverView.swift`
+**File:** `/home/user/TeamUp/TeamUp/DiscoverView.swift`
 **Line:** 185
 **Severity:** HIGH
 **Pattern:** Heavy computation in view body
@@ -326,7 +326,7 @@ ForEach(viewModel.visibleIndices, id: \.self) { index in
 
 ### Issue #8: Missing Pagination Cursor in ChatView Message Loading
 
-**File:** `/home/user/Celestia/Celestia/Repositories/FirestoreMessageRepository.swift`
+**File:** `/home/user/TeamUp/TeamUp/Repositories/FirestoreMessageRepository.swift`
 **Lines:** 17-29
 **Severity:** MEDIUM
 **Impact:** Loads entire message history
@@ -381,7 +381,7 @@ func fetchMessages(
 
 ### Issue #9: Inefficient String Search in SearchManager
 
-**File:** `/home/user/Celestia/Celestia/SearchManager.swift`
+**File:** `/home/user/TeamUp/TeamUp/SearchManager.swift`
 **Lines:** 144-175 (matchesFilter function)
 **Severity:** MEDIUM
 **Pattern:** Multiple string searches per filter
@@ -420,7 +420,7 @@ if filter.withPhotosOnly {
 
 ### Issue #10: Unoptimized Sorting in MatchesView
 
-**File:** `/home/user/Celestia/Celestia/MatchesView.swift`
+**File:** `/home/user/TeamUp/TeamUp/MatchesView.swift`
 **Lines:** 38-94
 **Severity:** MEDIUM
 **Pattern:** Complex sorting in view body
@@ -487,7 +487,7 @@ func applyFilters(searchText: String, sortOption: SortOption) {
 
 ### Issue #11: Missing Index for Common Queries
 
-**File:** `/home/user/Celestia/firestore.indexes.json`
+**File:** `/home/user/TeamUp/firestore.indexes.json`
 **Severity:** MEDIUM
 **Pattern:** Lack of composite indexes
 
@@ -537,7 +537,7 @@ Add composite indexes:
 
 ### Issue #12: InterestService Multiple Query Pattern
 
-**File:** `/home/user/Celestia/Celestia/InterestService.swift`
+**File:** `/home/user/TeamUp/TeamUp/InterestService.swift`
 **Lines:** 82-149
 **Severity:** MEDIUM
 **Pattern:** Repeated similar queries with slight variations

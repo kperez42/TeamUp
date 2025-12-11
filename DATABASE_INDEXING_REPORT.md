@@ -1,7 +1,7 @@
 # Database Indexing Performance Report
 
 **Date**: November 18, 2025
-**Project**: Celestia Firestore Database
+**Project**: TeamUp Firestore Database
 **Time to Complete**: 20 minutes
 
 ## 🎯 Performance Improvements

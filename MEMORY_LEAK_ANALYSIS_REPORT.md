@@ -1,4 +1,4 @@
-# CELESTIA iOS APP - MEMORY LEAK & RETAIN CYCLE ANALYSIS REPORT
+# TEAMUP iOS APP - MEMORY LEAK & RETAIN CYCLE ANALYSIS REPORT
 
 ## Executive Summary
 Found **4 critical memory leaks** involving NotificationCenter observers that are never removed, and **1 high-severity observation** regarding unbounded cache growth. Overall memory management is generally good with proper use of `[weak self]` in most places.
@@ -9,7 +9,7 @@ Found **4 critical memory leaks** involving NotificationCenter observers that ar
 
 ### 1. OnboardingViewModel - NotificationCenter Observer Memory Leak
 **Severity: CRITICAL**  
-**File**: `/home/user/Celestia/Celestia/OnboardingViewModel.swift`  
+**File**: `/home/user/TeamUp/TeamUp/OnboardingViewModel.swift`  
 **Lines**: 119-131
 
 **Issue**: 
@@ -65,7 +65,7 @@ deinit {
 
 ### 2. MessageQueueManager - NotificationCenter Observer Memory Leak
 **Severity: CRITICAL**  
-**File**: `/home/user/Celestia/Celestia/MessageQueueManager.swift`  
+**File**: `/home/user/TeamUp/TeamUp/MessageQueueManager.swift`  
 **Lines**: 177-186
 
 **Issue**:
@@ -123,7 +123,7 @@ deinit {
 
 ### 3. QueryCache (CacheManager) - NotificationCenter Observer Memory Leak
 **Severity: CRITICAL**  
-**File**: `/home/user/Celestia/Celestia/QueryCache.swift`  
+**File**: `/home/user/TeamUp/TeamUp/QueryCache.swift`  
 **Lines**: 204-212
 
 **Issue**:
@@ -195,7 +195,7 @@ class CacheManager {
 
 ### 4. PerformanceMonitor - NotificationCenter Observer Memory Leak
 **Severity: CRITICAL**  
-**File**: `/home/user/Celestia/Celestia/PerformanceMonitor.swift`  
+**File**: `/home/user/TeamUp/TeamUp/PerformanceMonitor.swift`  
 **Lines**: 94-102
 
 **Issue**:
@@ -264,7 +264,7 @@ deinit {
 
 ### 5. UserService - Unbounded Search Cache Growth
 **Severity: HIGH**  
-**File**: `/home/user/Celestia/Celestia/UserService.swift`  
+**File**: `/home/user/TeamUp/TeamUp/UserService.swift`  
 **Lines**: 34-36, 225-237
 
 **Issue**:

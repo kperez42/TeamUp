@@ -106,7 +106,7 @@ struct ChatView: View {
 In your app's main view or scene delegate:
 
 ```swift
-struct CelestiaApp: App {
+struct TeamUpApp: App {
     @StateObject private var activationMetrics = ActivationMetrics.shared
     @Environment(\.scenePhase) var scenePhase
 

@@ -1,4 +1,4 @@
-# 💰 CODEBASE VALUE ANALYSIS - CELESTIA APP
+# 💰 CODEBASE VALUE ANALYSIS - TEAMUP APP
 
 **Date:** November 16, 2025
 **Analysis Type:** Code Size, Utilization, Development Cost, Timeline

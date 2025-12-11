@@ -2,7 +2,7 @@
 
 ## Overview
 
-The Celestia In-App Purchase system provides comprehensive monetization through StoreKit 2, featuring 3-tier subscriptions, consumable purchases, receipt validation, and a beautiful paywall UI.
+The TeamUp In-App Purchase system provides comprehensive monetization through StoreKit 2, featuring 3-tier subscriptions, consumable purchases, receipt validation, and a beautiful paywall UI.
 
 ## Subscription Tiers
 

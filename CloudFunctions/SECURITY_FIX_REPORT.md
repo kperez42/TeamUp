@@ -1,7 +1,7 @@
 # Security Vulnerability Fix Report
 
 **Date**: November 18, 2025
-**Project**: Celestia CloudFunctions
+**Project**: TeamUp CloudFunctions
 **Time to Complete**: 15 minutes
 
 ## 🔒 Vulnerabilities Fixed

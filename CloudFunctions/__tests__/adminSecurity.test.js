@@ -233,7 +233,7 @@ describe('Admin Security Module', () => {
     test('should pass authenticated requests through', async () => {
       const middleware = adminSecurity.requireAdmin(false);
 
-      const req = { auth: { uid: 'admin_legit', token: { email: 'admin@celestia.com' } } };
+      const req = { auth: { uid: 'admin_legit', token: { email: 'admin@teamup.com' } } };
       const res = {
         status: jest.fn().mockReturnThis(),
         json: jest.fn(),

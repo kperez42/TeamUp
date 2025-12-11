@@ -640,7 +640,7 @@ if let match = try? await MatchService.shared.fetchMatch(...)  // ❌ Silent fai
 ---
 
 **Error Handling Strengths:**
-- ✅ Comprehensive CelestiaError enum (95 error cases)
+- ✅ Comprehensive TeamUpError enum (95 error cases)
 - ✅ Excellent error messages with recovery suggestions
 - ✅ Good LoadingState<T> pattern
 - ✅ Error UI components (ErrorView, ErrorBanner)
@@ -867,7 +867,7 @@ if let match = try? await MatchService.shared.fetchMatch(...)  // ❌ Silent fai
 ## WHAT'S WORKING WELL ✅
 
 ### Strengths of the Codebase:
-1. **Error Handling:** Comprehensive CelestiaError enum, excellent user-facing messages
+1. **Error Handling:** Comprehensive TeamUpError enum, excellent user-facing messages
 2. **Security Features:** XSS protection, input sanitization, biometric auth
 3. **SwiftUI Patterns:** Modern, declarative UI code
 4. **Service Protocols:** Well-defined, clean abstractions
@@ -916,8 +916,8 @@ This comprehensive review has generated the following detailed documents:
 4. **PERFORMANCE_ANALYSIS_REPORT.md** - Performance optimization guide
 5. **PERFORMANCE_QUICK_FIX_GUIDE.md** - Quick performance fixes
 6. **PERFORMANCE_CODE_EXAMPLES.md** - Code examples for fixes
-7. **CELESTIA_CODE_QUALITY_REPORT.md** - Code quality analysis
-8. **CELESTIA_REFACTORING_GUIDE.md** - Refactoring roadmap
+7. **TEAMUP_CODE_QUALITY_REPORT.md** - Code quality analysis
+8. **TEAMUP_REFACTORING_GUIDE.md** - Refactoring roadmap
 9. **CONCURRENCY_SAFETY_REPORT.md** - Concurrency issues
 10. **CONCURRENCY_ISSUES_SUMMARY.md** - Quick concurrency reference
 

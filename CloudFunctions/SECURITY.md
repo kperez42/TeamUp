@@ -119,7 +119,7 @@ const validationResult = await receiptValidation.validateAppleReceipt(
 {
   "isValid": true,
   "transactionId": "1000000123456789",
-  "productId": "com.celestia.premium.monthly",
+  "productId": "com.teamup.premium.monthly",
   "fraudScore": 15,  // 0-100, higher is more suspicious
   "jailbreakRisk": 0.2,  // 0-1, higher is more suspicious
   "expiryDate": "2025-02-14T..."
@@ -243,7 +243,7 @@ Detects modified/jailbroken devices that may bypass payment validation or use cr
 
 ### Client-Side Detection (iOS)
 
-**Location:** `Celestia/StoreManager.swift`
+**Location:** `TeamUp/StoreManager.swift`
 
 The iOS app can optionally send device information for enhanced detection:
 
@@ -650,8 +650,8 @@ npm run test:fraud
 ### Contact
 
 For security incidents or questions:
-- Security Team: security@celestia.app
-- DevOps: devops@celestia.app
+- Security Team: security@teamup.app
+- DevOps: devops@teamup.app
 
 ---
 

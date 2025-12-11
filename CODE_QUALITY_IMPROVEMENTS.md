@@ -74,7 +74,7 @@ func updateUI() {
 
 **Script to Find All Occurrences**:
 ```bash
-grep -r "DispatchQueue.main.async" Celestia/ --include="*.swift"
+grep -r "DispatchQueue.main.async" TeamUp/ --include="*.swift"
 ```
 
 ---
@@ -242,7 +242,7 @@ struct NameValidator {
 
 **Create Error Message Mapper**:
 ```swift
-// Create: Celestia/Utilities/ErrorMessageMapper.swift
+// Create: TeamUp/Utilities/ErrorMessageMapper.swift
 enum UserFacingError {
     case network(underlyingError: Error)
     case server(statusCode: Int)

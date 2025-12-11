@@ -206,7 +206,7 @@ curl -X POST http://localhost:5001/<project-id>/us-central1/validateReceipt \
 # Expected response:
 # {
 #   "valid": true,
-#   "productId": "celestia_premium_monthly",
+#   "productId": "teamup_premium_monthly",
 #   "expirationDate": "2025-02-17T..."
 # }
 ```
@@ -278,11 +278,11 @@ firebase deploy --only functions:validateReceipt,functions:moderateContent
 
 ### Update Base URL in Constants.swift
 
-**File**: `Celestia/Constants.swift:14`
+**File**: `TeamUp/Constants.swift:14`
 
 **Before**:
 ```swift
-static let baseURL = "https://api.celestia.app"  // NOT DEPLOYED
+static let baseURL = "https://api.teamup.app"  // NOT DEPLOYED
 ```
 
 **After**:
@@ -290,7 +290,7 @@ static let baseURL = "https://api.celestia.app"  // NOT DEPLOYED
 static let baseURL = "https://us-central1-<your-project-id>.cloudfunctions.net/api"
 
 // Example:
-// static let baseURL = "https://us-central1-celestia-prod-abc123.cloudfunctions.net/api"
+// static let baseURL = "https://us-central1-teamup-prod-abc123.cloudfunctions.net/api"
 ```
 
 **Find your project ID**:
@@ -309,8 +309,8 @@ firebase projects:list
 
 ```bash
 # Build iOS app
-xcodebuild -project Celestia.xcodeproj \
-  -scheme Celestia \
+xcodebuild -project TeamUp.xcodeproj \
+  -scheme TeamUp \
   -destination 'platform=iOS Simulator,name=iPhone 15' \
   build
 
@@ -428,7 +428,7 @@ gcloud alpha monitoring policies create \
 ### Add Crashlytics Integration
 
 ```swift
-// Celestia/BackendAPIService.swift
+// TeamUp/BackendAPIService.swift
 func validateReceipt(...) async throws {
     do {
         let response = try await performRequest(...)
@@ -465,7 +465,7 @@ func validateReceipt(...) async throws {
 - $0.0000025 per GB-second compute time
 - $0.10 per GB network egress
 
-### Estimated Costs for Celestia
+### Estimated Costs for TeamUp
 
 **Assumptions**:
 - 10,000 daily active users
@@ -531,7 +531,7 @@ exports.validateReceipt = functions
 
 **Solution**: Verify Firebase ID token in request
 ```swift
-// Celestia/BackendAPIService.swift
+// TeamUp/BackendAPIService.swift
 func performRequest(...) async throws {
     guard let idToken = try? await Auth.auth().currentUser?.getIDToken() else {
         throw BackendError.unauthorized

@@ -1,5 +1,5 @@
 /**
- * Celestia Backend API - Cloud Functions
+ * TeamUp Backend API - Cloud Functions
  * Handles server-side validation, moderation, and admin operations
  */
 
@@ -1966,7 +1966,7 @@ exports.onUserCreated = functions.firestore
     const userId = context.params.userId;
 
     // Admin email whitelist - must match SettingsView.swift whitelist
-    const adminEmails = ['perezkevin640@gmail.com', 'admin@celestia.app'];
+    const adminEmails = ['perezkevin640@gmail.com', 'admin@teamup.app'];
 
     // Check if this is an admin user
     const isAdminUser = userData.email && adminEmails.includes(userData.email.toLowerCase());
@@ -2075,7 +2075,7 @@ exports.onUserUpdated = functions.firestore
     }
 
     // Admin email whitelist
-    const adminEmails = ['perezkevin640@gmail.com', 'admin@celestia.app'];
+    const adminEmails = ['perezkevin640@gmail.com', 'admin@teamup.app'];
 
     // If email is in whitelist and isAdmin is not set, set it
     if (userData.email && adminEmails.includes(userData.email.toLowerCase())) {
@@ -2749,7 +2749,7 @@ function getContentRejectionMessage(result) {
 /**
  * Admin emails that should receive notifications for new pending accounts
  */
-const ADMIN_EMAILS = ['perezkevin640@gmail.com', 'admin@celestia.app'];
+const ADMIN_EMAILS = ['perezkevin640@gmail.com', 'admin@teamup.app'];
 
 /**
  * Firestore trigger: Notify admin when a new user account is created

@@ -313,7 +313,7 @@ Firebase
 
 ### Configuration
 ```swift
-// CelestiaApp.swift
+// TeamUpApp.swift
 let settings = FirestoreSettings()
 settings.isPersistenceEnabled = true
 settings.cacheSizeBytes = FirestoreCacheSizeUnlimited  // Full offline support

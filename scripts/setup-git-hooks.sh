@@ -1,11 +1,11 @@
 #!/bin/bash
 
-# Setup Git Hooks for Celestia
+# Setup Git Hooks for TeamUp
 # This script installs pre-commit hooks for code quality checks
 
 set -e
 
-echo "🔧 Setting up Git hooks for Celestia..."
+echo "🔧 Setting up Git hooks for TeamUp..."
 
 # Get the git directory
 GIT_DIR=$(git rev-parse --git-dir)
@@ -18,7 +18,7 @@ mkdir -p "$HOOKS_DIR"
 cat > "$HOOKS_DIR/pre-commit" << 'EOF'
 #!/bin/bash
 
-# Pre-commit hook for Celestia
+# Pre-commit hook for TeamUp
 # Runs SwiftLint on staged Swift files
 
 echo "🔍 Running SwiftLint..."

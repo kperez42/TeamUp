@@ -4,7 +4,7 @@
     <metrics statements="1858" coveredstatements="381" conditionals="824" coveredconditionals="159" methods="240" coveredmethods="42" elements="2922" coveredelements="582" complexity="0" loc="1858" ncloc="1858" packages="2" files="10" classes="10"/>
     <package name="CloudFunctions">
       <metrics statements="374" coveredstatements="0" conditionals="136" coveredconditionals="0" methods="35" coveredmethods="0"/>
-      <file name="index.js" path="/home/user/Celestia/CloudFunctions/index.js">
+      <file name="index.js" path="/home/user/TeamUp/CloudFunctions/index.js">
         <metrics statements="374" coveredstatements="0" conditionals="136" coveredconditionals="0" methods="35" coveredmethods="0"/>
         <line num="6" count="0" type="stmt"/>
         <line num="7" count="0" type="stmt"/>
@@ -384,7 +384,7 @@
     </package>
     <package name="CloudFunctions.modules">
       <metrics statements="1484" coveredstatements="381" conditionals="688" coveredconditionals="159" methods="205" coveredmethods="42"/>
-      <file name="adminDashboard.js" path="/home/user/Celestia/CloudFunctions/modules/adminDashboard.js">
+      <file name="adminDashboard.js" path="/home/user/TeamUp/CloudFunctions/modules/adminDashboard.js">
         <metrics statements="416" coveredstatements="0" conditionals="181" coveredconditionals="0" methods="84" coveredmethods="0"/>
         <line num="13" count="0" type="stmt"/>
         <line num="14" count="0" type="stmt"/>
@@ -803,7 +803,7 @@
         <line num="1514" count="0" type="stmt"/>
         <line num="1518" count="0" type="stmt"/>
       </file>
-      <file name="adminSecurity.js" path="/home/user/Celestia/CloudFunctions/modules/adminSecurity.js">
+      <file name="adminSecurity.js" path="/home/user/TeamUp/CloudFunctions/modules/adminSecurity.js">
         <metrics statements="31" coveredstatements="31" conditionals="9" coveredconditionals="8" methods="5" coveredmethods="5"/>
         <line num="6" count="1" type="stmt"/>
         <line num="7" count="1" type="stmt"/>
@@ -837,7 +837,7 @@
         <line num="121" count="3" type="stmt"/>
         <line num="125" count="1" type="stmt"/>
       </file>
-      <file name="contentModeration.js" path="/home/user/Celestia/CloudFunctions/modules/contentModeration.js">
+      <file name="contentModeration.js" path="/home/user/TeamUp/CloudFunctions/modules/contentModeration.js">
         <metrics statements="83" coveredstatements="51" conditionals="36" coveredconditionals="16" methods="15" coveredmethods="11"/>
         <line num="6" count="1" type="stmt"/>
         <line num="7" count="1" type="stmt"/>
@@ -923,7 +923,7 @@
         <line num="274" count="18" type="stmt"/>
         <line num="277" count="1" type="stmt"/>
       </file>
-      <file name="fraudDetection.js" path="/home/user/Celestia/CloudFunctions/modules/fraudDetection.js">
+      <file name="fraudDetection.js" path="/home/user/TeamUp/CloudFunctions/modules/fraudDetection.js">
         <metrics statements="254" coveredstatements="209" conditionals="123" coveredconditionals="96" methods="20" coveredmethods="19"/>
         <line num="15" count="1" type="stmt"/>
         <line num="16" count="1" type="stmt"/>
@@ -1180,7 +1180,7 @@
         <line num="767" count="4" type="stmt"/>
         <line num="773" count="1" type="stmt"/>
       </file>
-      <file name="moderationQueue.js" path="/home/user/Celestia/CloudFunctions/modules/moderationQueue.js">
+      <file name="moderationQueue.js" path="/home/user/TeamUp/CloudFunctions/modules/moderationQueue.js">
         <metrics statements="177" coveredstatements="0" conditionals="109" coveredconditionals="0" methods="26" coveredmethods="0"/>
         <line num="13" count="0" type="stmt"/>
         <line num="14" count="0" type="stmt"/>
@@ -1360,7 +1360,7 @@
         <line num="560" count="0" type="stmt"/>
         <line num="564" count="0" type="stmt"/>
       </file>
-      <file name="notifications.js" path="/home/user/Celestia/CloudFunctions/modules/notifications.js">
+      <file name="notifications.js" path="/home/user/TeamUp/CloudFunctions/modules/notifications.js">
         <metrics statements="87" coveredstatements="0" conditionals="58" coveredconditionals="0" methods="7" coveredmethods="0"/>
         <line num="6" count="0" type="stmt"/>
         <line num="7" count="0" type="stmt"/>
@@ -1450,7 +1450,7 @@
         <line num="342" count="0" type="stmt"/>
         <line num="349" count="0" type="stmt"/>
       </file>
-      <file name="rateLimiting.js" path="/home/user/Celestia/CloudFunctions/modules/rateLimiting.js">
+      <file name="rateLimiting.js" path="/home/user/TeamUp/CloudFunctions/modules/rateLimiting.js">
         <metrics statements="105" coveredstatements="0" conditionals="35" coveredconditionals="0" methods="13" coveredmethods="0"/>
         <line num="6" count="0" type="stmt"/>
         <line num="7" count="0" type="stmt"/>
@@ -1558,7 +1558,7 @@
         <line num="398" count="0" type="stmt"/>
         <line num="401" count="0" type="stmt"/>
       </file>
-      <file name="receiptValidation.js" path="/home/user/Celestia/CloudFunctions/modules/receiptValidation.js">
+      <file name="receiptValidation.js" path="/home/user/TeamUp/CloudFunctions/modules/receiptValidation.js">
         <metrics statements="97" coveredstatements="90" conditionals="52" coveredconditionals="39" methods="10" coveredmethods="7"/>
         <line num="7" count="1" type="stmt"/>
         <line num="8" count="1" type="stmt"/>
@@ -1658,7 +1658,7 @@
         <line num="336" count="0" type="stmt"/>
         <line num="339" count="1" type="stmt"/>
       </file>
-      <file name="webhooks.js" path="/home/user/Celestia/CloudFunctions/modules/webhooks.js">
+      <file name="webhooks.js" path="/home/user/TeamUp/CloudFunctions/modules/webhooks.js">
         <metrics statements="234" coveredstatements="0" conditionals="85" coveredconditionals="0" methods="25" coveredmethods="0"/>
         <line num="12" count="0" type="stmt"/>
         <line num="13" count="0" type="stmt"/>

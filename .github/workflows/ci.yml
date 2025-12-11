@@ -62,18 +62,18 @@ jobs:
 
       - name: Run tests
         run: |
-          if [ -f "Celestia.xcworkspace" ]; then
+          if [ -f "TeamUp.xcworkspace" ]; then
             xcodebuild test \
-              -workspace Celestia.xcworkspace \
-              -scheme Celestia \
+              -workspace TeamUp.xcworkspace \
+              -scheme TeamUp \
               -destination "${{ matrix.destination }}" \
               -enableCodeCoverage YES \
               -derivedDataPath DerivedData \
               | xcpretty
           else
             xcodebuild test \
-              -project Celestia.xcodeproj \
-              -scheme Celestia \
+              -project TeamUp.xcodeproj \
+              -scheme TeamUp \
               -destination "${{ matrix.destination }}" \
               -enableCodeCoverage YES \
               -derivedDataPath DerivedData \
@@ -86,7 +86,7 @@ jobs:
           xcrun llvm-cov export \
             -format="lcov" \
             -instr-profile DerivedData/Build/ProfileData/*/Coverage.profdata \
-            DerivedData/Build/Products/Debug-iphonesimulator/Celestia.app/Celestia \
+            DerivedData/Build/Products/Debug-iphonesimulator/TeamUp.app/TeamUp \
             > coverage.lcov
 
       - name: Upload coverage to Codecov
@@ -127,18 +127,18 @@ jobs:
 
       - name: Build app
         run: |
-          if [ -f "Celestia.xcworkspace" ]; then
+          if [ -f "TeamUp.xcworkspace" ]; then
             xcodebuild build \
-              -workspace Celestia.xcworkspace \
-              -scheme Celestia \
+              -workspace TeamUp.xcworkspace \
+              -scheme TeamUp \
               -destination "generic/platform=iOS" \
               -configuration Release \
               CODE_SIGNING_ALLOWED=NO \
               | xcpretty
           else
             xcodebuild build \
-              -project Celestia.xcodeproj \
-              -scheme Celestia \
+              -project TeamUp.xcodeproj \
+              -scheme TeamUp \
               -destination "generic/platform=iOS" \
               -configuration Release \
               CODE_SIGNING_ALLOWED=NO \

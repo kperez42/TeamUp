@@ -48,7 +48,7 @@ let nameQuery = db.collection("users")
 ## Changes Made
 
 ### 1. Added Lowercase Search Fields to User Model
-**File:** `Celestia/User.swift`
+**File:** `TeamUp/User.swift`
 
 ```swift
 // PERFORMANCE: Lowercase fields for efficient Firestore prefix matching
@@ -64,7 +64,7 @@ mutating func updateSearchFields() {
 ```
 
 ### 2. Implemented Multi-Tier Search Strategy
-**File:** `Celestia/UserService.swift`
+**File:** `TeamUp/UserService.swift`
 
 **Tier 1: Name Prefix Search (Fastest)**
 - Uses Firestore range queries on `fullNameLowercase`
@@ -323,8 +323,8 @@ Check Firebase Analytics for:
 
 ## Files Modified
 
-- ✅ `Celestia/UserService.swift` - Optimized search implementation
-- ✅ `Celestia/User.swift` - Added lowercase search fields
+- ✅ `TeamUp/UserService.swift` - Optimized search implementation
+- ✅ `TeamUp/User.swift` - Added lowercase search fields
 - ✅ `SEARCH_OPTIMIZATION_GUIDE.md` - This documentation
 
 ## Questions?

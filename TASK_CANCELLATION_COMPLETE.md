@@ -16,7 +16,7 @@ Successfully implemented task cancellation for all critical long-running operati
 
 ### 1. ImageCache Task Cancellation
 
-**Files Modified:** `Celestia/ImageCache.swift` (+72 lines)
+**Files Modified:** `TeamUp/ImageCache.swift` (+72 lines)
 
 **Components Updated:**
 - ✅ **CachedAsyncImage** - Generic async image loading
@@ -55,7 +55,7 @@ loadTask = Task {
 
 ### 2. DiscoverViewModel Task Cancellation
 
-**Files Modified:** `Celestia/DiscoverViewModel.swift` (+31 lines)
+**Files Modified:** `TeamUp/DiscoverViewModel.swift` (+31 lines)
 
 **Tasks Managed:**
 - ✅ **loadUsersTask** - User discovery queries

@@ -1,6 +1,6 @@
 # Localization (i18n) Guide
 
-This guide covers the complete localization setup for Celestia, including how to add new languages and use localized strings throughout the app.
+This guide covers the complete localization setup for TeamUp, including how to add new languages and use localized strings throughout the app.
 
 ## 📋 Table of Contents
 
@@ -17,7 +17,7 @@ This guide covers the complete localization setup for Celestia, including how to
 
 ## Overview
 
-Celestia supports multiple languages to reach a global audience. The localization system is built on:
+TeamUp supports multiple languages to reach a global audience. The localization system is built on:
 - **LocalizationManager**: Centralized language management
 - **Localizable.strings**: Translation files for each language
 - **Type-safe keys**: Structured enum for string keys
@@ -167,7 +167,7 @@ enum Language: String, CaseIterable {
 ### Step 2: Create Localization Directory
 
 In Xcode:
-1. Right-click `Celestia/Localization` folder
+1. Right-click `TeamUp/Localization` folder
 2. Select **New File** → **Strings File**
 3. Name it `Localizable.strings`
 4. In File Inspector, click **Localize...**
@@ -550,7 +550,7 @@ struct LanguagePickerView: View {
 
 ```bash
 # Export all strings to XLIFF format
-xcodebuild -exportLocalizations -project Celestia.xcodeproj -localizationPath ./Localizations
+xcodebuild -exportLocalizations -project TeamUp.xcodeproj -localizationPath ./Localizations
 
 # This creates .xliff files that can be sent to translators
 ```
@@ -559,7 +559,7 @@ xcodebuild -exportLocalizations -project Celestia.xcodeproj -localizationPath ./
 
 ```bash
 # Import translated XLIFF files
-xcodebuild -importLocalizations -project Celestia.xcodeproj -localizationPath ./Localizations/es.xliff
+xcodebuild -importLocalizations -project TeamUp.xcodeproj -localizationPath ./Localizations/es.xliff
 ```
 
 ---

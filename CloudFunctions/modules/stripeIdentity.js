@@ -33,7 +33,7 @@ const CONFIG = {
     },
   },
   // Return URL for web-based flows (iOS uses native SDK)
-  return_url: 'celestia://verification-complete',
+  return_url: 'teamup://verification-complete',
 };
 
 /**
@@ -81,7 +81,7 @@ async function createVerificationSession(data, context) {
       options: CONFIG.verification_options,
       metadata: {
         userId: userId,
-        app: 'celestia',
+        app: 'teamup',
       },
       return_url: CONFIG.return_url,
     });

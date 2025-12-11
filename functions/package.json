@@ -1,5 +1,5 @@
 {
-  "name": "celestia-functions",
+  "name": "teamup-functions",
   "description": "Cloud Functions for TeamUp gaming app",
   "scripts": {
     "build": "tsc",

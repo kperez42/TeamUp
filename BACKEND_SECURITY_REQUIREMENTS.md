@@ -166,7 +166,7 @@ func uploadWithModeration(_ image: UIImage) async throws -> String {
     var params: [String: Any] = [
         "file": imageData.base64EncodedString(),
         "moderation": "aws_rek:explicit,nudity",
-        "upload_preset": "celestia_profiles"
+        "upload_preset": "teamup_profiles"
     ]
 
     // Cloudinary will auto-reject if moderation fails
@@ -215,7 +215,7 @@ exports.validateAge = functions.https.onCall(async (data, context) => {
     if (age < 18) {
         throw new functions.https.HttpsError(
             'failed-precondition',
-            'You must be 18 or older to use Celestia'
+            'You must be 18 or older to use TeamUp'
         );
     }
 

@@ -19,13 +19,13 @@
 #    - Replace the file locally (DO NOT COMMIT)
 
 # 2. Add to .gitignore
-echo "Celestia/GoogleService-Info.plist" >> .gitignore
-git rm --cached Celestia/GoogleService-Info.plist
+echo "TeamUp/GoogleService-Info.plist" >> .gitignore
+git rm --cached TeamUp/GoogleService-Info.plist
 git commit -m "security: remove Firebase config from repository"
 
 # 3. Set up environment-specific configuration
 # Create template file:
-cp Celestia/GoogleService-Info.plist Celestia/GoogleService-Info.plist.template
+cp TeamUp/GoogleService-Info.plist TeamUp/GoogleService-Info.plist.template
 # Remove sensitive values from template, commit template only
 
 # 4. Enable API Key restrictions in Google Cloud Console
@@ -53,13 +53,13 @@ cp Celestia/GoogleService-Info.plist Celestia/GoogleService-Info.plist.template
 ### 2. SSL Certificate Pinning ⚠️ REQUIRED
 **Status**: ⚠️ CONFIGURED BUT NOT ACTIVE
 **Risk Level**: CRITICAL
-**File**: `Celestia/NetworkManager.swift:138-141`
+**File**: `TeamUp/NetworkManager.swift:138-141`
 
 **Actions Required**:
 ```bash
 # 1. Get your API server's certificate hash
-# Replace api.celestia.app with your actual domain
-openssl s_client -servername api.celestia.app -connect api.celestia.app:443 \
+# Replace api.teamup.app with your actual domain
+openssl s_client -servername api.teamup.app -connect api.teamup.app:443 \
   | openssl x509 -pubkey -noout \
   | openssl pkey -pubin -outform der \
   | openssl dgst -sha256 -binary \
@@ -132,17 +132,17 @@ firebase deploy --only storage
 ### 5. Environment Configuration
 **Status**: ❌ HARDCODED
 **Risk Level**: HIGH
-**File**: `Celestia/Constants.swift:14`
+**File**: `TeamUp/Constants.swift:14`
 
 **Actions Required**:
 ```swift
 // Create Config/Debug.xcconfig
-API_URL = https:/$()/api-dev.celestia.app
+API_URL = https:/$()/api-dev.teamup.app
 FIREBASE_ENABLED = YES
 ANALYTICS_ENABLED = NO
 
 // Create Config/Release.xcconfig
-API_URL = https:/$()/api.celestia.app
+API_URL = https:/$()/api.teamup.app
 FIREBASE_ENABLED = YES
 ANALYTICS_ENABLED = YES
 

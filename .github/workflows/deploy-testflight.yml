@@ -60,15 +60,15 @@ jobs:
       - name: Increment build number
         run: |
           BUILD_NUMBER=$(($(date +%s)/100))
-          /usr/libexec/PlistBuddy -c "Set :CFBundleVersion $BUILD_NUMBER" Celestia/Info.plist
+          /usr/libexec/PlistBuddy -c "Set :CFBundleVersion $BUILD_NUMBER" TeamUp/Info.plist
           echo "Build number set to $BUILD_NUMBER"
 
       - name: Build app
         run: |
           xcodebuild archive \
-            -workspace Celestia.xcworkspace \
-            -scheme Celestia \
-            -archivePath build/Celestia.xcarchive \
+            -workspace TeamUp.xcworkspace \
+            -scheme TeamUp \
+            -archivePath build/TeamUp.xcarchive \
             -configuration Release \
             -destination "generic/platform=iOS" \
             CODE_SIGN_IDENTITY="iPhone Distribution" \
@@ -78,7 +78,7 @@ jobs:
       - name: Export IPA
         run: |
           xcodebuild -exportArchive \
-            -archivePath build/Celestia.xcarchive \
+            -archivePath build/TeamUp.xcarchive \
             -exportPath build \
             -exportOptionsPlist ExportOptions.plist \
             | xcpretty
@@ -91,7 +91,7 @@ jobs:
         run: |
           xcrun altool --upload-app \
             --type ios \
-            --file build/Celestia.ipa \
+            --file build/TeamUp.ipa \
             --apiKey "$APP_STORE_CONNECT_API_KEY_ID" \
             --apiIssuer "$APP_STORE_CONNECT_API_ISSUER_ID"
 
@@ -108,7 +108,7 @@ jobs:
           webhook-url: ${{ secrets.SLACK_WEBHOOK_URL }}
           payload: |
             {
-              "text": "🚀 Celestia ${{ github.ref_name }} deployed to TestFlight successfully!"
+              "text": "🚀 TeamUp ${{ github.ref_name }} deployed to TestFlight successfully!"
             }
 
       - name: Create GitHub Release

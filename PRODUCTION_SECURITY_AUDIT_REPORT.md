@@ -122,11 +122,11 @@ do {
     let sanitizedText = InputSanitizer.standard(text)
 
     guard !sanitizedText.isEmpty else {
-        throw CelestiaError.messageNotSent
+        throw TeamUpError.messageNotSent
     }
 
     guard sanitizedText.count <= AppConstants.Limits.maxMessageLength else {
-        throw CelestiaError.messageTooLong
+        throw TeamUpError.messageTooLong
     }
 
     let validationResponse = try await BackendAPIService.shared.validateContent(
@@ -136,7 +136,7 @@ do {
 
     guard validationResponse.isAppropriate else {
         Logger.shared.warning("Content flagged", category: .moderation)
-        throw CelestiaError.inappropriateContentWithReasons(validationResponse.violations)
+        throw TeamUpError.inappropriateContentWithReasons(validationResponse.violations)
     }
 
 } catch {
@@ -453,7 +453,7 @@ Logger.shared.auth("Current user session: \(Auth.auth().currentUser != nil ? "au
 ### 🔴 CRITICAL (Must do before App Store submission):
 
 1. **Certificate Pinning Configuration**
-   - File: `Celestia/NetworkManager.swift` (line 134)
+   - File: `TeamUp/NetworkManager.swift` (line 134)
    - Action: Add your server's SSL certificate public key hashes
    - How to get hash:
      ```bash
