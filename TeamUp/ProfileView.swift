@@ -644,7 +644,7 @@ struct ProfileView: View {
                     icon: "eye.fill",
                     value: isLoadingStats ? "-" : "\(accurateProfileViews)",
                     label: "Viewed",
-                    color: .teal
+                    color: .cyan
                 )
             }
 
@@ -660,7 +660,7 @@ struct ProfileView: View {
                     icon: "bookmark.fill",
                     value: isLoadingStats ? "-" : "\(accurateMatchCount)",
                     label: "Saved",
-                    color: .orange
+                    color: .teal
                 )
             }
         }
