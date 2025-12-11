@@ -25,7 +25,7 @@ struct CurrentUserProfileCard: View {
             // Profile Image with badge
             ZStack(alignment: .topTrailing) {
                 CachedCardImage(url: URL(string: displayPhotoURL))
-                    .frame(height: 400)
+                    .frame(height: 300)
                     .frame(maxWidth: .infinity)
                     .clipped()
                     .cornerRadius(16, corners: [.topLeft, .topRight])
@@ -55,111 +55,43 @@ struct CurrentUserProfileCard: View {
                 .padding(12)
             }
 
-            // User Details
-            VStack(alignment: .leading, spacing: 8) {
-                // Name and Verification
-                HStack(spacing: 8) {
-                    VStack(alignment: .leading, spacing: 2) {
-                        Text(user.fullName)
-                            .font(.title2)
-                            .fontWeight(.bold)
-                            .foregroundColor(.primary)
+            // Simple user info and tap hint
+            HStack {
+                VStack(alignment: .leading, spacing: 4) {
+                    Text(user.fullName)
+                        .font(.title3)
+                        .fontWeight(.bold)
+                        .foregroundColor(.primary)
 
-                        if !user.gamerTag.isEmpty {
-                            Text("@\(user.gamerTag)")
-                                .font(.subheadline)
-                                .foregroundColor(.blue)
-                        }
-                    }
-
-                    if user.isVerified {
-                        Image(systemName: "checkmark.seal.fill")
-                            .font(.title3)
+                    if !user.gamerTag.isEmpty {
+                        Text("@\(user.gamerTag)")
+                            .font(.subheadline)
                             .foregroundColor(.blue)
                     }
-
-                    Spacer()
                 }
 
-                // Skill Level and Location
-                HStack(spacing: 4) {
-                    Text(user.skillLevel)
-                        .font(.subheadline)
-                        .foregroundColor(.secondary)
-
-                    Text("•")
-                        .foregroundColor(.secondary)
-
-                    Image(systemName: "mappin.circle.fill")
-                        .font(.caption)
-                        .foregroundColor(.orange)
-
-                    Text("\(user.location), \(user.country)")
-                        .font(.subheadline)
-                        .foregroundColor(.secondary)
-                        .lineLimit(1)
-
-                    Spacer()
+                if user.isVerified {
+                    Image(systemName: "checkmark.seal.fill")
+                        .font(.body)
+                        .foregroundColor(.blue)
                 }
 
-                // Play style and platforms
-                HStack(spacing: 4) {
-                    Image(systemName: "gamecontroller.fill")
-                        .font(.caption)
-                        .foregroundColor(.teal)
-
-                    Text("\(user.playStyle) • \(user.platforms.prefix(3).joined(separator: ", "))")
-                        .font(.subheadline)
-                        .foregroundColor(.secondary)
-
-                    Spacer()
-                }
-            }
-            .padding(.horizontal, 16)
-            .padding(.vertical, 12)
-
-            // Tap hint
-            HStack {
                 Spacer()
 
-                HStack(spacing: 8) {
-                    Image(systemName: "hand.tap.fill")
-                        .font(.subheadline)
-                        .foregroundStyle(
-                            LinearGradient(
-                                colors: [.blue, .teal],
-                                startPoint: .leading,
-                                endPoint: .trailing
-                            )
-                        )
-
-                    Text("Tap to view and edit your gaming profile")
+                // Tap hint
+                HStack(spacing: 4) {
+                    Text("View Profile")
                         .font(.subheadline)
                         .fontWeight(.medium)
-                        .foregroundStyle(
-                            LinearGradient(
-                                colors: [.blue, .teal],
-                                startPoint: .leading,
-                                endPoint: .trailing
-                            )
-                        )
+                        .foregroundColor(.blue)
 
                     Image(systemName: "chevron.right")
                         .font(.caption)
-                        .foregroundStyle(
-                            LinearGradient(
-                                colors: [.blue, .teal],
-                                startPoint: .leading,
-                                endPoint: .trailing
-                            )
-                        )
+                        .foregroundColor(.blue)
                 }
-
-                Spacer()
             }
             .padding(.horizontal, 16)
-            .padding(.bottom, 16)
-            .padding(.top, 4)
+            .padding(.vertical, 14)
         }
         .background(Color(.systemBackground))
         .cornerRadius(16)
