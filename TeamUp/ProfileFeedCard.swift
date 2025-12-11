@@ -63,29 +63,9 @@ struct ProfileFeedCard: View {
                 // Location
                 locationRow
 
-                // Gaming Stats (Weekly Hours)
-                if let weeklyHours = user.gamingStats.weeklyHours, weeklyHours > 0 {
-                    gamingStatsRow
-                }
-
-                // Platforms
-                if !user.platforms.isEmpty {
-                    platformsRow
-                }
-
-                // Gaming Profiles (Discord, Steam, etc.)
-                if hasGamingProfiles {
-                    gamingProfilesSection
-                }
-
-                // Looking For tags
+                // Looking For tags (simplified - just show tags inline)
                 if !user.lookingFor.isEmpty {
-                    lookingForSection
-                }
-
-                // Get to Know Me prompt
-                if let firstPrompt = user.prompts.first, !firstPrompt.answer.isEmpty {
-                    getToKnowMeSection(prompt: firstPrompt)
+                    lookingForRow
                 }
 
                 // Last active
@@ -293,207 +273,33 @@ struct ProfileFeedCard: View {
         }
     }
 
-    // MARK: - Gaming Stats Row
+    // MARK: - Looking For Row (Simplified inline version for card preview)
 
-    private var gamingStatsRow: some View {
+    private var lookingForRow: some View {
         HStack(spacing: 4) {
-            Image(systemName: "clock.fill")
+            Image(systemName: "person.2.fill")
                 .font(.caption)
-                .foregroundColor(.orange)
+                .foregroundColor(.teal)
 
-            Text("Weekly Hours")
+            Text("Looking For")
                 .font(.caption)
                 .foregroundColor(.secondary)
 
-            Spacer()
-
-            Text("\(user.gamingStats.weeklyHours ?? 0)h")
-                .font(.caption)
-                .fontWeight(.semibold)
-                .foregroundColor(.primary)
-        }
-    }
-
-    // MARK: - Platforms Row
-
-    private var platformsRow: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            HStack(spacing: 4) {
-                Image(systemName: "desktopcomputer")
-                    .font(.caption)
-                    .foregroundColor(.teal)
-
-                Text("Platforms")
-                    .font(.caption)
-                    .fontWeight(.semibold)
-                    .foregroundColor(.primary)
-            }
-
-            FlowLayout(spacing: 6) {
-                ForEach(user.platforms.prefix(4), id: \.self) { platform in
-                    HStack(spacing: 4) {
-                        Image(systemName: platformIcon(for: platform))
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(spacing: 6) {
+                    ForEach(user.lookingFor.prefix(2), id: \.self) { item in
+                        Text(item)
                             .font(.caption2)
-                        Text(platform)
-                            .font(.caption2)
+                            .fontWeight(.medium)
+                            .padding(.horizontal, 10)
+                            .padding(.vertical, 6)
+                            .background(Color.teal.opacity(0.1))
+                            .foregroundColor(.teal)
+                            .cornerRadius(12)
                     }
-                    .padding(.horizontal, 8)
-                    .padding(.vertical, 4)
-                    .background(Color.teal.opacity(0.1))
-                    .foregroundColor(.teal)
-                    .cornerRadius(8)
                 }
             }
         }
-        .padding(12)
-        .background(Color(.systemGray6).opacity(0.5))
-        .cornerRadius(12)
-    }
-
-    private func platformIcon(for platform: String) -> String {
-        switch platform {
-        case "PC": return "desktopcomputer"
-        case "PlayStation": return "gamecontroller"
-        case "Xbox": return "gamecontroller.fill"
-        case "Nintendo Switch": return "gamecontroller"
-        case "Mobile": return "iphone"
-        case "VR": return "visionpro"
-        case "Tabletop": return "dice.fill"
-        default: return "gamecontroller"
-        }
-    }
-
-    // MARK: - Gaming Profiles Section
-
-    private var hasGamingProfiles: Bool {
-        user.discordTag != nil || user.steamId != nil || user.twitchUsername != nil ||
-        user.riotId != nil || user.battleNetTag != nil || user.psnId != nil || user.xboxGamertag != nil
-    }
-
-    private var gamingProfilesSection: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            HStack(spacing: 4) {
-                Image(systemName: "link.circle.fill")
-                    .font(.caption)
-                    .foregroundColor(.purple)
-
-                Text("Gaming Profiles")
-                    .font(.caption)
-                    .fontWeight(.semibold)
-                    .foregroundColor(.primary)
-            }
-
-            VStack(alignment: .leading, spacing: 6) {
-                if let discord = user.discordTag, !discord.isEmpty {
-                    gamingProfileRow(icon: "bubble.left.fill", name: "Discord", value: discord, color: .indigo)
-                }
-                if let steam = user.steamId, !steam.isEmpty {
-                    gamingProfileRow(icon: "gamecontroller.fill", name: "Steam", value: steam, color: .blue)
-                }
-                if let twitch = user.twitchUsername, !twitch.isEmpty {
-                    gamingProfileRow(icon: "video.fill", name: "Twitch", value: twitch, color: .purple)
-                }
-                if let riot = user.riotId, !riot.isEmpty {
-                    gamingProfileRow(icon: "r.circle.fill", name: "Riot", value: riot, color: .red)
-                }
-                if let battleNet = user.battleNetTag, !battleNet.isEmpty {
-                    gamingProfileRow(icon: "b.circle.fill", name: "Battle.net", value: battleNet, color: .blue)
-                }
-                if let psn = user.psnId, !psn.isEmpty {
-                    gamingProfileRow(icon: "playstation.logo", name: "PSN", value: psn, color: .blue)
-                }
-                if let xbox = user.xboxGamertag, !xbox.isEmpty {
-                    gamingProfileRow(icon: "xbox.logo", name: "Xbox", value: xbox, color: .green)
-                }
-            }
-        }
-        .padding(12)
-        .background(Color(.systemGray6).opacity(0.5))
-        .cornerRadius(12)
-    }
-
-    private func gamingProfileRow(icon: String, name: String, value: String, color: Color) -> some View {
-        HStack {
-            Image(systemName: icon)
-                .font(.caption)
-                .foregroundColor(color)
-                .frame(width: 20)
-
-            Text(name)
-                .font(.caption)
-                .foregroundColor(.secondary)
-
-            Spacer()
-
-            Text(value)
-                .font(.caption)
-                .fontWeight(.medium)
-                .foregroundColor(.primary)
-                .lineLimit(1)
-        }
-    }
-
-    // MARK: - Looking For Section
-
-    private var lookingForSection: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            HStack(spacing: 4) {
-                Image(systemName: "person.2.fill")
-                    .font(.caption)
-                    .foregroundColor(.teal)
-
-                Text("Looking For")
-                    .font(.caption)
-                    .fontWeight(.semibold)
-                    .foregroundColor(.primary)
-            }
-
-            FlowLayout(spacing: 6) {
-                ForEach(user.lookingFor.prefix(3), id: \.self) { item in
-                    Text(item)
-                        .font(.caption2)
-                        .fontWeight(.medium)
-                        .padding(.horizontal, 10)
-                        .padding(.vertical, 6)
-                        .background(Color.teal.opacity(0.1))
-                        .foregroundColor(.teal)
-                        .cornerRadius(12)
-                }
-            }
-        }
-        .padding(12)
-        .background(Color(.systemGray6).opacity(0.5))
-        .cornerRadius(12)
-    }
-
-    // MARK: - Get to Know Me Section
-
-    private func getToKnowMeSection(prompt: ProfilePrompt) -> some View {
-        VStack(alignment: .leading, spacing: 6) {
-            HStack(spacing: 4) {
-                Image(systemName: "text.bubble.fill")
-                    .font(.caption)
-                    .foregroundColor(.cyan)
-
-                Text("Get to Know Me")
-                    .font(.caption)
-                    .fontWeight(.semibold)
-                    .foregroundColor(.primary)
-            }
-
-            Text(prompt.question)
-                .font(.caption)
-                .foregroundColor(.cyan)
-                .fontWeight(.medium)
-
-            Text(prompt.answer)
-                .font(.subheadline)
-                .foregroundColor(.primary)
-                .lineLimit(2)
-        }
-        .padding(12)
-        .background(Color(.systemGray6).opacity(0.5))
-        .cornerRadius(12)
     }
 
     private var lastActiveRow: some View {
