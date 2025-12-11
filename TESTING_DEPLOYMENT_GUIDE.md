@@ -1,4 +1,4 @@
-# Celestia - Testing & Deployment Guide
+# TeamUp - Testing & Deployment Guide
 
 **Version:** 1.0
 **Date:** 2025-11-15
@@ -596,7 +596,7 @@ Bug Fixes:
 • Improved error handling
 • General stability improvements
 
-We've made Celestia faster, more reliable, and easier to use!
+We've made TeamUp faster, more reliable, and easier to use!
 ```
 
 ---

@@ -1,10 +1,10 @@
-# SwiftLint Configuration for Celestia
+# SwiftLint Configuration for TeamUp
 # https://github.com/realm/SwiftLint
 
 # Paths to include/exclude
 included:
-  - Celestia
-  - CelestiaTests
+  - TeamUp
+  - TeamUpTests
 
 excluded:
   - Pods
@@ -341,7 +341,7 @@ file_header:
   required_pattern: |
                     \/\/
                     \/\/  .*?\.swift
-                    \/\/  Celestia
+                    \/\/  TeamUp
                     \/\/
                     \/\/  Created by .* on \d+\/\d+\/\d+\.
                     \/\/

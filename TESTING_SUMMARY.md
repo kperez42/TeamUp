@@ -118,7 +118,7 @@ let mutualLikeDoc = try await db.collection("likes")
    catch let error as BackendAPIError {
        Logger.shared.error("Backend unavailable - using client-side fallback")
        guard RateLimiter.shared.canSendLike() else {
-           throw CelestiaError.rateLimitExceeded
+           throw TeamUpError.rateLimitExceeded
        }
    }
    ```

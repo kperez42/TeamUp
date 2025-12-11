@@ -11,15 +11,15 @@
 **Issue:** Each screen (Matches, Messages, Saved, Discover) implements its own custom header with different gradient colors and styling.
 
 **Files:**
-- `/home/user/Celestia/Celestia/MatchesView.swift` (lines 172-180)
+- `/home/user/TeamUp/TeamUp/MatchesView.swift` (lines 172-180)
   - Colors: Purple → Purple → Blue
   - LinearGradient(colors: [Color.purple.opacity(0.9), Color.purple.opacity(0.7), Color.blue.opacity(0.5)])
 
-- `/home/user/Celestia/Celestia/MessagesView.swift` (lines 120-128)
+- `/home/user/TeamUp/TeamUp/MessagesView.swift` (lines 120-128)
   - Colors: Purple → Pink → Blue
   - LinearGradient(colors: [Color.purple.opacity(0.9), Color.pink.opacity(0.7), Color.blue.opacity(0.6)])
 
-- `/home/user/Celestia/Celestia/SavedProfilesView.swift` (lines 82-90)
+- `/home/user/TeamUp/TeamUp/SavedProfilesView.swift` (lines 82-90)
   - Colors: Orange → Pink → Purple
   - LinearGradient(colors: [Color.orange.opacity(0.9), Color.pink.opacity(0.7), Color.purple.opacity(0.6)])
 
@@ -33,9 +33,9 @@
 **Severity:** MEDIUM | **Impact:** Maintenance Issues
 
 **Files with hardcoded spacing:**
-- `/home/user/Celestia/Celestia/EditProfileView.swift`: Uses `.padding(20)`, `.padding(.horizontal, 20)`, `.padding(.vertical, 20)` inconsistently
-- `/home/user/Celestia/Celestia/MatchesView.swift` (lines 242-243): Uses `.padding(.top, 50)` and `.padding(.horizontal, 20)`
-- `/home/user/Celestia/Celestia/SavedProfilesView.swift` (line 162): Uses `.padding(.horizontal, 20)` inconsistently
+- `/home/user/TeamUp/TeamUp/EditProfileView.swift`: Uses `.padding(20)`, `.padding(.horizontal, 20)`, `.padding(.vertical, 20)` inconsistently
+- `/home/user/TeamUp/TeamUp/MatchesView.swift` (lines 242-243): Uses `.padding(.top, 50)` and `.padding(.horizontal, 20)`
+- `/home/user/TeamUp/TeamUp/SavedProfilesView.swift` (line 162): Uses `.padding(.horizontal, 20)` inconsistently
 
 **Problem:** DesignSystem.swift defines spacing constants (xs: 8, sm: 12, md: 16, lg: 20, xl: 24), but views don't consistently use them.
 
@@ -56,7 +56,7 @@ Views use hardcoded corner radius values:
 ### 1.4 Tab Bar Button Badge Style Inconsistency
 **Severity:** LOW | **Impact:** Minor Visual Issue
 
-**File:** `/home/user/Celestia/Celestia/MainTabView.swift` (lines 222-230)
+**File:** `/home/user/TeamUp/TeamUp/MainTabView.swift` (lines 222-230)
 
 Badge uses hardcoded:
 ```swift
@@ -143,7 +143,7 @@ Recommend extracting into separate view files or at least private computed prope
 ### 3.1 Unused Navigation Binding
 **Severity:** LOW | **Impact:** Code Quality
 
-**File:** `/home/user/Celestia/Celestia/MainTabView.swift` (line 59)
+**File:** `/home/user/TeamUp/TeamUp/MainTabView.swift` (line 59)
 ```swift
 .onChange(of: selectedTab) { oldValue, newValue in
     previousTab = oldValue
@@ -187,7 +187,7 @@ Should either:
 ### 4.1 Polling-Based Badge Updates
 **Severity:** MEDIUM | **Impact:** Battery Drain, Network Usage
 
-**File:** `/home/user/Celestia/Celestia/MainTabView.swift` (lines 143-163)
+**File:** `/home/user/TeamUp/TeamUp/MainTabView.swift` (lines 143-163)
 
 ```swift
 private func updateBadgesPeriodically() async {
@@ -217,7 +217,7 @@ private func updateBadgesPeriodically() async {
 ### 4.2 Unnecessary Re-renders Due to Multiple Binding Updates
 **Severity:** MEDIUM | **Impact:** Performance
 
-**File:** `/home/user/Celestia/Celestia/MatchesView.swift` (lines 43-95)
+**File:** `/home/user/TeamUp/TeamUp/MatchesView.swift` (lines 43-95)
 
 The `filteredAndSortedMatches` computed property recalculates on every view render:
 - Recalculates when `searchDebouncer.debouncedText` changes
@@ -233,9 +233,9 @@ The `filteredAndSortedMatches` computed property recalculates on every view rend
 **Severity:** LOW | **Impact:** Minor Performance
 
 Each header view creates new LinearGradient instances on every render:
-- `/home/user/Celestia/Celestia/MatchesView.swift` (lines 172-180)
-- `/home/user/Celestia/Celestia/MessagesView.swift` (lines 120-128)
-- `/home/user/Celestia/Celestia/SavedProfilesView.swift` (lines 82-90)
+- `/home/user/TeamUp/TeamUp/MatchesView.swift` (lines 172-180)
+- `/home/user/TeamUp/TeamUp/MessagesView.swift` (lines 120-128)
+- `/home/user/TeamUp/TeamUp/SavedProfilesView.swift` (lines 82-90)
 
 **Recommendation:** Extract these as constants or static properties.
 
@@ -244,7 +244,7 @@ Each header view creates new LinearGradient instances on every render:
 ### 4.4 State Object Initialization at View Level
 **Severity:** MEDIUM | **Impact:** Memory Usage
 
-**File:** `/home/user/Celestia/Celestia/EditProfileView.swift` (lines 15-51)
+**File:** `/home/user/TeamUp/TeamUp/EditProfileView.swift` (lines 15-51)
 
 38 @State properties in a single view:
 ```swift
@@ -275,8 +275,8 @@ do {
 ```
 
 While logging is present, **there's no user-facing error UI** in many places:
-- `/home/user/Celestia/Celestia/MainTabView.swift` (lines 155-157)
-- `/home/user/Celestia/Celestia/DiscoverViewModel.swift` (error handling)
+- `/home/user/TeamUp/TeamUp/MainTabView.swift` (lines 155-157)
+- `/home/user/TeamUp/TeamUp/DiscoverViewModel.swift` (error handling)
 
 **Recommendation:** Show error toasts or sheets for user-critical operations.
 
@@ -296,7 +296,7 @@ While logging is present, **there's no user-facing error UI** in many places:
 ### 5.3 fatalError in Production Code
 **Severity:** HIGH | **Impact:** App Crashes
 
-**File:** `/home/user/Celestia/Celestia/NetworkManager.swift` (lines 144-157)
+**File:** `/home/user/TeamUp/TeamUp/NetworkManager.swift` (lines 144-157)
 
 ```swift
 if hashes.isEmpty {
@@ -325,7 +325,7 @@ if hashes.isEmpty {
 **Severity:** MEDIUM | **Impact:** Inconsistency
 
 Some views check `errorMessage`:
-- `/home/user/Celestia/Celestia/MatchesView.swift` (line 126)
+- `/home/user/TeamUp/TeamUp/MatchesView.swift` (line 126)
 
 Others don't have error states:
 - SavedProfilesView shows loading/empty, but has no error view for failed loads
@@ -339,7 +339,7 @@ Others don't have error states:
 ### 6.1 Missing Accessibility Labels on Interactive Elements
 **Severity:** MEDIUM | **Impact:** VoiceOver Users
 
-**File:** `/home/user/Celestia/Celestia/SavedProfilesView.swift` (lines 149-159)
+**File:** `/home/user/TeamUp/TeamUp/SavedProfilesView.swift` (lines 149-159)
 
 Clear All button:
 ```swift
@@ -402,7 +402,7 @@ The rest of the app has this, but headers don't.
 ### 7.1 Debug Print Statements in Production Code
 **Severity:** LOW | **Impact:** Code Hygiene
 
-**File:** `/home/user/Celestia/Celestia/Logger.swift` (line 228)
+**File:** `/home/user/TeamUp/TeamUp/Logger.swift` (line 228)
 ```swift
 print(message)
 ```
@@ -421,7 +421,7 @@ These should use proper logging infrastructure only, not print().
 ### 7.2 Test Crash Code in Production
 **Severity:** HIGH | **Impact:** Security, Stability**
 
-**File:** `/home/user/Celestia/Celestia/CrashlyticsManager.swift` (line 269)
+**File:** `/home/user/TeamUp/TeamUp/CrashlyticsManager.swift` (line 269)
 ```swift
 fatalError("Test crash triggered from CrashlyticsManager")
 ```
@@ -433,7 +433,7 @@ This should not exist in production code.
 ### 7.3 Inconsistent Nil Coalescing for DEBUG vs RELEASE
 **Severity:** MEDIUM | **Impact:** Code Smell
 
-**File:** `/home/user/Celestia/Celestia/MatchesView.swift` (lines 53-68)
+**File:** `/home/user/TeamUp/TeamUp/MatchesView.swift` (lines 53-68)
 
 Pattern repeats throughout:
 ```swift
@@ -457,7 +457,7 @@ This pattern appears in:
 ### 7.4 Multiple Environment Objects/Observed Objects in Single View
 **Severity:** MEDIUM | **Impact:** Coupling, Testing
 
-**File:** `/home/user/Celestia/Celestia/MatchesView.swift` (lines 12-19)
+**File:** `/home/user/TeamUp/TeamUp/MatchesView.swift` (lines 12-19)
 
 ```swift
 @EnvironmentObject var authService: AuthService
@@ -476,7 +476,7 @@ This pattern appears in:
 ### 7.5 Unused Property
 **Severity:** LOW | **Impact:** Code Quality
 
-**File:** `/home/user/Celestia/Celestia/MainTabView.swift` (line 16)
+**File:** `/home/user/TeamUp/TeamUp/MainTabView.swift` (line 16)
 
 ```swift
 @State private var previousTab = 0
@@ -491,7 +491,7 @@ This is set but never read. It's accumulated in state without purpose.
 ### 8.1 Duplicate State Between View and ViewModel
 **Severity:** MEDIUM | **Impact:** Data Consistency
 
-**File:** `/home/user/Celestia/Celestia/FeedDiscoverView.swift** (lines 16-28)
+**File:** `/home/user/TeamUp/TeamUp/FeedDiscoverView.swift** (lines 16-28)
 
 ```swift
 @State private var users: [User] = []
@@ -528,7 +528,7 @@ Multiple views access `.shared` singletons:
 ### 8.3 Conflicting State Updates
 **Severity:** MEDIUM | **Impact:** Race Conditions
 
-**File:** `/home/user/Celestia/Celestia/SavedProfilesView.swift` (lines 49-54)
+**File:** `/home/user/TeamUp/TeamUp/SavedProfilesView.swift` (lines 49-54)
 
 ```swift
 .task {
@@ -569,7 +569,7 @@ But no clear indication of:
 ### 9.2 Unread Message Count Synchronization
 **Severity:** MEDIUM | **Impact:** Incorrect Unread Badges**
 
-**File:** `/home/user/Celestia/Celestia/MainTabView.swift** (lines 143-163)
+**File:** `/home/user/TeamUp/TeamUp/MainTabView.swift** (lines 143-163)
 
 Unread count polled every 10 seconds, but:
 - What if message arrives between polls?
@@ -583,7 +583,7 @@ Unread count polled every 10 seconds, but:
 ### 9.3 Favorites Sync Issues
 **Severity:** MEDIUM | **Impact:** Stale Data
 
-**File:** `/home/user/Celestia/Celestia/FeedDiscoverView.swift** (lines 76, 85-86)
+**File:** `/home/user/TeamUp/TeamUp/FeedDiscoverView.swift** (lines 76, 85-86)
 
 ```swift
 .onAppear {
@@ -633,7 +633,7 @@ Some views have @State var errorMessage, others don't:
 ### 10.3 Missing Cancellation of Async Tasks
 **Severity:** MEDIUM | **Impact:** Memory Leaks
 
-**File:** `/home/user/Celestia/Celestia/DiscoverViewModel.swift** (lines 49-52)
+**File:** `/home/user/TeamUp/TeamUp/DiscoverViewModel.swift** (lines 49-52)
 
 ```swift
 private var loadUsersTask: Task<Void, Never>?
@@ -658,7 +658,7 @@ deinit {
 ### 10.4 DispatchQueue Usage Mixed with async/await
 **Severity:** MEDIUM | **Impact:** Code Modernization
 
-**File:** `/home/user/Celestia/Celestia/MainTabView.swift** (line 198)
+**File:** `/home/user/TeamUp/TeamUp/MainTabView.swift** (line 198)
 
 ```swift
 DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) {
@@ -681,7 +681,7 @@ Task {
 ### 10.5 Incomplete Feature Flags
 **Severity:** LOW | **Impact:** Code Management
 
-**File:** `/home/user/Celestia/Celestia/Constants.swift** (lines 113-120)
+**File:** `/home/user/TeamUp/TeamUp/Constants.swift** (lines 113-120)
 
 ```swift
 enum Features {

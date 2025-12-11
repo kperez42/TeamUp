@@ -1,4 +1,4 @@
-# Firestore Security Rules Guide for Celestia
+# Firestore Security Rules Guide for TeamUp
 
 This document explains advanced Firestore security rules including server-side rate limiting, which prevents client-side bypass of rate limits.
 

@@ -1,4 +1,4 @@
-# Celestia Admin Dashboard
+# TeamUp Admin Dashboard
 
 Real-time admin dashboard for content moderation, user management, and platform analytics.
 

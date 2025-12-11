@@ -11,7 +11,7 @@
 ### 1. Backend API Deployment ⚠️ URGENT
 **Status**: Code exists but not deployed
 **Risk Level**: CRITICAL - Revenue Loss
-**Files**: `CloudFunctions/*`, `Celestia/BackendAPIService.swift`
+**Files**: `CloudFunctions/*`, `TeamUp/BackendAPIService.swift`
 
 **Problem**:
 - Backend API client fully implemented
@@ -44,7 +44,7 @@ firebase use <your-project-id>
 firebase deploy --only functions
 
 # 5. Update Constants.swift with deployed URL
-# Celestia/Constants.swift:14
+# TeamUp/Constants.swift:14
 static let baseURL = "https://us-central1-<project-id>.cloudfunctions.net/api"
 
 # 6. Test each endpoint
@@ -60,7 +60,7 @@ curl https://your-api-url/health
 ### 2. Sophisticated Matching Algorithm 🎯
 **Status**: Basic lastActive sorting only
 **Impact**: Core product value
-**Current File**: `Celestia/UserService.swift:62`
+**Current File**: `TeamUp/UserService.swift:62`
 
 **Current Implementation**:
 ```swift
@@ -105,7 +105,7 @@ curl https://your-api-url/health
 
 #### Phase 1: Daily Streaks (Week 1)
 ```swift
-// Create: Celestia/Gamification/StreakManager.swift
+// Create: TeamUp/Gamification/StreakManager.swift
 class StreakManager {
     // Track consecutive daily logins
     // Award bonuses at milestones (3, 7, 14, 30 days)
@@ -138,7 +138,7 @@ class StreakManager {
 
 #### Phase 2: Achievements (Week 2)
 ```swift
-// Create: Celestia/Gamification/AchievementManager.swift
+// Create: TeamUp/Gamification/AchievementManager.swift
 enum Achievement {
     case firstMatch            // "Made a Connection"
     case tenMatches            // "Social Butterfly"
@@ -220,7 +220,7 @@ exports.uploadImage = async (file, userId) => {
 
 ### 5. Geospatial Matching 📍
 **Status**: Coordinates stored but not used
-**Files**: `Celestia/User.swift:30-31`, `Celestia/UserService.swift`
+**Files**: `TeamUp/User.swift:30-31`, `TeamUp/UserService.swift`
 
 **Current**: Country-based filtering only
 **Missing**: Distance calculation in discovery
@@ -278,7 +278,7 @@ admin.firestore().collection('users').get().then(snapshot => {
 
 ### 6. Video Calling 📹
 **Status**: Feature flag disabled
-**File**: `Celestia/Constants.swift:115`
+**File**: `TeamUp/Constants.swift:115`
 
 **Tech Stack Recommendation**:
 - **Agora.io** or **Twilio Video**
@@ -287,7 +287,7 @@ admin.firestore().collection('users').get().then(snapshot => {
 
 **Implementation**:
 ```swift
-// Create: Celestia/VideoCall/VideoCallManager.swift
+// Create: TeamUp/VideoCall/VideoCallManager.swift
 import AgoraRtcKit
 
 class VideoCallManager {
@@ -335,11 +335,11 @@ struct VideoCallView: View {
 
 ### 7. Voice Messages 🎙️
 **Status**: Feature flag disabled
-**File**: `Celestia/Constants.swift:114`
+**File**: `TeamUp/Constants.swift:114`
 
 **Implementation**:
 ```swift
-// Create: Celestia/VoiceMessage/VoiceRecorder.swift
+// Create: TeamUp/VoiceMessage/VoiceRecorder.swift
 import AVFoundation
 
 class VoiceRecorder: NSObject, AVAudioRecorderDelegate {
@@ -385,7 +385,7 @@ class VoiceRecorder: NSObject, AVAudioRecorderDelegate {
 
 ### 8. Boost Algorithm Implementation 🚀
 **Status**: Purchase works, but no visibility boost
-**Files**: `Celestia/User.swift:72-73`, `Celestia/UserService.swift`
+**Files**: `TeamUp/User.swift:72-73`, `TeamUp/UserService.swift`
 
 **Current**:
 - Users can buy boosts

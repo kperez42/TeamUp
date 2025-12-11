@@ -160,7 +160,7 @@ export default function LoginPage() {
     <Box display="flex" justifyContent="center" alignItems="center" minHeight="100vh" bgcolor="#f5f5f5">
       <Paper sx={{ p: 4, maxWidth: 400, width: '100%' }}>
         <Typography variant="h4" gutterBottom align="center">
-          Celestia Admin
+          TeamUp Admin
         </Typography>
 
         {error && <Alert severity="error" sx={{ mb: 2 }}>{error}</Alert>}

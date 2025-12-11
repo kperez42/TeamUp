@@ -1,7 +1,7 @@
 {
   "name": "celestia-admin",
   "version": "1.0.0",
-  "description": "Celestia Admin Dashboard - Real-time moderation and analytics",
+  "description": "TeamUp Admin Dashboard - Real-time moderation and analytics",
   "private": true,
   "scripts": {
     "dev": "vite",

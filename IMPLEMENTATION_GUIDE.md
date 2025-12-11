@@ -177,7 +177,7 @@ func performAction(_ action: String) async throws {
         if let functionsError = error as? FunctionsError {
             if functionsError.code == .resourceExhausted {
                 // Show "You've reached your daily limit" message
-                throw CelestiaError.rateLimitExceeded
+                throw TeamUpError.rateLimitExceeded
             }
         }
     }
@@ -262,7 +262,7 @@ Provides a seamless experience when users are offline, with automatic message qu
 
 ### Files Created
 ```
-Celestia/
+TeamUp/
 ├── MessageQueueManager.swift         # Queues messages when offline
 ├── MessageServiceEnhanced.swift      # Enhanced with optimistic updates
 └── SyncConflictResolver.swift        # Resolves sync conflicts

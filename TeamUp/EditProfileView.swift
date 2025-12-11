@@ -1,0 +1,3293 @@
+//
+//  EditProfileView.swift
+//  TeamUp
+//
+//  Enhanced profile editing with beautiful UI and better UX
+//
+
+import SwiftUI
+import PhotosUI
+import FirebaseAuth
+import UniformTypeIdentifiers
+
+struct EditProfileView: View {
+    @Environment(\.dismiss) var dismiss
+    @EnvironmentObject var authService: AuthService
+    
+    @State private var fullName: String
+    @State private var age: String
+    @State private var bio: String
+    @State private var location: String
+    @State private var country: String
+    @State private var gender: String
+    @State private var gamerTag: String
+    @State private var languages: [String]
+    @State private var interests: [String]
+    @State private var prompts: [ProfilePrompt]
+
+    @State private var newLanguage = ""
+    @State private var newInterest = ""
+    @State private var isLoading = false
+    @State private var showImagePicker = false
+    @State private var selectedImage: PhotosPickerItem?
+    @State private var profileImage: UIImage?
+    @State private var showSuccessAlert = false
+    @State private var showErrorAlert = false
+    @State private var errorMessage = ""
+    @State private var showLanguagePicker = false
+    @State private var showInterestPicker = false
+    @State private var showPromptsEditor = false
+    @State private var photos: [String] = []
+    @State private var selectedPhotoItems: [PhotosPickerItem] = []
+    @State private var isUploadingPhotos = false
+    @State private var uploadProgress: Double = 0.0
+    @State private var isUploadingProfilePhoto = false
+    @State private var uploadingPhotoCount = 0
+    @State private var draggingPhotoURL: String?
+
+    // Store user ID to ensure it's available during uploads
+    @State private var userId: String = ""
+
+    // Network monitoring for upload operations
+    @ObservedObject var networkMonitor = NetworkMonitor.shared
+
+    // Gaming profile fields
+    @State private var platforms: Set<GamingPlatform> = []
+    @State private var skillLevel: SkillLevel = .intermediate
+    @State private var playStyle: PlayStyle = .casual
+    @State private var voiceChatPreference: VoiceChatPreference = .noPreference
+    @State private var lookingForTypes: Set<LookingForType> = []
+    @State private var gameGenres: Set<GameGenre> = []
+    @State private var weeklyHours: Int = 10
+    @State private var gamingGoal: String?
+
+    // External gaming profiles
+    @State private var discordTag: String = ""
+    @State private var steamId: String = ""
+    @State private var psnId: String = ""
+    @State private var xboxGamertag: String = ""
+    @State private var nintendoFriendCode: String = ""
+    @State private var riotId: String = ""
+    @State private var battleNetTag: String = ""
+    @State private var twitchUsername: String = ""
+
+    // Preference fields
+    @State private var ageRangeMin: Int
+    @State private var ageRangeMax: Int
+    @State private var maxDistance: Int
+
+    let genderOptions = ["Male", "Female", "Non-binary", "Prefer not to say"]
+    let gamingGoalOptions = ["Casual Gaming", "Regular Squad", "Competitive Team", "Streaming Partners", "Tournament Team", "Just Vibing"]
+    let weeklyHoursOptions = [5, 10, 15, 20, 25, 30, 40, 50]
+    let availableCountries = [
+        "United States",
+        "Canada",
+        "Mexico",
+        "United Kingdom",
+        "Australia",
+        "Germany",
+        "France",
+        "Spain",
+        "Italy",
+        "Brazil",
+        "Argentina",
+        "Japan",
+        "South Korea",
+        "China",
+        "India",
+        "Philippines",
+        "Vietnam",
+        "Thailand",
+        "Netherlands",
+        "Sweden",
+        "Norway",
+        "Denmark",
+        "Switzerland",
+        "Ireland",
+        "New Zealand",
+        "Singapore",
+        "Other"
+    ]
+    let predefinedLanguages = [
+        "English", "Spanish", "French", "German", "Italian", "Portuguese",
+        "Russian", "Chinese", "Japanese", "Korean", "Arabic", "Hindi"
+    ]
+    let predefinedInterests = [
+        "Travel", "Music", "Movies", "Sports", "Food", "Art",
+        "Photography", "Reading", "Gaming", "Fitness", "Cooking",
+        "Dancing", "Nature", "Technology", "Fashion", "Yoga"
+    ]
+    
+    init() {
+        let user = AuthService.shared.currentUser
+
+        // CRITICAL: Store user ID for uploads
+        _userId = State(initialValue: user?.id ?? "")
+
+        print("🔍 EditProfileView init - User ID: \(user?.id ?? "NIL")")
+        print("🔍 EditProfileView init - Photos count: \(user?.photos.count ?? 0)")
+
+        _fullName = State(initialValue: user?.fullName ?? "")
+        _age = State(initialValue: "\(user?.age ?? 18)")
+        _bio = State(initialValue: user?.bio ?? "")
+        _location = State(initialValue: user?.location ?? "")
+        _country = State(initialValue: user?.country ?? "")
+        _gender = State(initialValue: user?.gender ?? "Prefer not to say")
+        _gamerTag = State(initialValue: user?.gamerTag ?? "")
+        _languages = State(initialValue: user?.languages ?? [])
+        _interests = State(initialValue: user?.interests ?? [])
+        _prompts = State(initialValue: user?.prompts ?? [])
+        _photos = State(initialValue: user?.photos ?? [])
+
+        // Initialize gaming profile fields
+        let platformStrings = user?.platforms ?? []
+        _platforms = State(initialValue: Set(platformStrings.compactMap { GamingPlatform(rawValue: $0) }))
+        _skillLevel = State(initialValue: SkillLevel(rawValue: user?.skillLevel ?? "") ?? .intermediate)
+        _playStyle = State(initialValue: PlayStyle(rawValue: user?.playStyle ?? "") ?? .casual)
+        _voiceChatPreference = State(initialValue: VoiceChatPreference(rawValue: user?.voiceChatPreference ?? "") ?? .noPreference)
+        let lookingForStrings = user?.lookingFor ?? []
+        _lookingForTypes = State(initialValue: Set(lookingForStrings.compactMap { LookingForType(rawValue: $0) }))
+        let genreStrings = user?.gameGenres ?? []
+        _gameGenres = State(initialValue: Set(genreStrings.compactMap { GameGenre(rawValue: $0) }))
+        _weeklyHours = State(initialValue: user?.gamingStats.weeklyHours ?? 10)
+        _gamingGoal = State(initialValue: user?.relationshipGoal)
+
+        // Initialize external gaming profiles
+        _discordTag = State(initialValue: user?.discordTag ?? "")
+        _steamId = State(initialValue: user?.steamId ?? "")
+        _psnId = State(initialValue: user?.psnId ?? "")
+        _xboxGamertag = State(initialValue: user?.xboxGamertag ?? "")
+        _nintendoFriendCode = State(initialValue: user?.nintendoFriendCode ?? "")
+        _riotId = State(initialValue: user?.riotId ?? "")
+        _battleNetTag = State(initialValue: user?.battleNetTag ?? "")
+        _twitchUsername = State(initialValue: user?.twitchUsername ?? "")
+
+        // Initialize preference fields
+        _ageRangeMin = State(initialValue: user?.ageRangeMin ?? 18)
+        _ageRangeMax = State(initialValue: user?.ageRangeMax ?? 65)
+        _maxDistance = State(initialValue: user?.maxDistance ?? 50)
+    }
+    
+    var body: some View {
+        NavigationStack {
+            ZStack {
+                Color(.systemGroupedBackground)
+                    .ignoresSafeArea()
+                
+                ScrollView(showsIndicators: false) {
+                    VStack(spacing: 20) {
+                        // SECTION 1: Photos
+                        // Hero Profile Photo + Discovery Photos combined
+                        photosSection
+
+                        // Progress Indicator - motivates users
+                        profileCompletionProgress
+
+                        // SECTION 2: Basic Info
+                        // Name, Age, GamerTag, Location - essentials
+                        basicInfoSection
+
+                        // SECTION 3: About Me
+                        // Gaming Bio - self expression
+                        aboutMeSection
+
+                        // SECTION 4: Gaming Setup
+                        // Platforms, Skill Level, Play Style
+                        gamingSetupSection
+
+                        // SECTION 5: Gaming Preferences
+                        // What type of teammates, Voice Chat, Age Range
+                        gamingPreferencesSection
+
+                        // SECTION 6: Gaming Schedule
+                        // Weekly hours, Gaming Goal
+                        gamingScheduleSection
+
+                        // SECTION 7: Game Genres
+                        // FPS, MOBA, RPG, etc.
+                        gameGenresSection
+
+                        // SECTION 8: External Profiles
+                        // Discord, Steam, PSN, Xbox, etc.
+                        externalProfilesSection
+
+                        // SECTION 8: Express Yourself
+                        // Languages & Interests combined
+                        expressYourselfSection
+
+                        // SECTION 9: Profile Prompts
+                        // Personality showcase
+                        promptsSection
+                    }
+                    .padding(.horizontal, 20)
+                    .padding(.vertical, 20)
+                }
+            }
+            .navigationTitle("Edit Profile")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button {
+                        dismiss()
+                    } label: {
+                        HStack(spacing: 4) {
+                            Image(systemName: "xmark.circle.fill")
+                                .font(.title3)
+                            Text("Cancel")
+                        }
+                        .foregroundStyle(
+                            LinearGradient(
+                                colors: [.blue, .teal],
+                                startPoint: .leading,
+                                endPoint: .trailing
+                            )
+                        )
+                    }
+                }
+
+                // SAVE BUTTON IN TOOLBAR
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button {
+                        saveProfile()
+                    } label: {
+                        if isLoading {
+                            ProgressView()
+                                .tint(.blue)
+                        } else {
+                            HStack(spacing: 4) {
+                                Text("Save")
+                                    .fontWeight(.semibold)
+                                Image(systemName: "checkmark.circle.fill")
+                                    .font(.title3)
+                            }
+                            .foregroundStyle(
+                                LinearGradient(
+                                    colors: [.blue, .teal],
+                                    startPoint: .leading,
+                                    endPoint: .trailing
+                                )
+                            )
+                        }
+                    }
+                    .disabled(isLoading || !isFormValid)
+                }
+            }
+            .alert("Success! 🎉", isPresented: $showSuccessAlert) {
+                Button("Done") {
+                    dismiss()
+                }
+            } message: {
+                Text("Your profile has been updated successfully!")
+            }
+            .alert("Error", isPresented: $showErrorAlert) {
+                Button("OK", role: .cancel) {}
+            } message: {
+                Text(errorMessage)
+            }
+            .sheet(isPresented: $showLanguagePicker) {
+                LanguagePickerView(
+                    selectedLanguages: $languages,
+                    availableLanguages: predefinedLanguages
+                )
+            }
+            .sheet(isPresented: $showInterestPicker) {
+                InterestPickerView(
+                    selectedInterests: $interests,
+                    availableInterests: predefinedInterests
+                )
+            }
+            .sheet(isPresented: $showPromptsEditor) {
+                ProfilePromptsEditorView(prompts: $prompts)
+            }
+            .onAppear {
+                // CRITICAL FIX: Refresh user ID when view appears
+                // This ensures we have the latest user ID even if init happened before user data loaded
+                if let currentUser = authService.currentUser,
+                   let userIdValue = currentUser.id {
+                    Logger.shared.info("✅ Refreshing user ID on appear: \(userIdValue)", category: .general)
+                    userId = userIdValue
+                    photos = currentUser.photos
+                } else if let firebaseAuthId = Auth.auth().currentUser?.uid {
+                    // Fallback: Use Firebase Auth UID directly
+                    Logger.shared.info("✅ Using Firebase Auth UID: \(firebaseAuthId)", category: .general)
+                    userId = firebaseAuthId
+                } else {
+                    Logger.shared.error("❌ No user ID available in onAppear!", category: .general)
+                }
+
+                Logger.shared.info("🔍 onAppear - Final userId: \(userId)", category: .general)
+                Logger.shared.info("🔍 onAppear - Photos count: \(photos.count)", category: .general)
+            }
+        }
+        .networkStatusBanner() // UX: Show offline status for photo uploads
+    }
+
+    // MARK: - Combined Photos Section
+
+    private var photosSection: some View {
+        VStack(spacing: 0) {
+            // Header
+            HStack {
+                SectionHeader(icon: "camera.fill", title: "Your Photos", color: .blue, subtitle: "Show off your gaming setup")
+                Spacer()
+            }
+            .padding(.horizontal, 20)
+            .padding(.top, 20)
+            .padding(.bottom, 16)
+
+            // Profile Photo - Main display photo
+            VStack(spacing: 12) {
+                HStack {
+                    Text("Profile Photo")
+                        .font(.subheadline)
+                        .fontWeight(.semibold)
+                        .foregroundColor(.secondary)
+                    Spacer()
+                    Text("Main display")
+                        .font(.caption)
+                        .foregroundColor(.gray)
+                }
+                .padding(.horizontal, 20)
+
+                ZStack(alignment: .bottomTrailing) {
+                    Group {
+                        if let profileImage = profileImage {
+                            Image(uiImage: profileImage)
+                                .resizable()
+                                .scaledToFill()
+                        } else if let currentUser = authService.currentUser,
+                                  let imageURL = URL(string: currentUser.profileImageURL),
+                                  !currentUser.profileImageURL.isEmpty {
+                            CachedAsyncImage(
+                                url: imageURL,
+                                content: { image in
+                                    image
+                                        .resizable()
+                                        .scaledToFill()
+                                },
+                                placeholder: {
+                                    profilePlaceholderImage
+                                }
+                            )
+                        } else {
+                            profilePlaceholderImage
+                        }
+                    }
+                    .frame(width: 120, height: 120)
+                    .clipShape(Circle())
+                    .overlay {
+                        Circle()
+                            .stroke(
+                                LinearGradient(
+                                    colors: [.blue, .teal],
+                                    startPoint: .topLeading,
+                                    endPoint: .bottomTrailing
+                                ),
+                                lineWidth: 3
+                            )
+                    }
+                    .shadow(color: .blue.opacity(0.25), radius: 12, y: 6)
+
+                    PhotosPicker(selection: $selectedImage, matching: .images) {
+                        ZStack {
+                            Circle()
+                                .fill(Color.white)
+                                .frame(width: 38, height: 38)
+                                .shadow(color: .black.opacity(0.15), radius: 4)
+
+                            Circle()
+                                .fill(
+                                    LinearGradient(
+                                        colors: [.blue, .teal],
+                                        startPoint: .topLeading,
+                                        endPoint: .bottomTrailing
+                                    )
+                                )
+                                .frame(width: 34, height: 34)
+
+                            if isUploadingProfilePhoto {
+                                ProgressView()
+                                    .tint(.white)
+                                    .scaleEffect(0.7)
+                            } else {
+                                Image(systemName: "camera.fill")
+                                    .font(.system(size: 14))
+                                    .foregroundColor(.white)
+                            }
+                        }
+                    }
+                    .disabled(isUploadingProfilePhoto)
+                    .offset(x: 4, y: 4)
+                }
+            }
+
+            // Divider
+            Rectangle()
+                .fill(Color.gray.opacity(0.1))
+                .frame(height: 1)
+                .padding(.horizontal, 20)
+                .padding(.vertical, 16)
+
+            // Discovery Photos Grid
+            VStack(alignment: .leading, spacing: 12) {
+                HStack {
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text("Discovery Photos")
+                            .font(.subheadline)
+                            .fontWeight(.semibold)
+                            .foregroundColor(.secondary)
+                        Text("Shown on your card in Discover")
+                            .font(.caption2)
+                            .foregroundColor(.gray)
+                    }
+
+                    Spacer()
+
+                    if isUploadingPhotos {
+                        uploadProgressBadge
+                    } else {
+                        Text("\(photos.count)/6")
+                            .font(.caption)
+                            .fontWeight(.semibold)
+                            .foregroundColor(.blue)
+                            .padding(.horizontal, 10)
+                            .padding(.vertical, 4)
+                            .background(Color.blue.opacity(0.1))
+                            .cornerRadius(12)
+                    }
+                }
+                .padding(.horizontal, 20)
+
+                // Photo Grid or Empty State
+                if photos.isEmpty && uploadingPhotoCount == 0 {
+                    emptyPhotosState
+                        .padding(.horizontal, 20)
+                } else {
+                    discoveryPhotosGrid
+                        .padding(.horizontal, 20)
+                }
+            }
+            .padding(.bottom, 20)
+        }
+        .background(Color(.systemBackground))
+        .cornerRadius(16)
+        .shadow(color: .black.opacity(0.05), radius: 10, y: 4)
+        .onChange(of: selectedPhotoItems) { oldItems, newItems in
+            Logger.shared.info("📸 Photo picker changed: \(oldItems.count) → \(newItems.count) items", category: .general)
+            guard !newItems.isEmpty else { return }
+            Task {
+                await uploadNewPhotos(newItems)
+            }
+        }
+    }
+
+    private var profilePlaceholderImage: some View {
+        Circle()
+            .fill(
+                LinearGradient(
+                    colors: [.blue.opacity(0.6), .teal.opacity(0.6)],
+                    startPoint: .topLeading,
+                    endPoint: .bottomTrailing
+                )
+            )
+            .overlay {
+                if !fullName.isEmpty {
+                    Text(fullName.prefix(1).uppercased())
+                        .font(.system(size: 50, weight: .bold))
+                        .foregroundColor(.white)
+                } else {
+                    Image(systemName: "person.fill")
+                        .font(.system(size: 40))
+                        .foregroundColor(.white.opacity(0.7))
+                }
+            }
+    }
+
+    private var uploadProgressBadge: some View {
+        HStack(spacing: 6) {
+            ZStack {
+                Circle()
+                    .stroke(Color.blue.opacity(0.2), lineWidth: 2)
+                    .frame(width: 20, height: 20)
+                Circle()
+                    .trim(from: 0, to: uploadProgress)
+                    .stroke(Color.blue, style: StrokeStyle(lineWidth: 2, lineCap: .round))
+                    .frame(width: 20, height: 20)
+                    .rotationEffect(.degrees(-90))
+            }
+            Text("\(Int(uploadProgress * 100))%")
+                .font(.caption2)
+                .fontWeight(.bold)
+                .foregroundColor(.blue)
+        }
+        .padding(.horizontal, 10)
+        .padding(.vertical, 4)
+        .background(Color.blue.opacity(0.1))
+        .cornerRadius(12)
+    }
+
+    private var emptyPhotosState: some View {
+        VStack(spacing: 12) {
+            Image(systemName: "photo.on.rectangle.angled")
+                .font(.system(size: 36))
+                .foregroundStyle(
+                    LinearGradient(
+                        colors: [.blue.opacity(0.5), .teal.opacity(0.5)],
+                        startPoint: .topLeading,
+                        endPoint: .bottomTrailing
+                    )
+                )
+
+            Text("Add photos to find more teammates!")
+                .font(.subheadline)
+                .foregroundColor(.secondary)
+
+            PhotosPicker(selection: $selectedPhotoItems, maxSelectionCount: 6, matching: .images) {
+                HStack(spacing: 6) {
+                    Image(systemName: "plus.circle.fill")
+                        .font(.subheadline)
+                    Text("Add Photos")
+                        .font(.subheadline)
+                        .fontWeight(.semibold)
+                }
+                .foregroundColor(.white)
+                .padding(.horizontal, 20)
+                .padding(.vertical, 10)
+                .background(
+                    LinearGradient(
+                        colors: [.blue, .teal],
+                        startPoint: .leading,
+                        endPoint: .trailing
+                    )
+                )
+                .cornerRadius(10)
+            }
+        }
+        .frame(maxWidth: .infinity)
+        .padding(.vertical, 24)
+        .background(Color(.systemGray6))
+        .cornerRadius(12)
+    }
+
+    private var discoveryPhotosGrid: some View {
+        LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())], spacing: 10) {
+            ForEach(Array(photos.enumerated()), id: \.element) { index, photoURL in
+                DraggablePhotoGridItem(
+                    photoURL: photoURL,
+                    isDragging: draggingPhotoURL == photoURL,
+                    onDelete: { deletePhoto(at: index) }
+                )
+                .id(photoURL)
+                .onDrag {
+                    draggingPhotoURL = photoURL
+                    HapticManager.shared.impact(.medium)
+                    return NSItemProvider(object: photoURL as NSString)
+                }
+                .onDrop(of: [.text], delegate: PhotoDropDelegate(
+                    item: photoURL,
+                    items: $photos,
+                    draggingItem: $draggingPhotoURL,
+                    onReorder: { savePhotoOrder() }
+                ))
+            }
+
+            ForEach(0..<uploadingPhotoCount, id: \.self) { index in
+                UploadingPhotoPlaceholder(index: index)
+                    .transition(.opacity)
+            }
+
+            if photos.count + uploadingPhotoCount < 6 {
+                PhotosPicker(selection: $selectedPhotoItems, maxSelectionCount: 6 - photos.count - uploadingPhotoCount, matching: .images) {
+                    RoundedRectangle(cornerRadius: 10)
+                        .stroke(Color.blue.opacity(0.3), style: StrokeStyle(lineWidth: 2, dash: [6]))
+                        .frame(height: 100)
+                        .overlay {
+                            VStack(spacing: 6) {
+                                Image(systemName: "plus")
+                                    .font(.title2)
+                                    .foregroundColor(.blue.opacity(0.6))
+                            }
+                        }
+                }
+                .disabled(isUploadingPhotos)
+                .opacity(isUploadingPhotos ? 0.5 : 1.0)
+            }
+        }
+    }
+
+    // MARK: - Profile Photo Section (Legacy - kept for reference)
+
+    private var profilePhotoSection: some View {
+        VStack(spacing: 15) {
+            ZStack(alignment: .bottomTrailing) {
+                // Profile Image - PERFORMANCE: Use CachedAsyncImage
+                Group {
+                    if let profileImage = profileImage {
+                        Image(uiImage: profileImage)
+                            .resizable()
+                            .scaledToFill()
+                    } else if let currentUser = authService.currentUser,
+                              let imageURL = URL(string: currentUser.profileImageURL),
+                              !currentUser.profileImageURL.isEmpty {
+                        CachedAsyncImage(
+                            url: imageURL,
+                            content: { image in
+                                image
+                                    .resizable()
+                                    .scaledToFill()
+                            },
+                            placeholder: {
+                                placeholderImage
+                            }
+                        )
+                    } else {
+                        placeholderImage
+                    }
+                }
+                .frame(width: 140, height: 140)
+                .clipShape(Circle())
+                .overlay {
+                    Circle()
+                        .stroke(
+                            LinearGradient(
+                                colors: [.blue, .teal],
+                                startPoint: .topLeading,
+                                endPoint: .bottomTrailing
+                            ),
+                            lineWidth: 3
+                        )
+                }
+                .shadow(color: .blue.opacity(0.3), radius: 15, y: 8)
+
+                // Camera button with loading indicator
+                PhotosPicker(selection: $selectedImage, matching: .images) {
+                    ZStack {
+                        Circle()
+                            .fill(Color.white)
+                            .frame(width: 44, height: 44)
+                            .shadow(color: .black.opacity(0.2), radius: 5)
+
+                        Circle()
+                            .fill(
+                                LinearGradient(
+                                    colors: [.blue, .teal],
+                                    startPoint: .topLeading,
+                                    endPoint: .bottomTrailing
+                                )
+                            )
+                            .frame(width: 40, height: 40)
+
+                        if isUploadingProfilePhoto {
+                            ProgressView()
+                                .tint(.white)
+                                .scaleEffect(0.8)
+                        } else {
+                            Image(systemName: "camera.fill")
+                                .font(.system(size: 16))
+                                .foregroundColor(.white)
+                        }
+                    }
+                }
+                .disabled(isUploadingProfilePhoto)
+                .offset(x: 5, y: 5)
+                .accessibilityLabel("Change profile photo")
+                .accessibilityHint("Tap to select a new profile photo from your photo library")
+            }
+            .onChange(of: selectedImage) { _, newValue in
+                Task {
+                    await MainActor.run {
+                        isUploadingProfilePhoto = true
+                    }
+
+                    if let data = try? await newValue?.loadTransferable(type: Data.self),
+                       let uiImage = UIImage(data: data) {
+                        await MainActor.run {
+                            profileImage = uiImage
+                            isUploadingProfilePhoto = false
+                            HapticManager.shared.notification(.success)
+                        }
+                    } else {
+                        await MainActor.run {
+                            isUploadingProfilePhoto = false
+                            HapticManager.shared.notification(.error)
+                        }
+                    }
+                }
+            }
+            
+            VStack(spacing: 4) {
+                Text("Profile Photo")
+                    .font(.subheadline)
+                    .fontWeight(.medium)
+                    .foregroundStyle(
+                        LinearGradient(
+                            colors: [.blue, .teal],
+                            startPoint: .leading,
+                            endPoint: .trailing
+                        )
+                    )
+
+                Text("Shown on your Profile page")
+                    .font(.caption2)
+                    .foregroundColor(.secondary)
+            }
+        }
+    }
+    
+    private var placeholderImage: some View {
+        Circle()
+            .fill(
+                LinearGradient(
+                    colors: [.blue.opacity(0.6), .teal.opacity(0.6)],
+                    startPoint: .topLeading,
+                    endPoint: .bottomTrailing
+                )
+            )
+            .overlay {
+                if !fullName.isEmpty {
+                    Text(fullName.prefix(1).uppercased())
+                        .font(.system(size: 60, weight: .bold))
+                        .foregroundColor(.white)
+                } else {
+                    Image(systemName: "person.fill")
+                        .font(.system(size: 50))
+                        .foregroundColor(.white.opacity(0.7))
+                }
+            }
+    }
+
+    // MARK: - Photo Gallery Section
+
+    private var photoGallerySection: some View {
+        VStack(alignment: .leading, spacing: 16) {
+            HStack {
+                VStack(alignment: .leading, spacing: 4) {
+                    Text("Discovery Photos")
+                        .font(.title3)
+                        .fontWeight(.bold)
+                    Text("These photos appear on your card in Discover, Interest & Saved")
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+                }
+
+                Spacer()
+
+                // Enhanced upload progress indicator with circular animation
+                if isUploadingPhotos {
+                    HStack(spacing: 12) {
+                        // Circular progress indicator
+                        ZStack {
+                            // Background circle
+                            Circle()
+                                .stroke(Color.blue.opacity(0.2), lineWidth: 4)
+                                .frame(width: 44, height: 44)
+
+                            // Progress circle
+                            Circle()
+                                .trim(from: 0, to: uploadProgress)
+                                .stroke(
+                                    LinearGradient(
+                                        colors: [.blue, .teal],
+                                        startPoint: .leading,
+                                        endPoint: .trailing
+                                    ),
+                                    style: StrokeStyle(lineWidth: 4, lineCap: .round)
+                                )
+                                .frame(width: 44, height: 44)
+                                .rotationEffect(.degrees(-90))
+                                .animation(.easeInOut(duration: 0.5), value: uploadProgress)
+
+                            // Spinning animation while uploading
+                            if uploadProgress < 1.0 {
+                                Circle()
+                                    .trim(from: 0, to: 0.2)
+                                    .stroke(Color.white.opacity(0.3), lineWidth: 4)
+                                    .frame(width: 44, height: 44)
+                                    .rotationEffect(.degrees(uploadProgress * 360))
+                            }
+
+                            // Percentage text
+                            Text("\(Int(uploadProgress * 100))%")
+                                .font(.system(size: 11, weight: .bold))
+                                .foregroundColor(.blue)
+                        }
+
+                        VStack(alignment: .leading, spacing: 3) {
+                            HStack(spacing: 4) {
+                                // Animated dots
+                                Text("Uploading")
+                                    .font(.caption)
+                                    .fontWeight(.bold)
+                                    .foregroundColor(.blue)
+
+                                ForEach(0..<3, id: \.self) { index in
+                                    Circle()
+                                        .fill(Color.blue)
+                                        .frame(width: 3, height: 3)
+                                        .opacity(uploadProgress * 3 > Double(index) ? 1.0 : 0.3)
+                                        .animation(.easeInOut(duration: 0.6).repeatForever(autoreverses: true).delay(Double(index) * 0.2), value: uploadProgress)
+                                }
+                            }
+
+                            Text("\(photos.count)/\(photos.count + uploadingPhotoCount) uploaded")
+                                .font(.caption2)
+                                .foregroundColor(.secondary)
+                        }
+                    }
+                    .padding(.horizontal, 16)
+                    .padding(.vertical, 10)
+                    .background(
+                        RoundedRectangle(cornerRadius: 14)
+                            .fill(Color.blue.opacity(0.15))
+                            .shadow(color: .blue.opacity(0.2), radius: 8, x: 0, y: 2)
+                    )
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 14)
+                            .stroke(
+                                LinearGradient(
+                                    colors: [.blue.opacity(0.3), .teal.opacity(0.3)],
+                                    startPoint: .leading,
+                                    endPoint: .trailing
+                                ),
+                                lineWidth: 1
+                            )
+                    )
+                    .transition(.opacity)
+                    .animation(.quick, value: isUploadingPhotos)
+                }
+            }
+
+            // Empty state or photo grid
+            if photos.isEmpty && uploadingPhotoCount == 0 {
+                // Empty state with helpful message
+                VStack(spacing: 16) {
+                    Image(systemName: "photo.on.rectangle.angled")
+                        .font(.system(size: 50))
+                        .foregroundStyle(
+                            LinearGradient(
+                                colors: [.blue.opacity(0.6), .teal.opacity(0.6)],
+                                startPoint: .topLeading,
+                                endPoint: .bottomTrailing
+                            )
+                        )
+
+                    VStack(spacing: 6) {
+                        Text("No Photos Yet")
+                            .font(.headline)
+                            .foregroundColor(.primary)
+
+                        Text("Add up to 6 photos to showcase your gaming setup.\nPhotos help you find more teammates!")
+                            .font(.subheadline)
+                            .foregroundColor(.secondary)
+                            .multilineTextAlignment(.center)
+                    }
+
+                    PhotosPicker(selection: $selectedPhotoItems, maxSelectionCount: 6, matching: .images) {
+                        HStack(spacing: 8) {
+                            Image(systemName: "plus.circle.fill")
+                            Text("Add Your First Photo")
+                        }
+                        .font(.headline)
+                        .foregroundColor(.white)
+                        .padding(.horizontal, 24)
+                        .padding(.vertical, 14)
+                        .background(
+                            LinearGradient(
+                                colors: [.blue, .teal],
+                                startPoint: .leading,
+                                endPoint: .trailing
+                            )
+                        )
+                        .cornerRadius(12)
+                    }
+                }
+                .frame(maxWidth: .infinity)
+                .padding(.vertical, 40)
+            } else {
+                // Photo grid with long-press drag-and-drop reordering
+                LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())], spacing: 12) {
+                    ForEach(Array(photos.enumerated()), id: \.element) { index, photoURL in
+                        DraggablePhotoGridItem(
+                            photoURL: photoURL,
+                            isDragging: draggingPhotoURL == photoURL,
+                            onDelete: {
+                                deletePhoto(at: index)
+                            }
+                        )
+                        .id(photoURL)
+                        .onDrag {
+                            draggingPhotoURL = photoURL
+                            HapticManager.shared.impact(.medium)
+                            return NSItemProvider(object: photoURL as NSString)
+                        }
+                        .onDrop(of: [.text], delegate: PhotoDropDelegate(
+                            item: photoURL,
+                            items: $photos,
+                            draggingItem: $draggingPhotoURL,
+                            onReorder: { savePhotoOrder() }
+                        ))
+                    }
+
+                    // Show uploading placeholders with instant appearance
+                    ForEach(0..<uploadingPhotoCount, id: \.self) { index in
+                        UploadingPhotoPlaceholder(index: index)
+                            .transition(.opacity)
+                    }
+
+                    // Add photo button
+                    if photos.count + uploadingPhotoCount < 6 {
+                        PhotosPicker(selection: $selectedPhotoItems, maxSelectionCount: 6 - photos.count - uploadingPhotoCount, matching: .images) {
+                            RoundedRectangle(cornerRadius: 12)
+                                .stroke(Color.blue.opacity(0.3), style: StrokeStyle(lineWidth: 2, dash: [8]))
+                                .frame(height: 120)
+                                .overlay {
+                                    VStack(spacing: 8) {
+                                        Image(systemName: "plus.circle.fill")
+                                            .font(.title)
+                                            .foregroundColor(.blue)
+                                        Text("Add Photo")
+                                            .font(.caption)
+                                            .foregroundColor(.secondary)
+                                    }
+                                }
+                        }
+                        .accessibilityLabel("Add gallery photo")
+                        .accessibilityHint("Tap to add up to \(6 - photos.count - uploadingPhotoCount) more photos to your gallery")
+                        .disabled(isUploadingPhotos)
+                        .opacity(isUploadingPhotos ? 0.6 : 1.0)
+                    }
+                }
+            }
+        }
+        .padding()
+        .background(Color(.systemBackground))
+        .cornerRadius(16)
+        .shadow(color: .black.opacity(0.05), radius: 10, y: 4)
+        .onChange(of: selectedPhotoItems) { oldItems, newItems in
+            Logger.shared.info("📸 Photo picker changed: \(oldItems.count) → \(newItems.count) items", category: .general)
+
+            guard !newItems.isEmpty else {
+                Logger.shared.warning("No photos selected", category: .general)
+                return
+            }
+
+            Logger.shared.info("🚀 Triggering upload for \(newItems.count) photos", category: .general)
+
+            Task {
+                await uploadNewPhotos(newItems)
+            }
+        }
+    }
+
+    // MARK: - Profile Completion Progress
+    
+    private var profileCompletionProgress: some View {
+        let progress = calculateProgress()
+        
+        return VStack(spacing: 12) {
+            HStack {
+                Text("Profile Completion")
+                    .font(.subheadline)
+                    .fontWeight(.semibold)
+                
+                Spacer()
+                
+                Text("\(Int(progress * 100))%")
+                    .font(.subheadline)
+                    .fontWeight(.bold)
+                    .foregroundStyle(
+                        LinearGradient(
+                            colors: [.blue, .teal],
+                            startPoint: .leading,
+                            endPoint: .trailing
+                        )
+                    )
+            }
+            
+            GeometryReader { geometry in
+                ZStack(alignment: .leading) {
+                    Capsule()
+                        .fill(Color.gray.opacity(0.2))
+                        .frame(height: 8)
+                    
+                    Capsule()
+                        .fill(
+                            LinearGradient(
+                                colors: [.blue, .teal],
+                                startPoint: .leading,
+                                endPoint: .trailing
+                            )
+                        )
+                        .frame(width: geometry.size.width * progress, height: 8)
+                        .animation(.spring(response: 0.5), value: progress)
+                }
+            }
+            .frame(height: 8)
+            
+            if progress < 1.0 {
+                Text(getProgressTip())
+                    .font(.caption)
+                    .foregroundColor(.gray)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+            }
+        }
+        .padding(20)
+        .background(Color(.systemBackground))
+        .cornerRadius(16)
+        .shadow(color: .black.opacity(0.05), radius: 8)
+    }
+    
+    // MARK: - Basic Info Section
+
+    private var basicInfoSection: some View {
+        VStack(spacing: 20) {
+            SectionHeader(icon: "person.fill", title: "Basic Information", color: .blue, subtitle: "Your identity and location")
+
+            // Full Name (Required)
+            VStack(alignment: .leading, spacing: 8) {
+                HStack(spacing: 4) {
+                    Text("Full Name")
+                        .font(.subheadline)
+                        .fontWeight(.semibold)
+                        .foregroundColor(.secondary)
+                    Text("*")
+                        .foregroundColor(.red)
+                        .font(.subheadline)
+                }
+                TextField("Enter your name", text: $fullName)
+                    .padding()
+                    .background(Color(.systemGray6))
+                    .cornerRadius(12)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 12)
+                            .stroke(fullName.isEmpty ? Color.red.opacity(0.3) : Color.clear, lineWidth: 1)
+                    )
+            }
+
+            // Gamer Tag
+            VStack(alignment: .leading, spacing: 8) {
+                HStack(spacing: 4) {
+                    Text("Gamer Tag")
+                        .font(.subheadline)
+                        .fontWeight(.semibold)
+                        .foregroundColor(.secondary)
+                    Image(systemName: "gamecontroller.fill")
+                        .font(.caption)
+                        .foregroundColor(.blue)
+                }
+                TextField("YourGamerTag", text: $gamerTag)
+                    .padding()
+                    .background(Color(.systemGray6))
+                    .cornerRadius(12)
+                Text("Your gaming username others will know you by")
+                    .font(.caption)
+                    .foregroundColor(.gray)
+            }
+
+            // Age (Required)
+            VStack(alignment: .leading, spacing: 8) {
+                HStack(spacing: 4) {
+                    Text("Age")
+                        .font(.subheadline)
+                        .fontWeight(.semibold)
+                        .foregroundColor(.secondary)
+                    Text("*")
+                        .foregroundColor(.red)
+                        .font(.subheadline)
+                }
+                TextField("18", text: $age)
+                    .keyboardType(.numberPad)
+                    .padding()
+                    .background(Color(.systemGray6))
+                    .cornerRadius(12)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 12)
+                            .stroke((Int(age) ?? 0) < 18 ? Color.red.opacity(0.3) : Color.clear, lineWidth: 1)
+                    )
+                if !age.isEmpty && (Int(age) ?? 0) < 18 {
+                    HStack(spacing: 6) {
+                        Image(systemName: "exclamationmark.triangle.fill")
+                            .foregroundColor(.red)
+                        Text("You must be at least 18 years old")
+                            .font(.caption)
+                            .foregroundColor(.red)
+                    }
+                }
+            }
+
+            // Gender Picker
+            VStack(alignment: .leading, spacing: 8) {
+                Text("Gender")
+                    .font(.subheadline)
+                    .fontWeight(.semibold)
+                    .foregroundColor(.secondary)
+                
+                Picker("Gender", selection: $gender) {
+                    ForEach(genderOptions, id: \.self) { option in
+                        Text(option).tag(option)
+                    }
+                }
+                .pickerStyle(.segmented)
+            }
+            
+            // Location and Country (Required)
+            HStack(spacing: 12) {
+                VStack(alignment: .leading, spacing: 8) {
+                    HStack(spacing: 4) {
+                        Text("City")
+                            .font(.subheadline)
+                            .fontWeight(.semibold)
+                            .foregroundColor(.secondary)
+                        Text("*")
+                            .foregroundColor(.red)
+                            .font(.subheadline)
+                    }
+                    TextField("Los Angeles", text: $location)
+                        .padding()
+                        .background(Color(.systemGray6))
+                        .cornerRadius(12)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 12)
+                                .stroke(location.isEmpty ? Color.red.opacity(0.3) : Color.clear, lineWidth: 1)
+                        )
+                }
+
+                VStack(alignment: .leading, spacing: 8) {
+                    HStack(spacing: 4) {
+                        Text("Country")
+                            .font(.subheadline)
+                            .fontWeight(.semibold)
+                            .foregroundColor(.secondary)
+                        Text("*")
+                            .foregroundColor(.red)
+                            .font(.subheadline)
+                    }
+                    Menu {
+                        ForEach(availableCountries, id: \.self) { countryOption in
+                            Button(countryOption) {
+                                country = countryOption
+                            }
+                        }
+                    } label: {
+                        HStack {
+                            Text(country.isEmpty ? "Select Country" : country)
+                                .foregroundColor(country.isEmpty ? .gray : .primary)
+                            Spacer()
+                            Image(systemName: "chevron.down")
+                                .font(.caption)
+                                .foregroundColor(.gray)
+                        }
+                        .padding()
+                        .background(Color(.systemGray6))
+                        .cornerRadius(12)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 12)
+                                .stroke(country.isEmpty ? Color.red.opacity(0.3) : Color.clear, lineWidth: 1)
+                        )
+                    }
+                }
+            }
+        }
+        .padding(20)
+        .background(Color(.systemBackground))
+        .cornerRadius(16)
+        .shadow(color: .black.opacity(0.05), radius: 8)
+    }
+
+    // MARK: - About Me Section
+    
+    private var aboutMeSection: some View {
+        VStack(spacing: 15) {
+            SectionHeader(icon: "quote.bubble.fill", title: "About Me", color: .teal, subtitle: "Tell teammates about yourself")
+            
+            VStack(alignment: .leading, spacing: 8) {
+                HStack {
+                    Text("Bio")
+                        .font(.subheadline)
+                        .fontWeight(.semibold)
+                        .foregroundColor(.secondary)
+
+                    Spacer()
+
+                    // Character counter with color coding
+                    Text("\(bio.count)/500")
+                        .font(.caption)
+                        .fontWeight(bio.count >= 400 ? .semibold : .regular)
+                        .foregroundColor(
+                            bio.count >= 500 ? .red :
+                            bio.count >= 450 ? .orange :
+                            bio.count >= 400 ? .yellow :
+                            .gray
+                        )
+                }
+                
+                TextEditor(text: $bio)
+                    .frame(minHeight: 120)
+                    .padding(12)
+                    .background(Color(.systemGray6))
+                    .cornerRadius(12)
+                    .onChange(of: bio) { _, newValue in
+                        if newValue.count > 500 {
+                            bio = String(newValue.prefix(500))
+                        }
+                    }
+                
+                Text("Tell others about your gaming style and what makes you a great teammate")
+                    .font(.caption)
+                    .foregroundColor(.gray)
+            }
+        }
+        .padding(20)
+        .background(Color(.systemBackground))
+        .cornerRadius(16)
+        .shadow(color: .black.opacity(0.05), radius: 8)
+    }
+    
+    // MARK: - Gaming Setup Section
+
+    private var gamingSetupSection: some View {
+        VStack(spacing: 20) {
+            SectionHeader(icon: "gamecontroller.fill", title: "Gaming Setup", color: .blue, subtitle: "Your platforms and play style")
+
+            // Platforms - 2 column fixed grid for consistent sizing
+            VStack(alignment: .leading, spacing: 12) {
+                Text("Platforms")
+                    .font(.subheadline)
+                    .fontWeight(.semibold)
+                    .foregroundColor(.secondary)
+
+                LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 10) {
+                    ForEach(GamingPlatform.allCases) { platform in
+                        Button {
+                            if platforms.contains(platform) {
+                                platforms.remove(platform)
+                            } else {
+                                platforms.insert(platform)
+                            }
+                            HapticManager.shared.impact(.light)
+                        } label: {
+                            HStack(spacing: 6) {
+                                Image(systemName: platform.icon)
+                                    .font(.system(size: 14))
+                                Text(platform.rawValue)
+                                    .font(.system(size: 13, weight: .medium))
+                                    .lineLimit(1)
+                                    .minimumScaleFactor(0.8)
+                            }
+                            .padding(.horizontal, 12)
+                            .padding(.vertical, 12)
+                            .frame(maxWidth: .infinity)
+                            .background(
+                                platforms.contains(platform) ?
+                                LinearGradient(colors: [.blue, .teal], startPoint: .leading, endPoint: .trailing) :
+                                LinearGradient(colors: [Color(.systemGray6), Color(.systemGray6)], startPoint: .leading, endPoint: .trailing)
+                            )
+                            .foregroundColor(platforms.contains(platform) ? .white : .primary)
+                            .cornerRadius(12)
+                        }
+                    }
+                }
+            }
+
+            // Skill Level - horizontal scroll for clean single-line display
+            VStack(alignment: .leading, spacing: 12) {
+                HStack {
+                    Image(systemName: "star.fill")
+                        .foregroundColor(.yellow)
+                    Text("Skill Level")
+                        .font(.subheadline)
+                        .fontWeight(.semibold)
+                        .foregroundColor(.secondary)
+                }
+
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack(spacing: 10) {
+                        ForEach(SkillLevel.allCases) { level in
+                            Button {
+                                skillLevel = level
+                                HapticManager.shared.impact(.light)
+                            } label: {
+                                HStack(spacing: 6) {
+                                    Image(systemName: level.icon)
+                                        .font(.system(size: 13))
+                                    Text(level.rawValue)
+                                        .font(.system(size: 14, weight: .medium))
+                                }
+                                .padding(.horizontal, 16)
+                                .padding(.vertical, 10)
+                                .background(
+                                    skillLevel == level ?
+                                    LinearGradient(colors: [.blue, .teal], startPoint: .leading, endPoint: .trailing) :
+                                    LinearGradient(colors: [Color(.systemGray6), Color(.systemGray6)], startPoint: .leading, endPoint: .trailing)
+                                )
+                                .foregroundColor(skillLevel == level ? .white : .primary)
+                                .cornerRadius(12)
+                            }
+                        }
+                    }
+                }
+            }
+
+            // Play Style - horizontal scroll for consistent no-wrap display
+            VStack(alignment: .leading, spacing: 12) {
+                Text("Play Style")
+                    .font(.subheadline)
+                    .fontWeight(.semibold)
+                    .foregroundColor(.secondary)
+
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack(spacing: 10) {
+                        ForEach(PlayStyle.allCases) { style in
+                            Button {
+                                playStyle = style
+                                HapticManager.shared.impact(.light)
+                            } label: {
+                                HStack(spacing: 5) {
+                                    Image(systemName: style.icon)
+                                        .font(.system(size: 13))
+                                    Text(style.rawValue)
+                                        .font(.system(size: 14, weight: .medium))
+                                }
+                                .padding(.horizontal, 14)
+                                .padding(.vertical, 10)
+                                .background(
+                                    playStyle == style ?
+                                    LinearGradient(colors: [.teal, .blue], startPoint: .leading, endPoint: .trailing) :
+                                    LinearGradient(colors: [Color(.systemGray6), Color(.systemGray6)], startPoint: .leading, endPoint: .trailing)
+                                )
+                                .foregroundColor(playStyle == style ? .white : .primary)
+                                .cornerRadius(12)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .padding(20)
+        .background(Color(.systemBackground))
+        .cornerRadius(16)
+        .shadow(color: .black.opacity(0.05), radius: 8)
+    }
+
+    // MARK: - Gaming Preferences Section
+
+    private var gamingPreferencesSection: some View {
+        VStack(spacing: 20) {
+            SectionHeader(icon: "person.2.fill", title: "Looking For", color: .teal, subtitle: "What type of teammates you want")
+
+            // Looking For Types - 2 column fixed grid for cleaner layout
+            VStack(alignment: .leading, spacing: 12) {
+                Text("What type of teammates?")
+                    .font(.subheadline)
+                    .fontWeight(.semibold)
+                    .foregroundColor(.secondary)
+
+                LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 10) {
+                    ForEach(LookingForType.allCases) { type in
+                        Button {
+                            if lookingForTypes.contains(type) {
+                                lookingForTypes.remove(type)
+                            } else {
+                                lookingForTypes.insert(type)
+                            }
+                            HapticManager.shared.impact(.light)
+                        } label: {
+                            HStack(spacing: 5) {
+                                Image(systemName: type.icon)
+                                    .font(.system(size: 12))
+                                Text(type.rawValue)
+                                    .font(.system(size: 12, weight: .medium))
+                                    .lineLimit(1)
+                                    .minimumScaleFactor(0.8)
+                            }
+                            .padding(.horizontal, 10)
+                            .padding(.vertical, 12)
+                            .frame(maxWidth: .infinity)
+                            .background(
+                                lookingForTypes.contains(type) ?
+                                LinearGradient(colors: [.blue, .teal], startPoint: .leading, endPoint: .trailing) :
+                                LinearGradient(colors: [Color(.systemGray6), Color(.systemGray6)], startPoint: .leading, endPoint: .trailing)
+                            )
+                            .foregroundColor(lookingForTypes.contains(type) ? .white : .primary)
+                            .cornerRadius(12)
+                        }
+                    }
+                }
+            }
+
+            // Voice Chat Preference - horizontal scroll for clean display
+            VStack(alignment: .leading, spacing: 12) {
+                HStack {
+                    Image(systemName: "mic.fill")
+                        .foregroundColor(.blue)
+                    Text("Voice Chat")
+                        .font(.subheadline)
+                        .fontWeight(.semibold)
+                        .foregroundColor(.secondary)
+                }
+
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack(spacing: 10) {
+                        ForEach(VoiceChatPreference.allCases) { pref in
+                            Button {
+                                voiceChatPreference = pref
+                                HapticManager.shared.impact(.light)
+                            } label: {
+                                HStack(spacing: 6) {
+                                    Image(systemName: pref.icon)
+                                        .font(.system(size: 13))
+                                    Text(pref.rawValue)
+                                        .font(.system(size: 13, weight: .medium))
+                                }
+                                .padding(.horizontal, 16)
+                                .padding(.vertical, 10)
+                                .background(
+                                    voiceChatPreference == pref ?
+                                    LinearGradient(colors: [.blue, .teal], startPoint: .leading, endPoint: .trailing) :
+                                    LinearGradient(colors: [Color(.systemGray6), Color(.systemGray6)], startPoint: .leading, endPoint: .trailing)
+                                )
+                                .foregroundColor(voiceChatPreference == pref ? .white : .primary)
+                                .cornerRadius(12)
+                            }
+                        }
+                    }
+                }
+            }
+
+            // Teammate Age Preference
+            VStack(spacing: 12) {
+                HStack {
+                    Text("Teammate Age Range")
+                        .font(.subheadline)
+                        .fontWeight(.semibold)
+                        .foregroundColor(.secondary)
+                    Spacer()
+                    Text("\(ageRangeMin) - \(ageRangeMax)")
+                        .font(.subheadline.weight(.bold))
+                        .foregroundColor(.white)
+                        .padding(.horizontal, 12)
+                        .padding(.vertical, 6)
+                        .background(
+                            LinearGradient(colors: [.teal, .blue], startPoint: .leading, endPoint: .trailing)
+                        )
+                        .cornerRadius(12)
+                }
+
+                HStack(spacing: 20) {
+                    VStack(spacing: 4) {
+                        Text("Min")
+                            .font(.caption)
+                            .foregroundColor(.secondary)
+                        Picker("Min Age", selection: $ageRangeMin) {
+                            ForEach(18..<66, id: \.self) { age in
+                                Text("\(age)").tag(age)
+                            }
+                        }
+                        .pickerStyle(.wheel)
+                        .frame(width: 70, height: 80)
+                        .clipped()
+                    }
+
+                    Text("to")
+                        .foregroundColor(.secondary)
+
+                    VStack(spacing: 4) {
+                        Text("Max")
+                            .font(.caption)
+                            .foregroundColor(.secondary)
+                        Picker("Max Age", selection: $ageRangeMax) {
+                            ForEach(19..<66, id: \.self) { age in
+                                Text("\(age)").tag(age)
+                            }
+                        }
+                        .pickerStyle(.wheel)
+                        .frame(width: 70, height: 80)
+                        .clipped()
+                    }
+                }
+            }
+            .padding()
+            .background(Color(.systemGray6))
+            .cornerRadius(12)
+        }
+        .padding(20)
+        .background(Color(.systemBackground))
+        .cornerRadius(16)
+        .shadow(color: .black.opacity(0.05), radius: 8)
+    }
+
+    // MARK: - Gaming Schedule Section
+
+    private var gamingScheduleSection: some View {
+        VStack(spacing: 20) {
+            SectionHeader(icon: "clock.fill", title: "Gaming Schedule", color: .blue, subtitle: "When you're available to play")
+
+            // Weekly Hours
+            VStack(alignment: .leading, spacing: 12) {
+                HStack {
+                    Text("Weekly Gaming Hours")
+                        .font(.subheadline)
+                        .fontWeight(.semibold)
+                        .foregroundColor(.secondary)
+                    Spacer()
+                    Text("\(weeklyHours)+ hrs/week")
+                        .font(.caption)
+                        .fontWeight(.bold)
+                        .foregroundColor(.white)
+                        .padding(.horizontal, 10)
+                        .padding(.vertical, 4)
+                        .background(
+                            LinearGradient(colors: [.blue, .teal], startPoint: .leading, endPoint: .trailing)
+                        )
+                        .cornerRadius(8)
+                }
+
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack(spacing: 10) {
+                        ForEach(weeklyHoursOptions, id: \.self) { hours in
+                            Button {
+                                weeklyHours = hours
+                                HapticManager.shared.impact(.light)
+                            } label: {
+                                Text("\(hours)+")
+                                    .font(.system(size: 14, weight: .medium))
+                                    .padding(.horizontal, 18)
+                                    .padding(.vertical, 10)
+                                    .background(
+                                        weeklyHours == hours ?
+                                        LinearGradient(colors: [.blue, .teal], startPoint: .leading, endPoint: .trailing) :
+                                        LinearGradient(colors: [Color(.systemGray6), Color(.systemGray6)], startPoint: .leading, endPoint: .trailing)
+                                    )
+                                    .foregroundColor(weeklyHours == hours ? .white : .primary)
+                                    .cornerRadius(12)
+                            }
+                        }
+                    }
+                }
+            }
+
+            // Gaming Goal - 2 column fixed grid for consistent layout
+            VStack(alignment: .leading, spacing: 12) {
+                Text("Gaming Goal")
+                    .font(.subheadline)
+                    .fontWeight(.semibold)
+                    .foregroundColor(.secondary)
+
+                LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 10) {
+                    ForEach(gamingGoalOptions, id: \.self) { goal in
+                        Button {
+                            gamingGoal = goal
+                            HapticManager.shared.impact(.light)
+                        } label: {
+                            Text(goal)
+                                .font(.system(size: 13, weight: .medium))
+                                .lineLimit(1)
+                                .minimumScaleFactor(0.8)
+                                .padding(.horizontal, 10)
+                                .padding(.vertical, 12)
+                                .frame(maxWidth: .infinity)
+                                .background(
+                                    gamingGoal == goal ?
+                                    LinearGradient(colors: [.teal, .blue], startPoint: .leading, endPoint: .trailing) :
+                                    LinearGradient(colors: [Color(.systemGray6), Color(.systemGray6)], startPoint: .leading, endPoint: .trailing)
+                                )
+                                .foregroundColor(gamingGoal == goal ? .white : .primary)
+                                .cornerRadius(12)
+                        }
+                    }
+                }
+            }
+
+        }
+        .padding(20)
+        .background(Color(.systemBackground))
+        .cornerRadius(16)
+        .shadow(color: .black.opacity(0.05), radius: 8)
+    }
+
+    // MARK: - Game Genres Section
+
+    private var gameGenresSection: some View {
+        VStack(spacing: 20) {
+            SectionHeader(icon: "folder.fill", title: "Game Genres", color: .cyan, subtitle: "What types of games you play")
+
+            // 3 column fixed grid for compact, consistent layout
+            LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())], spacing: 10) {
+                ForEach(GameGenre.allCases) { genre in
+                    Button {
+                        if gameGenres.contains(genre) {
+                            gameGenres.remove(genre)
+                        } else {
+                            gameGenres.insert(genre)
+                        }
+                        HapticManager.shared.impact(.light)
+                    } label: {
+                        HStack(spacing: 4) {
+                            Image(systemName: genreIcon(for: genre))
+                                .font(.system(size: 11))
+                            Text(genre.rawValue)
+                                .font(.system(size: 11, weight: .medium))
+                                .lineLimit(1)
+                                .minimumScaleFactor(0.7)
+                        }
+                        .padding(.horizontal, 8)
+                        .padding(.vertical, 10)
+                        .frame(maxWidth: .infinity)
+                        .background(
+                            gameGenres.contains(genre) ?
+                            LinearGradient(colors: [.cyan, .blue], startPoint: .leading, endPoint: .trailing) :
+                            LinearGradient(colors: [Color(.systemGray6), Color(.systemGray6)], startPoint: .leading, endPoint: .trailing)
+                        )
+                        .foregroundColor(gameGenres.contains(genre) ? .white : .primary)
+                        .cornerRadius(10)
+                    }
+                }
+            }
+
+            if !gameGenres.isEmpty {
+                HStack {
+                    Text("\(gameGenres.count) genre\(gameGenres.count == 1 ? "" : "s") selected")
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+                    Spacer()
+                }
+            }
+        }
+        .padding(20)
+        .background(Color(.systemBackground))
+        .cornerRadius(16)
+        .shadow(color: .black.opacity(0.05), radius: 8)
+    }
+
+    private func genreIcon(for genre: GameGenre) -> String {
+        switch genre {
+        case .fps: return "scope"
+        case .moba: return "person.3.fill"
+        case .battleRoyale: return "crown.fill"
+        case .rpg: return "sparkles"
+        case .mmorpg: return "globe"
+        case .sports: return "sportscourt.fill"
+        case .racing: return "car.fill"
+        case .fighting: return "figure.boxing"
+        case .strategy: return "brain.head.profile"
+        case .simulation: return "gearshape.fill"
+        case .survival: return "leaf.fill"
+        case .horror: return "moon.fill"
+        case .puzzle: return "puzzlepiece.fill"
+        case .platformer: return "figure.walk"
+        case .sandbox: return "cube.fill"
+        case .cardGame: return "suit.spade.fill"
+        case .boardGame: return "dice.fill"
+        case .indie: return "star.fill"
+        case .coOp: return "person.2.fill"
+        case .party: return "party.popper.fill"
+        }
+    }
+
+    // MARK: - External Profiles Section
+
+    private var externalProfilesSection: some View {
+        VStack(spacing: 20) {
+            SectionHeader(icon: "link.circle.fill", title: "Gaming Profiles", color: .purple, subtitle: "Connect your gaming accounts")
+
+            Text("Connect your gaming accounts so teammates can find you")
+                .font(.caption)
+                .foregroundColor(.secondary)
+                .frame(maxWidth: .infinity, alignment: .leading)
+
+            VStack(spacing: 12) {
+                // Discord
+                externalProfileField(
+                    icon: "message.fill",
+                    label: "Discord",
+                    placeholder: "Username#0000",
+                    value: $discordTag,
+                    color: .indigo
+                )
+
+                // Steam
+                externalProfileField(
+                    icon: "gamecontroller.fill",
+                    label: "Steam",
+                    placeholder: "Steam ID or Profile URL",
+                    value: $steamId,
+                    color: .blue
+                )
+
+                // PlayStation
+                externalProfileField(
+                    icon: "playstation.logo",
+                    label: "PSN",
+                    placeholder: "PSN ID",
+                    value: $psnId,
+                    color: .blue
+                )
+
+                // Xbox
+                externalProfileField(
+                    icon: "xbox.logo",
+                    label: "Xbox",
+                    placeholder: "Gamertag",
+                    value: $xboxGamertag,
+                    color: .green
+                )
+
+                // Nintendo
+                externalProfileField(
+                    icon: "gamecontroller",
+                    label: "Nintendo",
+                    placeholder: "Friend Code (SW-XXXX-XXXX-XXXX)",
+                    value: $nintendoFriendCode,
+                    color: .red
+                )
+
+                // Riot Games
+                externalProfileField(
+                    icon: "r.circle.fill",
+                    label: "Riot ID",
+                    placeholder: "Name#TAG",
+                    value: $riotId,
+                    color: .red
+                )
+
+                // Battle.net
+                externalProfileField(
+                    icon: "b.circle.fill",
+                    label: "Battle.net",
+                    placeholder: "BattleTag#0000",
+                    value: $battleNetTag,
+                    color: .blue
+                )
+
+                // Twitch
+                externalProfileField(
+                    icon: "video.fill",
+                    label: "Twitch",
+                    placeholder: "Username",
+                    value: $twitchUsername,
+                    color: .purple
+                )
+            }
+        }
+        .padding(20)
+        .background(Color(.systemBackground))
+        .cornerRadius(16)
+        .shadow(color: .black.opacity(0.05), radius: 8)
+    }
+
+    private func externalProfileField(
+        icon: String,
+        label: String,
+        placeholder: String,
+        value: Binding<String>,
+        color: Color
+    ) -> some View {
+        HStack(spacing: 12) {
+            ZStack {
+                Circle()
+                    .fill(color.opacity(0.15))
+                    .frame(width: 36, height: 36)
+                Image(systemName: icon)
+                    .font(.body)
+                    .foregroundColor(color)
+            }
+
+            VStack(alignment: .leading, spacing: 2) {
+                Text(label)
+                    .font(.caption)
+                    .fontWeight(.semibold)
+                    .foregroundColor(.secondary)
+                TextField(placeholder, text: value)
+                    .font(.subheadline)
+                    .autocapitalization(.none)
+                    .autocorrectionDisabled()
+            }
+        }
+        .padding(12)
+        .background(Color(.systemGray6))
+        .cornerRadius(12)
+    }
+
+    // MARK: - Express Yourself Section (Languages & Interests)
+
+    private var expressYourselfSection: some View {
+        VStack(spacing: 0) {
+            // Header
+            HStack {
+                SectionHeader(icon: "sparkles", title: "Express Yourself", color: .pink, subtitle: "Languages and interests")
+                Spacer()
+            }
+            .padding(.horizontal, 20)
+            .padding(.top, 20)
+            .padding(.bottom, 16)
+
+            VStack(spacing: 20) {
+                // Languages subsection
+                VStack(alignment: .leading, spacing: 12) {
+                    HStack {
+                        HStack(spacing: 6) {
+                            Image(systemName: "globe")
+                                .font(.subheadline)
+                                .foregroundColor(.teal)
+                            Text("Languages")
+                                .font(.subheadline)
+                                .fontWeight(.semibold)
+                                .foregroundColor(.secondary)
+                        }
+
+                        Spacer()
+
+                        Button {
+                            showLanguagePicker = true
+                        } label: {
+                            HStack(spacing: 4) {
+                                Image(systemName: "plus.circle.fill")
+                                    .font(.caption)
+                                Text("Add")
+                                    .font(.caption)
+                                    .fontWeight(.semibold)
+                            }
+                            .foregroundColor(.blue)
+                        }
+                    }
+
+                    if languages.isEmpty {
+                        Button {
+                            showLanguagePicker = true
+                        } label: {
+                            HStack {
+                                Image(systemName: "globe")
+                                    .foregroundColor(.gray.opacity(0.5))
+                                Text("Add languages you speak")
+                                    .font(.subheadline)
+                                    .foregroundColor(.gray)
+                            }
+                            .frame(maxWidth: .infinity)
+                            .padding(.vertical, 16)
+                            .background(Color(.systemGray6))
+                            .cornerRadius(10)
+                        }
+                    } else {
+                        FlowLayoutImproved(spacing: 8) {
+                            ForEach(languages, id: \.self) { language in
+                                TagChip(
+                                    text: language,
+                                    color: .blue,
+                                    onRemove: { languages.removeAll { $0 == language } }
+                                )
+                            }
+                        }
+                    }
+                }
+                .padding(.horizontal, 20)
+
+                // Divider
+                Rectangle()
+                    .fill(Color.gray.opacity(0.1))
+                    .frame(height: 1)
+                    .padding(.horizontal, 20)
+
+                // Interests subsection
+                VStack(alignment: .leading, spacing: 12) {
+                    HStack {
+                        HStack(spacing: 6) {
+                            Image(systemName: "star.fill")
+                                .font(.subheadline)
+                                .foregroundColor(.teal)
+                            Text("Interests")
+                                .font(.subheadline)
+                                .fontWeight(.semibold)
+                                .foregroundColor(.secondary)
+                        }
+
+                        Spacer()
+
+                        Button {
+                            showInterestPicker = true
+                        } label: {
+                            HStack(spacing: 4) {
+                                Image(systemName: "plus.circle.fill")
+                                    .font(.caption)
+                                Text("Add")
+                                    .font(.caption)
+                                    .fontWeight(.semibold)
+                            }
+                            .foregroundColor(.teal)
+                        }
+                    }
+
+                    if interests.isEmpty {
+                        Button {
+                            showInterestPicker = true
+                        } label: {
+                            HStack {
+                                Image(systemName: "star.fill")
+                                    .foregroundColor(.gray.opacity(0.5))
+                                Text("Add your interests")
+                                    .font(.subheadline)
+                                    .foregroundColor(.gray)
+                            }
+                            .frame(maxWidth: .infinity)
+                            .padding(.vertical, 16)
+                            .background(Color(.systemGray6))
+                            .cornerRadius(10)
+                        }
+                    } else {
+                        FlowLayoutImproved(spacing: 8) {
+                            ForEach(interests, id: \.self) { interest in
+                                TagChip(
+                                    text: interest,
+                                    color: .teal,
+                                    onRemove: { interests.removeAll { $0 == interest } }
+                                )
+                            }
+                        }
+                    }
+                }
+                .padding(.horizontal, 20)
+            }
+            .padding(.bottom, 20)
+        }
+        .background(Color(.systemBackground))
+        .cornerRadius(16)
+        .shadow(color: .black.opacity(0.05), radius: 8)
+    }
+
+    // MARK: - Languages Section
+    
+    private var languagesSection: some View {
+        VStack(spacing: 15) {
+            HStack {
+                SectionHeader(icon: "globe", title: "Languages", color: .teal)
+                
+                Spacer()
+                
+                Button {
+                    showLanguagePicker = true
+                } label: {
+                    HStack(spacing: 4) {
+                        Image(systemName: "plus.circle.fill")
+                        Text("Add")
+                    }
+                    .font(.subheadline)
+                    .fontWeight(.semibold)
+                    .foregroundStyle(
+                        LinearGradient(
+                            colors: [.blue, .teal],
+                            startPoint: .leading,
+                            endPoint: .trailing
+                        )
+                    )
+                }
+            }
+            
+            if languages.isEmpty {
+                AddItemButton(
+                    icon: "globe",
+                    message: "Add languages you speak",
+                    action: { showLanguagePicker = true }
+                )
+            } else {
+                FlowLayoutImproved(spacing: 10) {
+                    ForEach(languages, id: \.self) { language in
+                        TagChip(
+                            text: language,
+                            color: .blue,
+                            onRemove: { languages.removeAll { $0 == language } }
+                        )
+                    }
+                }
+            }
+        }
+        .padding(20)
+        .background(Color(.systemBackground))
+        .cornerRadius(16)
+        .shadow(color: .black.opacity(0.05), radius: 8)
+    }
+    
+    // MARK: - Interests Section
+    
+    private var interestsSection: some View {
+        VStack(spacing: 15) {
+            HStack {
+                SectionHeader(icon: "star.fill", title: "Interests", color: .teal)
+
+                Spacer()
+
+                Button {
+                    showInterestPicker = true
+                } label: {
+                    HStack(spacing: 4) {
+                        Image(systemName: "plus.circle.fill")
+                        Text("Add")
+                    }
+                    .font(.subheadline)
+                    .fontWeight(.semibold)
+                    .foregroundStyle(
+                        LinearGradient(
+                            colors: [.teal, .blue],
+                            startPoint: .leading,
+                            endPoint: .trailing
+                        )
+                    )
+                }
+            }
+            
+            if interests.isEmpty {
+                AddItemButton(
+                    icon: "star.fill",
+                    message: "Add your interests",
+                    action: { showInterestPicker = true }
+                )
+            } else {
+                FlowLayoutImproved(spacing: 10) {
+                    ForEach(interests, id: \.self) { interest in
+                        TagChip(
+                            text: interest,
+                            color: .teal,
+                            onRemove: { interests.removeAll { $0 == interest } }
+                        )
+                    }
+                }
+            }
+        }
+        .padding(20)
+        .background(Color(.systemBackground))
+        .cornerRadius(16)
+        .shadow(color: .black.opacity(0.05), radius: 8)
+    }
+    
+    // MARK: - Prompts Section
+
+    private var promptsSection: some View {
+        VStack(spacing: 15) {
+            HStack {
+                SectionHeader(icon: "text.bubble.fill", title: "Profile Prompts", color: .indigo, subtitle: "Fun conversation starters")
+
+                Spacer()
+
+                Button {
+                    showPromptsEditor = true
+                } label: {
+                    HStack(spacing: 4) {
+                        Image(systemName: prompts.isEmpty ? "plus.circle.fill" : "pencil.circle.fill")
+                        Text(prompts.isEmpty ? "Add" : "Edit")
+                    }
+                    .font(.subheadline)
+                    .fontWeight(.semibold)
+                    .foregroundStyle(
+                        LinearGradient(
+                            colors: [.blue, .teal],
+                            startPoint: .leading,
+                            endPoint: .trailing
+                        )
+                    )
+                }
+            }
+
+            if prompts.isEmpty {
+                AddItemButton(
+                    icon: "quote.bubble.fill",
+                    message: "Add prompts to showcase your personality",
+                    action: { showPromptsEditor = true }
+                )
+            } else {
+                VStack(spacing: 12) {
+                    ForEach(prompts) { prompt in
+                        VStack(alignment: .leading, spacing: 8) {
+                            Text(prompt.question)
+                                .font(.caption)
+                                .fontWeight(.semibold)
+                                .foregroundColor(.teal)
+
+                            Text(prompt.answer)
+                                .font(.subheadline)
+                                .foregroundColor(.primary)
+                        }
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(12)
+                        .background(
+                            LinearGradient(
+                                colors: [Color.blue.opacity(0.05), Color.teal.opacity(0.03)],
+                                startPoint: .topLeading,
+                                endPoint: .bottomTrailing
+                            )
+                        )
+                        .cornerRadius(12)
+                    }
+
+                    Text("\(prompts.count)/3 prompts")
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+                        .frame(maxWidth: .infinity, alignment: .trailing)
+                }
+            }
+        }
+        .padding(20)
+        .background(Color(.systemBackground))
+        .cornerRadius(16)
+        .shadow(color: .black.opacity(0.05), radius: 8)
+    }
+
+    // MARK: - Save Button
+
+    private var saveButton: some View {
+        Button {
+            saveProfile()
+        } label: {
+            Group {
+                if isLoading {
+                    ProgressView()
+                        .tint(.white)
+                } else {
+                    HStack(spacing: 10) {
+                        Image(systemName: "checkmark.circle.fill")
+                            .font(.title3)
+                        Text("Save Changes")
+                            .font(.headline)
+                    }
+                }
+            }
+            .foregroundColor(.white)
+            .frame(maxWidth: .infinity)
+            .frame(height: 56)
+            .background(
+                LinearGradient(
+                    colors: [.blue, .teal],
+                    startPoint: .leading,
+                    endPoint: .trailing
+                )
+            )
+            .cornerRadius(16)
+            .shadow(color: .blue.opacity(0.4), radius: 15, y: 8)
+        }
+        .disabled(isLoading || !isFormValid)
+        .opacity(isFormValid ? 1.0 : 0.6)
+        .scaleButton()
+        .padding(.bottom, 30)
+    }
+
+    // MARK: - Helper Functions
+
+    private var isFormValid: Bool {
+        // CODE QUALITY FIX: Removed force unwrapping - use optional chaining
+        !fullName.isEmpty &&
+        (Int(age) ?? 0) >= 18 &&
+        !location.isEmpty &&
+        !country.isEmpty
+    }
+    
+    private func calculateProgress() -> Double {
+        var completed: Double = 0
+        let total: Double = 7
+        
+        if !fullName.isEmpty { completed += 1 }
+        if Int(age) ?? 0 >= 18 { completed += 1 }
+        if !bio.isEmpty { completed += 1 }
+        if !location.isEmpty && !country.isEmpty { completed += 1 }
+        if !languages.isEmpty { completed += 1 }
+        if interests.count >= 3 { completed += 1 }
+        if profileImage != nil || !(authService.currentUser?.profileImageURL ?? "").isEmpty { completed += 1 }
+        
+        return completed / total
+    }
+    
+    private func getProgressTip() -> String {
+        if fullName.isEmpty { return "💡 Add your name" }
+        if bio.isEmpty { return "💡 Write a bio to stand out" }
+        if languages.isEmpty { return "💡 Add languages you speak" }
+        if interests.count < 3 { return "💡 Add at least 3 interests" }
+        if profileImage == nil && (authService.currentUser?.profileImageURL ?? "").isEmpty {
+            return "💡 Add a profile photo"
+        }
+        return "Almost there!"
+    }
+
+    private func saveProfile() {
+        guard var user = authService.currentUser else { return }
+        guard let ageInt = Int(age), ageInt >= 18 else {
+            errorMessage = "Please enter a valid age (18+)"
+            showErrorAlert = true
+            return
+        }
+
+        isLoading = true
+
+        Task {
+            do {
+                // Upload profile image if changed
+                if let profileImage = profileImage, let userId = user.id {
+                    // CACHE FIX: Clear old cached image before uploading new one
+                    if let oldURL = URL(string: user.profileImageURL) {
+                        await MainActor.run {
+                            ImageCache.shared.removeImage(for: oldURL.absoluteString)
+                        }
+                    }
+
+                    // Use PhotoUploadService for proper network check
+                    let imageURL = try await PhotoUploadService.shared.uploadPhoto(profileImage, userId: userId, imageType: .profile)
+                    user.profileImageURL = imageURL
+
+                    // CACHE FIX: Cache the newly uploaded image immediately for instant display across all views
+                    await MainActor.run {
+                        ImageCache.shared.setImage(profileImage, for: imageURL)
+                    }
+                }
+                
+                // Update user data with sanitized input
+                user.fullName = InputSanitizer.strict(fullName)
+                user.age = ageInt
+                user.bio = InputSanitizer.standard(bio)
+                user.location = InputSanitizer.standard(location)
+                user.country = InputSanitizer.basic(country)
+                user.gender = gender
+                user.gamerTag = gamerTag
+                user.languages = languages
+                user.interests = interests
+                user.prompts = prompts
+                user.photos = photos
+
+                // Update gaming profile fields
+                user.platforms = platforms.map { $0.rawValue }
+                user.skillLevel = skillLevel.rawValue
+                user.playStyle = playStyle.rawValue
+                user.voiceChatPreference = voiceChatPreference.rawValue
+                user.lookingFor = lookingForTypes.map { $0.rawValue }
+                user.gameGenres = gameGenres.map { $0.rawValue }
+                user.gamingStats.weeklyHours = weeklyHours
+
+                // Update external gaming profiles
+                user.discordTag = discordTag.isEmpty ? nil : discordTag
+                user.steamId = steamId.isEmpty ? nil : steamId
+                user.psnId = psnId.isEmpty ? nil : psnId
+                user.xboxGamertag = xboxGamertag.isEmpty ? nil : xboxGamertag
+                user.nintendoFriendCode = nintendoFriendCode.isEmpty ? nil : nintendoFriendCode
+                user.riotId = riotId.isEmpty ? nil : riotId
+                user.battleNetTag = battleNetTag.isEmpty ? nil : battleNetTag
+                user.twitchUsername = twitchUsername.isEmpty ? nil : twitchUsername
+
+                // Update preference fields
+                user.ageRangeMin = ageRangeMin
+                user.ageRangeMax = ageRangeMax
+                user.maxDistance = maxDistance
+
+                try await authService.updateUser(user)
+                
+                await MainActor.run {
+                    isLoading = false
+                    showSuccessAlert = true
+                }
+            } catch {
+                await MainActor.run {
+                    isLoading = false
+                    // Provide specific error messages based on error type
+                    if let photoError = error as? PhotoUploadError {
+                        switch photoError {
+                        case .noNetwork:
+                            errorMessage = "No internet connection. Please check your WiFi or cellular data and try again."
+                        case .wifiConnectedNoInternet:
+                            errorMessage = "WiFi connected but no internet access. Please check your network and try again."
+                        case .poorConnection:
+                            errorMessage = "Your connection is too weak. Please move to a stronger signal and try again."
+                        case .uploadFailed(let reason):
+                            errorMessage = "Photo upload failed: \(reason)"
+                        case .uploadTimeout:
+                            errorMessage = "Upload timed out. Please check your connection and try again."
+                        }
+                    } else if let celestiaError = error as? TeamUpError {
+                        switch celestiaError {
+                        case .networkError:
+                            errorMessage = "Network error. Please check your connection and try again."
+                        case .imageUploadFailed:
+                            errorMessage = "Failed to upload photo. Please try again."
+                        case .imageTooBig:
+                            errorMessage = "Photo is too large. Please choose a smaller image."
+                        default:
+                            errorMessage = "Failed to save changes. Please try again."
+                        }
+                    } else {
+                        errorMessage = "Failed to save changes. Please try again."
+                    }
+                    showErrorAlert = true
+                    HapticManager.shared.notification(.error)
+                }
+            }
+        }
+    }
+
+    // MARK: - Photo Management Functions
+
+    private func deletePhoto(at index: Int) {
+        withAnimation {
+            _ = photos.remove(at: index)
+        }
+        HapticManager.shared.impact(.medium)
+
+        // Immediately save to Firestore so deletion persists
+        // Also sync profileImageURL: first photo in array is always the profile image
+        Task {
+            guard var user = authService.currentUser else { return }
+            user.photos = photos
+
+            // Sync profileImageURL with first photo in array
+            // If photos array is empty, clear profileImageURL
+            // Otherwise, set profileImageURL to the new first photo
+            if photos.isEmpty {
+                user.profileImageURL = ""
+                // Clear local profile image as well
+                await MainActor.run {
+                    profileImage = nil
+                }
+                Logger.shared.info("All photos deleted - cleared profileImageURL", category: .general)
+            } else if let firstPhoto = photos.first {
+                user.profileImageURL = firstPhoto
+                Logger.shared.info("Updated profileImageURL to new first photo", category: .general)
+            }
+
+            do {
+                try await authService.updateUser(user)
+                Logger.shared.info("Photo deleted from profile successfully", category: .general)
+            } catch {
+                Logger.shared.error("Failed to delete photo from profile", category: .general, error: error)
+                await MainActor.run {
+                    errorMessage = "Failed to delete photo. Please try again."
+                    showErrorAlert = true
+                }
+            }
+        }
+    }
+
+    private func movePhoto(from source: Int, to destination: Int) {
+        withAnimation {
+            let photo = photos.remove(at: source)
+            photos.insert(photo, at: destination)
+        }
+        HapticManager.shared.impact(.light)
+        savePhotoOrder()
+    }
+
+    private func savePhotoOrder() {
+        // Save photo order to Firestore so reordering persists
+        // Also sync profileImageURL: first photo in array is always the profile image
+        Task {
+            guard var user = authService.currentUser else { return }
+            user.photos = photos
+
+            // Sync profileImageURL with first photo in array after reorder
+            if let firstPhoto = photos.first {
+                user.profileImageURL = firstPhoto
+                Logger.shared.info("Updated profileImageURL to match new first photo after reorder", category: .general)
+            }
+
+            do {
+                try await authService.updateUser(user)
+                Logger.shared.info("Photo order updated successfully", category: .general)
+            } catch {
+                Logger.shared.error("Failed to update photo order", category: .general, error: error)
+            }
+        }
+    }
+
+    private func uploadNewPhotos(_ items: [PhotosPickerItem]) async {
+        guard !items.isEmpty else {
+            Logger.shared.warning("Upload cancelled: No items selected", category: .general)
+            return
+        }
+
+        // NETWORK CHECK: Ensure we have connectivity before attempting upload
+        guard networkMonitor.isConnected else {
+            Logger.shared.warning("Upload cancelled: No network connection", category: .networking)
+            await MainActor.run {
+                errorMessage = "No internet connection. Please check your WiFi or cellular data and try again."
+                showErrorAlert = true
+                HapticManager.shared.notification(.error)
+            }
+            return
+        }
+
+        // CRITICAL FIX: Use stored userId instead of authService.currentUser
+        guard !userId.isEmpty else {
+            Logger.shared.error("❌ CRITICAL: Upload cancelled - No user ID found!", category: .general)
+            Logger.shared.error("AuthService.currentUser: \(authService.currentUser?.id ?? "NIL")", category: .general)
+            Logger.shared.error("Stored userId: \(userId)", category: .general)
+
+            await MainActor.run {
+                errorMessage = "Cannot upload photos: User not logged in. Please try logging out and back in."
+                showErrorAlert = true
+            }
+            return
+        }
+
+        Logger.shared.info("✅ Using user ID: \(userId)", category: .general)
+
+        Logger.shared.info("📸 Starting upload of \(items.count) photo(s)", category: .general)
+        Logger.shared.info("Current photos count: \(photos.count)", category: .general)
+
+        await MainActor.run {
+            isUploadingPhotos = true
+            uploadProgress = 0.0
+            uploadingPhotoCount = items.count
+            HapticManager.shared.impact(.light)
+
+            Logger.shared.info("🎬 Upload UI activated - isUploadingPhotos: true", category: .general)
+            Logger.shared.info("🎬 Upload progress: 0%, uploading count: \(items.count)", category: .general)
+        }
+
+        // PERFORMANCE: Upload photos in parallel using TaskGroup for maximum speed
+        let uploadedURLs = await withTaskGroup(of: (index: Int, url: String?)?.self) { group in
+            var results: [(Int, String?)] = []
+
+            // Add all upload tasks to the group (parallel execution)
+            for (index, item) in items.enumerated() {
+                group.addTask {
+                    Logger.shared.info("📤 Uploading photo \(index + 1)/\(items.count)...", category: .general)
+
+                    do {
+                        // Load and optimize image
+                        guard let data = try await item.loadTransferable(type: Data.self),
+                              let originalImage = UIImage(data: data) else {
+                            Logger.shared.error("❌ Failed to load image data for photo \(index + 1)", category: .general)
+                            return nil
+                        }
+
+                        Logger.shared.info("Image loaded: \(originalImage.size.width)x\(originalImage.size.height)", category: .general)
+
+                        // OPTIMIZATION: Compress image for faster upload (max 1024px, 75% quality)
+                        let optimizedImage = self.optimizeImageForUpload(originalImage)
+                        Logger.shared.info("Image optimized: \(optimizedImage.size.width)x\(optimizedImage.size.height)", category: .general)
+
+                        // Upload with retry logic (3 attempts)
+                        var lastError: Error?
+                        for attempt in 0..<3 {
+                            do {
+                                Logger.shared.info("🔄 Upload attempt \(attempt + 1)/3 for photo \(index + 1)", category: .general)
+
+                                let photoURL = try await PhotoUploadService.shared.uploadPhoto(
+                                    optimizedImage,
+                                    userId: userId,
+                                    imageType: .gallery
+                                )
+
+                                Logger.shared.info("✅ Photo \(index + 1) uploaded successfully: \(photoURL)", category: .general)
+
+                                // Success - update UI immediately and cache for instant display
+                                await MainActor.run {
+                                    // Cache the uploaded image immediately for instant display across all views
+                                    ImageCache.shared.setImage(optimizedImage, for: photoURL)
+
+                                    self.photos.append(photoURL)
+                                    self.uploadingPhotoCount -= 1
+                                    let progress = Double(items.count - self.uploadingPhotoCount) / Double(items.count)
+                                    self.uploadProgress = progress
+                                    HapticManager.shared.impact(.light)
+                                    Logger.shared.info("UI updated: photos.count = \(self.photos.count), progress = \(Int(progress * 100))%", category: .general)
+                                }
+
+                                return (index, photoURL)
+                            } catch {
+                                lastError = error
+                                Logger.shared.error("❌ Upload attempt \(attempt + 1) failed for photo \(index + 1)", category: .general, error: error)
+
+                                if attempt < 2 {
+                                    // Wait before retry (exponential backoff)
+                                    let delay = UInt64(pow(2.0, Double(attempt)) * 500_000_000)
+                                    Logger.shared.warning("⏳ Waiting before retry...", category: .general)
+                                    try? await Task.sleep(nanoseconds: delay)
+                                }
+                            }
+                        }
+
+                        // All retries failed
+                        await MainActor.run {
+                            self.uploadingPhotoCount -= 1
+                        }
+                        Logger.shared.error("❌ Photo \(index + 1) failed after all retries", category: .general, error: lastError)
+                        return nil
+
+                    } catch {
+                        await MainActor.run {
+                            self.uploadingPhotoCount -= 1
+                        }
+                        Logger.shared.error("❌ Photo \(index + 1) processing failed", category: .general, error: error)
+                        return nil
+                    }
+                }
+            }
+
+            // Collect results
+            for await result in group {
+                if let result = result {
+                    results.append((result.index, result.url))
+                }
+            }
+
+            return results
+        }
+
+        // Count successful uploads
+        let successCount = uploadedURLs.compactMap { $0.1 }.count
+        let failedCount = items.count - successCount
+
+        Logger.shared.info("📊 Upload complete: \(successCount) succeeded, \(failedCount) failed", category: .general)
+        Logger.shared.info("Total photos now: \(photos.count)", category: .general)
+
+        // CRITICAL: Save photos to Firebase immediately after upload
+        if successCount > 0, var user = authService.currentUser {
+            Logger.shared.info("💾 Saving \(photos.count) photos to Firebase...", category: .general)
+            Logger.shared.info("Photos array: \(photos)", category: .general)
+
+            do {
+                user.photos = photos
+
+                // Auto-set profileImageURL to first photo if empty
+                if user.profileImageURL.isEmpty, let firstPhoto = photos.first, !firstPhoto.isEmpty {
+                    user.profileImageURL = firstPhoto
+                    Logger.shared.info("📸 Auto-set profileImageURL to first uploaded photo", category: .general)
+                }
+
+                try await authService.updateUser(user)
+
+                Logger.shared.info("✅ Successfully saved \(successCount) photos to Firebase!", category: .general)
+                Logger.shared.info("User photos in Firebase: \(user.photos)", category: .general)
+
+                // CRITICAL FIX: Force refresh current user from Firebase to get latest data
+                if user.id != nil {
+                    Logger.shared.info("🔄 Refreshing user data from Firebase...", category: .general)
+                    await authService.fetchUser()
+
+                    // Verify the refresh worked
+                    if let refreshedUser = authService.currentUser {
+                        Logger.shared.info("🔍 Verification - User now has \(refreshedUser.photos.count) photos", category: .general)
+
+                        // Update local photos array to match
+                        await MainActor.run {
+                            self.photos = refreshedUser.photos
+                        }
+                    }
+                } else {
+                    Logger.shared.warning("⚠️ Could not refresh - no user ID", category: .general)
+                }
+            } catch {
+                Logger.shared.error("❌ CRITICAL: Failed to save photos to Firebase!", category: .general, error: error)
+                await MainActor.run {
+                    errorMessage = "Photos uploaded but failed to save to profile. Please try again."
+                    showErrorAlert = true
+                }
+            }
+        } else if successCount == 0 {
+            Logger.shared.warning("⚠️ No successful uploads to save", category: .general)
+        } else {
+            Logger.shared.error("❌ No current user found, cannot save photos", category: .general)
+        }
+
+        await MainActor.run {
+            uploadProgress = 1.0
+            isUploadingPhotos = false
+            uploadingPhotoCount = 0
+            selectedPhotoItems = []
+
+            Logger.shared.info("🏁 Upload process finished. Final photos count: \(photos.count)", category: .general)
+
+            // Success feedback
+            if successCount > 0 {
+                HapticManager.shared.notification(.success)
+
+                // Show error if some failed
+                if failedCount > 0 {
+                    errorMessage = "Uploaded \(successCount) photo\(successCount > 1 ? "s" : ""). \(failedCount) failed - please try again."
+                    showErrorAlert = true
+                } else {
+                    // All succeeded - show success message
+                    errorMessage = "Successfully uploaded \(successCount) photo\(successCount > 1 ? "s" : "")! 🎉"
+                    showErrorAlert = true
+                }
+            } else if failedCount > 0 {
+                HapticManager.shared.notification(.error)
+                // Check if it's likely a network issue
+                if !networkMonitor.isConnected {
+                    errorMessage = "No internet connection. Check your WiFi or cellular data and try again."
+                } else {
+                    errorMessage = "Failed to upload photos. Please check your connection and try again."
+                }
+                showErrorAlert = true
+            }
+        }
+    }
+
+    // MARK: - Image Optimization
+
+    /// Optimizes an image for upload: crops to 3:4 portrait ratio, resizes to max 2000px
+    /// This ensures images display perfectly in cards without distortion or unexpected cropping
+    private func optimizeImageForUpload(_ image: UIImage) -> UIImage {
+        // QUALITY: Higher settings for crisp photos on all card sizes
+        let maxDimension: CGFloat = 2000  // High resolution for crisp display on all devices
+        let targetAspectRatio: CGFloat = 3.0 / 4.0  // Portrait ratio (0.75) - perfect for profile cards
+
+        let originalSize = image.size
+        let originalAspectRatio = originalSize.width / originalSize.height
+
+        var croppedImage = image
+
+        // STEP 1: Crop to target aspect ratio (3:4 portrait) for consistent card display
+        // This ensures images always fill cards without unexpected cropping
+        if abs(originalAspectRatio - targetAspectRatio) > 0.01 {
+            let cropRect: CGRect
+
+            if originalAspectRatio > targetAspectRatio {
+                // Image is wider than target - crop sides (center horizontally)
+                let targetWidth = originalSize.height * targetAspectRatio
+                let xOffset = (originalSize.width - targetWidth) / 2
+                cropRect = CGRect(x: xOffset, y: 0, width: targetWidth, height: originalSize.height)
+            } else {
+                // Image is taller than target - crop top/bottom (center vertically, favor upper portion for faces)
+                let targetHeight = originalSize.width / targetAspectRatio
+                // Favor upper 40% of image to capture faces better
+                let yOffset = max(0, (originalSize.height - targetHeight) * 0.4)
+                cropRect = CGRect(x: 0, y: yOffset, width: originalSize.width, height: targetHeight)
+            }
+
+            // Perform the crop using CGImage for best quality
+            if let cgImage = image.cgImage,
+               let croppedCGImage = cgImage.cropping(to: cropRect) {
+                croppedImage = UIImage(cgImage: croppedCGImage, scale: image.scale, orientation: image.imageOrientation)
+            }
+        }
+
+        // STEP 2: Resize if needed (maintain high quality)
+        let croppedSize = croppedImage.size
+        let ratio = min(maxDimension / croppedSize.width, maxDimension / croppedSize.height)
+
+        if ratio >= 1.0 {
+            // Image is already smaller than max - return cropped version
+            return croppedImage
+        }
+
+        let newSize = CGSize(width: croppedSize.width * ratio, height: croppedSize.height * ratio)
+
+        // QUALITY: Use high-fidelity rendering format
+        let format = UIGraphicsImageRendererFormat()
+        format.scale = 1.0  // 1x scale for optimal file size
+        format.opaque = true  // Opaque for better JPEG compression
+        format.preferredRange = .standard  // Standard color range for compatibility
+
+        let renderer = UIGraphicsImageRenderer(size: newSize, format: format)
+        let resizedImage = renderer.image { context in
+            // Fill background with white for clean JPEG edges
+            UIColor.white.setFill()
+            context.fill(CGRect(origin: .zero, size: newSize))
+
+            // Draw with high-quality interpolation
+            context.cgContext.interpolationQuality = .high
+            croppedImage.draw(in: CGRect(origin: .zero, size: newSize))
+        }
+
+        return resizedImage
+    }
+}
+
+// MARK: - Supporting Views
+
+struct SectionHeader: View {
+    let icon: String
+    let title: String
+    let color: Color
+    var subtitle: String? = nil
+
+    var body: some View {
+        HStack(spacing: 14) {
+            // Circular icon background (matches signup flow style)
+            ZStack {
+                Circle()
+                    .fill(color.opacity(0.12))
+                    .frame(width: 48, height: 48)
+
+                Image(systemName: icon)
+                    .font(.system(size: 20))
+                    .foregroundColor(color)
+            }
+
+            VStack(alignment: .leading, spacing: 2) {
+                Text(title)
+                    .font(.headline)
+                    .foregroundColor(.primary)
+
+                if let subtitle = subtitle {
+                    Text(subtitle)
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+                }
+            }
+
+            Spacer()
+        }
+    }
+}
+
+struct FormField: View {
+    let label: String
+    let placeholder: String
+    @Binding var text: String
+    var keyboardType: UIKeyboardType = .default
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            Text(label)
+                .font(.subheadline)
+                .fontWeight(.semibold)
+                .foregroundColor(.secondary)
+            
+            TextField(placeholder, text: $text)
+                .keyboardType(keyboardType)
+                .padding(14)
+                .background(Color(.systemGray6))
+                .cornerRadius(12)
+        }
+    }
+}
+
+struct TagChip: View {
+    let text: String
+    let color: Color
+    let onRemove: () -> Void
+    
+    var body: some View {
+        HStack(spacing: 6) {
+            Text(text)
+                .font(.subheadline)
+                .fontWeight(.medium)
+            
+            Button(action: onRemove) {
+                Image(systemName: "xmark.circle.fill")
+                    .font(.caption)
+            }
+        }
+        .padding(.horizontal, 14)
+        .padding(.vertical, 8)
+        .background(color.opacity(0.15))
+        .foregroundColor(color)
+        .cornerRadius(20)
+    }
+}
+
+struct AddItemButton: View {
+    let icon: String
+    let message: String
+    let action: () -> Void
+
+    var body: some View {
+        Button(action: action) {
+            VStack(spacing: 12) {
+                Image(systemName: icon)
+                    .font(.title)
+                    .foregroundColor(.gray.opacity(0.5))
+
+                Text(message)
+                    .font(.subheadline)
+                    .foregroundColor(.gray)
+            }
+            .frame(maxWidth: .infinity)
+            .padding(.vertical, 30)
+            .background(Color(.systemGray6))
+            .cornerRadius(12)
+        }
+    }
+}
+
+// MARK: - Language Picker Sheet
+
+struct LanguagePickerView: View {
+    @Environment(\.dismiss) var dismiss
+    @Binding var selectedLanguages: [String]
+    let availableLanguages: [String]
+
+    var body: some View {
+        NavigationStack {
+            ScrollView {
+                VStack(alignment: .leading, spacing: 20) {
+                    // Header with count
+                    HStack {
+                        VStack(alignment: .leading, spacing: 4) {
+                            Text("Select Languages")
+                                .font(.title2)
+                                .fontWeight(.bold)
+
+                            Text("\(selectedLanguages.count) selected")
+                                .font(.subheadline)
+                                .foregroundColor(.secondary)
+                        }
+
+                        Spacer()
+
+                        Button("Done") {
+                            HapticManager.shared.impact(.light)
+                            dismiss()
+                        }
+                        .font(.headline)
+                        .foregroundStyle(
+                            LinearGradient(
+                                colors: [.blue, .teal],
+                                startPoint: .leading,
+                                endPoint: .trailing
+                            )
+                        )
+                    }
+                    .padding(.horizontal, 20)
+                    .padding(.top, 20)
+
+                    // Grid of language tags
+                    FlowLayoutImproved(spacing: 12) {
+                        ForEach(availableLanguages, id: \.self) { language in
+                            LanguageTagButton(
+                                language: language,
+                                isSelected: selectedLanguages.contains(language)
+                            ) {
+                                HapticManager.shared.impact(.light)
+                                if selectedLanguages.contains(language) {
+                                    selectedLanguages.removeAll { $0 == language }
+                                } else {
+                                    selectedLanguages.append(language)
+                                }
+                            }
+                        }
+                    }
+                    .padding(.horizontal, 20)
+                    .padding(.bottom, 30)
+                }
+            }
+            .background(Color(.systemGroupedBackground))
+        }
+    }
+}
+
+struct LanguageTagButton: View {
+    let language: String
+    let isSelected: Bool
+    let action: () -> Void
+
+    var body: some View {
+        Button(action: action) {
+            HStack(spacing: 8) {
+                Text(language)
+                    .font(.subheadline)
+                    .fontWeight(.semibold)
+
+                if isSelected {
+                    Image(systemName: "checkmark.circle.fill")
+                        .font(.caption)
+                }
+            }
+            .padding(.horizontal, 18)
+            .padding(.vertical, 12)
+            .background(
+                Group {
+                    if isSelected {
+                        LinearGradient(
+                            colors: [.blue, .teal],
+                            startPoint: .leading,
+                            endPoint: .trailing
+                        )
+                        .opacity(0.15)
+                    } else {
+                        Color(.systemGray6)
+                    }
+                }
+            )
+            .foregroundColor(isSelected ? .blue : .primary)
+            .cornerRadius(25)
+            .overlay(
+                RoundedRectangle(cornerRadius: 25)
+                    .stroke(
+                        isSelected ?
+                        AnyShapeStyle(LinearGradient(
+                            colors: [.blue, .teal],
+                            startPoint: .leading,
+                            endPoint: .trailing
+                        )) :
+                        AnyShapeStyle(LinearGradient(colors: [.clear], startPoint: .leading, endPoint: .trailing)),
+                        lineWidth: 2
+                    )
+            )
+            .shadow(color: isSelected ? .blue.opacity(0.2) : .clear, radius: 8, y: 4)
+        }
+        .scaleButton()
+    }
+}
+
+// MARK: - Interest Picker Sheet
+
+struct InterestPickerView: View {
+    @Environment(\.dismiss) var dismiss
+    @Binding var selectedInterests: [String]
+    let availableInterests: [String]
+
+    var body: some View {
+        NavigationStack {
+            ScrollView {
+                VStack(alignment: .leading, spacing: 20) {
+                    // Header with count
+                    HStack {
+                        VStack(alignment: .leading, spacing: 4) {
+                            Text("Select Interests")
+                                .font(.title2)
+                                .fontWeight(.bold)
+
+                            Text("\(selectedInterests.count) selected")
+                                .font(.subheadline)
+                                .foregroundColor(.secondary)
+                        }
+
+                        Spacer()
+
+                        Button("Done") {
+                            HapticManager.shared.impact(.light)
+                            dismiss()
+                        }
+                        .font(.headline)
+                        .foregroundStyle(
+                            LinearGradient(
+                                colors: [.teal, .blue],
+                                startPoint: .leading,
+                                endPoint: .trailing
+                            )
+                        )
+                    }
+                    .padding(.horizontal, 20)
+                    .padding(.top, 20)
+
+                    // Grid of interest tags
+                    FlowLayoutImproved(spacing: 12) {
+                        ForEach(availableInterests, id: \.self) { interest in
+                            InterestTagButton(
+                                interest: interest,
+                                isSelected: selectedInterests.contains(interest)
+                            ) {
+                                HapticManager.shared.impact(.light)
+                                if selectedInterests.contains(interest) {
+                                    selectedInterests.removeAll { $0 == interest }
+                                } else {
+                                    selectedInterests.append(interest)
+                                }
+                            }
+                        }
+                    }
+                    .padding(.horizontal, 20)
+                    .padding(.bottom, 30)
+                }
+            }
+            .background(Color(.systemGroupedBackground))
+        }
+    }
+}
+
+struct InterestTagButton: View {
+    let interest: String
+    let isSelected: Bool
+    let action: () -> Void
+
+    var body: some View {
+        Button(action: action) {
+            HStack(spacing: 8) {
+                Text(interest)
+                    .font(.subheadline)
+                    .fontWeight(.semibold)
+
+                if isSelected {
+                    Image(systemName: "checkmark.circle.fill")
+                        .font(.caption)
+                }
+            }
+            .padding(.horizontal, 18)
+            .padding(.vertical, 12)
+            .background(
+                Group {
+                    if isSelected {
+                        LinearGradient(
+                            colors: [.teal, .blue],
+                            startPoint: .leading,
+                            endPoint: .trailing
+                        )
+                        .opacity(0.15)
+                    } else {
+                        Color(.systemGray6)
+                    }
+                }
+            )
+            .foregroundColor(isSelected ? .teal : .primary)
+            .cornerRadius(25)
+            .overlay(
+                RoundedRectangle(cornerRadius: 25)
+                    .stroke(
+                        isSelected ?
+                        AnyShapeStyle(LinearGradient(
+                            colors: [.teal, .blue],
+                            startPoint: .leading,
+                            endPoint: .trailing
+                        )) :
+                        AnyShapeStyle(LinearGradient(colors: [.clear], startPoint: .leading, endPoint: .trailing)),
+                        lineWidth: 2
+                    )
+            )
+            .shadow(color: isSelected ? .teal.opacity(0.2) : .clear, radius: 8, y: 4)
+        }
+        .scaleButton()
+    }
+}
+
+// MARK: - Uploading Photo Placeholder
+
+struct UploadingPhotoPlaceholder: View {
+    let index: Int
+    @State private var isPulsing = false
+
+    var body: some View {
+        RoundedRectangle(cornerRadius: 12)
+            .fill(
+                LinearGradient(
+                    colors: [
+                        Color.blue.opacity(isPulsing ? 0.15 : 0.08),
+                        Color.teal.opacity(isPulsing ? 0.12 : 0.06)
+                    ],
+                    startPoint: .topLeading,
+                    endPoint: .bottomTrailing
+                )
+            )
+            .frame(height: 120)
+            .overlay {
+                VStack(spacing: 10) {
+                    ZStack {
+                        Circle()
+                            .stroke(Color.blue.opacity(0.2), lineWidth: 3)
+                            .frame(width: 40, height: 40)
+
+                        Circle()
+                            .trim(from: 0, to: 0.7)
+                            .stroke(
+                                LinearGradient(
+                                    colors: [.blue, .teal],
+                                    startPoint: .topLeading,
+                                    endPoint: .bottomTrailing
+                                ),
+                                style: StrokeStyle(lineWidth: 3, lineCap: .round)
+                            )
+                            .frame(width: 40, height: 40)
+                            .rotationEffect(.degrees(isPulsing ? 360 : 0))
+                    }
+
+                    Text("Uploading...")
+                        .font(.caption)
+                        .fontWeight(.medium)
+                        .foregroundColor(.blue)
+                }
+            }
+            .overlay(
+                RoundedRectangle(cornerRadius: 12)
+                    .stroke(
+                        LinearGradient(
+                            colors: [.blue.opacity(0.3), .teal.opacity(0.2)],
+                            startPoint: .topLeading,
+                            endPoint: .bottomTrailing
+                        ),
+                        lineWidth: 1.5
+                    )
+            )
+            .onAppear {
+                withAnimation(.linear(duration: 1.2).repeatForever(autoreverses: false)) {
+                    isPulsing = true
+                }
+            }
+    }
+}
+
+// MARK: - Draggable Photo Grid Item
+
+struct DraggablePhotoGridItem: View {
+    let photoURL: String
+    let isDragging: Bool
+    let onDelete: () -> Void
+
+    @State private var showDeleteConfirmation = false
+
+    var body: some View {
+        ZStack(alignment: .topTrailing) {
+            // Photo container with fixed dimensions
+            GeometryReader { geometry in
+                CachedAsyncImage(
+                    url: URL(string: photoURL),
+                    content: { image in
+                        image
+                            .resizable()
+                            .scaledToFill()
+                            .frame(width: geometry.size.width, height: geometry.size.height)
+                            .clipped()
+                    },
+                    placeholder: {
+                        Rectangle()
+                            .fill(Color.gray.opacity(0.1))
+                            .overlay {
+                                ProgressView()
+                            }
+                    }
+                )
+            }
+            .frame(height: 120)
+            .clipShape(RoundedRectangle(cornerRadius: 12))
+            .contentShape(RoundedRectangle(cornerRadius: 12))
+            .overlay(
+                RoundedRectangle(cornerRadius: 12)
+                    .stroke(
+                        LinearGradient(
+                            colors: isDragging ? [.blue, .teal] : [.clear, .clear],
+                            startPoint: .topLeading,
+                            endPoint: .bottomTrailing
+                        ),
+                        lineWidth: isDragging ? 3 : 0
+                    )
+            )
+
+            // Delete button - hide when dragging for cleaner look
+            Button {
+                showDeleteConfirmation = true
+            } label: {
+                Circle()
+                    .fill(Color.red)
+                    .frame(width: 28, height: 28)
+                    .overlay {
+                        Image(systemName: "trash.fill")
+                            .font(.system(size: 12))
+                            .foregroundColor(.white)
+                    }
+                    .shadow(color: .black.opacity(0.3), radius: 4, y: 2)
+            }
+            .padding(6)
+            .opacity(isDragging ? 0 : 1)
+
+            // Drag hint overlay (shows on long press)
+            if isDragging {
+                RoundedRectangle(cornerRadius: 12)
+                    .fill(
+                        LinearGradient(
+                            colors: [Color.blue.opacity(0.15), Color.teal.opacity(0.1)],
+                            startPoint: .topLeading,
+                            endPoint: .bottomTrailing
+                        )
+                    )
+                    .frame(height: 120)
+            }
+        }
+        .scaleEffect(isDragging ? 1.08 : 1.0)
+        .rotation3DEffect(.degrees(isDragging ? 2 : 0), axis: (x: 0, y: 1, z: 0))
+        .shadow(color: isDragging ? .blue.opacity(0.5) : .black.opacity(0.08), radius: isDragging ? 16 : 4, y: isDragging ? 8 : 2)
+        .animation(.interpolatingSpring(stiffness: 350, damping: 18), value: isDragging)
+        .confirmationDialog("Delete this photo?", isPresented: $showDeleteConfirmation, titleVisibility: .visible) {
+            Button("Delete", role: .destructive) {
+                onDelete()
+            }
+            Button("Cancel", role: .cancel) {}
+        }
+    }
+}
+
+// MARK: - Photo Drop Delegate
+
+struct PhotoDropDelegate: DropDelegate {
+    let item: String
+    @Binding var items: [String]
+    @Binding var draggingItem: String?
+    let onReorder: () -> Void
+
+    func performDrop(info: DropInfo) -> Bool {
+        draggingItem = nil
+        onReorder()
+        return true
+    }
+
+    func dropEntered(info: DropInfo) {
+        guard let draggingItem = draggingItem,
+              draggingItem != item,
+              let fromIndex = items.firstIndex(of: draggingItem),
+              let toIndex = items.firstIndex(of: item) else {
+            return
+        }
+
+        withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
+            items.move(fromOffsets: IndexSet(integer: fromIndex), toOffset: toIndex > fromIndex ? toIndex + 1 : toIndex)
+        }
+        HapticManager.shared.impact(.light)
+    }
+
+    func dropUpdated(info: DropInfo) -> DropProposal? {
+        return DropProposal(operation: .move)
+    }
+
+    func dropExited(info: DropInfo) {
+        // Optional: Add any cleanup when drag exits
+    }
+
+    func validateDrop(info: DropInfo) -> Bool {
+        return draggingItem != nil
+    }
+}
+
+// MARK: - Improved Flow Layout
+
+struct FlowLayoutImproved: Layout {
+    var spacing: CGFloat = 8
+    
+    func sizeThatFits(proposal: ProposedViewSize, subviews: Subviews, cache: inout ()) -> CGSize {
+        let result = FlowResult(
+            in: proposal.replacingUnspecifiedDimensions().width,
+            subviews: subviews,
+            spacing: spacing
+        )
+        return result.size
+    }
+    
+    func placeSubviews(in bounds: CGRect, proposal: ProposedViewSize, subviews: Subviews, cache: inout ()) {
+        let result = FlowResult(
+            in: bounds.width,
+            subviews: subviews,
+            spacing: spacing
+        )
+        for (index, subview) in subviews.enumerated() {
+            subview.place(
+                at: CGPoint(
+                    x: bounds.minX + result.frames[index].minX,
+                    y: bounds.minY + result.frames[index].minY
+                ),
+                proposal: .unspecified
+            )
+        }
+    }
+    
+    struct FlowResult {
+        var frames: [CGRect] = []
+        var size: CGSize = .zero
+        
+        init(in maxWidth: CGFloat, subviews: Subviews, spacing: CGFloat) {
+            var currentX: CGFloat = 0
+            var currentY: CGFloat = 0
+            var lineHeight: CGFloat = 0
+            
+            for subview in subviews {
+                let size = subview.sizeThatFits(.unspecified)
+                
+                if currentX + size.width > maxWidth && currentX > 0 {
+                    currentX = 0
+                    currentY += lineHeight + spacing
+                    lineHeight = 0
+                }
+                
+                frames.append(CGRect(x: currentX, y: currentY, width: size.width, height: size.height))
+                lineHeight = max(lineHeight, size.height)
+                currentX += size.width + spacing
+            }
+            
+            self.size = CGSize(width: maxWidth, height: currentY + lineHeight)
+        }
+    }
+}
+
+#Preview {
+    EditProfileView()
+        .environmentObject(AuthService.shared)
+}

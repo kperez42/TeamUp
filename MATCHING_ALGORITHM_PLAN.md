@@ -10,7 +10,7 @@
 
 ## Current Implementation Analysis
 
-**File**: `Celestia/UserService.swift:62`
+**File**: `TeamUp/UserService.swift:62`
 
 **Current Algorithm**:
 ```swift
@@ -33,7 +33,7 @@
 ### Multi-Factor Scoring System
 
 ```swift
-// Create: Celestia/Matching/MatchingAlgorithm.swift
+// Create: TeamUp/Matching/MatchingAlgorithm.swift
 
 struct MatchScore {
     let userId: String
@@ -503,7 +503,7 @@ exports.backfillBehavioralData = async () => {
 
 **Implementation**:
 ```swift
-// Celestia/UserService.swift - Updated
+// TeamUp/UserService.swift - Updated
 func fetchUsers(
     for currentUser: User,
     limit: Int = 20

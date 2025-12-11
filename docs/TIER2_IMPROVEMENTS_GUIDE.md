@@ -1,6 +1,6 @@
 # Tier 2 Improvements Guide
 
-This guide covers all Tier 2 improvements implemented in Celestia: Memory Leak Detection, Feature Flags, Advanced Analytics, and Offline Mode Support.
+This guide covers all Tier 2 improvements implemented in TeamUp: Memory Leak Detection, Feature Flags, Advanced Analytics, and Offline Mode Support.
 
 ## 📋 Table of Contents
 

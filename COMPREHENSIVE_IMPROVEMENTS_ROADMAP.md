@@ -135,7 +135,7 @@ export default defineConfig({
 
 **Implementation:**
 ```swift
-// In CelestiaApp.swift
+// In TeamUpApp.swift
 import FirebaseAppCheck
 
 init() {
@@ -287,7 +287,7 @@ if (data.website) {
 **Current:** Loading all matches at once
 **Problem:** Slow for users with 100+ matches
 
-**File:** `Celestia/Repositories/FirestoreMatchRepository.swift`
+**File:** `TeamUp/Repositories/FirestoreMatchRepository.swift`
 
 ```swift
 func fetchMatches(userId: String, limit: Int = 20, lastDocument: DocumentSnapshot? = nil) async throws -> (matches: [Match], lastDoc: DocumentSnapshot?) {
@@ -320,7 +320,7 @@ func fetchMatches(userId: String, limit: Int = 20, lastDocument: DocumentSnapsho
 **Current:** All profile cards rendered
 **Better:** Only render visible + buffer
 
-**Create:** `Celestia/VirtualScrollView.swift`
+**Create:** `TeamUp/VirtualScrollView.swift`
 
 **Impact:** Smoother scrolling, lower memory usage
 
@@ -461,7 +461,7 @@ npx vite-bundle-visualizer
 3. Report user flow
 4. Account deletion flow
 
-**Create:** `CelestiaUITests/CriticalFlowsTests.swift`
+**Create:** `TeamUpUITests/CriticalFlowsTests.swift`
 
 ```swift
 func testCompleteUserJourney() throws {

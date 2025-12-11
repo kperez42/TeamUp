@@ -873,7 +873,7 @@ import NaturalLanguage // Sentiment analysis
 ```swift
 // AppDelegate or App struct
 @main
-struct CelestiaApp: App {
+struct TeamUpApp: App {
     init() {
         // Initialize safety system
         _ = SafetyManager.shared

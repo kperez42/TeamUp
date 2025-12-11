@@ -1,6 +1,6 @@
 rules_version = '2';
 
-// Firebase Storage Security Rules for Celestia
+// Firebase Storage Security Rules for TeamUp
 // Deploy with: firebase deploy --only storage
 
 service firebase.storage {

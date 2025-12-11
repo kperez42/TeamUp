@@ -247,10 +247,10 @@ Cmd+U  # Run all tests
 **From Command Line**:
 ```bash
 xcodebuild test \
-  -project Celestia.xcodeproj \
-  -scheme Celestia \
+  -project TeamUp.xcodeproj \
+  -scheme TeamUp \
   -destination 'platform=iOS Simulator,name=iPhone 15,OS=17.0' \
-  -only-testing:CelestiaUITests
+  -only-testing:TeamUpUITests
 ```
 
 ### Execution Times
@@ -324,7 +324,7 @@ view.accessibilityIdentifier = "ProfileCard"
 
 ## Documentation Created
 
-### CelestiaUITests/EndToEnd/README.md
+### TeamUpUITests/EndToEnd/README.md
 
 Comprehensive documentation including:
 - Test suite overview
@@ -343,7 +343,7 @@ Comprehensive documentation including:
 ## Files Created
 
 ```
-CelestiaUITests/
+TeamUpUITests/
 └── EndToEnd/
     ├── UserJourneyTests.swift       (309 lines)
     ├── PaymentFlowTests.swift       (447 lines)
@@ -439,10 +439,10 @@ jobs:
       - name: Run E2E Tests
         run: |
           xcodebuild test \
-            -project Celestia.xcodeproj \
-            -scheme Celestia \
+            -project TeamUp.xcodeproj \
+            -scheme TeamUp \
             -destination 'platform=iOS Simulator,name=iPhone 15' \
-            -only-testing:CelestiaUITests
+            -only-testing:TeamUpUITests
 
       - name: Upload Results
         uses: actions/upload-artifact@v3
@@ -619,8 +619,8 @@ The test suite provides **~85% coverage** of critical app functionality and exec
 
 ## Resources
 
-- Test Files: `CelestiaUITests/EndToEnd/`
-- Documentation: `CelestiaUITests/EndToEnd/README.md`
+- Test Files: `TeamUpUITests/EndToEnd/`
+- Documentation: `TeamUpUITests/EndToEnd/README.md`
 - XCUITest Guide: [Apple Developer](https://developer.apple.com/documentation/xctest)
 - StoreKit Testing: [Xcode Documentation](https://developer.apple.com/documentation/xcode/setting-up-storekit-testing-in-xcode)
 

@@ -15,7 +15,7 @@ This document outlines the comprehensive accessibility improvements made to the 
 
 ### 1. Enhanced AccessibilityHelpers.swift
 
-**Location**: `/Celestia/AccessibilityHelpers.swift`
+**Location**: `/TeamUp/AccessibilityHelpers.swift`
 
 **New Features Added**:
 
@@ -60,7 +60,7 @@ Text("Welcome")
 
 ### 2. Created AccessibilityAuditor.swift
 
-**Location**: `/Celestia/AccessibilityAuditor.swift`
+**Location**: `/TeamUp/AccessibilityAuditor.swift`
 
 **Features**:
 
@@ -95,7 +95,7 @@ Text("Welcome")
 ### 3. Authentication Views Improvements
 
 #### SignUpView.swift
-**Location**: `/Celestia/SignUpView.swift`
+**Location**: `/TeamUp/SignUpView.swift`
 
 **Changes**:
 - ✅ Added accessibility labels to all form fields (email, password, name, age, location, country)
@@ -116,7 +116,7 @@ TextField("your@email.com", text: $email)
 ```
 
 #### OnboardingView.swift
-**Location**: `/Celestia/OnboardingView.swift`
+**Location**: `/TeamUp/OnboardingView.swift`
 
 **Changes**:
 - ✅ Added accessibility labels to all form fields
@@ -136,7 +136,7 @@ TextEditor(text: $bio)
 ```
 
 #### WelcomeView.swift
-**Location**: `/Celestia/WelcomeView.swift`
+**Location**: `/TeamUp/WelcomeView.swift`
 
 **Changes**:
 - ✅ Feature carousel announces current feature
@@ -156,7 +156,7 @@ FeatureCard(feature: features[currentFeature])
 
 ### 4. Accessibility UI Tests
 
-**Location**: `/CelestiaUITests/AccessibilityUITests.swift`
+**Location**: `/TeamUpUITests/AccessibilityUITests.swift`
 
 **Test Coverage**:
 
@@ -199,7 +199,7 @@ func testSignUpFormAccessibility() throws {
 
 ### 5. Accessibility Identifiers
 
-**Location**: `/Celestia/AccessibilityHelpers.swift` (AccessibilityIdentifier enum)
+**Location**: `/TeamUp/AccessibilityHelpers.swift` (AccessibilityIdentifier enum)
 
 **New Identifiers Added**:
 ```swift
@@ -310,9 +310,9 @@ static let createAccountButton = "create_account_button"
 ```bash
 # Run accessibility UI tests
 xcodebuild test \
-  -scheme Celestia \
+  -scheme TeamUp \
   -destination 'platform=iOS Simulator,name=iPhone 15 Pro' \
-  -only-testing:CelestiaUITests/AccessibilityUITests
+  -only-testing:TeamUpUITests/AccessibilityUITests
 ```
 
 ## Next Steps - Remaining Views

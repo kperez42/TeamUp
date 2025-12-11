@@ -68,7 +68,7 @@ Replace `YOUR_TEAM_ID` with your Apple Developer Team ID (found in Apple Develop
 
 ### 2. Xcode Configuration
 
-The entitlements file (`Celestia.entitlements`) has been updated with:
+The entitlements file (`TeamUp.entitlements`) has been updated with:
 
 ```xml
 <key>com.apple.developer.associated-domains</key>
@@ -79,7 +79,7 @@ The entitlements file (`Celestia.entitlements`) has been updated with:
 ```
 
 **Enable in Xcode:**
-1. Select Celestia target
+1. Select TeamUp target
 2. Go to "Signing & Capabilities"
 3. Verify "Associated Domains" capability is enabled
 4. Verify domains are listed:
@@ -184,7 +184,7 @@ In your main `App` struct:
 
 ```swift
 @main
-struct CelestiaApp: App {
+struct TeamUpApp: App {
     @StateObject private var router = DeepLinkRouter.shared
 
     var body: some Scene {
@@ -273,7 +273,7 @@ extension AuthService {
 
         guard let httpResponse = response as? HTTPURLResponse,
               (200...299).contains(httpResponse.statusCode) else {
-            throw CelestiaError.emailVerificationFailed
+            throw TeamUpError.emailVerificationFailed
         }
 
         // Reload current user to get updated email verification status
@@ -293,7 +293,7 @@ extension AuthService {
 1. Open Notes app
 2. Type: `https://teamup.app/join/TESTCODE`
 3. Long press the link
-4. Tap "Open in Celestia"
+4. Tap "Open in TeamUp"
 
 #### Method 2: Command Line (Simulator)
 ```bash
@@ -448,7 +448,7 @@ This usually means:
 3. Server configuration issue
 
 **Fix:**
-- Long press the link and select "Open in Celestia"
+- Long press the link and select "Open in TeamUp"
 - Or use URL scheme as fallback: `celestia://...`
 
 ### Referral Code Not Applied

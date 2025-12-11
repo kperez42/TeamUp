@@ -116,7 +116,7 @@ Create `ImageMigrationService.swift`:
 ```swift
 //
 //  ImageMigrationService.swift
-//  Celestia
+//  TeamUp
 //
 //  Service for migrating existing Firebase Storage images to Cloudinary CDN
 //
@@ -327,7 +327,7 @@ Create `AdminMigrationView.swift` for manual control:
 ```swift
 //
 //  AdminMigrationView.swift
-//  Celestia
+//  TeamUp
 //
 //  Admin interface for migrating images to CDN
 //

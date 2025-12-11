@@ -2,7 +2,7 @@
 
 ## Overview
 
-The Celestia Advanced Search & Filters system provides comprehensive matching capabilities with 30+ filter options, distance-based search, intelligent relevance scoring, and saved presets. This system enables users to find highly compatible matches through granular filtering across demographics, lifestyle, preferences, and more.
+The TeamUp Advanced Search & Filters system provides comprehensive matching capabilities with 30+ filter options, distance-based search, intelligent relevance scoring, and saved presets. This system enables users to find highly compatible matches through granular filtering across demographics, lifestyle, preferences, and more.
 
 ## Table of Contents
 
@@ -841,7 +841,7 @@ import CoreLocation
 
 // AppDelegate or App struct
 @main
-struct CelestiaApp: App {
+struct TeamUpApp: App {
     init() {
         // Initialize search manager
         _ = SearchManager.shared

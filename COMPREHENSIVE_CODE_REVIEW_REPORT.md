@@ -640,7 +640,7 @@ if let match = try? await MatchService.shared.fetchMatch(...)  // ❌ Silent fai
 ---
 
 **Error Handling Strengths:**
-- ✅ Comprehensive CelestiaError enum (95 error cases)
+- ✅ Comprehensive TeamUpError enum (95 error cases)
 - ✅ Excellent error messages with recovery suggestions
 - ✅ Good LoadingState<T> pattern
 - ✅ Error UI components (ErrorView, ErrorBanner)
@@ -867,7 +867,7 @@ if let match = try? await MatchService.shared.fetchMatch(...)  // ❌ Silent fai
 ## WHAT'S WORKING WELL ✅
 
 ### Strengths of the Codebase:
-1. **Error Handling:** Comprehensive CelestiaError enum, excellent user-facing messages
+1. **Error Handling:** Comprehensive TeamUpError enum, excellent user-facing messages
 2. **Security Features:** XSS protection, input sanitization, biometric auth
 3. **SwiftUI Patterns:** Modern, declarative UI code
 4. **Service Protocols:** Well-defined, clean abstractions

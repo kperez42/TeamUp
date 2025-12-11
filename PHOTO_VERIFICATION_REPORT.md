@@ -356,8 +356,8 @@ firebase deploy --only functions:verifyPhoto,functions:checkVerificationStatus,f
 
 ```bash
 # Build and deploy iOS app with updated PhotoVerification.swift
-cd Celestia
-xcodebuild -scheme Celestia -configuration Release
+cd TeamUp
+xcodebuild -scheme TeamUp -configuration Release
 
 # Or use Xcode
 # Product → Archive → Distribute App
@@ -612,7 +612,7 @@ async function loadVerificationStats() {
 ### Vision API Pricing
 - **Free Tier**: 1,000 units/month
 - **Paid Tier**: $1.50 per 1,000 units
-- **Celestia Usage**: ~0.5 units per verification (1 selfie + 3 profile photos = 4 detections)
+- **TeamUp Usage**: ~0.5 units per verification (1 selfie + 3 profile photos = 4 detections)
 - **Cost Estimate**: 1,000 verifications = $0.30
 
 ### Testing Resources

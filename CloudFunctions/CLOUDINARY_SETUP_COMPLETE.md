@@ -30,7 +30,7 @@ Your Cloudinary account is fully configured and ready to use!
 Run this command to set environment variables in Firebase:
 
 ```bash
-cd /home/user/Celestia/CloudFunctions
+cd /home/user/TeamUp/CloudFunctions
 
 firebase functions:config:set \
   cloudinary.cloud_name="dquqeovn2" \
@@ -83,7 +83,7 @@ After deployment, test from iOS app:
 ### Test Cloudinary Connection
 
 ```bash
-cd /home/user/Celestia/CloudFunctions
+cd /home/user/TeamUp/CloudFunctions
 node test-cloudinary.js
 ```
 
@@ -109,7 +109,7 @@ Expected output:
 ### Start Firebase Emulator
 
 ```bash
-cd /home/user/Celestia/CloudFunctions
+cd /home/user/TeamUp/CloudFunctions
 firebase emulators:start --only functions
 ```
 
@@ -167,7 +167,7 @@ Plus a **blur placeholder** (<1KB) for progressive loading!
 ### Check .env File
 
 ```bash
-cat /home/user/Celestia/CloudFunctions/.env
+cat /home/user/TeamUp/CloudFunctions/.env
 ```
 
 Should show:
@@ -279,7 +279,7 @@ Visit: https://console.cloudinary.com/console/usage
 ## 📚 Additional Resources
 
 ### Documentation
-- Image Optimization: `/home/user/Celestia/IMAGE_OPTIMIZATION_REPORT.md`
+- Image Optimization: `/home/user/TeamUp/IMAGE_OPTIMIZATION_REPORT.md`
 - Cloudinary Docs: https://cloudinary.com/documentation
 - Firebase Functions: https://firebase.google.com/docs/functions
 

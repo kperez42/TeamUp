@@ -84,12 +84,12 @@ Ran thorough codebase exploration to identify:
 - No Firestore schema changes needed
 
 **Files Modified:**
-- Celestia/DiscoverViewModel.swift (+~100 lines)
-- Celestia/DiscoverView.swift (+24 lines)
-- Celestia/UserService.swift (+11 lines)
-- Celestia/SwipeService.swift (+9 lines)
-- Celestia/RepositoryProtocols.swift (+1 line)
-- Celestia/Repositories/FirestoreSwipeRepository.swift (+9 lines)
+- TeamUp/DiscoverViewModel.swift (+~100 lines)
+- TeamUp/DiscoverView.swift (+24 lines)
+- TeamUp/UserService.swift (+11 lines)
+- TeamUp/SwipeService.swift (+9 lines)
+- TeamUp/RepositoryProtocols.swift (+1 line)
+- TeamUp/Repositories/FirestoreSwipeRepository.swift (+9 lines)
 
 **Commit:** `feat: implement Rewind/Undo swipes feature (premium)`
 
@@ -205,12 +205,12 @@ users/{userId} {
 ```
 
 **Files Created:**
-- Celestia/ProfileBoostService.swift (180 lines)
-- Celestia/ProfileBoostButton.swift (365 lines)
+- TeamUp/ProfileBoostService.swift (180 lines)
+- TeamUp/ProfileBoostButton.swift (365 lines)
 
 **Files Modified:**
-- Celestia/ProfileView.swift (+3 lines)
-- Celestia/DiscoverViewModel.swift (+30 lines)
+- TeamUp/ProfileView.swift (+3 lines)
+- TeamUp/DiscoverViewModel.swift (+30 lines)
 
 **Commit:** `feat: implement Profile Boost feature (premium)`
 

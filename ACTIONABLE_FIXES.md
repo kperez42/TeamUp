@@ -3,7 +3,7 @@
 ---
 
 ## QUICK FIX #1: Remove Unused previousTab State
-**File:** `/home/user/Celestia/Celestia/MainTabView.swift`
+**File:** `/home/user/TeamUp/TeamUp/MainTabView.swift`
 **Lines:** 16, 59-62
 **Time:** 2 minutes
 
@@ -31,7 +31,7 @@
 ---
 
 ## QUICK FIX #2: Remove Test Crash Code
-**File:** `/home/user/Celestia/Celestia/CrashlyticsManager.swift`
+**File:** `/home/user/TeamUp/TeamUp/CrashlyticsManager.swift`
 **Line:** 269
 **Time:** 1 minute
 
@@ -50,7 +50,7 @@ Logger.shared.error("Crash test request received", category: .analytics)
 ---
 
 ## QUICK FIX #3: Add Accessibility Labels
-**File:** `/home/user/Celestia/Celestia/SavedProfilesView.swift`
+**File:** `/home/user/TeamUp/TeamUp/SavedProfilesView.swift`
 **Lines:** 149-159
 **Time:** 5 minutes
 
@@ -83,7 +83,7 @@ Button {
 ---
 
 ## QUICK FIX #4: Hide Decorative Elements from VoiceOver
-**File:** `/home/user/Celestia/Celestia/SavedProfilesView.swift`
+**File:** `/home/user/TeamUp/TeamUp/SavedProfilesView.swift`
 **Lines:** 93-105
 **Time:** 3 minutes
 
@@ -126,7 +126,7 @@ GeometryReader { geo in
 ---
 
 ## QUICK FIX #5: Replace DispatchQueue with Task-based Scheduling
-**File:** `/home/user/Celestia/Celestia/MainTabView.swift`
+**File:** `/home/user/TeamUp/TeamUp/MainTabView.swift`
 **Line:** 198
 **Time:** 5 minutes
 
@@ -158,7 +158,7 @@ Button(action: {
 ## MEDIUM FIX #1: Create Reusable Header Component
 **Time:** 30 minutes | **Reduces:** ~200 lines of duplication
 
-### New File: `/home/user/Celestia/Celestia/Components/ScreenHeaderView.swift`
+### New File: `/home/user/TeamUp/TeamUp/Components/ScreenHeaderView.swift`
 ```swift
 import SwiftUI
 
@@ -290,7 +290,7 @@ private var headerView: some View {
 ---
 
 ## MEDIUM FIX #2: Replace DEBUG/RELEASE Inconsistency
-**File:** `/home/user/Celestia/Celestia/MatchesView.swift`
+**File:** `/home/user/TeamUp/TeamUp/MatchesView.swift`
 **Lines:** 53-68
 **Time:** 10 minutes
 
@@ -329,7 +329,7 @@ guard !userId.isEmpty else {
 ---
 
 ## MEDIUM FIX #3: Add Missing Error States
-**File:** `/home/user/Celestia/Celestia/MessagesView.swift`
+**File:** `/home/user/TeamUp/TeamUp/MessagesView.swift`
 **Time:** 15 minutes
 
 ### Add Error State Property
@@ -404,12 +404,12 @@ struct MessagesView: View {
 ---
 
 ## MAJOR FIX #1: Split EditProfileView Into Components
-**File:** `/home/user/Celestia/Celestia/EditProfileView.swift`
+**File:** `/home/user/TeamUp/TeamUp/EditProfileView.swift`
 **Current Size:** 1,951 lines
 **Time:** 2-3 hours | **Impact:** HUGE readability improvement
 
 ### Step 1: Extract BasicInfoSection
-Create: `/home/user/Celestia/Celestia/Components/EditProfile/BasicInfoSection.swift`
+Create: `/home/user/TeamUp/TeamUp/Components/EditProfile/BasicInfoSection.swift`
 
 ```swift
 import SwiftUI
@@ -457,7 +457,7 @@ struct BasicInfoSection: View {
 ```
 
 ### Step 2: Extract PhotoUploadSection
-Create: `/home/user/Celestia/Celestia/Components/EditProfile/PhotoUploadSection.swift`
+Create: `/home/user/TeamUp/TeamUp/Components/EditProfile/PhotoUploadSection.swift`
 
 ```swift
 import SwiftUI
@@ -582,7 +582,7 @@ This approach:
 ---
 
 ## MAJOR FIX #2: Replace Polling with Firebase Listeners
-**File:** `/home/user/Celestia/Celestia/MainTabView.swift`
+**File:** `/home/user/TeamUp/TeamUp/MainTabView.swift`
 **Lines:** 143-163
 **Time:** 45 minutes | **Impact:** Battery, Network Efficiency
 

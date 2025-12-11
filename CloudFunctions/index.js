@@ -1,5 +1,5 @@
 /**
- * Celestia Backend API - Cloud Functions
+ * TeamUp Backend API - Cloud Functions
  * Handles server-side validation, moderation, and admin operations
  */
 

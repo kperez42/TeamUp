@@ -21,8 +21,8 @@ This document summarizes the critical security fixes that have been applied to t
 **Risk:** Account takeover via token theft from device backups
 
 **Files Modified:**
-- **Created:** `Celestia/KeychainManager.swift` - Secure storage manager using iOS Keychain
-- **Modified:** `Celestia/DeepLinkRouter.swift:352`
+- **Created:** `TeamUp/KeychainManager.swift` - Secure storage manager using iOS Keychain
+- **Modified:** `TeamUp/DeepLinkRouter.swift:352`
 
 **Changes:**
 ```swift
@@ -48,7 +48,7 @@ KeychainManager.shared.savePasswordResetToken(token)
 **Risk:** GDPR/CCPA violations, privacy breaches, data leaks in crash reports
 
 **Files Modified:**
-- `Celestia/AuthService.swift` - Lines 32, 88, 132, 181, 187, 238, 340, 415, 451
+- `TeamUp/AuthService.swift` - Lines 32, 88, 132, 181, 187, 238, 340, 415, 451
 
 **Changes Made:**
 ```swift
@@ -89,7 +89,7 @@ Logger.shared.auth("User data fetched successfully", level: .info)
 **Risk:** Man-in-the-middle (MITM) attacks on compromised networks
 
 **Files Modified:**
-- `Celestia/NetworkManager.swift`
+- `TeamUp/NetworkManager.swift`
 
 **Changes Made:**
 
@@ -148,7 +148,7 @@ private func sha256(data: Data) -> String {
 **Risk:** Token leakage, unauthorized access via compromised analytics
 
 **Files Modified:**
-- `Celestia/DeepLinkRouter.swift:338`
+- `TeamUp/DeepLinkRouter.swift:338`
 
 **Changes:**
 ```swift

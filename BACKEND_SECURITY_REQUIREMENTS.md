@@ -215,7 +215,7 @@ exports.validateAge = functions.https.onCall(async (data, context) => {
     if (age < 18) {
         throw new functions.https.HttpsError(
             'failed-precondition',
-            'You must be 18 or older to use Celestia'
+            'You must be 18 or older to use TeamUp'
         );
     }
 

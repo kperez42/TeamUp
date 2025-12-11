@@ -1,7 +1,7 @@
 # Bundle Size Optimization Report
 
 **Date**: November 18, 2025
-**Project**: Celestia Admin Dashboard
+**Project**: TeamUp Admin Dashboard
 **Time to Complete**: 25 minutes
 
 ## 🎯 Optimization Goals

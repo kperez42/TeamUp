@@ -65,7 +65,7 @@ pod install
 #### 1. Add Crashlytics Run Script
 
 1. In Xcode, select your project
-2. Select the Celestia target
+2. Select the TeamUp target
 3. Go to **Build Phases**
 4. Click **+** > **New Run Script Phase**
 5. Name it: "Run Firebase Crashlytics"
@@ -94,7 +94,7 @@ Add another Run Script Phase:
 
 ```bash
 "${PODS_ROOT}/FirebaseCrashlytics/upload-symbols" \
-  -gsp "${PROJECT_DIR}/Celestia/GoogleService-Info.plist" \
+  -gsp "${PROJECT_DIR}/TeamUp/GoogleService-Info.plist" \
   -p ios "${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}"
 ```
 
@@ -119,7 +119,7 @@ import FirebaseCrashlytics
 import FirebasePerformance
 
 @main
-struct CelestiaApp: App {
+struct TeamUpApp: App {
     init() {
         // Configure Firebase
         FirebaseApp.configure()
@@ -218,10 +218,10 @@ do {
 }
 ```
 
-**Celestia-specific errors:**
+**TeamUp-specific errors:**
 
 ```swift
-CrashlyticsManager.shared.recordCelestiaError(.matchNotFound, context: [
+CrashlyticsManager.shared.recordTeamUpError(.matchNotFound, context: [
     "matchId": matchId,
     "userId": userId
 ])
@@ -501,7 +501,7 @@ Download and upload manually:
 
 # Upload to Firebase
 ./Pods/FirebaseCrashlytics/upload-symbols \
-  -gsp ./Celestia/GoogleService-Info.plist \
+  -gsp ./TeamUp/GoogleService-Info.plist \
   -p ios path/to/dSYMs
 ```
 

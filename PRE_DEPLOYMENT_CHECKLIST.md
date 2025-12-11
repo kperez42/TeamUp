@@ -172,7 +172,7 @@ firebase deploy --only storage
 
 Check that these are properly configured in your build environment:
 
-**iOS App (Celestia/Config.swift or Info.plist):**
+**iOS App (TeamUp/Config.swift or Info.plist):**
 - [ ] Firebase project ID
 - [ ] Firebase API key
 - [ ] Google Cloud Vision API key

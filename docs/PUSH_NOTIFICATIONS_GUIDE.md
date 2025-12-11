@@ -1,6 +1,6 @@
 # Push Notifications Setup Guide
 
-Comprehensive guide for implementing and using push notifications in Celestia.
+Comprehensive guide for implementing and using push notifications in TeamUp.
 
 ## 📋 Table of Contents
 
@@ -17,7 +17,7 @@ Comprehensive guide for implementing and using push notifications in Celestia.
 
 ## Overview
 
-Celestia's push notification system provides:
+TeamUp's push notification system provides:
 - **APNs integration** - Native iOS notifications
 - **Firebase Cloud Messaging** - Cross-platform support
 - **Rich notifications** - Images, actions, custom UI
@@ -125,7 +125,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 ```swift
 @main
-struct CelestiaApp: App {
+struct TeamUpApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
 
     var body: some Scene {

@@ -163,18 +163,18 @@
 ### New Files (Total: 8 files, ~3,500 lines)
 
 **Phone Verification:**
-- `Celestia/PhoneVerificationService.swift` (225 lines)
-- `Celestia/PhoneVerificationView.swift` (420 lines)
+- `TeamUp/PhoneVerificationService.swift` (225 lines)
+- `TeamUp/PhoneVerificationView.swift` (420 lines)
 
 **Admin Dashboard:**
-- `Celestia/AdminModerationDashboard.swift` (900 lines)
+- `TeamUp/AdminModerationDashboard.swift` (900 lines)
 
 **Image Optimization (earlier):**
-- `Celestia/OptimizedImageLoader.swift` (400 lines)
-- `Celestia/ImageMigrationService.swift` (200 lines)
-- `Celestia/AdminMigrationView.swift` (250 lines)
-- `Celestia/ImagePerformanceMonitor.swift` (350 lines)
-- `Celestia/ImagePerformanceDashboard.swift` (400 lines)
+- `TeamUp/OptimizedImageLoader.swift` (400 lines)
+- `TeamUp/ImageMigrationService.swift` (200 lines)
+- `TeamUp/AdminMigrationView.swift` (250 lines)
+- `TeamUp/ImagePerformanceMonitor.swift` (350 lines)
+- `TeamUp/ImagePerformanceDashboard.swift` (400 lines)
 
 **Documentation:**
 - `FUNCTIONAL_IMPROVEMENTS_SUMMARY.md` (591 lines)
@@ -187,11 +187,11 @@
   - Reporting & moderation endpoints (3)
   - Image optimization endpoints (4)
 
-- `Celestia/DiscoverViewModel.swift` (+95 lines)
+- `TeamUp/DiscoverViewModel.swift` (+95 lines)
   - Fake profile detection integration
   - Automatic filtering
 
-- `Celestia/SafetyPlaceholderViews.swift` (cleanup)
+- `TeamUp/SafetyPlaceholderViews.swift` (cleanup)
   - Removed duplicate PhoneVerificationView
   - Added documentation notes
 

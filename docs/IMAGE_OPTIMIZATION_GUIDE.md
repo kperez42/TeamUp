@@ -1,6 +1,6 @@
 # Image Optimization & CDN Guide
 
-Comprehensive guide for image optimization, CDN integration, and performance improvements in Celestia.
+Comprehensive guide for image optimization, CDN integration, and performance improvements in TeamUp.
 
 ## 📋 Table of Contents
 
@@ -18,7 +18,7 @@ Comprehensive guide for image optimization, CDN integration, and performance imp
 
 ## Overview
 
-Celestia's image optimization system provides:
+TeamUp's image optimization system provides:
 - **Compression pipeline** - Reduce file sizes by 70-90%
 - **Multiple resolutions** - Thumbnail, small, medium, large, original
 - **CDN integration** - CloudFront, Cloudflare support

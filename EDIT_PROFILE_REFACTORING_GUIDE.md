@@ -104,7 +104,7 @@ Each extracted component should follow this pattern:
 ```swift
 //
 //  [ComponentName].swift
-//  Celestia
+//  TeamUp
 //
 //  [Description]
 //  Extracted from EditProfileView.swift
@@ -542,7 +542,7 @@ After extracting all components, EditProfileView.swift becomes:
 ```swift
 //
 //  EditProfileView.swift
-//  Celestia
+//  TeamUp
 //
 //  Enhanced profile editing with modular components
 //  Refactored from 1,594 lines to ~300 lines

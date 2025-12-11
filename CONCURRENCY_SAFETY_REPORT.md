@@ -17,7 +17,7 @@ The TeamUp iOS app demonstrates a **mixed concurrency safety profile**. While th
 ## CRITICAL ISSUES (Must Fix Immediately)
 
 ### 1. Timer-Based Race Condition in PendingMessageQueue
-**File:** `/home/user/TeamUp/Celestia/PendingMessageQueue.swift`
+**File:** `/home/user/TeamUp/TeamUp/PendingMessageQueue.swift`
 **Lines:** 293-301
 **Severity:** CRITICAL (Data corruption risk)
 
@@ -59,7 +59,7 @@ private func startBackgroundProcessing() {
 ---
 
 ### 2. Unsafe nonisolated(unsafe) Usage Without Documentation
-**File:** `/home/user/TeamUp/Celestia/DiscoverViewModel.swift`
+**File:** `/home/user/TeamUp/TeamUp/DiscoverViewModel.swift`
 **Lines:** 40-44
 **Severity:** CRITICAL (Thread-safety violation risk)
 
@@ -88,7 +88,7 @@ private let documentCache = QueryCache<DocumentSnapshot>(ttl: 300)
 ---
 
 ### 3. DispatchQueue.global Race Condition in PhotoVerification
-**File:** `/home/user/TeamUp/Celestia/PhotoVerification.swift`
+**File:** `/home/user/TeamUp/TeamUp/PhotoVerification.swift`
 **Lines:** 113-119
 **Severity:** CRITICAL (Race condition in UI state)
 
@@ -141,7 +141,7 @@ DispatchQueue.global(qos: .userInitiated).async {
 ## HIGH-SEVERITY ISSUES
 
 ### 4. Missing Task Cancellation Check in UserService
-**File:** `/home/user/TeamUp/Celestia/UserService.swift`
+**File:** `/home/user/TeamUp/TeamUp/UserService.swift`
 **Lines:** 256-290
 **Severity:** HIGH (Memory leak + network waste)
 
@@ -176,7 +176,7 @@ func debouncedSearch(query: String, ..., completion: @escaping ([User]?, Error?)
 ---
 
 ### 5. Weak Self Capture Without nil Check in MessageService
-**File:** `/home/user/TeamUp/Celestia/MessageService.swift`
+**File:** `/home/user/TeamUp/TeamUp/MessageService.swift`
 **Lines:** 90-121
 **Severity:** HIGH (Implicit unwrapping, memory safety)
 
@@ -211,7 +211,7 @@ listener = db.collection("messages")
 ---
 
 ### 6. Shared Singleton Access Without Synchronization in ReferralManager
-**File:** Referenced in `/home/user/TeamUp/Celestia/AuthService.swift` Line 248
+**File:** Referenced in `/home/user/TeamUp/TeamUp/AuthService.swift` Line 248
 **Severity:** HIGH (Singleton thread safety)
 
 ```swift
@@ -228,7 +228,7 @@ try await ReferralManager.shared.initializeReferralCode(for: &user)
 ---
 
 ### 7. Fire-and-Forget Tasks Without Cancellation in UserService
-**File:** `/home/user/TeamUp/Celestia/UserService.swift`
+**File:** `/home/user/TeamUp/TeamUp/UserService.swift`
 **Lines:** 410-419
 **Severity:** HIGH (Resource leak)
 
@@ -279,7 +279,7 @@ func decrementDailyLikes(userId: String) async {
 ---
 
 ### 8. Missing @MainActor on OfflineManager.onNetworkRestored
-**File:** `/home/user/TeamUp/Celestia/OfflineManager.swift`
+**File:** `/home/user/TeamUp/TeamUp/OfflineManager.swift`
 **Lines:** 133-139
 **Severity:** HIGH (UI thread safety)
 
@@ -308,7 +308,7 @@ private func onNetworkRestored() {
 **Lines:** Various in ChatViewModel, MessageService, etc.
 **Severity:** HIGH (Data races)
 
-Example from `/home/user/TeamUp/Celestia/ChatViewModel.swift` Line 91-93:
+Example from `/home/user/TeamUp/TeamUp/ChatViewModel.swift` Line 91-93:
 ```swift
 self.messages = documents.compactMap { doc -> Message? in
     try? doc.data(as: Message.self)
@@ -325,7 +325,7 @@ self.messages = documents.compactMap { doc -> Message? in
 ---
 
 ### 10. Missing Cancellation in Message Listener
-**File:** `/home/user/TeamUp/Celestia/ChatViewModel.swift`
+**File:** `/home/user/TeamUp/TeamUp/ChatViewModel.swift`
 **Lines:** 74-96
 **Severity:** HIGH (Resource leak + stale listeners)
 
@@ -353,7 +353,7 @@ func loadMessages(for matchID: String) async {
 ## MEDIUM-SEVERITY ISSUES
 
 ### 11. Improper Use of DispatchQueue vs async/await in NetworkManager
-**File:** `/home/user/TeamUp/Celestia/NetworkManager.swift`
+**File:** `/home/user/TeamUp/TeamUp/NetworkManager.swift`
 **Lines:** 102, 145-156
 **Severity:** MEDIUM (Old pattern, inefficient)
 
@@ -383,7 +383,7 @@ Make monitorQueue a structured concurrency task instead
 ---
 
 ### 12. Unprotected Access to Mutable Cache Dictionary in UserService
-**File:** `/home/user/TeamUp/Celestia/UserService.swift`
+**File:** `/home/user/TeamUp/TeamUp/UserService.swift`
 **Lines:** 34-36
 **Severity:** MEDIUM (Data race in cache)
 
@@ -409,7 +409,7 @@ private let searchCache = QueryCache<[User]>(ttl: 300, maxSize: 50)
 ---
 
 ### 13. Missing Task Cancellation in DiscoverViewModel.sendInterest
-**File:** `/home/user/TeamUp/Celestia/DiscoverViewModel.swift`
+**File:** `/home/user/TeamUp/TeamUp/DiscoverViewModel.swift`
 **Lines:** 124-145
 **Severity:** MEDIUM (Orphaned tasks)
 
@@ -438,7 +438,7 @@ func sendInterest(...) {
 ---
 
 ### 14. Snapshot Listener Not Removed in Stop Method
-**File:** `/home/user/TeamUp/Celestia/MessageService.swift`
+**File:** `/home/user/TeamUp/TeamUp/MessageService.swift`
 **Lines:** 85-122
 **Severity:** MEDIUM (Resource leak)
 
@@ -472,7 +472,7 @@ private func setupNewMessageListener(...) {
 ---
 
 ### 15. Memory Warning Observer Not Removed in CacheManager
-**File:** `/home/user/TeamUp/Celestia/QueryCache.swift`
+**File:** `/home/user/TeamUp/TeamUp/QueryCache.swift`
 **Lines:** 203-212
 **Severity:** MEDIUM (Memory leak)
 
@@ -500,14 +500,14 @@ NotificationCenter.default.addObserver(
 ---
 
 ### 16. Detached Task Without Priority or Context in ImageUploadService
-**File:** `/home/user/TeamUp/Celestia/ImageUploadService.swift`
+**File:** `/home/user/TeamUp/TeamUp/ImageUploadService.swift`
 **Lines:** 47-63
 **Severity:** MEDIUM (Unnecessary complexity)
 
 ```swift
 return try await Task.detached(priority: .userInitiated) { [weak self] in
     guard let self = self else {
-        throw CelestiaError.invalidImageFormat
+        throw TeamUpError.invalidImageFormat
     }
     // ...
 }.value
@@ -528,7 +528,7 @@ return try await performImageOptimization(image)
 ---
 
 ### 17. Unsafe Main Thread Assumption in AuthService
-**File:** `/home/user/TeamUp/Celestia/AuthService.swift`
+**File:** `/home/user/TeamUp/TeamUp/AuthService.swift`
 **Lines:** 36-40
 **Severity:** MEDIUM (Thread safety)
 
@@ -547,7 +547,7 @@ Task { @MainActor in
 ---
 
 ### 18. StoreManager Listener Not Cancelled Properly
-**File:** `/home/user/TeamUp/Celestia/StoreManager.swift`
+**File:** `/home/user/TeamUp/TeamUp/StoreManager.swift`
 **Lines:** 31-57
 **Severity:** MEDIUM (Resource leak)
 
@@ -575,7 +575,7 @@ deinit {
 ---
 
 ### 19. ImageCache Memory Warning Handler Chain
-**File:** `/home/user/TeamUp/Celestia/ImageCache.swift`
+**File:** `/home/user/TeamUp/TeamUp/ImageCache.swift`
 **Lines:** 151-177
 **Severity:** MEDIUM (Inefficient cleanup)
 
@@ -607,7 +607,7 @@ private func handleMemoryWarning() async {
 ---
 
 ### 20. Unguarded @Published Access in PrivacySettingsView
-**File:** `/home/user/TeamUp/Celestia/PrivacySettingsView.swift` (referenced)
+**File:** `/home/user/TeamUp/TeamUp/PrivacySettingsView.swift` (referenced)
 **Severity:** MEDIUM (Data race)
 
 Referenced in AuthService line 261-267:
@@ -626,7 +626,7 @@ await MainActor.run {
 ## LOW-SEVERITY ISSUES
 
 ### 21. Inefficient Empty Check in DailyLikeLimitCache.decrementLikes
-**File:** `/home/user/TeamUp/Celestia/DailyLikeLimitCache.swift`
+**File:** `/home/user/TeamUp/TeamUp/DailyLikeLimitCache.swift`
 **Lines:** 90-102
 **Severity:** LOW (Code smell)
 
@@ -654,7 +654,7 @@ func decrementLikes(userId: String) -> Int? {
 ---
 
 ### 22. Polling-Based Initialization Wait in AuthService
-**File:** `/home/user/TeamUp/Celestia/AuthService.swift`
+**File:** `/home/user/TeamUp/TeamUp/AuthService.swift`
 **Lines:** 44-59
 **Severity:** LOW (Inefficient pattern)
 
@@ -681,7 +681,7 @@ Use AsyncStream or Combine for better coordination
 ---
 
 ### 23. Snapshot Decoding Without Error Handling
-**File:** `/home/user/TeamUp/Celestia/ChatViewModel.swift`
+**File:** `/home/user/TeamUp/TeamUp/ChatViewModel.swift`
 **Lines:** 91-93
 **Severity:** LOW (Silent failures)
 
@@ -699,7 +699,7 @@ self.messages = documents.compactMap { doc -> Message? in
 ---
 
 ### 24. Cache Cleanup Without Async Bounds
-**File:** `/home/user/TeamUp/Celestia/QueryCache.swift`
+**File:** `/home/user/TeamUp/TeamUp/QueryCache.swift`
 **Lines:** 297-314
 **Severity:** LOW (Unbounded task)
 
@@ -740,7 +740,7 @@ try? await Task.sleep(nanoseconds: ...)  // << silently drops errors
 ---
 
 ### 26. No Validation in Cache Get After Expiration Check
-**File:** `/home/user/TeamUp/Celestia/DailyLikeLimitCache.swift`
+**File:** `/home/user/TeamUp/TeamUp/DailyLikeLimitCache.swift`
 **Lines:** 43-68
 **Severity:** LOW (Data consistency)
 
@@ -778,7 +778,7 @@ func getRemainingLikes(userId: String) -> DailyLikeLimitData? {
 ---
 
 ### 28. Missing Cleanup of Periodic Tasks
-**File:** `/home/user/TeamUp/Celestia/CacheManager.swift`
+**File:** `/home/user/TeamUp/TeamUp/CacheManager.swift`
 **Lines:** 214-217
 **Severity:** LOW (Resource leak if deinit not called)
 
@@ -830,7 +830,7 @@ private init() {
 ## CONCURRENCY TESTING RECOMMENDATIONS
 
 ```swift
-// Add these tests to CelestiaTests:
+// Add these tests to TeamUpTests:
 
 // 1. Test for data races in SearchCache
 @MainActor

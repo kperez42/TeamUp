@@ -243,7 +243,7 @@ Detects modified/jailbroken devices that may bypass payment validation or use cr
 
 ### Client-Side Detection (iOS)
 
-**Location:** `Celestia/StoreManager.swift`
+**Location:** `TeamUp/StoreManager.swift`
 
 The iOS app can optionally send device information for enhanced detection:
 

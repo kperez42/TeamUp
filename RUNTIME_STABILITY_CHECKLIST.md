@@ -1,6 +1,6 @@
 # Runtime Stability & Performance Checklist
 
-**Purpose:** Ensure Celestia runs smoothly in production with excellent user experience
+**Purpose:** Ensure TeamUp runs smoothly in production with excellent user experience
 **Status:** Critical issues fixed, optimization opportunities identified
 **Priority:** Focus on issues that directly impact user experience
 
