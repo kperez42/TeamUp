@@ -140,7 +140,7 @@ struct CurrentUserProfileCard: View {
                             )
                         )
 
-                    Text("Tap to view and edit your gaming profile")
+                    Text("Tap to edit your profile")
                         .font(.subheadline)
                         .fontWeight(.medium)
                         .foregroundStyle(
