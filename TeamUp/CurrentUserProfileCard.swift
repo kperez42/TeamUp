@@ -59,18 +59,10 @@ struct CurrentUserProfileCard: View {
             VStack(alignment: .leading, spacing: 8) {
                 // Name and Verification
                 HStack(spacing: 8) {
-                    VStack(alignment: .leading, spacing: 2) {
-                        Text(user.fullName)
-                            .font(.title2)
-                            .fontWeight(.bold)
-                            .foregroundColor(.primary)
-
-                        if !user.gamerTag.isEmpty {
-                            Text("@\(user.gamerTag)")
-                                .font(.subheadline)
-                                .foregroundColor(.blue)
-                        }
-                    }
+                    Text(user.fullName)
+                        .font(.title2)
+                        .fontWeight(.bold)
+                        .foregroundColor(.primary)
 
                     if user.isVerified {
                         Image(systemName: "checkmark.seal.fill")
@@ -92,7 +84,7 @@ struct CurrentUserProfileCard: View {
 
                     Image(systemName: "mappin.circle.fill")
                         .font(.caption)
-                        .foregroundColor(.orange)
+                        .foregroundColor(.blue)
 
                     Text("\(user.location), \(user.country)")
                         .font(.subheadline)
@@ -113,6 +105,21 @@ struct CurrentUserProfileCard: View {
                         .foregroundColor(.secondary)
 
                     Spacer()
+                }
+
+                // Photo count if available
+                if !user.photos.isEmpty {
+                    HStack(spacing: 4) {
+                        Image(systemName: "photo.stack.fill")
+                            .font(.caption)
+                            .foregroundColor(.blue)
+
+                        Text("\(user.photos.count) photo\(user.photos.count == 1 ? "" : "s")")
+                            .font(.subheadline)
+                            .foregroundColor(.secondary)
+
+                        Spacer()
+                    }
                 }
             }
             .padding(.horizontal, 16)
