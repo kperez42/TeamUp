@@ -115,21 +115,6 @@ struct CurrentUserProfileCard: View {
                     Spacer()
                 }
 
-                // Voice Chat
-                if !user.voiceChatPreference.isEmpty {
-                    HStack(spacing: 4) {
-                        Image(systemName: "mic.fill")
-                            .font(.caption)
-                            .foregroundColor(.green)
-
-                        Text("Voice Chat: \(user.voiceChatPreference)")
-                            .font(.subheadline)
-                            .foregroundColor(.secondary)
-
-                        Spacer()
-                    }
-                }
-
                 // Bio preview
                 if !user.bio.isEmpty {
                     HStack(spacing: 4) {
@@ -143,36 +128,6 @@ struct CurrentUserProfileCard: View {
                             .lineLimit(2)
 
                         Spacer()
-                    }
-                }
-
-                // Looking For chips
-                if !user.lookingFor.isEmpty {
-                    VStack(alignment: .leading, spacing: 6) {
-                        HStack(spacing: 4) {
-                            Image(systemName: "person.2.fill")
-                                .font(.caption)
-                                .foregroundColor(.blue)
-
-                            Text("Looking For:")
-                                .font(.caption)
-                                .foregroundColor(.secondary)
-                        }
-
-                        ScrollView(.horizontal, showsIndicators: false) {
-                            HStack(spacing: 6) {
-                                ForEach(user.lookingFor.prefix(4), id: \.self) { type in
-                                    Text(type)
-                                        .font(.caption)
-                                        .fontWeight(.medium)
-                                        .foregroundColor(.blue)
-                                        .padding(.horizontal, 10)
-                                        .padding(.vertical, 5)
-                                        .background(Color.blue.opacity(0.1))
-                                        .cornerRadius(12)
-                                }
-                            }
-                        }
                     }
                 }
 
