@@ -191,33 +191,33 @@ struct MessagesView: View {
     
     // MARK: - Header
     
-    // GREEN THEME for Messages page
+    // VIBRANT ELECTRIC GREEN THEME for Messages page
     private var headerView: some View {
         ZStack {
-            // Gradient background
+            // Gradient background - vibrant green blend like blue/teal
             LinearGradient(
                 colors: [
-                    Color(red: 0.3, green: 0.75, blue: 0.4).opacity(0.95),
-                    Color(red: 0.4, green: 0.85, blue: 0.5).opacity(0.88),
-                    Color(red: 0.5, green: 0.9, blue: 0.55).opacity(0.8)
+                    Color.green.opacity(0.9),
+                    Color.mint.opacity(0.85),
+                    Color.mint.opacity(0.75)
                 ],
                 startPoint: .topLeading,
                 endPoint: .bottomTrailing
             )
-            
-            // Decorative elements
+
+            // Decorative elements - matching glow
             GeometryReader { geo in
                 Circle()
-                    .fill(Color.white.opacity(0.1))
-                    .frame(width: 100, height: 100)
-                    .blur(radius: 20)
-                    .offset(x: -30, y: 20)
-                
+                    .fill(Color.white.opacity(0.15))
+                    .frame(width: 120, height: 120)
+                    .blur(radius: 25)
+                    .offset(x: -30, y: 10)
+
                 Circle()
-                    .fill(Color.yellow.opacity(0.15))
-                    .frame(width: 60, height: 60)
-                    .blur(radius: 15)
-                    .offset(x: geo.size.width - 50, y: 40)
+                    .fill(Color.yellow.opacity(0.2))
+                    .frame(width: 80, height: 80)
+                    .blur(radius: 20)
+                    .offset(x: geo.size.width - 60, y: 30)
             }
             
             VStack(spacing: 12) {
