@@ -337,9 +337,9 @@ struct ProfileView: View {
             ZStack {
                 LinearGradient(
                     colors: [
-                        Color.blue.opacity(0.9),
-                        Color.teal.opacity(0.8),
-                        Color.blue.opacity(0.6)
+                        Color(red: 0.4, green: 0.6, blue: 0.9),
+                        Color(red: 0.5, green: 0.7, blue: 0.85),
+                        Color(red: 0.6, green: 0.8, blue: 0.9)
                     ],
                     startPoint: .topLeading,
                     endPoint: .bottomTrailing
@@ -348,13 +348,13 @@ struct ProfileView: View {
                 // Decorative circles for depth
                 GeometryReader { geo in
                     Circle()
-                        .fill(Color.white.opacity(0.1))
+                        .fill(Color.white.opacity(0.15))
                         .frame(width: 200, height: 200)
                         .blur(radius: 40)
                         .offset(x: -80, y: 50)
 
                     Circle()
-                        .fill(Color.yellow.opacity(0.15))
+                        .fill(Color(red: 0.95, green: 0.85, blue: 0.7).opacity(0.25))
                         .frame(width: 120, height: 120)
                         .blur(radius: 30)
                         .offset(x: geo.size.width - 60, y: 100)
@@ -500,7 +500,7 @@ struct ProfileView: View {
                 Circle()
                     .fill(
                         LinearGradient(
-                            colors: [.blue, .teal],
+                            colors: [Color(red: 0.3, green: 0.5, blue: 0.85), Color(red: 0.4, green: 0.65, blue: 0.9)],
                             startPoint: .topLeading,
                             endPoint: .bottomTrailing
                         )
@@ -514,14 +514,14 @@ struct ProfileView: View {
             .offset(x: 4, y: 4)
         }
     }
-    
+
     private func placeholderImage(initial: Substring) -> some View {
         ZStack {
             LinearGradient(
                 colors: [
-                    Color.blue.opacity(0.8),
-                    Color.teal.opacity(0.7),
-                    Color.blue.opacity(0.6)
+                    Color(red: 0.4, green: 0.55, blue: 0.85),
+                    Color(red: 0.5, green: 0.65, blue: 0.9),
+                    Color(red: 0.55, green: 0.7, blue: 0.88)
                 ],
                 startPoint: .topLeading,
                 endPoint: .bottomTrailing
@@ -556,7 +556,7 @@ struct ProfileView: View {
                         .trim(from: 0, to: CGFloat(profileCompletion) / 100)
                         .stroke(
                             LinearGradient(
-                                colors: [.blue, .teal],
+                                colors: [Color(red: 0.35, green: 0.7, blue: 0.55), Color(red: 0.4, green: 0.75, blue: 0.6)],
                                 startPoint: .topLeading,
                                 endPoint: .bottomTrailing
                             ),
@@ -568,7 +568,7 @@ struct ProfileView: View {
                     Text("\(profileCompletion)%")
                         .font(.caption)
                         .fontWeight(.bold)
-                        .foregroundColor(.blue)
+                        .foregroundColor(Color(red: 0.35, green: 0.7, blue: 0.55))
                 }
                 .frame(width: 50, height: 50)
             }
@@ -602,7 +602,7 @@ struct ProfileView: View {
         HStack(spacing: 10) {
             Image(systemName: icon)
                 .font(.caption)
-                .foregroundColor(.blue)
+                .foregroundColor(Color(red: 0.5, green: 0.55, blue: 0.65))
                 .frame(width: 20)
 
             Text(text)
@@ -624,7 +624,7 @@ struct ProfileView: View {
                     icon: "gamecontroller.fill",
                     value: isLoadingStats ? "-" : "\(accurateLikesReceived)",
                     label: "Team Up",
-                    color: .blue
+                    color: Color(red: 0.5, green: 0.4, blue: 0.8)
                 )
             }
 
@@ -644,7 +644,7 @@ struct ProfileView: View {
                     icon: "eye.fill",
                     value: isLoadingStats ? "-" : "\(accurateProfileViews)",
                     label: "Viewed",
-                    color: .cyan
+                    color: Color(red: 0.35, green: 0.7, blue: 0.55)
                 )
             }
 
@@ -660,7 +660,7 @@ struct ProfileView: View {
                     icon: "bookmark.fill",
                     value: isLoadingStats ? "-" : "\(accurateMatchCount)",
                     label: "Saved",
-                    color: .teal
+                    color: Color(red: 0.95, green: 0.5, blue: 0.3)
                 )
             }
         }
@@ -762,7 +762,7 @@ struct ProfileView: View {
             .padding(.vertical, 16)
             .background(
                 LinearGradient(
-                    colors: [Color.blue, Color.teal],
+                    colors: [Color(red: 0.4, green: 0.55, blue: 0.85), Color(red: 0.5, green: 0.7, blue: 0.85)],
                     startPoint: .leading,
                     endPoint: .trailing
                 )
@@ -1006,13 +1006,7 @@ struct ProfileView: View {
             HStack(spacing: 8) {
                 Image(systemName: "quote.bubble.fill")
                     .font(.title3)
-                    .foregroundStyle(
-                        LinearGradient(
-                            colors: [.blue, .teal],
-                            startPoint: .topLeading,
-                            endPoint: .bottomTrailing
-                        )
-                    )
+                    .foregroundColor(Color(red: 0.5, green: 0.4, blue: 0.8))
 
                 Text("About")
                     .font(.title3.weight(.semibold))
@@ -1032,10 +1026,6 @@ struct ProfileView: View {
                 .fill(Color(.systemBackground))
                 .shadow(color: .black.opacity(0.05), radius: 8, y: 2)
         )
-        .overlay(
-            RoundedRectangle(cornerRadius: 16)
-                .stroke(Color.blue.opacity(0.1), lineWidth: 1)
-        )
         .padding(.horizontal, 20)
     }
 
@@ -1048,24 +1038,12 @@ struct ProfileView: View {
                     HStack(spacing: 6) {
                         Image(systemName: "quote.bubble.fill")
                             .font(.caption)
-                            .foregroundStyle(
-                                LinearGradient(
-                                    colors: [.blue, .teal],
-                                    startPoint: .topLeading,
-                                    endPoint: .bottomTrailing
-                                )
-                            )
+                            .foregroundColor(Color(red: 0.85, green: 0.4, blue: 0.5))
 
                         Text(prompt.question)
                             .font(.subheadline)
                             .fontWeight(.semibold)
-                            .foregroundStyle(
-                                LinearGradient(
-                                    colors: [.blue, .teal],
-                                    startPoint: .leading,
-                                    endPoint: .trailing
-                                )
-                            )
+                            .foregroundColor(Color(red: 0.85, green: 0.4, blue: 0.5))
                     }
 
                     Text(prompt.answer)
@@ -1080,17 +1058,6 @@ struct ProfileView: View {
                     RoundedRectangle(cornerRadius: 16)
                         .fill(Color(.systemBackground))
                         .shadow(color: .black.opacity(0.05), radius: 8, y: 2)
-                )
-                .overlay(
-                    RoundedRectangle(cornerRadius: 16)
-                        .stroke(
-                            LinearGradient(
-                                colors: [Color.blue.opacity(0.2), Color.teal.opacity(0.15)],
-                                startPoint: .topLeading,
-                                endPoint: .bottomTrailing
-                            ),
-                            lineWidth: 1
-                        )
                 )
                 .padding(.horizontal, 20)
             }
@@ -1145,13 +1112,7 @@ struct ProfileView: View {
                 HStack(spacing: 8) {
                     Image(systemName: "headphones")
                         .font(.title3)
-                        .foregroundStyle(
-                            LinearGradient(
-                                colors: [.blue, .teal],
-                                startPoint: .topLeading,
-                                endPoint: .bottomTrailing
-                            )
-                        )
+                        .foregroundColor(Color(red: 0.35, green: 0.7, blue: 0.55))
 
                     Text("Gaming Preferences")
                         .font(.title3.weight(.semibold))
@@ -1178,10 +1139,6 @@ struct ProfileView: View {
                     .fill(Color(.systemBackground))
                     .shadow(color: .black.opacity(0.05), radius: 8, y: 2)
             )
-            .overlay(
-                RoundedRectangle(cornerRadius: 16)
-                    .stroke(Color.blue.opacity(0.1), lineWidth: 1)
-            )
             .padding(.horizontal, 20)
         }
     }
@@ -1197,7 +1154,7 @@ struct ProfileView: View {
     private func detailRow(icon: String, label: String, value: String) -> some View {
         HStack(spacing: 12) {
             Image(systemName: icon)
-                .foregroundColor(.blue)
+                .foregroundColor(Color(red: 0.5, green: 0.55, blue: 0.7))
                 .frame(width: 24)
 
             Text(label)
@@ -1236,13 +1193,7 @@ struct ProfileView: View {
                 .foregroundColor(.white)
                 .padding(.horizontal, 12)
                 .padding(.vertical, 6)
-                .background(
-                    LinearGradient(
-                        colors: [.blue, .teal],
-                        startPoint: .leading,
-                        endPoint: .trailing
-                    )
-                )
+                .background(Color(red: 0.4, green: 0.6, blue: 0.8))
                 .cornerRadius(20)
 
                 Spacer()
@@ -1269,14 +1220,7 @@ struct ProfileView: View {
                             .frame(width: Self.galleryThumbnailWidth, height: Self.galleryThumbnailHeight)
                             .overlay(
                                 RoundedRectangle(cornerRadius: 16)
-                                    .stroke(
-                                        LinearGradient(
-                                            colors: [.blue.opacity(0.3), .teal.opacity(0.2)],
-                                            startPoint: .topLeading,
-                                            endPoint: .bottomTrailing
-                                        ),
-                                        lineWidth: 2
-                                    )
+                                    .stroke(Color(red: 0.5, green: 0.55, blue: 0.7).opacity(0.3), lineWidth: 2)
                             )
                             .shadow(color: .black.opacity(0.1), radius: 8, y: 4)
                         }
@@ -1300,13 +1244,7 @@ struct ProfileView: View {
             HStack(spacing: 8) {
                 Image(systemName: "desktopcomputer")
                     .font(.title3)
-                    .foregroundStyle(
-                        LinearGradient(
-                            colors: [.blue, .teal],
-                            startPoint: .topLeading,
-                            endPoint: .bottomTrailing
-                        )
-                    )
+                    .foregroundColor(Color(red: 0.5, green: 0.4, blue: 0.8))
 
                 Text("Platforms")
                     .font(.title3.weight(.semibold))
@@ -1315,27 +1253,17 @@ struct ProfileView: View {
 
             FlowLayout3(spacing: 10) {
                 ForEach(platforms, id: \.self) { platform in
-                    HStack(spacing: 6) {
+                    HStack(spacing: 8) {
                         Image(systemName: platformIcon(for: platform))
-                            .font(.caption)
+                            .font(.system(size: 13, weight: .semibold))
                         Text(platform)
-                            .font(.subheadline.weight(.medium))
+                            .font(.subheadline.weight(.semibold))
                     }
-                    .padding(.horizontal, 16)
-                    .padding(.vertical, 8)
-                    .background(
-                        LinearGradient(
-                            colors: [Color.blue.opacity(0.15), Color.teal.opacity(0.1)],
-                            startPoint: .topLeading,
-                            endPoint: .bottomTrailing
-                        )
-                    )
-                    .foregroundColor(.blue)
-                    .cornerRadius(20)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 20)
-                            .stroke(Color.blue.opacity(0.2), lineWidth: 1)
-                    )
+                    .padding(.horizontal, 14)
+                    .padding(.vertical, 10)
+                    .background(Color(red: 0.5, green: 0.4, blue: 0.8).opacity(0.12))
+                    .foregroundColor(Color(red: 0.5, green: 0.4, blue: 0.8))
+                    .cornerRadius(12)
                 }
             }
         }
@@ -1345,10 +1273,6 @@ struct ProfileView: View {
             RoundedRectangle(cornerRadius: 16)
                 .fill(Color(.systemBackground))
                 .shadow(color: .black.opacity(0.05), radius: 8, y: 2)
-        )
-        .overlay(
-            RoundedRectangle(cornerRadius: 16)
-                .stroke(Color.blue.opacity(0.1), lineWidth: 1)
         )
         .padding(.horizontal, 20)
     }
@@ -1373,13 +1297,7 @@ struct ProfileView: View {
             HStack(spacing: 8) {
                 Image(systemName: "gamecontroller.fill")
                     .font(.title3)
-                    .foregroundStyle(
-                        LinearGradient(
-                            colors: [.teal, .blue],
-                            startPoint: .topLeading,
-                            endPoint: .bottomTrailing
-                        )
-                    )
+                    .foregroundColor(Color(red: 0.95, green: 0.5, blue: 0.3))
 
                 Text("Favorite Games")
                     .font(.title3.weight(.semibold))
@@ -1388,27 +1306,17 @@ struct ProfileView: View {
 
             FlowLayout3(spacing: 10) {
                 ForEach(games, id: \.self) { game in
-                    HStack(spacing: 6) {
+                    HStack(spacing: 8) {
                         Image(systemName: "star.fill")
-                            .font(.caption2)
+                            .font(.system(size: 11, weight: .semibold))
                         Text(game)
-                            .font(.subheadline.weight(.medium))
+                            .font(.subheadline.weight(.semibold))
                     }
-                    .padding(.horizontal, 16)
-                    .padding(.vertical, 8)
-                    .background(
-                        LinearGradient(
-                            colors: [Color.teal.opacity(0.15), Color.blue.opacity(0.1)],
-                            startPoint: .topLeading,
-                            endPoint: .bottomTrailing
-                        )
-                    )
-                    .foregroundColor(.teal)
-                    .cornerRadius(20)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 20)
-                            .stroke(Color.teal.opacity(0.2), lineWidth: 1)
-                    )
+                    .padding(.horizontal, 14)
+                    .padding(.vertical, 10)
+                    .background(Color(red: 0.95, green: 0.5, blue: 0.3).opacity(0.12))
+                    .foregroundColor(Color(red: 0.95, green: 0.5, blue: 0.3))
+                    .cornerRadius(12)
                 }
             }
         }
@@ -1418,10 +1326,6 @@ struct ProfileView: View {
             RoundedRectangle(cornerRadius: 16)
                 .fill(Color(.systemBackground))
                 .shadow(color: .black.opacity(0.05), radius: 8, y: 2)
-        )
-        .overlay(
-            RoundedRectangle(cornerRadius: 16)
-                .stroke(Color.teal.opacity(0.1), lineWidth: 1)
         )
         .padding(.horizontal, 20)
     }
@@ -1432,27 +1336,18 @@ struct ProfileView: View {
         VStack(alignment: .leading, spacing: 12) {
             FlowLayout3(spacing: 10) {
                 ForEach(types, id: \.self) { type in
-                    HStack(spacing: 6) {
-                        Image(systemName: lookingForIcon(for: type))
-                            .font(.caption)
+                    let categoryStyle = lookingForStyle(for: type)
+                    HStack(spacing: 8) {
+                        Image(systemName: categoryStyle.icon)
+                            .font(.system(size: 13, weight: .semibold))
                         Text(type)
-                            .font(.subheadline.weight(.medium))
+                            .font(.subheadline.weight(.semibold))
                     }
-                    .padding(.horizontal, 16)
-                    .padding(.vertical, 8)
-                    .background(
-                        LinearGradient(
-                            colors: [Color.teal.opacity(0.15), Color.blue.opacity(0.1)],
-                            startPoint: .topLeading,
-                            endPoint: .bottomTrailing
-                        )
-                    )
-                    .foregroundColor(.teal)
-                    .cornerRadius(20)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 20)
-                            .stroke(Color.teal.opacity(0.2), lineWidth: 1)
-                    )
+                    .padding(.horizontal, 14)
+                    .padding(.vertical, 10)
+                    .background(categoryStyle.color.opacity(0.12))
+                    .foregroundColor(categoryStyle.color)
+                    .cornerRadius(12)
                 }
             }
         }
@@ -1463,24 +1358,34 @@ struct ProfileView: View {
                 .fill(Color(.systemBackground))
                 .shadow(color: .black.opacity(0.05), radius: 8, y: 2)
         )
-        .overlay(
-            RoundedRectangle(cornerRadius: 16)
-                .stroke(Color.teal.opacity(0.1), lineWidth: 1)
-        )
         .padding(.horizontal, 20)
     }
 
-    private func lookingForIcon(for type: String) -> String {
+    private struct LookingForStyle {
+        let icon: String
+        let color: Color
+    }
+
+    private func lookingForStyle(for type: String) -> LookingForStyle {
         switch type.lowercased() {
-        case "ranked teammates": return "trophy.fill"
-        case "casual co-op": return "person.2.fill"
-        case "board game group": return "dice"
-        case "competitive team": return "flag.fill"
-        case "streaming partners": return "video.fill"
-        case "any gamers": return "gamecontroller.fill"
-        case "tournament team": return "medal.fill"
-        case "content creation": return "camera.fill"
-        default: return "person.2.fill"
+        case "ranked teammates":
+            return LookingForStyle(icon: "trophy.fill", color: Color(red: 0.95, green: 0.6, blue: 0.2))
+        case "casual co-op":
+            return LookingForStyle(icon: "person.2.fill", color: Color(red: 0.35, green: 0.7, blue: 0.5))
+        case "board game group":
+            return LookingForStyle(icon: "dice.fill", color: Color(red: 0.6, green: 0.45, blue: 0.75))
+        case "competitive team":
+            return LookingForStyle(icon: "flag.fill", color: Color(red: 0.9, green: 0.4, blue: 0.4))
+        case "streaming partners":
+            return LookingForStyle(icon: "video.fill", color: Color(red: 0.85, green: 0.35, blue: 0.55))
+        case "any gamers":
+            return LookingForStyle(icon: "gamecontroller.fill", color: Color(red: 0.4, green: 0.55, blue: 0.85))
+        case "tournament team":
+            return LookingForStyle(icon: "medal.fill", color: Color(red: 0.95, green: 0.55, blue: 0.25))
+        case "content creation":
+            return LookingForStyle(icon: "camera.fill", color: Color(red: 0.9, green: 0.45, blue: 0.5))
+        default:
+            return LookingForStyle(icon: "person.2.fill", color: Color(red: 0.5, green: 0.6, blue: 0.75))
         }
     }
 
@@ -1490,7 +1395,7 @@ struct ProfileView: View {
         VStack(alignment: .leading, spacing: 12) {
             HStack(spacing: 8) {
                 Image(systemName: "slider.horizontal.3")
-                    .foregroundColor(.blue)
+                    .foregroundColor(Color(red: 0.5, green: 0.55, blue: 0.7))
                 Text("Teammate Preferences")
                     .font(.headline)
             }
