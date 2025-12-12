@@ -191,15 +191,15 @@ struct MessagesView: View {
     
     // MARK: - Header
     
-    // BLUE/TEAL THEME for Messages page
+    // GREEN THEME for Messages page
     private var headerView: some View {
         ZStack {
             // Gradient background
             LinearGradient(
                 colors: [
-                    Color.blue.opacity(0.9),
-                    Color.teal.opacity(0.8),
-                    Color.teal.opacity(0.7)
+                    Color(red: 0.3, green: 0.75, blue: 0.4).opacity(0.95),
+                    Color(red: 0.4, green: 0.85, blue: 0.5).opacity(0.88),
+                    Color(red: 0.5, green: 0.9, blue: 0.55).opacity(0.8)
                 ],
                 startPoint: .topLeading,
                 endPoint: .bottomTrailing

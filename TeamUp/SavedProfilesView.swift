@@ -225,15 +225,15 @@ struct SavedProfilesView: View {
 
     // MARK: - Header
 
-    // BLUE/TEAL THEME for Saved page
+    // PINK/ROSE THEME for Saved page
     private var headerView: some View {
         ZStack {
             // Gradient background
             LinearGradient(
                 colors: [
-                    Color.blue.opacity(0.9),
-                    Color.teal.opacity(0.8),
-                    Color.teal.opacity(0.6)
+                    Color(red: 0.95, green: 0.5, blue: 0.6).opacity(0.95),
+                    Color(red: 0.9, green: 0.55, blue: 0.7).opacity(0.88),
+                    Color(red: 0.85, green: 0.6, blue: 0.8).opacity(0.8)
                 ],
                 startPoint: .topLeading,
                 endPoint: .bottomTrailing
