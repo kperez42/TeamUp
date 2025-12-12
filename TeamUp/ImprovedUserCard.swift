@@ -275,8 +275,8 @@ struct ImprovedUserCard: View {
                     InfoChip(icon: voiceChatIcon, text: user.voiceChatPreference)
                         .accessibilityLabel("Voice chat: \(user.voiceChatPreference)")
 
-                    // Show Me (first one)
-                    if let firstLookingFor = user.lookingFor.first {
+                    // Show Me (first non-empty one)
+                    if let firstLookingFor = user.lookingFor.first(where: { !$0.isEmpty }) {
                         InfoChip(icon: "person.2.fill", text: firstLookingFor)
                             .accessibilityLabel("Show Me: \(firstLookingFor)")
                     }
@@ -413,8 +413,9 @@ struct ImprovedUserCard: View {
             components.append("Games: \(games)")
         }
 
-        if !user.lookingFor.isEmpty {
-            let lookingFor = user.lookingFor.joined(separator: ", ")
+        let nonEmptyLookingFor = user.lookingFor.filter { !$0.isEmpty }
+        if !nonEmptyLookingFor.isEmpty {
+            let lookingFor = nonEmptyLookingFor.joined(separator: ", ")
             components.append("Looking for: \(lookingFor)")
         }
 
