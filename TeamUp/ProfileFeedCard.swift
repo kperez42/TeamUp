@@ -64,7 +64,8 @@ struct ProfileFeedCard: View {
                 locationRow
 
                 // Looking For tags (simplified - just show tags inline)
-                if !user.lookingFor.isEmpty {
+                // Only show if there are non-empty looking for values
+                if user.lookingFor.contains(where: { !$0.isEmpty }) {
                     lookingForRow
                 }
 
@@ -275,6 +276,11 @@ struct ProfileFeedCard: View {
 
     // MARK: - Looking For Row (Simplified inline version for card preview)
 
+    // Filter out empty strings from looking for array
+    private var nonEmptyLookingFor: [String] {
+        user.lookingFor.filter { !$0.isEmpty }
+    }
+
     private var lookingForRow: some View {
         HStack(spacing: 4) {
             Image(systemName: "person.2.fill")
@@ -287,7 +293,7 @@ struct ProfileFeedCard: View {
 
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 6) {
-                    ForEach(user.lookingFor.prefix(2), id: \.self) { item in
+                    ForEach(nonEmptyLookingFor.prefix(2), id: \.self) { item in
                         Text(item)
                             .font(.caption2)
                             .fontWeight(.medium)
