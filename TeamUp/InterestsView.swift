@@ -302,13 +302,7 @@ struct BasicInterestCard: View {
                 HStack {
                     Text(isBlurred ? "Premium User" : user.fullName)
                         .font(.headline)
-                    
-                    if !isBlurred && !user.gamerTag.isEmpty {
-                        Text("@\(user.gamerTag)")
-                            .font(.subheadline)
-                            .foregroundColor(.secondary)
-                    }
-                    
+
                     Spacer()
                 }
                 

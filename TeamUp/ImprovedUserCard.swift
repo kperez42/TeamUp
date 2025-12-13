@@ -41,7 +41,7 @@ struct ImprovedUserCard: View {
         .offset(offset)
         .rotationEffect(.degrees(reduceMotion ? 0 : rotation))
         .accessibilityElement(children: .combine)
-        .accessibilityLabel("\(user.gamerTag.isEmpty ? user.fullName : user.gamerTag), \(user.skillLevel)")
+        .accessibilityLabel("\(user.fullName), \(user.skillLevel)")
         .accessibilityValue(buildAccessibilityValue())
         .accessibilityHint("Swipe right to team up, swipe left to pass, or tap for gaming profile")
         .accessibilityIdentifier(AccessibilityIdentifier.userCard)
@@ -135,7 +135,7 @@ struct ImprovedUserCard: View {
                 } else {
                     placeholderGradient
                         .overlay {
-                            Text(user.gamerTag.isEmpty ? user.fullName.prefix(1) : user.gamerTag.prefix(1))
+                            Text(user.fullName.prefix(1))
                                 .font(.system(size: 120, weight: .bold))
                                 .foregroundColor(.white.opacity(0.5))
                         }
@@ -201,9 +201,9 @@ struct ImprovedUserCard: View {
 
     private var bottomInfoOverlay: some View {
         VStack(alignment: .leading, spacing: 10) {
-            // GamerTag and badges
+            // Name and badges
             HStack(alignment: .center, spacing: 8) {
-                Text(user.gamerTag.isEmpty ? user.fullName : user.gamerTag)
+                Text(user.fullName)
                     .font(.system(size: 32, weight: .bold))
                     .foregroundColor(.white)
                     .dynamicTypeSize(min: .large, max: .accessibility2)

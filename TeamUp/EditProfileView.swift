@@ -1064,26 +1064,6 @@ struct EditProfileView: View {
                     )
             }
 
-            // Gamer Tag
-            VStack(alignment: .leading, spacing: 8) {
-                HStack(spacing: 4) {
-                    Text("Gamer Tag")
-                        .font(.subheadline)
-                        .fontWeight(.semibold)
-                        .foregroundColor(.secondary)
-                    Image(systemName: "gamecontroller.fill")
-                        .font(.caption)
-                        .foregroundColor(.blue)
-                }
-                TextField("YourGamerTag", text: $gamerTag)
-                    .padding()
-                    .background(Color(.systemGray6))
-                    .cornerRadius(12)
-                Text("Your gaming username others will know you by")
-                    .font(.caption)
-                    .foregroundColor(.gray)
-            }
-
             // Age (Required)
             VStack(alignment: .leading, spacing: 8) {
                 HStack(spacing: 4) {

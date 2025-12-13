@@ -509,25 +509,6 @@ struct SignUpView: View {
             }
 
             VStack(alignment: .leading, spacing: 8) {
-                HStack(spacing: 6) {
-                    Image(systemName: "gamecontroller.fill")
-                        .foregroundColor(.blue)
-                        .font(.caption)
-                    Text("GamerTag")
-                        .font(.subheadline)
-                        .foregroundColor(.secondary)
-                }
-
-                TextField("Your gaming username", text: $gamerTag)
-                    .padding()
-                    .background(Color(.systemBackground))
-                    .cornerRadius(10)
-                    .accessibilityLabel("GamerTag")
-                    .accessibilityHint("Enter your gaming username or handle")
-                    .accessibilityIdentifier("gamertag_field")
-            }
-
-            VStack(alignment: .leading, spacing: 8) {
                 Text("Age")
                     .font(.subheadline)
                     .foregroundColor(.secondary)

@@ -972,12 +972,6 @@ struct LikeProfileCard: View {
                         .font(.system(size: 17, weight: .semibold))
                         .lineLimit(1)
 
-                    if !user.gamerTag.isEmpty {
-                        Text("@\(user.gamerTag)")
-                            .font(.system(size: 17))
-                            .foregroundColor(.secondary)
-                    }
-
                     Spacer()
                 }
 
@@ -1139,12 +1133,6 @@ struct BlurredLikeCard: View {
                     Text(user.fullName)
                         .font(.system(size: 17, weight: .semibold))
                         .lineLimit(1)
-
-                    if !user.gamerTag.isEmpty {
-                        Text("@\(user.gamerTag)")
-                            .font(.system(size: 17))
-                            .foregroundColor(.secondary)
-                    }
 
                     Spacer()
 

@@ -68,7 +68,7 @@ struct UserDetailView: View {
         .alert("Request Sent!", isPresented: $showingRequestSent) {
             Button("OK") { dismiss() }
         } message: {
-            Text("If \(user.gamerTag.isEmpty ? user.fullName : user.gamerTag) accepts, you'll be connected!")
+            Text("If \(user.fullName) accepts, you'll be connected!")
         }
         .alert("Connected!", isPresented: $showingConnected) {
             Button("Send Message") {
@@ -81,7 +81,7 @@ struct UserDetailView: View {
             }
             Button("Keep Browsing") { dismiss() }
         } message: {
-            Text("You and \(user.gamerTag.isEmpty ? user.fullName : user.gamerTag) are now gaming buddies!")
+            Text("You and \(user.fullName) are now gaming buddies!")
         }
         .alert("Error", isPresented: $showingError) {
             Button("OK", role: .cancel) { }
@@ -91,7 +91,7 @@ struct UserDetailView: View {
         .alert("Request Cancelled", isPresented: $showingUnrequested) {
             Button("OK", role: .cancel) { }
         } message: {
-            Text("You cancelled your request to \(user.gamerTag.isEmpty ? user.fullName : user.gamerTag)")
+            Text("You cancelled your request to \(user.fullName)")
         }
         .sheet(isPresented: $showingChat) {
             if let match = chatMatch {
@@ -166,7 +166,7 @@ struct UserDetailView: View {
         VStack(alignment: .leading, spacing: 12) {
             HStack(spacing: 10) {
                 VStack(alignment: .leading, spacing: 4) {
-                    Text(user.gamerTag.isEmpty ? user.fullName : user.gamerTag)
+                    Text(user.fullName)
                         .font(.system(size: 32, weight: .bold))
                         .foregroundStyle(
                             LinearGradient(
@@ -175,12 +175,6 @@ struct UserDetailView: View {
                                 endPoint: .trailing
                             )
                         )
-
-                    if !user.gamerTag.isEmpty {
-                        Text(user.fullName)
-                            .font(.subheadline)
-                            .foregroundColor(.secondary)
-                    }
                 }
 
                 Spacer()
