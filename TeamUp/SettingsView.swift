@@ -175,17 +175,7 @@ struct SettingsView: View {
                     Text("Premium & Rewards")
                 }
 
-                Section("Preferences") {
-                    NavigationLink {
-                        FilterView()
-                    } label: {
-                        HStack(spacing: 12) {
-                            settingsIconView(icon: "slider.horizontal.3", color: .purple)
-                            Text("Discovery Filters")
-                                .foregroundColor(.primary)
-                        }
-                    }
-                }
+                // Note: Discovery Filters removed from Settings - accessible directly from Discover page
 
                 Section("Notifications") {
                     NavigationLink {

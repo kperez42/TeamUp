@@ -60,6 +60,22 @@ class DiscoveryFilters: ObservableObject {
         loadFromUserDefaults()
     }
 
+    // MARK: - Sync with User Profile
+
+    /// Syncs age preferences from the user's profile to ensure consistency
+    /// Call this when user logs in or profile is loaded
+    func syncWithUserProfile(ageRangeMin: Int?, ageRangeMax: Int?, showMeGender: String?) {
+        if let min = ageRangeMin {
+            self.minAge = min
+        }
+        if let max = ageRangeMax {
+            self.maxAge = max
+        }
+        // Save to UserDefaults to persist the synced values
+        saveToUserDefaults()
+        Logger.shared.debug("DiscoveryFilters synced with user profile: \(self.minAge)-\(self.maxAge)", category: .general)
+    }
+
     // MARK: - Filter Logic
 
     /// Convenience overload that accepts location tuple instead of full User object
