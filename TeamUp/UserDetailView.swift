@@ -477,18 +477,23 @@ struct UserDetailView: View {
                 iconColors: [.teal, .blue],
                 borderColor: .teal
             ) {
-                VStack(spacing: 12) {
+                VStack(spacing: 16) {
                     ForEach(Array(user.lookingFor.enumerated()), id: \.element) { index, type in
                         if index > 0 {
                             Divider()
                         }
-                        HStack(spacing: 12) {
-                            Image(systemName: lookingForIcon(for: type))
-                                .foregroundColor(.teal)
-                                .frame(width: 24)
+                        HStack(spacing: 14) {
+                            ZStack {
+                                Circle()
+                                    .fill(Color.teal.opacity(0.12))
+                                    .frame(width: 36, height: 36)
+                                Image(systemName: lookingForIcon(for: type))
+                                    .font(.system(size: 16, weight: .semibold))
+                                    .foregroundColor(.teal)
+                            }
 
                             Text(type)
-                                .font(.subheadline)
+                                .font(.body)
                                 .fontWeight(.semibold)
                                 .foregroundColor(.primary)
 
