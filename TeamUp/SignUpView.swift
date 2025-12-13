@@ -537,12 +537,25 @@ struct SignUpView: View {
                     .font(.subheadline)
                     .foregroundColor(.secondary)
 
-                Picker("Gender", selection: $gender) {
+                Menu {
                     ForEach(genderOptions, id: \.self) { option in
-                        Text(option).tag(option)
+                        Button(option) {
+                            gender = option
+                        }
                     }
+                } label: {
+                    HStack {
+                        Text(gender.isEmpty ? "Select Gender" : gender)
+                            .foregroundColor(gender.isEmpty ? .gray : .primary)
+                        Spacer()
+                        Image(systemName: "chevron.down")
+                            .font(.caption)
+                            .foregroundColor(.gray)
+                    }
+                    .padding()
+                    .background(Color(.systemBackground))
+                    .cornerRadius(10)
                 }
-                .pickerStyle(.segmented)
                 .accessibilityLabel("Gender")
                 .accessibilityHint("Select your gender identity")
                 .accessibilityValue(gender)

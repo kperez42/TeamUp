@@ -414,12 +414,6 @@ struct ProfileView: View {
                                 .lineLimit(1)
                                 .truncationMode(.tail)
                         }
-
-                        if !user.gamerTag.isEmpty {
-                            Text("•")
-                            Text("@\(user.gamerTag)")
-                                .font(.subheadline)
-                        }
                     }
                     .foregroundColor(.white.opacity(0.9))
                 }
@@ -1114,12 +1108,6 @@ struct ProfileView: View {
             if !user.voiceChatPreference.isEmpty {
                 Divider()
                 detailRow(icon: "mic.fill", label: "Voice Chat", value: user.voiceChatPreference)
-            }
-
-            // GamerTag if available
-            if !user.gamerTag.isEmpty {
-                Divider()
-                detailRow(icon: "at", label: "GamerTag", value: user.gamerTag)
             }
 
             Divider()

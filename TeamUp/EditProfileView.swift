@@ -1127,13 +1127,26 @@ struct EditProfileView: View {
                     .font(.subheadline)
                     .fontWeight(.semibold)
                     .foregroundColor(.secondary)
-                
-                Picker("Gender", selection: $gender) {
+
+                Menu {
                     ForEach(genderOptions, id: \.self) { option in
-                        Text(option).tag(option)
+                        Button(option) {
+                            gender = option
+                        }
                     }
+                } label: {
+                    HStack {
+                        Text(gender.isEmpty ? "Select Gender" : gender)
+                            .foregroundColor(gender.isEmpty ? .gray : .primary)
+                        Spacer()
+                        Image(systemName: "chevron.down")
+                            .font(.caption)
+                            .foregroundColor(.gray)
+                    }
+                    .padding()
+                    .background(Color(.systemGray6))
+                    .cornerRadius(12)
                 }
-                .pickerStyle(.segmented)
             }
             
             // Location and Country (Required)
