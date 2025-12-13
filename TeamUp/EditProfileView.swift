@@ -67,8 +67,6 @@ struct EditProfileView: View {
     @State private var psnId: String = ""
     @State private var xboxGamertag: String = ""
     @State private var nintendoFriendCode: String = ""
-    @State private var riotId: String = ""
-    @State private var battleNetTag: String = ""
     @State private var twitchUsername: String = ""
 
     // Preference fields
@@ -107,6 +105,36 @@ struct EditProfileView: View {
         "New Zealand",
         "Singapore",
         "Other"
+    ]
+
+    let countryToCode: [String: String] = [
+        "United States": "US",
+        "Canada": "CA",
+        "Mexico": "MX",
+        "United Kingdom": "UK",
+        "Australia": "AU",
+        "Germany": "DE",
+        "France": "FR",
+        "Spain": "ES",
+        "Italy": "IT",
+        "Brazil": "BR",
+        "Argentina": "AR",
+        "Japan": "JP",
+        "South Korea": "KR",
+        "China": "CN",
+        "India": "IN",
+        "Philippines": "PH",
+        "Vietnam": "VN",
+        "Thailand": "TH",
+        "Netherlands": "NL",
+        "Sweden": "SE",
+        "Norway": "NO",
+        "Denmark": "DK",
+        "Switzerland": "CH",
+        "Ireland": "IE",
+        "New Zealand": "NZ",
+        "Singapore": "SG",
+        "Other": "Other"
     ]
     let predefinedLanguages = [
         "English", "Spanish", "French", "German", "Italian", "Portuguese",
@@ -158,8 +186,6 @@ struct EditProfileView: View {
         _psnId = State(initialValue: user?.psnId ?? "")
         _xboxGamertag = State(initialValue: user?.xboxGamertag ?? "")
         _nintendoFriendCode = State(initialValue: user?.nintendoFriendCode ?? "")
-        _riotId = State(initialValue: user?.riotId ?? "")
-        _battleNetTag = State(initialValue: user?.battleNetTag ?? "")
         _twitchUsername = State(initialValue: user?.twitchUsername ?? "")
 
         // Initialize preference fields
@@ -1064,26 +1090,6 @@ struct EditProfileView: View {
                     )
             }
 
-            // Gamer Tag
-            VStack(alignment: .leading, spacing: 8) {
-                HStack(spacing: 4) {
-                    Text("Gamer Tag")
-                        .font(.subheadline)
-                        .fontWeight(.semibold)
-                        .foregroundColor(.secondary)
-                    Image(systemName: "gamecontroller.fill")
-                        .font(.caption)
-                        .foregroundColor(.blue)
-                }
-                TextField("YourGamerTag", text: $gamerTag)
-                    .padding()
-                    .background(Color(.systemGray6))
-                    .cornerRadius(12)
-                Text("Your gaming username others will know you by")
-                    .font(.caption)
-                    .foregroundColor(.gray)
-            }
-
             // Age (Required)
             VStack(alignment: .leading, spacing: 8) {
                 HStack(spacing: 4) {
@@ -1170,7 +1176,7 @@ struct EditProfileView: View {
                         }
                     } label: {
                         HStack {
-                            Text(country.isEmpty ? "Select Country" : country)
+                            Text(country.isEmpty ? "Select" : (countryToCode[country] ?? country))
                                 .foregroundColor(country.isEmpty ? .gray : .primary)
                             Spacer()
                             Image(systemName: "chevron.down")
@@ -1741,24 +1747,6 @@ struct EditProfileView: View {
                     color: .red
                 )
 
-                // Riot Games
-                externalProfileField(
-                    icon: "r.circle.fill",
-                    label: "Riot ID",
-                    placeholder: "Name#TAG",
-                    value: $riotId,
-                    color: .red
-                )
-
-                // Battle.net
-                externalProfileField(
-                    icon: "b.circle.fill",
-                    label: "Battle.net",
-                    placeholder: "BattleTag#0000",
-                    value: $battleNetTag,
-                    color: .blue
-                )
-
                 // Twitch
                 externalProfileField(
                     icon: "video.fill",
@@ -2262,8 +2250,6 @@ struct EditProfileView: View {
                 user.psnId = psnId.isEmpty ? nil : psnId
                 user.xboxGamertag = xboxGamertag.isEmpty ? nil : xboxGamertag
                 user.nintendoFriendCode = nintendoFriendCode.isEmpty ? nil : nintendoFriendCode
-                user.riotId = riotId.isEmpty ? nil : riotId
-                user.battleNetTag = battleNetTag.isEmpty ? nil : battleNetTag
                 user.twitchUsername = twitchUsername.isEmpty ? nil : twitchUsername
 
                 // Update preference fields

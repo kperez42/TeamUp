@@ -1429,44 +1429,34 @@ struct ProfileView: View {
     // MARK: - Looking For Card
 
     private func lookingForCard(types: [String]) -> some View {
-        VStack(alignment: .leading, spacing: 12) {
-            FlowLayout3(spacing: 10) {
-                ForEach(types, id: \.self) { type in
-                    HStack(spacing: 6) {
+        VStack(spacing: 16) {
+            ForEach(Array(types.enumerated()), id: \.element) { index, type in
+                if index > 0 {
+                    Divider()
+                }
+                HStack(spacing: 14) {
+                    ZStack {
+                        Circle()
+                            .fill(Color.teal.opacity(0.12))
+                            .frame(width: 36, height: 36)
                         Image(systemName: lookingForIcon(for: type))
-                            .font(.caption)
-                        Text(type)
-                            .font(.subheadline.weight(.medium))
+                            .font(.system(size: 16, weight: .semibold))
+                            .foregroundColor(.teal)
                     }
-                    .padding(.horizontal, 16)
-                    .padding(.vertical, 8)
-                    .background(
-                        LinearGradient(
-                            colors: [Color.teal.opacity(0.15), Color.blue.opacity(0.1)],
-                            startPoint: .topLeading,
-                            endPoint: .bottomTrailing
-                        )
-                    )
-                    .foregroundColor(.teal)
-                    .cornerRadius(20)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 20)
-                            .stroke(Color.teal.opacity(0.2), lineWidth: 1)
-                    )
+
+                    Text(type)
+                        .font(.body)
+                        .fontWeight(.semibold)
+                        .foregroundColor(.primary)
+
+                    Spacer()
                 }
             }
         }
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .padding(16)
-        .background(
-            RoundedRectangle(cornerRadius: 16)
-                .fill(Color(.systemBackground))
-                .shadow(color: .black.opacity(0.05), radius: 8, y: 2)
-        )
-        .overlay(
-            RoundedRectangle(cornerRadius: 16)
-                .stroke(Color.teal.opacity(0.1), lineWidth: 1)
-        )
+        .padding(20)
+        .background(Color(.systemBackground))
+        .cornerRadius(16)
+        .shadow(color: .black.opacity(0.05), radius: 10, y: 5)
         .padding(.horizontal, 20)
     }
 

@@ -68,7 +68,7 @@ struct UserDetailView: View {
         .alert("Request Sent!", isPresented: $showingRequestSent) {
             Button("OK") { dismiss() }
         } message: {
-            Text("If \(user.gamerTag.isEmpty ? user.fullName : user.gamerTag) accepts, you'll be connected!")
+            Text("If \(user.fullName) accepts, you'll be connected!")
         }
         .alert("Connected!", isPresented: $showingConnected) {
             Button("Send Message") {
@@ -81,7 +81,7 @@ struct UserDetailView: View {
             }
             Button("Keep Browsing") { dismiss() }
         } message: {
-            Text("You and \(user.gamerTag.isEmpty ? user.fullName : user.gamerTag) are now gaming buddies!")
+            Text("You and \(user.fullName) are now gaming buddies!")
         }
         .alert("Error", isPresented: $showingError) {
             Button("OK", role: .cancel) { }
@@ -91,7 +91,7 @@ struct UserDetailView: View {
         .alert("Request Cancelled", isPresented: $showingUnrequested) {
             Button("OK", role: .cancel) { }
         } message: {
-            Text("You cancelled your request to \(user.gamerTag.isEmpty ? user.fullName : user.gamerTag)")
+            Text("You cancelled your request to \(user.fullName)")
         }
         .sheet(isPresented: $showingChat) {
             if let match = chatMatch {
@@ -166,7 +166,7 @@ struct UserDetailView: View {
         VStack(alignment: .leading, spacing: 12) {
             HStack(spacing: 10) {
                 VStack(alignment: .leading, spacing: 4) {
-                    Text(user.gamerTag.isEmpty ? user.fullName : user.gamerTag)
+                    Text(user.fullName)
                         .font(.system(size: 32, weight: .bold))
                         .foregroundStyle(
                             LinearGradient(
@@ -175,12 +175,6 @@ struct UserDetailView: View {
                                 endPoint: .trailing
                             )
                         )
-
-                    if !user.gamerTag.isEmpty {
-                        Text(user.fullName)
-                            .font(.subheadline)
-                            .foregroundColor(.secondary)
-                    }
                 }
 
                 Spacer()
@@ -421,8 +415,8 @@ struct UserDetailView: View {
     @ViewBuilder
     private var externalProfilesSection: some View {
         let hasExternalProfiles = user.discordTag != nil || user.steamId != nil ||
-                                  user.twitchUsername != nil || user.riotId != nil ||
-                                  user.battleNetTag != nil
+                                  user.twitchUsername != nil || user.psnId != nil ||
+                                  user.xboxGamertag != nil
 
         if hasExternalProfiles {
             ProfileSectionCard(
@@ -440,12 +434,6 @@ struct UserDetailView: View {
                     }
                     if let twitch = user.twitchUsername {
                         ExternalProfileRow(icon: "video.fill", platform: "Twitch", username: twitch, color: .purple)
-                    }
-                    if let riot = user.riotId {
-                        ExternalProfileRow(icon: "r.circle.fill", platform: "Riot", username: riot, color: .red)
-                    }
-                    if let battleNet = user.battleNetTag {
-                        ExternalProfileRow(icon: "b.circle.fill", platform: "Battle.net", username: battleNet, color: .blue)
                     }
                     if let psn = user.psnId {
                         ExternalProfileRow(icon: "playstation.logo", platform: "PSN", username: psn, color: .blue)
@@ -489,12 +477,45 @@ struct UserDetailView: View {
                 iconColors: [.teal, .blue],
                 borderColor: .teal
             ) {
-                FlowLayout2(spacing: 10) {
-                    ForEach(user.lookingFor, id: \.self) { type in
-                        ProfileTagView(text: type, colors: [.teal, .blue], textColor: .teal)
+                VStack(spacing: 16) {
+                    ForEach(Array(user.lookingFor.enumerated()), id: \.element) { index, type in
+                        if index > 0 {
+                            Divider()
+                        }
+                        HStack(spacing: 14) {
+                            ZStack {
+                                Circle()
+                                    .fill(Color.teal.opacity(0.12))
+                                    .frame(width: 36, height: 36)
+                                Image(systemName: lookingForIcon(for: type))
+                                    .font(.system(size: 16, weight: .semibold))
+                                    .foregroundColor(.teal)
+                            }
+
+                            Text(type)
+                                .font(.body)
+                                .fontWeight(.semibold)
+                                .foregroundColor(.primary)
+
+                            Spacer()
+                        }
                     }
                 }
             }
+        }
+    }
+
+    private func lookingForIcon(for type: String) -> String {
+        switch type.lowercased() {
+        case "ranked teammates": return "trophy.fill"
+        case "casual co-op": return "person.2.fill"
+        case "board game group": return "dice"
+        case "competitive team": return "flag.fill"
+        case "streaming partners": return "video.fill"
+        case "any gamers": return "gamecontroller.fill"
+        case "tournament team": return "medal.fill"
+        case "content creation": return "camera.fill"
+        default: return "person.2.fill"
         }
     }
 

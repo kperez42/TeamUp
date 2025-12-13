@@ -9,7 +9,9 @@ import SwiftUI
 
 struct DiscoverFiltersView: View {
     @ObservedObject var filters = DiscoveryFilters.shared
+    @EnvironmentObject var authService: AuthService
     @Environment(\.dismiss) var dismiss
+    @State private var isSaving = false
 
     // Section expansion state - basics, gaming, and preferences open by default
     @State private var expandedSections: Set<FilterSection> = [.basics, .gaming, .preferences]
@@ -151,24 +153,56 @@ struct DiscoverFiltersView: View {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
                         HapticManager.shared.impact(.medium)
-                        filters.saveToUserDefaults()
-                        dismiss()
+                        applyFilters()
                     } label: {
-                        Text("Apply")
-                            .fontWeight(.semibold)
-                            .foregroundColor(.white)
-                            .padding(.horizontal, 16)
-                            .padding(.vertical, 8)
-                            .background(
-                                LinearGradient(
-                                    colors: [.blue, .teal],
-                                    startPoint: .leading,
-                                    endPoint: .trailing
+                        if isSaving {
+                            ProgressView()
+                                .progressViewStyle(CircularProgressViewStyle(tint: .white))
+                                .padding(.horizontal, 16)
+                                .padding(.vertical, 8)
+                                .background(
+                                    LinearGradient(
+                                        colors: [.blue, .teal],
+                                        startPoint: .leading,
+                                        endPoint: .trailing
+                                    )
                                 )
-                            )
-                            .cornerRadius(20)
+                                .cornerRadius(20)
+                        } else {
+                            Text("Apply")
+                                .fontWeight(.semibold)
+                                .foregroundColor(.white)
+                                .padding(.horizontal, 16)
+                                .padding(.vertical, 8)
+                                .background(
+                                    LinearGradient(
+                                        colors: [.blue, .teal],
+                                        startPoint: .leading,
+                                        endPoint: .trailing
+                                    )
+                                )
+                                .cornerRadius(20)
+                        }
                     }
+                    .disabled(isSaving)
                 }
+            }
+            .onAppear {
+                syncFiltersFromUserProfile()
+            }
+        }
+    }
+
+    // MARK: - Sync from User Profile
+
+    private func syncFiltersFromUserProfile() {
+        // Sync age preferences from user profile to ensure consistency
+        if let user = authService.currentUser {
+            if let minAge = user.ageRangeMin {
+                filters.minAge = minAge
+            }
+            if let maxAge = user.ageRangeMax {
+                filters.maxAge = maxAge
             }
         }
     }
@@ -740,6 +774,35 @@ struct DiscoverFiltersView: View {
         }
     }
 
+    // MARK: - Apply Filters
+
+    private func applyFilters() {
+        Task {
+            isSaving = true
+
+            // Save filters to UserDefaults
+            filters.saveToUserDefaults()
+
+            // Also save age preferences to user profile for consistency
+            if var currentUser = authService.currentUser {
+                currentUser.ageRangeMin = filters.minAge
+                currentUser.ageRangeMax = filters.maxAge
+
+                do {
+                    try await authService.updateUser(currentUser)
+                    Logger.shared.info("Age preferences synced to user profile: \(filters.minAge)-\(filters.maxAge)", category: .general)
+                } catch {
+                    Logger.shared.error("Failed to sync age preferences to profile", category: .general, error: error)
+                }
+            }
+
+            await MainActor.run {
+                isSaving = false
+                dismiss()
+            }
+        }
+    }
+
     // MARK: - Helper Functions
 
     private func countActiveFilters() -> Int {
@@ -903,4 +966,5 @@ struct InterestChip: View {
 
 #Preview {
     DiscoverFiltersView()
+        .environmentObject(AuthService.shared)
 }

@@ -86,12 +86,17 @@ service firebase.storage {
 
     // Manual ID verification uploads (ID photo + selfie for admin review)
     // Note: Email verification NOT required - users may verify ID before email
+    // This allows users to upload verification photos to be reviewed by admins
     match /verification/{userId}/{fileName} {
+      // Users can read their own verification photos, admins can read all
       allow read: if isAuthenticated() && (isOwner(userId) || hasAdminRole());
+      // Users can write/update their own verification photos
       allow write: if isAuthenticated()
                    && isOwner(userId)
                    && isValidImageSize()
                    && isValidImage();
+      // Users can delete their own verification photos
+      allow delete: if isAuthenticated() && isOwner(userId);
     }
 
     // Admin role check helper (requires custom claims)
@@ -105,9 +110,7 @@ service firebase.storage {
       allow write: if isAuthenticated() && hasAdminRole();
     }
 
-    // Deny all other access - security by default
-    match /{allPaths=**} {
-      allow read, write: if false;
-    }
+    // Note: Firebase Storage denies access by default for any paths not explicitly matched above.
+    // No catch-all deny rule needed - this ensures cleaner rule evaluation.
   }
 }

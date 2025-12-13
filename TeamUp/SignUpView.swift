@@ -99,6 +99,15 @@ struct SignUpView: View {
         "Ireland", "New Zealand", "Singapore", "Other"
     ]
 
+    let countryToCode: [String: String] = [
+        "United States": "US", "Canada": "CA", "Mexico": "MX", "United Kingdom": "UK",
+        "Australia": "AU", "Germany": "DE", "France": "FR", "Spain": "ES", "Italy": "IT",
+        "Brazil": "BR", "Argentina": "AR", "Japan": "JP", "South Korea": "KR", "China": "CN",
+        "India": "IN", "Philippines": "PH", "Vietnam": "VN", "Thailand": "TH",
+        "Netherlands": "NL", "Sweden": "SE", "Norway": "NO", "Denmark": "DK",
+        "Switzerland": "CH", "Ireland": "IE", "New Zealand": "NZ", "Singapore": "SG", "Other": "Other"
+    ]
+
     // Computed properties for validation
     private var passwordsMatch: Bool {
         !password.isEmpty && !confirmPassword.isEmpty && password == confirmPassword
@@ -509,25 +518,6 @@ struct SignUpView: View {
             }
 
             VStack(alignment: .leading, spacing: 8) {
-                HStack(spacing: 6) {
-                    Image(systemName: "gamecontroller.fill")
-                        .foregroundColor(.blue)
-                        .font(.caption)
-                    Text("GamerTag")
-                        .font(.subheadline)
-                        .foregroundColor(.secondary)
-                }
-
-                TextField("Your gaming username", text: $gamerTag)
-                    .padding()
-                    .background(Color(.systemBackground))
-                    .cornerRadius(10)
-                    .accessibilityLabel("GamerTag")
-                    .accessibilityHint("Enter your gaming username or handle")
-                    .accessibilityIdentifier("gamertag_field")
-            }
-
-            VStack(alignment: .leading, spacing: 8) {
                 Text("Age")
                     .font(.subheadline)
                     .foregroundColor(.secondary)
@@ -634,7 +624,7 @@ struct SignUpView: View {
                     }
                 } label: {
                     HStack {
-                        Text(country.isEmpty ? "Select Country" : country)
+                        Text(country.isEmpty ? "Select" : (countryToCode[country] ?? country))
                             .foregroundColor(country.isEmpty ? .gray : .primary)
                         Spacer()
                         Image(systemName: "chevron.down")

@@ -40,6 +40,9 @@ struct MessagesView: View {
     // PERFORMANCE: Track if initial load is complete for instant subsequent displays
     @State private var hasCompletedInitialLoad = false
 
+    // Track if we're actively loading user data (for showing loading state)
+    @State private var isLoadingUsers = false
+
     // PERFORMANCE: Use cached values
     var conversations: [(Match, User)] { cachedConversations }
     var filteredConversations: [(Match, User)] { cachedFilteredConversations }
@@ -91,13 +94,16 @@ struct MessagesView: View {
                     }
 
                     // Content - single unified list of all conversations
-                    // PERFORMANCE: Only show loading skeleton on very first app launch
-                    // when we have absolutely no data. Otherwise show content instantly.
-                    // Check matchService.matches directly to avoid flash from local cache init
-                    if matchService.isLoading && !hasCompletedInitialLoad && matchService.matches.isEmpty && conversations.isEmpty {
+                    // Show loading when:
+                    // 1. First load with no cached data
+                    // 2. Have matches but still loading user data (matchedUsers empty)
+                    if isLoadingUsers || (matchService.isLoading && !hasCompletedInitialLoad && conversations.isEmpty) {
                         loadingView
                     } else if conversations.isEmpty && matchService.matches.isEmpty {
                         emptyStateView
+                    } else if conversations.isEmpty && !matchService.matches.isEmpty {
+                        // Have matches but no conversations yet - still loading user data
+                        loadingView
                     } else if filteredConversations.isEmpty && !searchDebouncer.debouncedText.isEmpty {
                         // No search results
                         noSearchResultsView
@@ -111,38 +117,44 @@ struct MessagesView: View {
             .onAppear {
                 // PERFORMANCE: Immediately populate cache from existing matchService data
                 // This runs synchronously before any async tasks, preventing flash
-                if cachedConversations.isEmpty && !matchService.matches.isEmpty {
+                if cachedConversations.isEmpty && !matchService.matches.isEmpty && !matchedUsers.isEmpty {
                     updateCachedConversations()
                     Logger.shared.debug("MessagesView instant cache populate from matchService", category: .performance)
                 }
             }
-            .task {
-                // PERFORMANCE: Show cached data immediately, fetch in background if stale
-                if hasCompletedInitialLoad && !cachedConversations.isEmpty {
-                    // Cache hit - show cached data instantly
-                    Logger.shared.debug("MessagesView cache HIT - instant display", category: .performance)
+            .task(id: "loadMessages") {
+                // Always load data when view appears to ensure messages show
+                // If we have matches but no conversations, matchedUsers needs to be fetched
+                let needsUserFetch = !matchService.matches.isEmpty && matchedUsers.isEmpty
 
+                if needsUserFetch || !hasCompletedInitialLoad {
+                    // Need to fetch user data - show loading state
+                    isLoadingUsers = true
+                    await loadData()
+                    updateCachedConversations()
+                    lastFetchTime = Date()
+                    hasCompletedInitialLoad = true
+                    isLoadingUsers = false
+                } else if cachedConversations.isEmpty && !matchService.matches.isEmpty {
+                    // Have matches but cache is empty - refetch
+                    isLoadingUsers = true
+                    await loadData()
+                    updateCachedConversations()
+                    lastFetchTime = Date()
+                    isLoadingUsers = false
+                } else if let lastFetch = lastFetchTime,
+                          Date().timeIntervalSince(lastFetch) > cacheDuration {
                     // Background refresh if cache is stale (non-blocking)
-                    if let lastFetch = lastFetchTime,
-                       Date().timeIntervalSince(lastFetch) > cacheDuration {
-                        Task.detached(priority: .background) {
-                            await MainActor.run {
-                                Task {
-                                    await loadData()
-                                    updateCachedConversations()
-                                    lastFetchTime = Date()
-                                }
+                    Task.detached(priority: .background) {
+                        await MainActor.run {
+                            Task {
+                                await loadData()
+                                updateCachedConversations()
+                                lastFetchTime = Date()
                             }
                         }
                     }
-                    return
                 }
-
-                // First load - fetch data
-                await loadData()
-                updateCachedConversations()
-                lastFetchTime = Date()
-                hasCompletedInitialLoad = true
             }
             .refreshable {
                 HapticManager.shared.impact(.light)

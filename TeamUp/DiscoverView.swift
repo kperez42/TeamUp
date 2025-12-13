@@ -86,6 +86,7 @@ struct DiscoverView: View {
             }
             .sheet(isPresented: $viewModel.showingFilters) {
                 DiscoverFiltersView()
+                    .environmentObject(authService)
             }
             .sheet(isPresented: $viewModel.showingUpgradeSheet) {
                 PremiumUpgradeView(contextMessage: viewModel.upgradeReason.message)

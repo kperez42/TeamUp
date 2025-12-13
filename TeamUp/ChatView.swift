@@ -931,7 +931,7 @@ struct ChatView: View {
                 replyPreviewBar(message: replyMessage)
             }
 
-            // Image preview
+            // Image preview - shows selected image with remove button
             if let image = selectedImage {
                 HStack {
                     Image(uiImage: image)
@@ -940,14 +940,11 @@ struct ChatView: View {
                         .frame(width: 80, height: 80)
                         .clipShape(RoundedRectangle(cornerRadius: 12))
 
-                    TextField("Add a caption...", text: $messageText, axis: .vertical)
-                        .padding(.horizontal, 8)
-                        .lineLimit(1...3)
+                    Spacer()
 
                     Button {
                         selectedImage = nil
                         selectedImageItem = nil
-                        messageText = ""
                     } label: {
                         Image(systemName: "xmark.circle.fill")
                             .font(.title2)
@@ -1014,7 +1011,7 @@ struct ChatView: View {
                         } else {
                             Image(systemName: (messageText.isEmpty && selectedImage == nil) ? "arrow.up.circle" : "arrow.up.circle.fill")
                                 .font(.largeTitle)
-                                .foregroundColor((messageText.isEmpty && selectedImage == nil) ? .gray.opacity(0.5) : .purple)
+                                .foregroundColor((messageText.isEmpty && selectedImage == nil) ? .gray.opacity(0.5) : .blue)
                         }
                     }
                     .frame(width: 44, height: 44)
