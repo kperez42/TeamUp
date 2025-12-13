@@ -282,7 +282,7 @@ struct ProfileFeedCard: View {
     }
 
     private var lookingForRow: some View {
-        HStack(spacing: 4) {
+        HStack(spacing: 6) {
             Image(systemName: "person.2.fill")
                 .font(.caption)
                 .foregroundColor(.teal)
@@ -291,20 +291,20 @@ struct ProfileFeedCard: View {
                 .font(.caption)
                 .foregroundColor(.secondary)
 
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack(spacing: 6) {
-                    ForEach(nonEmptyLookingFor.prefix(2), id: \.self) { item in
-                        Text(item)
-                            .font(.caption2)
-                            .fontWeight(.medium)
-                            .padding(.horizontal, 10)
-                            .padding(.vertical, 6)
-                            .background(Color.teal.opacity(0.1))
-                            .foregroundColor(.teal)
-                            .cornerRadius(12)
-                    }
-                }
+            // Show first 2 items inline (limited to avoid overcrowding)
+            ForEach(nonEmptyLookingFor.prefix(2), id: \.self) { item in
+                Text(item)
+                    .font(.caption2)
+                    .fontWeight(.medium)
+                    .padding(.horizontal, 8)
+                    .padding(.vertical, 4)
+                    .background(Color.teal.opacity(0.1))
+                    .foregroundColor(.teal)
+                    .cornerRadius(10)
+                    .lineLimit(1)
             }
+
+            Spacer()
         }
     }
 
