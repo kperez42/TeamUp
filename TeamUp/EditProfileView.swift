@@ -108,6 +108,36 @@ struct EditProfileView: View {
         "Singapore",
         "Other"
     ]
+
+    let countryToCode: [String: String] = [
+        "United States": "US",
+        "Canada": "CA",
+        "Mexico": "MX",
+        "United Kingdom": "UK",
+        "Australia": "AU",
+        "Germany": "DE",
+        "France": "FR",
+        "Spain": "ES",
+        "Italy": "IT",
+        "Brazil": "BR",
+        "Argentina": "AR",
+        "Japan": "JP",
+        "South Korea": "KR",
+        "China": "CN",
+        "India": "IN",
+        "Philippines": "PH",
+        "Vietnam": "VN",
+        "Thailand": "TH",
+        "Netherlands": "NL",
+        "Sweden": "SE",
+        "Norway": "NO",
+        "Denmark": "DK",
+        "Switzerland": "CH",
+        "Ireland": "IE",
+        "New Zealand": "NZ",
+        "Singapore": "SG",
+        "Other": "Other"
+    ]
     let predefinedLanguages = [
         "English", "Spanish", "French", "German", "Italian", "Portuguese",
         "Russian", "Chinese", "Japanese", "Korean", "Arabic", "Hindi"
@@ -1150,7 +1180,7 @@ struct EditProfileView: View {
                         }
                     } label: {
                         HStack {
-                            Text(country.isEmpty ? "Select Country" : country)
+                            Text(country.isEmpty ? "Select" : (countryToCode[country] ?? country))
                                 .foregroundColor(country.isEmpty ? .gray : .primary)
                             Spacer()
                             Image(systemName: "chevron.down")
