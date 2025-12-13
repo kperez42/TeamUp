@@ -67,8 +67,6 @@ struct EditProfileView: View {
     @State private var psnId: String = ""
     @State private var xboxGamertag: String = ""
     @State private var nintendoFriendCode: String = ""
-    @State private var riotId: String = ""
-    @State private var battleNetTag: String = ""
     @State private var twitchUsername: String = ""
 
     // Preference fields
@@ -188,8 +186,6 @@ struct EditProfileView: View {
         _psnId = State(initialValue: user?.psnId ?? "")
         _xboxGamertag = State(initialValue: user?.xboxGamertag ?? "")
         _nintendoFriendCode = State(initialValue: user?.nintendoFriendCode ?? "")
-        _riotId = State(initialValue: user?.riotId ?? "")
-        _battleNetTag = State(initialValue: user?.battleNetTag ?? "")
         _twitchUsername = State(initialValue: user?.twitchUsername ?? "")
 
         // Initialize preference fields
@@ -1751,24 +1747,6 @@ struct EditProfileView: View {
                     color: .red
                 )
 
-                // Riot Games
-                externalProfileField(
-                    icon: "r.circle.fill",
-                    label: "Riot ID",
-                    placeholder: "Name#TAG",
-                    value: $riotId,
-                    color: .red
-                )
-
-                // Battle.net
-                externalProfileField(
-                    icon: "b.circle.fill",
-                    label: "Battle.net",
-                    placeholder: "BattleTag#0000",
-                    value: $battleNetTag,
-                    color: .blue
-                )
-
                 // Twitch
                 externalProfileField(
                     icon: "video.fill",
@@ -2272,8 +2250,6 @@ struct EditProfileView: View {
                 user.psnId = psnId.isEmpty ? nil : psnId
                 user.xboxGamertag = xboxGamertag.isEmpty ? nil : xboxGamertag
                 user.nintendoFriendCode = nintendoFriendCode.isEmpty ? nil : nintendoFriendCode
-                user.riotId = riotId.isEmpty ? nil : riotId
-                user.battleNetTag = battleNetTag.isEmpty ? nil : battleNetTag
                 user.twitchUsername = twitchUsername.isEmpty ? nil : twitchUsername
 
                 // Update preference fields

@@ -415,8 +415,8 @@ struct UserDetailView: View {
     @ViewBuilder
     private var externalProfilesSection: some View {
         let hasExternalProfiles = user.discordTag != nil || user.steamId != nil ||
-                                  user.twitchUsername != nil || user.riotId != nil ||
-                                  user.battleNetTag != nil
+                                  user.twitchUsername != nil || user.psnId != nil ||
+                                  user.xboxGamertag != nil
 
         if hasExternalProfiles {
             ProfileSectionCard(
@@ -434,12 +434,6 @@ struct UserDetailView: View {
                     }
                     if let twitch = user.twitchUsername {
                         ExternalProfileRow(icon: "video.fill", platform: "Twitch", username: twitch, color: .purple)
-                    }
-                    if let riot = user.riotId {
-                        ExternalProfileRow(icon: "r.circle.fill", platform: "Riot", username: riot, color: .red)
-                    }
-                    if let battleNet = user.battleNetTag {
-                        ExternalProfileRow(icon: "b.circle.fill", platform: "Battle.net", username: battleNet, color: .blue)
                     }
                     if let psn = user.psnId {
                         ExternalProfileRow(icon: "playstation.logo", platform: "PSN", username: psn, color: .blue)
