@@ -163,87 +163,106 @@ struct UserDetailView: View {
     // MARK: - Header Section
 
     private var headerSection: some View {
-        VStack(alignment: .leading, spacing: 12) {
-            HStack(spacing: 10) {
-                VStack(alignment: .leading, spacing: 4) {
-                    Text(user.fullName)
-                        .font(.system(size: 32, weight: .bold))
-                        .foregroundStyle(
-                            LinearGradient(
-                                colors: [.blue, .teal],
-                                startPoint: .leading,
-                                endPoint: .trailing
-                            )
+        VStack(alignment: .leading, spacing: 16) {
+            // Name and badges row
+            HStack(spacing: 12) {
+                Text(user.fullName)
+                    .font(.system(size: 28, weight: .bold))
+                    .foregroundStyle(
+                        LinearGradient(
+                            colors: [.blue, .teal],
+                            startPoint: .leading,
+                            endPoint: .trailing
                         )
-                }
-
-                Spacer()
+                    )
 
                 if user.isVerified {
                     Image(systemName: "checkmark.seal.fill")
-                        .font(.title3)
+                        .font(.title2)
                         .foregroundColor(.green)
                 }
 
                 if user.isPremium {
                     Image(systemName: "crown.fill")
-                        .font(.title3)
+                        .font(.title2)
                         .foregroundColor(.yellow)
                 }
+
+                Spacer()
             }
 
             // Skill & Play Style badges
-            HStack(spacing: 12) {
-                HStack(spacing: 4) {
+            HStack(spacing: 10) {
+                HStack(spacing: 6) {
                     Image(systemName: "star.fill")
-                        .foregroundColor(.yellow)
+                        .font(.system(size: 14))
+                        .foregroundColor(.orange)
                     Text(user.skillLevel)
+                        .font(.subheadline)
                         .fontWeight(.semibold)
                 }
-                .padding(.horizontal, 12)
-                .padding(.vertical, 6)
-                .background(Color.yellow.opacity(0.15))
+                .padding(.horizontal, 14)
+                .padding(.vertical, 8)
+                .background(
+                    LinearGradient(
+                        colors: [Color.orange.opacity(0.15), Color.yellow.opacity(0.1)],
+                        startPoint: .topLeading,
+                        endPoint: .bottomTrailing
+                    )
+                )
+                .foregroundColor(.orange)
                 .cornerRadius(20)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 20)
+                        .stroke(Color.orange.opacity(0.2), lineWidth: 1)
+                )
 
-                HStack(spacing: 4) {
+                HStack(spacing: 6) {
                     Image(systemName: "gamecontroller.fill")
+                        .font(.system(size: 14))
                         .foregroundColor(.blue)
                     Text(user.playStyle)
+                        .font(.subheadline)
                         .fontWeight(.medium)
                 }
-                .padding(.horizontal, 12)
-                .padding(.vertical, 6)
-                .background(Color.blue.opacity(0.15))
+                .padding(.horizontal, 14)
+                .padding(.vertical, 8)
+                .background(
+                    LinearGradient(
+                        colors: [Color.blue.opacity(0.15), Color.teal.opacity(0.1)],
+                        startPoint: .topLeading,
+                        endPoint: .bottomTrailing
+                    )
+                )
+                .foregroundColor(.blue)
                 .cornerRadius(20)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 20)
+                        .stroke(Color.blue.opacity(0.2), lineWidth: 1)
+                )
             }
-            .font(.subheadline)
 
-            // Location & Region
-            if !user.location.isEmpty || user.region != nil {
-                HStack(spacing: 12) {
-                    if !user.location.isEmpty {
-                        HStack(spacing: 6) {
-                            Image(systemName: "mappin.circle.fill")
-                                .foregroundColor(.blue)
-                            Text("\(user.location), \(user.country)")
-                                .foregroundColor(.secondary)
-                        }
-                    }
-
-                    if let region = user.region {
-                        HStack(spacing: 6) {
-                            Image(systemName: "globe")
-                                .foregroundColor(.teal)
-                            Text(region)
-                                .foregroundColor(.secondary)
-                        }
+            // Location & Last Active
+            HStack(spacing: 16) {
+                if !user.location.isEmpty {
+                    HStack(spacing: 6) {
+                        Image(systemName: "mappin.circle.fill")
+                            .font(.system(size: 14))
+                            .foregroundColor(.teal)
+                        Text("\(user.location), \(user.country)")
+                            .font(.subheadline)
+                            .foregroundColor(.secondary)
                     }
                 }
-                .font(.subheadline)
-            }
 
-            lastActiveView
+                lastActiveView
+            }
         }
+        .padding(20)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .background(Color(.systemBackground))
+        .cornerRadius(20)
+        .shadow(color: .black.opacity(0.06), radius: 12, y: 4)
     }
 
     private var lastActiveView: some View {
@@ -255,6 +274,7 @@ struct UserDetailView: View {
                 Circle()
                     .fill(Color.green)
                     .frame(width: 8, height: 8)
+                    .shadow(color: .green.opacity(0.5), radius: 3)
                 Text(user.isOnline ? "Online Now" : "Active now")
                     .foregroundColor(.green)
                     .fontWeight(.semibold)
@@ -266,7 +286,7 @@ struct UserDetailView: View {
                     .foregroundColor(.secondary)
             }
         }
-        .font(.caption)
+        .font(.subheadline)
     }
 
     // MARK: - Bio Section
