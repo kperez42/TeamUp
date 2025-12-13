@@ -477,12 +477,40 @@ struct UserDetailView: View {
                 iconColors: [.teal, .blue],
                 borderColor: .teal
             ) {
-                FlowLayout2(spacing: 10) {
-                    ForEach(user.lookingFor, id: \.self) { type in
-                        ProfileTagView(text: type, colors: [.teal, .blue], textColor: .teal)
+                VStack(spacing: 12) {
+                    ForEach(Array(user.lookingFor.enumerated()), id: \.element) { index, type in
+                        if index > 0 {
+                            Divider()
+                        }
+                        HStack(spacing: 12) {
+                            Image(systemName: lookingForIcon(for: type))
+                                .foregroundColor(.teal)
+                                .frame(width: 24)
+
+                            Text(type)
+                                .font(.subheadline)
+                                .fontWeight(.semibold)
+                                .foregroundColor(.primary)
+
+                            Spacer()
+                        }
                     }
                 }
             }
+        }
+    }
+
+    private func lookingForIcon(for type: String) -> String {
+        switch type.lowercased() {
+        case "ranked teammates": return "trophy.fill"
+        case "casual co-op": return "person.2.fill"
+        case "board game group": return "dice"
+        case "competitive team": return "flag.fill"
+        case "streaming partners": return "video.fill"
+        case "any gamers": return "gamecontroller.fill"
+        case "tournament team": return "medal.fill"
+        case "content creation": return "camera.fill"
+        default: return "person.2.fill"
         }
     }
 
