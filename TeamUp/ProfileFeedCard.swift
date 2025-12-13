@@ -53,21 +53,18 @@ struct ProfileFeedCard: View {
             profileImage
 
             // User Details (tappable to view full profile)
-            VStack(alignment: .leading, spacing: 12) {
+            VStack(alignment: .leading, spacing: 8) {
                 // Name and Verification
                 nameRow
 
-                // Skill level and Play style badges
-                skillBadgesRow
+                // Skill level + Location on same line
+                skillLocationRow
 
-                // Location
-                locationRow
+                // Play style + Platforms with controller icon
+                playStylePlatformsRow
 
-                // Looking For tags (simplified - just show tags inline)
-                // Only show if there are non-empty looking for values
-                if user.lookingFor.contains(where: { !$0.isEmpty }) {
-                    lookingForRow
-                }
+                // Photo count
+                photoCountRow
 
                 // Last active
                 lastActiveRow
@@ -199,68 +196,22 @@ struct ProfileFeedCard: View {
         }
     }
 
-    // MARK: - Skill Badges Row
+    // MARK: - Skill Level + Location Row (Combined)
 
-    private var skillBadgesRow: some View {
-        HStack(spacing: 8) {
-            // Skill Level Badge
-            HStack(spacing: 4) {
-                Image(systemName: skillLevelIcon)
-                    .font(.caption2)
-                Text(user.skillLevel)
-                    .font(.caption)
-                    .fontWeight(.medium)
-            }
-            .padding(.horizontal, 10)
-            .padding(.vertical, 6)
-            .background(Color(.systemGray6))
-            .cornerRadius(12)
-
-            // Play Style Badge
-            if !user.playStyle.isEmpty {
-                HStack(spacing: 4) {
-                    Image(systemName: playStyleIcon)
-                        .font(.caption2)
-                    Text(user.playStyle)
-                        .font(.caption)
-                        .fontWeight(.medium)
-                }
-                .padding(.horizontal, 10)
-                .padding(.vertical, 6)
-                .background(Color.blue.opacity(0.1))
-                .foregroundColor(.blue)
-                .cornerRadius(12)
-            }
-
-            Spacer()
-        }
-    }
-
-    private var skillLevelIcon: String {
-        switch user.skillLevel {
-        case "Beginner": return "star"
-        case "Intermediate": return "star.leadinghalf.filled"
-        case "Advanced": return "star.fill"
-        case "Expert": return "star.circle.fill"
-        case "Professional": return "trophy.fill"
-        default: return "star"
-        }
-    }
-
-    private var playStyleIcon: String {
-        switch user.playStyle {
-        case "Competitive": return "flame.fill"
-        case "Casual": return "face.smiling"
-        case "Ranked": return "trophy.fill"
-        case "Social": return "bubble.left.and.bubble.right.fill"
-        case "Tryhard": return "bolt.fill"
-        case "Chill": return "leaf.fill"
-        default: return "gamecontroller"
-        }
-    }
-
-    private var locationRow: some View {
+    private var skillLocationRow: some View {
         HStack(spacing: 4) {
+            Image(systemName: skillLevelIcon)
+                .font(.caption)
+                .foregroundColor(.secondary)
+
+            Text(user.skillLevel)
+                .font(.subheadline)
+                .foregroundColor(.secondary)
+
+            Text("•")
+                .font(.subheadline)
+                .foregroundColor(.secondary)
+
             Image(systemName: "mappin.circle.fill")
                 .font(.caption)
                 .foregroundColor(.blue)
@@ -274,37 +225,61 @@ struct ProfileFeedCard: View {
         }
     }
 
-    // MARK: - Looking For Row (Simplified inline version for card preview)
+    // MARK: - Play Style + Platforms Row
 
-    // Filter out empty strings from looking for array
-    private var nonEmptyLookingFor: [String] {
-        user.lookingFor.filter { !$0.isEmpty }
-    }
-
-    private var lookingForRow: some View {
-        HStack(spacing: 6) {
-            Image(systemName: "person.2.fill")
+    private var playStylePlatformsRow: some View {
+        HStack(spacing: 4) {
+            Image(systemName: "gamecontroller.fill")
                 .font(.caption)
-                .foregroundColor(.teal)
+                .foregroundColor(.blue)
 
-            Text("Looking For")
-                .font(.caption)
-                .foregroundColor(.secondary)
+            if !user.playStyle.isEmpty {
+                Text(user.playStyle)
+                    .font(.subheadline)
+                    .foregroundColor(.secondary)
 
-            // Show first 2 items inline (limited to avoid overcrowding)
-            ForEach(nonEmptyLookingFor.prefix(2), id: \.self) { item in
-                Text(item)
-                    .font(.caption2)
-                    .fontWeight(.medium)
-                    .padding(.horizontal, 8)
-                    .padding(.vertical, 4)
-                    .background(Color.teal.opacity(0.1))
-                    .foregroundColor(.teal)
-                    .cornerRadius(10)
+                if !user.platforms.isEmpty {
+                    Text("•")
+                        .font(.subheadline)
+                        .foregroundColor(.secondary)
+                }
+            }
+
+            if !user.platforms.isEmpty {
+                Text(user.platforms.prefix(3).joined(separator: ", "))
+                    .font(.subheadline)
+                    .foregroundColor(.secondary)
                     .lineLimit(1)
             }
 
             Spacer()
+        }
+    }
+
+    // MARK: - Photo Count Row
+
+    private var photoCountRow: some View {
+        HStack(spacing: 4) {
+            Image(systemName: "photo.fill")
+                .font(.caption)
+                .foregroundColor(.secondary)
+
+            Text("\(max(allPhotos.count, 1)) photo\(allPhotos.count == 1 ? "" : "s")")
+                .font(.subheadline)
+                .foregroundColor(.secondary)
+
+            Spacer()
+        }
+    }
+
+    private var skillLevelIcon: String {
+        switch user.skillLevel {
+        case "Beginner": return "star"
+        case "Intermediate": return "star.leadinghalf.filled"
+        case "Advanced": return "star.fill"
+        case "Expert": return "star.circle.fill"
+        case "Professional": return "trophy.fill"
+        default: return "star"
         }
     }
 
